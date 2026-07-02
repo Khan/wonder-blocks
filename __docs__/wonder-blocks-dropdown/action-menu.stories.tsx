@@ -1,24 +1,20 @@
 /* eslint-disable no-console */
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
-import type {Meta, StoryObj} from "@storybook/react";
-import {expect, userEvent, within} from "@storybook/test";
-import {useArgs} from "@storybook/preview-api";
-import {action} from "@storybook/addon-actions";
+import type {Meta, StoryObj} from "@storybook/react-vite";
+import {expect, userEvent, within} from "storybook/test";
+import {useArgs} from "storybook/preview-api";
+import {action} from "storybook/actions";
 
 import {View} from "@khanacademy/wonder-blocks-core";
 import {Checkbox} from "@khanacademy/wonder-blocks-form";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
-import Pill from "@khanacademy/wonder-blocks-pill";
-import {
-    border,
-    semanticColor,
-    spacing,
-} from "@khanacademy/wonder-blocks-tokens";
-import {LabelLarge} from "@khanacademy/wonder-blocks-typography";
+import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
+import {BodyText} from "@khanacademy/wonder-blocks-typography";
 import {
     ActionItem,
     ActionMenu,
+    CustomOpener,
     OptionItem,
     SeparatorItem,
 } from "@khanacademy/wonder-blocks-dropdown";
@@ -28,7 +24,14 @@ import actionMenuArgtypes from "./action-menu.argtypes";
 import ComponentInfo from "../components/component-info";
 import packageConfig from "../../packages/wonder-blocks-dropdown/package.json";
 
-import type {Item} from "../../packages/wonder-blocks-dropdown/src/util/types";
+import type {
+    Item,
+    OpenerProps,
+} from "../../packages/wonder-blocks-dropdown/src/util/types";
+import IconButton from "@khanacademy/wonder-blocks-icon-button";
+import {ModalLauncher, OnePaneDialog} from "@khanacademy/wonder-blocks-modal";
+import Button from "@khanacademy/wonder-blocks-button";
+import {StatusBadge} from "@khanacademy/wonder-blocks-badge";
 
 const actionItems: Array<Item> = [
     <ActionItem
@@ -102,8 +105,7 @@ const defaultArgs = {
  */
 export default {
     title: "Packages / Dropdown / ActionMenu",
-    // TODO(FEI-5000): Fix this type.
-    component: ActionMenu as unknown as React.ComponentType<any>,
+    component: ActionMenu,
     subcomponents: {ActionItem},
     argTypes: actionMenuArgtypes,
     args: defaultArgs,
@@ -126,8 +128,8 @@ export default {
 
 const styles = StyleSheet.create({
     example: {
-        background: semanticColor.surface.secondary,
-        padding: spacing.medium_16,
+        background: semanticColor.core.background.base.subtle,
+        padding: sizing.size_160,
     },
     exampleExtended: {
         height: 300,
@@ -142,28 +144,34 @@ const styles = StyleSheet.create({
         justifyContent: "space-between",
     },
     dropdown: {
-        maxHeight: 200,
+        maxBlockSize: 200,
     },
     /**
      * Custom opener styles
      */
     customOpener: {
-        borderLeft: `${border.width.thick} solid ${semanticColor.status.warning.foreground}`,
+        display: "inline-flex",
+        alignItems: "center",
+        gap: sizing.size_080,
+        height: sizing.size_400,
+        paddingInline: sizing.size_160,
+        border: `${border.width.thin} solid ${semanticColor.status.warning.foreground}`,
+        borderInlineStart: `${border.width.thick} solid ${semanticColor.status.warning.foreground}`,
         borderRadius: border.radius.radius_040,
         background: semanticColor.status.warning.background,
-        color: semanticColor.text.primary,
-        padding: spacing.medium_16,
+        color: semanticColor.core.foreground.neutral.strong,
     },
-    focused: {
-        outlineColor: semanticColor.focus.outer,
-        outlineOffset: spacing.xxxxSmall_2,
+    customOpenerHovered: {
+        filter: "brightness(0.95)",
     },
-    hovered: {
-        textDecoration: "underline",
-        cursor: "pointer",
+    customOpenerPressed: {
+        filter: "brightness(0.9)",
     },
-    pressed: {
-        color: semanticColor.status.warning.foreground,
+    customOpenerDisabled: {
+        color: semanticColor.core.foreground.neutral.subtle,
+        borderColor: semanticColor.core.border.neutral.subtle,
+        background: semanticColor.core.background.base.default,
+        cursor: "not-allowed",
     },
 });
 
@@ -351,43 +359,89 @@ export const Controlled: StoryComponentType = {
 };
 
 /**
- * In case you need to use a custom opener, you can use the opener property to
- * achieve this. In this example, the opener prop accepts a function with the
- * following arguments:
- *  - `eventState`: lets you customize the style for different states, such as
- *    pressed, hovered and focused.
- *  - `text`: Passes the menu label defined in the parent component. This value
- *    is passed using the placeholder prop set in the ActionMenu component.
- *  - `opened`: Whether the dropdown is opened.
+ * When you need a fully custom-styled opener, use `CustomOpener`. It provides
+ * a blank-slate `<button>` with the WB focus ring baked in and correct ref
+ * forwarding for the dropdown's focus management wiring.
  *
- * **Note:** If you need to use a custom ID for testing the opener, make sure to
- * pass the testId prop inside the opener component/element.
+ * The `opener` render prop receives `hovered`, `focused`, `pressed`, `text`,
+ * and `opened` values that can be passed to child content for conditional
+ * styling. Focus ring styles are handled automatically by `CustomOpener` via
+ * CSS — you do not need to apply `focusStyles` yourself.
  *
- * **Accessibility:** When a custom opener is used, the following attributes are
- * added automatically: `aria-expanded`, `aria-haspopup`, and `aria-controls`.
+ * **Note:** Pass `testId` directly to `CustomOpener` for e2e test targeting.
+ *
+ * **Accessibility:** When a custom opener is used, `aria-expanded`,
+ * `aria-haspopup`, and `aria-controls` are added automatically.
  */
-
-export const CustomOpener: StoryComponentType = {
+export const WithCustomOpener: StoryComponentType = {
     name: "With custom opener",
-    args: {
-        opener: ({focused, hovered, pressed, text}: any) => (
-            <LabelLarge
-                onClick={() => {
-                    console.log("custom click!!!!!");
-                }}
-                testId="teacher-menu-custom-opener"
-                style={[
-                    styles.customOpener,
-                    focused && styles.focused,
-                    hovered && styles.hovered,
-                    pressed && styles.pressed,
-                ]}
-                role="button"
+    render: function Render(args) {
+        const [opened, setOpened] = React.useState(false);
+        return (
+            <ActionMenu
+                {...args}
+                opened={opened}
+                onToggle={setOpened}
+                opener={({hovered, pressed, text}: OpenerProps) => (
+                    <CustomOpener
+                        testId="teacher-menu-custom-opener"
+                        styles={{
+                            root: [
+                                styles.customOpener,
+                                hovered && styles.customOpenerHovered,
+                                pressed && styles.customOpenerPressed,
+                                args.disabled && styles.customOpenerDisabled,
+                            ],
+                        }}
+                    >
+                        <BodyText tag="span" weight="bold">
+                            {text}
+                        </BodyText>
+                    </CustomOpener>
+                )}
             >
-                {text}
-            </LabelLarge>
+                {actionItems.map((actionItem, index) => actionItem)}
+            </ActionMenu>
+        );
+    },
+    args: {
+        disabled: false,
+    } as Partial<typeof ActionMenu>,
+};
+
+/**
+ * Sometimes you may want to align the dropdown somewhere besides below the
+ * opener. In these cases, you can specify any valid popper placement as the
+ * alignment.
+ */
+export const WithPopperPlacement: StoryComponentType = {
+    name: "With popper placement",
+    render: function Render(args) {
+        const [opened, setOpened] = React.useState(false);
+
+        React.useEffect(() => {
+            setOpened(true);
+        }, []);
+
+        return (
+            <ActionMenu {...args} opened={opened} onToggle={setOpened}>
+                {actionItems.map((actionItem, index) => actionItem)}
+            </ActionMenu>
+        );
+    },
+    args: {
+        alignment: "right-start",
+        opener: ({text}: any) => (
+            <Button endIcon={IconMappings.caretRight}>{text}</Button>
         ),
     } as Partial<typeof ActionMenu>,
+    parameters: {
+        chromatic: {
+            // Delay to allow the dropdown menu to position itself to avoid
+            // flaky snapshots.
+            delay: 300,
+        },
+    },
 };
 
 /**
@@ -432,8 +486,13 @@ const locales = [
  * ActionMenu can be used with custom action items. This is useful when you
  * want to use more rich action items, such as the ones used in context menus.
  *
- * ActionItem internally uses the `CompactCell` component, which is a component
- * that allows you to pass left and right accessories.
+ * ActionItem internally uses the `DetailCell` component, which is a component
+ * that allows you to pass:
+ *
+ * - `subtitle1`: a subtitle before the label
+ * - `subtitle2`: a subtitle after the label
+ * - `leftAccessory`: An accessory at the start of the item.
+ * - `rightAccessory`: An accessory at the end of the item.
  */
 export const CustomActionItems: StoryComponentType = {
     args: {
@@ -446,6 +505,7 @@ export const CustomActionItems: StoryComponentType = {
                 leftAccessory={
                     <PhosphorIcon icon={IconMappings.calendar} size="medium" />
                 }
+                subtitle2="Click to set a date"
                 onClick={action("Set date clicked")}
             />,
             <ActionItem
@@ -460,6 +520,7 @@ export const CustomActionItems: StoryComponentType = {
                         size="medium"
                     />
                 }
+                subtitle2="Edit this item"
                 onClick={action("Edit clicked!")}
             />,
             <ActionItem
@@ -469,24 +530,23 @@ export const CustomActionItems: StoryComponentType = {
                 leftAccessory={
                     <PhosphorIcon icon={IconMappings.gear} size="medium" />
                 }
+                subtitle2="Change your preferences"
                 onClick={action("preferences clicked!")}
             />,
             <ActionItem
                 key="4"
-                label={<LabelLarge>User profile</LabelLarge>}
+                label={<BodyText weight="bold">User profile</BodyText>}
                 horizontalRule="full-width"
                 leftAccessory={
                     <PhosphorIcon icon={IconMappings.info} size="medium" />
                 }
-                rightAccessory={
-                    <Pill kind="accent" size="small" testId="new-pill">
-                        New
-                    </Pill>
-                }
+                rightAccessory={<StatusBadge label="New" kind="info" />}
+                subtitle2="View your profile"
                 onClick={action("user profile clicked!")}
                 style={{
                     [":hover [data-testid=new-pill]" as any]: {
-                        backgroundColor: semanticColor.surface.primary,
+                        backgroundColor:
+                            semanticColor.core.background.base.default,
                         color: semanticColor.status.notice.foreground,
                     },
                 }}
@@ -494,6 +554,7 @@ export const CustomActionItems: StoryComponentType = {
             <OptionItem
                 key="5"
                 label="Show homework assignments"
+                subtitle2="Click to show homework assignments"
                 value="homework"
                 onClick={() => console.log(`Show homework assignments toggled`)}
             />,
@@ -532,5 +593,165 @@ export const CustomActionItems: StoryComponentType = {
         // Assert
         const actionMenu = await canvas.findByRole("menu");
         expect(actionMenu).toBeInTheDocument();
+    },
+};
+
+/**
+ * This example shows how to use the ActionMenu with a modal. The modal is
+ * opened when the user presses the "Open modal" action item. This could be done
+ * by pressing `Enter`/`Space` when the opener is focused.
+ *
+ * Use the keyboard to navigate to the "Open modal" action item and press
+ * `Enter` or `Space` to open the modal.
+ *
+ * Then navigate on the modal by pressing Tab and `Shift` + `Tab`.
+ */
+export const OpeningModal: StoryComponentType = {
+    name: "Opening a Modal",
+    render: function Render(args) {
+        const [opened, setOpened] = React.useState(false);
+
+        return (
+            <>
+                <ActionMenu {...args}>
+                    <ActionItem
+                        key="1"
+                        label="Profile"
+                        href="http://khanacademy.org/profile"
+                        target="_blank"
+                        testId="profile"
+                    />
+                    <ActionItem
+                        key="2"
+                        label="Open modal"
+                        testId="modal"
+                        onClick={() => {
+                            console.log("open modal");
+                            setOpened(true);
+                        }}
+                    />
+                </ActionMenu>
+                <ModalLauncher
+                    onClose={() => {
+                        setOpened(false);
+                    }}
+                    opened={opened}
+                    modal={({closeModal}) => (
+                        <OnePaneDialog
+                            title="Are you sure?"
+                            content="This is just a test"
+                            style={{maxBlockSize: "fit-content"}}
+                            footer={
+                                <View
+                                    style={{
+                                        flexDirection: "row",
+                                        gap: sizing.size_160,
+                                    }}
+                                >
+                                    <Button
+                                        kind="tertiary"
+                                        onClick={closeModal}
+                                    >
+                                        Cancel
+                                    </Button>
+                                    <Button
+                                        actionType="destructive"
+                                        onClick={closeModal}
+                                    >
+                                        Delete
+                                    </Button>
+                                </View>
+                            }
+                        />
+                    )}
+                />
+            </>
+        );
+    },
+    args: {
+        opener: () => (
+            <IconButton
+                aria-label="Actions"
+                kind="tertiary"
+                actionType="neutral"
+                icon={IconMappings.dotsThreeBold}
+            />
+        ),
+    } as Partial<typeof ActionMenu>,
+    parameters: {
+        chromatic: {
+            // Disabling because this doesn't test visuals.
+            disableSnapshot: true,
+        },
+    },
+};
+
+/**
+ * This example shows how to use `aria-label` on the ActionMenu opener and
+ * `ActionItem` children. This is especially useful if you do **not** have a
+ * visible label component but want to ensure accessibility. For more details,
+ * see the [accessibility documentation](./?path=/docs/packages-dropdown-actionmenu-accessibility--docs).
+ *
+ * As you can see, the `ActionMenu` opener visually shows the selected item, but
+ * the `aria-label` attribute on the opener provides a more descriptive label
+ * for the action menu.
+ *
+ * **NOTE:** Make sure to include relevant information in `aria-label` if the
+ * ActionMenu is used to select an item from a list.
+ */
+export const AriaLabel: StoryComponentType = {
+    render: function Render(args) {
+        const [selectedItem, setSelectedItem] = React.useState<string | null>(
+            null,
+        );
+
+        const classOptions = [
+            {
+                label: "Math",
+                ariaLabel: "Select Math class",
+            },
+            {
+                label: "Science",
+                ariaLabel: "Select Science class",
+            },
+            {
+                label: "History",
+                ariaLabel: "Select History class",
+            },
+        ];
+
+        return (
+            <ActionMenu
+                {...args}
+                aria-label={
+                    selectedItem
+                        ? `${selectedItem} - List of classes`
+                        : "List of classes"
+                }
+                opener={() => (
+                    <Button endIcon={IconMappings.caretDown}>
+                        {selectedItem ? selectedItem : "List of classes"}
+                    </Button>
+                )}
+            >
+                {classOptions.map((opt) => (
+                    <ActionItem
+                        key={opt.label}
+                        label={opt.label}
+                        aria-label={opt.ariaLabel}
+                        onClick={() => {
+                            setSelectedItem(opt.label);
+                            action(`Selected ${opt.label}`);
+                        }}
+                    />
+                ))}
+            </ActionMenu>
+        );
+    },
+    parameters: {
+        chromatic: {
+            // Disabling because this doesn't test visuals.
+            disableSnapshot: true,
+        },
     },
 };

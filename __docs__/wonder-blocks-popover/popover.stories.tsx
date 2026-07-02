@@ -1,12 +1,13 @@
+/* eslint-disable max-lines */
+
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
-import type {Meta, StoryObj} from "@storybook/react";
+import type {Meta, StoryObj} from "@storybook/react-vite";
 
 import Button from "@khanacademy/wonder-blocks-button";
-import {PropsFor, View} from "@khanacademy/wonder-blocks-core";
-import {Strut} from "@khanacademy/wonder-blocks-layout";
-import {semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
-import {HeadingMedium, LabelLarge} from "@khanacademy/wonder-blocks-typography";
+import {View} from "@khanacademy/wonder-blocks-core";
+import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
+import {BodyText, Heading} from "@khanacademy/wonder-blocks-typography";
 import type {Placement} from "@khanacademy/wonder-blocks-tooltip";
 
 import {Popover, PopoverContent} from "@khanacademy/wonder-blocks-popover";
@@ -49,9 +50,9 @@ export default {
                 version={packageConfig.version}
             />
         ),
-        // TODO(WB-1170): Reassess this after investigating more about Chromatic
-        // flakyness.
         chromatic: {
+            // Disabling most snapshots in favour of statesheet. Explicitly
+            // enabling snapshots for specific stories.
             disableSnapshot: true,
         },
     },
@@ -67,6 +68,7 @@ const styles = StyleSheet.create({
         display: "grid",
         gridTemplateColumns: "repeat(2, 1fr)",
         height: `calc(100vh - 16px)`,
+        width: "100vw",
     },
     example: {
         alignItems: "center",
@@ -81,11 +83,11 @@ const styles = StyleSheet.create({
         justifyContent: "space-between",
     },
     playground: {
-        border: `1px dashed ${semanticColor.border.primary}`,
-        marginTop: spacing.large_24,
-        padding: spacing.large_24,
+        border: `1px dashed ${semanticColor.core.border.neutral.subtle}`,
+        marginBlockStart: sizing.size_240,
+        padding: sizing.size_240,
         flexDirection: "row",
-        gap: spacing.medium_16,
+        gap: sizing.size_160,
     },
     srOnly: {
         border: 0,
@@ -100,6 +102,7 @@ const styles = StyleSheet.create({
 });
 
 type StoryComponentType = StoryObj<typeof Popover>;
+
 // NOTE: Adding arg types to be able to use the union types defined by the
 // component.
 type PopoverArgs = Partial<typeof Popover>;
@@ -120,7 +123,6 @@ export const Default: StoryComponentType = {
 /**
  * No tail
  */
-
 export const NoTail: StoryComponentType = {
     args: {
         children: <Button>Open popover without tail</Button>,
@@ -143,171 +145,196 @@ export const NoTail: StoryComponentType = {
 };
 
 /**
- * Using a trigger element
+ * This example shows a popover adorning the same element that triggers it. This
+ * is accomplished by passing a function as children and using the `open`
+ * property passed it as the `onClick` handler on a button in this example.
+ *
+ * **NOTES:**
+ * - You will always need to add a trigger element inside the Popover to control
+ *   when and/or from where to open the popover dialog.
+ * - For this example, if you use the `image` prop, make sure to avoid using
+ *   `icon` at the same time. Doing so will throw an error.
  */
+export const TriggerElement: StoryComponentType = {
+    render: () => (
+        <Popover
+            dismissEnabled={true}
+            content={
+                <PopoverContent
+                    closeButtonVisible
+                    title="Title"
+                    content="The popover content."
+                    image={
+                        <img
+                            src="illustration.svg"
+                            alt="An illustration of a person skating on a pencil"
+                            width={288}
+                            height={200}
+                        />
+                    }
+                />
+            }
+        >
+            {({open}) => <Button onClick={open}>Trigger element</Button>}
+        </Popover>
+    ),
+};
 
-export const TriggerElement: StoryComponentType = () => (
-    <Popover
-        dismissEnabled={true}
-        content={
+/**
+ * Povoper can be closed via light dismiss. This means that the popover will be
+ * closed under the following conditions:
+ * - Keyboard: The user presses `Esc`.
+ * - Click outside: The user clicks outside of the popover.
+ * - Focus out: The user tabs before the trigger element or after the last
+ *   focusable element inside the popover.
+ *
+ * The `dismissEnabled` prop can be used to enable or disable light dismiss
+ * (default is `false`).
+ */
+export const DismissEnabled: StoryComponentType = {
+    args: {
+        dismissEnabled: true,
+        children: <Button>Open popover with light dismiss</Button>,
+        content: (
             <PopoverContent
                 closeButtonVisible
                 title="Title"
-                content="The popover content."
-                image={
-                    <img
-                        src="/illustration.svg"
-                        alt="An illustration of a person skating on a pencil"
-                        width={288}
-                        height={200}
-                    />
+                content="The popover content. This popover has light dismiss enabled."
+                actions={
+                    <View style={[styles.row, {gap: sizing.size_160}]}>
+                        <Button kind="tertiary" onClick={() => {}}>
+                            Action 1
+                        </Button>
+                        <Button kind="tertiary" onClick={() => {}}>
+                            Action 2
+                        </Button>
+                    </View>
                 }
             />
-        }
-    >
-        {({open}) => <Button onClick={open}>Trigger element</Button>}
-    </Popover>
-);
+        ),
+    } as PopoverArgs,
+};
 
-TriggerElement.parameters = {
-    docs: {
-        description: {
-            story:
-                `This example shows a popover adorning the same element that
-                triggers it. This is accomplished by passing a function as
-                children and using the \`open\` property passed it as the
-                \`onClick\` handler on a button in this example.\n\n` +
-                `**NOTES:**\n` +
-                `- You will always need to add a trigger element inside the
-                Popover to control when and/or from where to open the popover
-                dialog.\n` +
-                `- For this example, if you use the \`image\` prop, make sure
-                to avoid using \`icon\` at the same time.
-                Doing so will throw an error.\n` +
-                `- This example uses the \`dismissEnabled\` prop. This means
-                that the user can close the Popover by pressing \`Esc\` or
-                clicking in the trigger element.`,
-        },
+/**
+ * Sometimes you'll want to trigger a popover programmatically. This can be done
+ * by setting the `opened` prop to `true`. In this situation the `Popover` is a
+ * controlled component. The parent is responsible for managing the
+ * opening/closing of the popover when using this prop. This means that you'll
+ * also have to update `opened` to `false` in response to the `onClose` callback
+ * being triggered.
+ *
+ * Here you can see as well how the focus is managed when a popover is opened.
+ * To see more details, please check the **Accesibility section**.
+ */
+export const Controlled: StoryComponentType = {
+    render: function Render() {
+        const [opened, setOpened] = React.useState(true);
+        return (
+            <View style={[styles.row, {gap: sizing.size_320}]}>
+                <Popover
+                    opened={opened}
+                    onClose={() => {
+                        setOpened(false);
+                    }}
+                    content={({close}) => (
+                        <PopoverContent
+                            title="Controlled popover"
+                            content="This popover is controlled programatically. This means that is only displayed using the `opened` prop."
+                            actions={
+                                <Button
+                                    onClick={() => {
+                                        close();
+                                    }}
+                                >
+                                    Click to close the popover
+                                </Button>
+                            }
+                        />
+                    )}
+                >
+                    <Button
+                        onClick={() =>
+                            // eslint-disable-next-line no-console
+                            console.log("This is a controlled popover.")
+                        }
+                    >
+                        Anchor element (it does not open the popover)
+                    </Button>
+                </Popover>
+
+                <Button onClick={() => setOpened(true)}>
+                    Outside button (click here to re-open the popover)
+                </Button>
+            </View>
+        );
     },
 };
 
 /**
- * Opening a popover programatically (Controlled)
+ * Sometimes you need to add actions to be able to control the popover state.
+ * For this reason, you can make use of the `actions` prop:
  */
-export const Controlled: StoryComponentType = () => {
-    const [opened, setOpened] = React.useState(true);
-    return (
-        <View style={styles.row}>
+export const WithActions: StoryComponentType = {
+    render: function Render() {
+        const [step, setStep] = React.useState(1);
+        const totalSteps = 5;
+
+        return (
             <Popover
-                opened={opened}
-                onClose={() => {
-                    setOpened(false);
-                }}
                 content={({close}) => (
                     <PopoverContent
-                        title="Controlled popover"
-                        content="This popover is controlled programatically. This means that is only displayed using the `opened` prop."
+                        title="Popover with actions"
+                        content="This example shows a popover which contains a set of actions that can be used to control the popover itself."
                         actions={
-                            <Button
-                                onClick={() => {
-                                    close();
-                                }}
+                            <View
+                                style={[
+                                    styles.row,
+                                    styles.actions,
+                                    {gap: sizing.size_160},
+                                ]}
                             >
-                                Click to close the popover
-                            </Button>
+                                <BodyText weight="bold">
+                                    Step {step} of {totalSteps}
+                                </BodyText>
+                                <Button
+                                    kind="tertiary"
+                                    onClick={() => {
+                                        if (step < totalSteps) {
+                                            setStep(step + 1);
+                                        } else {
+                                            close();
+                                        }
+                                    }}
+                                >
+                                    {step < totalSteps
+                                        ? "Skip this step"
+                                        : "Finish"}
+                                </Button>
+                            </View>
                         }
                     />
                 )}
+                placement="top"
             >
-                <Button
-                    // eslint-disable-next-line no-console
-                    onClick={() => console.log("This is a controlled popover.")}
-                >
-                    Anchor element (it does not open the popover)
-                </Button>
+                <Button>Open popover with actions</Button>
             </Popover>
-            <Strut size={spacing.xLarge_32} />
-            <Button onClick={() => setOpened(true)}>
-                Outside button (click here to re-open the popover)
-            </Button>
-        </View>
-    );
-};
-
-Controlled.parameters = {
-    docs: {
-        description: {
-            story:
-                `Sometimes you'll want to trigger a popover programmatically.
-                This can be done by setting the \`opened\` prop to \`true\`. In
-                this situation the \`Popover\` is a controlled component. The
-                parent is responsible for managing the opening/closing of the
-                popover when using this prop. This means that you'll also have
-                to update \`opened\` to \`false\` in response to the
-                \`onClose\` callback being triggered.\n\n` +
-                `Here you can see as well how the focus is managed when a
-                popover is opened. To see more details, please check the
-                **Accesibility section**.`,
-        },
+        );
     },
 };
 
 /**
- * With Actions
+ * Sometimes, you may want a specific element inside the Popover to receive
+ * focus first. This can be done using the `initialFocusId` prop on the
+ * `Popover` component. Just pass in the ID of the element that should receive
+ * focus, and it will automatically receieve focus once the popover is
+ * displayed.
+ *
+ * In this example, the first button would have received the focus by default,
+ * but the second button receives focus instead since its ID is passed into the
+ * `initialFocusId` prop.
  */
-
-export const WithActions: StoryComponentType = () => {
-    const [step, setStep] = React.useState(1);
-    const totalSteps = 5;
-
-    return (
-        <Popover
-            content={({close}) => (
-                <PopoverContent
-                    title="Popover with actions"
-                    content="This example shows a popover which contains a set of actions that can be used to control the popover itself."
-                    actions={
-                        <View style={[styles.row, styles.actions]}>
-                            <LabelLarge>
-                                Step {step} of {totalSteps}
-                            </LabelLarge>
-                            <Strut size={spacing.medium_16} />
-                            <Button
-                                kind="tertiary"
-                                onClick={() => {
-                                    if (step < totalSteps) {
-                                        setStep(step + 1);
-                                    } else {
-                                        close();
-                                    }
-                                }}
-                            >
-                                {step < totalSteps
-                                    ? "Skip this step"
-                                    : "Finish"}
-                            </Button>
-                        </View>
-                    }
-                />
-            )}
-            placement="top"
-        >
-            <Button>Open popover with actions</Button>
-        </Popover>
-    );
-};
-
-WithActions.parameters = {
-    docs: {
-        description: {
-            story: `Sometimes you need to add actions to be able to
-            control the popover state. For this reason, you can make use of the
-            \`actions\` prop:`,
-        },
-    },
-};
-
 export const WithInitialFocusId: StoryComponentType = {
+    name: "With initialFocusId",
     args: {
         children: (
             <Button>
@@ -320,11 +347,10 @@ export const WithInitialFocusId: StoryComponentType = {
             Setting initialFocusId"
                 content="The focus will be set on the second button"
                 actions={
-                    <View style={styles.row}>
+                    <View style={[styles.row, {gap: sizing.size_160}]}>
                         <Button kind="tertiary" id="popover-button-1">
                             No focus
                         </Button>
-                        <Strut size={spacing.medium_16} />
                         <Button kind="tertiary" id="popover-button-2">
                             It is focused!
                         </Button>
@@ -336,28 +362,6 @@ export const WithInitialFocusId: StoryComponentType = {
         dismissEnabled: true,
         initialFocusId: "popover-button-2",
     } as PopoverArgs,
-};
-
-WithInitialFocusId.storyName = "With initialFocusId";
-
-WithInitialFocusId.parameters = {
-    chromatic: {
-        // All the examples for ModalLauncher are behavior based, not visual.
-        disableSnapshot: true,
-    },
-    docs: {
-        description: {
-            story: `Sometimes, you may want a specific element inside
-            the Popover to receive focus first. This can be done using the
-            \`initialFocusId\` prop on the \`<Popover>\` element.
-            Just pass in the ID of the element that should receive focus,
-            and it will automatically receieve focus once the popover is
-            displayed.
-            In this example, the first button would have received the focus
-            by default, but the second button receives focus instead
-            since its ID is passed into the \`initialFocusId\` prop.`,
-        },
-    },
 };
 
 /**
@@ -389,11 +393,6 @@ export const WithClosedFocusId: StoryComponentType = {
             </Popover>
         </View>
     ),
-    parameters: {
-        chromatic: {
-            disableSnapshot: true,
-        },
-    },
 };
 
 /**
@@ -442,7 +441,7 @@ export const KeyboardNavigation: StoryComponentType = {
 
         return (
             <View>
-                <View style={[styles.row, {gap: spacing.medium_16}]}>
+                <View style={[styles.row, {gap: sizing.size_160}]}>
                     <Button
                         kind="secondary"
                         onClick={() => {
@@ -453,7 +452,7 @@ export const KeyboardNavigation: StoryComponentType = {
                     </Button>
                     <Button
                         kind="secondary"
-                        color="destructive"
+                        actionType="destructive"
                         onClick={() => {
                             if (numButtonsAfter > 0) {
                                 setNumButtonsAfter(numButtonsAfter - 1);
@@ -472,7 +471,7 @@ export const KeyboardNavigation: StoryComponentType = {
                     </Button>
                     <Button
                         kind="secondary"
-                        color="destructive"
+                        actionType="destructive"
                         onClick={() => {
                             if (numButtonsAfter > 0) {
                                 setNumButtonsInside(numButtonsInside - 1);
@@ -521,12 +520,6 @@ export const KeyboardNavigation: StoryComponentType = {
             </View>
         );
     },
-    parameters: {
-        // This example is behavior based, not visual.
-        chromatic: {
-            disableSnapshot: true,
-        },
-    },
 };
 
 /**
@@ -561,8 +554,8 @@ export const CustomKeyboardNavigation: StoryComponentType = {
         };
 
         return (
-            <View style={[{padding: "120px 0"}]}>
-                <View style={[styles.row, {gap: spacing.medium_16}]}>
+            <View style={[{paddingBlock: "120px", paddingInline: "0"}]}>
+                <View style={[styles.row, {gap: sizing.size_160}]}>
                     <Button
                         kind="secondary"
                         onClick={() => {
@@ -573,7 +566,7 @@ export const CustomKeyboardNavigation: StoryComponentType = {
                     </Button>
                     <Button
                         kind="secondary"
-                        color="destructive"
+                        actionType="destructive"
                         onClick={() => {
                             if (numButtonsAfter > 0) {
                                 setNumButtonsAfter(numButtonsAfter - 1);
@@ -592,7 +585,7 @@ export const CustomKeyboardNavigation: StoryComponentType = {
                     </Button>
                     <Button
                         kind="secondary"
-                        color="destructive"
+                        actionType="destructive"
                         onClick={() => {
                             if (numButtonsAfter > 0) {
                                 setNumButtonsInside(numButtonsInside - 1);
@@ -642,12 +635,6 @@ export const CustomKeyboardNavigation: StoryComponentType = {
                 </View>
             </View>
         );
-    },
-    parameters: {
-        // This example is behavior based, not visual.
-        chromatic: {
-            disableSnapshot: true,
-        },
     },
 };
 
@@ -727,54 +714,51 @@ const BasePopoverExample = ({placement}: {placement: Placement}) => {
 export const PopoverAlignment: StoryComponentType = {
     render: () => (
         <View style={styles.container}>
-            <BasePopoverExample placement="left" />
-            <BasePopoverExample placement="bottom" />
             <BasePopoverExample placement="right" />
+            <BasePopoverExample placement="bottom" />
             <BasePopoverExample placement="top" />
+            <BasePopoverExample placement="left" />
         </View>
     ),
-};
-
-export const WithDocumentRootBoundary: StoryComponentType = () => {
-    return (
-        <View style={{paddingBottom: "500px"}}>
-            <Popover
-                rootBoundary="document"
-                content={() => (
-                    <PopoverContent
-                        title="Popover with rootBoundary='document'"
-                        content="This example shows a popover with the rootBoundary='document'. This means that instead of aligning the popover to the viewport, it will instead place the popover where there is room in the DOM. This is a useful tool for popovers with large content that might not fit in small screen sizes or at 400% zoom."
-                        actions={
-                            <View style={[styles.row, styles.actions]}>
-                                <Strut size={spacing.medium_16} />
-                            </View>
-                        }
-                    />
-                )}
-                placement="top"
-            >
-                <Button>Open popover with document rootBoundary</Button>
-            </Popover>
-        </View>
-    );
-};
-
-WithDocumentRootBoundary.parameters = {
-    docs: {
-        description: {
-            story: `Sometimes you need to change the underlining behavior to position the
-                Popover by the whole webpage (document) instead of by the viewport. This is a
-                useful tool for popovers with large content that might not fit in small screen
-                sizes or at 400% zoom. For this reason, you can make use of the
-                \`rootBoundary\` prop:`,
+    parameters: {
+        chromatic: {
+            // Include snapshot for alignment examples
+            disableSnapshot: false,
         },
+    },
+};
+
+/**
+ * Sometimes you need to change the underlining behavior to position the Popover
+ * by the whole webpage (document) instead of by the viewport. This is a useful
+ * tool for popovers with large content that might not fit in small screen sizes
+ * or at 400% zoom. For this reason, you can make use of the \`rootBoundary\`
+ * prop:
+ */
+export const WithDocumentRootBoundary: StoryComponentType = {
+    render: () => {
+        return (
+            <View style={{paddingBlockEnd: "500px"}}>
+                <Popover
+                    rootBoundary="document"
+                    content={() => (
+                        <PopoverContent
+                            title="Popover with rootBoundary='document'"
+                            content="This example shows a popover with the rootBoundary='document'. This means that instead of aligning the popover to the viewport, it will instead place the popover where there is room in the DOM. This is a useful tool for popovers with large content that might not fit in small screen sizes or at 400% zoom."
+                        />
+                    )}
+                    placement="top"
+                >
+                    <Button>Open popover with document rootBoundary</Button>
+                </Popover>
+            </View>
+        );
     },
 };
 
 /**
  * With custom aria-label - overrides the default aria-labelledby
  */
-
 export const WithCustomAriaLabel: StoryComponentType = {
     args: {
         children: <Button>Open popover</Button>,
@@ -792,46 +776,74 @@ export const WithCustomAriaLabel: StoryComponentType = {
 /**
  * With custom aria-describedby - overrides the default aria-describedby
  */
-export const WithCustomAriaDescribedBy = ({
-    placement,
-}: {
-    placement: Placement;
-}) => {
-    const [opened, setOpened] = React.useState(false);
+export const WithCustomAriaDescribedBy: StoryComponentType = {
+    render: function Render() {
+        const [opened, setOpened] = React.useState(false);
 
-    return (
-        <View style={styles.example}>
+        return (
+            <View style={styles.example}>
+                <Popover
+                    aria-describedby="custom-popover-description"
+                    placement="bottom"
+                    opened={opened}
+                    onClose={() => setOpened(false)}
+                    content={
+                        <>
+                            <Heading
+                                size="large"
+                                id="custom-popover-description"
+                                style={styles.srOnly}
+                            >
+                                Hidden text that would describe the popover
+                                content
+                            </Heading>
+                            <PopoverContent
+                                title="Title"
+                                content="Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip commodo."
+                                closeButtonVisible
+                            />
+                        </>
+                    }
+                >
+                    <Button
+                        onClick={() => {
+                            setOpened(true);
+                        }}
+                    >
+                        {`Open popover`}
+                    </Button>
+                </Popover>
+            </View>
+        );
+    },
+};
+
+/**
+ * The `titleHeadingTag` prop allows customizing the heading level used for the
+ * popover title. It defaults to `"h4"`. This does not affect the visual appearance of the title.
+ */
+export const WithTitleHeadingTag: StoryComponentType = {
+    render: function Render() {
+        const [opened, setOpened] = React.useState(false);
+        return (
             <Popover
-                aria-describedby="custom-popover-description"
-                placement={placement}
                 opened={opened}
                 onClose={() => setOpened(false)}
                 content={
-                    <>
-                        <HeadingMedium
-                            id="custom-popover-description"
-                            style={styles.srOnly}
-                        >
-                            Hidden text that would describe the popover content
-                        </HeadingMedium>
-                        <PopoverContent
-                            title="Title"
-                            content="Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip commodo."
-                            closeButtonVisible
-                        />
-                    </>
+                    <PopoverContent
+                        titleHeadingTag="h2"
+                        title="Title rendered as h2"
+                        content="This popover title is rendered as an h2 element instead of the default h4. This does not affect the visual appearance of the title."
+                        closeButtonVisible
+                    />
                 }
             >
-                <Button
-                    onClick={() => {
-                        setOpened(true);
-                    }}
-                >
-                    {`Open popover`}
+                <Button onClick={() => setOpened(true)}>
+                    Open popover with h2 title
                 </Button>
             </Popover>
-        </View>
-    );
+        );
+    },
 };
 
 /**
@@ -842,58 +854,122 @@ export const WithCustomAriaDescribedBy = ({
  * Note: The `viewportPadding` prop is only applied when `rootBoundary` is
  * `viewport`.
  */
-export const InCorners = (args: PropsFor<typeof Popover>) => {
-    const [openedIndex, setOpenedIndex] = React.useState<number>(0);
-    const renderPopover = (index: number) => {
+export const InCorners: StoryComponentType = {
+    render: function Render(args) {
+        const PopoverInCorner = () => {
+            const [opened, setOpened] = React.useState(true);
+            return (
+                <Popover
+                    {...args}
+                    content={
+                        <PopoverContent
+                            closeButtonVisible
+                            content="The default version only includes text."
+                            title="A simple popover"
+                        />
+                    }
+                    dismissEnabled
+                    onClose={() => setOpened(false)}
+                    opened={opened}
+                >
+                    <Button onClick={() => setOpened(true)}>
+                        Open default popover
+                    </Button>
+                </Popover>
+            );
+        };
         return (
-            <Popover
-                {...args}
-                content={
-                    <PopoverContent
-                        closeButtonVisible
-                        content="The default version only includes text."
-                        title="A simple popover"
-                    />
-                }
-                dismissEnabled
-                onClose={() => setOpenedIndex(-1)}
-                opened={openedIndex === index}
+            <View
+                style={{
+                    height: "80vh",
+                    width: "100vw",
+                    justifyContent: "space-between",
+                }}
             >
-                <Button onClick={() => setOpenedIndex(index)}>
-                    Open default popover
-                </Button>
-            </Popover>
+                <View
+                    style={{
+                        flexDirection: "row",
+                        justifyContent: "space-between",
+                    }}
+                >
+                    <PopoverInCorner />
+                    <PopoverInCorner />
+                </View>
+                <View
+                    style={{
+                        flexDirection: "row",
+                        justifyContent: "space-between",
+                    }}
+                >
+                    <PopoverInCorner />
+                    <PopoverInCorner />
+                </View>
+            </View>
         );
-    };
-    return (
-        <View
-            style={{
-                height: "100vh",
-                width: "100vw",
-                justifyContent: "space-between",
-            }}
-        >
-            <View
-                style={{
-                    flexDirection: "row",
-                    justifyContent: "space-between",
-                }}
-            >
-                {renderPopover(0)}
-                {renderPopover(1)}
-            </View>
-            <View
-                style={{
-                    flexDirection: "row",
-                    justifyContent: "space-between",
-                }}
-            >
-                {renderPopover(2)}
-                {renderPopover(3)}
-            </View>
-        </View>
-    );
+    },
+    parameters: {
+        layout: "fullscreen",
+        chromatic: {
+            // Include snapshot for corner alignment examples
+            disableSnapshot: false,
+        },
+    },
 };
-InCorners.parameters = {
-    layout: "fullscreen",
+
+/**
+ * Popover by default (and for performance reasons) only updates its position
+ * under the following conditions:
+ *
+ * 1. When the window is resized.
+ * 2. When the scroll position changes.
+ *
+ * However, there are cases where you might want the tooltip to update its
+ * position when the trigger element changes. This can be done by setting the
+ * `autoUpdate` prop to `true`.
+ */
+export const AutoUpdate: StoryComponentType = {
+    render: function Render(args) {
+        const [position, setPosition] = React.useState<{
+            x: number;
+            y: number;
+        } | null>(null);
+        return (
+            <View style={{position: "relative"}}>
+                <Button
+                    onClick={() => {
+                        setPosition({
+                            x: Math.floor(Math.random() * 200),
+                            y: Math.floor(Math.random() * 200),
+                        });
+                    }}
+                >
+                    Click to update trigger position (randomly)
+                </Button>
+                <Popover
+                    {...args}
+                    content={
+                        <PopoverContent
+                            content="This is a popover that auto-updates its position when the trigger element changes."
+                            title="Popover with autoUpdate=true"
+                        />
+                    }
+                    opened={true}
+                    autoUpdate={true}
+                >
+                    <Button
+                        kind="tertiary"
+                        style={
+                            position && {
+                                position: "absolute",
+                                insetBlockStart: position.y,
+                                insetInlineStart: position.x,
+                            }
+                        }
+                    >
+                        Trigger element
+                    </Button>
+                </Popover>
+            </View>
+        );
+    },
 };

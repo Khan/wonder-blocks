@@ -2,16 +2,9 @@ import * as React from "react";
 import * as ReactDOM from "react-dom";
 
 import {View} from "@khanacademy/wonder-blocks-core";
-import {
-    ThemedStylesFn,
-    withScopedTheme,
-    WithThemeProps,
-} from "@khanacademy/wonder-blocks-theming";
 
-import {
-    ModalDialogThemeContext,
-    ModalDialogThemeContract,
-} from "../themes/themed-modal-dialog";
+import {StyleSheet} from "aphrodite";
+import {semanticColor} from "@khanacademy/wonder-blocks-tokens";
 import {ModalLauncherPortalAttributeName} from "../util/constants";
 import {findFocusableNodes} from "../util/find-focusable-nodes";
 import type {ModalElement} from "../util/types";
@@ -29,7 +22,7 @@ type Props = {
      * Test ID used for e2e testing.
      */
     testId?: string;
-} & WithThemeProps;
+};
 
 /**
  * A private component used by ModalLauncher. This is the fixed-position
@@ -41,125 +34,144 @@ type Props = {
  * and adding an `onClose` prop that will call `onCloseModal`. If an
  * `onClose` prop is already provided, the two are merged.
  */
-class ModalBackdrop extends React.Component<Props> {
-    componentDidMount() {
+/**
+ * Returns an element specified by the user
+ */
+const getInitialFocusElement = (
+    node: HTMLElement,
+    initialFocusId: string | undefined,
+): HTMLElement | null => {
+    if (!initialFocusId) {
+        return null;
+    }
+
+    // eslint-disable-next-line import/no-deprecated
+    return ReactDOM.findDOMNode(
+        node.querySelector(`#${initialFocusId}`),
+    ) as HTMLElement | null;
+};
+
+/**
+ * Returns the first focusable element found inside the Dialog
+ */
+const getFirstFocusableElement = (node: HTMLElement): HTMLElement | null => {
+    // get a collection of elements that can be focused
+    const focusableElements = findFocusableNodes(node);
+
+    if (!focusableElements) {
+        return null;
+    }
+
+    // if found, return the first focusable element
+    return focusableElements[0];
+};
+
+/**
+ * Returns the dialog element
+ */
+const getDialogElement = (node: HTMLElement): HTMLElement | null => {
+    // If no focusable elements are found,
+    // the dialog content element itself will receive focus.
+    // eslint-disable-next-line import/no-deprecated
+    const dialogElement = ReactDOM.findDOMNode(
+        node.querySelector('[role="dialog"]'),
+    ) as HTMLElement | null;
+    // add tabIndex to make the Dialog focusable
+    dialogElement?.setAttribute("tabindex", "-1");
+
+    return dialogElement;
+};
+
+const ModalBackdrop = ({
+    children,
+    initialFocusId,
+    onCloseModal,
+    testId,
+}: Props): React.ReactElement => {
+    const backdropRef = React.useRef<HTMLElement | null>(null);
+    const [mousePressedOutside, setMousePressedOutside] = React.useState(false);
+
+    React.useEffect(() => {
         // eslint-disable-next-line import/no-deprecated
-        const node: HTMLElement = ReactDOM.findDOMNode(this) as any;
+        const node = ReactDOM.findDOMNode(backdropRef.current) as HTMLElement;
         if (!node) {
             return;
         }
 
         const firstFocusableElement =
             // 1. try to get element specified by the user
-            this._getInitialFocusElement(node) ||
-            // 2. get first occurence from list of focusable elements
-            this._getFirstFocusableElement(node) ||
+            getInitialFocusElement(node, initialFocusId) ||
+            // 2. get first occurrence from list of focusable elements
+            getFirstFocusableElement(node) ||
             // 3. get the dialog itself
-            this._getDialogElement(node);
+            getDialogElement(node);
 
         // wait for styles to applied
         setTimeout(() => {
-            firstFocusableElement.focus();
+            firstFocusableElement?.focus();
         }, 0);
-    }
-
-    _mousePressedOutside = false;
-
-    /**
-     * Returns an element specified by the user
-     */
-    _getInitialFocusElement(node: HTMLElement): HTMLElement | null {
-        const {initialFocusId} = this.props;
-
-        if (!initialFocusId) {
-            return null;
-        }
-
-        // eslint-disable-next-line import/no-deprecated
-        return ReactDOM.findDOMNode(
-            node.querySelector(`#${initialFocusId}`),
-        ) as any;
-    }
-
-    /**
-     * Returns the first focusable element found inside the Dialog
-     */
-    _getFirstFocusableElement(node: HTMLElement): HTMLElement | null {
-        // get a collection of elements that can be focused
-        const focusableElements = findFocusableNodes(node);
-
-        if (!focusableElements) {
-            return null;
-        }
-
-        // if found, return the first focusable element
-        return focusableElements[0];
-    }
-
-    /**
-     * Returns the dialog element
-     */
-    _getDialogElement(node: HTMLElement): HTMLElement {
-        // If no focusable elements are found,
-        // the dialog content element itself will receive focus.
-        // eslint-disable-next-line import/no-deprecated
-        const dialogElement: HTMLElement = ReactDOM.findDOMNode(
-            node.querySelector('[role="dialog"]'),
-        ) as any;
-        // add tabIndex to make the Dialog focusable
-        dialogElement.tabIndex = -1;
-
-        return dialogElement;
-    }
+    }, [initialFocusId]);
 
     /**
      * When the user clicks on the gray backdrop area (i.e., the click came
-     * _directly_ from the positioner, not bubbled up from its children), close
-     * the modal.
+     * _directly_ from the positioner or the padding layer, not bubbled up
+     * from the modal content), close the modal.
      */
-    handleMouseDown: (e: React.SyntheticEvent) => void = (
-        e: React.SyntheticEvent,
-    ) => {
-        // Confirm that it is the backdrop that is being clicked, not the child
-        this._mousePressedOutside = e.target === e.currentTarget;
-    };
-
-    handleMouseUp: (e: React.SyntheticEvent) => void = (
-        e: React.SyntheticEvent,
-    ) => {
-        // Confirm that it is the backdrop that is being clicked, not the child
-        // and that the mouse was pressed in the backdrop first.
-        if (e.target === e.currentTarget && this._mousePressedOutside) {
-            this.props.onCloseModal();
-        }
-        this._mousePressedOutside = false;
-    };
-
-    render(): React.ReactNode {
-        const {children, testId} = this.props;
-        const backdropProps = {
-            [ModalLauncherPortalAttributeName]: true,
-        } as const;
-
-        return (
-            <View
-                style={this.props.wbThemeStyles.modalPositioner}
-                onMouseDown={this.handleMouseDown}
-                onMouseUp={this.handleMouseUp}
-                testId={testId}
-                {...backdropProps}
-            >
-                {children}
-            </View>
+    const handleMouseDown = React.useCallback((e: React.SyntheticEvent) => {
+        const target = e.target as HTMLElement;
+        // Confirm that it is the backdrop or the padding layer being clicked
+        const isBackdropClick = e.target === e.currentTarget;
+        const isPaddingLayerClick = target?.hasAttribute?.(
+            "data-modal-padding-layer",
         );
-    }
-}
+        setMousePressedOutside(isBackdropClick || isPaddingLayerClick);
+    }, []);
 
-const themedStylesFn: ThemedStylesFn<ModalDialogThemeContract> = (theme) => ({
+    const handleMouseUp = React.useCallback(
+        (e: React.SyntheticEvent) => {
+            const target = e.target as HTMLElement;
+            // Confirm that it is the backdrop or padding layer being clicked
+            // and that the mouse was pressed outside the modal content first.
+            const isBackdropClick = e.target === e.currentTarget;
+            const isPaddingLayerClick = target?.hasAttribute?.(
+                "data-modal-padding-layer",
+            );
+            if (
+                (isBackdropClick || isPaddingLayerClick) &&
+                mousePressedOutside
+            ) {
+                onCloseModal();
+            }
+            setMousePressedOutside(false);
+        },
+        [mousePressedOutside, onCloseModal],
+    );
+
+    const backdropProps = {
+        [ModalLauncherPortalAttributeName]: true,
+    } as const;
+
+    return (
+        <View
+            ref={backdropRef}
+            style={styles.modalPositioner}
+            onMouseDown={handleMouseDown}
+            onMouseUp={handleMouseUp}
+            testId={testId}
+            {...backdropProps}
+        >
+            {children}
+        </View>
+    );
+};
+
+export default ModalBackdrop;
+
+const styles = StyleSheet.create({
     modalPositioner: {
         position: "fixed",
-        left: 0,
-        top: 0,
+        insetInlineStart: 0,
+        insetBlockStart: 0,
 
         width: "100%",
         height: "100%",
@@ -170,18 +182,8 @@ const themedStylesFn: ThemedStylesFn<ModalDialogThemeContract> = (theme) => ({
         // If the modal ends up being too big for the viewport (e.g., the min
         // height is triggered), add another scrollbar specifically for
         // scrolling modal content.
-        //
-        // TODO(mdr): The specified behavior is that the modal should scroll
-        //     with the rest of the page, rather than separately, if overflow
-        //     turns out to be necessary. That sounds hard to do; punting for
-        //     now!
         overflow: "auto",
 
-        background: theme.backdrop.color.background,
+        background: semanticColor.core.background.overlay.default,
     },
 });
-
-export default withScopedTheme(
-    themedStylesFn,
-    ModalDialogThemeContext,
-)(ModalBackdrop);

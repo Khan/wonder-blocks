@@ -1,5 +1,132 @@
 # @khanacademy/wonder-blocks-testing
 
+## 17.1.1
+
+### Patch Changes
+
+- Updated dependencies [d35ae3d]
+    - @khanacademy/wonder-blocks-testing-core@5.1.1
+    - @khanacademy/wonder-blocks-core@12.4.4
+    - @khanacademy/wonder-blocks-data@15.0.2
+
+## 17.1.0
+
+### Minor Changes
+
+- b5618a5: The `router` test harness adapter now supports a data-routes mode for exercising React Router v6 data routers. Passing a `routes` config renders `createMemoryRouter` + `RouterProvider` so that route `loader`s run and `errorElement`s render (`useRouteError`/`useLoaderData`, redirects, deferred data) — unlike context mode, which only provides routing context via `MemoryRouter`/`StaticRouter`.
+
+    The mode is selected purely by config shape: pass `routes` (plus optional `initialEntries`/`initialIndex`/`hydrationData`) for data-routes mode, or a location for the existing context mode. Provide `routes` as a function `(harnessedComponent) => RouteObject[]` for full control over where the harnessed component is mounted (e.g. as an `errorElement`), or as an array to mount it as the matched leaf route's `element` (the leaf must not define its own `element`, `Component`, or `lazy`). Pass `hydrationData` to pre-resolve loaders and render synchronously. Context mode is unchanged and backward-compatible, and combining the two modes is a type error.
+
+    The router adapter's config type is now exported as `RouterAdapterConfig`.
+
+### Patch Changes
+
+- Updated dependencies [b5618a5]
+    - @khanacademy/wonder-blocks-testing-core@5.1.0
+    - @khanacademy/wonder-blocks-core@12.4.4
+    - @khanacademy/wonder-blocks-data@15.0.2
+
+## 17.0.2
+
+### Patch Changes
+
+- Updated dependencies [40cb70f]
+- Updated dependencies [40cb70f]
+    - @khanacademy/wonder-blocks-core@12.4.4
+    - @khanacademy/wonder-blocks-data@15.0.2
+
+## 17.0.1
+
+### Patch Changes
+
+- Updated dependencies [d6ae5fb]
+    - @khanacademy/wonder-blocks-core@12.4.3
+    - @khanacademy/wonder-blocks-data@15.0.1
+    - @khanacademy/wonder-blocks-testing-core@5.0.0
+
+## 17.0.0
+
+### Major Changes
+
+- cf6ddda: Updated Wonder Stuff peer dependencies to latest major releases
+
+### Patch Changes
+
+- Updated dependencies [cf6ddda]
+    - @khanacademy/wonder-blocks-data@15.0.0
+    - @khanacademy/wonder-blocks-testing-core@5.0.0
+    - @khanacademy/wonder-blocks-core@12.4.2
+
+## 16.0.3
+
+### Patch Changes
+
+- 8a36c70: Re-publish to publish with Trusted Publishing
+- 3e0d137: Re-publishing via Trusted Publishing
+- Updated dependencies [8a36c70]
+- Updated dependencies [3e0d137]
+    - @khanacademy/wonder-blocks-core@12.4.2
+    - @khanacademy/wonder-blocks-data@14.1.8
+    - @khanacademy/wonder-blocks-testing-core@4.0.3
+
+## 16.0.2
+
+### Patch Changes
+
+- 6d5c485: Include provenance information when publishing to npmjs
+- Updated dependencies [6d5c485]
+    - @khanacademy/wonder-blocks-core@12.4.1
+    - @khanacademy/wonder-blocks-data@14.1.7
+    - @khanacademy/wonder-blocks-testing-core@4.0.2
+
+## 16.0.1
+
+### Patch Changes
+
+- 4c03506: Upgrade wonder-blocks infrastructure to use Storybook v9
+- 4c03506: Remove storybook dependency - no longer used.
+- Updated dependencies [4c03506]
+    - @khanacademy/wonder-blocks-testing-core@4.0.1
+    - @khanacademy/wonder-blocks-core@12.4.0
+    - @khanacademy/wonder-blocks-data@14.1.6
+
+## 16.0.0
+
+### Major Changes
+
+- 82b5970: Removed Fixtures framework - please use the native Storybook CSFv3 format for stories
+
+### Patch Changes
+
+- Updated dependencies [82b5970]
+    - @khanacademy/wonder-blocks-testing-core@4.0.0
+    - @khanacademy/wonder-blocks-core@12.4.0
+    - @khanacademy/wonder-blocks-data@14.1.6
+
+## 15.1.8
+
+### Patch Changes
+
+- Updated dependencies [642b5d7]
+    - @khanacademy/wonder-blocks-data@14.1.6
+
+## 15.1.7
+
+### Patch Changes
+
+- Updated dependencies [1334e74]
+    - @khanacademy/wonder-blocks-core@12.4.0
+    - @khanacademy/wonder-blocks-data@14.1.5
+
+## 15.1.6
+
+### Patch Changes
+
+- Updated dependencies [28fa0c0]
+- Updated dependencies [28fa0c0]
+    - @khanacademy/wonder-blocks-core@12.3.0
+    - @khanacademy/wonder-blocks-data@14.1.4
+
 ## 15.1.5
 
 ### Patch Changes

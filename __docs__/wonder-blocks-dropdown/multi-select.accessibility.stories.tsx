@@ -3,7 +3,7 @@ import magnifyingGlassIcon from "@phosphor-icons/core/regular/magnifying-glass.s
 import {OptionItem, MultiSelect} from "@khanacademy/wonder-blocks-dropdown";
 import {LabeledField} from "@khanacademy/wonder-blocks-labeled-field";
 import {View} from "@khanacademy/wonder-blocks-core";
-import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
+import IconButton from "@khanacademy/wonder-blocks-icon-button";
 import {allCountries} from "./option-item-examples";
 
 export default {
@@ -41,7 +41,7 @@ const MultiSelectAccessibility = () => (
 );
 
 export const UsingAriaAttributes = {
-    render: MultiSelectAccessibility.bind({}),
+    render: () => <MultiSelectAccessibility />,
     name: "Using LabeledField",
 };
 
@@ -68,7 +68,7 @@ const MultiSelectAriaLabel = () => (
 );
 
 export const UsingOpenerAriaLabel = {
-    render: MultiSelectAriaLabel.bind({}),
+    render: () => <MultiSelectAriaLabel />,
     name: "Using aria-label attributes",
 };
 
@@ -80,13 +80,12 @@ const MultiSelectCustomOpenerLabeledField = () => {
                 field={
                     <MultiSelect
                         onChange={() => {}}
-                        opener={(eventState: any) => (
-                            <button onClick={() => {}}>
-                                <PhosphorIcon
-                                    icon={magnifyingGlassIcon}
-                                    size="medium"
-                                />
-                            </button>
+                        opener={() => (
+                            <IconButton
+                                icon={magnifyingGlassIcon}
+                                aria-label="Search"
+                                onClick={() => {}}
+                            />
                         )}
                     >
                         <OptionItem label="item 1" value="1" />
@@ -100,7 +99,7 @@ const MultiSelectCustomOpenerLabeledField = () => {
 };
 
 export const UsingCustomOpenerLabeledField = {
-    render: MultiSelectCustomOpenerLabeledField.bind({}),
+    render: () => <MultiSelectCustomOpenerLabeledField />,
     name: "Using custom opener in a LabeledField",
 };
 
@@ -109,13 +108,12 @@ const MultiSelectCustomOpenerLabel = () => {
         <View>
             <MultiSelect
                 onChange={() => {}}
-                opener={(eventState: any) => (
-                    <button aria-label="Search button" onClick={() => {}}>
-                        <PhosphorIcon
-                            icon={magnifyingGlassIcon}
-                            size="medium"
-                        />
-                    </button>
+                opener={() => (
+                    <IconButton
+                        icon={magnifyingGlassIcon}
+                        aria-label="Search"
+                        onClick={() => {}}
+                    />
                 )}
             >
                 <OptionItem label="item 1" value="1" />
@@ -127,7 +125,7 @@ const MultiSelectCustomOpenerLabel = () => {
 };
 
 export const UsingCustomOpenerAriaLabel = {
-    render: MultiSelectCustomOpenerLabel.bind({}),
+    render: () => <MultiSelectCustomOpenerLabel />,
     name: "Using aria-label on custom opener",
 };
 
@@ -154,10 +152,32 @@ const MultiSelectWithVisibleAnnouncer = () => {
 };
 
 export const WithVisibleAnnouncer = {
-    render: MultiSelectWithVisibleAnnouncer.bind({}),
+    render: () => <MultiSelectWithVisibleAnnouncer />,
     name: "With visible Announcer",
     parameters: {
         addBodyClass: "showAnnouncer",
         chromatic: {disableSnapshot: true},
+    },
+};
+
+export const UsingLabeledFieldForReadOnly = {
+    render: function UsingLabeledFieldForReadOnlyStory() {
+        return (
+            <LabeledField
+                field={
+                    <MultiSelect
+                        readOnly={true}
+                        onChange={() => {}}
+                        selectedValues={["1"]}
+                    >
+                        <OptionItem label="item 1" value="1" />
+                        <OptionItem label="item 2" value="2" />
+                        <OptionItem label="item 3" value="3" />
+                    </MultiSelect>
+                }
+                label="Example Label"
+                readOnlyMessage="Message about why it is read only"
+            />
+        );
     },
 };

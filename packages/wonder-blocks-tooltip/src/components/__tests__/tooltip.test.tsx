@@ -176,7 +176,7 @@ describe("Tooltip", () => {
             const result = await screen.findByRole("tooltip");
 
             // Assert
-            expect(result).toHaveAttribute("id", "tooltip-1");
+            expect(result).toHaveAttribute("id", "tooltip-1-aria-content");
         });
 
         describe("text-only anchor", () => {
@@ -196,7 +196,7 @@ describe("Tooltip", () => {
                 expect(result.innerHTML).toBe("Anchor");
             });
 
-            test("id provided, attaches aria-describedby", async () => {
+            test("id provided, does not attach aria-describedby when bubble is not displayed", async () => {
                 // Arrange
                 render(
                     <View>
@@ -210,13 +210,58 @@ describe("Tooltip", () => {
                 const result = await screen.findByText("Anchor");
 
                 // Assert
+                expect(result).not.toHaveAttribute("aria-describedby");
+            });
+
+            test("id provided, attaches aria-describedby when bubble is displayed", async () => {
+                // Arrange
+                const ue = userEvent.setup({
+                    advanceTimers: jest.advanceTimersByTimeAsync,
+                });
+                render(
+                    <View>
+                        <Tooltip id="tooltip-2" content="Content">
+                            Anchor
+                        </Tooltip>
+                    </View>,
+                );
+
+                // Act
+                const result = await screen.findByText("Anchor");
+                await ue.hover(result);
+                await act(() => jest.runOnlyPendingTimersAsync());
+
+                // Assert
                 expect(result).toHaveAttribute(
                     "aria-describedby",
-                    "tooltip-2-anchor-aria-content",
+                    "tooltip-2-aria-content",
                 );
             });
 
-            test("no id provided, attaches aria-describedby", async () => {
+            test("id provided, aria-describedby id matches bubble id", async () => {
+                // Arrange
+                const ue = userEvent.setup({
+                    advanceTimers: jest.advanceTimersByTimeAsync,
+                });
+                render(
+                    <View>
+                        <Tooltip id="tooltip-2" content="Content">
+                            Anchor
+                        </Tooltip>
+                    </View>,
+                );
+
+                // Act
+                const node = await screen.findByText("Anchor");
+                await ue.hover(node);
+                await act(() => jest.runOnlyPendingTimersAsync());
+                const tooltip = await screen.findByRole("tooltip");
+
+                // Assert
+                expect(node).toHaveAttribute("aria-describedby", tooltip.id);
+            });
+
+            test("no id provided, does not aria-describedby when bubble is not visible", async () => {
                 // Arrange
                 render(
                     <View>
@@ -228,11 +273,52 @@ describe("Tooltip", () => {
                 // Act
 
                 // Assert
+                expect(node).not.toHaveAttribute("aria-describedby");
+            });
+
+            test("no id provided, attaches aria-describedby when bubble is visible", async () => {
+                // Arrange
+                const ue = userEvent.setup({
+                    advanceTimers: jest.advanceTimersByTimeAsync,
+                });
+                render(
+                    <View>
+                        <Tooltip content="Content">Anchor</Tooltip>
+                    </View>,
+                );
+
+                // Act
+                const node = await screen.findByText("Anchor");
+                await ue.hover(node);
+                await act(() => jest.runOnlyPendingTimersAsync());
+
+                // Assert
                 expect(node).toHaveAttribute(
                     "aria-describedby",
                     // We don't know what the generated portion would be,
-                    expect.stringMatching(/.*-anchor-aria-content/),
+                    expect.stringMatching(/.*-aria-content/),
                 );
+            });
+
+            test("no id provided, aria-describedby id matches bubble id", async () => {
+                // Arrange
+                const ue = userEvent.setup({
+                    advanceTimers: jest.advanceTimersByTimeAsync,
+                });
+                render(
+                    <View>
+                        <Tooltip content="Content">Anchor</Tooltip>
+                    </View>,
+                );
+
+                // Act
+                const node = await screen.findByText("Anchor");
+                await ue.hover(node);
+                await act(() => jest.runOnlyPendingTimersAsync());
+                const tooltip = await screen.findByRole("tooltip");
+
+                // Assert
+                expect(node).toHaveAttribute("aria-describedby", tooltip.id);
             });
         });
 
@@ -244,7 +330,7 @@ describe("Tooltip", () => {
                         <View>Anchor</View>
                     </View>
                 );
-                const ref = await new Promise((resolve: any) => {
+                const ref: Element = await new Promise((resolve: any) => {
                     render(
                         <View>
                             <Tooltip ref={resolve} content="Content">
@@ -255,7 +341,6 @@ describe("Tooltip", () => {
                 });
 
                 // Act
-                // @ts-expect-error [FEI-5019] - TS2345 - Argument of type 'unknown' is not assignable to parameter of type 'ReactInstance | null | undefined'.
                 const result = ReactDOM.findDOMNode(ref) as any;
 
                 // Assert
@@ -265,9 +350,9 @@ describe("Tooltip", () => {
                 expect(result.children[0].innerHTML).toBe("Anchor");
             });
 
-            test("id provided, attaches aria-describedby", async () => {
+            test("id provided, does not attach aria-describedby when bubble is not displayed", async () => {
                 // Arrange
-                const ref = await new Promise((resolve: any) => {
+                const ref: Element = await new Promise((resolve: any) => {
                     render(
                         <View>
                             <Tooltip
@@ -284,24 +369,87 @@ describe("Tooltip", () => {
                 });
 
                 // Act
-                // @ts-expect-error [FEI-5019] - TS2345 - Argument of type 'unknown' is not assignable to parameter of type 'ReactInstance | null | undefined'.
                 const result = ReactDOM.findDOMNode(ref) as any;
+
+                // Assert
+                expect(result).not.toHaveAttribute("aria-describedby");
+            });
+
+            test("id provided, attaches aria-describedby when bubble is displayed", async () => {
+                // Arrange
+                const ue = userEvent.setup({
+                    advanceTimers: jest.advanceTimersByTimeAsync,
+                });
+                const ref: Element = await new Promise((resolve: any) => {
+                    render(
+                        <View>
+                            <Tooltip
+                                id="tooltip-3"
+                                ref={resolve}
+                                content="Content"
+                            >
+                                <View>
+                                    <View>Anchor</View>
+                                </View>
+                            </Tooltip>
+                        </View>,
+                    );
+                });
+
+                // Act
+                const result = ReactDOM.findDOMNode(ref) as any;
+                await ue.hover(result);
+                await act(() => jest.runOnlyPendingTimersAsync());
 
                 // Assert
                 expect(result).toHaveAttribute(
                     "aria-describedby",
-                    "tooltip-3-anchor-aria-content",
+                    "tooltip-3-aria-content",
                 );
             });
 
-            test("no id provided, attaches aria-describedby", async () => {
+            test("id provided, aria-describedby id matches bubble id", async () => {
+                // Arrange
+                const ue = userEvent.setup({
+                    advanceTimers: jest.advanceTimersByTimeAsync,
+                });
+                const anchor = (
+                    <View>
+                        <View>Anchor</View>
+                    </View>
+                );
+                const ref: Element = await new Promise((resolve: any) => {
+                    render(
+                        <View>
+                            <Tooltip
+                                id="tooltip-3"
+                                ref={resolve}
+                                content="Content"
+                            >
+                                {anchor}
+                            </Tooltip>
+                        </View>,
+                    );
+                });
+
+                // Act
+                const result = ReactDOM.findDOMNode(ref) as any;
+                await ue.hover(result);
+                await act(() => jest.runOnlyPendingTimersAsync());
+                const tooltip = await screen.findByRole("tooltip");
+
+                // Assert
+                expect(result).toHaveAttribute("aria-describedby", tooltip.id);
+            });
+
+            test("no id provided, does not attach aria-describedby when bubble is not displayed", async () => {
                 // Arrange
                 const anchor = (
                     <View>
                         <View>Anchor</View>
                     </View>
                 );
-                const ref = await new Promise((resolve: any) => {
+                const ref: Element = await new Promise((resolve: any) => {
                     render(
                         <View>
                             <Tooltip ref={resolve} content="Content">
@@ -312,14 +460,72 @@ describe("Tooltip", () => {
                 });
 
                 // Act
-                // @ts-expect-error [FEI-5019] - TS2345 - Argument of type 'unknown' is not assignable to parameter of type 'ReactInstance | null | undefined'.
                 const result = ReactDOM.findDOMNode(ref) as any;
+
+                // Assert
+                expect(result).not.toHaveAttribute("aria-describedby");
+            });
+
+            test("no id provided, attaches aria-describedby when bubble is displayed", async () => {
+                // Arrange
+                const ue = userEvent.setup({
+                    advanceTimers: jest.advanceTimersByTimeAsync,
+                });
+                const anchor = (
+                    <View>
+                        <View>Anchor</View>
+                    </View>
+                );
+                const ref: Element = await new Promise((resolve: any) => {
+                    render(
+                        <View>
+                            <Tooltip ref={resolve} content="Content">
+                                {anchor}
+                            </Tooltip>
+                        </View>,
+                    );
+                });
+
+                // Act
+                const result = ReactDOM.findDOMNode(ref) as any;
+                await ue.hover(result);
+                await act(() => jest.runOnlyPendingTimersAsync());
 
                 // Assert
                 expect(result).toHaveAttribute(
                     "aria-describedby",
-                    expect.stringMatching(/.*-anchor-aria-content/),
+                    expect.stringMatching(/.*-aria-content/),
                 );
+            });
+
+            test("no id provided, aria-describedby id matches bubble id", async () => {
+                // Arrange
+                const ue = userEvent.setup({
+                    advanceTimers: jest.advanceTimersByTimeAsync,
+                });
+                const anchor = (
+                    <View>
+                        <View>Anchor</View>
+                    </View>
+                );
+                const ref: Element = await new Promise((resolve: any) => {
+                    render(
+                        <View>
+                            <Tooltip ref={resolve} content="Content">
+                                {anchor}
+                            </Tooltip>
+                        </View>,
+                    );
+                });
+
+                // Act
+                const result = ReactDOM.findDOMNode(ref) as any;
+                await ue.hover(result);
+                await act(() => jest.runOnlyPendingTimersAsync());
+                const tooltip = await screen.findByRole("tooltip");
+
+                // Assert
+                expect(result).toHaveAttribute("aria-describedby", tooltip.id);
             });
         });
     });

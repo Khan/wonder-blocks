@@ -1,4 +1,3 @@
-/* eslint-disable max-lines */
 import * as React from "react";
 import {
     fireEvent,
@@ -293,7 +292,6 @@ describe("SingleSelect", () => {
 
                 // Act
                 await userEvent.click(opener);
-
                 // Assert
                 const options = screen.getAllByRole("option", {hidden: true});
                 expect(options[0]).toHaveFocus();
@@ -392,7 +390,6 @@ describe("SingleSelect", () => {
 
                         // Act
                         await userEvent.keyboard(key);
-
                         // Assert
                         const options = screen.getAllByRole("option", {
                             hidden: true,
@@ -409,7 +406,6 @@ describe("SingleSelect", () => {
 
                 // Act
                 await userEvent.keyboard("{Enter}"); // open
-
                 // Ensure first option is focused, not the opener
                 const firstItem = await screen.findByRole("option", {
                     name: /item 1/,
@@ -423,7 +419,6 @@ describe("SingleSelect", () => {
                 const {userEvent} = doRender(uncontrolledSingleSelect);
                 await userEvent.tab();
                 await userEvent.keyboard("{Enter}"); // open
-
                 // Act
                 await userEvent.keyboard("{Enter}");
 
@@ -1139,7 +1134,7 @@ describe("SingleSelect", () => {
                 "dropdown-core-container",
             );
             expect(dropdownMenuWrapper).toHaveStyle(
-                "max-height: var(--popper-max-height)",
+                "max-block-size: var(--popper-max-height)",
             );
         });
 
@@ -1174,7 +1169,7 @@ describe("SingleSelect", () => {
             );
             // Max allowed height
             expect(dropdownMenuWrapper).toHaveStyle(
-                "max-height: var(--popper-max-height)",
+                "max-block-size: var(--popper-max-height)",
             );
         });
 
@@ -1214,9 +1209,91 @@ describe("SingleSelect", () => {
             );
         });
 
+        beforeEach(() => {
+            // Clear any stale announcements
+            announceMessageSpy.mockClear();
+        });
+
         afterAll(() => {
             announceMessageSpy.mockRestore();
         });
+
+        it("should not announce initial value on mount", async () => {
+            // Arrange
+            const element = (
+                <SingleSelect
+                    onChange={onChange}
+                    placeholder="Choose"
+                    selectedValue="1"
+                >
+                    <OptionItem label="item 1" value="1" />
+                    <OptionItem label="item 2" value="2" />
+                </SingleSelect>
+            );
+
+            // Act
+            doRender(element);
+
+            // Assert
+            expect(announceMessageSpy).not.toHaveBeenCalled();
+        });
+
+        it("should announce when value changes after mount", async () => {
+            // Arrange
+            const ControlledSingleSelect = (
+                props: Partial<PropsFor<typeof SingleSelect>>,
+            ) => {
+                const [selectedValue, setSelectedValue] = React.useState("2");
+                return (
+                    <SingleSelect
+                        onChange={setSelectedValue}
+                        selectedValue={selectedValue}
+                        placeholder="Choose"
+                    >
+                        <OptionItem label="item 1" value="1" />
+                        <OptionItem label="item 2" value="2" />
+                    </SingleSelect>
+                );
+            };
+            const {userEvent} = doRender(<ControlledSingleSelect />);
+
+            // Act
+            await userEvent.click(await screen.findByRole("combobox")); // Opens dropdown
+            await userEvent.click(await screen.findByText("item 1")); // Selects item
+
+            // Assert
+            expect(announceMessageSpy).toHaveBeenCalledWith({
+                message: "item 1",
+                level: "polite",
+            });
+        });
+
+        it.each([
+            ["non-filterable", false],
+            ["filterable", true],
+        ])(
+            "should not announce when a %s dropdown is opened",
+            async (_label, isFilterable) => {
+                // Arrange
+                const {userEvent} = doRender(
+                    <SingleSelect
+                        onChange={onChange}
+                        placeholder="Choose"
+                        selectedValue="2"
+                        isFilterable={isFilterable}
+                    >
+                        <OptionItem label="item 1" value="1" />
+                        <OptionItem label="item 2" value="2" />
+                    </SingleSelect>,
+                );
+
+                // Act
+                await userEvent.click(await screen.findByRole("combobox"));
+
+                // Assert
+                expect(announceMessageSpy).not.toHaveBeenCalled();
+            },
+        );
 
         it("should change the number of options after using the search filter", async () => {
             // Arrange
@@ -1240,6 +1317,7 @@ describe("SingleSelect", () => {
             // Assert
             await expect(announceMessageSpy).toHaveBeenCalledWith({
                 message: "1 item",
+                level: "polite",
             });
         });
     });
@@ -2300,6 +2378,20 @@ describe("SingleSelect", () => {
                     );
                 });
 
+                it("should have aria-required", async () => {
+                    // Arrange
+                    const requiredMessage = "Required field";
+                    doRender(
+                        <ControlledSingleSelect required={requiredMessage} />,
+                    );
+
+                    // Assert
+                    expect(screen.getByRole("combobox")).toHaveAttribute(
+                        "aria-required",
+                        "true",
+                    );
+                });
+
                 it("should call onValidate prop with a custom opener", async () => {
                     // Arrange
                     const requiredMessage = "Required field";
@@ -2349,6 +2441,29 @@ describe("SingleSelect", () => {
                     // Assert
                     expect(screen.getByLabelText("Search")).toHaveAttribute(
                         "aria-invalid",
+                        "true",
+                    );
+                });
+
+                it("should put aria-required on a custom opener", async () => {
+                    // Arrange
+                    const requiredMessage = "Required field";
+                    doRender(
+                        <ControlledSingleSelect
+                            opener={() => (
+                                <button
+                                    aria-label="Search"
+                                    onClick={jest.fn()}
+                                />
+                            )}
+                            required={requiredMessage}
+                        />,
+                    );
+
+                    // Act
+                    // Assert
+                    expect(screen.getByLabelText("Search")).toHaveAttribute(
+                        "aria-required",
                         "true",
                     );
                 });
@@ -2609,6 +2724,132 @@ describe("SingleSelect", () => {
                 expect(onValidate).toHaveBeenCalledExactlyOnceWith(
                     "This field is required.",
                 );
+            });
+        });
+    });
+
+    describe("readOnly prop", () => {
+        describe.each([
+            {name: "default", opener: undefined},
+            {name: "custom", opener: () => <div>Custom opener</div>},
+        ])("With $name opener", ({opener}) => {
+            it("should set aria-disabled to true if readOnly is true", () => {
+                // Arrange
+                // Act
+                doRender(
+                    <SingleSelect
+                        readOnly={true}
+                        onChange={jest.fn()}
+                        placeholder="Choose"
+                        opener={opener}
+                    >
+                        <OptionItem label="item 1" value="1" />
+                        <OptionItem label="item 2" value="2" />
+                    </SingleSelect>,
+                );
+
+                // Assert
+                expect(screen.getByRole("combobox")).toHaveAttribute(
+                    "aria-disabled",
+                    "true",
+                );
+            });
+
+            it("should not have an open dropdown if readOnly is true and opened is true", () => {
+                // Arrange
+                // Act
+                doRender(
+                    <SingleSelect
+                        readOnly={true}
+                        opened={true}
+                        onChange={jest.fn()}
+                        placeholder="Choose"
+                        opener={opener}
+                    >
+                        <OptionItem label="item 1" value="1" />
+                        <OptionItem label="item 2" value="2" />
+                    </SingleSelect>,
+                );
+
+                // Assert
+                expect(screen.queryByRole("listbox")).not.toBeInTheDocument();
+            });
+
+            it("should not open the dropdown if readOnly is true and the opener is clicked", async () => {
+                // Arrange
+                const {userEvent} = doRender(
+                    <SingleSelect
+                        readOnly={true}
+                        onChange={jest.fn()}
+                        placeholder="Choose"
+                        opener={opener}
+                    >
+                        <OptionItem label="item 1" value="1" />
+                        <OptionItem label="item 2" value="2" />
+                    </SingleSelect>,
+                );
+                const combobox = screen.getByRole("combobox");
+
+                // Act
+                await userEvent.click(combobox);
+
+                // Assert
+                expect(screen.queryByRole("listbox")).not.toBeInTheDocument();
+            });
+
+            it.each([
+                {key: "{Enter}", name: "Enter"},
+                {key: " ", name: "Space"},
+                {key: "{ArrowDown}", name: "Down arrow"},
+                {key: "{ArrowUp}", name: "Up arrow"},
+            ])(
+                "should not open the dropdown if readOnly is true and the opener is clicked using the $name key",
+                async ({key}) => {
+                    // Arrange
+                    const {userEvent} = doRender(
+                        <SingleSelect
+                            readOnly={true}
+                            onChange={jest.fn()}
+                            placeholder="Choose"
+                            opener={opener}
+                        >
+                            <OptionItem label="item 1" value="1" />
+                            <OptionItem label="item 2" value="2" />
+                        </SingleSelect>,
+                    );
+
+                    // Act
+                    await userEvent.tab();
+                    await userEvent.keyboard(key);
+
+                    // Assert
+                    expect(
+                        screen.queryByRole("listbox"),
+                    ).not.toBeInTheDocument();
+                },
+            );
+
+            it("should be focusable when readOnly is true", async () => {
+                // Arrange
+                const {userEvent} = doRender(
+                    <SingleSelect
+                        placeholder="Default placeholder"
+                        onChange={jest.fn()}
+                        testId="select-focus-test"
+                        readOnly={true}
+                        opener={opener}
+                    >
+                        <OptionItem label="item 1" value="1" />
+                        <OptionItem label="item 2" value="2" />
+                        <OptionItem label="item 3" value="3" />
+                    </SingleSelect>,
+                );
+
+                // Act
+                await userEvent.tab();
+
+                // Assert
+                expect(screen.getByRole("combobox")).toHaveFocus();
             });
         });
     });

@@ -1,0 +1,90 @@
+/**
+ * This file demonstrates the wonder-blocks ESLint rule:
+ * `@khanacademy/wonder-blocks/no-invalid-bodytext-children`
+ * Run `pnpm lint` in this directory to see the errors.
+ */
+
+import * as React from "react";
+
+import {View} from "@khanacademy/wonder-blocks-core";
+import {
+    Heading,
+    HeadingLarge,
+    BodyText,
+} from "@khanacademy/wonder-blocks-typography";
+
+// ✅ Valid: inline/phrasing-content children
+export function ValidExamples() {
+    return (
+        <>
+            {/* Plain text */}
+            <BodyText>Hello world</BodyText>
+
+            {/* Inline HTML elements */}
+            <BodyText>
+                Text with <strong>bold</strong> and <em>emphasis</em>.
+            </BodyText>
+
+            {/* block-container tag allows block children */}
+            <BodyText tag="div">
+                <div>block content is fine here</div>
+            </BodyText>
+
+            {/* Inner BodyText with inline tag */}
+            <BodyText>
+                Outer <BodyText tag="span">inline nested</BodyText>
+            </BodyText>
+        </>
+    );
+}
+
+// ✅ Valid: View with an inline tag is phrasing content
+export function ValidViewInlineTag() {
+    return (
+        <BodyText>
+            Read more <View tag="span">details here</View>.
+        </BodyText>
+    );
+}
+
+// ❌ Invalid: View defaults to <div> — block-level inside a <p>
+export function InvalidViewChild() {
+    return (
+        <BodyText>
+            <View>layout</View>
+        </BodyText>
+    );
+}
+
+// ❌ Invalid: block-level HTML elements inside a default BodyText (<p>)
+export function InvalidBlockChildren() {
+    return (
+        <>
+            <BodyText>
+                <div>block content</div>
+            </BodyText>
+            <BodyText>
+                <p>nested paragraph</p>
+            </BodyText>
+            <BodyText>
+                <section>section content</section>
+            </BodyText>
+        </>
+    );
+}
+
+
+// ❌ Invalid: WB Heading components render as block-level headings
+export function InvalidHeadingChildren() {
+    return (
+        <>
+            <BodyText>
+                <Heading>Title</Heading>
+            </BodyText>
+            <BodyText>
+                <HeadingLarge>Title</HeadingLarge>
+            </BodyText>
+        </>
+    );
+}
+

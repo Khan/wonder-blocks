@@ -1,10 +1,10 @@
-import type {ArgTypes} from "@storybook/react";
+import type {ArgTypes} from "@storybook/react-vite";
 import * as React from "react";
 
 import Button from "@khanacademy/wonder-blocks-button";
+import AriaArgTypes from "../wonder-blocks-core/aria.argtypes";
 import {Spring, Strut} from "@khanacademy/wonder-blocks-layout";
-import {spacing} from "@khanacademy/wonder-blocks-tokens";
-import {LabelLarge} from "@khanacademy/wonder-blocks-typography";
+import {BodyText} from "@khanacademy/wonder-blocks-typography";
 
 type Mappings = Record<string, React.ReactNode>;
 
@@ -14,13 +14,13 @@ const ActionsMappings: Mappings = {
     pagination: (
         <>
             <Button kind="tertiary">Previous</Button>
-            <Strut size={spacing.medium_16} />
+            <Strut size={16} />
             <Button kind="primary">Next</Button>
         </>
     ),
     steps: (
         <>
-            <LabelLarge>Step 1 of 5</LabelLarge>
+            <BodyText weight="bold">Step 1 of 5</BodyText>
             <Spring />
             <Button kind="tertiary">Skip this step</Button>
         </>
@@ -29,9 +29,9 @@ const ActionsMappings: Mappings = {
 
 const IconMappings: Mappings = {
     none: null,
-    logo: <img src="/logo.svg" width="100%" alt="Wonder Blocks logo" />,
+    logo: <img src="logo.svg" width="100%" alt="Wonder Blocks logo" />,
     itemAvatar: (
-        <img src="./avatar.png" alt="ItemAvatar" width={48} height={48} />
+        <img src="avatar.png" alt="ItemAvatar" width={48} height={48} />
     ),
 };
 
@@ -48,6 +48,7 @@ const ImageMappings: Mappings = {
 };
 
 export default {
+    ...AriaArgTypes,
     content: {
         description: "The content to render inside the popover.",
         type: {name: "string", required: true},
@@ -64,6 +65,12 @@ export default {
         },
         options: Object.keys(ActionsMappings) as Array<React.ReactNode>,
         mapping: ActionsMappings,
+    },
+    titleHeadingTag: {
+        description:
+            "The heading level for the popover title. Defaults to `h4`. This does not affect the visual appearance of the title.",
+        control: {type: "select"},
+        options: ["h1", "h2", "h3", "h4", "h5", "h6"],
     },
     closeButtonVisible: {
         description: `When true, the close button is shown; otherwise, the close button is not shown.`,

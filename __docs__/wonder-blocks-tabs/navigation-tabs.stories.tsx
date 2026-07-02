@@ -1,7 +1,7 @@
 import * as React from "react";
-import type {Meta, StoryObj} from "@storybook/react";
+import type {Meta, StoryObj} from "@storybook/react-vite";
 import {StyleSheet} from "aphrodite";
-import {expect, within} from "@storybook/test";
+import {expect, within} from "storybook/test";
 import ComponentInfo from "../components/component-info";
 import packageConfig from "../../packages/wonder-blocks-tabs/package.json";
 import {
@@ -11,18 +11,16 @@ import {
 import Link from "@khanacademy/wonder-blocks-link";
 import argTypes from "./navigation-tabs.argtypes";
 import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
-import {ScenariosLayout} from "../components/scenarios-layout";
-import {
-    longText,
-    longTextWithNoWordBreak,
-} from "../components/text-for-testing";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
 import {OptionItem, SingleSelect} from "@khanacademy/wonder-blocks-dropdown";
-import {addStyle} from "@khanacademy/wonder-blocks-core";
+import {addStyle, View} from "@khanacademy/wonder-blocks-core";
+import Tooltip from "@khanacademy/wonder-blocks-tooltip";
+import {Popover, PopoverContent} from "@khanacademy/wonder-blocks-popover";
+import {Heading} from "@khanacademy/wonder-blocks-typography";
 
 export default {
-    title: "Packages / Tabs / NavigationTabs / NavigationTabs",
+    title: "Packages / Tabs / ResponsiveNavigationTabs / Subcomponents / NavigationTabs",
     component: NavigationTabs,
     subcomponents: {NavigationTabItem},
     parameters: {
@@ -32,6 +30,10 @@ export default {
                 version={packageConfig.version}
             />
         ),
+        chromatic: {
+            // Disabling because it's covered by the Scenarios stories
+            disableSnapshot: true,
+        },
     },
     argTypes,
 } as Meta<typeof NavigationTabs>;
@@ -39,13 +41,13 @@ export default {
 type StoryComponentType = StoryObj<typeof NavigationTabs>;
 
 const navigationTabItems = [
-    <NavigationTabItem current={true}>
+    <NavigationTabItem current={true} key="default-1">
         <Link href="#link-1">Navigation tab item 1</Link>
     </NavigationTabItem>,
-    <NavigationTabItem>
+    <NavigationTabItem key="default-2">
         <Link href="#link-2">Navigation tab item 2</Link>
     </NavigationTabItem>,
-    <NavigationTabItem>
+    <NavigationTabItem key="default-3">
         <Link href="#link-3">Navigation tab item 3</Link>
     </NavigationTabItem>,
 ];
@@ -53,12 +55,6 @@ const navigationTabItems = [
 export const Default: StoryComponentType = {
     args: {
         children: navigationTabItems,
-    },
-    parameters: {
-        chromatic: {
-            // Disabling because it's covered by All Variants
-            disableSnapshot: true,
-        },
     },
 };
 
@@ -68,12 +64,12 @@ export const Default: StoryComponentType = {
 export const WithIcons: StoryComponentType = {
     args: {
         children: [
-            <NavigationTabItem>
+            <NavigationTabItem key="with-icons-1">
                 <Link href="https://khanacademy.org" target="_blank">
                     External Link
                 </Link>
             </NavigationTabItem>,
-            <NavigationTabItem>
+            <NavigationTabItem key="with-icons-2">
                 <Link
                     href="#link2"
                     startIcon={
@@ -83,7 +79,7 @@ export const WithIcons: StoryComponentType = {
                     Start Icon
                 </Link>
             </NavigationTabItem>,
-            <NavigationTabItem>
+            <NavigationTabItem key="with-icons-3">
                 <Link
                     href="#link3"
                     endIcon={
@@ -96,7 +92,7 @@ export const WithIcons: StoryComponentType = {
                     End Icon
                 </Link>
             </NavigationTabItem>,
-            <NavigationTabItem current={true}>
+            <NavigationTabItem current={true} key="with-icons-4">
                 <Link
                     href="#link4"
                     startIcon={
@@ -113,12 +109,6 @@ export const WithIcons: StoryComponentType = {
                 </Link>
             </NavigationTabItem>,
         ],
-    },
-    parameters: {
-        chromatic: {
-            // Disabling because it's covered by All Variants
-            disableSnapshot: true,
-        },
     },
 };
 
@@ -143,131 +133,6 @@ export const CustomStyles: StoryComponentType = {
     },
 };
 
-const generateChildren = (
-    numItems: number,
-    label: string,
-    showIcons: boolean = false,
-) => {
-    return Array(numItems)
-        .fill(0)
-        .map((_, index) => (
-            <NavigationTabItem current={index === 0}>
-                <Link
-                    href={`#link-${index + 1}`}
-                    startIcon={
-                        showIcons ? (
-                            <PhosphorIcon
-                                icon={IconMappings.cookie}
-                                size="small"
-                            />
-                        ) : undefined
-                    }
-                    endIcon={
-                        showIcons ? (
-                            <PhosphorIcon
-                                icon={IconMappings.iceCream}
-                                size="small"
-                            />
-                        ) : undefined
-                    }
-                >
-                    {label}
-                </Link>
-            </NavigationTabItem>
-        ));
-};
-
-/**
- * The following story shows how the component handles specific scenarios.
- */
-export const Scenarios: StoryComponentType = {
-    render() {
-        const scenarios = [
-            {
-                name: "Many items",
-                props: {children: generateChildren(10, "Navigation Tab Item")},
-            },
-            {
-                name: "Long text",
-                props: {children: generateChildren(4, longText)},
-            },
-            {
-                name: "Long text with no word break",
-                props: {
-                    children: generateChildren(4, longTextWithNoWordBreak),
-                },
-            },
-            {
-                name: "Long text (with icons)",
-                props: {children: generateChildren(4, longText, true)},
-            },
-            {
-                name: "Long text with no word break (with icons)",
-                props: {
-                    children: generateChildren(
-                        4,
-                        longTextWithNoWordBreak,
-                        true,
-                    ),
-                },
-            },
-            {
-                name: "Varying lengths",
-                props: {
-                    children: [
-                        <NavigationTabItem current={true}>
-                            <Link href="#link-long">{longText}</Link>
-                        </NavigationTabItem>,
-                        <NavigationTabItem>
-                            <Link href="#link-short">Short text</Link>
-                        </NavigationTabItem>,
-                        <NavigationTabItem>
-                            <Link href="#link-long-no-break">
-                                {longTextWithNoWordBreak}
-                            </Link>
-                        </NavigationTabItem>,
-                    ],
-                },
-            },
-        ];
-        return (
-            <ScenariosLayout scenarios={scenarios}>
-                {(props, name) => (
-                    <NavigationTabs {...props} aria-label={name} />
-                )}
-            </ScenariosLayout>
-        );
-    },
-    parameters: {
-        a11y: {
-            config: {
-                rules: [
-                    // Disabling warning: "Element's background color could not
-                    // be determined because it's partially obscured by another
-                    // element" since these examples can cause the horizontal
-                    // scrollbar to show. Color contrast check is enabled for
-                    // other stories (including the NavigationTabItem AllVariants)
-                    {id: "color-contrast", enabled: false},
-                ],
-            },
-        },
-    },
-};
-
-/**
- * The following story shows how the component handles specific scenarios at a
- * small screen size.
- */
-export const ScenariosSmallScreen: StoryComponentType = {
-    ...Scenarios,
-    parameters: {
-        ...Scenarios.parameters,
-        viewport: {
-            defaultViewport: "small",
-        },
-    },
-};
-
 const StyledHeader = addStyle("header");
 const StyledDiv = addStyle("div");
 
@@ -283,16 +148,16 @@ export const HeaderWithNavigationTabsExample: StoryComponentType = {
         const headerVerticalSpacing = sizing.size_120;
         const styles = StyleSheet.create({
             pageStyle: {
-                backgroundColor: semanticColor.surface.secondary,
+                backgroundColor: semanticColor.core.background.base.subtle,
                 height: "100vh",
                 width: "100vw",
             },
             headerStyle: {
-                backgroundColor: semanticColor.surface.primary,
+                backgroundColor: semanticColor.core.background.base.default,
                 display: "flex",
                 alignItems: "center",
                 flexWrap: "wrap",
-                borderBottom: `1px solid ${semanticColor.border.primary}`,
+                borderBlockEnd: `1px solid ${semanticColor.core.border.neutral.subtle}`,
                 gap: sizing.size_240,
                 padding: `${headerVerticalSpacing} ${sizing.size_240}`,
             },
@@ -316,7 +181,7 @@ export const HeaderWithNavigationTabsExample: StoryComponentType = {
             <StyledDiv style={styles.pageStyle}>
                 <StyledHeader style={styles.headerStyle}>
                     <img
-                        src="/logo-with-text.svg"
+                        src="logo-with-text.svg"
                         width="80px"
                         alt="Wonder Blocks logo"
                     />
@@ -343,6 +208,10 @@ export const HeaderWithNavigationTabsExample: StoryComponentType = {
     },
     parameters: {
         layout: "fullscreen",
+        chromatic: {
+            // Enable so we can confirm it looks okay in this example
+            disableSnapshot: false,
+        },
     },
     args: {
         animated: true,
@@ -371,12 +240,6 @@ export const Animated: StoryComponentType = {
     },
     args: {
         animated: true,
-    },
-    parameters: {
-        chromatic: {
-            // Disabling because this doesn't test anything visual.
-            disableSnapshot: true,
-        },
     },
     play: async ({canvasElement}) => {
         // Arrange
@@ -435,5 +298,184 @@ export const NoCurrentTab: StoryComponentType = {
     },
     args: {
         animated: true,
+    },
+};
+
+/**
+ * When a `Link` component is passed in for the `children` prop,
+ * `NavigationTabItem` will inject props for the `Link`.
+ *
+ * For specific use cases where the `Link` component is wrapped by another
+ * component (like a `Tooltip` or `Popover`), a render function can be used
+ * instead. The render function provides the Link props that should be applied
+ * to the Link component. The Link props contains styles and attributes for
+ * accessibility like `aria-current`.
+ *
+ * This story demonstrates how a render function could be used to wrap a `Link`
+ * in a `NavigationTabItem` with a `Tooltip` and a `Popover`. Please test for
+ * accessibility for your use case, especially around focus management,
+ * keyboard interactions, and screenreader support!
+ *
+ * #### Current screenreader behaviour
+ *
+ * ##### Tooltips
+ *
+ * ###### ** Expected behaviour: ** The tooltip content is announced when a Link in the NavigationTabs is focused
+ *
+ * - Chrome + NVDA: Works as expected - the tooltip content is announced
+ * - Firefox + NVDA: Only announces the tooltip contents if the tooltip is
+ * already opened
+ * - Safari + VoiceOver: Does not consistently read the tooltip contents when
+ * the link is focused
+ *
+ * ##### Popovers
+ *
+ * ###### ** Expected behaviour: ** Focusing on a link with a popover will announce that it is expanded or collapsed.
+ *
+ * - Chrome + NVDA, Firefox + NVDA: Works as expected - it is
+ * announced that the tab is expanded or collapsed when it is focused.
+ * - Safari + VoiceOver: Does not communicate expanded or collapsed state.
+ *
+ * ###### ** Expected behaviour: ** A popover that is already opened is in the tab order
+ *
+ * - Chrome + NVDA, Firefox + NVDA, Safari + VoiceOver: The popover contents can
+ * be tabbed to.
+ * - The popover focus management is handled by the `Popover` component, see the
+ * `Popover Accessibility` docs for more details.
+ *
+ * ###### ** Expected behaviour: ** Selecting a tab with a popover (using `Space` or `Enter`) will open the popover and navigate the user
+ *
+ * - Chrome + NVDA, Firefox + NVDA, Safari + VoiceOver: Works as expected - the
+ * popover is opened and the browser navigates. The popover contents are
+ * announced and can be interacted with.
+ * - The popover focus management is handled by the `Popover` component, see the
+ * `Popover Accessibility` docs for more details.
+ */
+export const ChildrenRenderFunction: StoryComponentType = {
+    render() {
+        return (
+            <View
+                style={{
+                    // Need to set the height so tooltip/popover are captured in chromatic
+                    minBlockSize: 400,
+                    gap: sizing.size_240,
+                }}
+            >
+                <View
+                    style={{
+                        flexDirection: "row",
+                        gap: sizing.size_800,
+                    }}
+                >
+                    <NavigationTabs aria-label="With tooltip and popover not shown by default">
+                        <NavigationTabItem current={true}>
+                            {(linkProps) => (
+                                <Tooltip content="Contents for the tooltip">
+                                    <Link href="#link-1" {...linkProps}>
+                                        Link with Tooltip
+                                    </Link>
+                                </Tooltip>
+                            )}
+                        </NavigationTabItem>
+                        <NavigationTabItem>
+                            {(linkProps) => (
+                                <Popover
+                                    content={
+                                        <PopoverContent
+                                            title="Title"
+                                            content="The popover content."
+                                            closeButtonVisible
+                                        />
+                                    }
+                                >
+                                    <Link href="#link-1" {...linkProps}>
+                                        Link with Popover
+                                    </Link>
+                                </Popover>
+                            )}
+                        </NavigationTabItem>
+                    </NavigationTabs>
+                </View>
+                <Heading size="large">Opened state</Heading>
+                <View
+                    style={{
+                        flexDirection: "row",
+                        gap: sizing.size_960,
+                    }}
+                >
+                    <NavigationTabs aria-label="With tooltip and popover shown by default">
+                        <NavigationTabItem current={true}>
+                            {(linkProps) => (
+                                <Tooltip
+                                    content="Contents for the tooltip"
+                                    opened={true}
+                                    placement="bottom"
+                                >
+                                    <Link href="#link-1" {...linkProps}>
+                                        Link with Opened Tooltip
+                                    </Link>
+                                </Tooltip>
+                            )}
+                        </NavigationTabItem>
+                        <NavigationTabItem>
+                            {(linkProps) => (
+                                <Popover
+                                    content={
+                                        <PopoverContent
+                                            title="Title"
+                                            content="The popover content."
+                                            closeButtonVisible
+                                        />
+                                    }
+                                    placement="bottom"
+                                    opened={true}
+                                >
+                                    <Link href="#link-1" {...linkProps}>
+                                        Link with Opened Popover
+                                    </Link>
+                                </Popover>
+                            )}
+                        </NavigationTabItem>
+                    </NavigationTabs>
+                </View>
+            </View>
+        );
+    },
+    parameters: {
+        // Added to ensure that the popover/tooltip is rendered using PopperJS.
+        chromatic: {
+            delay: 500,
+            // Enable snapshot so we can confirm it looks okay in this example
+            disableSnapshot: false,
+        },
+    },
+};
+
+/**
+ * By default, the `NavigationTabs` component renders as a `nav` element. If
+ * the underlying element needs to be changed, the `tag` prop can be used to
+ * specify the HTML tag to render.
+ */
+export const Tag: StoryComponentType = {
+    args: {
+        children: navigationTabItems,
+        tag: "div",
+    },
+    parameters: {
+        chromatic: {
+            // Disabling because this story doesn't test anything visual.
+            disableSnapshot: true,
+        },
+    },
+};
+
+/**
+ * Use the `showDivider` prop to show a divider under the tabs. `showDivider` is
+ * `false` by default.
+ */
+export const ShowDivider: StoryComponentType = {
+    args: {
+        children: navigationTabItems,
+        showDivider: true,
     },
 };

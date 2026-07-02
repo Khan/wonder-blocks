@@ -1,10 +1,10 @@
-import {Meta} from "@storybook/react";
+import {Meta} from "@storybook/react-vite";
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 import {PropsFor, View} from "@khanacademy/wonder-blocks-core";
 import {OptionItem} from "@khanacademy/wonder-blocks-dropdown";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
-import {semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 
 import ComponentInfo from "../components/component-info";
 import packageConfig from "../../packages/wonder-blocks-dropdown/package.json";
@@ -23,12 +23,12 @@ const defaultArgs = {
 
 const styles = StyleSheet.create({
     example: {
-        background: semanticColor.surface.secondary,
-        padding: spacing.medium_16,
+        background: semanticColor.core.background.base.subtle,
+        padding: sizing.size_160,
         width: 300,
     },
     items: {
-        background: semanticColor.surface.primary,
+        background: semanticColor.core.background.base.default,
     },
 });
 
@@ -113,7 +113,7 @@ export const CustomOptionItem = {
     args: {
         label: "Option Item",
         onClick: () => {},
-        subtitle1: AccessoryMappings.pill,
+        subtitle1: AccessoryMappings.badge,
         subtitle2: "Subtitle 2",
         leftAccessory: (
             <PhosphorIcon icon={IconMappings.calendar} size="medium" />

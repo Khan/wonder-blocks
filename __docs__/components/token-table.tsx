@@ -2,7 +2,7 @@ import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
 import {addStyle} from "@khanacademy/wonder-blocks-core";
-import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {maybeGetCssVariableInfo} from "./tokens-util";
 
 const StyledTable = addStyle("table");
@@ -84,19 +84,20 @@ const styles = StyleSheet.create({
     table: {
         borderCollapse: "collapse",
         borderSpacing: 0,
-        margin: `${spacing.xLarge_32}px 0`,
-        textAlign: "left",
+        margin: `${sizing.size_320} 0`,
         width: "100%",
+        color: semanticColor.core.foreground.neutral.strong,
     },
     header: {
-        backgroundColor: color.offWhite,
+        backgroundColor: semanticColor.core.background.base.subtle,
     },
     row: {
-        borderTop: `1px solid ${color.offBlack8}`,
-        backgroundColor: color.white,
+        borderBlockStart: `1px solid ${semanticColor.core.border.neutral.subtle}`,
+        backgroundColor: semanticColor.core.background.base.default,
     },
     cell: {
-        padding: spacing.xSmall_8,
+        padding: sizing.size_080,
         verticalAlign: "middle",
+        textAlign: "start",
     },
 });

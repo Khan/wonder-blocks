@@ -89,6 +89,10 @@ export type TextViewSharedProps = {
      * Optional CSS classes for the entire dropdown component.
      */
     className?: string;
+    /**
+     * The text direction for the element.
+     */
+    dir?: "ltr" | "rtl" | "auto";
 
     htmlFor?: string;
     tabIndex?: number;
@@ -96,8 +100,16 @@ export type TextViewSharedProps = {
     title?: string;
 
     // TODO(kevinb) remove the need for this
+    /**
+     * Should be ignored
+     * @ignore
+     */
     "data-modal-launcher-portal"?: boolean;
     // Used by tooltip bubble
+    /**
+     * Should be ignored
+     * @ignore
+     */
     "data-placement"?: string;
 } & AriaProps &
     EventHandlers;

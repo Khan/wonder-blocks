@@ -1,6 +1,8 @@
+/* eslint-disable max-lines */
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
-import type {Meta, StoryObj} from "@storybook/react";
+import {action} from "storybook/actions";
+import type {Meta, StoryObj} from "@storybook/react-vite";
 
 import {MemoryRouter} from "react-router-dom";
 import {CompatRouter, Route, Routes} from "react-router-dom-v5-compat";
@@ -10,26 +12,27 @@ import type {StyleDeclaration} from "aphrodite";
 import pencilSimple from "@phosphor-icons/core/regular/pencil-simple.svg";
 import pencilSimpleBold from "@phosphor-icons/core/bold/pencil-simple-bold.svg";
 import plus from "@phosphor-icons/core/regular/plus.svg";
+import magnifyingGlass from "@phosphor-icons/core/regular/magnifying-glass.svg";
+import caretRight from "@phosphor-icons/core/regular/caret-right.svg";
+import clock from "@phosphor-icons/core/regular/clock.svg";
 
 import {View} from "@khanacademy/wonder-blocks-core";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
-import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
-import {
-    LabelMedium,
-    LabelLarge,
-    HeadingSmall,
-} from "@khanacademy/wonder-blocks-typography";
+import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
+import {BodyText} from "@khanacademy/wonder-blocks-typography";
 
 import Button from "@khanacademy/wonder-blocks-button";
 import packageConfig from "../../packages/wonder-blocks-button/package.json";
 import ComponentInfo from "../components/component-info";
 
 import ButtonArgTypes from "./button.argtypes";
-import {ThemeSwitcherContext} from "@khanacademy/wonder-blocks-theming";
 import {LabeledField} from "@khanacademy/wonder-blocks-labeled-field";
+import {Icon, PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
+import {TextField} from "@khanacademy/wonder-blocks-form";
+import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
 
 export default {
-    title: "Packages / Button",
+    title: "Packages / Button / Button",
     component: Button,
     parameters: {
         componentSubtitle: (
@@ -49,7 +52,7 @@ export const Default: StoryComponentType = {
     args: {
         children: "Hello, world!",
         kind: "primary",
-        color: "default",
+        actionType: "progressive",
         size: "medium",
         disabled: false,
         style: {maxWidth: 200},
@@ -72,118 +75,171 @@ export const styles: StyleDeclaration = StyleSheet.create({
     row: {
         flexDirection: "row",
         alignItems: "center",
-        marginBottom: spacing.xSmall_8,
+        marginBlockEnd: sizing.size_080,
+    },
+    rowWithGap: {
+        flexDirection: "row",
+        alignItems: "center",
+        gap: sizing.size_160,
     },
     button: {
-        marginRight: spacing.xSmall_8,
+        marginInlineEnd: sizing.size_080,
     },
     truncatedButton: {
-        maxWidth: 200,
-        marginBottom: spacing.medium_16,
+        maxInlineSize: 200,
+        marginBlockEnd: sizing.size_160,
     },
     fillSpace: {
-        minWidth: 140,
+        minInlineSize: 140,
     },
     example: {
-        background: color.offWhite,
-        padding: spacing.medium_16,
+        background: semanticColor.core.background.base.subtle,
+        padding: sizing.size_160,
     },
     label: {
-        marginTop: spacing.large_24,
-        marginBottom: spacing.xSmall_8,
+        marginBlockStart: sizing.size_240,
+        marginBlockEnd: sizing.size_080,
     },
 });
 
-export const Variants: StoryComponentType = () => (
-    <View style={{padding: spacing.medium_16, gap: spacing.medium_16}}>
-        <View style={{flexDirection: "row", gap: spacing.medium_16}}>
-            <Button onClick={() => {}}>Hello, world!</Button>
-            <Button onClick={() => {}} kind="secondary">
-                Hello, world!
-            </Button>
-            <Button onClick={() => {}} kind="tertiary">
-                Hello, world!
-            </Button>
-        </View>
-        <View style={{flexDirection: "row", gap: spacing.medium_16}}>
-            <Button onClick={() => {}} disabled={true}>
-                Hello, world!
-            </Button>
-            <Button onClick={() => {}} disabled={true} kind="secondary">
-                Hello, world!
-            </Button>
-            <Button onClick={() => {}} disabled={true} kind="tertiary">
-                Hello, world!
-            </Button>
-        </View>
-        <View style={{flexDirection: "row", gap: spacing.medium_16}}>
-            <Button onClick={() => {}} color="destructive">
-                Hello, world!
-            </Button>
-            <Button onClick={() => {}} kind="secondary" color="destructive">
-                Hello, world!
-            </Button>
-            <Button onClick={() => {}} kind="tertiary" color="destructive">
-                Hello, world!
-            </Button>
-        </View>
-    </View>
-);
-
-Variants.parameters = {
-    docs: {
-        description: {
-            story: "There are three kinds of buttons: `primary` (default), `secondary`, and `tertiary`.",
-        },
-    },
-    chromatic: {
-        // We already have screenshots of other stories that cover more of
-        // the button states
-        disableSnapshot: true,
-    },
-};
-
-export const WithColor: StoryComponentType = {
-    name: "Color",
+/**
+ * There are three kinds of buttons: `primary` (default), `secondary`, and
+ * `tertiary`.
+ */
+export const Kinds: StoryComponentType = {
     render: () => (
-        <View style={styles.row}>
-            <Button
-                style={styles.button}
-                onClick={() => {}}
-                color="destructive"
-            >
-                Primary
-            </Button>
-            <Button
-                style={styles.button}
-                onClick={() => {}}
-                kind="secondary"
-                color="destructive"
-            >
-                Secondary
-            </Button>
-            <Button
-                style={styles.button}
-                onClick={() => {}}
-                kind="tertiary"
-                color="destructive"
-            >
-                Tertiary
-            </Button>
+        <View style={{padding: sizing.size_160, gap: sizing.size_160}}>
+            <View style={styles.rowWithGap}>
+                <Button onClick={() => {}}>Hello, world!</Button>
+                <Button onClick={() => {}} kind="secondary">
+                    Hello, world!
+                </Button>
+                <Button onClick={() => {}} kind="tertiary">
+                    Hello, world!
+                </Button>
+            </View>
+            <View style={styles.rowWithGap}>
+                <Button onClick={() => {}} disabled={true}>
+                    Hello, world!
+                </Button>
+                <Button onClick={() => {}} disabled={true} kind="secondary">
+                    Hello, world!
+                </Button>
+                <Button onClick={() => {}} disabled={true} kind="tertiary">
+                    Hello, world!
+                </Button>
+            </View>
+            <View style={styles.rowWithGap}>
+                <Button onClick={() => {}} actionType="destructive">
+                    Hello, world!
+                </Button>
+                <Button
+                    onClick={() => {}}
+                    kind="secondary"
+                    actionType="destructive"
+                >
+                    Hello, world!
+                </Button>
+                <Button
+                    onClick={() => {}}
+                    kind="tertiary"
+                    actionType="destructive"
+                >
+                    Hello, world!
+                </Button>
+            </View>
+            <View style={styles.rowWithGap}>
+                <Button onClick={() => {}} actionType="neutral">
+                    Hello, world!
+                </Button>
+                <Button
+                    onClick={() => {}}
+                    kind="secondary"
+                    actionType="neutral"
+                >
+                    Hello, world!
+                </Button>
+                <Button onClick={() => {}} kind="tertiary" actionType="neutral">
+                    Hello, world!
+                </Button>
+            </View>
         </View>
     ),
-};
-
-WithColor.parameters = {
-    docs: {
-        description: {
-            story: "Buttons have a `color` that is either `default` (the default, as shown above) or `destructive` (as can seen below):",
+    parameters: {
+        chromatic: {
+            // We already have screenshots of other stories that cover more of
+            // the button states
+            disableSnapshot: true,
         },
     },
-    chromatic: {
-        // NOTE: We already have screenshots of other stories that cover more of
-        // the button states (see Variants).
-        disableSnapshot: true,
+};
+
+/**
+ * Buttons have an `actionType` prop that is either `progressive` (the default,
+ * as shown above), `destructive` or `neutral` (as can seen below):
+ */
+export const ActionType: StoryComponentType = {
+    name: "ActionType",
+    render: () => (
+        <View style={{gap: sizing.size_160}}>
+            <View style={styles.row}>
+                <Button
+                    style={styles.button}
+                    onClick={() => {}}
+                    actionType="destructive"
+                >
+                    Primary
+                </Button>
+                <Button
+                    style={styles.button}
+                    onClick={() => {}}
+                    kind="secondary"
+                    actionType="destructive"
+                >
+                    Secondary
+                </Button>
+                <Button
+                    style={styles.button}
+                    onClick={() => {}}
+                    kind="tertiary"
+                    actionType="destructive"
+                >
+                    Tertiary
+                </Button>
+            </View>
+            <View style={styles.row}>
+                <Button
+                    style={styles.button}
+                    onClick={() => {}}
+                    actionType="neutral"
+                >
+                    Primary
+                </Button>
+                <Button
+                    style={styles.button}
+                    onClick={() => {}}
+                    kind="secondary"
+                    actionType="neutral"
+                >
+                    Secondary
+                </Button>
+                <Button
+                    style={styles.button}
+                    onClick={() => {}}
+                    kind="tertiary"
+                    actionType="neutral"
+                >
+                    Tertiary
+                </Button>
+            </View>
+        </View>
+    ),
+    parameters: {
+        chromatic: {
+            // NOTE: We already have screenshots of other stories that cover more of
+            // the button states (see Variants).
+            disableSnapshot: true,
+        },
     },
 };
 
@@ -191,7 +247,9 @@ const kinds = ["primary", "secondary", "tertiary"] as const;
 
 const IconExample = () => (
     <View>
-        <LabelLarge style={styles.label}>Using `startIcon` prop</LabelLarge>
+        <BodyText weight="bold" style={styles.label}>
+            Using `startIcon` prop
+        </BodyText>
         <View style={styles.row}>
             {kinds.map((kind, idx) => (
                 <Button
@@ -217,7 +275,9 @@ const IconExample = () => (
                 </Button>
             ))}
         </View>
-        <LabelLarge style={styles.label}>Using `endIcon` prop</LabelLarge>
+        <BodyText weight="bold" style={styles.label}>
+            Using `endIcon` prop
+        </BodyText>
         <View style={styles.row}>
             {kinds.map((kind, idx) => (
                 <Button
@@ -243,9 +303,9 @@ const IconExample = () => (
                 </Button>
             ))}
         </View>
-        <LabelLarge style={styles.label}>
+        <BodyText weight="bold" style={styles.label}>
             Using both `startIcon` and `endIcon` props
-        </LabelLarge>
+        </BodyText>
         <View style={styles.row}>
             {kinds.map((kind, idx) => (
                 <Button
@@ -273,6 +333,52 @@ const IconExample = () => (
                 </Button>
             ))}
         </View>
+        <BodyText weight="bold" style={styles.label}>
+            Using Icon component for custom icons
+        </BodyText>
+        <View style={styles.row}>
+            {kinds.map((kind, idx) => (
+                <Button
+                    kind={kind}
+                    startIcon={
+                        <Icon>
+                            <img src={"logo.svg"} alt="" />
+                        </Icon>
+                    }
+                    endIcon={
+                        <Icon>
+                            <img src={"logo.svg"} alt="" />
+                        </Icon>
+                    }
+                    style={styles.button}
+                    key={idx}
+                >
+                    {kind}
+                </Button>
+            ))}
+        </View>
+        <View style={styles.row}>
+            {kinds.map((kind, idx) => (
+                <Button
+                    kind={kind}
+                    startIcon={
+                        <Icon>
+                            <img src={"logo.svg"} alt="" />
+                        </Icon>
+                    }
+                    endIcon={
+                        <Icon>
+                            <img src={"logo.svg"} alt="" />
+                        </Icon>
+                    }
+                    style={styles.button}
+                    key={idx}
+                    size="small"
+                >
+                    {`${kind} small`}
+                </Button>
+            ))}
+        </View>
     </View>
 );
 
@@ -285,21 +391,102 @@ const IconExample = () => (
  * __NOTE:__ Icons are available from the [Phosphor
  * Icons](https://phosphoricons.com/) library.
  *
- * To import an icon, you can use the following syntax:
+ * To use a Phosphor icon, you can use the following syntax:
  *
- * e.g.
- * ```
+ * ```tsx
  * import pencilSimple from "@phosphor-icons/core/regular/pencil-simple.svg";
+ *
+ * export const ButtonExample = () => (
+ *     <Button startIcon={pencilSimple}>
+ *         Example button
+ *     </Button>
+ * );
  * ```
+ *
+ * For custom icons, you can use the Wonder Blocks Icon component:
+ *
+ * ```tsx
+ * import {Icon} from "@khanacademy/wonder-blocks-icon";
+ *
+ * export const ButtonExample = () => (
+ *     <Button startIcon={<Icon><img src="example.svg" alt="Example icon" /></Icon>}>
+ *         Example button
+ *     </Button>
+ * );
+ * ```
+ *
+ * Note: The Button component will handle the sizing for the icons
  */
-export const Icon: StoryComponentType = {
+export const WithIcon: StoryComponentType = {
+    name: "Icon",
     render: () => <IconExample />,
+};
+
+/**
+ * If the `startIcon` or `endIcon` provide meaning, you can provide an accessible
+ * name for the icons so that it is included in the accessible name of the button.
+ *
+ * For example, when using a `PhosphorIcon`, you can use the `aria-label` prop
+ * to provide an accessible name. When using a `Icon` component, you can provide
+ * the accessible name to the `children` element (ie the `alt` attribute on the
+ * `img` element).
+ */
+export const IconsWithAccessibleNames: StoryComponentType = {
+    render: () => {
+        return (
+            <View style={styles.row}>
+                <Button
+                    style={styles.button}
+                    startIcon={
+                        <PhosphorIcon
+                            icon={IconMappings.cookie}
+                            aria-label="Cookie"
+                        />
+                    }
+                    endIcon={
+                        <PhosphorIcon
+                            icon={IconMappings.iceCream}
+                            aria-label="Ice Cream"
+                        />
+                    }
+                >
+                    With PhosphorIcon aria-label
+                </Button>
+                <Button
+                    style={styles.button}
+                    startIcon={
+                        <Icon>
+                            <img
+                                src={"logo.svg"}
+                                alt="Wonder Blocks start icon"
+                            />
+                        </Icon>
+                    }
+                    endIcon={
+                        <Icon>
+                            <img
+                                src={"logo.svg"}
+                                alt="Wonder Blocks end icon"
+                            />
+                        </Icon>
+                    }
+                >
+                    With Icon and img alt
+                </Button>
+            </View>
+        );
+    },
+    parameters: {
+        chromatic: {
+            disableSnapshot: true,
+        },
+    },
 };
 
 export const Size: StoryComponentType = () => (
     <View>
         <View style={styles.row}>
-            <LabelMedium style={styles.fillSpace}>small</LabelMedium>
+            <BodyText style={styles.fillSpace}>small</BodyText>
             <View style={[styles.row, styles.example]}>
                 <Button style={styles.button} onClick={() => {}} size="small">
                     Label
@@ -323,7 +510,7 @@ export const Size: StoryComponentType = () => (
             </View>
         </View>
         <View style={styles.row}>
-            <LabelMedium style={styles.fillSpace}>medium (default)</LabelMedium>
+            <BodyText style={styles.fillSpace}>medium (default)</BodyText>
 
             <View style={[styles.row, styles.example]}>
                 <Button style={styles.button} onClick={() => {}} size="medium">
@@ -348,7 +535,7 @@ export const Size: StoryComponentType = () => (
             </View>
         </View>
         <View style={styles.row}>
-            <LabelMedium style={styles.fillSpace}>large</LabelMedium>
+            <BodyText style={styles.fillSpace}>large</BodyText>
             <View style={[styles.row, styles.example]}>
                 <Button style={styles.button} onClick={() => {}} size="large">
                     Label
@@ -428,7 +615,7 @@ export const TruncatingLabels: StoryComponentType = {
             <Button onClick={() => {}} style={styles.truncatedButton}>
                 label too long for the parent container
             </Button>
-            <Strut size={spacing.medium_16} />
+            <Strut size={16} />
             <Button
                 onClick={() => {}}
                 style={styles.truncatedButton}
@@ -436,7 +623,7 @@ export const TruncatingLabels: StoryComponentType = {
             >
                 label too long for the parent container
             </Button>
-            <Strut size={spacing.medium_16} />
+            <Strut size={16} />
             <Button
                 size="small"
                 onClick={() => {}}
@@ -444,7 +631,7 @@ export const TruncatingLabels: StoryComponentType = {
             >
                 label too long for the parent container
             </Button>
-            <Strut size={spacing.medium_16} />
+            <Strut size={16} />
             <Button
                 size="small"
                 onClick={() => {}}
@@ -491,23 +678,40 @@ export const CustomStyles = {
         },
     },
     render: (args: any) => (
-        <View style={{gap: spacing.medium_16}}>
-            <HeadingSmall>Wonder Blocks theme (default)</HeadingSmall>
-            <View style={{flexDirection: "row", gap: spacing.medium_16}}>
+        <View style={{gap: sizing.size_160}}>
+            <View style={{flexDirection: "row", gap: sizing.size_160}}>
                 <Button {...args} kind="primary" />
                 <Button {...args} kind="secondary" />
                 <Button {...args} kind="tertiary" />
             </View>
-            <HeadingSmall>Khanmigo theme</HeadingSmall>
-            <View style={{flexDirection: "row", gap: spacing.medium_16}}>
-                <ThemeSwitcherContext.Provider value="khanmigo">
-                    <Button {...args} kind="primary" />
-                    <Button {...args} kind="secondary" />
-                    <Button {...args} kind="tertiary" />
-                </ThemeSwitcherContext.Provider>
-            </View>
         </View>
     ),
+};
+
+/**
+ * The `styles` prop allows overriding styles for specific sub-elements
+ * within the Button. In this example, the start icon is rendered at 24x24
+ * instead of the default theme size.
+ *
+ * **Note:** Use this prop sparingly and only when the default theme styling
+ * does not meet your needs (e.g. a custom trigger button that requires a
+ * non-standard icon size).
+ */
+export const CustomIconSize: StoryComponentType = {
+    args: {
+        children: "Custom icon size",
+        startIcon: plus,
+        kind: "secondary",
+        styles: {
+            startIcon: {width: sizing.size_240, height: sizing.size_240},
+        },
+        onClick: action("clicked"),
+    },
+    parameters: {
+        chromatic: {
+            disableSnapshot: true,
+        },
+    },
 };
 
 export const SubmittingForms: StoryComponentType = {
@@ -522,7 +726,9 @@ export const SubmittingForms: StoryComponentType = {
             <View>
                 <LabeledField
                     label="Foo"
-                    field={<input id="foo" value="bar" />}
+                    field={
+                        <TextField id="foo" value="bar" onChange={() => {}} />
+                    }
                 />
                 <Button type="submit">Submit</Button>
             </View>
@@ -620,33 +826,205 @@ WithRouter.parameters = {
 };
 
 /**
- * Button supports theming via the `ThemeSwitcherContext`. This story shows the
- * button in the `khanmigo` theme using all the variants.
+ * This button can receive focus programmatically. This is useful for cases where
+ * you want to focus the button when the user interacts with another
+ * component, such as a form field or another button.
  *
- * **Note:** You can also use the "Theme" addon in the toolbar to switch themes.
+ * To do this, we use a `ref` to the button and call the `focus()` method
+ * on it, so the `ActivityButton` receives focus.
  */
-export const KhanmigoTheme: StoryComponentType = {
-    render: () => {
-        const stories = [
-            Variants,
-            Size,
-            IconExample,
-        ] as Array<React.ElementType>;
+export const ReceivingFocusProgrammatically: StoryComponentType = {
+    render: function Render(args) {
+        // This story is used to test the focus ring when the button receives
+        // focus programmatically. The button is focused when the story is
+        // rendered.
+        const buttonRef = React.useRef<HTMLButtonElement | null>(null);
 
         return (
-            <ThemeSwitcherContext.Provider value="khanmigo">
-                <View style={{gap: spacing.medium_16}}>
-                    {stories.map((Story, i) => (
-                        <Story key={i} />
-                    ))}
-                </View>
-            </ThemeSwitcherContext.Provider>
+            <View style={{gap: sizing.size_160, flexDirection: "row"}}>
+                <Button
+                    {...args}
+                    ref={buttonRef}
+                    onClick={(e) => action("clicked")(e)}
+                />
+                <Button
+                    onClick={() => {
+                        // Focus the button when the button is clicked.
+                        if (buttonRef.current) {
+                            buttonRef.current.focus();
+                        }
+                    }}
+                    kind="secondary"
+                >
+                    Focus on the Button (left)
+                </Button>
+            </View>
         );
+    },
+    args: {
+        children: "Search",
+        startIcon: magnifyingGlass,
+        endIcon: caretRight,
     },
     parameters: {
         chromatic: {
-            // We already have screenshots of other stories that cover more of
-            // the button states
+            // Disable since it requires user interaction to see the focus ring.
+            disableSnapshot: true,
+        },
+    },
+};
+
+/**
+ * This story demonstrates tracking press duration from `onMouseDown` to `onMouseUp`,
+ * useful for measuring how long a user holds down on a button. The tracking also
+ * handles cases where the mouse leaves the button area during the press.
+ */
+export const PressDurationTracking: StoryComponentType = {
+    render: function Render(args) {
+        const [pressStartTime, setPressStartTime] = React.useState<
+            number | null
+        >(null);
+        const [pressDuration, setPressDuration] = React.useState<number | null>(
+            null,
+        );
+        const [lastEvent, setLastEvent] = React.useState<string>("none");
+        const [interactionHistory, setInteractionHistory] = React.useState<
+            string[]
+        >([]);
+
+        const logEvent = (eventName: string, duration?: number) => {
+            const timestamp = new Date().toLocaleTimeString();
+            const logEntry = duration
+                ? `${eventName} (${duration}ms) - ${timestamp}`
+                : `${eventName} - ${timestamp}`;
+            setInteractionHistory((prev) => [...prev.slice(-4), logEntry]);
+            setLastEvent(eventName);
+        };
+
+        // Create base actions for Storybook logging
+        const baseActions = {
+            onMouseDown: action("onMouseDown"),
+            onMouseUp: action("onMouseUp"),
+            onMouseLeave: action("onMouseLeave"),
+            onClick: action("onClick"),
+            onMouseEnter: action("onMouseEnter"),
+        };
+
+        const handleMouseDown = (e: React.MouseEvent) => {
+            const startTime = Date.now();
+            setPressStartTime(startTime);
+            setPressDuration(null);
+            logEvent("onMouseDown");
+            baseActions.onMouseDown(e);
+        };
+
+        const handleMouseUp = (e: React.MouseEvent) => {
+            if (pressStartTime) {
+                const duration = Date.now() - pressStartTime;
+                setPressDuration(duration);
+                logEvent("onMouseUp", duration);
+            } else {
+                logEvent("onMouseUp");
+            }
+            setPressStartTime(null);
+            baseActions.onMouseUp(e);
+        };
+
+        const handleMouseLeave = (e: React.MouseEvent) => {
+            if (pressStartTime) {
+                const duration = Date.now() - pressStartTime;
+                setPressDuration(duration);
+                logEvent("onMouseLeave", duration);
+                setPressStartTime(null);
+            } else {
+                logEvent("onMouseLeave");
+            }
+            baseActions.onMouseLeave(e);
+        };
+
+        const handleMouseEnter = (e: React.MouseEvent) => {
+            logEvent("onMouseEnter");
+            baseActions.onMouseEnter(e);
+        };
+
+        const handleClick = (e: React.SyntheticEvent) => {
+            logEvent("onClick");
+            baseActions.onClick(e);
+        };
+
+        return (
+            <View>
+                <Button
+                    {...args}
+                    startIcon={clock}
+                    onMouseEnter={handleMouseEnter}
+                    onMouseDown={handleMouseDown}
+                    onMouseUp={handleMouseUp}
+                    onMouseLeave={handleMouseLeave}
+                    onClick={handleClick}
+                >
+                    Track Press Duration
+                </Button>
+                <Strut size={16} />
+                <View
+                    style={{
+                        padding: sizing.size_160,
+                        backgroundColor:
+                            semanticColor.core.background.base.subtle,
+                        borderRadius: 4,
+                        maxInlineSize: 400,
+                    }}
+                >
+                    <BodyText size="medium" weight="bold">
+                        Press Duration Tracker
+                    </BodyText>
+                    <Strut size={8} />
+                    <BodyText size="medium">
+                        Last Event: <strong>{lastEvent}</strong>
+                    </BodyText>
+                    <BodyText size="medium">
+                        Press Duration:{" "}
+                        <strong>
+                            {pressDuration !== null
+                                ? `${pressDuration}ms`
+                                : "N/A"}
+                        </strong>
+                    </BodyText>
+                    <BodyText size="medium">
+                        Currently Pressing:{" "}
+                        <strong>{pressStartTime ? "Yes" : "No"}</strong>
+                    </BodyText>
+                    <Strut size={12} />
+                    <BodyText size="medium" weight="bold">
+                        Interaction History:
+                    </BodyText>
+                    {interactionHistory.length > 0 ? (
+                        <View style={{marginBlockStart: sizing.size_080}}>
+                            {interactionHistory.map((entry, index) => (
+                                <BodyText
+                                    key={index}
+                                    size="small"
+                                    style={{fontFamily: "monospace"}}
+                                >
+                                    {entry}
+                                </BodyText>
+                            ))}
+                        </View>
+                    ) : (
+                        <BodyText size="small" style={{fontStyle: "italic"}}>
+                            No interactions yet
+                        </BodyText>
+                    )}
+                </View>
+            </View>
+        );
+    },
+    args: {
+        kind: "primary",
+        style: {maxWidth: 240},
+    },
+    parameters: {
+        chromatic: {
             disableSnapshot: true,
         },
     },

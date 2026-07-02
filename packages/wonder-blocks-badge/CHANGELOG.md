@@ -1,0 +1,492 @@
+# @khanacademy/wonder-blocks-badge
+
+## 1.1.17
+
+### Patch Changes
+
+- Updated dependencies [0735aef]
+    - @khanacademy/wonder-blocks-tokens@16.8.1
+    - @khanacademy/wonder-blocks-icon@5.3.19
+    - @khanacademy/wonder-blocks-styles@0.2.49
+    - @khanacademy/wonder-blocks-typography@4.3.9
+
+## 1.1.16
+
+### Patch Changes
+
+- Updated dependencies [f13552a]
+    - @khanacademy/wonder-blocks-tokens@16.8.0
+    - @khanacademy/wonder-blocks-icon@5.3.18
+    - @khanacademy/wonder-blocks-styles@0.2.48
+    - @khanacademy/wonder-blocks-typography@4.3.8
+
+## 1.1.15
+
+### Patch Changes
+
+- Updated dependencies [ddcaaeb]
+- Updated dependencies [0907f64]
+- Updated dependencies [9773405]
+- Updated dependencies [9773405]
+- Updated dependencies [022e775]
+- Updated dependencies [e181c15]
+- Updated dependencies [c033245]
+- Updated dependencies [a2bbc0a]
+    - @khanacademy/wonder-blocks-icon@5.3.17
+    - @khanacademy/wonder-blocks-tokens@16.7.0
+    - @khanacademy/wonder-blocks-styles@0.2.47
+    - @khanacademy/wonder-blocks-typography@4.3.7
+
+## 1.1.14
+
+### Patch Changes
+
+- Updated dependencies [a676ce6]
+    - @khanacademy/wonder-blocks-tokens@16.6.0
+    - @khanacademy/wonder-blocks-icon@5.3.16
+    - @khanacademy/wonder-blocks-styles@0.2.46
+    - @khanacademy/wonder-blocks-typography@4.3.6
+
+## 1.1.13
+
+### Patch Changes
+
+- 40cb70f: Add `require-logical-properties-for-rtl` ESLint rule to `eslint-plugin-wonder-blocks` recommended config, and migrate all Wonder Blocks component source files to use CSS logical properties for improved RTL layout support.
+- 40cb70f: Enable RTL logical-properties ESLint rule in recommended config
+- Updated dependencies [40cb70f]
+- Updated dependencies [40cb70f]
+    - @khanacademy/wonder-blocks-core@12.4.4
+    - @khanacademy/wonder-blocks-icon@5.3.15
+    - @khanacademy/wonder-blocks-typography@4.3.5
+
+## 1.1.12
+
+### Patch Changes
+
+- Updated dependencies [44bde5e]
+- Updated dependencies [27a211d]
+    - @khanacademy/wonder-blocks-tokens@16.5.0
+    - @khanacademy/wonder-blocks-icon@5.3.14
+    - @khanacademy/wonder-blocks-styles@0.2.45
+    - @khanacademy/wonder-blocks-typography@4.3.4
+
+## 1.1.11
+
+### Patch Changes
+
+- Updated dependencies [245229a]
+    - @khanacademy/wonder-blocks-tokens@16.4.1
+    - @khanacademy/wonder-blocks-icon@5.3.13
+    - @khanacademy/wonder-blocks-styles@0.2.44
+    - @khanacademy/wonder-blocks-typography@4.3.3
+
+## 1.1.10
+
+### Patch Changes
+
+- Updated dependencies [c1c74df]
+- Updated dependencies [72c5272]
+    - @khanacademy/wonder-blocks-tokens@16.4.0
+    - @khanacademy/wonder-blocks-icon@5.3.12
+    - @khanacademy/wonder-blocks-styles@0.2.43
+    - @khanacademy/wonder-blocks-typography@4.3.2
+
+## 1.1.9
+
+### Patch Changes
+
+- Updated dependencies [40f217b]
+    - @khanacademy/wonder-blocks-tokens@16.3.0
+    - @khanacademy/wonder-blocks-icon@5.3.11
+    - @khanacademy/wonder-blocks-styles@0.2.42
+    - @khanacademy/wonder-blocks-typography@4.3.1
+
+## 1.1.8
+
+### Patch Changes
+
+- Updated dependencies [488728a]
+- Updated dependencies [00e6dda]
+    - @khanacademy/wonder-blocks-tokens@16.2.0
+    - @khanacademy/wonder-blocks-typography@4.3.0
+    - @khanacademy/wonder-blocks-icon@5.3.10
+    - @khanacademy/wonder-blocks-styles@0.2.41
+
+## 1.1.7
+
+### Patch Changes
+
+- Updated dependencies [358eb9b]
+    - @khanacademy/wonder-blocks-tokens@16.1.0
+    - @khanacademy/wonder-blocks-icon@5.3.9
+    - @khanacademy/wonder-blocks-styles@0.2.40
+    - @khanacademy/wonder-blocks-typography@4.2.31
+
+## 1.1.6
+
+### Patch Changes
+
+- Updated dependencies [c75abe9]
+- Updated dependencies [c75abe9]
+- Updated dependencies [530d692]
+    - @khanacademy/wonder-blocks-tokens@16.0.0
+    - @khanacademy/wonder-blocks-icon@5.3.8
+    - @khanacademy/wonder-blocks-styles@0.2.39
+    - @khanacademy/wonder-blocks-typography@4.2.30
+
+## 1.1.5
+
+### Patch Changes
+
+- Updated dependencies [8bb7ada]
+    - @khanacademy/wonder-blocks-tokens@15.0.0
+    - @khanacademy/wonder-blocks-icon@5.3.7
+    - @khanacademy/wonder-blocks-styles@0.2.38
+    - @khanacademy/wonder-blocks-typography@4.2.29
+
+## 1.1.4
+
+### Patch Changes
+
+- Updated dependencies [d6ae5fb]
+    - @khanacademy/wonder-blocks-core@12.4.3
+    - @khanacademy/wonder-blocks-icon@5.3.6
+    - @khanacademy/wonder-blocks-styles@0.2.37
+    - @khanacademy/wonder-blocks-tokens@14.1.3
+    - @khanacademy/wonder-blocks-typography@4.2.28
+
+## 1.1.3
+
+### Patch Changes
+
+- Updated dependencies [70d6c08]
+    - @khanacademy/wonder-blocks-tokens@14.1.3
+    - @khanacademy/wonder-blocks-icon@5.3.5
+    - @khanacademy/wonder-blocks-styles@0.2.37
+    - @khanacademy/wonder-blocks-typography@4.2.27
+
+## 1.1.2
+
+### Patch Changes
+
+- 8a36c70: Re-publish to publish with Trusted Publishing
+- 3e0d137: Re-publishing via Trusted Publishing
+- Updated dependencies [8a36c70]
+- Updated dependencies [3e0d137]
+    - @khanacademy/wonder-blocks-core@12.4.2
+    - @khanacademy/wonder-blocks-icon@5.3.4
+    - @khanacademy/wonder-blocks-styles@0.2.36
+    - @khanacademy/wonder-blocks-tokens@14.1.2
+    - @khanacademy/wonder-blocks-typography@4.2.26
+
+## 1.1.1
+
+### Patch Changes
+
+- Updated dependencies [540371d]
+    - @khanacademy/wonder-blocks-tokens@14.1.1
+    - @khanacademy/wonder-blocks-icon@5.3.3
+    - @khanacademy/wonder-blocks-styles@0.2.35
+    - @khanacademy/wonder-blocks-typography@4.2.25
+
+## 1.1.0
+
+### Minor Changes
+
+- 284c969: Add `showBorder` prop (defaults to true) to Badge and StatusBadge components
+- 272bf31: Add NeutralBadge component
+
+### Patch Changes
+
+- Updated dependencies [272bf31]
+    - @khanacademy/wonder-blocks-tokens@14.1.0
+    - @khanacademy/wonder-blocks-icon@5.3.2
+    - @khanacademy/wonder-blocks-styles@0.2.34
+    - @khanacademy/wonder-blocks-typography@4.2.24
+
+## 1.0.13
+
+### Patch Changes
+
+- 6d5c485: Include provenance information when publishing to npmjs
+- Updated dependencies [6d5c485]
+    - @khanacademy/wonder-blocks-core@12.4.1
+    - @khanacademy/wonder-blocks-icon@5.3.1
+    - @khanacademy/wonder-blocks-styles@0.2.33
+    - @khanacademy/wonder-blocks-tokens@14.0.1
+    - @khanacademy/wonder-blocks-typography@4.2.23
+
+## 1.0.12
+
+### Patch Changes
+
+- Updated dependencies [44f77b7]
+    - @khanacademy/wonder-blocks-icon@5.3.0
+
+## 1.0.11
+
+### Patch Changes
+
+- Updated dependencies [6963849]
+- Updated dependencies [f627dca]
+    - @khanacademy/wonder-blocks-tokens@14.0.0
+    - @khanacademy/wonder-blocks-icon@5.2.20
+    - @khanacademy/wonder-blocks-styles@0.2.32
+    - @khanacademy/wonder-blocks-typography@4.2.22
+
+## 1.0.10
+
+### Patch Changes
+
+- Updated dependencies [ede6085]
+- Updated dependencies [a70f274]
+    - @khanacademy/wonder-blocks-tokens@13.0.0
+    - @khanacademy/wonder-blocks-icon@5.2.19
+    - @khanacademy/wonder-blocks-styles@0.2.31
+    - @khanacademy/wonder-blocks-typography@4.2.21
+
+## 1.0.9
+
+### Patch Changes
+
+- 1feec01: Replace use of `surface` tokens in components in favour of `background` tokens
+- Updated dependencies [1feec01]
+    - @khanacademy/wonder-blocks-styles@0.2.30
+    - @khanacademy/wonder-blocks-tokens@12.2.1
+    - @khanacademy/wonder-blocks-icon@5.2.18
+    - @khanacademy/wonder-blocks-typography@4.2.20
+
+## 1.0.8
+
+### Patch Changes
+
+- Updated dependencies [5a02279]
+- Updated dependencies [aa6ad92]
+- Updated dependencies [aa6ad92]
+- Updated dependencies [aa6ad92]
+    - @khanacademy/wonder-blocks-tokens@12.2.0
+    - @khanacademy/wonder-blocks-styles@0.2.29
+    - @khanacademy/wonder-blocks-icon@5.2.17
+    - @khanacademy/wonder-blocks-typography@4.2.19
+
+## 1.0.7
+
+### Patch Changes
+
+- Updated dependencies [4aad557]
+    - @khanacademy/wonder-blocks-tokens@12.1.0
+    - @khanacademy/wonder-blocks-icon@5.2.16
+    - @khanacademy/wonder-blocks-styles@0.2.28
+    - @khanacademy/wonder-blocks-typography@4.2.18
+
+## 1.0.6
+
+### Patch Changes
+
+- Updated dependencies [1334e74]
+    - @khanacademy/wonder-blocks-core@12.4.0
+    - @khanacademy/wonder-blocks-icon@5.2.15
+    - @khanacademy/wonder-blocks-typography@4.2.17
+
+## 1.0.5
+
+### Patch Changes
+
+- Updated dependencies [e559ab0]
+- Updated dependencies [98f4272]
+- Updated dependencies [b3dd28f]
+- Updated dependencies [3c3d8fb]
+    - @khanacademy/wonder-blocks-tokens@12.0.2
+    - @khanacademy/wonder-blocks-icon@5.2.14
+    - @khanacademy/wonder-blocks-styles@0.2.27
+    - @khanacademy/wonder-blocks-typography@4.2.16
+
+## 1.0.4
+
+### Patch Changes
+
+- Updated dependencies [9aad939]
+    - @khanacademy/wonder-blocks-tokens@12.0.1
+    - @khanacademy/wonder-blocks-icon@5.2.13
+    - @khanacademy/wonder-blocks-styles@0.2.26
+    - @khanacademy/wonder-blocks-typography@4.2.15
+
+## 1.0.3
+
+### Patch Changes
+
+- eafcfa3: Replaces `semanticColor.icon` with `semanticColor.core.foreground` tokens
+- b42b694: Updates CSS variables for badge
+- 956f8bd: Replaces instances of `semanticColor.text` with `semanticColor.core.foreground`
+- Updated dependencies [eafcfa3]
+- Updated dependencies [956f8bd]
+- Updated dependencies [956f8bd]
+- Updated dependencies [eafcfa3]
+- Updated dependencies [b42b694]
+- Updated dependencies [956f8bd]
+    - @khanacademy/wonder-blocks-tokens@12.0.0
+    - @khanacademy/wonder-blocks-styles@0.2.25
+    - @khanacademy/wonder-blocks-icon@5.2.12
+    - @khanacademy/wonder-blocks-typography@4.2.14
+
+## 1.0.2
+
+### Patch Changes
+
+- Updated dependencies [03415d1]
+    - @khanacademy/wonder-blocks-tokens@11.4.1
+    - @khanacademy/wonder-blocks-icon@5.2.11
+    - @khanacademy/wonder-blocks-styles@0.2.24
+    - @khanacademy/wonder-blocks-typography@4.2.13
+
+## 1.0.1
+
+### Patch Changes
+
+- Updated dependencies [4d207b1]
+    - @khanacademy/wonder-blocks-tokens@11.4.0
+    - @khanacademy/wonder-blocks-icon@5.2.10
+    - @khanacademy/wonder-blocks-styles@0.2.23
+    - @khanacademy/wonder-blocks-typography@4.2.12
+
+## 1.0.0
+
+### Major Changes
+
+- 15c999d: DueBadge: Adds new `kind` prop which can be `due` (default) or `overdue`. The `icon` prop has become a `showIcon` prop now since the icon is provided by the component now. A new `iconAriaLabel` prop is supported now too
+
+## 0.1.10
+
+### Patch Changes
+
+- Updated dependencies [7cd0ebf]
+- Updated dependencies [51b6e69]
+- Updated dependencies [51b6e69]
+    - @khanacademy/wonder-blocks-tokens@11.3.1
+    - @khanacademy/wonder-blocks-icon@5.2.9
+    - @khanacademy/wonder-blocks-styles@0.2.22
+    - @khanacademy/wonder-blocks-typography@4.2.11
+
+## 0.1.9
+
+### Patch Changes
+
+- Updated dependencies [a98fe6c]
+- Updated dependencies [e21e448]
+- Updated dependencies [e21e448]
+- Updated dependencies [dddbe55]
+    - @khanacademy/wonder-blocks-tokens@11.3.0
+    - @khanacademy/wonder-blocks-typography@4.2.10
+    - @khanacademy/wonder-blocks-icon@5.2.8
+    - @khanacademy/wonder-blocks-styles@0.2.21
+
+## 0.1.8
+
+### Patch Changes
+
+- Updated dependencies [d8716ab]
+    - @khanacademy/wonder-blocks-tokens@11.2.2
+    - @khanacademy/wonder-blocks-icon@5.2.7
+    - @khanacademy/wonder-blocks-styles@0.2.20
+    - @khanacademy/wonder-blocks-typography@4.2.9
+
+## 0.1.7
+
+### Patch Changes
+
+- Updated dependencies [de9435a]
+- Updated dependencies [f50aafc]
+    - @khanacademy/wonder-blocks-tokens@11.2.1
+    - @khanacademy/wonder-blocks-icon@5.2.6
+    - @khanacademy/wonder-blocks-styles@0.2.19
+    - @khanacademy/wonder-blocks-typography@4.2.8
+
+## 0.1.6
+
+### Patch Changes
+
+- Updated dependencies [e457d8c]
+    - @khanacademy/wonder-blocks-tokens@11.2.0
+    - @khanacademy/wonder-blocks-icon@5.2.5
+    - @khanacademy/wonder-blocks-styles@0.2.18
+    - @khanacademy/wonder-blocks-typography@4.2.7
+
+## 0.1.5
+
+### Patch Changes
+
+- Updated dependencies [f26858a]
+    - @khanacademy/wonder-blocks-tokens@11.1.1
+    - @khanacademy/wonder-blocks-icon@5.2.4
+    - @khanacademy/wonder-blocks-styles@0.2.17
+    - @khanacademy/wonder-blocks-typography@4.2.6
+
+## 0.1.4
+
+### Patch Changes
+
+- Updated dependencies [705ee01]
+    - @khanacademy/wonder-blocks-typography@4.2.5
+
+## 0.1.3
+
+### Patch Changes
+
+- Updated dependencies [0f4f771]
+    - @khanacademy/wonder-blocks-tokens@11.1.0
+    - @khanacademy/wonder-blocks-icon@5.2.3
+    - @khanacademy/wonder-blocks-styles@0.2.16
+    - @khanacademy/wonder-blocks-typography@4.2.4
+
+## 0.1.2
+
+### Patch Changes
+
+- cbf58b0: Updates badge components to use the new learning tokens
+- Updated dependencies [1ac2ba7]
+- Updated dependencies [0cb7a69]
+- Updated dependencies [cbf58b0]
+- Updated dependencies [cbf58b0]
+    - @khanacademy/wonder-blocks-tokens@11.0.0
+    - @khanacademy/wonder-blocks-icon@5.2.2
+    - @khanacademy/wonder-blocks-styles@0.2.15
+    - @khanacademy/wonder-blocks-typography@4.2.3
+
+## 0.1.1
+
+### Patch Changes
+
+- Updated dependencies [7811eb1]
+    - @khanacademy/wonder-blocks-tokens@10.6.0
+    - @khanacademy/wonder-blocks-icon@5.2.1
+    - @khanacademy/wonder-blocks-styles@0.2.14
+    - @khanacademy/wonder-blocks-typography@4.2.2
+
+## 0.1.0
+
+### Minor Changes
+
+- 09fe339: Add `StatusBadge` component
+- 174556d: Add Badge component with base props and `label` and `icon` props
+- 8468d8d: Use semantic color tokens and typography tokens for badge components
+- f714517: Adds `GemBadge` component
+- 2cace08: Badge: Support `Icon` components
+- dc34e0c: Adds `StreakBadge` component
+- a755cf9: Set up wonder-blocks-badge package
+- aa6468d: Adds `DueBadge` component
+- 4fe538b: Badge components: Set max width on badge component so long labels are truncated. Also, adds a `label` key to the `styles` prop so styles applied to the label can be overridden
+- a42c677: Update tsconfig-build for types
+
+### Patch Changes
+
+- 6129789: Include focus styling for Badge so it is used when badges are interactive when used with tooltips
+- Updated dependencies [8468d8d]
+- Updated dependencies [308696e]
+- Updated dependencies [dc34e0c]
+- Updated dependencies [2cace08]
+- Updated dependencies [f714517]
+- Updated dependencies [8468d8d]
+    - @khanacademy/wonder-blocks-tokens@10.5.0
+    - @khanacademy/wonder-blocks-icon@5.2.0
+    - @khanacademy/wonder-blocks-styles@0.2.13
+    - @khanacademy/wonder-blocks-typography@4.2.1

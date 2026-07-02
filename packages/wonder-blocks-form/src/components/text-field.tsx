@@ -2,18 +2,22 @@ import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
 import {Id, addStyle} from "@khanacademy/wonder-blocks-core";
-import {
-    border,
-    semanticColor,
-    spacing,
-} from "@khanacademy/wonder-blocks-tokens";
+import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {styles as typographyStyles} from "@khanacademy/wonder-blocks-typography";
 
 import type {StyleType, AriaProps} from "@khanacademy/wonder-blocks-core";
+import {focusStyles} from "@khanacademy/wonder-blocks-styles";
 import {OmitConstrained} from "../util/types";
 import {useFieldValidation} from "../hooks/use-field-validation";
+import theme from "../theme";
 
-export type TextFieldType = "text" | "password" | "email" | "number" | "tel";
+export type TextFieldType =
+    | "text"
+    | "password"
+    | "email"
+    | "number"
+    | "whole-number"
+    | "tel";
 
 type WithForwardRef = {
     forwardedRef: React.ForwardedRef<HTMLInputElement>;
@@ -84,6 +88,10 @@ type CommonProps = AriaProps & {
      */
     onBlur?: (event: React.FocusEvent<HTMLInputElement>) => unknown;
     /**
+     * Called when text is pasted into the element.
+     */
+    onPaste?: React.ClipboardEventHandler<HTMLInputElement>;
+    /**
      * Provide hints or examples of what to enter.
      */
     placeholder?: string;
@@ -140,12 +148,12 @@ type CommonProps = AriaProps & {
 };
 
 type OtherInputProps = CommonProps & {
-    type?: "text" | "password" | "email" | "tel";
+    type?: "text" | "password" | "email" | "tel" | "whole-number";
 };
 
-// Props that are only available for inputs of type "number".
+// Props that are only available for inputs of type "number" or "whole-number".
 export type NumericInputProps = {
-    type: "number";
+    type: "number" | "whole-number";
     /**
      * The minimum numeric value for the input.
      */
@@ -191,6 +199,7 @@ const TextField = (props: PropsWithForwardRef) => {
         onChange,
         onFocus,
         onBlur,
+        onPaste,
         // Should only include Aria related props
         ...otherProps
     } = props;
@@ -206,6 +215,12 @@ const TextField = (props: PropsWithForwardRef) => {
     const hasError = error || !!errorMessage;
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        if (type === "whole-number") {
+            const newValue = event.target.value.replace(/[^0-9]/g, "");
+            onChangeValidation(newValue);
+            onChange(newValue);
+            return;
+        }
         const newValue = event.target.value;
         onChangeValidation(newValue);
         onChange(newValue);
@@ -225,30 +240,48 @@ const TextField = (props: PropsWithForwardRef) => {
         }
     };
 
+    const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+        if (type === "whole-number") {
+            // We're not using a digit-only regex here because that would
+            // disallow the use of arrow keys, backspace, delete, etc.
+            if (
+                event.key === "." ||
+                event.key === "+" ||
+                event.key === "-" ||
+                event.key === "e" ||
+                event.key === "E"
+            ) {
+                event.preventDefault();
+            }
+        }
+        onKeyDown?.(event);
+    };
+
     return (
         <Id id={id}>
             {(uniqueId) => (
                 <StyledInput
                     style={[
                         styles.input,
-                        typographyStyles.LabelMedium,
+                        typographyStyles.BodyTextMediumMediumWeight,
                         styles.default,
-                        !disabled && styles.defaultFocus,
                         disabled && styles.disabled,
                         hasError && styles.error,
+                        readOnly && styles.readOnly,
                         style,
                     ]}
                     id={uniqueId}
-                    type={type}
+                    type={type === "whole-number" ? "number" : type}
                     placeholder={placeholder}
                     value={value}
                     name={name}
                     aria-disabled={disabled}
                     aria-required={!!required}
                     onChange={handleChange}
-                    onKeyDown={disabled ? undefined : onKeyDown}
+                    onKeyDown={disabled ? undefined : handleKeyDown}
                     onFocus={handleFocus} // TextField can be focused if disabled
                     onBlur={handleBlur} // TextField can be blurred if disabled
+                    onPaste={disabled ? undefined : onPaste}
                     data-testid={testId}
                     readOnly={readOnly || disabled} // Set readOnly also if it is disabled, otherwise users can type in the field
                     autoFocus={autoFocus}
@@ -262,79 +295,64 @@ const TextField = (props: PropsWithForwardRef) => {
     );
 };
 
-// The different states that the component can be in.
-const states = {
-    // Resting state
-    default: {
-        border: semanticColor.border.strong,
-        background: semanticColor.surface.primary,
-        foreground: semanticColor.text.primary,
-    },
-    disabled: {
-        border: semanticColor.action.secondary.disabled.border,
-        background: semanticColor.action.secondary.disabled.background,
-        // NOTE: This color is specific for form fields.
-        // TODO(WB-1895): Revisit disabled styles.
-        foreground: semanticColor.text.secondary,
-    },
-    // Form validation error state
-    error: {
-        border: semanticColor.status.critical.foreground,
-        background: semanticColor.status.critical.background,
-        foreground: semanticColor.text.primary,
-    },
-};
+const ACTIVE_BOX_SHADOW = `0 0 0 ${theme.field.border.width.press} ${semanticColor.input.default.border}`;
 
 const styles = StyleSheet.create({
     input: {
         width: "100%",
-        height: 40,
-        borderRadius: border.radius.radius_040,
+        height: theme.field.sizing.height,
+        borderRadius: theme.field.border.radius,
         boxSizing: "border-box",
-        paddingLeft: spacing.medium_16,
-        margin: 0,
+        paddingInline: theme.field.layout.paddingInline,
+        paddingBlock: theme.field.layout.paddingBlock,
+        margin: sizing.size_0,
+    },
+    readOnly: {
+        background: semanticColor.input.readOnly.background,
+        color: semanticColor.input.readOnly.text,
     },
     default: {
-        background: states.default.background,
-        border: `${border.width.thin} solid ${states.default.border}`,
-        color: states.default.foreground,
+        background: semanticColor.input.default.background,
+        border: `${border.width.thin} solid ${semanticColor.input.default.border}`,
+        color: semanticColor.input.default.foreground,
         "::placeholder": {
-            color: semanticColor.text.secondary,
+            color: semanticColor.input.default.placeholder,
         },
-    },
-    defaultFocus: {
-        ":focus-visible": {
-            borderColor: semanticColor.focus.outer,
-            outline: `${border.width.thin} solid ${semanticColor.focus.outer}`,
-            // Negative outline offset so it focus outline is not cropped off if
-            // an ancestor element has overflow: hidden
-            outlineOffset: -2,
+        ...focusStyles.focus,
+        // TODO(WB-2365): Use rounded corners for the active state instead
+        // Don't show active styles if field is disabled or readonly
+        [":active:not([aria-disabled='true']):not([readonly])" as any]: {
+            // Use box shadow to make the border in the press state look thicker
+            // without changing the border
+            boxShadow: ACTIVE_BOX_SHADOW,
         },
+        // Focus + Active (and not disabled and not readonly)
+        [":focus-visible:active:not([aria-disabled='true']):not([readonly])" as any]:
+            {
+                boxShadow: `${ACTIVE_BOX_SHADOW}, ${focusStyles.focus[":focus-visible"].boxShadow}`,
+            },
     },
     error: {
-        background: states.error.background,
-        border: `${border.width.thin} solid ${states.error.border}`,
-        color: states.error.foreground,
+        background: semanticColor.input.error.background,
+        border: `${theme.field.border.width.error} solid ${semanticColor.input.error.border}`,
+        color: semanticColor.input.error.foreground,
         "::placeholder": {
-            color: semanticColor.text.secondary,
+            color: semanticColor.input.default.placeholder,
         },
-        ":focus-visible": {
-            outlineColor: semanticColor.focus.outer,
-            outline: `${border.width.medium} solid ${semanticColor.focus.outer}`,
-        },
+        // Focus + Active (and not disabled and not readonly)
+        [":focus-visible:active:not([aria-disabled='true']):not([readonly])" as any]:
+            {
+                boxShadow: `${ACTIVE_BOX_SHADOW}, ${focusStyles.focus[":focus-visible"].boxShadow}`,
+            },
     },
     disabled: {
-        background: states.disabled.background,
-        border: `${border.width.thin} solid ${states.disabled.border}`,
-        color: states.disabled.foreground,
+        background: semanticColor.input.disabled.background,
+        border: `${border.width.thin} solid ${semanticColor.input.disabled.border}`,
+        color: semanticColor.input.disabled.foreground,
         "::placeholder": {
-            color: states.disabled.foreground,
+            color: semanticColor.input.disabled.placeholder,
         },
         cursor: "not-allowed",
-        ":focus-visible": {
-            outline: `${border.width.medium} solid ${semanticColor.focus.outer}`,
-            outlineOffset: -3,
-        },
     },
 });
 

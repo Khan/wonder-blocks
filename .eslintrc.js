@@ -8,6 +8,7 @@ module.exports = {
         // This config includes rules from storybook to enforce story best
         // practices
         "plugin:storybook/recommended",
+        "plugin:@khanacademy/wonder-blocks/strict", // config from @khanacademy/eslint-plugin-wonder-blocks
     ],
     plugins: ["import", "jest", "jsdoc", "promise", "monorepo", "react-hooks"],
     settings: {
@@ -49,9 +50,11 @@ module.exports = {
         {
             files: ["**/*.test.*"],
             rules: {
+                "max-lines": "off",
                 "no-undef": "off",
                 "import/no-deprecated": "off",
                 "@typescript-eslint/no-require-imports": "off",
+                "@khanacademy/wonder-blocks/no-raw-button": "off",
             },
         },
         {

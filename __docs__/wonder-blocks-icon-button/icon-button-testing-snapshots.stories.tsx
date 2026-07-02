@@ -1,6 +1,6 @@
 import * as React from "react";
-import {action} from "@storybook/addon-actions";
-import type {Meta, StoryObj} from "@storybook/react";
+import {action} from "storybook/actions";
+import type {Meta, StoryObj} from "@storybook/react-vite";
 
 import paperPlaneIcon from "@phosphor-icons/core/fill/paper-plane-tilt-fill.svg";
 import IconButton from "@khanacademy/wonder-blocks-icon-button";
@@ -8,14 +8,17 @@ import {AllVariants} from "../components/all-variants";
 import {defaultPseudoStates, StateSheet} from "../components/state-sheet";
 import {sizing} from "@khanacademy/wonder-blocks-tokens";
 import {View} from "@khanacademy/wonder-blocks-core";
+import {allThemeModes} from "../../.storybook/modes";
+import {ScenariosLayout} from "../components/scenarios-layout";
+import {Icon} from "@khanacademy/wonder-blocks-icon";
 
 /**
  * The following stories are used to generate the pseudo states for the
  * IconButton component. This is only used for visual testing in Chromatic.
  */
 export default {
-    title: "Packages / IconButton / Testing / IconButton - Snapshots",
-    tags: ["!autodocs"],
+    title: "Packages / IconButton / Testing / Snapshots / IconButton",
+    tags: ["!autodocs", "!manifest"],
     args: {
         "aria-label": "Send",
         icon: paperPlaneIcon,
@@ -66,6 +69,9 @@ export const StateSheetStory: StoryComponentType = {
     },
     parameters: {
         pseudo: defaultPseudoStates,
+        chromatic: {
+            modes: allThemeModes,
+        },
     },
 };
 
@@ -93,6 +99,31 @@ export const Sizes: StoryComponentType = {
                     </View>
                 )}
             </AllVariants>
+        );
+    },
+};
+
+export const Scenarios: StoryComponentType = {
+    render: () => {
+        const scenarios = [
+            {
+                name: "With custom icon",
+                props: {
+                    icon: (
+                        <Icon>
+                            <img src="logo.svg" alt="" />
+                        </Icon>
+                    ),
+                    "aria-label": "Wonder Blocks",
+                    kind: "secondary",
+                },
+            },
+        ];
+
+        return (
+            <ScenariosLayout scenarios={scenarios}>
+                {(props) => <IconButton {...props} />}
+            </ScenariosLayout>
         );
     },
 };

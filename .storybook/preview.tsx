@@ -1,15 +1,17 @@
 import * as React from "react";
 import wonderBlocksTheme from "./wonder-blocks-theme";
-import {Decorator} from "@storybook/react";
-import {RenderStateRoot} from "@khanacademy/wonder-blocks-core";
+import wonderBlocksDarkTheme from "./wonder-blocks-dark-theme";
+import {Decorator} from "@storybook/react-vite";
+import {DocsContainer} from "@storybook/addon-docs/blocks";
 import {semanticColor} from "@khanacademy/wonder-blocks-tokens";
 import {initAnnouncer} from "@khanacademy/wonder-blocks-announcer";
 import Link from "@khanacademy/wonder-blocks-link";
 import {
     ThemeSwitcherContext,
     ThemeSwitcher,
+    THEME_DATA_ATTRIBUTE,
 } from "@khanacademy/wonder-blocks-theming";
-import {Preview} from "@storybook/react";
+import type {Preview} from "@storybook/react-vite";
 
 // Import the Wonder Blocks CSS variables
 import "@khanacademy/wonder-blocks-tokens/styles.css";
@@ -56,29 +58,75 @@ const wbViewports = {
     },
 };
 
-const parameters = {
-    // Enable the RenderStateRoot decorator by default.
-    enableRenderStateRootDecorator: true,
+/**
+ * This is a custom DocsContainer that uses the current theme in MDX pages.
+ *
+ * It is useful when we want to use the "Theme" toolbar to switch between
+ * themes in MDX pages (like "Foundations > Using color").
+ */
+function DocsContainerWithTheme({children, context, ...props}) {
+    const theme = context.store.userGlobals.globals.theme;
+
+    return (
+        <DocsContainer
+            context={context}
+            {...props}
+            theme={
+                theme === "syl-dark" ? wonderBlocksDarkTheme : wonderBlocksTheme
+            }
+        >
+            <ThemeSwitcher theme={theme}>{children}</ThemeSwitcher>
+        </DocsContainer>
+    );
+}
+
+const parameters: Preview["parameters"] = {
+    // Accessibility testing configuration
+    a11y: {
+        /*
+         * Configure test behavior. Error means that any a11y violations will fail the tests in CI.
+         * See: https://storybook.js.org/docs/next/writing-tests/accessibility-testing#test-behavior
+         */
+        test: "error",
+        /*
+         * Axe's configuration
+         * See https://github.com/dequelabs/axe-core/blob/develop/doc/API.md#api-name-axeconfigure
+         * to learn more about the available properties.
+         */
+        config: {},
+        /*
+         * Axe's options parameter
+         * See https://github.com/dequelabs/axe-core/blob/develop/doc/API.md#options-parameter
+         * to learn more about the available options.
+         */
+        options: {
+            /*
+             * Disable axe-core's asset preloading. It fetches cross-origin
+             * stylesheets (for the color-contrast checks), which can't be
+             * loaded in the headless/network-isolated test browser and log a
+             * noisy `Couldn't load preload assets: ProgressEvent` warning for
+             * every story. Same-origin styles are already in the CSSOM, so
+             * audit results are unchanged — this only silences the warning.
+             */
+            preload: false,
+        },
+    },
     backgrounds: {
-        default: "light",
-        values: [
-            {
-                name: "light",
-                value: semanticColor.surface.primary,
+        default: "baseDefault",
+        options: {
+            baseDefault: {
+                name: "baseDefault",
+                value: semanticColor.core.background.base.default,
             },
-            {
-                name: "darkBlue",
-                value: semanticColor.surface.inverse,
+            neutralStrong: {
+                name: "neutralStrong",
+                value: semanticColor.core.background.neutral.strong,
             },
-            {
-                name: "khanmigo",
-                value: semanticColor.khanmigo.primary,
+            baseSubtle: {
+                name: "baseSubtle",
+                value: semanticColor.core.background.base.subtle,
             },
-            {
-                name: "offWhite",
-                value: semanticColor.surface.secondary,
-            },
-        ],
+        },
     },
     // https://storybook.js.org/docs/react/configure/story-layout
     layout: "padded",
@@ -87,13 +135,24 @@ const parameters = {
         // display the stories (or examples first), then we will display all the
         // mdx pages under __docs__.
         storySort: {
-            order: ["Components", "**/__docs__/**", "Overview"],
+            order: [
+                "Foundations",
+                "Packages",
+                "Tools",
+                "Catalog",
+                "Components",
+                "**/__docs__/**",
+                "Overview",
+            ],
         },
     },
     docs: {
+        codePanel: true,
+        // Customize the DocsContainer to use the WB theme in MDX pages.
+        container: DocsContainerWithTheme,
         toc: {
             // Useful for MDX pages like "Using color".
-            headingSelector: "h2, h3",
+            headingSelector: "h2, h3, h4",
             // Prevents including generic headings like "Stories" and "Usage".
             ignoreSelector:
                 ".docs-story h2, .docs-story h3, .sbdocs #stories, .sbdocs #usage, .sbdocs-subtitle",
@@ -105,27 +164,24 @@ const parameters = {
         },
     },
     viewport: {
-        viewports: wbViewports,
+        options: wbViewports,
     },
 };
 
-const withThemeSwitcher: Decorator = (
-    Story,
-    {globals: {theme}, parameters: {enableRenderStateRootDecorator}},
-) => {
-    if (enableRenderStateRootDecorator) {
-        return (
-            <RenderStateRoot>
-                <ThemeSwitcherContext.Provider value={theme}>
-                    <ThemeSwitcher theme={theme}>
-                        <Story />
-                    </ThemeSwitcher>
-                </ThemeSwitcherContext.Provider>
-            </RenderStateRoot>
-        );
-    }
+const withThemeSwitcher: Decorator = (Story, {globals: {theme}}) => {
+    // Keep track of the theme locally so we can re-render the story after the
+    // attribute is updated.
+    const [localTheme, setLocalTheme] = React.useState(null);
+    React.useEffect(() => {
+        if (theme) {
+            // Switch the body class based on the theme.
+            document.body.setAttribute(THEME_DATA_ATTRIBUTE, theme);
+            setLocalTheme(theme);
+        }
+    }, [theme]);
+
     return (
-        <ThemeSwitcherContext.Provider value={theme}>
+        <ThemeSwitcherContext.Provider value={theme} key={localTheme}>
             <ThemeSwitcher theme={theme}>
                 <Story />
             </ThemeSwitcher>
@@ -134,9 +190,27 @@ const withThemeSwitcher: Decorator = (
 };
 
 /**
- * Wraps a story with `<div dir="rtl">` so it is shown in rtl mode.
+ * Sets the dir attribute on document.documentElement and wraps story with dir div.
+ * This ensures portaled content (like modals) can detect the direction.
  */
 const withLanguageDirection: Decorator = (Story, context) => {
+    React.useEffect(() => {
+        // Only set the dir attribute on the document.documentElement if we are in a story
+        // so docs pages don't have the dir attribute set.
+        if (context.viewMode === "story") {
+            if (context.globals.direction === "rtl") {
+                document.documentElement.setAttribute("dir", "rtl");
+            } else {
+                document.documentElement.setAttribute("dir", "ltr");
+            }
+        }
+
+        // Cleanup on unmount
+        return () => {
+            document.documentElement.removeAttribute("dir");
+        };
+    }, [context.globals.direction]);
+
     if (context.globals.direction === "rtl") {
         return (
             <div dir="rtl">
@@ -211,9 +285,14 @@ const preview: Preview = {
                         title: "Wonder Blocks (default)",
                     },
                     {
-                        value: "khanmigo",
-                        icon: "comment",
-                        title: "Khanmigo",
+                        value: "thunderblocks",
+                        icon: "lightning",
+                        title: "Shape Your Learning (thunderblocks)",
+                    },
+                    {
+                        value: "syl-dark",
+                        icon: "moon",
+                        title: "Shape Your Learning - Dark (syl-dark)",
                     },
                 ],
                 // Change title based on selected value
@@ -265,6 +344,10 @@ const preview: Preview = {
     },
 
     tags: ["autodocs"],
+    initialGlobals: {
+        // 👇 Set the initial background color
+        backgrounds: {value: "baseDefault"},
+    },
 };
 
 export default preview;

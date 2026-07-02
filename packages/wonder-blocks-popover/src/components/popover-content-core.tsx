@@ -5,9 +5,9 @@ import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {
     border,
-    color,
+    boxShadow,
     semanticColor,
-    spacing,
+    sizing,
 } from "@khanacademy/wonder-blocks-tokens";
 
 import {actionStyles} from "@khanacademy/wonder-blocks-styles";
@@ -103,13 +103,12 @@ export default class PopoverContentCore extends React.Component<Props> {
 const styles = StyleSheet.create({
     content: {
         borderRadius: border.radius.radius_040,
-        border: `solid 1px ${semanticColor.border.primary}`,
-        backgroundColor: semanticColor.surface.primary,
-        // TODO(WB-1878): Use `elevation` token.
-        boxShadow: `0 ${spacing.xSmall_8}px ${spacing.xSmall_8}px 0 ${color.offBlack8}`,
+        border: `solid 1px ${semanticColor.core.border.neutral.subtle}`,
+        backgroundColor: semanticColor.core.background.base.default,
+        boxShadow: boxShadow.mid,
         margin: 0,
-        maxWidth: spacing.medium_16 * 18, // 288px
-        padding: spacing.large_24,
+        maxInlineSize: `calc(${sizing.size_160} * 18)`, // 288px
+        padding: sizing.size_240,
         overflow: "hidden",
         justifyContent: "center",
     },
@@ -120,8 +119,8 @@ const styles = StyleSheet.create({
     closeButton: {
         margin: 0,
         position: "absolute",
-        right: spacing.xxxSmall_4,
-        top: spacing.xxxSmall_4,
+        insetInlineEnd: sizing.size_040,
+        insetBlockStart: sizing.size_040,
         // Allows the button to be above the title and/or custom content
         zIndex: 1,
     },

@@ -1,0 +1,118 @@
+import * as React from "react";
+import {
+    Title,
+    Subtitle,
+    Description,
+    Stories,
+} from "@storybook/addon-docs/blocks";
+import {Meta} from "@storybook/react-vite";
+import TokenTable from "../components/token-table";
+import {semanticColor} from "@khanacademy/wonder-blocks-tokens";
+import {allThemeModes} from "../../.storybook/modes";
+import ComponentInfo from "../components/component-info";
+import packageConfig from "../../packages/wonder-blocks-tokens/package.json";
+import {flattenNestedTokens} from "../components/tokens-util";
+import {Code} from "../components/code";
+import {ColorSwatch} from "../components/color-swatch";
+
+/**
+ * The color palette containing all the semantic Wonder Blocks colors.
+ *
+ * This is the recommended approach. If you need a color that doesn't fit into
+ * any of the categories, please reach out to your designer or the Wonder Blocks
+ * team.
+ *
+ * Please avoid using primitive colors or hardcoded hex values since these won't
+ * be themable!
+ *
+ * ## Usage
+ *
+ * `wonder-blocks-tokens` exports a set of semantic colors that can be used in your
+ * components. The colors are exported as constants and can be used like so:
+ *
+ * ```ts
+ * import {semanticColor} from "@khanacademy/wonder-blocks-tokens";
+ *
+ * const styles = {
+ *     background: semanticColor.core.background.base.subtle,
+ *     border: semanticColor.core.border.neutral.default,
+ *     color: semanticColor.core.foreground.neutral.strong,
+ * };
+ * ```
+ *
+ * Semantic colors are exported as CSS `var(--...)` references so the active
+ * theme can switch values through the CSS cascade. If you need the computed raw
+ * value of a token at runtime (e.g. for a third-party library), use the
+ * [`tokenValue`](./?path=/docs/packages-tokens-utilities-tokenvalue--docs)
+ * utility.
+ *
+ * Use `tokenValue` only for edge cases where a concrete raw value is required.
+ * Favour using tokens directly wherever possible, since resolving raw values
+ * can break theming if overused.
+ */
+export default {
+    title: "Packages / Tokens / Semantic Color",
+    parameters: {
+        docs: {
+            // Use a custom page so the SB <Primary> component is not rendered
+            // <Primary> renders the first story as part of the description,
+            // which isn't necessary for the token pages.
+            page: () => (
+                <>
+                    <Title />
+                    <Subtitle />
+                    <Description />
+                    <Stories title="Tokens" />
+                </>
+            ),
+            toc: false,
+        },
+        chromatic: {
+            modes: allThemeModes,
+        },
+        componentSubtitle: (
+            <ComponentInfo
+                name={packageConfig.name}
+                version={packageConfig.version}
+            />
+        ),
+    },
+    tags: [
+        "!dev",
+        "!manifest", // Remove from manifest in favour of static reference token docs
+    ],
+} as Meta;
+
+type Row = {label: string; css: string; value: string};
+
+const publicTokens = Object.fromEntries(
+    Object.entries(flattenNestedTokens(semanticColor)).filter(
+        ([key, _]) => !key.includes("action.") && !key.includes("status."),
+    ),
+);
+
+export const SemanticColors = () => (
+    <TokenTable
+        columns={[
+            {
+                label: "Token",
+                cell: (row: Row) => <Code>{`semanticColor.${row.label}`}</Code>,
+            },
+            {
+                label: "CSS Variable",
+                cell: (row) => (
+                    <Code style={{minInlineSize: "200px"}}>{row.css}</Code>
+                ),
+            },
+            {
+                label: "Value",
+                cell: "value",
+            },
+            {
+                label: "Example",
+                cell: (row) => <ColorSwatch backgroundColor={row.value} />,
+            },
+        ]}
+        tokens={publicTokens}
+    />
+);

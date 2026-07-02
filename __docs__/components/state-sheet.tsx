@@ -4,7 +4,7 @@ import {StyleSheet} from "aphrodite";
 import {PropsFor, View} from "@khanacademy/wonder-blocks-core";
 import {AllVariants} from "./all-variants";
 import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
-import {LabelLarge, LabelMedium} from "@khanacademy/wonder-blocks-typography";
+import {BodyText} from "@khanacademy/wonder-blocks-typography";
 
 export const commonStates = {
     rest: {name: "Rest", className: "rest"},
@@ -26,13 +26,13 @@ export const commonStates = {
  */
 export const defaultPseudoStates = {
     hover: [
-        `.${commonStates.hover.className}`,
-        `.${commonStates.hoverAndFocus.className}`,
+        `.${commonStates.hover.className} *`,
+        `.${commonStates.hoverAndFocus.className} *`,
     ],
     focusVisible: [
-        `.${commonStates.focus.className}`,
-        `.${commonStates.hoverAndFocus.className}`,
-        `.${commonStates.pressAndFocus.className}`,
+        `.${commonStates.focus.className} *`,
+        `.${commonStates.hoverAndFocus.className} *`,
+        `.${commonStates.pressAndFocus.className} *`,
     ],
     focusWithin: [
         `.${commonStates.focus.className}`,
@@ -40,8 +40,8 @@ export const defaultPseudoStates = {
         `.${commonStates.pressAndFocus.className}`,
     ],
     active: [
-        `.${commonStates.press.className}`,
-        `.${commonStates.pressAndFocus.className}`,
+        `.${commonStates.press.className} *`,
+        `.${commonStates.pressAndFocus.className} *`,
     ],
 };
 
@@ -55,34 +55,6 @@ export const defaultStates: Array<State> = Object.values(commonStates);
  * e.g. `rest`, `hover`, `press`, `focus`, etc.
  */
 type State = {name: string; className: string};
-
-/**
- * The labels for the states presented in the row headers in the `StateSheet`
- * component.
- */
-function StateLabels({
-    states,
-    variant,
-}: {
-    states: Array<State>;
-    variant: string | React.ReactNode;
-}) {
-    return (
-        <View style={styles.stateLabelsContainer}>
-            <LabelLarge style={{alignSelf: "center"}}>{variant}</LabelLarge>
-            <View
-                style={[
-                    styles.rowHeaderStates,
-                    {gridTemplateRows: `repeat(${states.length}, 40px)`},
-                ]}
-            >
-                {states.map(({name}, index) => (
-                    <LabelMedium key={index}>{name}</LabelMedium>
-                ))}
-            </View>
-        </View>
-    );
-}
 
 type Props = PropsFor<typeof AllVariants> & {
     /**
@@ -99,34 +71,43 @@ export function StateSheet({
     columns,
     rows,
     states = defaultStates,
+    styles: stylesProp,
     title,
+    layout = "responsive",
 }: Props) {
-    // Override the default row headers to include the state labels.
-    const rowsWithStateLabels = rows.map(({name, props}) => ({
-        name: <StateLabels variant={name} states={states} />,
-        props,
-    }));
-
     return (
-        <View>
+        <View style={styles.flexStartContainer}>
             <AllVariants
-                rows={rowsWithStateLabels}
+                rows={rows}
                 columns={columns}
                 styles={{
-                    rowHeader: styles.rowHeader,
+                    rowHeader: [styles.rowHeader, stylesProp?.rowHeader],
+                    cell: [styles.cell, stylesProp?.cell],
                 }}
                 title={title}
+                layout={layout}
             >
-                {({props}) => {
+                {({props, name}) => {
                     return (
-                        <View style={styles.container}>
-                            {states.map(({className, name}) =>
-                                children({
-                                    props,
-                                    className,
-                                    name,
-                                }),
-                            )}
+                        <View style={[styles.container]}>
+                            {states.map(({className, name: stateName}) => (
+                                <View
+                                    key={stateName}
+                                    className={className}
+                                    style={styles.flexStartContainer}
+                                >
+                                    <BodyText size="small" style={styles.label}>
+                                        {stateName}
+                                    </BodyText>
+                                    <View style={styles.content}>
+                                        {children({
+                                            props,
+                                            className,
+                                            name: `${name}-${stateName}`,
+                                        })}
+                                    </View>
+                                </View>
+                            ))}
                         </View>
                     );
                 }}
@@ -138,24 +119,21 @@ export function StateSheet({
 const styles = StyleSheet.create({
     rowHeader: {
         verticalAlign: "top",
-        padding: 0,
     },
     container: {
         gap: sizing.size_160,
     },
-
-    stateLabelsContainer: {
-        flexDirection: "row",
-        gap: sizing.size_160,
-        padding: sizing.size_160,
-        justifyContent: "space-between",
-        background: semanticColor.surface.secondary,
-        borderTop: `${sizing.size_010} solid ${semanticColor.border.strong}`,
+    flexStartContainer: {
+        alignItems: "flex-start",
     },
-    rowHeaderStates: {
-        gap: sizing.size_160,
-        display: "grid",
-        alignItems: "center",
-        textAlign: "right",
+    label: {
+        paddingBlockEnd: sizing.size_080,
+        color: semanticColor.core.foreground.neutral.default,
+    },
+    content: {
+        maxInlineSize: "100%",
+    },
+    cell: {
+        alignContent: "flex-start",
     },
 });

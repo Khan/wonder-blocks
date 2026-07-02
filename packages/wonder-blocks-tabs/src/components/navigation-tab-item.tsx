@@ -20,7 +20,7 @@ type Props = AriaProps & {
      * cases where the `Link` component is wrapped by another component (like a
      * `Tooltip` or `Popover`), a render function can be used instead. The
      * render function provides the Link props that should be applied to the
-     * Link component. See example in the docs for more details.
+     * Link component.
      */
     children:
         | React.ReactElement
@@ -79,7 +79,7 @@ export const NavigationTabItem = React.forwardRef(function NavigationTabItem(
     function renderChildren() {
         const linkProps: NavigationTabItemLinkProps = {
             style: [
-                typographyStyles.Body,
+                typographyStyles.BodyTextMediumMediumWeight,
                 styles.link,
                 current && styles.currentLink,
             ],
@@ -111,10 +111,12 @@ const styles = StyleSheet.create({
         listStyle: "none",
         display: "inline-flex",
         [":has(a:hover)" as any]: {
-            boxShadow: `inset 0 calc(${sizing.size_020}*-1) 0 0 ${semanticColor.action.secondary.progressive.hover.foreground}`,
+            // Using background token to match underline styling in Figma
+            boxShadow: `inset 0 calc(${sizing.size_020}*-1) 0 0 ${semanticColor.core.background.instructive.default}`,
         },
         [":has(a:active)" as any]: {
-            boxShadow: `inset 0 calc(${sizing.size_060}*-1) 0 0 ${semanticColor.action.secondary.progressive.press.foreground}`,
+            // Using background token to match underline styling in Figma
+            boxShadow: `inset 0 calc(${sizing.size_060}*-1) 0 0 ${semanticColor.core.background.instructive.default}`,
         },
         paddingBlockStart: sizing.size_080,
         paddingBlockEnd: sizing.size_180,
@@ -130,14 +132,22 @@ const styles = StyleSheet.create({
             // selected.
             boxShadow: "none",
         },
+        [":has(a:active):not([aria-disabled=true])" as any]: {
+            // If it is current, make sure there is no box shadow
+            boxShadow: "none",
+        },
     },
     currentLink: {
-        color: semanticColor.action.secondary.progressive.default.foreground,
+        color: semanticColor.core.foreground.instructive.default,
+        [":active:not([aria-disabled=true])" as any]: {
+            // Make sure the current link doesn't change color when pressed
+            color: semanticColor.core.foreground.instructive.default,
+        },
     },
     link: {
         display: "flex",
         margin: 0,
-        color: semanticColor.text.primary,
+        color: semanticColor.core.foreground.neutral.subtle,
         paddingInline: 0,
         position: "relative",
         whiteSpace: "nowrap",
@@ -148,9 +158,8 @@ const styles = StyleSheet.create({
             textDecoration: "none",
             border: "none",
             outline: "none",
-            color: semanticColor.action.secondary.progressive.default
-                .foreground,
-            backgroundColor: "transparent",
+            color: semanticColor.core.foreground.instructive.default,
+            backgroundColor: semanticColor.core.transparent,
         },
         // NOTE: We use :not[aria-disabled] to avoid the hover styles to be
         // applied when the interactive element is disabled.
@@ -158,11 +167,9 @@ const styles = StyleSheet.create({
             textDecoration: "none",
             border: "none",
             outline: "none",
-            color: semanticColor.action.secondary.progressive.press.foreground,
+            color: semanticColor.core.foreground.instructive.default,
         },
         ":focus-visible": {
-            color: semanticColor.action.secondary.progressive.default
-                .foreground,
             border: "none",
             outline: "none",
             boxShadow: `0 0 0 ${sizing.size_020} ${semanticColor.focus.inner}, 0 0 0 ${sizing.size_040} ${semanticColor.focus.outer}`,

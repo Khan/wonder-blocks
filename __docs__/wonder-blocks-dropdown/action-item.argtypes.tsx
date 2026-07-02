@@ -1,16 +1,19 @@
 import * as React from "react";
-import type {ArgTypes} from "@storybook/react";
+import type {ArgTypes} from "@storybook/react-vite";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
-import Pill from "@khanacademy/wonder-blocks-pill";
+import AriaArgTypes from "../wonder-blocks-core/aria.argtypes";
 import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
+import type {ActionItem} from "@khanacademy/wonder-blocks-dropdown";
+import {StatusBadge} from "@khanacademy/wonder-blocks-badge";
 
 const AccessoryMappings = {
     none: null,
     icon: <PhosphorIcon icon={IconMappings.play} size="medium" />,
-    pill: <Pill kind="accent">New</Pill>,
+    badge: <StatusBadge label="New" kind="info" />,
 };
 
 export default {
+    ...AriaArgTypes,
     label: {
         control: {type: "text"},
         description: "Display text of the action item.",
@@ -21,7 +24,6 @@ export default {
     },
     disabled: {
         control: {type: "boolean"},
-        description: "Whether or not the action item is disabled.",
         table: {
             defaultValue: {summary: "false"},
             type: {summary: "boolean"},
@@ -111,4 +113,16 @@ export default {
         },
         type: {name: "other", required: false, value: "React.Node"},
     },
-} satisfies ArgTypes;
+    active: {
+        control: {type: "boolean"},
+        description:
+            `Optional; applies aria-current to the cell.\n\n` +
+            `This is used to indicate that the action item is currently active.`,
+        table: {
+            type: {summary: "boolean"},
+        },
+        type: {name: "boolean", required: false},
+    },
+} satisfies ArgTypes<
+    Omit<React.ComponentProps<typeof ActionItem>, "indent" | "role">
+>;

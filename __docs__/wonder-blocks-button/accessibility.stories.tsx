@@ -6,12 +6,12 @@ import {View} from "@khanacademy/wonder-blocks-core";
 
 const styles = StyleSheet.create({
     button: {
-        marginRight: 10,
+        marginInlineEnd: 10,
     },
 });
 
 export default {
-    title: "Packages / Button / Accessibility",
+    title: "Packages / Button / Guides / Accessibility",
     component: Button,
 
     // Disables chromatic testing for these stories.

@@ -7,7 +7,7 @@
             "./types"
         ],
         /* Language and Environment */
-        "target": "ES2016",
+        "target": "ES2021",
         "jsx": "preserve",
         /* Modules */
         // Required for dynamic imports even though we aren't using

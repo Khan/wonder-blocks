@@ -3,8 +3,8 @@ import {StyleSheet} from "aphrodite";
 
 import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
 import {addStyle, View} from "@khanacademy/wonder-blocks-core";
-import {spacing} from "@khanacademy/wonder-blocks-tokens";
-import {Body, HeadingSmall} from "@khanacademy/wonder-blocks-typography";
+import {sizing} from "@khanacademy/wonder-blocks-tokens";
+import {BodyText, Heading} from "@khanacademy/wonder-blocks-typography";
 
 import type {PopoverContextType} from "./popover-context";
 
@@ -20,6 +20,11 @@ type CommonProps = AriaProps & {
      * The popover title
      */
     title: string;
+    /**
+     * The heading tag for the popover title. Defaults to `"h4"`.
+     * This does not affect the visual appearance of the title.
+     */
+    titleHeadingTag?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
     /**
      * User-defined actions.
      *
@@ -208,6 +213,7 @@ export default class PopoverContent extends React.Component<Props> {
             image,
             style,
             title,
+            titleHeadingTag,
             testId,
             uniqueId,
         } = this.props;
@@ -232,15 +238,20 @@ export default class PopoverContent extends React.Component<Props> {
                                 {this.maybeRenderIcon()}
 
                                 <View style={styles.text}>
-                                    <HeadingSmall
+                                    <Heading
+                                        size="medium"
+                                        tag={titleHeadingTag}
                                         id={`${uniqueId}-title`}
                                         style={styles.title}
                                     >
                                         {title}
-                                    </HeadingSmall>
-                                    <Body id={`${uniqueId}-content`}>
+                                    </Heading>
+                                    <BodyText
+                                        tag="span"
+                                        id={`${uniqueId}-content`}
+                                    >
                                         {content}
-                                    </Body>
+                                    </BodyText>
                                 </View>
                             </View>
 
@@ -258,7 +269,7 @@ const styles = StyleSheet.create({
      * Shared styles
      */
     actions: {
-        marginTop: spacing.large_24,
+        marginBlockStart: sizing.size_240,
         flexDirection: "row",
         alignItems: "center",
         justifyContent: "flex-end",
@@ -269,7 +280,7 @@ const styles = StyleSheet.create({
     },
 
     title: {
-        marginBottom: spacing.xSmall_8,
+        marginBlockEnd: sizing.size_080,
     },
 
     /**
@@ -278,10 +289,10 @@ const styles = StyleSheet.create({
     iconContainer: {
         alignItems: "center",
         justifyContent: "center",
-        height: spacing.xxxLarge_64,
-        width: spacing.xxxLarge_64,
-        minWidth: spacing.xxxLarge_64,
-        marginRight: spacing.medium_16,
+        blockSize: sizing.size_640,
+        inlineSize: sizing.size_640,
+        minInlineSize: sizing.size_640,
+        marginInlineEnd: sizing.size_160,
         overflow: "hidden",
     },
 
@@ -297,16 +308,15 @@ const styles = StyleSheet.create({
      * Illustration styles
      */
     image: {
-        marginBottom: spacing.large_24,
-        marginLeft: -spacing.large_24,
-        marginRight: -spacing.large_24,
-        marginTop: -spacing.large_24,
-        width: `calc(100% + ${spacing.large_24 * 2}px)`,
+        marginBlockEnd: sizing.size_240,
+        marginBlockStart: `calc(-1 * ${sizing.size_240})`,
+        marginInline: `calc(-1 * ${sizing.size_240})`,
+        inlineSize: `calc(100% + ${sizing.size_480})`,
     },
 
     imageToBottom: {
-        marginBottom: -spacing.large_24,
-        marginTop: spacing.large_24,
+        marginBlockEnd: `calc(-1 * ${sizing.size_240})`,
+        marginBlockStart: sizing.size_240,
         order: 1,
     },
 });

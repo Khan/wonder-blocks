@@ -1,5 +1,467 @@
 # @khanacademy/wonder-blocks-toolbar
 
+## 5.1.58
+
+### Patch Changes
+
+- Updated dependencies [0735aef]
+    - @khanacademy/wonder-blocks-tokens@16.8.1
+    - @khanacademy/wonder-blocks-typography@4.3.9
+
+## 5.1.57
+
+### Patch Changes
+
+- Updated dependencies [f13552a]
+    - @khanacademy/wonder-blocks-tokens@16.8.0
+    - @khanacademy/wonder-blocks-typography@4.3.8
+
+## 5.1.56
+
+### Patch Changes
+
+- ed3b0ca: Use semantic color tokens for Toolbar `color="dark"` variant
+- Updated dependencies [0907f64]
+- Updated dependencies [9773405]
+- Updated dependencies [9773405]
+- Updated dependencies [022e775]
+- Updated dependencies [e181c15]
+- Updated dependencies [c033245]
+- Updated dependencies [a2bbc0a]
+    - @khanacademy/wonder-blocks-tokens@16.7.0
+    - @khanacademy/wonder-blocks-typography@4.3.7
+
+## 5.1.55
+
+### Patch Changes
+
+- Updated dependencies [a676ce6]
+    - @khanacademy/wonder-blocks-tokens@16.6.0
+    - @khanacademy/wonder-blocks-typography@4.3.6
+
+## 5.1.54
+
+### Patch Changes
+
+- 40cb70f: Add `require-logical-properties-for-rtl` ESLint rule to `eslint-plugin-wonder-blocks` recommended config, and migrate all Wonder Blocks component source files to use CSS logical properties for improved RTL layout support.
+- 40cb70f: Enable RTL logical-properties ESLint rule in recommended config
+- Updated dependencies [40cb70f]
+- Updated dependencies [40cb70f]
+    - @khanacademy/wonder-blocks-core@12.4.4
+    - @khanacademy/wonder-blocks-typography@4.3.5
+
+## 5.1.53
+
+### Patch Changes
+
+- Updated dependencies [44bde5e]
+- Updated dependencies [27a211d]
+    - @khanacademy/wonder-blocks-tokens@16.5.0
+    - @khanacademy/wonder-blocks-typography@4.3.4
+
+## 5.1.52
+
+### Patch Changes
+
+- Updated dependencies [245229a]
+    - @khanacademy/wonder-blocks-tokens@16.4.1
+    - @khanacademy/wonder-blocks-typography@4.3.3
+
+## 5.1.51
+
+### Patch Changes
+
+- 0fadf9f: Migrate internal usage of the deprecated `spacing` primitive token to the
+  `sizing` token. No public API or visual changes — each `spacing.<name>`
+  value maps 1:1 to a `sizing.size_<n>` token with the same rendered value.
+  A handful of internal `Strut` usages are replaced with CSS `gap` /
+  `margin` (since `sizing.X` is a CSS variable string at runtime, not a
+  number). Layout-spec and SVG sites that genuinely need JS numbers use
+  hardcoded values that mirror the matching `sizing.size_*` tokens (with
+  comments). Prep for removal of the `spacing` export in a future major
+  release of `@khanacademy/wonder-blocks-tokens`.
+- Updated dependencies [c1c74df]
+- Updated dependencies [72c5272]
+    - @khanacademy/wonder-blocks-tokens@16.4.0
+    - @khanacademy/wonder-blocks-typography@4.3.2
+
+## 5.1.50
+
+### Patch Changes
+
+- Updated dependencies [40f217b]
+    - @khanacademy/wonder-blocks-tokens@16.3.0
+    - @khanacademy/wonder-blocks-typography@4.3.1
+
+## 5.1.49
+
+### Patch Changes
+
+- 00e6dda: Updates internal WB typography references to use the new system (Heading and BodyText)
+- Updated dependencies [488728a]
+- Updated dependencies [00e6dda]
+    - @khanacademy/wonder-blocks-tokens@16.2.0
+    - @khanacademy/wonder-blocks-typography@4.3.0
+
+## 5.1.48
+
+### Patch Changes
+
+- Updated dependencies [358eb9b]
+    - @khanacademy/wonder-blocks-tokens@16.1.0
+    - @khanacademy/wonder-blocks-typography@4.2.31
+
+## 5.1.47
+
+### Patch Changes
+
+- Updated dependencies [c75abe9]
+- Updated dependencies [c75abe9]
+- Updated dependencies [530d692]
+    - @khanacademy/wonder-blocks-tokens@16.0.0
+    - @khanacademy/wonder-blocks-typography@4.2.30
+
+## 5.1.46
+
+### Patch Changes
+
+- Updated dependencies [8bb7ada]
+    - @khanacademy/wonder-blocks-tokens@15.0.0
+    - @khanacademy/wonder-blocks-typography@4.2.29
+
+## 5.1.45
+
+### Patch Changes
+
+- Updated dependencies [d6ae5fb]
+    - @khanacademy/wonder-blocks-core@12.4.3
+    - @khanacademy/wonder-blocks-tokens@14.1.3
+    - @khanacademy/wonder-blocks-typography@4.2.28
+
+## 5.1.44
+
+### Patch Changes
+
+- Updated dependencies [70d6c08]
+    - @khanacademy/wonder-blocks-tokens@14.1.3
+    - @khanacademy/wonder-blocks-typography@4.2.27
+
+## 5.1.43
+
+### Patch Changes
+
+- 8a36c70: Re-publish to publish with Trusted Publishing
+- 3e0d137: Re-publishing via Trusted Publishing
+- Updated dependencies [8a36c70]
+- Updated dependencies [3e0d137]
+    - @khanacademy/wonder-blocks-core@12.4.2
+    - @khanacademy/wonder-blocks-tokens@14.1.2
+    - @khanacademy/wonder-blocks-typography@4.2.26
+
+## 5.1.42
+
+### Patch Changes
+
+- Updated dependencies [540371d]
+    - @khanacademy/wonder-blocks-tokens@14.1.1
+    - @khanacademy/wonder-blocks-typography@4.2.25
+
+## 5.1.41
+
+### Patch Changes
+
+- Updated dependencies [272bf31]
+    - @khanacademy/wonder-blocks-tokens@14.1.0
+    - @khanacademy/wonder-blocks-typography@4.2.24
+
+## 5.1.40
+
+### Patch Changes
+
+- 6d5c485: Include provenance information when publishing to npmjs
+- Updated dependencies [6d5c485]
+    - @khanacademy/wonder-blocks-core@12.4.1
+    - @khanacademy/wonder-blocks-tokens@14.0.1
+    - @khanacademy/wonder-blocks-typography@4.2.23
+
+## 5.1.39
+
+### Patch Changes
+
+- Updated dependencies [6963849]
+- Updated dependencies [f627dca]
+    - @khanacademy/wonder-blocks-tokens@14.0.0
+    - @khanacademy/wonder-blocks-typography@4.2.22
+
+## 5.1.38
+
+### Patch Changes
+
+- Updated dependencies [ede6085]
+- Updated dependencies [a70f274]
+    - @khanacademy/wonder-blocks-tokens@13.0.0
+    - @khanacademy/wonder-blocks-typography@4.2.21
+
+## 5.1.37
+
+### Patch Changes
+
+- 1feec01: Replace use of `surface` tokens in components in favour of `background` tokens
+- Updated dependencies [1feec01]
+    - @khanacademy/wonder-blocks-tokens@12.2.1
+    - @khanacademy/wonder-blocks-typography@4.2.20
+
+## 5.1.36
+
+### Patch Changes
+
+- aa6ad92: Move away from using `foreground.inverse` and `border.inverse` tokens in favour of the new knockout tokens
+- Updated dependencies [5a02279]
+- Updated dependencies [aa6ad92]
+- Updated dependencies [aa6ad92]
+    - @khanacademy/wonder-blocks-tokens@12.2.0
+    - @khanacademy/wonder-blocks-typography@4.2.19
+
+## 5.1.35
+
+### Patch Changes
+
+- Updated dependencies [4aad557]
+    - @khanacademy/wonder-blocks-tokens@12.1.0
+    - @khanacademy/wonder-blocks-typography@4.2.18
+
+## 5.1.34
+
+### Patch Changes
+
+- Updated dependencies [1334e74]
+    - @khanacademy/wonder-blocks-core@12.4.0
+    - @khanacademy/wonder-blocks-typography@4.2.17
+
+## 5.1.33
+
+### Patch Changes
+
+- Updated dependencies [e559ab0]
+- Updated dependencies [98f4272]
+- Updated dependencies [b3dd28f]
+- Updated dependencies [3c3d8fb]
+    - @khanacademy/wonder-blocks-tokens@12.0.2
+    - @khanacademy/wonder-blocks-typography@4.2.16
+
+## 5.1.32
+
+### Patch Changes
+
+- Updated dependencies [9aad939]
+    - @khanacademy/wonder-blocks-tokens@12.0.1
+    - @khanacademy/wonder-blocks-typography@4.2.15
+
+## 5.1.31
+
+### Patch Changes
+
+- 956f8bd: Replaces instances of `semanticColor.text` with `semanticColor.core.foreground`
+- Updated dependencies [eafcfa3]
+- Updated dependencies [956f8bd]
+- Updated dependencies [eafcfa3]
+- Updated dependencies [b42b694]
+- Updated dependencies [956f8bd]
+    - @khanacademy/wonder-blocks-tokens@12.0.0
+    - @khanacademy/wonder-blocks-typography@4.2.14
+
+## 5.1.30
+
+### Patch Changes
+
+- Updated dependencies [03415d1]
+    - @khanacademy/wonder-blocks-tokens@11.4.1
+    - @khanacademy/wonder-blocks-typography@4.2.13
+
+## 5.1.29
+
+### Patch Changes
+
+- Updated dependencies [4d207b1]
+    - @khanacademy/wonder-blocks-tokens@11.4.0
+    - @khanacademy/wonder-blocks-typography@4.2.12
+
+## 5.1.28
+
+### Patch Changes
+
+- Updated dependencies [7cd0ebf]
+- Updated dependencies [51b6e69]
+- Updated dependencies [51b6e69]
+    - @khanacademy/wonder-blocks-tokens@11.3.1
+    - @khanacademy/wonder-blocks-typography@4.2.11
+
+## 5.1.27
+
+### Patch Changes
+
+- Updated dependencies [a98fe6c]
+- Updated dependencies [e21e448]
+- Updated dependencies [e21e448]
+- Updated dependencies [dddbe55]
+    - @khanacademy/wonder-blocks-tokens@11.3.0
+    - @khanacademy/wonder-blocks-typography@4.2.10
+
+## 5.1.26
+
+### Patch Changes
+
+- Updated dependencies [d8716ab]
+    - @khanacademy/wonder-blocks-tokens@11.2.2
+    - @khanacademy/wonder-blocks-typography@4.2.9
+
+## 5.1.25
+
+### Patch Changes
+
+- Updated dependencies [de9435a]
+- Updated dependencies [f50aafc]
+    - @khanacademy/wonder-blocks-tokens@11.2.1
+    - @khanacademy/wonder-blocks-typography@4.2.8
+
+## 5.1.24
+
+### Patch Changes
+
+- Updated dependencies [e457d8c]
+    - @khanacademy/wonder-blocks-tokens@11.2.0
+    - @khanacademy/wonder-blocks-typography@4.2.7
+
+## 5.1.23
+
+### Patch Changes
+
+- Updated dependencies [f26858a]
+    - @khanacademy/wonder-blocks-tokens@11.1.1
+    - @khanacademy/wonder-blocks-typography@4.2.6
+
+## 5.1.22
+
+### Patch Changes
+
+- Updated dependencies [705ee01]
+    - @khanacademy/wonder-blocks-typography@4.2.5
+
+## 5.1.21
+
+### Patch Changes
+
+- Updated dependencies [0f4f771]
+    - @khanacademy/wonder-blocks-tokens@11.1.0
+    - @khanacademy/wonder-blocks-typography@4.2.4
+
+## 5.1.20
+
+### Patch Changes
+
+- Updated dependencies [1ac2ba7]
+- Updated dependencies [0cb7a69]
+- Updated dependencies [cbf58b0]
+    - @khanacademy/wonder-blocks-tokens@11.0.0
+    - @khanacademy/wonder-blocks-typography@4.2.3
+
+## 5.1.19
+
+### Patch Changes
+
+- Updated dependencies [7811eb1]
+    - @khanacademy/wonder-blocks-tokens@10.6.0
+    - @khanacademy/wonder-blocks-typography@4.2.2
+
+## 5.1.18
+
+### Patch Changes
+
+- Updated dependencies [8468d8d]
+    - @khanacademy/wonder-blocks-tokens@10.5.0
+    - @khanacademy/wonder-blocks-typography@4.2.1
+
+## 5.1.17
+
+### Patch Changes
+
+- Updated dependencies [6998d03]
+    - @khanacademy/wonder-blocks-typography@4.2.0
+
+## 5.1.16
+
+### Patch Changes
+
+- 9bacc1a: Replaces all existing `semanticColor.border` references to use `semanticColor.core.border`
+- 7abcccf: Replace call sites to use `core.background` instead of `action`.
+- Updated dependencies [b1ee2b4]
+- Updated dependencies [7abcccf]
+- Updated dependencies [9bacc1a]
+- Updated dependencies [9bacc1a]
+- Updated dependencies [1c3c335]
+- Updated dependencies [689f5d3]
+- Updated dependencies [7d2a646]
+    - @khanacademy/wonder-blocks-tokens@10.4.0
+    - @khanacademy/wonder-blocks-typography@4.1.0
+
+## 5.1.15
+
+### Patch Changes
+
+- Updated dependencies [dd76e7c]
+- Updated dependencies [dd76e7c]
+    - @khanacademy/wonder-blocks-typography@4.0.0
+    - @khanacademy/wonder-blocks-tokens@10.3.0
+    - @khanacademy/wonder-blocks-core@12.3.0
+
+## 5.1.14
+
+### Patch Changes
+
+- Updated dependencies [1338494]
+    - @khanacademy/wonder-blocks-tokens@10.2.1
+    - @khanacademy/wonder-blocks-typography@3.2.4
+
+## 5.1.13
+
+### Patch Changes
+
+- Updated dependencies [c7d95bf]
+- Updated dependencies [668093b]
+    - @khanacademy/wonder-blocks-tokens@10.2.0
+    - @khanacademy/wonder-blocks-core@12.3.0
+    - @khanacademy/wonder-blocks-typography@3.2.3
+
+## 5.1.12
+
+### Patch Changes
+
+- Updated dependencies [a1be4c5]
+- Updated dependencies [d00a6f1]
+- Updated dependencies [abf5496]
+- Updated dependencies [812c167]
+    - @khanacademy/wonder-blocks-tokens@10.1.0
+    - @khanacademy/wonder-blocks-typography@3.2.2
+
+## 5.1.11
+
+### Patch Changes
+
+- Updated dependencies [28fa0c0]
+- Updated dependencies [28fa0c0]
+    - @khanacademy/wonder-blocks-core@12.3.0
+    - @khanacademy/wonder-blocks-typography@3.2.1
+
+## 5.1.10
+
+### Patch Changes
+
+- Updated dependencies [b9e4946]
+- Updated dependencies [b9e4946]
+    - @khanacademy/wonder-blocks-tokens@10.0.0
+    - @khanacademy/wonder-blocks-typography@3.2.0
+    - @khanacademy/wonder-blocks-core@12.2.1
+
 ## 5.1.9
 
 ### Patch Changes

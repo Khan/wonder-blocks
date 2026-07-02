@@ -1,4 +1,4 @@
-import type {ArgTypes} from "@storybook/react";
+import type {ArgTypes} from "@storybook/react-vite";
 
 import plusCircle from "@phosphor-icons/core/regular/plus-circle.svg";
 import plusCircleBold from "@phosphor-icons/core/bold/plus-circle-bold.svg";
@@ -12,6 +12,7 @@ import x from "@phosphor-icons/core/regular/x.svg";
 import xBold from "@phosphor-icons/core/bold/x-bold.svg";
 import checkCircle from "@phosphor-icons/core/regular/check-circle.svg";
 import checkCircleBold from "@phosphor-icons/core/bold/check-circle-bold.svg";
+import checkCircleFill from "@phosphor-icons/core/fill/check-circle-fill.svg";
 import check from "@phosphor-icons/core/regular/check.svg";
 import checkBold from "@phosphor-icons/core/bold/check-bold.svg";
 import caretDown from "@phosphor-icons/core/regular/caret-down.svg";
@@ -22,6 +23,7 @@ import caretLeft from "@phosphor-icons/core/regular/caret-left.svg";
 import caretLeftBold from "@phosphor-icons/core/bold/caret-left-bold.svg";
 import caretRight from "@phosphor-icons/core/regular/caret-right.svg";
 import caretRightBold from "@phosphor-icons/core/bold/caret-right-bold.svg";
+import dotsThreeBold from "@phosphor-icons/core/bold/dots-three-bold.svg";
 import minusCircle from "@phosphor-icons/core/regular/minus-circle.svg";
 import minusCircleBold from "@phosphor-icons/core/bold/minus-circle-bold.svg";
 import lightbulb from "@phosphor-icons/core/regular/lightbulb.svg";
@@ -48,9 +50,14 @@ import playCircle from "@phosphor-icons/core/regular/play-circle.svg";
 import playCircleBold from "@phosphor-icons/core/bold/play-circle-bold.svg";
 import gear from "@phosphor-icons/core/regular/gear.svg";
 import cookie from "@phosphor-icons/core/regular/cookie.svg";
+import cookieBold from "@phosphor-icons/core/bold/cookie-bold.svg";
 import iceCream from "@phosphor-icons/core/regular/ice-cream.svg";
+import iceCreamBold from "@phosphor-icons/core/bold/ice-cream-bold.svg";
+import lightningFill from "@phosphor-icons/core/fill/lightning-fill.svg";
+import AriaArgTypes from "../wonder-blocks-core/aria.argtypes";
 
-import {color} from "@khanacademy/wonder-blocks-tokens";
+import {semanticColor} from "@khanacademy/wonder-blocks-tokens";
+import {flattenNestedTokens} from "../components/tokens-util";
 
 /**
  * Some pre-defined icon examples to use in our stories.
@@ -74,6 +81,8 @@ export const IconMappings = {
     checkBold,
     checkCircle,
     checkCircleBold,
+    checkCircleFill,
+    dotsThreeBold,
     x,
     xBold,
     xCircle,
@@ -104,17 +113,30 @@ export const IconMappings = {
     playCircleBold,
     gear,
     cookie,
+    cookieBold,
     iceCream,
+    iceCreamBold,
+    lightningFill,
 } as const;
 
+// We flatten the tokens and filter out the colors that are not relevant to
+// icons.
+const semanticIconColorsCollection = Object.entries(
+    flattenNestedTokens(semanticColor),
+).filter(
+    ([key]) =>
+        (key.includes("icon") || key.includes("foreground")) &&
+        // Deprecated/internal categories
+        !key.startsWith("action") &&
+        !key.startsWith("chonky") &&
+        !key.startsWith("status"),
+);
+
+const semanticIconColors = Object.fromEntries(semanticIconColorsCollection);
+
 export default {
+    ...AriaArgTypes,
     icon: {
-        description:
-            `The icon to display. This is a reference to the icon asset ` +
-            `(imported as a static SVG file).\n\n` +
-            `It supports the following types:\n` +
-            `- \`PhosphorIconAsset\`: a reference to a Phosphor SVG asset.\n` +
-            `- \`string\`: an import referencing an arbitrary SVG file.`,
         options: Object.keys(IconMappings),
         mapping: IconMappings,
         type: {
@@ -129,10 +151,8 @@ export default {
         },
     },
     color: {
-        description:
-            "The color of the icon. Will default to `currentColor`, which means that it will take on the CSS `color` value from the parent element.",
-        options: Object.keys(color),
-        mapping: color,
+        options: Object.keys(semanticIconColors),
+        mapping: semanticIconColors,
         control: {
             type: "select",
         },
@@ -141,8 +161,6 @@ export default {
         },
     },
     size: {
-        description:
-            "One of `small` (16px), `medium` (24px), `large` (48px), or `xlarge` (96px).",
         options: ["small", "medium", "large", "xlarge"],
         control: {
             type: "select",
@@ -152,12 +170,10 @@ export default {
         },
     },
     style: {
-        description: "Additional styles to apply to the icon.",
         control: {type: "object"},
         table: {type: {summary: "StyleType"}},
     },
     className: {
-        description: "Adds CSS classes to the Icon.",
         control: {type: "text"},
         table: {
             type: {
@@ -166,7 +182,6 @@ export default {
         },
     },
     testId: {
-        description: "Test ID used for e2e testing.",
         control: {type: "text"},
         table: {
             type: {
@@ -201,9 +216,6 @@ export default {
         },
     },
     role: {
-        description:
-            "The role of this icon. Make sure to use it when setting `aria-label`\n" +
-            "See: https://www.w3.org/WAI/WCAG21/Techniques/aria/ARIA24",
         defaultValue: "img",
         control: {
             type: "text",

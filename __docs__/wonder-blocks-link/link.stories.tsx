@@ -1,26 +1,31 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 import {MemoryRouter} from "react-router-dom";
-import {CompatRouter, Route, Routes} from "react-router-dom-v5-compat";
-import type {Meta, StoryObj} from "@storybook/react";
+import {
+    CompatRouter,
+    createMemoryRouter,
+    Outlet,
+    Route,
+    RouterProvider,
+    Routes,
+    useViewTransitionState,
+} from "react-router-dom-v5-compat";
+import type {Meta, StoryObj} from "@storybook/react-vite";
 
 import {View} from "@khanacademy/wonder-blocks-core";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
-import {semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
-import {
-    Body,
-    HeadingSmall,
-    LabelLarge,
-} from "@khanacademy/wonder-blocks-typography";
+import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
+import {BodyText, Heading} from "@khanacademy/wonder-blocks-typography";
 import Link from "@khanacademy/wonder-blocks-link";
 import packageConfig from "../../packages/wonder-blocks-link/package.json";
 
 import ComponentInfo from "../components/component-info";
 import LinkArgTypes from "./link.argtypes";
 import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
+import {actionStyles} from "@khanacademy/wonder-blocks-styles";
 
-export default {
+const meta = {
     title: "Packages / Link",
     component: Link,
     parameters: {
@@ -36,7 +41,8 @@ export default {
         },
     },
     argTypes: LinkArgTypes,
-} as Meta<typeof Link>;
+} satisfies Meta<typeof Link>;
+export default meta;
 
 type StoryComponentType = StoryObj<typeof Link>;
 
@@ -52,32 +58,24 @@ export const Default: StoryComponentType = {
 };
 
 /**
- * Minimal link usage on a dark background. This link has its `light` prop set
- * to true. It links to the top of the page.
- */
-export const LightPrimary: StoryComponentType = {
-    render: () => (
-        <Link href="#link" light={true}>
-            The quick brown fox jumps over the lazy dog.
-        </Link>
-    ),
-    parameters: {
-        backgrounds: {
-            default: "darkBlue",
-        },
-    },
-};
-
-/**
  * When a link is external and target="_blank", the external icon is
  * automatically added to the end of the link. This indicates that the link will
  * open in a new tab.
+ *
+ * A translated `aria-label` for the external icon can be set using the
+ * `labels.externalIconAriaLabel` prop. We recommend setting this to a translated
+ * string for `(opens in a new tab)`. (Note: In the long term once WB handles
+ * i18n internally, this will be handled automatically.)
  */
 export const OpensInANewTab: StoryComponentType = {
     render: () => (
         <View>
-            <Link href="https://cat-bounce.com/" target="_blank">
-                This is a link that opens in a new tab
+            <Link
+                href="https://cat-bounce.com/"
+                target="_blank"
+                labels={{externalIconAriaLabel: "(opens in a new tab)"}}
+            >
+                This is an external link
             </Link>
         </View>
     ),
@@ -92,7 +90,7 @@ export const StartAndEndIcons: StoryComponentType = {
     render: () => (
         <View>
             {/* Default (dark) */}
-            <View style={{padding: spacing.large_24}}>
+            <View style={{padding: sizing.size_240}}>
                 <Link
                     href="#link"
                     startIcon={
@@ -144,7 +142,7 @@ export const StartAndEndIcons: StoryComponentType = {
                 >
                     This is a multi-line link with start and end icons
                 </Link>
-                <Body>
+                <BodyText>
                     This is an inline{" "}
                     <Link
                         href="#link"
@@ -167,13 +165,14 @@ export const StartAndEndIcons: StoryComponentType = {
                         link with an end icon
                     </Link>
                     .
-                </Body>
+                </BodyText>
             </View>
             {/* Light */}
             <View
                 style={{
-                    backgroundColor: semanticColor.surface.inverse,
-                    padding: spacing.large_24,
+                    backgroundColor:
+                        semanticColor.core.background.neutral.strong,
+                    padding: sizing.size_240,
                 }}
             >
                 <Link
@@ -181,8 +180,7 @@ export const StartAndEndIcons: StoryComponentType = {
                     startIcon={
                         <PhosphorIcon icon={IconMappings.plusCircleBold} />
                     }
-                    light={true}
-                    style={styles.standaloneLinkWrapper}
+                    style={[styles.standaloneLinkWrapper, actionStyles.inverse]}
                 >
                     This link has a start icon
                 </Link>
@@ -191,8 +189,7 @@ export const StartAndEndIcons: StoryComponentType = {
                     endIcon={
                         <PhosphorIcon icon={IconMappings.magnifyingGlassBold} />
                     }
-                    light={true}
-                    style={styles.standaloneLinkWrapper}
+                    style={[styles.standaloneLinkWrapper, actionStyles.inverse]}
                 >
                     This link has an end icon
                 </Link>
@@ -200,8 +197,7 @@ export const StartAndEndIcons: StoryComponentType = {
                     href="https://stuffonmycat.com/"
                     endIcon={<PhosphorIcon icon={IconMappings.infoBold} />}
                     target="_blank"
-                    light={true}
-                    style={styles.standaloneLinkWrapper}
+                    style={[styles.standaloneLinkWrapper, actionStyles.inverse]}
                 >
                     This external link has an end icon that is overrides the
                     default external icon
@@ -214,8 +210,7 @@ export const StartAndEndIcons: StoryComponentType = {
                     endIcon={
                         <PhosphorIcon icon={IconMappings.caretRightBold} />
                     }
-                    light={true}
-                    style={styles.standaloneLinkWrapper}
+                    style={[styles.standaloneLinkWrapper, actionStyles.inverse]}
                 >
                     This link has a start icon and an end icon
                 </Link>
@@ -227,12 +222,15 @@ export const StartAndEndIcons: StoryComponentType = {
                     endIcon={
                         <PhosphorIcon icon={IconMappings.caretRightBold} />
                     }
-                    light={true}
-                    style={styles.multiLine}
+                    style={[styles.multiLine, actionStyles.inverse]}
                 >
                     This is a multi-line link with start and end icons
                 </Link>
-                <Body style={{color: semanticColor.text.inverse}}>
+                <BodyText
+                    style={{
+                        color: semanticColor.core.foreground.knockout.default,
+                    }}
+                >
                     This is an inline{" "}
                     <Link
                         href="#link"
@@ -240,7 +238,7 @@ export const StartAndEndIcons: StoryComponentType = {
                             <PhosphorIcon icon={IconMappings.caretLeftBold} />
                         }
                         inline={true}
-                        light={true}
+                        style={actionStyles.inverse}
                     >
                         link with a start icon
                     </Link>{" "}
@@ -251,13 +249,13 @@ export const StartAndEndIcons: StoryComponentType = {
                             <PhosphorIcon icon={IconMappings.caretRightBold} />
                         }
                         inline={true}
-                        light={true}
+                        style={actionStyles.inverse}
                         target="_blank"
                     >
                         link with an end icon
                     </Link>
                     .
-                </Body>
+                </BodyText>
             </View>
         </View>
     ),
@@ -270,7 +268,7 @@ export const StartAndEndIcons: StoryComponentType = {
  */
 export const Inline: StoryComponentType = {
     render: () => (
-        <Body style={{width: 530}}>
+        <BodyText style={{width: 530}}>
             This is an inline{" "}
             <Link href="#link" inline={true}>
                 regular link
@@ -284,48 +282,9 @@ export const Inline: StoryComponentType = {
                 external link
             </Link>
             .
-        </Body>
+        </BodyText>
     ),
     parameters: {
-        chromatic: {
-            // Re-enable snapshots for this story since it shows the links in
-            // the context of paragraphs.
-            disableSnapshot: false,
-        },
-        pseudo: {visited: true},
-    },
-};
-
-/**
- * Inline links include an underline to distinguish them from the surrounding
- * text. If the link is on a dark background, set the `light` prop to true for
- * it to be appropriately visible.
- *
- * **NOTE:** Secondary light links are not supported.
- */
-export const InlineLight: StoryComponentType = {
-    render: () => (
-        <Body style={{color: semanticColor.text.inverse, width: 530}}>
-            This is an inline{" "}
-            <Link href="#link" inline={true} light={true}>
-                regular link
-            </Link>
-            . In this sentence, there is also an inline{" "}
-            <Link
-                href="https://cat-bounce.com/"
-                inline={true}
-                light={true}
-                target="_blank"
-            >
-                external link
-            </Link>
-            .
-        </Body>
-    ),
-    parameters: {
-        backgrounds: {
-            default: "darkBlue",
-        },
         chromatic: {
             // Re-enable snapshots for this story since it shows the links in
             // the context of paragraphs.
@@ -342,11 +301,11 @@ export const InlineLight: StoryComponentType = {
  */
 export const WithTypography: StoryComponentType = {
     render: () => (
-        <HeadingSmall>
+        <Heading size="medium">
             <Link href="#nonexistent-link" id="typography-link">
                 Link inside a Heading element
             </Link>
-        </HeadingSmall>
+        </Heading>
     ),
     parameters: {
         chromatic: {
@@ -399,14 +358,18 @@ export const Navigation: StoryComponentType = {
                                 console.log("I'm still on the same page!");
                             }}
                         >
-                            <LabelLarge>Uses Client-side Nav</LabelLarge>
+                            <BodyText weight="bold">
+                                Uses Client-side Nav
+                            </BodyText>
                         </Link>
                         <Link
                             href="/iframe.html?id=link--default&viewMode=story"
                             style={styles.heading}
                             skipClientNav
                         >
-                            <LabelLarge>Avoids Client-side Nav</LabelLarge>
+                            <BodyText weight="bold">
+                                Avoids Client-side Nav
+                            </BodyText>
                         </Link>
                     </View>
                     <View style={styles.navigation}>
@@ -435,16 +398,198 @@ export const Navigation: StoryComponentType = {
 };
 
 /**
+ * An example of a React Router root component.
+ */
+function Layout() {
+    return (
+        <View>
+            <View style={styles.row}>
+                <Link href="/one" style={styles.heading} viewTransition>
+                    <BodyText weight="bold">First Page</BodyText>
+                </Link>
+                <Link href="/two" style={styles.heading} viewTransition>
+                    <BodyText weight="bold">Second Page</BodyText>
+                </Link>
+            </View>
+            <View style={[styles.navigation]}>
+                <Outlet />
+            </View>
+        </View>
+    );
+}
+
+/**
+ * `Link` can be used with `viewTransition` to animate between pages. The
+ * `viewTransition` prop is a boolean that indicates whether the link should use
+ * the View Transition API. See the [View Transition API
+ * documentation](https://developer.mozilla.org/en-US/docs/Web/API/View_Transition_API)
+ * for more information.
+ *
+ * This example uses the ReactRouter's `useViewTransitionState` hook to
+ * determine if the link is currently transitioning, then applies the
+ * `viewTransitionName` style to the link and the card. The `viewTransitionName`
+ * style is a CSS property that specifies the name of the transition. The
+ * transition name is used to match the elements that should be animated between
+ * the two pages.
+ *
+ * You can take a look at the code snippet below to see how this example works
+ * (click on the "Show code" button).
+ */
+export const ViewTransition: StoryComponentType = {
+    name: "ViewTransition",
+    // NOTE: This story is not a part of the main storybook. It is created this
+    // way to allow including the whole code snippet and avoid recreating the
+    // FirstPage and SecondPage components in the storybook's render cycle.
+    decorators: [
+        () => {
+            function FirstPage() {
+                const to = "/two";
+                const isTransitioning = useViewTransitionState(to);
+
+                return (
+                    <View
+                        style={[
+                            styles.card,
+                            {
+                                width: "fit-content",
+                                // 1️⃣ A transition name is only applied when
+                                // the link is clicked (transition starts)👇.
+                                viewTransitionName: isTransitioning
+                                    ? "card-expand"
+                                    : "none",
+                            },
+                        ]}
+                    >
+                        <BodyText>
+                            The first link opens the second tab.
+                        </BodyText>
+
+                        <Link
+                            href={to}
+                            viewTransition
+                            style={{
+                                viewTransitionName: isTransitioning
+                                    ? "card-link"
+                                    : "none",
+                            }}
+                            startIcon={
+                                <PhosphorIcon
+                                    icon={IconMappings.caretRightBold}
+                                />
+                            }
+                        >
+                            Go to second page
+                        </Link>
+                    </View>
+                );
+            }
+
+            function SecondPage() {
+                const to = "/one";
+                const isTransitioning = useViewTransitionState(to);
+
+                return (
+                    <View
+                        style={[
+                            styles.card,
+                            {
+                                // 2️⃣ This is how View Transitions connect
+                                // elements between pages (using the same
+                                // name)👇.
+                                viewTransitionName: isTransitioning
+                                    ? "card-expand"
+                                    : "none",
+                                // 3️⃣ Any CSS properties that change are
+                                // transitioned between states/pages 👇.
+                                width: 480,
+                                height: 400,
+                                justifyContent: "space-between",
+                                marginInline: "auto",
+                            },
+                        ]}
+                    >
+                        <Heading size="large">This is the Detail page</Heading>
+                        <img
+                            src="./km-ready.svg"
+                            alt="detail screenshot"
+                            height={150}
+                        />
+                        <Link
+                            href={to}
+                            style={[
+                                {
+                                    // 4️⃣ We can assign different VT names in
+                                    // any page, so different DOM elements can
+                                    // have different transitions 👇.
+                                    viewTransitionName: isTransitioning
+                                        ? "card-link"
+                                        : "none",
+                                    alignSelf: "flex-end",
+                                },
+                            ]}
+                            viewTransition
+                            startIcon={
+                                <PhosphorIcon
+                                    icon={IconMappings.caretLeftBold}
+                                />
+                            }
+                        >
+                            Go back to first page
+                        </Link>
+                    </View>
+                );
+            }
+
+            const router = createMemoryRouter(
+                [
+                    {
+                        path: "/",
+                        element: <Layout />,
+                        children: [
+                            {path: "/one", element: <FirstPage />},
+                            {path: "/two", element: <SecondPage />},
+                        ],
+                    },
+                ],
+                {
+                    initialEntries: ["/", "/one"],
+                    initialIndex: 1,
+                },
+            );
+            return <RouterProvider router={router} />;
+        },
+    ],
+};
+
+/**
  * Link can take a title prop. Give a link a title by setting the `title` prop
  * to a string. Hover over the link to see its title.
  */
 export const WithTitle: StoryComponentType = {
     render: () => (
-        <Body>
+        <BodyText>
             <Link href="#link" title="I am a title 😎">
                 This link has a title.
             </Link>
-        </Body>
+        </BodyText>
+    ),
+};
+
+/**
+ * Link can take a `state` prop that adds persistent client side routing state
+ * to the next location. See https://reactrouter.com/api/components/Link#state
+ */
+export const WithState: StoryComponentType = {
+    render: () => (
+        <MemoryRouter>
+            <CompatRouter>
+                <View>
+                    <Link href="/foo" state={{from: "wonder-blocks-link"}}>
+                        Link with state
+                    </Link>
+                </View>
+            </CompatRouter>
+        </MemoryRouter>
     ),
 };
 
@@ -454,8 +599,8 @@ export const WithTitle: StoryComponentType = {
  */
 export const RightToLeftWithIcons: StoryComponentType = {
     render: () => (
-        <View style={{padding: spacing.medium_16}}>
-            <View style={styles.rightToLeft}>
+        <View style={{padding: sizing.size_160}}>
+            <View dir="rtl">
                 <Link
                     href="/"
                     startIcon={
@@ -464,14 +609,14 @@ export const RightToLeftWithIcons: StoryComponentType = {
                 >
                     هذا الرابط مكتوب باللغة العربية
                 </Link>
-                <Strut size={spacing.medium_16} />
+                <Strut size={16} />
                 <Link
                     href="/"
                     endIcon={<PhosphorIcon icon={IconMappings.caretLeftBold} />}
                 >
                     هذا الرابط مكتوب باللغة العربية
                 </Link>
-                <Strut size={spacing.medium_16} />
+                <Strut size={16} />
                 <Link
                     href="/"
                     startIcon={
@@ -494,12 +639,12 @@ export const RightToLeftWithIcons: StoryComponentType = {
 
 const styles = StyleSheet.create({
     heading: {
-        marginRight: spacing.large_24,
+        marginInlineEnd: sizing.size_240,
     },
     navigation: {
-        border: `1px dashed ${semanticColor.border.primary}`,
-        marginTop: spacing.large_24,
-        padding: spacing.large_24,
+        border: `1px dashed ${semanticColor.core.border.neutral.subtle}`,
+        marginBlockStart: sizing.size_240,
+        padding: sizing.size_240,
     },
     customLink: {
         color: semanticColor.status.critical.foreground,
@@ -513,15 +658,20 @@ const styles = StyleSheet.create({
         // instead of taking the full width of the parent
         // container.
         display: "inline-block",
-        marginBottom: spacing.xSmall_8,
+        marginBlockEnd: sizing.size_080,
     },
-    rightToLeft: {
-        width: "100%",
-        direction: "rtl",
-    },
+
     multiLine: {
         display: "inline-block",
-        marginBottom: spacing.xSmall_8,
-        maxWidth: "15%",
+        marginBlockEnd: sizing.size_080,
+        maxInlineSize: "15%",
+    },
+    card: {
+        background: semanticColor.core.background.base.subtle,
+        border: `${border.width.thin} solid ${semanticColor.core.border.neutral.subtle}`,
+        borderRadius: border.radius.radius_040,
+        width: "100%",
+        height: "100%",
+        padding: sizing.size_160,
     },
 });

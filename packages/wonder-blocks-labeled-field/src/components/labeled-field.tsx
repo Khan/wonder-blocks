@@ -1,11 +1,12 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 import WarningCircle from "@phosphor-icons/core/bold/warning-circle-bold.svg";
-
-import {View, addStyle, StyleType} from "@khanacademy/wonder-blocks-core";
-import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
-import {LabelMedium, LabelSmall} from "@khanacademy/wonder-blocks-typography";
+import LockIcon from "@phosphor-icons/core/bold/lock-bold.svg";
+import {BodyText} from "@khanacademy/wonder-blocks-typography";
+import {View, StyleType} from "@khanacademy/wonder-blocks-core";
+import {font, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
+import theme from "../theme";
 
 type Props = {
     /**
@@ -17,33 +18,14 @@ type Props = {
      */
     label: React.ReactNode;
     /**
+     * The context for the field. Useful for showing if the field is required
+     * or optional.
+     */
+    contextLabel?: React.ReactNode;
+    /**
      * The text for the description element.
      */
     description?: React.ReactNode;
-    /**
-     * Whether this field is required to to continue, or the error message to
-     * render if this field is left blank. This is passed into the field
-     * component.
-     *
-     * This can be a boolean or a string.
-     *
-     * String:
-     * Please pass in a translated string to use as the error message that will
-     * render if the user leaves this field blank. If this field is required,
-     * and a string is not passed in, a default untranslated string will render
-     * upon error.
-     * Note: The string will not be used if a `validate` prop is passed in.
-     *
-     * Example message: i18n._("A password is required to log in.")
-     *
-     * Boolean:
-     * True/false indicating whether this field is required. Please do not pass
-     * in `true` if possible - pass in the error string instead.
-     * If `true` is passed, and a `validate` prop is not passed, that means
-     * there is no corresponding message and the default untranlsated message
-     * will be used.
-     */
-    required?: boolean | string;
     /**
      * The message for the error element. If there is a message, it will also
      * set the `error` prop on the `field` component.
@@ -51,8 +33,25 @@ type Props = {
      * Note: Since the error icon has an aria-label, screen readers will
      * prefix the error message with "Error:" (or the value provided to the
      * errorIconAriaLabel in the `labels` prop)
+     *
+     * If both `errorMessage` and `readOnlyMessage` are provided, the `readOnlyMessage`
+     * is displayed first.
      */
     errorMessage?: React.ReactNode;
+    /**
+     * The helpful text message to display when the field is read only.
+     *
+     * Use the `labels.readOnlyIconAriaLabel` prop to set the `aria-label` for
+     * the read only icon.
+     *
+     * If both `errorMessage` and `readOnlyMessage` are provided, the `readOnlyMessage`
+     * is displayed first.
+     */
+    readOnlyMessage?: React.ReactNode;
+    /**
+     * Additional helper text placed under the field.
+     */
+    additionalHelperMessage?: React.ReactNode;
     /**
      * Custom styles for the elements of LabeledField. Useful if there are
      * specific cases where spacing between elements needs to be customized.
@@ -60,16 +59,22 @@ type Props = {
     styles?: {
         root?: StyleType;
         label?: StyleType;
+        contextLabel?: StyleType;
         description?: StyleType;
         error?: StyleType;
+        readOnlyMessage?: StyleType;
+        additionalHelperMessage?: StyleType;
     };
     /**
      * A unique id to use as the base of the ids for the elements within the component.
      * Here is how the id is used for the different elements in the component:
      * - The label will have an id formatted as `${id}-label`
+     * - The context label will have an id formatted as `${id}-context-label`
      * - The description will have an id formatted as `${id}-description`
      * - The field will have an id formatted as `${id}-field`
      * - The error will have an id formatted as `${id}-error`
+     * - The read only message will have an id formatted as `${id}-read-only-message`
+     * - The additional helper message will have an id formatted as `${id}-additional-helper-message`
      *
      * If the `id` prop is not provided, a base unique id will be auto-generated.
      * This is important so that the different elements can be wired up together
@@ -83,33 +88,36 @@ type Props = {
      * Optional test id for e2e testing. Here is how the test id is used for the
      * different elements in the component:
      * - The label will have a testId formatted as `${testId}-label`
+     * - The context label will have a testId formatted as `${testId}-context-label`
      * - The description will have a testId formatted as `${testId}-description`
      * - The field will have a testId formatted as `${testId}-field`
      * - The error will have a testId formatted as `${testId}-error`
+     * - The read only message will have a testId formatted as `${testId}-read-only-message`
+     * - The additional helper message will have a testId formatted as `${testId}-additional-helper-message`
      */
     testId?: string;
     /**
      * The object containing the custom labels used inside this component.
      *
-     * This is useful for internationalization. Defaults to English.
+     * This is useful for internationalization.
      */
     labels?: LabeledFieldLabels;
 };
 
 export type LabeledFieldLabels = {
-    errorIconAriaLabel: string;
+    errorIconAriaLabel?: string;
+    readOnlyIconAriaLabel?: string;
 };
 
 const defaultLabeledFieldLabels: LabeledFieldLabels = {
     errorIconAriaLabel: "Error:",
 };
 
-const StyledSpan = addStyle("span");
-
 /**
- * A LabeledField is an element that provides a label, required indicator,
- * description, and error to present better context and hints to any type of
- * form field component.
+ * A LabeledField is an element that provides a label, context label, and
+ * helper text to present more information about any type of form field
+ * component. Helper text includes a description, error message, read only
+ * message, and any additional helper message.
  */
 export default function LabeledField(props: Props) {
     const {
@@ -117,10 +125,12 @@ export default function LabeledField(props: Props) {
         styles: stylesProp,
         label,
         id,
-        required,
         testId,
+        contextLabel,
         description,
         errorMessage,
+        readOnlyMessage,
+        additionalHelperMessage,
         labels = defaultLabeledFieldLabels,
     } = props;
 
@@ -130,41 +140,51 @@ export default function LabeledField(props: Props) {
     const descriptionId = `${uniqueId}-description`;
     const fieldId = `${uniqueId}-field`;
     const errorId = `${uniqueId}-error`;
+    const readOnlyMessageId = `${uniqueId}-read-only-message`;
+    const additionalHelperMessageId = `${uniqueId}-additional-helper-message`;
+    const contextLabelId = `${uniqueId}-context-label`;
 
-    const isRequired = !!required || !!field.props.required;
     const hasError = !!errorMessage || !!field.props.error;
+    const isDisabled = !!field.props.disabled;
 
-    function renderLabel(): React.ReactNode {
-        const requiredIcon = (
-            <StyledSpan
-                style={[styles.textWordBreak, styles.required]}
-                aria-hidden={true}
-            >
-                {" "}
-                *
-            </StyledSpan>
-        );
-
+    function renderLabelAndContextLabel(): React.ReactNode {
         return (
-            <React.Fragment>
-                <LabelMedium
+            <View style={styles.labelContainer}>
+                <BodyText
                     style={[
-                        styles.textWordBreak,
                         styles.label,
+                        hasError ? styles.labelWithError : undefined,
                         description
                             ? styles.labelWithDescription
                             : styles.labelWithNoDescription,
+                        isDisabled && styles.disabledLabel,
                         stylesProp?.label,
                     ]}
                     tag="label"
                     htmlFor={fieldId}
                     testId={testId && `${testId}-label`}
                     id={labelId}
+                    weight="semi"
                 >
                     {label}
-                    {isRequired && requiredIcon}
-                </LabelMedium>
-            </React.Fragment>
+                </BodyText>
+                {contextLabel && (
+                    <BodyText
+                        tag="div"
+                        id={contextLabelId}
+                        testId={testId && `${testId}-context-label`}
+                        style={[
+                            styles.helperText,
+                            styles.contextLabel,
+                            isDisabled && styles.disabledHelperText,
+                            hasError ? styles.contextLabelWithError : undefined,
+                            stylesProp?.contextLabel,
+                        ]}
+                    >
+                        {contextLabel}
+                    </BodyText>
+                )}
+            </View>
         );
     }
 
@@ -174,67 +194,62 @@ export default function LabeledField(props: Props) {
         }
 
         return (
-            <React.Fragment>
-                <LabelSmall
-                    style={[
-                        styles.textWordBreak,
-                        styles.description,
-                        stylesProp?.description,
-                    ]}
-                    testId={testId && `${testId}-description`}
-                    id={descriptionId}
-                >
-                    {description}
-                </LabelSmall>
-            </React.Fragment>
+            <BodyText
+                style={[
+                    styles.helperText,
+                    styles.spacingBelowHelperText,
+                    isDisabled && styles.disabledHelperText,
+                    stylesProp?.description,
+                ]}
+                testId={testId && `${testId}-description`}
+                id={descriptionId}
+            >
+                {description}
+            </BodyText>
         );
     }
 
     function maybeRenderError(): React.ReactNode | null | undefined {
         return (
-            <React.Fragment>
-                <View
-                    style={[
-                        styles.errorSection,
-                        errorMessage
-                            ? styles.errorSectionWithContent
-                            : undefined,
-                        stylesProp?.error,
-                    ]}
-                    id={errorId}
-                    testId={testId && `${testId}-error`}
-                    // We use aria-live="assertive" for the error so that it is
-                    // immediately announced and the user can address the issue
-                    // before submitting the form. We use aria-live=assertive
-                    // instead of role=alert because Safari + VoiceOver would
-                    // not read out the error when focused on if the element
-                    // referenced by the aria-describedby had role="alert".
-                    aria-live="assertive"
-                    // We add aria-atomic=true so that any updates to the error
-                    // is announced
-                    aria-atomic="true"
-                >
-                    {errorMessage && (
-                        <>
-                            <PhosphorIcon
-                                icon={WarningCircle}
-                                style={[styles.errorIcon, styles.error]}
-                                role="img"
-                                aria-label={labels.errorIconAriaLabel}
-                            />
-                            <LabelSmall
-                                style={[
-                                    styles.textWordBreak,
-                                    styles.errorMessage,
-                                    styles.error,
-                                ]}
-                            >
-                                {errorMessage}
-                            </LabelSmall>
-                        </>
-                    )}
-                </View>
-            </React.Fragment>
+            <View
+                style={[
+                    styles.helperTextWithIcon,
+                    errorMessage ? styles.spacingAboveHelperText : undefined,
+                    stylesProp?.error,
+                ]}
+                id={errorId}
+                testId={testId && `${testId}-error`}
+                // We use aria-live="assertive" for the error so that it is
+                // immediately announced and the user can address the issue
+                // before submitting the form. We use aria-live=assertive
+                // instead of role=alert because Safari + VoiceOver would
+                // not read out the error when focused on if the element
+                // referenced by the aria-describedby had role="alert".
+                aria-live="assertive"
+                // We add aria-atomic=true so that any updates to the error
+                // is announced
+                aria-atomic="true"
+            >
+                {errorMessage && (
+                    <>
+                        <PhosphorIcon
+                            icon={WarningCircle}
+                            style={[styles.errorIcon, styles.error]}
+                            role="img"
+                            aria-label={labels.errorIconAriaLabel}
+                        />
+                        <BodyText
+                            style={[
+                                styles.helperText,
+                                styles.errorMessage,
+                                styles.error,
+                            ]}
+                        >
+                            {errorMessage}
+                        </BodyText>
+                    </>
+                )}
+            </View>
         );
     }
 
@@ -242,61 +257,148 @@ export default function LabeledField(props: Props) {
         return React.cloneElement(field, {
             id: fieldId,
             "aria-describedby": [
-                errorMessage && errorId,
+                contextLabel && contextLabelId,
                 description && descriptionId,
+                additionalHelperMessage && additionalHelperMessageId,
+                readOnlyMessage && readOnlyMessageId,
+                errorMessage && errorId,
             ]
                 .filter(Boolean)
                 .join(" "),
-            required: required || field.props.required,
             error: hasError,
             testId: testId ? `${testId}-field` : undefined,
+            readOnly: !!readOnlyMessage || field.props.readOnly,
         });
+    }
+
+    function maybeRenderReadOnlyMessage() {
+        if (!readOnlyMessage) {
+            return null;
+        }
+
+        return (
+            <View
+                style={[
+                    styles.helperTextWithIcon,
+                    styles.spacingAboveHelperText,
+                    stylesProp?.readOnlyMessage,
+                ]}
+                id={readOnlyMessageId}
+                testId={testId && `${testId}-read-only-message`}
+            >
+                <PhosphorIcon
+                    icon={LockIcon}
+                    aria-label={labels.readOnlyIconAriaLabel}
+                    color={semanticColor.core.foreground.neutral.subtle}
+                />
+                <BodyText style={styles.helperText}>{readOnlyMessage}</BodyText>
+            </View>
+        );
+    }
+
+    function maybeRenderAdditionalHelperMessage() {
+        if (!additionalHelperMessage) {
+            return null;
+        }
+
+        return (
+            <BodyText
+                id={additionalHelperMessageId}
+                testId={testId && `${testId}-additional-helper-message`}
+                style={[
+                    styles.helperText,
+                    styles.spacingAboveHelperText,
+                    isDisabled && styles.disabledHelperText,
+                    stylesProp?.additionalHelperMessage,
+                ]}
+                tag="div"
+            >
+                {additionalHelperMessage}
+            </BodyText>
+        );
     }
 
     return (
         <View style={stylesProp?.root}>
-            {renderLabel()}
+            {renderLabelAndContextLabel()}
             {maybeRenderDescription()}
             {renderField()}
+            {maybeRenderAdditionalHelperMessage()}
+            {maybeRenderReadOnlyMessage()}
             {maybeRenderError()}
         </View>
     );
 }
 
 const styles = StyleSheet.create({
+    labelContainer: {
+        display: "flex",
+        flexDirection: "row",
+        justifyContent: "space-between",
+        gap: theme.root.layout.spacingBetweenHelperText,
+    },
     label: {
-        color: semanticColor.text.primary,
+        color: semanticColor.core.foreground.neutral.strong,
+        overflowWrap: "break-word",
+        minInlineSize: sizing.size_0, // This enables the wrapping behaviour
+    },
+    contextLabel: {
+        // Make the line height match the label so the context label is aligned
+        // with the label
+        lineHeight: font.body.lineHeight.medium,
+        // At most, the context label will take up 30% of the width of the
+        // LabeledField
+        maxInlineSize: "30%",
+        // This prevents the context label from shrinking to fit the label
+        flexShrink: 0,
+    },
+    labelWithError: {
+        color: theme.label.color.error.foreground,
+        fontWeight: theme.error.font.weight,
+    },
+    contextLabelWithError: {
+        color: theme.contextLabel.color.error.foreground,
+        fontWeight: theme.error.font.weight,
+    },
+    disabledLabel: {
+        color: theme.label.color.disabled.foreground,
     },
     labelWithDescription: {
-        paddingBlockEnd: sizing.size_040,
+        paddingBlockEnd: theme.root.layout.paddingBlockEnd.labelWithDescription,
     },
     labelWithNoDescription: {
-        paddingBlockEnd: sizing.size_120,
+        paddingBlockEnd:
+            theme.root.layout.paddingBlockEnd.labelWithNoDescription,
     },
-    description: {
-        color: semanticColor.text.secondary,
-        paddingBlockEnd: sizing.size_120,
-    },
-    errorSection: {
+    helperTextWithIcon: {
         flexDirection: "row",
-        gap: sizing.size_080,
+        gap: theme.helperText.layout.gap,
     },
-    errorSectionWithContent: {
-        paddingBlockStart: sizing.size_120,
+    spacingAboveHelperText: {
+        paddingBlockStart: theme.root.layout.spacingBetweenHelperText,
+    },
+    spacingBelowHelperText: {
+        paddingBlockEnd: theme.root.layout.spacingBetweenHelperText,
+    },
+    helperText: {
+        color: theme.helperText.color.default.foreground,
+        fontSize: theme.helperText.font.size,
+        lineHeight: theme.helperText.font.lineHeight,
+        minInlineSize: sizing.size_0, // This enables the wrapping behaviour on the helper message
+        overflowWrap: "break-word",
+    },
+    disabledHelperText: {
+        color: theme.helperText.color.disabled.foreground,
     },
     error: {
-        color: semanticColor.status.critical.foreground,
+        color: semanticColor.core.foreground.critical.default,
     },
     errorIcon: {
-        marginTop: "1px", // This vertically aligns the icon with the text
+        marginBlockStart: sizing.size_010, // This vertically aligns the icon with the text
     },
     errorMessage: {
-        minWidth: "0", // This enables the wrapping behaviour on the error message
-    },
-    required: {
-        color: semanticColor.status.critical.foreground,
-    },
-    textWordBreak: {
-        overflowWrap: "break-word",
+        fontWeight: theme.error.font.weight,
+        // This aligns the helper text with the icon
+        marginBlockStart: theme.error.layout.marginBlockStart,
     },
 });

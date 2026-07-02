@@ -1,17 +1,17 @@
-import {action} from "@storybook/addon-actions";
-import type {Meta, StoryObj} from "@storybook/react";
+import {action} from "storybook/actions";
+import type {Meta, StoryObj} from "@storybook/react-vite";
 import {StyleSheet} from "aphrodite";
 import * as React from "react";
 
 import {PropsFor, View} from "@khanacademy/wonder-blocks-core";
 import {Listbox, OptionItem} from "@khanacademy/wonder-blocks-dropdown";
-import Pill from "@khanacademy/wonder-blocks-pill";
-import {semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 
 import {allProfilesWithPictures} from "./option-item-examples";
 
 import ComponentInfo from "../components/component-info";
 import packageConfig from "../../packages/wonder-blocks-dropdown/package.json";
+import {StatusBadge} from "@khanacademy/wonder-blocks-badge";
 
 const items = [
     <OptionItem label="Banana" value="banana" key={0} />,
@@ -27,12 +27,12 @@ const items = [
 
 const styles = StyleSheet.create({
     example: {
-        background: semanticColor.surface.secondary,
-        padding: spacing.medium_16,
+        background: semanticColor.core.background.base.subtle,
+        padding: sizing.size_160,
         width: 360,
     },
     customListbox: {
-        border: `5px solid ${semanticColor.border.primary}`,
+        border: `5px solid ${semanticColor.core.border.neutral.subtle}`,
         width: 250,
     },
 });
@@ -227,7 +227,9 @@ export const SingleSelectionCustomOptionItems: Story = {
                 label={user.name}
                 leftAccessory={user.picture}
                 subtitle1={
-                    index === 1 ? <Pill kind="accent">New</Pill> : undefined
+                    index === 1 ? (
+                        <StatusBadge label="New" kind="info" />
+                    ) : undefined
                 }
                 subtitle2={user.email}
             />

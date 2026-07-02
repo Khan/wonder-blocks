@@ -1,24 +1,31 @@
 // primitive tokens
+// These re-exports are valid while we still have color and spacing token
+// instances in consumers.
+/* eslint-disable import/no-deprecated */
 import {color} from "./tokens/color";
-import {font} from "./tokens/font";
 import {spacing} from "./tokens/spacing";
 
 // media queries
 import {breakpoint} from "./tokens/media-queries";
 
 // utils
-import {mix, fade, pxToRem, remToPx} from "./util";
+import {mix, fade, pxToRem, remToPx, tokenValue} from "./util";
+
+import {mapValuesToCssVars} from "./internal/map-values-to-css-vars";
 
 // theme
 import theme from "./tokens/theme";
 
-const {border, semanticColor, sizing} = theme;
+const {border, boxShadow, semanticColor, sizing, font} = theme;
 
 export {
     /**
      * Primitive tokens for the Wonder Blocks design system.
      */
     border,
+    boxShadow,
+    // TODO(WB-1989): Remove this export once all consumers have migrated to
+    // using semanticColor.
     color,
     font,
     pxToRem,
@@ -38,4 +45,13 @@ export {
      */
     mix,
     fade,
+    /**
+     * Allows converting regular JS tokens to CSS variables.
+     */
+    mapValuesToCssVars,
+    /**
+     * Resolves the raw value of a Wonder Blocks token at runtime by reading
+     * the computed value of its underlying CSS custom property.
+     */
+    tokenValue,
 };

@@ -1,19 +1,20 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
-import type {Meta, StoryObj} from "@storybook/react";
+import type {Meta, StoryObj} from "@storybook/react-vite";
 
-import {expect, within, userEvent} from "@storybook/test";
+import {expect, within, userEvent} from "storybook/test";
 
 import magnifyingGlass from "@phosphor-icons/core/regular/magnifying-glass.svg";
 import info from "@phosphor-icons/core/regular/info.svg";
 
 import Button from "@khanacademy/wonder-blocks-button";
+import Link from "@khanacademy/wonder-blocks-link";
 import {PropsFor, View} from "@khanacademy/wonder-blocks-core";
 import {TextField} from "@khanacademy/wonder-blocks-form";
 import IconButton from "@khanacademy/wonder-blocks-icon-button";
 import {OnePaneDialog, ModalLauncher} from "@khanacademy/wonder-blocks-modal";
-import {semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
-import {Body} from "@khanacademy/wonder-blocks-typography";
+import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
+import {BodyText} from "@khanacademy/wonder-blocks-typography";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 
 import Tooltip from "@khanacademy/wonder-blocks-tooltip";
@@ -21,6 +22,45 @@ import packageConfig from "../../packages/wonder-blocks-tooltip/package.json";
 
 import ComponentInfo from "../components/component-info";
 import TooltipArgTypes from "./tooltip.argtypes";
+import {LabeledField} from "@khanacademy/wonder-blocks-labeled-field";
+
+const styles = StyleSheet.create({
+    storyCanvas: {
+        // NOTE: This is needed for Chromatic to include the tooltip bubble.
+        minBlockSize: 280,
+        padding: sizing.size_640,
+        justifyContent: "center",
+        textAlign: "center",
+    },
+    row: {
+        flexDirection: "row",
+    },
+    centered: {
+        alignItems: "center",
+        justifyContent: "center",
+        gap: sizing.size_160,
+        padding: sizing.size_480,
+    },
+    scrollbox: {
+        height: 100,
+        overflow: "auto",
+        border: `1px solid ${semanticColor.core.border.neutral.strong}`,
+        margin: sizing.size_120,
+    },
+    hostbox: {
+        minBlockSize: "200vh",
+    },
+    modalbox: {
+        height: "200vh",
+    },
+    block: {
+        border: `solid 1px ${semanticColor.mastery.primary}`,
+        width: sizing.size_320,
+        height: sizing.size_320,
+        alignItems: "center",
+        justifyContent: "center",
+    },
+});
 
 type StoryComponentType = StoryObj<typeof Tooltip>;
 
@@ -39,8 +79,12 @@ export default {
                 version={packageConfig.version}
             />
         ),
-        // Added to ensure that the tooltip is rendered using PopperJS.
-        chromatic: {delay: 500},
+        chromatic: {
+            // Added to ensure that the tooltip is rendered using PopperJS.
+            delay: 500,
+            // Visual coverage is provided by the Tooltip StateSheet snapshot.
+            disableSnapshot: true,
+        },
     },
     decorators: [
         (Story, {parameters}): React.ReactElement =>
@@ -82,7 +126,10 @@ Default.play = async ({canvasElement}) => {
 };
 
 /**
- * Complex anchor & title tooltip
+ * In this example, we're no longer forcing the anchor root to be focusable,
+ * since the text input can take focus. However, that needs a custom
+ * accessibility implementation too (for that, we should use `useId`, but we'll
+ * cheat here and give our own identifier).
  */
 export const ComplexAnchorAndTitle: StoryComponentType = {
     args: {
@@ -92,118 +139,175 @@ export const ComplexAnchorAndTitle: StoryComponentType = {
         title: "This tooltip has a title",
         content: "I'm at the bottom!",
         children: (
-            <View>
-                Some text
-                <TextField
-                    aria-describedby="my-a11y-tooltip"
-                    id=""
-                    onChange={() => {}}
-                    value=""
-                />
-            </View>
+            <LabeledField
+                label="Some text"
+                field={
+                    <TextField
+                        aria-describedby="my-a11y-tooltip"
+                        id=""
+                        onChange={() => {}}
+                        value=""
+                    />
+                }
+            />
         ),
     } as TooltipArgs,
-};
+    play: async ({canvasElement}) => {
+        // Arrange
+        // NOTE: Using `body` here to work with React Portals.
+        const canvas = within(canvasElement.ownerDocument.body);
 
-ComplexAnchorAndTitle.play = async ({canvasElement}) => {
-    // Arrange
-    // NOTE: Using `body` here to work with React Portals.
-    const canvas = within(canvasElement.ownerDocument.body);
+        // Act
+        // Triggers the hover state
+        const text = await canvas.findByText("Some text");
+        await userEvent.hover(text);
 
-    // Act
-    // Triggers the hover state
-    const text = await canvas.findByText("Some text");
-    await userEvent.hover(text);
-
-    // Assert
-    await expect(
-        await canvas.findByText("This tooltip has a title"),
-    ).toBeInTheDocument();
-};
-
-ComplexAnchorAndTitle.parameters = {
-    docs: {
-        description: {
-            story: "In this example, we're no longer forcing the anchor root to be focusable, since the text input can take focus. However, that needs a custom accessibility implementation too (for that, we should use `useId`, but we'll cheat here and give our own identifier).",
+        // Assert
+        await expect(
+            await canvas.findByText("This tooltip has a title"),
+        ).toBeInTheDocument();
+    },
+    parameters: {
+        chromatic: {
+            // Snapshot to confirm complex anchor and title
+            disableSnapshot: false,
         },
     },
 };
 
 /**
- * Anchor in scrollable parent & placement bottom
+ * Tooltips can be used with links as anchors.
+ * When a `Link` is the anchor element, set `forceAnchorFocusivity={false}`
+ * since the link is already keyboard focusable. The tooltip will appear on
+ * hover or focus and the `aria-describedby` attribute is automatically applied
+ * to the `Link` element.
  */
-export const AnchorInScrollableParent: StoryComponentType = () => (
-    <View style={styles.scrollbox}>
-        <View style={styles.hostbox}>
-            <Body>
-                This is a big long piece of text with a
-                <Tooltip
-                    content="This tooltip will disappear when scrolled out of bounds"
-                    placement="bottom"
-                >
-                    [tooltip]
-                </Tooltip>{" "}
-                in the middle.
-            </Body>
-        </View>
-    </View>
-);
-
-AnchorInScrollableParent.parameters = {
-    // Disable Chromatic because it only shows the trigger element.
-    chromatic: {
-        disableSnapshot: true,
+export const WithLinkAnchor: StoryComponentType = {
+    render: function Render() {
+        return (
+            <Tooltip
+                content="This link navigates to the Khan Academy homepage."
+                placement="top"
+                forceAnchorFocusivity={false}
+            >
+                <Link href="https://www.khanacademy.org">Khan Academy</Link>
+            </Tooltip>
+        );
     },
-    docs: {
-        description: {
-            story: "In this example, we have the anchor in a scrollable parent. Notice how, when the anchor is focused but scrolled out of bounds, the tooltip disappears.",
+    play: async ({canvasElement}) => {
+        // Arrange
+        // NOTE: Using `body` here to work with React Portals.
+        const canvas = within(canvasElement.ownerDocument.body);
+
+        // Act
+        const link = await canvas.findByRole("link", {name: "Khan Academy"});
+        await userEvent.hover(link);
+
+        // Assert
+        await expect(
+            await canvas.findByText(
+                "This link navigates to the Khan Academy homepage.",
+            ),
+        ).toBeInTheDocument();
+    },
+    parameters: {
+        chromatic: {
+            // Snapshot to confirm tooltip with link anchor
+            disableSnapshot: false,
         },
     },
 };
 
 /**
- * Tooltip in a modal
+ * To render rich text in tooltip content, pass a React element as the `content`
+ * prop instead of a plain string. When a string is passed it is rendered as
+ * plain text — HTML tags in a string will appear literally (e.g.
+ * `<i>text</i>`). Use inline HTML elements inside a typography component to
+ * control formatting.
  */
-export const TooltipInModal: StoryComponentType = () => {
-    const scrollyContent = (
-        <View style={styles.scrollbox}>
-            <View style={styles.hostbox}>
-                <Tooltip content="I'm on the left!" placement="left">
-                    tooltip
-                </Tooltip>
+export const WithRichTextContent: StoryComponentType = {
+    render: function Render() {
+        return (
+            <Tooltip
+                content={
+                    <BodyText style={{padding: sizing.size_120}}>
+                        Use <strong>bold</strong>, <em>italic</em>, or{" "}
+                        <u>underlined</u> text by passing a React element
+                        instead of a plain string.
+                    </BodyText>
+                }
+                opened={true}
+                forceAnchorFocusivity={false}
+            >
+                <Link href="https://www.khanacademy.org">Khan Academy</Link>
+            </Tooltip>
+        );
+    },
+};
+
+/**
+ * In this example, we have the anchor in a scrollable parent. Notice how, when
+ * the anchor is focused but scrolled out of bounds, the tooltip disappears.
+ */
+export const AnchorInScrollableParent: StoryComponentType = {
+    render: function Render() {
+        return (
+            <View style={styles.scrollbox}>
+                <View style={styles.hostbox}>
+                    <BodyText>
+                        This is a big long piece of text with a
+                        <Tooltip
+                            content="This tooltip will disappear when scrolled out of bounds"
+                            placement="bottom"
+                        >
+                            [tooltip]
+                        </Tooltip>{" "}
+                        in the middle.
+                    </BodyText>
+                </View>
             </View>
-        </View>
-    );
-
-    const modal = (
-        <OnePaneDialog
-            title="My modal"
-            footer="Still my modal"
-            content={<View style={styles.modalbox}>{scrollyContent}</View>}
-        />
-    );
-
-    return (
-        <ModalLauncher modal={modal}>
-            {({openModal}) => <Button onClick={openModal}>Click here!</Button>}
-        </ModalLauncher>
-    );
-};
-
-TooltipInModal.parameters = {
-    // Disable Chromatic because it initially renders the modal offscreen.
-    chromatic: {
-        disableSnapshot: true,
-    },
-    docs: {
-        description: {
-            story: "This checks that the tooltip works how we want inside a modal. Click the button to take a look.",
-        },
+        );
     },
 };
 
 /**
- * Tooltips side-by-side
+ * This checks that the tooltip works how we want inside a modal. Click the
+ * button to take a look.
+ */
+export const TooltipInModal: StoryComponentType = {
+    render: function Render() {
+        const scrollyContent = (
+            <View style={styles.scrollbox}>
+                <View style={styles.hostbox}>
+                    <Tooltip content="I'm on the left!" placement="left">
+                        tooltip
+                    </Tooltip>
+                </View>
+            </View>
+        );
+
+        const modal = (
+            <OnePaneDialog
+                title="My modal"
+                footer="Still my modal"
+                content={<View style={styles.modalbox}>{scrollyContent}</View>}
+            />
+        );
+
+        return (
+            <ModalLauncher modal={modal}>
+                {({openModal}) => (
+                    <Button onClick={openModal}>Click here!</Button>
+                )}
+            </ModalLauncher>
+        );
+    },
+};
+
+/**
+ * Here, we can see that the first tooltip shown has an initial delay before it
+ * appears, as does the last tooltip shown, yet when moving between tooltipped
+ * items, the transition from one to another is instantaneous.
  */
 export const SideBySide: StoryComponentType = {
     render: () => (
@@ -225,116 +329,85 @@ export const SideBySide: StoryComponentType = {
     name: "Side-by-side",
 };
 
-SideBySide.parameters = {
-    // Disable Chromatic because it only shows the trigger element.
-    chromatic: {
-        disableSnapshot: true,
-    },
-    docs: {
-        description: {
-            story: "Here, we can see that the first tooltip shown has an initial delay before it appears, as does the last tooltip shown, yet when moving between tooltipped items, the transition from one to another is instantaneous.",
-        },
+/**
+ * This example shows tooltips on different types of buttons.
+ */
+export const TooltipOnButtons: StoryComponentType = {
+    render: function Render() {
+        return (
+            <View style={[styles.centered, styles.row]}>
+                <Tooltip content={"This is a tooltip on a button."}>
+                    <Button disabled={false}>Example 1</Button>
+                </Tooltip>
+                <Tooltip
+                    content="This is a tooltip on a disabled button."
+                    placement="bottom"
+                >
+                    <Button disabled={true}>Example 2</Button>
+                </Tooltip>
+                <Tooltip content="Short and stout">
+                    <IconButton
+                        icon={magnifyingGlass}
+                        aria-label="search"
+                        kind="tertiary"
+                        onClick={() => {}}
+                    />
+                </Tooltip>
+            </View>
+        );
     },
 };
 
 /**
- * Tooltips on buttons
+ * Sometimes you'll want to trigger a tooltip programmatically. This can be done
+ * by setting the `opened` prop to `true`. In this situation the `Tooltip` is a
+ * controlled component. The parent is responsible for managing the
+ * opening/closing of the tooltip when using this prop. This means that you'll
+ * also have to update `opened` to `false` in response to the `onClose` callback
+ * being triggered.
  */
-export const TooltipOnButtons: StoryComponentType = () => {
-    return (
-        <View style={[styles.centered, styles.row]}>
-            <Tooltip content={"This is a tooltip on a button."}>
-                <Button disabled={false}>Example 1</Button>
-            </Tooltip>
-            <Tooltip
-                content="This is a tooltip on a disabled button."
-                placement="bottom"
-            >
-                <Button disabled={true}>Example 2</Button>
-            </Tooltip>
-            <Tooltip content="Short and stout">
-                <IconButton
-                    icon={magnifyingGlass}
-                    aria-label="search"
-                    kind="tertiary"
-                    onClick={() => {}}
-                />
-            </Tooltip>
-        </View>
-    );
-};
+export const Controlled: StoryComponentType = {
+    render: function Render() {
+        const [opened, setOpened] = React.useState(true);
+        const buttonText = `Click to ${opened ? "close" : "open"} tooltip`;
 
-TooltipOnButtons.parameters = {
-    chromatic: {
-        disableSnapshot: true,
-    },
-    docs: {
-        description: {
-            story: "This example shows tooltips on different types of buttons.",
-        },
+        return (
+            <View style={[styles.centered, styles.row]}>
+                <Tooltip
+                    content="You opened the tooltip with a button"
+                    opened={opened}
+                >
+                    tooltip
+                </Tooltip>
+                <Button onClick={() => setOpened(!opened)}>{buttonText}</Button>
+            </View>
+        );
     },
 };
 
 /**
- * Opening a tooltip programatically (Controlled)
+ * Tooltips can be styled with the `backgroundColor` and `contentStyle` props.
+ * The example below shows a tooltip with a dark blue background, white text,
+ * and 32px of padding.
  */
-export const Controlled: StoryComponentType = () => {
-    const [opened, setOpened] = React.useState(true);
-    const buttonText = `Click to ${opened ? "close" : "open"} tooltip`;
-
-    return (
-        <View style={[styles.centered, styles.row]}>
-            <Tooltip
-                content="You opened the tooltip with a button"
-                opened={opened}
-            >
-                tooltip
-            </Tooltip>
-            <Button onClick={() => setOpened(!opened)}>{buttonText}</Button>
-        </View>
-    );
-};
-
-Controlled.parameters = {
-    docs: {
-        description: {
-            story: `Sometimes you'll want to trigger a tooltip programmatically.
-               This can be done by setting the \`opened\` prop to \`true\`. In
-               this situation the \`Tooltip\` is a controlled component. The
-               parent is responsible for managing the opening/closing of the
-               tooltip when using this prop. This means that you'll also have
-               to update \`opened\` to \`false\` in response to the
-               \`onClose\` callback being triggered.`,
-        },
-    },
-};
-
-export const WithStyle: StoryComponentType = () => {
-    return (
-        <View style={[styles.centered, styles.row]}>
-            <Tooltip
-                contentStyle={{
-                    color: semanticColor.text.inverse,
-                    padding: spacing.xLarge_32,
-                }}
-                content={`This is a styled tooltip.`}
-                backgroundColor="darkBlue"
-                opened={true}
-                testId="test-tooltip"
-            >
-                My tooltip is styled!
-            </Tooltip>
-        </View>
-    );
-};
-
-WithStyle.parameters = {
-    docs: {
-        description: {
-            story: `Tooltips can be styled with the \`backgroundColor\` and \`contentStyle\`
-            props. Currently, \`contentStyle\` supports padding and text color. The example below
-            shows a tooltip with a dark blue background, white text, and 32px of padding.`,
-        },
+export const WithStyle: StoryComponentType = {
+    render: function Render() {
+        return (
+            <View style={[styles.centered, styles.row]}>
+                <Tooltip
+                    contentStyle={{
+                        color: semanticColor.core.foreground.knockout.default,
+                        padding: sizing.size_320,
+                    }}
+                    content={`This is a styled tooltip.`}
+                    backgroundColor="darkBlue"
+                    opened={true}
+                    testId="test-tooltip"
+                >
+                    My tooltip is styled!
+                </Tooltip>
+            </View>
+        );
     },
 };
 
@@ -387,8 +460,8 @@ export const AutoUpdate: StoryComponentType = {
                         style={[
                             position && {
                                 position: "absolute",
-                                top: position.y,
-                                left: position.x,
+                                insetBlockStart: position.y,
+                                insetInlineStart: position.x,
                             },
                         ]}
                     >
@@ -426,44 +499,6 @@ export const AutoUpdate: StoryComponentType = {
     },
 };
 
-const styles = StyleSheet.create({
-    storyCanvas: {
-        // NOTE: This is needed for Chromatic to include the tooltip bubble.
-        minHeight: 280,
-        padding: spacing.xxxLarge_64,
-        justifyContent: "center",
-        textAlign: "center",
-    },
-    row: {
-        flexDirection: "row",
-    },
-    centered: {
-        alignItems: "center",
-        justifyContent: "center",
-        gap: spacing.medium_16,
-        padding: spacing.xxLarge_48,
-    },
-    scrollbox: {
-        height: 100,
-        overflow: "auto",
-        border: "1px solid black",
-        margin: spacing.small_12,
-    },
-    hostbox: {
-        minHeight: "200vh",
-    },
-    modalbox: {
-        height: "200vh",
-    },
-    block: {
-        border: `solid 1px ${semanticColor.mastery.primary}`,
-        width: spacing.xLarge_32,
-        height: spacing.xLarge_32,
-        alignItems: "center",
-        justifyContent: "center",
-    },
-});
-
 /**
  * This story shows the behaviour of the tooltip when it is in the top corner
  */
@@ -479,15 +514,15 @@ export const InTopCorner = {
         <View
             style={{
                 position: "absolute",
-                top: 0,
-                left: 0,
+                insetBlockStart: 0,
+                insetInlineStart: 0,
             }}
         >
             <Tooltip content="This is an example descriptor that's long with more content to see if it will display properly in different browsers">
                 <PhosphorIcon
                     icon={info}
                     size="small"
-                    aria-hidden
+                    aria-label="Info"
                     style={{
                         ":hover": {
                             backgroundColor:
@@ -509,8 +544,8 @@ export const InCorners = {
     parameters: {
         layout: "fullscreen",
         chromatic: {
-            // Disabling snapshot since this is for testing purposes
-            disableSnapshot: true,
+            // Enable snapshot for corner alignment examples
+            disableSnapshot: false,
         },
     },
     render: (args: PropsFor<typeof Tooltip>) => {
@@ -519,6 +554,7 @@ export const InCorners = {
                 <Tooltip
                     {...args}
                     content="This is an example descriptor that's long with more content to see if it will display properly in different browsers"
+                    opened={true}
                 >
                     <Button>Open tooltip</Button>
                 </Tooltip>

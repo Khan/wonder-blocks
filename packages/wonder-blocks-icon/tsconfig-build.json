@@ -7,5 +7,6 @@
     },
     "references": [
         {"path": "../wonder-blocks-core/tsconfig-build.json"},
+        {"path": "../wonder-blocks-tokens/tsconfig-build.json"},
     ]
 }

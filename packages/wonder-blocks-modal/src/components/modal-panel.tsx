@@ -2,20 +2,16 @@ import * as React from "react";
 import {PropsFor, View} from "@khanacademy/wonder-blocks-core";
 import type {StyleType} from "@khanacademy/wonder-blocks-core";
 
-import {
-    ThemedStylesFn,
-    useScopedTheme,
-    useStyles,
-} from "@khanacademy/wonder-blocks-theming";
-import {actionStyles, focusStyles} from "@khanacademy/wonder-blocks-styles";
+import {focusStyles} from "@khanacademy/wonder-blocks-styles";
+import {StyleSheet} from "aphrodite";
+import {semanticColor} from "@khanacademy/wonder-blocks-tokens";
+// TODO [WB-2137]: standardize media query breakpoint tokens
+import {modalMediaQuery} from "../util/constants";
 import ModalContent from "./modal-content";
 import ModalHeader from "./modal-header";
 import ModalFooter from "./modal-footer";
 import CloseButton from "./close-button";
-import {
-    ModalDialogThemeContext,
-    ModalDialogThemeContract,
-} from "../themes/themed-modal-dialog";
+import theme from "../theme";
 
 type Props = {
     /**
@@ -40,13 +36,10 @@ type Props = {
     /**
      * Should the contents of the panel become scrollable should they
      * become too tall?
+     *
+     * Defaults to true.
      */
-    scrollOverflow: boolean;
-    /**
-     * Whether to display the "light" version of this component instead, for
-     * use when the item is used on a dark background.
-     */
-    light: boolean;
+    scrollOverflow?: boolean;
     /**
      * Any optional styling to apply to the panel.
      */
@@ -91,7 +84,6 @@ type Props = {
 export default function ModalPanel({
     closeButtonVisible = true,
     scrollOverflow = true,
-    light = true,
     content,
     footer,
     header,
@@ -99,9 +91,6 @@ export default function ModalPanel({
     style,
     testId,
 }: Props) {
-    const {theme} = useScopedTheme(ModalDialogThemeContext);
-    const styles = useStyles(themedStylesFn, theme);
-
     const renderMainContent = React.useCallback((): React.ReactNode => {
         const mainContent = ModalContent.isComponentOf(content) ? (
             (content as React.ReactElement<PropsFor<typeof ModalContent>>)
@@ -122,24 +111,19 @@ export default function ModalPanel({
             // know about things being positioned around it.
             style: [!!footer && styles.hasFooter, mainContent.props.style],
         });
-    }, [content, footer, scrollOverflow, styles.hasFooter]);
+    }, [content, footer, scrollOverflow]);
 
     const mainContent = renderMainContent();
 
-    const isInverse = !light;
-
     return (
         <View
-            style={[styles.wrapper, isInverse && styles.dark, style]}
+            style={[styles.wrapper, style]}
             testId={testId && `${testId}-panel`}
         >
             {closeButtonVisible && (
                 <CloseButton
                     onClick={onClose}
-                    style={[
-                        styles.closeButton,
-                        isInverse && actionStyles.inverse,
-                    ]}
+                    style={[styles.closeButton]}
                     testId={testId && `${testId}-close`}
                 />
             )}
@@ -157,26 +141,27 @@ export default function ModalPanel({
 ModalPanel.defaultProps = {
     closeButtonVisible: true,
     scrollOverflow: true,
-    light: true,
 };
 
-const themedStylesFn: ThemedStylesFn<ModalDialogThemeContract> = (theme) => ({
+const styles = StyleSheet.create({
     wrapper: {
         flex: "1 1 auto",
-        position: "relative",
-        display: "flex",
         flexDirection: "column",
-        background: "white",
+        background: semanticColor.core.background.base.default,
         boxSizing: "border-box",
         overflow: "hidden",
         height: "100%",
         width: "100%",
+        [modalMediaQuery.smMinOrSmallerHeight as any]: {
+            overflow: "auto",
+        },
     },
 
     closeButton: {
         position: "absolute",
-        right: theme.closeButton.spacing.gap,
-        top: theme.closeButton.spacing.gap,
+        // insetInlineEnd supports both RTL and LTR layouts
+        insetInlineEnd: theme.closeButton.layout.gapRight,
+        insetBlockStart: theme.closeButton.layout.gapTop,
         // This is to allow the button to be tab-ordered before the modal
         // content but still be above the header and content.
         zIndex: 1,
@@ -184,18 +169,11 @@ const themedStylesFn: ThemedStylesFn<ModalDialogThemeContract> = (theme) => ({
         // NOTE: IconButton uses :focus-visible, which is not supported for
         // programmatic focus. This is a workaround to make sure the focus
         // outline is visible when this control is focused.
-        ":focus": {
-            ...focusStyles.focus[":focus-visible"],
-        },
-    },
-
-    dark: {
-        background: theme.root.color.inverse.background,
-        color: theme.root.color.inverse.foreground,
+        ":focus": focusStyles.focus[":focus-visible"],
     },
 
     hasFooter: {
         // The space between the content and the footer
-        paddingBlockEnd: theme.panel.spacing.gap,
+        paddingBlockEnd: theme.panel.layout.gap.default,
     },
 });

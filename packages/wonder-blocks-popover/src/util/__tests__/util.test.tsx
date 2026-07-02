@@ -1,3 +1,4 @@
+// Allowing raw buttons in an internal util file to test functionality
 import * as React from "react";
 import {render, screen} from "@testing-library/react";
 import {isFocusable} from "../util";
@@ -12,6 +13,17 @@ describe("isFocusable", () => {
 
         // Assert
         expect(result).toBe(true);
+    });
+
+    it("should mark a button with tabindex -1 as non-focusable", () => {
+        // Arrange
+        render(<button tabIndex={-1}>Open popover</button>);
+
+        // Act
+        const result = isFocusable(screen.getByRole("button"));
+
+        // Assert
+        expect(result).toBe(false);
     });
 
     it("should mark a div as non-focusable", () => {

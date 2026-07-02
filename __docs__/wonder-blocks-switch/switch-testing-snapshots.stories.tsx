@@ -1,5 +1,5 @@
 import * as React from "react";
-import type {Meta, StoryObj} from "@storybook/react";
+import type {Meta, StoryObj} from "@storybook/react-vite";
 
 import magnifyingGlassIcon from "@phosphor-icons/core/bold/magnifying-glass-bold.svg";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
@@ -8,6 +8,7 @@ import Switch from "@khanacademy/wonder-blocks-switch";
 import {defaultPseudoStates, StateSheet} from "../components/state-sheet";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {sizing} from "@khanacademy/wonder-blocks-tokens";
+import {allThemeModes} from "../../.storybook/modes";
 
 const rows = [
     {name: "Off", props: {checked: false}},
@@ -43,13 +44,18 @@ type Story = StoryObj<typeof Switch>;
  * component. This is only used for visual testing in Chromatic.
  */
 const meta = {
-    title: "Packages / Switch / Testing / Switch - Snapshots",
+    title: "Packages / Switch / Testing / Snapshots / Switch",
     component: Switch,
     args: {
         onChange: () => {},
         "aria-label": "Switch",
     },
-    tags: ["!autodocs"],
+    parameters: {
+        chromatic: {
+            modes: allThemeModes,
+        },
+    },
+    tags: ["!autodocs", "!manifest"],
 } satisfies Meta<typeof Switch>;
 
 export default meta;

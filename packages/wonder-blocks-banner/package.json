@@ -1,19 +1,36 @@
 {
   "name": "@khanacademy/wonder-blocks-banner",
-  "version": "4.1.12",
-  "design": "v1",
   "description": "Banner components for Wonder Blocks.",
+  "author": "Khan Academy",
+  "license": "MIT",
+  "version": "5.1.7",
+  "publishConfig": {
+    "access": "public"
+  },
+  "design": "v1",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Khan/wonder-blocks.git",
+    "directory": "packages/wonder-blocks-banner"
+  },
+  "bugs": {
+    "url": "https://github.com/Khan/wonder-blocks/issues"
+  },
   "main": "dist/index.js",
   "module": "dist/es/index.js",
   "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/es/index.js",
+      "require": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./styles.css": "./dist/css/vars.css"
+  },
   "scripts": {
+    "build:css": "pnpm exec wonder-blocks-tokens .",
     "test": "echo \"Error: no test specified\" && exit 1",
     "prepublishOnly": "../../utils/publish/package-pre-publish-check.sh"
-  },
-  "author": "",
-  "license": "MIT",
-  "publishConfig": {
-    "access": "public"
   },
   "dependencies": {
     "@khanacademy/wonder-blocks-button": "workspace:*",

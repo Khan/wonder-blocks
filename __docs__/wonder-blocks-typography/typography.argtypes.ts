@@ -1,4 +1,9 @@
+import AriaArgTypes from "../wonder-blocks-core/aria.argtypes";
+import EventHandlersArgTypes from "../wonder-blocks-core/event-handlers.argtypes";
+
 export default {
+    ...AriaArgTypes,
+    ...EventHandlersArgTypes,
     children: {
         control: {type: "text"},
         description: "Text to appear with the specified typography styles.",
@@ -23,6 +28,18 @@ export default {
         control: {type: "text"},
         description:
             "The underlying HTML tag to render (e.g. `h1`, `h2`, `label`, etc.). Please use this to ensure that the typography is hierarchically correct.",
+        table: {type: {summary: "string"}},
+    },
+    size: {
+        control: {type: "radio"},
+        description:
+            "A sizing scale token to match available sizes for the theme font.",
+        table: {type: {summary: "string"}},
+    },
+    weight: {
+        control: {type: "radio"},
+        description:
+            "A token to match available font weights for the theme font.",
         table: {type: {summary: "string"}},
     },
 };

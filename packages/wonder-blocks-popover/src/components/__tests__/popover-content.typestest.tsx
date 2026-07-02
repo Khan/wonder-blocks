@@ -4,6 +4,8 @@ import PopoverContent from "../popover-content";
 
 <PopoverContent title="Title" content="Content" />;
 
+<PopoverContent title="Title" content="Content" titleHeadingTag="h2" />;
+
 <PopoverContent title="Title" content="Content" icon="close" />;
 
 <PopoverContent

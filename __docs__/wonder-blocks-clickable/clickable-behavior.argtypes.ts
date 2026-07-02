@@ -1,4 +1,4 @@
-import type {ArgTypes} from "@storybook/react";
+import type {ArgTypes} from "@storybook/react-vite";
 
 import clickableArgtypes from "./clickable.argtypes";
 
@@ -48,6 +48,8 @@ export default {
     onKeyUp: clickableArgtypes.onKeyUp,
     onMouseDown: clickableArgtypes.onMouseDown,
     onMouseUp: clickableArgtypes.onMouseUp,
+    onFocus: clickableArgtypes.onFocus,
+    onBlur: clickableArgtypes.onBlur,
     /**
      * Navigation
      */

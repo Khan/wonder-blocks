@@ -125,37 +125,44 @@ describe("CellCore", () => {
         ).toBeInTheDocument();
     });
 
-    it("should pass an style to the top node", () => {
+    it("should add an id if id is set and it is a button", () => {
         // Arrange
-
         // Act
         render(
-            <CellCore onClick={jest.fn()} rootStyle={{color: "blue"}}>
+            <CellCore id="test-id" onClick={jest.fn()}>
                 <div>cell core content</div>
             </CellCore>,
         );
 
         // Assert
-        expect(screen.getByRole("button")).toHaveStyle("color: blue");
+        expect(screen.getByRole("button")).toHaveAttribute("id", "test-id");
     });
 
-    it("should pass an style to the content container", () => {
+    it("should add an id if it is set and it is a link", () => {
         // Arrange
-
         // Act
         render(
-            <CellCore
-                onClick={jest.fn()}
-                contentStyle={{alignSelf: "flex-start"}}
-            >
+            <CellCore id="test-id" href="#">
                 <div>cell core content</div>
             </CellCore>,
         );
 
         // Assert
-        const elem = screen.getByText("cell core content");
-        // eslint-disable-next-line testing-library/no-node-access
-        expect(elem.parentElement).toHaveStyle("align-self: flex-start");
+        expect(screen.getByRole("link")).toHaveAttribute("id", "test-id");
+    });
+
+    it("should add an id if it is set and it is not a button or link", () => {
+        // Arrange
+        // Act
+        const {container} = render(
+            <CellCore id="test-id">
+                <div>cell core content</div>
+            </CellCore>,
+        );
+
+        // Assert
+        // eslint-disable-next-line testing-library/no-node-access -- Verify that the root element has the id attribute
+        expect(container.firstChild).toHaveAttribute("id", "test-id");
     });
 
     describe("aria-checked", () => {

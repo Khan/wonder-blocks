@@ -1,10 +1,12 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
-import type {Meta, StoryObj} from "@storybook/react";
+import type {Meta, StoryObj} from "@storybook/react-vite";
 import {View} from "@khanacademy/wonder-blocks-core";
-import {LabelMedium, LabelSmall} from "@khanacademy/wonder-blocks-typography";
+import {BodyText} from "@khanacademy/wonder-blocks-typography";
+import {sizing} from "@khanacademy/wonder-blocks-tokens";
 
+import AriaArgTypes from "../wonder-blocks-core/aria.argtypes";
 import ComponentInfo from "../components/component-info";
 import packageConfig from "../../packages/wonder-blocks-form/package.json";
 
@@ -15,6 +17,9 @@ type StoryComponentType = StoryObj<typeof Radio>;
 export default {
     title: "Packages / Form / Radio (internal)",
     component: Radio,
+    argTypes: {
+        ...AriaArgTypes,
+    },
     parameters: {
         componentSubtitle: (
             <ComponentInfo
@@ -57,37 +62,28 @@ Controlled.parameters = {
 
 export const Variants: StoryComponentType = () => (
     <View style={styles.row}>
-        <Radio
-            aria-label="Example"
-            checked={false}
-            style={styles.marginRight}
-            onChange={() => {}}
-        />
+        <Radio aria-label="Example" checked={false} onChange={() => {}} />
         <Radio
             aria-label="Checked Example"
             checked={true}
-            style={styles.marginRight}
             onChange={() => {}}
         />
         <Radio
             aria-label="Error Example"
             error={true}
             checked={false}
-            style={styles.marginRight}
             onChange={() => {}}
         />
         <Radio
             aria-label="Checked Error Example"
             error={true}
             checked={true}
-            style={styles.marginRight}
             onChange={() => {}}
         />
         <Radio
             aria-label="Disabled Example"
             disabled={true}
             checked={false}
-            style={styles.marginRight}
             onChange={() => {}}
         />
         <Radio
@@ -144,9 +140,9 @@ export const AdditionalClickTarget: StoryComponentType = () => {
         <View style={styles.wrapper}>
             <View style={styles.topic}>
                 <label htmlFor="topic-123">
-                    <LabelMedium>{headingText}</LabelMedium>
+                    <BodyText tag="span">{headingText}</BodyText>
                 </label>
-                <LabelSmall>{descriptionText}</LabelSmall>
+                <BodyText size="small">{descriptionText}</BodyText>
             </View>
             <Radio checked={checked} id="topic-123" onChange={setChecked} />
         </View>
@@ -170,9 +166,7 @@ AdditionalClickTarget.parameters = {
 const styles = StyleSheet.create({
     row: {
         flexDirection: "row",
-    },
-    marginRight: {
-        marginRight: 16,
+        gap: sizing.size_240,
     },
     wrapper: {
         flexDirection: "row",
@@ -180,6 +174,6 @@ const styles = StyleSheet.create({
         justifyContent: "space-evenly",
     },
     topic: {
-        maxWidth: 600,
+        maxInlineSize: 600,
     },
 });

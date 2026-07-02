@@ -1,25 +1,20 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
-import xIcon from "@phosphor-icons/core/regular/x.svg";
+import xIcon from "@phosphor-icons/core/bold/x-bold.svg";
 
 import Button from "@khanacademy/wonder-blocks-button";
-import {View} from "@khanacademy/wonder-blocks-core";
+import {addStyle, StyleType, View} from "@khanacademy/wonder-blocks-core";
 import {PhosphorIcon, PhosphorIconAsset} from "@khanacademy/wonder-blocks-icon";
 import IconButton from "@khanacademy/wonder-blocks-icon-button";
 import Link from "@khanacademy/wonder-blocks-link";
-import {
-    border,
-    font,
-    semanticColor,
-    spacing,
-} from "@khanacademy/wonder-blocks-tokens";
-import {LabelSmall} from "@khanacademy/wonder-blocks-typography";
+import {font, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 
-import infoIcon from "@phosphor-icons/core/regular/info.svg";
-import successIcon from "@phosphor-icons/core/regular/smiley.svg";
-import warningIcon from "@phosphor-icons/core/regular/warning.svg";
-import criticalIcon from "@phosphor-icons/core/regular/warning-circle.svg";
+import infoIcon from "@phosphor-icons/core/bold/info-bold.svg";
+import successIcon from "@phosphor-icons/core/bold/smiley-bold.svg";
+import warningIcon from "@phosphor-icons/core/bold/warning-bold.svg";
+import criticalIcon from "@phosphor-icons/core/bold/warning-circle-bold.svg";
+import theme from "../theme";
 
 type ActionTriggerBase = {
     title: string;
@@ -65,19 +60,7 @@ type BannerKind =
      */
     | "critical";
 
-type BannerLayout =
-    /**
-     * Renders a rounded rectangle, usually for when banner is used as an inset
-     * element on a screen (e.g., the SOT card) that appears to be floating.
-     */
-    | "floating"
-    /**
-     * Renders a full-width banner, with no rounded corners.
-     */
-    | "full-width";
-
 type BannerValues = {
-    color: string;
     icon: PhosphorIconAsset;
     role: "status" | "alert";
     ariaLive?: "assertive" | "polite";
@@ -94,11 +77,9 @@ type Props = {
      */
     kind?: BannerKind;
     /**
-     * Determines the edge style of the Banner.
-     */
-    layout: BannerLayout;
-    /**
-     * Text on the banner (LabelSmall) or a node if you want something different.
+     * Text on the banner or a node if you want something different. For the
+     * best results, use the default styles provided by the Banner component and
+     * avoid using typography components for the `text` prop.
      */
     text: string | React.ReactNode;
     /**
@@ -106,7 +87,7 @@ type Props = {
      *
      * The ActionTrigger must have either an onClick or an href field, or both.
      */
-    actions?: Array<ActionTrigger>;
+    actions?: ReadonlyArray<ActionTrigger>;
     /**
      * If present, dismiss button is on right side. If not, no button appears.
      */
@@ -128,49 +109,80 @@ type Props = {
      * It supports the following types:
      * - `PhosphorIconAsset`: a reference to a Phosphor SVG asset.
      * - `string`: an import referencing an arbitrary SVG file.
+     * - `"none"`: no icon is displayed.
+     *
+     * Note: When using `icon="none"`, make sure important information is
+     * conveyed in the text of the banner, since color should not be the only
+     * way to convey status information.
      */
-    icon?: PhosphorIconAsset | string;
+    icon?: PhosphorIconAsset | string | "none" | React.ReactElement;
+    /**
+     * Custom styles for the elements in the Banner component.
+     * - `root`: Styles the root element
+     */
+    styles?: {
+        root?: StyleType;
+    };
 };
 
 const getValuesForKind = (kind: BannerKind): BannerValues => {
     switch (kind) {
         case "success":
             return {
-                color: semanticColor.status.success.foreground,
                 icon: successIcon,
                 role: "status",
             };
         case "warning":
             return {
-                color: semanticColor.status.warning.foreground,
                 icon: warningIcon,
                 role: "alert",
                 ariaLive: "polite",
             };
         case "critical":
             return {
-                color: semanticColor.status.critical.foreground,
                 icon: criticalIcon,
                 role: "alert",
             };
         default:
             return {
-                color: semanticColor.status.notice.foreground,
                 icon: infoIcon,
                 role: "status",
             };
     }
 };
 
+const getBannerKindStyle = (kind: BannerKind) => {
+    switch (kind) {
+        case "success":
+            return styles.successBanner;
+        case "info":
+            return styles.infoBanner;
+        case "warning":
+            return styles.warningBanner;
+        case "critical":
+            return styles.criticalBanner;
+    }
+};
+
+const getBannerIconKindStyle = (kind: BannerKind) => {
+    switch (kind) {
+        case "success":
+            return styles.successIcon;
+        case "info":
+            return styles.infoIcon;
+        case "warning":
+            return styles.warningIcon;
+        case "critical":
+            return styles.criticalIcon;
+    }
+};
+
+const StyledDiv = addStyle("div");
+
 /**
  * Banner. A banner displays a prominent message and related optional actions.
  * It can be used as a way of informing the user of important changes.
  * Typically, it is displayed toward the top of the screen.
- *
- * There are two possible layouts for banners - floating and full-width.
- * The `floating` layout is intended to be used when there is whitespace
- * around the banner. The `full-width` layout is intended to be used when
- * the banner needs to be flush with surrounding elements.
  *
  * ### Usage
  * ```jsx
@@ -179,7 +191,6 @@ const getValuesForKind = (kind: BannerKind): BannerValues => {
  * <Banner
  *     text="Here is some example text."
  *     kind="success"
- *     layout="floating"
  *     actions={[
  *         {title: "Button 1", onClick: () => {}},
  *         {title: "Button 2", onClick: () => {}},
@@ -198,10 +209,10 @@ const Banner = (props: Props): React.ReactElement => {
         dismissAriaLabel = "Dismiss banner.", // default prop
         onDismiss,
         kind = "info", // default prop
-        layout,
         text,
         testId,
         icon,
+        styles: stylesProp,
     } = props;
 
     const renderActions = () => {
@@ -237,6 +248,7 @@ const Banner = (props: Props): React.ReactElement => {
                             size="small"
                             aria-label={action.ariaLabel ?? action.title}
                             onClick={handleClick}
+                            style={styles.button}
                         >
                             {action.title}
                         </Button>
@@ -248,36 +260,52 @@ const Banner = (props: Props): React.ReactElement => {
 
     const valuesForKind = getValuesForKind(kind);
 
+    const bannerKindStyle = getBannerKindStyle(kind);
+    const bannerIconKindStyle = getBannerIconKindStyle(kind);
+
+    let iconElement = <React.Fragment />;
+    // Only change the iconElement if the icon prop is not "none"
+    if (icon !== "none") {
+        // If icon is defined and it is not a string, it is a custom icon that
+        // can be rendered directly with the corresponding styles
+        if (icon !== undefined && typeof icon !== "string") {
+            iconElement = React.cloneElement(icon, {
+                style: styles.icon,
+                testId: "banner-kind-icon",
+                // When a custom icon element is used, leave it up to the
+                // consumers to provide alt text for the icon
+            });
+        } else {
+            // The icon is compatible with PhosphorIcon so we render the provided
+            // icon or the default icon for the kind
+            iconElement = (
+                <PhosphorIcon
+                    icon={icon || valuesForKind.icon}
+                    style={[styles.icon, bannerIconKindStyle]}
+                    aria-label={kind}
+                    testId="banner-kind-icon"
+                    role="img"
+                />
+            );
+        }
+    }
+
     return (
         <View
-            style={[
-                styles.containerOuter,
-                layout === "floating" && styles.floatingBorder,
-                {borderInlineStartColor: valuesForKind.color},
-            ]}
+            style={[styles.containerOuter, bannerKindStyle, stylesProp?.root]}
             role={valuesForKind.role}
             aria-label={ariaLabel}
             aria-live={valuesForKind.ariaLive}
             testId={testId}
         >
-            <View
-                style={[
-                    styles.backgroundColor,
-                    {backgroundColor: valuesForKind.color},
-                ]}
-            />
             <View style={styles.containerInner}>
-                <PhosphorIcon
-                    icon={icon || valuesForKind.icon}
-                    size="medium"
-                    style={styles.icon}
-                    aria-label={kind}
-                    testId="banner-kind-icon"
-                    role="img"
-                />
+                {iconElement}
                 <View style={styles.labelAndButtonsContainer}>
                     <View style={styles.labelContainer}>
-                        <LabelSmall>{text}</LabelSmall>
+                        {/* We use a div here since text can be a React node with other elements */}
+                        <StyledDiv style={styles.labelTypography}>
+                            {text}
+                        </StyledDiv>
                     </View>
                     {actions && (
                         <View style={styles.actionsContainer}>
@@ -286,7 +314,7 @@ const Banner = (props: Props): React.ReactElement => {
                     )}
                 </View>
                 {onDismiss ? (
-                    <View style={styles.dismissContainer}>
+                    <View>
                         <IconButton
                             icon={xIcon}
                             kind="tertiary"
@@ -294,6 +322,7 @@ const Banner = (props: Props): React.ReactElement => {
                             onClick={onDismiss}
                             style={styles.dismiss}
                             aria-label={dismissAriaLabel}
+                            size="xsmall"
                         />
                     </View>
                 ) : null}
@@ -303,39 +332,27 @@ const Banner = (props: Props): React.ReactElement => {
 };
 
 const styles = StyleSheet.create({
-    backgroundColor: {
-        position: "absolute",
-        top: 0,
-        bottom: 0,
-        left: 0,
-        right: 0,
-        opacity: 0.08,
-    },
     containerOuter: {
-        borderInlineStartWidth: spacing.xxSmall_6,
+        borderInlineStartWidth: theme.root.border.width.inlineStart,
+        borderInlineEndWidth: theme.root.border.width.inlineEnd,
+        borderBlockStartWidth: theme.root.border.width.blockStart,
+        borderBlockEndWidth: theme.root.border.width.blockEnd,
         width: "100%",
-        // Because of the background color's opacity value,
-        // the base color needs to be hard-coded as white for the
-        // intended pastel background color to show up correctly
-        // on dark backgrounds.
-        // TODO(WB-1865): Verify if we can change this to use semanticColor
-        // status tokens.
-        backgroundColor: semanticColor.surface.primary,
+        borderRadius: theme.root.border.radius,
+        // Stop the square corners of the inner container from
+        // flowing out of the rounded corners of the outer container.
+        overflow: "hidden",
+        padding: sizing.size_160,
+        paddingInlineStart: theme.root.layout.paddingInlineStart,
     },
     containerInner: {
         flexDirection: "row",
-        padding: spacing.xSmall_8,
+        gap: theme.root.layout.gap,
     },
     icon: {
-        marginTop: spacing.xSmall_8,
-        marginBottom: spacing.xSmall_8,
-        // The total distance from the icon to the edge is 16px. The
-        // vertical identifier is already 6px, and the padding on inner
-        // conatiner is 8px. So that leaves 2px.
-        marginInlineStart: spacing.xxxxSmall_2,
-        marginInlineEnd: spacing.xSmall_8,
         alignSelf: "flex-start",
-        color: semanticColor.icon.primary,
+        width: theme.icon.sizing.width,
+        height: theme.icon.sizing.height,
     },
     labelAndButtonsContainer: {
         flex: 1,
@@ -344,46 +361,76 @@ const styles = StyleSheet.create({
         alignContent: "center",
         flexWrap: "wrap",
         justifyContent: "space-between",
+        gap: theme.root.layout.gap,
     },
     labelContainer: {
         flexShrink: 1,
-        margin: spacing.xSmall_8,
         textAlign: "start",
         overflowWrap: "break-word",
+    },
+    labelTypography: {
+        fontSize: theme.label.font.size,
+        fontWeight: font.weight.semi,
+        lineHeight: font.body.lineHeight.small,
+        fontFamily: font.family.sans,
     },
     actionsContainer: {
         flexDirection: "row",
         justifyContent: "flex-start",
-        marginTop: spacing.xSmall_8,
-        marginBottom: spacing.xSmall_8,
         // Set the height to remove the padding from buttons
-        height: 18,
+        height: sizing.size_180,
         alignItems: "center",
+        gap: theme.root.layout.gap,
     },
     action: {
-        marginLeft: spacing.xSmall_8,
-        marginRight: spacing.xSmall_8,
         justifyContent: "center",
     },
     link: {
-        fontSize: font.size.small,
+        fontFamily: font.family.sans,
+        fontSize: font.body.size.small,
+        fontWeight: font.weight.semi,
+        lineHeight: font.body.lineHeight.small,
+        textDecoration: theme.link.font.decoration,
+        textUnderlineOffset: theme.link.font.underlineOffset,
+    },
+    button: {
+        marginInline: theme.button.layout.marginInline,
     },
     dismiss: {
         flexShrink: 1,
+        marginBlock: theme.dismiss.layout.marginBlock,
     },
-    dismissContainer: {
-        height: 40,
-        width: 40,
-        justifyContent: "center",
-        alignItems: "center",
-        marginLeft: spacing.xSmall_8,
-        marginRight: spacing.xSmall_8,
+    successBanner: {
+        backgroundColor: semanticColor.feedback.success.subtle.background,
+        borderColor: theme.root.color.border.success,
+        color: semanticColor.feedback.success.subtle.text,
     },
-    floatingBorder: {
-        borderRadius: border.radius.radius_040,
-        // Stop the square corners of the inner container from
-        // flowing out of the rounded corners of the outer container.
-        overflow: "hidden",
+    infoBanner: {
+        backgroundColor: semanticColor.feedback.info.subtle.background,
+        borderColor: theme.root.color.border.info,
+        color: semanticColor.feedback.info.subtle.text,
+    },
+    warningBanner: {
+        backgroundColor: semanticColor.feedback.warning.subtle.background,
+        borderColor: theme.root.color.border.warning,
+        color: semanticColor.feedback.warning.subtle.text,
+    },
+    criticalBanner: {
+        backgroundColor: semanticColor.feedback.critical.subtle.background,
+        borderColor: theme.root.color.border.critical,
+        color: semanticColor.feedback.critical.subtle.text,
+    },
+    successIcon: {
+        color: theme.icon.color.success,
+    },
+    infoIcon: {
+        color: theme.icon.color.info,
+    },
+    warningIcon: {
+        color: theme.icon.color.warning,
+    },
+    criticalIcon: {
+        color: theme.icon.color.critical,
     },
 });
 

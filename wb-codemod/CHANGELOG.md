@@ -1,5 +1,12 @@
 # @khanacademy/wb-codemod
 
+## 2.1.2
+
+### Patch Changes
+
+- 8a36c70: Re-publish to publish with Trusted Publishing
+- 3e0d137: Re-publishing via Trusted Publishing
+
 ## 2.1.1
 
 ### Patch Changes

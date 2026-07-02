@@ -1,28 +1,28 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
-import {CompactCell} from "@khanacademy/wonder-blocks-cell";
-import {
-    border,
-    semanticColor,
-    sizing,
-    spacing,
-} from "@khanacademy/wonder-blocks-tokens";
-import {LabelMedium} from "@khanacademy/wonder-blocks-typography";
+import {DetailCell} from "@khanacademy/wonder-blocks-cell";
+import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
+import {BodyText} from "@khanacademy/wonder-blocks-typography";
 
-import type {PropsFor, StyleType} from "@khanacademy/wonder-blocks-core";
+import type {StyleType} from "@khanacademy/wonder-blocks-core";
 
+import {focusStyles} from "@khanacademy/wonder-blocks-styles";
 import {DROPDOWN_ITEM_HEIGHT} from "../util/constants";
+import theme from "../theme";
 
-type CompactCellProps = PropsFor<typeof CompactCell>;
+import type {CellProps} from "../util/types";
 
 type ActionProps = {
     /**
      * Display text of the action item.
      */
-    label: string | CompactCellProps["title"];
+    label: string | CellProps["title"];
     /**
      * Whether this action item is disabled.
+     *
+     * Internally, the `aria-disabled` attribute will be set so that the
+     * element remains focusable and will be included in the tab order.
      */
     disabled: boolean;
     /**
@@ -85,17 +85,37 @@ type ActionProps = {
      * Adds a horizontal rule at the bottom of the cell that can be used to
      * separate items within ActionMenu instances. Defaults to `none`.
      */
-    horizontalRule?: CompactCellProps["horizontalRule"];
+    horizontalRule?: CellProps["horizontalRule"];
 
     /**
      * Optional left accessory to display in the `ActionItem` element.
      */
-    leftAccessory?: CompactCellProps["leftAccessory"];
+    leftAccessory?: CellProps["leftAccessory"];
 
     /**
      * Optional right accessory to display in the `ActionItem` element.
      */
-    rightAccessory?: CompactCellProps["rightAccessory"];
+    rightAccessory?: CellProps["rightAccessory"];
+
+    /**
+     * Optional subtitle to display before the label.
+     */
+    subtitle1?: CellProps["subtitle1"];
+
+    /**
+     * Optional subtitle to display after the label.
+     */
+    subtitle2?: CellProps["subtitle2"];
+
+    /**
+     * Optional; applies aria-current to the cell.
+     */
+    active?: CellProps["active"];
+
+    /**
+     * Optional aria-label for the action item.
+     */
+    "aria-label"?: string;
 };
 
 type DefaultProps = {
@@ -137,7 +157,11 @@ export default class ActionItem extends React.Component<ActionProps> {
             onClick,
             role,
             style,
+            subtitle1,
+            subtitle2,
             testId,
+            active,
+            "aria-label": ariaLabel,
         } = this.props;
 
         const defaultStyle = [
@@ -148,9 +172,9 @@ export default class ActionItem extends React.Component<ActionProps> {
 
         const labelComponent =
             typeof label === "string" ? (
-                <LabelMedium lang={lang} style={styles.label}>
+                <BodyText tag="div" lang={lang} style={styles.label}>
                     {label}
-                </LabelMedium>
+                </BodyText>
             ) : (
                 React.cloneElement(label, {
                     lang,
@@ -160,45 +184,36 @@ export default class ActionItem extends React.Component<ActionProps> {
             );
 
         return (
-            <CompactCell
+            <DetailCell
                 disabled={disabled}
                 horizontalRule={horizontalRule}
-                rootStyle={defaultStyle}
                 leftAccessory={leftAccessory}
                 rightAccessory={rightAccessory}
-                style={[styles.shared, indent && styles.indent]}
+                styles={{
+                    root: [
+                        defaultStyle,
+                        styles.shared,
+                        indent && styles.indent,
+                    ],
+                }}
                 role={role}
                 testId={testId}
+                subtitle1={subtitle1}
                 title={labelComponent}
+                subtitle2={subtitle2}
                 href={href}
                 target={target}
                 onClick={onClick}
+                active={active}
+                aria-label={ariaLabel}
             />
         );
     }
 }
 
-// TODO(WB-1868): Move this to a shared theme file.
-const actionType = semanticColor.action.primary.progressive;
-
-const theme = {
-    actionItem: {
-        color: {
-            hover: {
-                background: actionType.hover.background,
-                foreground: actionType.hover.foreground,
-            },
-            press: {
-                background: actionType.press.background,
-                foreground: actionType.press.foreground,
-            },
-        },
-    },
-};
-
 const styles = StyleSheet.create({
     wrapper: {
-        minHeight: DROPDOWN_ITEM_HEIGHT,
+        minBlockSize: DROPDOWN_ITEM_HEIGHT,
         // This removes the 300ms click delay on mobile browsers by indicating
         // that "double-tap to zoom" shouldn't be used on this element.
         touchAction: "manipulation",
@@ -209,36 +224,37 @@ const styles = StyleSheet.create({
         ":focus": {
             // Override the default focus state for the cell element, so that it
             // can be added programmatically to the button element.
-            borderRadius: border.radius.radius_040,
-            outline: `${spacing.xxxxSmall_2}px solid ${semanticColor.focus.outer}`,
-            outlineOffset: -spacing.xxxxSmall_2,
-        },
-
-        // Overrides the default cell state for the button element.
-        [":hover[aria-disabled=false]" as any]: {
-            color: theme.actionItem.color.hover.foreground,
-            background: theme.actionItem.color.hover.background,
-        },
-
-        // active and pressed states
-        [":active[aria-disabled=false]" as any]: {
-            color: theme.actionItem.color.press.foreground,
-            background: theme.actionItem.color.press.background,
+            borderRadius: theme.item.border.radius.default,
+            outline: focusStyles.focus[":focus-visible"].outline,
+            outlineOffset: `calc(${border.width.medium} * -1)`,
+            // We need to use a thicker box-shadow to ensure that the inner ring
+            // is visible when the cell is focused.
+            boxShadow: `inset 0 0 0 calc(${border.width.medium}*2) ${semanticColor.focus.inner}`,
+            // Hide the left bar indicator when focused, so the focus ring
+            // doesn't overlap with it.
+            // @see cell-core.tsx
+            [":after" as any]: {
+                content: "unset",
+            },
         },
     },
     shared: {
-        minHeight: DROPDOWN_ITEM_HEIGHT,
+        minBlockSize: DROPDOWN_ITEM_HEIGHT,
         // Make sure that the item is always at least as tall as 40px.
-        paddingBlock: sizing.size_100,
+        paddingBlock: theme.item.layout.padding.block,
     },
 
     label: {
+        fontWeight: theme.item.font.weight,
+        lineHeight: sizing.size_200,
         whiteSpace: "nowrap",
         userSelect: "none",
+        overflow: "hidden",
+        textOverflow: "ellipsis",
     },
 
     indent: {
         // Cell's internal padding + checkbox width + checkbox margin
-        paddingLeft: spacing.medium_16 * 2,
+        paddingInlineStart: sizing.size_320,
     },
 });

@@ -1,5 +1,5 @@
 import * as React from "react";
-import type {Meta, StoryObj} from "@storybook/react";
+import type {Meta, StoryObj} from "@storybook/react-vite";
 
 import Link from "@khanacademy/wonder-blocks-link";
 
@@ -23,6 +23,10 @@ const meta: Meta<typeof Breadcrumbs> = {
                 version={packageConfig.version}
             />
         ),
+        chromatic: {
+            // Disable snapshots since they're covered by the testing snapshots
+            disableSnapshot: true,
+        },
     },
 };
 

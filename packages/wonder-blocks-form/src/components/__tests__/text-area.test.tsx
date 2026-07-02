@@ -213,21 +213,6 @@ describe("TextArea", () => {
             expect(textArea).toHaveClass(className);
         });
 
-        it("should set the rows attribute when the rows prop is provided", async () => {
-            // Arrange
-            const rows = 10;
-            render(
-                <TextArea value="Text" onChange={() => {}} rows={rows} />,
-                defaultOptions,
-            );
-
-            // Act
-
-            // Assert
-            const textArea = await screen.findByRole("textbox");
-            expect(textArea).toHaveAttribute("rows", `${rows}`);
-        });
-
         it("should set the spellcheck attribute when spellCheck prop is set to true", async () => {
             // Arrange
             render(
@@ -607,6 +592,49 @@ describe("TextArea", () => {
 
             // Assert
             expect(handleOnBlur).toHaveBeenCalledOnce();
+        });
+
+        it("should call the onPaste prop when text is pasted into the textarea", async () => {
+            // Arrange
+            const handleOnPaste = jest.fn();
+            render(
+                <TextArea
+                    value=""
+                    onChange={() => {}}
+                    onPaste={handleOnPaste}
+                />,
+                defaultOptions,
+            );
+
+            // Act
+            const textArea = await screen.findByRole("textbox");
+            textArea.focus();
+            await userEvent.paste("test");
+
+            // Assert
+            expect(handleOnPaste).toHaveBeenCalledOnce();
+        });
+
+        it("should not call the onPaste prop when text is pasted into the textarea and it is disabled", async () => {
+            // Arrange
+            const handleOnPaste = jest.fn();
+            render(
+                <TextArea
+                    value=""
+                    onChange={() => {}}
+                    onPaste={handleOnPaste}
+                    disabled={true}
+                />,
+                defaultOptions,
+            );
+
+            // Act
+            const textArea = await screen.findByRole("textbox");
+            textArea.focus();
+            await userEvent.paste("test");
+
+            // Assert
+            expect(handleOnPaste).not.toHaveBeenCalled();
         });
     });
 

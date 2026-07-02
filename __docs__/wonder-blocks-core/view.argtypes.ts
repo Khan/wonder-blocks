@@ -1,6 +1,11 @@
-import type {ArgTypes} from "@storybook/react";
+import type {ArgTypes} from "@storybook/react-vite";
+
+import AriaArgTypes from "./aria.argtypes";
+import EventHandlersArgTypes from "./event-handlers.argtypes";
 
 export default {
+    ...AriaArgTypes,
+    ...EventHandlersArgTypes,
     children: {
         description: "The content of the `View` element.",
         type: {name: "other", value: "React.ReactNode", required: true},
@@ -11,6 +16,19 @@ export default {
         control: {
             type: "select",
             options: ["div", "article", "aside", "nav", "section"],
+        },
+    },
+
+    dir: {
+        description: "The text direction for the element.",
+        control: {
+            type: "select",
+            options: ["ltr", "rtl", "auto"],
+        },
+        table: {
+            type: {
+                summary: '"ltr" | "rtl" | "auto"',
+            },
         },
     },
 

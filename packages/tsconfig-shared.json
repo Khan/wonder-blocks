@@ -6,6 +6,33 @@
         "composite": true,
         "incremental": true, // Required for composite projects
 
+        // TypeScript 6.0 changed the default `types` value from "include every
+        // `@types/*` package" to `[]`. Composite builds no longer auto-include
+        // the global type packages (e.g. `@types/node`, `@types/jest`), so we
+        // list them explicitly here to keep them in scope when emitting
+        // declarations. (The root `tsconfig.json` used by `typecheck` does not
+        // extend this file, so its behaviour is unaffected.)
+        //
+        // This list must stay in sync with the repo's `@types/*` dependencies:
+        // because `typecheck` still auto-resolves all `@types/*`, a missing
+        // entry here passes `typecheck` but fails `build:types`. The test in
+        // consistency-tests/__tests__/tsconfig-shared-types.test.ts enforces
+        // this.
+        "types": [
+            "aria-query",
+            "history",
+            "jest",
+            "jest-axe",
+            "jscodeshift",
+            "node",
+            "node-fetch",
+            "react",
+            "react-dom",
+            "react-router",
+            "react-router-dom",
+            "react-window",
+        ],
+
         // We use rollup + swc to compile our bundles so we only need tsc to
         // output .d.ts files
         "declaration": true,

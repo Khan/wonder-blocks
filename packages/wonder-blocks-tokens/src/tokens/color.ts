@@ -58,6 +58,11 @@ const baseColors: ColorType = {
 const fadedColorWithWhite = (color: string, alpha: number) =>
     mix(fade(color, alpha), baseColors.white);
 
+/**
+ * OG color primitives used for the Classic experience.
+ *
+ * @deprecated Use `semanticColor` from `@khanacademy/wonder-blocks-tokens` instead.
+ */
 export const color = {
     // Wonder Blocks base colors
     ...baseColors,
@@ -68,6 +73,7 @@ export const color = {
     fadedBlue24: fadedColorWithWhite(baseColors.blue, 0.24),
     fadedBlue16: fadedColorWithWhite(baseColors.blue, 0.16),
     fadedBlue8: fadedColorWithWhite(baseColors.blue, 0.08),
+    blue_alpha20: `${baseColors.blue}33`, // color.blue with 20% alpha
     // Red shades
     activeRed: mix(baseColors.offBlack32, baseColors.red),
     fadedRed: fadedColorWithWhite(baseColors.red, 0.32),
@@ -75,10 +81,12 @@ export const color = {
     fadedRed16: fadedColorWithWhite(baseColors.red, 0.16),
     fadedRed8: fadedColorWithWhite(baseColors.red, 0.08),
     // Green shades
+    activeGreen: mix(baseColors.offBlack32, baseColors.green),
     fadedGreen24: fadedColorWithWhite(baseColors.green, 0.24),
     fadedGreen16: fadedColorWithWhite(baseColors.green, 0.16),
     fadedGreen8: fadedColorWithWhite(baseColors.green, 0.08),
     // Gold shades
+    activeGold: mix(baseColors.offBlack32, baseColors.gold),
     fadedGold24: fadedColorWithWhite(baseColors.gold, 0.24),
     fadedGold16: fadedColorWithWhite(baseColors.gold, 0.16),
     fadedGold8: fadedColorWithWhite(baseColors.gold, 0.08),

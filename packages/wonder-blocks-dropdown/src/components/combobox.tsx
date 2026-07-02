@@ -7,16 +7,12 @@ import xIcon from "@phosphor-icons/core/regular/x.svg";
 import {StyleType, View} from "@khanacademy/wonder-blocks-core";
 import {TextField} from "@khanacademy/wonder-blocks-form";
 import IconButton from "@khanacademy/wonder-blocks-icon-button";
-import {
-    border,
-    color,
-    semanticColor,
-    spacing,
-} from "@khanacademy/wonder-blocks-tokens";
+import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 
 import {DetailCell} from "@khanacademy/wonder-blocks-cell";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {useId} from "react";
+import {focusStyles} from "@khanacademy/wonder-blocks-styles";
 import {useListbox} from "../hooks/use-listbox";
 import {useMultipleSelection} from "../hooks/use-multiple-selection";
 import {
@@ -30,6 +26,7 @@ import {MultipleSelection} from "./combobox-multiple-selection";
 import DropdownPopper from "./dropdown-popper";
 import Listbox from "./listbox";
 import {getLabel} from "../util/helpers";
+import theme from "../theme";
 
 type Props = {
     /**
@@ -134,6 +131,11 @@ type Props = {
     startIcon?: React.ReactElement<
         React.ComponentProps<typeof PhosphorIcon>
     > | null;
+
+    /**
+     * An optional aria-label to display on the combobox.
+     */
+    "aria-label"?: string;
 };
 
 /**
@@ -163,6 +165,7 @@ export default function Combobox({
     startIcon,
     testId,
     value = "",
+    "aria-label": ariaLabel,
 }: Props) {
     // eslint-disable-next-line import/no-deprecated
     const generatedUniqueId = useId();
@@ -219,13 +222,28 @@ export default function Combobox({
     const initialValue = typeof value === "string" ? labelFromSelected : "";
     const [inputValue, setInputValue] = React.useState(initialValue);
 
+    /**
+     * Updates the selected value and the input value after any of the multiple
+     * selection values have been removed.
+     *
+     * @param value - The new selected value(s).
+     */
+    const updateAfterSelectionChange = React.useCallback(
+        (value: MaybeValueOrValues) => {
+            setSelected(value);
+            onChange?.(value);
+        },
+        [onChange, setSelected],
+    );
+
     const {
         focusedMultiSelectIndex,
         handleKeyDown: handleMultipleSelectionKeyDown,
     } = useMultipleSelection({
         inputValue,
         selected,
-        setSelected,
+        onRemove: updateAfterSelectionChange,
+        isComboboxOpen: openState,
     });
 
     /**
@@ -409,7 +427,7 @@ export default function Combobox({
      * Handles the click event on a pill to remove it from the list of selected
      * items.
      */
-    const handleOnRemove = React.useCallback(
+    const handleOnRemoveClick = React.useCallback(
         (value: string) => {
             const selectedValues = selected as Array<string>;
             // Remove the selected item from the list of selected items.
@@ -417,9 +435,9 @@ export default function Combobox({
                 (selectedValue) => selectedValue !== value,
             );
 
-            setSelected(newValues);
+            updateAfterSelectionChange(newValues);
         },
-        [selected, setSelected],
+        [selected, updateAfterSelectionChange],
     );
 
     const handleTextFieldChange = React.useCallback(
@@ -497,9 +515,10 @@ export default function Combobox({
             // Override the disabled state of the icon to match the combobox
             // state.
             color: disabled
-                ? semanticColor.icon.disabled
+                ? semanticColor.core.foreground.disabled.default
                 : // Use the color passed in, otherwise use the default color.
-                  (startIcon.props.color ?? semanticColor.icon.primary),
+                  (startIcon.props.color ??
+                  semanticColor.core.foreground.neutral.default),
         } as Partial<
             React.ReactElement<React.ComponentProps<typeof PhosphorIcon>>
         >);
@@ -558,7 +577,7 @@ export default function Combobox({
                         focusedMultiSelectIndex={focusedMultiSelectIndex}
                         id={pillIdPrefix}
                         selected={selected as Array<string>}
-                        onRemove={handleOnRemove}
+                        onRemove={handleOnRemoveClick}
                         disabled={disabled}
                         testId={testId}
                         removeSelectedLabel={labels.removeSelected}
@@ -567,6 +586,7 @@ export default function Combobox({
                 {maybeRenderStartIcon()}
 
                 <TextField
+                    aria-label={ariaLabel}
                     id={textFieldId}
                     testId={testId}
                     style={styles.combobox}
@@ -601,7 +621,7 @@ export default function Combobox({
                         onClick={handleClearClick}
                         actionType="neutral"
                         kind="tertiary"
-                        size="small"
+                        size="medium"
                         style={[styles.button, styles.clearButton]}
                         aria-label={labels.clearSelection}
                         testId={testId ? `${testId}-clear` : undefined}
@@ -622,8 +642,12 @@ export default function Combobox({
                     }}
                     actionType="neutral"
                     kind="tertiary"
-                    size="small"
-                    style={[styles.button, openState && styles.buttonOpen]}
+                    size="medium"
+                    style={[
+                        styles.button,
+                        styles.openButtonResetStates,
+                        openState && styles.buttonOpen,
+                    ]}
                     tabIndex={-1}
                     aria-controls={uniqueId}
                     aria-expanded={openState}
@@ -639,21 +663,29 @@ export default function Combobox({
                     referenceElement={rootNodeRef?.current as HTMLElement}
                 >
                     {(isReferenceHidden) => (
-                        <>
+                        <View
+                            onMouseDown={(e) => {
+                                // Prevents the combobox from losing focus when clicking
+                                // on the option item.
+                                e.preventDefault();
+                            }}
+                        >
                             {renderList.length === 0 ? (
                                 // No items to display
                                 <DetailCell
                                     title={labels.noItems}
-                                    style={[
-                                        styles.listbox,
-                                        // The listbox width is at least the
-                                        // width of the combobox.
-                                        {
-                                            minWidth:
-                                                rootNodeRef?.current
-                                                    ?.offsetWidth,
-                                        },
-                                    ]}
+                                    styles={{
+                                        root: [
+                                            styles.listbox,
+                                            // The listbox width is at least the
+                                            // width of the combobox.
+                                            {
+                                                minInlineSize:
+                                                    rootNodeRef?.current
+                                                        ?.offsetWidth,
+                                            },
+                                        ],
+                                    }}
                                     horizontalRule="none"
                                 />
                             ) : (
@@ -667,7 +699,7 @@ export default function Combobox({
                                         // The listbox width is at least the
                                         // width of the combobox.
                                         {
-                                            minWidth:
+                                            minInlineSize:
                                                 rootNodeRef?.current
                                                     ?.offsetWidth,
                                         },
@@ -681,7 +713,7 @@ export default function Combobox({
                                     {renderList}
                                 </Listbox>
                             )}
-                        </>
+                        </View>
                     )}
                 </DropdownPopper>
             )}
@@ -689,66 +721,31 @@ export default function Combobox({
     );
 }
 
-// TODO(WB-1868): Move this to a theme file.
-const theme = {
-    combobox: {
-        color: {
-            default: {
-                border: semanticColor.border.strong,
-                background: semanticColor.surface.primary,
-            },
-            focus: {
-                border: semanticColor.focus.outer,
-                background: semanticColor.surface.primary,
-            },
-            disabled: {
-                border: semanticColor.action.secondary.disabled.border,
-                background: semanticColor.action.secondary.disabled.background,
-                foreground: semanticColor.action.secondary.disabled.foreground,
-            },
-            error: {
-                border: semanticColor.status.critical.foreground,
-                background: semanticColor.status.critical.background,
-                foreground: semanticColor.text.primary,
-            },
-        },
-    },
-    listbox: {
-        color: {
-            default: {
-                background: semanticColor.surface.primary,
-                border: semanticColor.border.primary,
-            },
-        },
-    },
-};
-
 const styles = StyleSheet.create({
+    // TODO(WB-2007): Adopt design specs
     wrapper: {
         flexDirection: "row",
         alignItems: "center",
         width: "100%",
-        maxWidth: "100%",
+        maxInlineSize: "100%",
         flexWrap: "wrap",
         // The following styles are to emulate the input styles
-        background: theme.combobox.color.default.background,
-        borderRadius: border.radius.radius_040,
-        border: `solid 1px ${theme.combobox.color.default.border}`,
-        paddingInline: spacing.xSmall_8,
+        background: semanticColor.core.background.base.default,
+        borderRadius: theme.opener.border.radius.rest,
+        border: `${border.width.thin} solid ${semanticColor.core.border.neutral.subtle}`,
+        paddingInline: theme.opener.layout.padding.inline,
+        overflow: "hidden",
     },
-    focused: {
-        background: theme.combobox.color.focus.background,
-        border: `1px solid ${theme.combobox.color.focus.border}`,
-    },
+    focused: focusStyles.focus[":focus-visible"],
     disabled: {
-        background: theme.combobox.color.disabled.background,
-        border: `1px solid ${theme.combobox.color.disabled.border}`,
-        color: theme.combobox.color.disabled.foreground,
+        background: semanticColor.input.disabled.background,
+        border: `${border.width.thin} solid ${semanticColor.input.disabled.border}`,
+        color: semanticColor.input.disabled.foreground,
     },
     error: {
-        background: theme.combobox.color.error.background,
-        border: `1px solid ${theme.combobox.color.error.border}`,
-        color: theme.combobox.color.error.foreground,
+        background: semanticColor.input.error.background,
+        border: `${theme.opener.border.width.error} solid ${semanticColor.input.error.border}`,
+        color: semanticColor.input.error.foreground,
     },
     /**
      * Combobox input styles
@@ -760,28 +757,42 @@ const styles = StyleSheet.create({
         border: "none",
         outline: "none",
         padding: 0,
-        minWidth: spacing.xxxSmall_4,
+        minInlineSize: sizing.size_040,
         width: "auto",
         display: "inline-grid",
         gridArea: "1 / 2",
+        // The combobox wrapper handles the focus and press indicators, so we
+        // reset the TextField's own focus and press states to avoid showing a
+        // duplicate focus ring / press border on the inner input.
         ":focus-visible": {
             outline: "none",
             border: "none",
+            boxShadow: "none",
         },
+        // Matches the TextField's press selector so this reset takes
+        // precedence over the press box shadow it applies.
+        [":active:not([aria-disabled='true']):not([readonly])" as any]: {
+            boxShadow: "none",
+        },
+        // Matches the TextField's selector so this reset takes precedence over
+        // the box shadow it applies.
+        [":focus-visible:active:not([aria-disabled='true']):not([readonly])" as any]:
+            {
+                boxShadow: "none",
+            },
     },
     /**
      * Listbox custom styles
      */
     listbox: {
-        backgroundColor: theme.listbox.color.default.background,
-        borderRadius: border.radius.radius_040,
-        border: `solid ${border.width.thin} ${theme.listbox.color.default.border}`,
-        // TODO(WB-1878): Move to elevation tokens.
-        boxShadow: `0px ${spacing.xSmall_8}px ${spacing.xSmall_8}px 0px ${color.offBlack8}`,
+        backgroundColor: semanticColor.core.background.base.default,
+        borderRadius: theme.listbox.border.radius,
+        border: `solid ${border.width.thin} ${semanticColor.core.border.neutral.subtle}`,
+        boxShadow: theme.listbox.shadow.default,
         // We use a custom property to set the max height of the dropdown.
         // This comes from the maxHeight custom modifier.
         // @see ../util/popper-max-height-modifier.ts
-        maxHeight: "var(--popper-max-height)",
+        maxBlockSize: "var(--popper-max-height)",
         overflowY: "auto",
     },
     hidden: {
@@ -793,12 +804,30 @@ const styles = StyleSheet.create({
      */
     button: {
         position: "absolute",
-        right: spacing.xxxSmall_4,
-        top: spacing.xxxSmall_4,
+        insetInlineEnd: sizing.size_0,
         margin: 0,
     },
     buttonOpen: {
         transform: "rotate(180deg)",
+    },
+    /**
+     * The dropdown toggle button is not directly focusable (`tabIndex={-1}`)
+     * and its state is already communicated by the combobox input, so we
+     * remove the IconButton's hover, focus, and press styles to keep it
+     * visually static. Values are reset to match the tertiary/neutral rest
+     * state.
+     */
+    openButtonResetStates: {
+        ":hover": {
+            borderColor: semanticColor.core.transparent,
+        },
+        ":active": {
+            borderColor: semanticColor.core.transparent,
+        },
+        ":focus-visible": {
+            outline: "none",
+            boxShadow: "none",
+        },
     },
     /**
      * Clear selection button
@@ -806,13 +835,13 @@ const styles = StyleSheet.create({
     clearButton: {
         // The clear button is positioned to the left of the arrow button.
         // This is calculated based on the padding + width of the arrow button.
-        right: spacing.xLarge_32 + spacing.xSmall_8,
+        insetInlineEnd: sizing.size_360,
     },
     iconWrapper: {
-        padding: spacing.xxxSmall_4,
-        // View has a default minWidth of 0, which causes the label text
+        padding: sizing.size_040,
+        // View has a default minInlineSize of 0, which causes the label text
         // to encroach on the icon when it needs to truncate. We can fix
-        // this by setting the minWidth to auto.
-        minWidth: "auto",
+        // this by setting the minInlineSize to auto.
+        minInlineSize: "auto",
     },
 });

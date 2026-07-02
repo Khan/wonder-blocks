@@ -34,6 +34,21 @@ describe("NavigationTabs", () => {
         expect(nav).toBeInTheDocument();
     });
 
+    it("should use the tag prop if provided ", async () => {
+        // Arrange
+        render(
+            <NavigationTabs tag="div" testId="navigation-tabs">
+                {children}
+            </NavigationTabs>,
+        );
+
+        // Act
+        const navigationTabs = await screen.findByTestId("navigation-tabs");
+
+        // Assert
+        expect(navigationTabs).toHaveProperty("tagName", "DIV");
+    });
+
     it("should render a list element", async () => {
         // Arrange
         render(
@@ -110,6 +125,20 @@ describe("NavigationTabs", () => {
 
             // Assert
             expect(await screen.findByRole("navigation")).toBe(ref.current);
+        });
+
+        it("should have overflow-x auto on the ref element", async () => {
+            // Context: ResponsiveNavigationTabs uses the root ref for overflow
+            // detection. If this test fails, we will need to update what element
+            // is used to detect overflow.
+            // Arrange
+            const ref = React.createRef<HTMLElement>();
+
+            // Act
+            render(<NavigationTabs ref={ref}>{children}</NavigationTabs>);
+
+            // Assert
+            expect(ref.current).toHaveStyle("overflow-x: auto");
         });
     });
 

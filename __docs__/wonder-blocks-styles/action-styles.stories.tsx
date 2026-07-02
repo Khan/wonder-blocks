@@ -1,14 +1,15 @@
 import * as React from "react";
-import {Meta, StoryObj} from "@storybook/react";
+import {Meta, StoryObj} from "@storybook/react-vite";
 import info from "@phosphor-icons/core/regular/info.svg";
 import ComponentInfo from "../components/component-info";
 import packageConfig from "../../packages/wonder-blocks-styles/package.json";
 import IconButton from "@khanacademy/wonder-blocks-icon-button";
 import {actionStyles} from "@khanacademy/wonder-blocks-styles";
 import {addStyle, View} from "@khanacademy/wonder-blocks-core";
-import {semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import Clickable from "@khanacademy/wonder-blocks-clickable";
 import Button from "@khanacademy/wonder-blocks-button";
+import Link from "@khanacademy/wonder-blocks-link";
 
 /**
  * Styles that can be used to create reusable states for interactive elements.
@@ -23,11 +24,16 @@ import Button from "@khanacademy/wonder-blocks-button";
  * import {actionStyles} from "@khanacademy/wonder-blocks-styles";
  *
  * <StyledButton style={actionStyles.inverse}>
- *      Custom button
+ *     Custom button
  * </StyledButton>
  * ```
+ *
+ * **Note:** Using `actionStyles` with a raw HTML element via `addStyle`
+ * requires disabling the `@khanacademy/wonder-blocks/no-raw-button` lint rule.
+ * This should be rare — prefer WB components whenever possible.
  */
 export default {
+    tags: ["!manifest"],
     title: "Packages / Styles / Action Styles",
     parameters: {
         componentSubtitle: (
@@ -36,11 +42,16 @@ export default {
                 version={packageConfig.version}
             />
         ),
+        chromatic: {
+            // Disabling because this is already covered by the statesheet
+            disableSnapshot: true,
+        },
     },
 } as Meta<any>;
 
 type Story = StoryObj<any>;
 
+// eslint-disable-next-line @khanacademy/wonder-blocks/no-raw-button
 const StyledButton = addStyle("button");
 
 /**
@@ -60,34 +71,39 @@ export const InverseOutline: Story = {
                     kind="primary"
                     icon={info}
                     style={actionStyles.inverse}
+                    aria-label="Primary info button"
                 />
                 <IconButton
                     kind="secondary"
                     icon={info}
                     style={actionStyles.inverse}
+                    aria-label="Secondary info button"
                 />
                 <IconButton
                     kind="tertiary"
                     icon={info}
                     style={actionStyles.inverse}
+                    aria-label="Tertiary info button"
                 />
                 <IconButton
                     kind="primary"
                     disabled
                     icon={info}
                     style={actionStyles.inverse}
+                    aria-label="Disabled primary info button"
                 />
 
                 <Clickable onClick={() => {}} style={actionStyles.inverse}>
                     {() => "Clickable component"}
                 </Clickable>
 
+                {/* eslint-disable-next-line @khanacademy/wonder-blocks/no-raw-button */}
                 <StyledButton
                     style={[
                         {
-                            border: `1px solid ${semanticColor.status.success.background}`,
+                            border: `${border.width.thin} solid ${semanticColor.core.border.critical.default}`,
                             backgroundColor:
-                                semanticColor.status.success.foreground,
+                                semanticColor.core.background.critical.default,
                             color: semanticColor.status.success.background,
                         },
                         actionStyles.inverse,
@@ -105,6 +121,10 @@ export const InverseOutline: Story = {
                 <Button kind="tertiary" style={actionStyles.inverse}>
                     Tertiary button
                 </Button>
+
+                <Link href="#test" style={actionStyles.inverse}>
+                    Link component
+                </Link>
             </>
         );
     },
@@ -112,8 +132,8 @@ export const InverseOutline: Story = {
         (Story) => (
             <View
                 style={{
-                    gap: spacing.medium_16,
-                    padding: spacing.medium_16,
+                    gap: sizing.size_160,
+                    padding: sizing.size_160,
                     flexDirection: "row",
                     placeItems: "center",
                     display: "grid",
@@ -124,14 +144,9 @@ export const InverseOutline: Story = {
             </View>
         ),
     ],
-    parameters: {
+    globals: {
         backgrounds: {
-            default: "darkBlue",
-        },
-        chromatic: {
-            // Disabling because this is already covered by the All variants
-            // stories.
-            disableSnapshot: true,
+            value: "neutralStrong",
         },
     },
 };

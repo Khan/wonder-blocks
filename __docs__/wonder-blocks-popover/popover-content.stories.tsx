@@ -1,6 +1,6 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
-import type {Meta, StoryObj} from "@storybook/react";
+import type {Meta, StoryObj} from "@storybook/react-vite";
 
 import {View} from "@khanacademy/wonder-blocks-core";
 
@@ -29,6 +29,11 @@ export default {
                 // See https://github.com/storybookjs/storybook/issues/12596
                 excludeDecorators: true,
             },
+        },
+        chromatic: {
+            // Visual coverage is provided by the Popover StateSheet snapshot,
+            // which renders PopoverContent inside the Popover.
+            disableSnapshot: true,
         },
     },
     decorators: [
@@ -78,6 +83,19 @@ export const WithIcon: StoryComponentType = {
         title: "Popover with Icon",
         content: "Popovers can include images on the left.",
         icon: <img src="./logo.svg" width="100%" alt="Wonder Blocks logo" />,
+    },
+    render: (args) => <PopoverContent {...args} />,
+};
+
+/**
+ * Use the `titleHeadingTag` prop to override the heading level of the popover
+ * title. The default is `h4`. This does not affect the visual appearance of the title.
+ */
+export const WithTitleHeadingTag: StoryComponentType = {
+    args: {
+        title: "Custom heading tag",
+        content: "This popover title is rendered as a custom heading tag.",
+        titleHeadingTag: "h2",
     },
     render: (args) => <PopoverContent {...args} />,
 };

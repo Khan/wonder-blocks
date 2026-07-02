@@ -2,15 +2,10 @@ import * as React from "react";
 import {StyleSheet} from "aphrodite";
 import {MemoryRouter} from "react-router-dom";
 import {CompatRouter, Route, Routes} from "react-router-dom-v5-compat";
-import type {Meta, StoryObj} from "@storybook/react";
+import type {Meta, StoryObj} from "@storybook/react-vite";
 
 import {PropsFor, View} from "@khanacademy/wonder-blocks-core";
-import {
-    border,
-    color,
-    semanticColor,
-    spacing,
-} from "@khanacademy/wonder-blocks-tokens";
+import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 
 import {DetailCell} from "@khanacademy/wonder-blocks-cell";
@@ -19,7 +14,6 @@ import packageConfig from "../../packages/wonder-blocks-cell/package.json";
 import ComponentInfo from "../components/component-info";
 import DetailCellArgTypes from "./detail-cell.argtypes";
 import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
-import {LabelSmall} from "@khanacademy/wonder-blocks-typography";
 
 export default {
     title: "Packages / Cell / DetailCell",
@@ -65,123 +59,145 @@ export const DefaultDetailCell: StoryComponentType = {
         ),
         rightAccessory: <PhosphorIcon icon={IconMappings.caretRight} />,
     },
-};
-
-/**
- * Active detail cell example.
- */
-export const DetailCellActive: StoryComponentType = () => (
-    <DetailCell
-        title="Title for article item"
-        subtitle1="Subtitle for article item"
-        subtitle2="Subtitle for article item"
-        leftAccessory={
-            <PhosphorIcon icon={IconMappings.playCircle} size="medium" />
-        }
-        rightAccessory={
-            <PhosphorIcon icon={IconMappings.caretRightBold} size="small" />
-        }
-        active={true}
-    />
-);
-
-DetailCellActive.parameters = {
-    docs: {
-        description: {
-            story: "For more complex scenarios where we need to use more content such as subtitles, we provide a DetailCell component that can be used to cover these cases. The following example shows how to include a subtitle and use the active state.",
+    parameters: {
+        chromatic: {
+            // This is already covered in
+            // detail-cell-testing-snapshots.stories.tsx.
+            disableSnapshot: true,
         },
     },
 };
 
 /**
- * Disabled detail cell example.
+ * For more complex scenarios where we need to use more content such as
+ * subtitles, we provide a DetailCell component that can be used to cover these
+ * cases. The following example shows how to include a subtitle and use the
+ * active state.
  */
-export const DetailCellDisabled: StoryComponentType = () => (
-    <DetailCell
-        title="Title for article item"
-        subtitle1="Subtitle for article item"
-        subtitle2="Subtitle for article item"
-        leftAccessory={
-            <PhosphorIcon icon={IconMappings.playCircle} size="medium" />
-        }
-        rightAccessory={
-            <PhosphorIcon icon={IconMappings.caretRightBold} size="small" />
-        }
-        disabled={true}
-    />
-);
-
-DetailCellDisabled.parameters = {
-    docs: {
-        description: {
-            story: "For more complex scenarios where we need to use more content such as subtitles, we provide a DetailCell component that can be used to cover these cases. The following example shows how to include a subtitle and use the active state.",
+export const DetailCellActive: StoryComponentType = {
+    render: () => (
+        <DetailCell
+            title="Title for article item"
+            subtitle1="Subtitle for article item"
+            subtitle2="Subtitle for article item"
+            leftAccessory={
+                <PhosphorIcon icon={IconMappings.playCircle} size="medium" />
+            }
+            rightAccessory={
+                <PhosphorIcon icon={IconMappings.caretRightBold} size="small" />
+            }
+            active={true}
+        />
+    ),
+    parameters: {
+        chromatic: {
+            // This is already covered in
+            // detail-cell-testing-snapshots.stories.tsx.
+            disableSnapshot: true,
         },
     },
 };
 
 /**
- * Using custom styles.
+ * For more complex scenarios where we need to use more content such as
+ * subtitles, we provide a DetailCell component that can be used to cover these
+ * cases. The following example shows how to include a subtitle and use the
+ * active state.
  */
-export const DetailCellWithCustomStyles: StoryComponentType = () => (
-    <DetailCell
-        title="Title for article item"
-        contentStyle={{
-            alignSelf: "flex-start",
-        }}
-        leftAccessory={
-            <PhosphorIcon icon={IconMappings.caretLeftBold} size="small" />
-        }
-        leftAccessoryStyle={{
-            alignSelf: "flex-start",
-        }}
-        rightAccessory={
-            <PhosphorIcon icon={IconMappings.caretRightBold} size="small" />
-        }
-        rightAccessoryStyle={{
-            alignSelf: "flex-start",
-        }}
-        style={{
-            textAlign: "center",
-            minHeight: 88,
-        }}
-    />
-);
-
-DetailCellWithCustomStyles.parameters = {
-    docs: {
-        description: {
-            story: "Accessories and the main content container can also be customized to adapt to different sizes and alignments. In this example, we can see how a cell can be customized for both accessories and the content.",
+export const DetailCellDisabled: StoryComponentType = {
+    render: () => (
+        <DetailCell
+            title="Title for article item"
+            subtitle1="Subtitle for article item"
+            subtitle2="Subtitle for article item"
+            leftAccessory={
+                <PhosphorIcon icon={IconMappings.playCircle} size="medium" />
+            }
+            rightAccessory={
+                <PhosphorIcon icon={IconMappings.caretRightBold} size="small" />
+            }
+            onClick={() => {}} // To show the disabled state, the cell needs to be clickable
+            disabled={true}
+        />
+    ),
+    parameters: {
+        chromatic: {
+            // This is already covered in
+            // detail-cell-testing-snapshots.stories.tsx.
+            disableSnapshot: true,
         },
     },
 };
 
-export const ClickableDetailCell: StoryComponentType = () => (
-    <DetailCell
-        title="Title for article item"
-        subtitle1="Subtitle for article item"
-        subtitle2="Subtitle for article item"
-        leftAccessory={
-            <PhosphorIcon icon={IconMappings.playCircle} size="medium" />
-        }
-        rightAccessory={<PhosphorIcon icon={IconMappings.caretRight} />}
-        onClick={() => {}}
-        aria-label="Press to navigate to the article"
-    />
-);
+/**
+ * `DetailCell` can be used with custom styles. The following parts can be
+ * styled:
+ * - `root`: Styles the root element
+ * - `content`: Styles the content area (between the accessories)
+ * - `leftAccessory`: Styles the left accessory element
+ * - `rightAccessory`: Styles the right accessory element
+ */
+export const DetailCellWithCustomStyles: StoryComponentType = {
+    render: () => (
+        <DetailCell
+            title="Title for article item"
+            leftAccessory={
+                <PhosphorIcon icon={IconMappings.caretLeftBold} size="small" />
+            }
+            rightAccessory={
+                <PhosphorIcon icon={IconMappings.caretRightBold} size="small" />
+            }
+            styles={{
+                root: {
+                    textAlign: "center",
+                    minHeight: 88,
+                },
+                content: {
+                    alignSelf: "flex-start",
+                },
+                leftAccessory: {
+                    alignSelf: "flex-start",
+                },
+                rightAccessory: {
+                    alignSelf: "flex-start",
+                },
+            }}
+        />
+    ),
+};
 
-ClickableDetailCell.parameters = {
-    chromatic: {
-        // This only includes interactions with the clickable cell, so no need
-        // to capture screenshots.
-        disableSnapshot: true,
-    },
-    docs: {
-        description: {
-            story: "Cell components can also also be clickable. This is done by passing a `onClick` prop to the component.",
+/**
+ * Cell components can also also be clickable. This is done by passing a
+ * `onClick` prop to the component.
+ */
+export const ClickableDetailCell: StoryComponentType = {
+    render: () => (
+        <DetailCell
+            title="Title for article item"
+            subtitle1="Subtitle for article item"
+            subtitle2="Subtitle for article item"
+            leftAccessory={
+                <PhosphorIcon icon={IconMappings.playCircle} size="medium" />
+            }
+            rightAccessory={<PhosphorIcon icon={IconMappings.caretRight} />}
+            onClick={() => {}}
+            aria-label="Press to navigate to the article"
+        />
+    ),
+    parameters: {
+        chromatic: {
+            // This only includes interactions with the clickable cell, so no need
+            // to capture screenshots.
+            disableSnapshot: true,
         },
     },
 };
 
+/**
+ * Cells accept an `href` prop to be able to navigate to a different URL. Note
+ * that this will use client-side navigation if the Cell component is within a
+ * React-Router environment.
+ */
 export const DetailCellNavigation: StoryComponentType = {
     name: "Client-side navigation with DetailCell",
     render: () => (
@@ -240,17 +256,11 @@ export const DetailCellNavigation: StoryComponentType = {
             </CompatRouter>
         </MemoryRouter>
     ),
-};
-
-DetailCellNavigation.parameters = {
-    chromatic: {
-        // This only includes interactions with the clickable cell, so no need
-        // to capture screenshots.
-        disableSnapshot: true,
-    },
-    docs: {
-        description: {
-            story: "Cells accept an `href` prop to be able to navigate to a different URL. Note that this will use client-side navigation if the Cell component is within a React-Router environment.",
+    parameters: {
+        chromatic: {
+            // This only includes interactions with the clickable cell, so no need
+            // to capture screenshots.
+            disableSnapshot: true,
         },
     },
 };
@@ -325,7 +335,12 @@ export const DetailCellsAsListItems: StoryComponentType = {
                     }
                     href="https://khanacademy.org"
                     horizontalRule="full-width"
-                    style={{background: color.offBlack50}}
+                    styles={{
+                        root: {
+                            background:
+                                semanticColor.core.background.overlay.default,
+                        },
+                    }}
                 />
             </View>
             <View role="listitem">
@@ -338,7 +353,12 @@ export const DetailCellsAsListItems: StoryComponentType = {
                         />
                     }
                     onClick={() => {}}
-                    style={{background: color.fadedPurple24}}
+                    styles={{
+                        root: {
+                            background:
+                                semanticColor.core.background.warning.subtle,
+                        },
+                    }}
                     horizontalRule="full-width"
                 />
             </View>
@@ -353,135 +373,10 @@ export const DetailCellsAsListItems: StoryComponentType = {
     },
 };
 
-export const Scenarios = () => {
-    const longText =
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ";
-    const longTextWithNoWordBreak =
-        "Loremipsumdolorsitametconsecteturadipiscingelitseddoeiusmodtemporincididuntutlaboreetdoloremagnaaliqua";
-
-    const defaultProps = {
-        title: "Title for article item",
-        subtitle1: "Subtitle 1 for article item",
-        subtitle2: "Subtitle 2 for article item",
-        leftAccessory: (
-            <PhosphorIcon icon={IconMappings.playCircle} size="medium" />
-        ),
-        rightAccessory: <PhosphorIcon icon={IconMappings.caretRight} />,
-    };
-
-    const scenarios = [
-        {
-            label: "Default",
-            props: defaultProps,
-        },
-        {
-            label: "No Icons",
-            props: {
-                ...defaultProps,
-                leftAccessory: undefined,
-                rightAccessory: undefined,
-            },
-        },
-        {
-            label: "Left Icon Only",
-            props: {
-                ...defaultProps,
-                rightAccessory: undefined,
-            },
-        },
-        {
-            label: "Right Icon Only",
-            props: {
-                ...defaultProps,
-                leftAccessory: undefined,
-            },
-        },
-        {
-            label: "No Subtitles",
-            props: {
-                ...defaultProps,
-                subtitle1: undefined,
-                subtitle2: undefined,
-            },
-        },
-        {
-            label: "Subtitle 1 only",
-            props: {
-                ...defaultProps,
-                subtitle2: undefined,
-            },
-        },
-        {
-            label: "Subtitle 2 only",
-            props: {
-                ...defaultProps,
-                subtitle1: undefined,
-            },
-        },
-        {
-            label: "Title only",
-            props: {
-                title: defaultProps.title,
-            },
-        },
-        {
-            label: "Long Text",
-            props: {
-                ...defaultProps,
-                title: longText,
-                subtitle1: longText,
-                subtitle2: longText,
-            },
-        },
-        {
-            label: "Long Text No Word Break",
-            props: {
-                ...defaultProps,
-                title: longTextWithNoWordBreak,
-                subtitle1: longTextWithNoWordBreak,
-                subtitle2: longTextWithNoWordBreak,
-            },
-        },
-        {
-            label: "Long Text (no icons)",
-            props: {
-                ...defaultProps,
-                title: longText,
-                subtitle1: longText,
-                subtitle2: longText,
-                leftAccessory: undefined,
-                rightAccessory: undefined,
-            },
-        },
-        {
-            label: "Long Text No Word Break (no icons)",
-            props: {
-                ...defaultProps,
-                title: longTextWithNoWordBreak,
-                subtitle1: longTextWithNoWordBreak,
-                subtitle2: longTextWithNoWordBreak,
-                leftAccessory: undefined,
-                rightAccessory: undefined,
-            },
-        },
-    ];
-    return (
-        <View style={{gap: spacing.large_24}}>
-            {scenarios.map((scenario) => (
-                <>
-                    <LabelSmall>{scenario.label}</LabelSmall>
-                    <DetailCell {...scenario.props} />
-                </>
-            ))}
-        </View>
-    );
-};
-
 /**
- * Custom styling can be applied to the component using the `rootStyle` or
- * `style` props.
+ * Custom styling can be applied to the component using the `styles` prop.
  */
-export const CustomRootStyle = {
+export const CustomStyles = {
     args: {
         title: "Title for article item",
         subtitle1: "Subtitle for article item",
@@ -489,22 +384,38 @@ export const CustomRootStyle = {
         leftAccessory: (
             <PhosphorIcon icon={IconMappings.playCircle} size="medium" />
         ),
+        rightAccessory: (
+            <PhosphorIcon icon={IconMappings.checkCircleFill} size="medium" />
+        ),
     },
     render(args: PropsFor<typeof DetailCell>) {
         return (
-            <View style={{gap: spacing.large_24}}>
-                Active (with rootStyle prop):
+            <View style={{gap: sizing.size_240}}>
+                Active
                 <DetailCell
                     {...args}
-                    rootStyle={{borderRadius: border.radius.radius_120}}
+                    styles={{
+                        root: {
+                            borderRadius: border.radius.radius_120,
+                            ":active": {
+                                borderRadius: border.radius.radius_120,
+                            },
+                        },
+                    }}
                     active={true}
                 />
-                Pressed (with rootStyle prop):
+                Pressed
                 <DetailCell
                     {...args}
-                    rootStyle={{borderRadius: border.radius.radius_120}}
+                    styles={{
+                        root: {
+                            ":active": {
+                                borderRadius: border.radius.radius_120,
+                            },
+                        },
+                    }}
                 />
-                Different content heights (with style prop)
+                Different content heights
                 <View
                     style={{
                         display: "grid",
@@ -517,33 +428,39 @@ export const CustomRootStyle = {
                         subtitle1="Subtitle 1"
                         subtitle2="Subtitle2"
                         onClick={() => {}}
-                        style={[
-                            {
-                                border: `1px solid ${semanticColor.border.primary}`,
-                            },
-                        ]}
+                        styles={{
+                            root: [
+                                {
+                                    border: `1px solid ${semanticColor.core.border.neutral.subtle}`,
+                                },
+                            ],
+                        }}
                         horizontalRule={"none"}
                     />
                     <DetailCell
                         title="Title"
                         onClick={() => {}}
-                        style={[
-                            args.rootStyle,
-                            {
-                                border: `1px solid ${semanticColor.border.primary}`,
-                            },
-                        ]}
+                        styles={{
+                            root: [
+                                args.styles?.root,
+                                {
+                                    border: `1px solid ${semanticColor.core.border.neutral.subtle}`,
+                                },
+                            ],
+                        }}
                         horizontalRule={"none"}
                     />
                     <DetailCell
                         title="Title"
                         onClick={() => {}}
-                        style={[
-                            args.rootStyle,
-                            {
-                                border: `1px solid ${semanticColor.border.primary}`,
-                            },
-                        ]}
+                        styles={{
+                            root: [
+                                args.styles?.root,
+                                {
+                                    border: `1px solid ${semanticColor.core.border.neutral.subtle}`,
+                                },
+                            ],
+                        }}
                         horizontalRule={"none"}
                     />
                 </View>
@@ -555,13 +472,13 @@ export const CustomRootStyle = {
 
 const styles = StyleSheet.create({
     example: {
-        backgroundColor: color.offWhite,
-        padding: spacing.large_24,
+        backgroundColor: semanticColor.core.background.base.subtle,
+        padding: sizing.size_240,
         width: 376,
     },
     navigation: {
-        border: `1px dashed ${color.purple}`,
-        marginTop: spacing.large_24,
-        padding: spacing.large_24,
+        border: `${border.width.thin} dashed ${semanticColor.core.border.instructive.default}`,
+        marginBlockStart: sizing.size_240,
+        padding: sizing.size_240,
     },
 });

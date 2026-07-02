@@ -1,10 +1,10 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
-import type {Meta, StoryObj} from "@storybook/react";
+import type {Meta, StoryObj} from "@storybook/react-vite";
 
 import {View} from "@khanacademy/wonder-blocks-core";
-import {semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
-import {LabelLarge, LabelXSmall} from "@khanacademy/wonder-blocks-typography";
+import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
+import {BodyText} from "@khanacademy/wonder-blocks-typography";
 
 import {Choice, CheckboxGroup} from "@khanacademy/wonder-blocks-form";
 import packageConfig from "../../packages/wonder-blocks-form/package.json";
@@ -164,7 +164,9 @@ export const RowStyling: StoryComponentType = () => {
 
     return (
         <View style={styles.wrapper}>
-            <LabelLarge style={styles.title}>Science</LabelLarge>
+            <BodyText weight="bold" style={styles.title}>
+                Science
+            </BodyText>
             <CheckboxGroup
                 groupName="science-classes"
                 onChange={setSelectedValues}
@@ -220,11 +222,15 @@ export const MultipleChoiceStyling: StoryComponentType = () => {
 
     return (
         <CheckboxGroup
-            label={<LabelLarge>Select all prime numbers</LabelLarge>}
+            label={
+                <BodyText weight="bold" tag="span">
+                    Select all prime numbers
+                </BodyText>
+            }
             description={
-                <LabelXSmall style={styles.description}>
+                <BodyText size="xsmall" tag="span" style={styles.description}>
                     Hint: There is at least one prime number
-                </LabelXSmall>
+                </BodyText>
             }
             groupName="science-classes"
             onChange={setSelectedValues}
@@ -233,7 +239,7 @@ export const MultipleChoiceStyling: StoryComponentType = () => {
             <Choice
                 label="1"
                 value="1-mc-styling"
-                style={styles.multipleChoice}
+                style={[styles.multipleChoice, styles.firstChoice]}
             />
             <Choice
                 label="2"
@@ -324,24 +330,27 @@ const styles = StyleSheet.create({
         flexWrap: "wrap",
     },
     choice: {
-        marginTop: spacing.xSmall_8,
+        marginBlockStart: sizing.size_080,
         width: 200,
     },
     title: {
-        paddingBottom: spacing.xSmall_8,
-        borderBottom: `1px solid ${semanticColor.border.strong}`,
+        paddingBlockEnd: sizing.size_080,
+        borderBlockEnd: `1px solid ${semanticColor.core.border.neutral.default}`,
     },
     // Multiple choice styling
     multipleChoice: {
         margin: 0,
-        height: 48,
-        borderTop: "solid 1px #CCC",
+        blockSize: sizing.size_480,
+        borderBlockStart: `solid 1px ${semanticColor.core.border.neutral.subtle}`,
         justifyContent: "center",
     },
+    firstChoice: {
+        marginBlockStart: sizing.size_120,
+    },
     description: {
-        color: semanticColor.text.secondary,
+        color: semanticColor.core.foreground.neutral.default,
     },
     last: {
-        borderBottom: "solid 1px #CCC",
+        borderBlockEnd: `solid 1px ${semanticColor.core.border.neutral.subtle}`,
     },
 });

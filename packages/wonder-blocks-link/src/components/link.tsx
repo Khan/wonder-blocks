@@ -30,10 +30,6 @@ type CommonProps = AriaProps & {
      */
     inline?: boolean;
     /**
-     * Whether the button is on a dark/colored background.
-     */
-    light?: boolean;
-    /**
      * Specifies the type of relationship between the current document and the
      * linked document. Should only be used when `href` is specified. This
      * defaults to "noopener noreferrer" when `target="_blank"`, but can be
@@ -123,6 +119,36 @@ type CommonProps = AriaProps & {
      * the default `externalIcon`.
      */
     endIcon?: React.ReactElement<React.ComponentProps<typeof PhosphorIcon>>;
+
+    /**
+     * The object containing the custom labels used inside this component.
+     *
+     * This is useful for internationalization. Defaults to English.
+     */
+    labels?: {
+        /**
+         * An optional aria-label for the external link icon. This is used to
+         * provide a translatable description for screen readers.
+         */
+        externalIconAriaLabel?: string;
+    };
+
+    /**
+     * An optional prop that enables a
+     * [https://developer.mozilla.org/en-US/docs/Web/API/View_Transition_API](View
+     * Transition) for this navigation by wrapping the final state update in
+     * `document.startViewTransition()`.
+     *
+     * @see https://reactrouter.com/6.30.0/components/link#viewtransition
+     */
+    viewTransition?: boolean;
+
+    /**
+     * Adds persistent client side routing state to the next location.
+     * Only has effect when the underlying react-router `Link` is used.
+     * See https://reactrouter.com/api/components/Link#state
+     */
+    state?: unknown;
 };
 
 export type SharedProps =
@@ -190,7 +216,8 @@ const Link = React.forwardRef(function Link(
         onKeyUp,
         target = undefined,
         inline = false,
-        light = false,
+        viewTransition = false,
+        state,
         ...sharedProps
     } = props;
 
@@ -213,20 +240,23 @@ const Link = React.forwardRef(function Link(
                 safeWithNav={safeWithNav}
                 onKeyDown={onKeyDown}
                 onKeyUp={onKeyUp}
+                viewTransition={viewTransition}
+                state={state}
             >
-                {(state, {...childrenProps}) => {
+                {(clickableState, {...childrenProps}) => {
                     return (
                         <LinkCore
                             {...sharedProps}
-                            {...state}
+                            {...clickableState}
                             {...childrenProps}
                             skipClientNav={skipClientNav}
                             href={href}
                             target={target}
                             tabIndex={tabIndex}
                             inline={inline}
-                            light={light}
                             ref={ref}
+                            viewTransition={viewTransition}
+                            state={state}
                         >
                             {children}
                         </LinkCore>
@@ -245,20 +275,23 @@ const Link = React.forwardRef(function Link(
                 target={target}
                 onKeyDown={onKeyDown}
                 onKeyUp={onKeyUp}
+                viewTransition={viewTransition}
+                state={state}
             >
-                {(state, {...childrenProps}) => {
+                {(clickableState, {...childrenProps}) => {
                     return (
                         <LinkCore
                             {...sharedProps}
-                            {...state}
+                            {...clickableState}
                             {...childrenProps}
                             skipClientNav={skipClientNav}
                             href={href}
                             target={target}
                             tabIndex={tabIndex}
                             inline={inline}
-                            light={light}
                             ref={ref}
+                            viewTransition={viewTransition}
+                            state={state}
                         >
                             {children}
                         </LinkCore>

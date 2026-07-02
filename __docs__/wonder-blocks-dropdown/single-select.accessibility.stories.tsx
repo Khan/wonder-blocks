@@ -3,7 +3,7 @@ import caretDown from "@phosphor-icons/core/regular/caret-down.svg";
 import {OptionItem, SingleSelect} from "@khanacademy/wonder-blocks-dropdown";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {LabeledField} from "@khanacademy/wonder-blocks-labeled-field";
-import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
+import IconButton from "@khanacademy/wonder-blocks-icon-button";
 import {allCountries} from "./option-item-examples";
 
 export default {
@@ -45,7 +45,7 @@ const SingleSelectAccessibility = () => (
 );
 
 export const UsingAriaAttributes = {
-    render: SingleSelectAccessibility.bind({}),
+    render: () => <SingleSelectAccessibility />,
     name: "Using LabeledField",
 };
 
@@ -72,7 +72,7 @@ const SingleSelectAriaLabel = () => (
 );
 
 export const UsingOpenerAriaLabel = {
-    render: SingleSelectAriaLabel.bind({}),
+    render: () => <SingleSelectAriaLabel />,
     name: "Using aria-label for opener",
 };
 
@@ -85,10 +85,12 @@ const SingleSelectCustomOpenerLabeledField = () => {
                     <SingleSelect
                         placeholder="Choose"
                         onChange={() => {}}
-                        opener={(eventState: any) => (
-                            <button onClick={() => {}}>
-                                <PhosphorIcon icon={caretDown} size="medium" />
-                            </button>
+                        opener={() => (
+                            <IconButton
+                                icon={caretDown}
+                                aria-label="Show preferences"
+                                onClick={() => {}}
+                            />
                         )}
                     >
                         <OptionItem label="item 1" value="1" />
@@ -102,7 +104,7 @@ const SingleSelectCustomOpenerLabeledField = () => {
 };
 
 export const UsingCustomOpenerLabeledField = {
-    render: SingleSelectCustomOpenerLabeledField.bind({}),
+    render: () => <SingleSelectCustomOpenerLabeledField />,
     name: "Using custom opener in a LabeledField",
 };
 
@@ -112,10 +114,12 @@ const SingleSelectCustomOpenerLabel = () => {
             <SingleSelect
                 placeholder="Choose"
                 onChange={() => {}}
-                opener={(eventState: any) => (
-                    <button aria-label="Preferences" onClick={() => {}}>
-                        <PhosphorIcon icon={caretDown} size="medium" />
-                    </button>
+                opener={() => (
+                    <IconButton
+                        icon={caretDown}
+                        aria-label="Preferences"
+                        onClick={() => {}}
+                    />
                 )}
             >
                 <OptionItem label="item 1" value="1" />
@@ -127,7 +131,7 @@ const SingleSelectCustomOpenerLabel = () => {
 };
 
 export const UsingCustomOpenerAriaLabel = {
-    render: SingleSelectCustomOpenerLabel.bind({}),
+    render: () => <SingleSelectCustomOpenerLabel />,
     name: "Using aria-label on custom opener",
 };
 
@@ -153,7 +157,7 @@ const SingleSelectWithVisibleAnnouncer = () => {
 };
 
 export const WithVisibleAnnouncer = {
-    render: SingleSelectWithVisibleAnnouncer.bind({}),
+    render: () => <SingleSelectWithVisibleAnnouncer />,
     name: "With visible Announcer",
     parameters: {
         addBodyClass: "showAnnouncer",
@@ -167,6 +171,7 @@ const SingleSelectKeyboardSelection = () => {
     return (
         <View>
             <SingleSelect
+                aria-label="Fruits"
                 placeholder="Choose"
                 onChange={setSelectedValue}
                 selectedValue={selectedValue}
@@ -180,9 +185,32 @@ const SingleSelectKeyboardSelection = () => {
 };
 
 export const UsingKeyboardSelection = {
-    render: SingleSelectKeyboardSelection.bind({}),
+    render: () => <SingleSelectKeyboardSelection />,
     name: "Using the keyboard",
     parameters: {
         chromatic: {disableSnapshot: true},
+    },
+};
+
+export const UsingLabeledFieldForReadOnly = {
+    render: function UsingLabeledFieldForReadOnlyStory() {
+        return (
+            <LabeledField
+                field={
+                    <SingleSelect
+                        placeholder="Choose"
+                        readOnly={true}
+                        onChange={() => {}}
+                        selectedValue="1"
+                    >
+                        <OptionItem label="item 1" value="1" />
+                        <OptionItem label="item 2" value="2" />
+                        <OptionItem label="item 3" value="3" />
+                    </SingleSelect>
+                }
+                label="Example Label"
+                readOnlyMessage="Message about why it is read only"
+            />
+        );
     },
 };

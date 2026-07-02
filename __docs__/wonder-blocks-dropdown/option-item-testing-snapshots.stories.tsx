@@ -1,0 +1,123 @@
+import * as React from "react";
+import type {Meta, StoryObj} from "@storybook/react-vite";
+
+import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
+import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
+import {OptionItem} from "@khanacademy/wonder-blocks-dropdown";
+import {View} from "@khanacademy/wonder-blocks-core";
+import {allThemeModes} from "../../.storybook/modes";
+import {
+    commonStates,
+    defaultPseudoStates,
+    StateSheet,
+} from "../components/state-sheet";
+import {StatusBadge} from "@khanacademy/wonder-blocks-badge";
+
+const rows = [
+    {name: "Unselected", props: {checked: false}},
+    {name: "Selected (single)", props: {selected: true, variant: "check"}},
+    {name: "Selected (multi)", props: {selected: true, variant: "checkbox"}},
+];
+
+const columns = [
+    {
+        name: "Default",
+        props: {},
+    },
+    {
+        name: "Disabled",
+        props: {disabled: true},
+    },
+    {
+        name: "Custom label",
+        props: {
+            label: "Option Item",
+            onClick: () => {},
+            subtitle1: (
+                <StatusBadge label="New" kind="info" testId="new-badge" />
+            ),
+            subtitle2: "Subtitle 2",
+            leftAccessory: (
+                <PhosphorIcon icon={IconMappings.calendar} size="medium" />
+            ),
+            rightAccessory: (
+                <PhosphorIcon icon={IconMappings.caretRight} size="medium" />
+            ),
+        },
+    },
+];
+
+type Story = StoryObj<typeof OptionItem>;
+
+/**
+ * The following stories are used to generate the pseudo states for the
+ * OptionItem component. This is only used for visual testing in Chromatic.
+ */
+const meta = {
+    title: "Packages / Dropdown / Testing / Snapshots / OptionItem",
+    component: OptionItem,
+    args: {
+        label: "Option Item",
+        onClick: () => {},
+        disabled: false,
+        testId: "",
+        horizontalRule: "none",
+        leftAccessory: null,
+        rightAccessory: null,
+    },
+    decorators: [
+        (Story): React.ReactElement<React.ComponentProps<typeof View>> => (
+            <View style={{width: 800}}>
+                <Story />
+            </View>
+        ),
+    ],
+    globals: {
+        backgrounds: {
+            value: "baseSubtle",
+        },
+    },
+    parameters: {
+        chromatic: {
+            modes: allThemeModes,
+        },
+    },
+    tags: ["!autodocs", "!manifest"],
+} satisfies Meta<typeof OptionItem>;
+
+export default meta;
+
+export const StateSheetStory: Story = {
+    name: "StateSheet",
+    render: (args) => {
+        return (
+            <StateSheet rows={rows} columns={columns}>
+                {({props, className, name}) => (
+                    // NOTE: We need to wrap it in a listbox role to ensure that
+                    // a11y tools announce the listbox correctly.
+                    <View role="listbox" aria-label={name}>
+                        <OptionItem
+                            {...args}
+                            {...props}
+                            className={className}
+                            key={name}
+                            aria-label={name}
+                        />
+                    </View>
+                )}
+            </StateSheet>
+        );
+    },
+    parameters: {
+        pseudo: {
+            ...defaultPseudoStates,
+            focusVisible: [
+                // Exclude the badge from the focus visible state since it is not focusable
+                // Badge has focus styling applied to it in case it is used with a tooltip.
+                `.${commonStates.focus.className} *:not([data-testid="new-badge"])`,
+                `.${commonStates.hoverAndFocus.className} *:not([data-testid="new-badge"])`,
+                `.${commonStates.pressAndFocus.className} *:not([data-testid="new-badge"])`,
+            ],
+        },
+    },
+};

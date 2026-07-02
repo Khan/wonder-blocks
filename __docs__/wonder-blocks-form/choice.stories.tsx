@@ -1,10 +1,9 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
-import type {Meta, StoryObj} from "@storybook/react";
+import type {Meta, StoryObj} from "@storybook/react-vite";
 
 import {View} from "@khanacademy/wonder-blocks-core";
-import {Strut} from "@khanacademy/wonder-blocks-layout";
-import {spacing} from "@khanacademy/wonder-blocks-tokens";
+import {sizing} from "@khanacademy/wonder-blocks-tokens";
 
 import {
     Choice,
@@ -12,12 +11,16 @@ import {
     RadioGroup,
 } from "@khanacademy/wonder-blocks-form";
 
+import AriaArgTypes from "../wonder-blocks-core/aria.argtypes";
 import ComponentInfo from "../components/component-info";
 import packageConfig from "../../packages/wonder-blocks-form/package.json";
 
 export default {
     title: "Packages / Form / Choice",
     component: Choice,
+    argTypes: {
+        ...AriaArgTypes,
+    },
     parameters: {
         componentSubtitle: (
             <ComponentInfo
@@ -56,7 +59,6 @@ const ChoiceWrapper = (args: any) => {
                 <Choice label="Mushroom" value="mushroom-checkbox" />
                 <Choice aria-label="Pineapple" value="pineapple" {...args} />
             </CheckboxGroup>
-            <Strut size={spacing.xLarge_32} />
             <RadioGroup
                 label="Pizza order"
                 description="Choose only one topping."
@@ -111,5 +113,6 @@ export const Default: StoryComponentType = {
 const styles = StyleSheet.create({
     row: {
         flexDirection: "row",
+        gap: sizing.size_320,
     },
 });

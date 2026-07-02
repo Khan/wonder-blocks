@@ -1,13 +1,20 @@
-import React from "react";
-import type {StrictArgs} from "@storybook/react";
+import * as React from "react";
+import type {StrictArgs} from "@storybook/react-vite";
 import {StyleSheet} from "aphrodite";
-import {View} from "@khanacademy/wonder-blocks-core";
-import {LabelLarge} from "@khanacademy/wonder-blocks-typography";
+import {StyleType, View} from "@khanacademy/wonder-blocks-core";
+import {BodyText} from "@khanacademy/wonder-blocks-typography";
 import {sizing} from "@khanacademy/wonder-blocks-tokens";
 
 type Props = {
-    scenarios: {name: string; props: StrictArgs}[];
+    scenarios: {
+        name: string;
+        props: StrictArgs;
+        decorator?: React.ReactElement;
+    }[];
     children: (props: any, name: string) => React.ReactNode;
+    styles?: {
+        root?: StyleType;
+    };
 };
 
 /**
@@ -16,14 +23,20 @@ type Props = {
  * Normally, ScenariosLayout is used for different cases at rest state.
  */
 export const ScenariosLayout = (props: Props) => {
-    const {scenarios, children} = props;
+    const {scenarios, children, styles: stylesProp} = props;
     return (
-        <View style={styles.container}>
+        <View style={[styles.container, stylesProp?.root]}>
             {scenarios.map((scenario) => {
+                const renderer = children(scenario.props, scenario.name);
+                const {decorator: Decorator} = scenario;
                 return (
                     <View key={scenario.name} style={styles.scenario}>
-                        <LabelLarge>{scenario.name}</LabelLarge>
-                        {children(scenario.props, scenario.name)}
+                        <BodyText weight="bold">{scenario.name}</BodyText>
+                        {Decorator
+                            ? React.cloneElement(Decorator, {
+                                  children: renderer,
+                              })
+                            : renderer}
                     </View>
                 );
             })}
@@ -38,6 +51,6 @@ const styles = StyleSheet.create({
     },
     scenario: {
         gap: sizing.size_080,
-        maxWidth: "100%",
+        maxInlineSize: "100%",
     },
 });

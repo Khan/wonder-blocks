@@ -1,4 +1,4 @@
-import {Meta, Canvas} from "@storybook/blocks";
+import {Meta, Canvas} from "@storybook/addon-docs/blocks";
 import * as ThemeSwitcherStories from "./theme-switcher.stories";
 
 <Meta of={ThemeSwitcherStories} />
@@ -27,3 +27,8 @@ This example demonstrates how to use the `ThemeSwitcher` component to switch
 between themes.
 
 <Canvas of={ThemeSwitcherStories.Default} />
+
+This example demonstrates that components using the 'default' theme can be
+nested within components using the 'thunderblocks' theme.
+
+<Canvas of={ThemeSwitcherStories.Nested} />

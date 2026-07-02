@@ -1,21 +1,19 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
-import type {Meta, StoryObj} from "@storybook/react";
+import type {Meta, StoryObj} from "@storybook/react-vite";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
-import {semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
-import {Body, LabelLarge} from "@khanacademy/wonder-blocks-typography";
+import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
+import {BodyText} from "@khanacademy/wonder-blocks-typography";
 
 import {PopoverContentCore} from "@khanacademy/wonder-blocks-popover";
 import packageConfig from "../../packages/wonder-blocks-popover/package.json";
 import ComponentInfo from "../components/component-info";
 import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
 
-// NOTE: We are reusing an existing Cell SB Story to test how Popovers can be
-// composed by Cells.
-import {ClickableDetailCell} from "../wonder-blocks-cell/detail-cell.stories";
 import popoverContentCoreArgtypes from "./popover-content-core.argtypes";
+import {DetailCell} from "@khanacademy/wonder-blocks-cell";
 
 export default {
     title: "Packages / Popover / PopoverContentCore",
@@ -44,28 +42,28 @@ const styles = StyleSheet.create({
     popoverWithIcon: {
         alignItems: "center",
         flexDirection: "row",
-        gap: spacing.medium_16,
+        gap: sizing.size_160,
     },
     popoverWithCell: {
         padding: 0,
     },
     customPopover: {
-        maxWidth: spacing.medium_16 * 25,
-        width: spacing.medium_16 * 25,
+        maxInlineSize: `calc(${sizing.size_160} * 25)`,
+        width: `calc(${sizing.size_160} * 25)`,
         textAlign: "center",
     },
     row: {
         flexDirection: "row",
         justifyContent: "center",
-        padding: `${spacing.small_12}px 0`,
+        padding: `${sizing.size_120} 0`,
     },
     action: {
-        backgroundColor: "transparent",
+        backgroundColor: semanticColor.core.transparent,
         border: "none",
-        color: semanticColor.text.inverse,
+        color: semanticColor.core.foreground.knockout.default,
         cursor: "pointer",
-        margin: spacing.small_12,
-        padding: spacing.xxSmall_6,
+        margin: sizing.size_120,
+        padding: sizing.size_060,
         alignItems: "center",
         justifyContent: "center",
     },
@@ -79,10 +77,12 @@ export const WithIcon: StoryComponentType = {
             <>
                 <PhosphorIcon size="large" icon={IconMappings.article} />
                 <View>
-                    <LabelLarge id="custom-popover-title">
+                    <BodyText weight="bold" id="custom-popover-title">
                         This is an article
-                    </LabelLarge>
-                    <Body id="custom-popover-content">With the content</Body>
+                    </BodyText>
+                    <BodyText id="custom-popover-content">
+                        With the content
+                    </BodyText>
                 </View>
             </>
         ),
@@ -92,9 +92,6 @@ export const WithIcon: StoryComponentType = {
     render: (args) => <PopoverContentCore {...args} />,
 };
 
-// NOTE: Adding a wrapper to cast the component so Storybook doesn't complain.
-const ClickableDetailCellWrapper = ClickableDetailCell as React.ElementType;
-
 /**
  * Popovers can also benefit from other Wonder Blocks components. In this
  * example, we are using the `DetailCell` component embedded as part of the
@@ -103,7 +100,22 @@ const ClickableDetailCellWrapper = ClickableDetailCell as React.ElementType;
 export const WithDetailCell: StoryComponentType = {
     args: {
         // use the composed DetailCell component
-        children: <ClickableDetailCellWrapper {...ClickableDetailCell.args} />,
+        children: (
+            <DetailCell
+                title="Title for article item"
+                subtitle1="Subtitle for article item"
+                subtitle2="Subtitle for article item"
+                leftAccessory={
+                    <PhosphorIcon
+                        icon={IconMappings.playCircle}
+                        size="medium"
+                    />
+                }
+                rightAccessory={<PhosphorIcon icon={IconMappings.caretRight} />}
+                onClick={() => {}}
+                aria-label="Press to navigate to the article"
+            />
+        ),
         style: styles.popoverWithCell,
     },
     render: (args) => <PopoverContentCore {...args} />,

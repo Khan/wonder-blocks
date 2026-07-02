@@ -1,9 +1,9 @@
-import {Meta} from "@storybook/blocks";
+import {Meta} from "@storybook/addon-docs/blocks";
 import {StyleSheet} from "aphrodite";
 
 import {addStyle, View} from "@khanacademy/wonder-blocks-core";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
-import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {color, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {Caption} from "@khanacademy/wonder-blocks-typography";
 
 import ComponentGallery from "./components/gallery/component-gallery";
@@ -21,17 +21,17 @@ export const styles = StyleSheet.create({
     heroWrapper: {
         flexDirection: "row",
         minHeight: "50vh",
-        marginBottom: spacing.large_24,
+        marginBottom: sizing.size_240,
         [mobile]: {
             flexDirection: "column",
             minHeight: "auto",
-            marginTop: spacing.large_24,
+            marginTop: sizing.size_240,
         },
     },
     heroBody: {
         alignSelf: "center",
-        gap: spacing.medium_16,
-        padding: `0 ${spacing.xxxLarge_64}px 0 0`,
+        gap: sizing.size_160,
+        padding: `0 ${sizing.size_640} 0 0`,
         [mobile]: {
             padding: 0,
         },
@@ -51,21 +51,21 @@ export const styles = StyleSheet.create({
 <View style={styles.heroWrapper}>
     <View style={styles.heroBody}>
         <h1>Wonder Blocks (Web)</h1>
-        <p>
-            Components and utilities you can drop right into your experiences so
-            you can focus on solving the problems that really matter.
-        </p>
+
+        Components and utilities you can drop right into your experiences so you
+        can focus on solving the problems that really matter.
         <Caption style={styles.heroCaption}>
             <strong>Note:</strong> These components are only available for use
             on the web (including mobile web).
         </Caption>
-        <Strut size={spacing.large_24} />
+        <Strut size={24} />
     </View>
     <StyledImage
         alt="A illustration that shows multiple components."
         src="./wb-overview.png"
         style={styles.heroImage}
     />
+
 </View>
 
 ## Overview
@@ -74,23 +74,23 @@ Since our design system is a constant work in progress, these components vary in
 degrees of completion. Follow these guidelines to ensure the smoothest process
 from design to development:
 
--   Some components currently have limitations, so read the guidelines carefully
-    to ensure that you're not designing something that will be difficult (or
-    impossible) for your engineers to build.
--   Some components aren't complete yet, so while you may see that component
-    being used in the wild, know that these aren't official components yet. As
-    such, they haven't been stress-tested and may not meet the quality standards
-    your team needs (eg, they may not be built with accessibility in mind). They
-    could also be difficult for your engineering team to build, so check with
-    them early on.
--   A component you need may not be listed in here, in which case you're more
-    than welcome to propose it to the design systems team.
+- Some components currently have limitations, so read the guidelines carefully
+  to ensure that you're not designing something that will be difficult (or
+  impossible) for your engineers to build.
+- Some components aren't complete yet, so while you may see that component
+  being used in the wild, know that these aren't official components yet. As
+  such, they haven't been stress-tested and may not meet the quality standards
+  your team needs (eg, they may not be built with accessibility in mind). They
+  could also be difficult for your engineering team to build, so check with
+  them early on.
+- A component you need may not be listed in here, in which case you're more
+  than welcome to propose it to the design systems team.
 
 ## Resources
 
--   [Figma](https://www.figma.com/file/VbVu3h2BpBhH80niq101MHHE/Wonder-Blocks)
--   [GitHub](https://github.com/Khan/wonder-blocks#getting-started)
--   [Development setup](https://khanacademy.atlassian.net/wiki/spaces/WB/pages/100827261/Developing+Web+Wonder+Blocks)
+- <a href="https://khanacademy.atlassian.net/wiki/spaces/WB/pages/4396089552/Resources#Figma">Figma</a>
+- [GitHub](https://github.com/Khan/wonder-blocks#getting-started)
+- [Development setup](https://khanacademy.atlassian.net/wiki/spaces/WB/pages/100827261/Developing+Web+Wonder+Blocks)
 
 ## Feedback
 

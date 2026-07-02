@@ -1,5 +1,531 @@
 # @khanacademy/wonder-blocks-labeled-field
 
+## 4.1.5
+
+### Patch Changes
+
+- Updated dependencies [0735aef]
+    - @khanacademy/wonder-blocks-tokens@16.8.1
+    - @khanacademy/wonder-blocks-layout@3.1.56
+    - @khanacademy/wonder-blocks-typography@4.3.9
+
+## 4.1.4
+
+### Patch Changes
+
+- Updated dependencies [f13552a]
+    - @khanacademy/wonder-blocks-tokens@16.8.0
+    - @khanacademy/wonder-blocks-layout@3.1.55
+    - @khanacademy/wonder-blocks-typography@4.3.8
+
+## 4.1.3
+
+### Patch Changes
+
+- Updated dependencies [0907f64]
+- Updated dependencies [9773405]
+- Updated dependencies [9773405]
+- Updated dependencies [022e775]
+- Updated dependencies [e181c15]
+- Updated dependencies [c033245]
+- Updated dependencies [a2bbc0a]
+    - @khanacademy/wonder-blocks-tokens@16.7.0
+    - @khanacademy/wonder-blocks-layout@3.1.54
+    - @khanacademy/wonder-blocks-typography@4.3.7
+
+## 4.1.2
+
+### Patch Changes
+
+- Updated dependencies [a676ce6]
+    - @khanacademy/wonder-blocks-tokens@16.6.0
+    - @khanacademy/wonder-blocks-layout@3.1.53
+    - @khanacademy/wonder-blocks-typography@4.3.6
+
+## 4.1.1
+
+### Patch Changes
+
+- 40cb70f: Add `require-logical-properties-for-rtl` ESLint rule to `eslint-plugin-wonder-blocks` recommended config, and migrate all Wonder Blocks component source files to use CSS logical properties for improved RTL layout support.
+- 40cb70f: Enable RTL logical-properties ESLint rule in recommended config
+- Updated dependencies [40cb70f]
+- Updated dependencies [40cb70f]
+    - @khanacademy/wonder-blocks-core@12.4.4
+    - @khanacademy/wonder-blocks-layout@3.1.52
+    - @khanacademy/wonder-blocks-typography@4.3.5
+
+## 4.1.0
+
+### Minor Changes
+
+- 27a211d: Add support for SYL Dark theme
+
+### Patch Changes
+
+- Updated dependencies [44bde5e]
+- Updated dependencies [27a211d]
+    - @khanacademy/wonder-blocks-tokens@16.5.0
+    - @khanacademy/wonder-blocks-layout@3.1.51
+    - @khanacademy/wonder-blocks-typography@4.3.4
+
+## 4.0.20
+
+### Patch Changes
+
+- Updated dependencies [245229a]
+    - @khanacademy/wonder-blocks-tokens@16.4.1
+    - @khanacademy/wonder-blocks-layout@3.1.50
+    - @khanacademy/wonder-blocks-typography@4.3.3
+
+## 4.0.19
+
+### Patch Changes
+
+- Updated dependencies [0fadf9f]
+- Updated dependencies [c1c74df]
+- Updated dependencies [72c5272]
+    - @khanacademy/wonder-blocks-layout@3.1.49
+    - @khanacademy/wonder-blocks-tokens@16.4.0
+    - @khanacademy/wonder-blocks-typography@4.3.2
+
+## 4.0.18
+
+### Patch Changes
+
+- Updated dependencies [40f217b]
+    - @khanacademy/wonder-blocks-tokens@16.3.0
+    - @khanacademy/wonder-blocks-layout@3.1.48
+    - @khanacademy/wonder-blocks-typography@4.3.1
+
+## 4.0.17
+
+### Patch Changes
+
+- Updated dependencies [488728a]
+- Updated dependencies [00e6dda]
+    - @khanacademy/wonder-blocks-tokens@16.2.0
+    - @khanacademy/wonder-blocks-typography@4.3.0
+    - @khanacademy/wonder-blocks-layout@3.1.47
+
+## 4.0.16
+
+### Patch Changes
+
+- Updated dependencies [358eb9b]
+    - @khanacademy/wonder-blocks-tokens@16.1.0
+    - @khanacademy/wonder-blocks-layout@3.1.46
+    - @khanacademy/wonder-blocks-typography@4.2.31
+
+## 4.0.15
+
+### Patch Changes
+
+- Updated dependencies [c75abe9]
+- Updated dependencies [c75abe9]
+- Updated dependencies [530d692]
+    - @khanacademy/wonder-blocks-tokens@16.0.0
+    - @khanacademy/wonder-blocks-layout@3.1.45
+    - @khanacademy/wonder-blocks-typography@4.2.30
+
+## 4.0.14
+
+### Patch Changes
+
+- 8bb7ada: Updates styles to reflect new core.foreground tokens
+- Updated dependencies [8bb7ada]
+    - @khanacademy/wonder-blocks-tokens@15.0.0
+    - @khanacademy/wonder-blocks-layout@3.1.44
+    - @khanacademy/wonder-blocks-typography@4.2.29
+
+## 4.0.13
+
+### Patch Changes
+
+- Updated dependencies [d6ae5fb]
+    - @khanacademy/wonder-blocks-core@12.4.3
+    - @khanacademy/wonder-blocks-layout@3.1.43
+    - @khanacademy/wonder-blocks-tokens@14.1.3
+    - @khanacademy/wonder-blocks-typography@4.2.28
+
+## 4.0.12
+
+### Patch Changes
+
+- 0530fb2: LabeledField: Fix passing down readOnly prop so it is a boolean
+
+## 4.0.11
+
+### Patch Changes
+
+- Updated dependencies [70d6c08]
+    - @khanacademy/wonder-blocks-tokens@14.1.3
+    - @khanacademy/wonder-blocks-layout@3.1.42
+    - @khanacademy/wonder-blocks-typography@4.2.27
+
+## 4.0.10
+
+### Patch Changes
+
+- 8a36c70: Re-publish to publish with Trusted Publishing
+- 3e0d137: Re-publishing via Trusted Publishing
+- Updated dependencies [8a36c70]
+- Updated dependencies [3e0d137]
+    - @khanacademy/wonder-blocks-core@12.4.2
+    - @khanacademy/wonder-blocks-layout@3.1.41
+    - @khanacademy/wonder-blocks-tokens@14.1.2
+    - @khanacademy/wonder-blocks-typography@4.2.26
+
+## 4.0.9
+
+### Patch Changes
+
+- Updated dependencies [540371d]
+    - @khanacademy/wonder-blocks-tokens@14.1.1
+    - @khanacademy/wonder-blocks-layout@3.1.40
+    - @khanacademy/wonder-blocks-typography@4.2.25
+
+## 4.0.8
+
+### Patch Changes
+
+- Updated dependencies [272bf31]
+    - @khanacademy/wonder-blocks-tokens@14.1.0
+    - @khanacademy/wonder-blocks-layout@3.1.39
+    - @khanacademy/wonder-blocks-typography@4.2.24
+
+## 4.0.7
+
+### Patch Changes
+
+- 6d5c485: Include provenance information when publishing to npmjs
+- Updated dependencies [6d5c485]
+    - @khanacademy/wonder-blocks-core@12.4.1
+    - @khanacademy/wonder-blocks-layout@3.1.38
+    - @khanacademy/wonder-blocks-tokens@14.0.1
+    - @khanacademy/wonder-blocks-typography@4.2.23
+
+## 4.0.6
+
+### Patch Changes
+
+- Updated dependencies [6963849]
+- Updated dependencies [f627dca]
+    - @khanacademy/wonder-blocks-tokens@14.0.0
+    - @khanacademy/wonder-blocks-layout@3.1.37
+    - @khanacademy/wonder-blocks-typography@4.2.22
+
+## 4.0.5
+
+### Patch Changes
+
+- Updated dependencies [ede6085]
+- Updated dependencies [a70f274]
+    - @khanacademy/wonder-blocks-tokens@13.0.0
+    - @khanacademy/wonder-blocks-layout@3.1.36
+    - @khanacademy/wonder-blocks-typography@4.2.21
+
+## 4.0.4
+
+### Patch Changes
+
+- Updated dependencies [1feec01]
+    - @khanacademy/wonder-blocks-tokens@12.2.1
+    - @khanacademy/wonder-blocks-layout@3.1.35
+    - @khanacademy/wonder-blocks-typography@4.2.20
+
+## 4.0.3
+
+### Patch Changes
+
+- Updated dependencies [5a02279]
+- Updated dependencies [aa6ad92]
+- Updated dependencies [aa6ad92]
+    - @khanacademy/wonder-blocks-tokens@12.2.0
+    - @khanacademy/wonder-blocks-layout@3.1.34
+    - @khanacademy/wonder-blocks-typography@4.2.19
+
+## 4.0.2
+
+### Patch Changes
+
+- Updated dependencies [4aad557]
+    - @khanacademy/wonder-blocks-tokens@12.1.0
+    - @khanacademy/wonder-blocks-layout@3.1.33
+    - @khanacademy/wonder-blocks-typography@4.2.18
+
+## 4.0.1
+
+### Patch Changes
+
+- Updated dependencies [1334e74]
+    - @khanacademy/wonder-blocks-core@12.4.0
+    - @khanacademy/wonder-blocks-layout@3.1.32
+    - @khanacademy/wonder-blocks-typography@4.2.17
+
+## 4.0.0
+
+### Major Changes
+
+- 3c3d8fb: LabeledField: Remove `required` prop. The upcoming `contextLabel` prop should be used instead for visual labels indicating if a field is required or optional. Field components will need to have their `required` prop set explicitly
+
+### Minor Changes
+
+- 98f4272: LabeledField: Add `contextLabel` prop
+- b3dd28f: LabeledField: Adds `additionalHelperMessage` prop
+
+### Patch Changes
+
+- 311220d: LabeledField: Minor styling updates to handle text wrapping scenarios
+- e559ab0: LabeledField: Update spacing
+- Updated dependencies [e559ab0]
+- Updated dependencies [98f4272]
+- Updated dependencies [b3dd28f]
+- Updated dependencies [3c3d8fb]
+    - @khanacademy/wonder-blocks-tokens@12.0.2
+    - @khanacademy/wonder-blocks-layout@3.1.31
+    - @khanacademy/wonder-blocks-typography@4.2.16
+
+## 3.2.2
+
+### Patch Changes
+
+- Updated dependencies [9aad939]
+    - @khanacademy/wonder-blocks-tokens@12.0.1
+    - @khanacademy/wonder-blocks-layout@3.1.30
+    - @khanacademy/wonder-blocks-typography@4.2.15
+
+## 3.2.1
+
+### Patch Changes
+
+- Updated dependencies [eafcfa3]
+- Updated dependencies [956f8bd]
+- Updated dependencies [eafcfa3]
+- Updated dependencies [b42b694]
+- Updated dependencies [956f8bd]
+    - @khanacademy/wonder-blocks-tokens@12.0.0
+    - @khanacademy/wonder-blocks-layout@3.1.29
+    - @khanacademy/wonder-blocks-typography@4.2.14
+
+## 3.2.0
+
+### Minor Changes
+
+- 03415d1: `LabeledField`: Adds `readOnlyMessage` prop for helpful text related to why a field is read only. Also updates disabled styling for the description and the spacing between the error icon and text for TB.
+
+### Patch Changes
+
+- Updated dependencies [03415d1]
+    - @khanacademy/wonder-blocks-tokens@11.4.1
+    - @khanacademy/wonder-blocks-layout@3.1.28
+    - @khanacademy/wonder-blocks-typography@4.2.13
+
+## 3.1.2
+
+### Patch Changes
+
+- Updated dependencies [4d207b1]
+    - @khanacademy/wonder-blocks-tokens@11.4.0
+    - @khanacademy/wonder-blocks-layout@3.1.27
+    - @khanacademy/wonder-blocks-typography@4.2.12
+
+## 3.1.1
+
+### Patch Changes
+
+- Updated dependencies [7cd0ebf]
+- Updated dependencies [51b6e69]
+- Updated dependencies [51b6e69]
+    - @khanacademy/wonder-blocks-tokens@11.3.1
+    - @khanacademy/wonder-blocks-layout@3.1.26
+    - @khanacademy/wonder-blocks-typography@4.2.11
+
+## 3.1.0
+
+### Minor Changes
+
+- dddbe55: Support thunderblocks theming in LabeledField component. Includes themed styles for the label if the field is disabled
+
+### Patch Changes
+
+- 6b05521: Update semantic color token, typography and sizing usage
+- a98fe6c: LabeledField: Show the error icon with the error message in the TB theme
+- Updated dependencies [a98fe6c]
+- Updated dependencies [e21e448]
+- Updated dependencies [e21e448]
+- Updated dependencies [dddbe55]
+    - @khanacademy/wonder-blocks-tokens@11.3.0
+    - @khanacademy/wonder-blocks-typography@4.2.10
+    - @khanacademy/wonder-blocks-layout@3.1.25
+
+## 3.0.22
+
+### Patch Changes
+
+- Updated dependencies [d8716ab]
+    - @khanacademy/wonder-blocks-tokens@11.2.2
+    - @khanacademy/wonder-blocks-layout@3.1.24
+    - @khanacademy/wonder-blocks-typography@4.2.9
+
+## 3.0.21
+
+### Patch Changes
+
+- Updated dependencies [de9435a]
+- Updated dependencies [f50aafc]
+    - @khanacademy/wonder-blocks-tokens@11.2.1
+    - @khanacademy/wonder-blocks-layout@3.1.23
+    - @khanacademy/wonder-blocks-typography@4.2.8
+
+## 3.0.20
+
+### Patch Changes
+
+- Updated dependencies [e457d8c]
+    - @khanacademy/wonder-blocks-tokens@11.2.0
+    - @khanacademy/wonder-blocks-layout@3.1.22
+    - @khanacademy/wonder-blocks-typography@4.2.7
+
+## 3.0.19
+
+### Patch Changes
+
+- Updated dependencies [f26858a]
+    - @khanacademy/wonder-blocks-tokens@11.1.1
+    - @khanacademy/wonder-blocks-layout@3.1.21
+    - @khanacademy/wonder-blocks-typography@4.2.6
+
+## 3.0.18
+
+### Patch Changes
+
+- Updated dependencies [705ee01]
+    - @khanacademy/wonder-blocks-typography@4.2.5
+
+## 3.0.17
+
+### Patch Changes
+
+- Updated dependencies [0f4f771]
+    - @khanacademy/wonder-blocks-tokens@11.1.0
+    - @khanacademy/wonder-blocks-layout@3.1.20
+    - @khanacademy/wonder-blocks-typography@4.2.4
+
+## 3.0.16
+
+### Patch Changes
+
+- Updated dependencies [1ac2ba7]
+- Updated dependencies [0cb7a69]
+- Updated dependencies [cbf58b0]
+    - @khanacademy/wonder-blocks-tokens@11.0.0
+    - @khanacademy/wonder-blocks-layout@3.1.19
+    - @khanacademy/wonder-blocks-typography@4.2.3
+
+## 3.0.15
+
+### Patch Changes
+
+- Updated dependencies [7811eb1]
+    - @khanacademy/wonder-blocks-tokens@10.6.0
+    - @khanacademy/wonder-blocks-layout@3.1.18
+    - @khanacademy/wonder-blocks-typography@4.2.2
+
+## 3.0.14
+
+### Patch Changes
+
+- Updated dependencies [8468d8d]
+    - @khanacademy/wonder-blocks-tokens@10.5.0
+    - @khanacademy/wonder-blocks-layout@3.1.17
+    - @khanacademy/wonder-blocks-typography@4.2.1
+
+## 3.0.13
+
+### Patch Changes
+
+- Updated dependencies [6998d03]
+    - @khanacademy/wonder-blocks-typography@4.2.0
+
+## 3.0.12
+
+### Patch Changes
+
+- Updated dependencies [b1ee2b4]
+- Updated dependencies [7abcccf]
+- Updated dependencies [9bacc1a]
+- Updated dependencies [9bacc1a]
+- Updated dependencies [1c3c335]
+- Updated dependencies [689f5d3]
+- Updated dependencies [7d2a646]
+    - @khanacademy/wonder-blocks-tokens@10.4.0
+    - @khanacademy/wonder-blocks-typography@4.1.0
+    - @khanacademy/wonder-blocks-layout@3.1.16
+
+## 3.0.11
+
+### Patch Changes
+
+- Updated dependencies [dd76e7c]
+- Updated dependencies [dd76e7c]
+    - @khanacademy/wonder-blocks-typography@4.0.0
+    - @khanacademy/wonder-blocks-tokens@10.3.0
+    - @khanacademy/wonder-blocks-core@12.3.0
+    - @khanacademy/wonder-blocks-layout@3.1.15
+
+## 3.0.10
+
+### Patch Changes
+
+- Updated dependencies [1338494]
+    - @khanacademy/wonder-blocks-tokens@10.2.1
+    - @khanacademy/wonder-blocks-layout@3.1.14
+    - @khanacademy/wonder-blocks-typography@3.2.4
+
+## 3.0.9
+
+### Patch Changes
+
+- Updated dependencies [c7d95bf]
+- Updated dependencies [668093b]
+    - @khanacademy/wonder-blocks-tokens@10.2.0
+    - @khanacademy/wonder-blocks-core@12.3.0
+    - @khanacademy/wonder-blocks-layout@3.1.13
+    - @khanacademy/wonder-blocks-typography@3.2.3
+
+## 3.0.8
+
+### Patch Changes
+
+- Updated dependencies [a1be4c5]
+- Updated dependencies [d00a6f1]
+- Updated dependencies [abf5496]
+- Updated dependencies [812c167]
+    - @khanacademy/wonder-blocks-tokens@10.1.0
+    - @khanacademy/wonder-blocks-layout@3.1.12
+    - @khanacademy/wonder-blocks-typography@3.2.2
+
+## 3.0.7
+
+### Patch Changes
+
+- Updated dependencies [28fa0c0]
+- Updated dependencies [28fa0c0]
+    - @khanacademy/wonder-blocks-core@12.3.0
+    - @khanacademy/wonder-blocks-layout@3.1.11
+    - @khanacademy/wonder-blocks-typography@3.2.1
+
+## 3.0.6
+
+### Patch Changes
+
+- Updated dependencies [b9e4946]
+- Updated dependencies [b9e4946]
+    - @khanacademy/wonder-blocks-tokens@10.0.0
+    - @khanacademy/wonder-blocks-typography@3.2.0
+    - @khanacademy/wonder-blocks-layout@3.1.10
+    - @khanacademy/wonder-blocks-core@12.2.1
+
 ## 3.0.5
 
 ### Patch Changes

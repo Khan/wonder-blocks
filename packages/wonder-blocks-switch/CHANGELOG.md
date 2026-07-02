@@ -1,5 +1,518 @@
 # @khanacademy/wonder-blocks-switch
 
+## 3.4.5
+
+### Patch Changes
+
+- Updated dependencies [0735aef]
+    - @khanacademy/wonder-blocks-tokens@16.8.1
+    - @khanacademy/wonder-blocks-icon@5.3.19
+    - @khanacademy/wonder-blocks-styles@0.2.49
+
+## 3.4.4
+
+### Patch Changes
+
+- Updated dependencies [f13552a]
+    - @khanacademy/wonder-blocks-tokens@16.8.0
+    - @khanacademy/wonder-blocks-icon@5.3.18
+    - @khanacademy/wonder-blocks-styles@0.2.48
+
+## 3.4.3
+
+### Patch Changes
+
+- be4306d: Update token usage to support SYL Dark. Update disabled styling
+- Updated dependencies [ddcaaeb]
+- Updated dependencies [0907f64]
+- Updated dependencies [9773405]
+- Updated dependencies [9773405]
+- Updated dependencies [022e775]
+- Updated dependencies [e181c15]
+- Updated dependencies [c033245]
+- Updated dependencies [a2bbc0a]
+    - @khanacademy/wonder-blocks-icon@5.3.17
+    - @khanacademy/wonder-blocks-tokens@16.7.0
+    - @khanacademy/wonder-blocks-styles@0.2.47
+
+## 3.4.2
+
+### Patch Changes
+
+- Updated dependencies [a676ce6]
+    - @khanacademy/wonder-blocks-tokens@16.6.0
+    - @khanacademy/wonder-blocks-icon@5.3.16
+    - @khanacademy/wonder-blocks-styles@0.2.46
+
+## 3.4.1
+
+### Patch Changes
+
+- 40cb70f: Add `require-logical-properties-for-rtl` ESLint rule to `eslint-plugin-wonder-blocks` recommended config, and migrate all Wonder Blocks component source files to use CSS logical properties for improved RTL layout support.
+- 40cb70f: Enable RTL logical-properties ESLint rule in recommended config
+- Updated dependencies [40cb70f]
+- Updated dependencies [40cb70f]
+    - @khanacademy/wonder-blocks-core@12.4.4
+    - @khanacademy/wonder-blocks-icon@5.3.15
+
+## 3.4.0
+
+### Minor Changes
+
+- 27a211d: Add support for SYL Dark theme
+
+### Patch Changes
+
+- Updated dependencies [44bde5e]
+- Updated dependencies [27a211d]
+    - @khanacademy/wonder-blocks-tokens@16.5.0
+    - @khanacademy/wonder-blocks-theming@4.1.0
+    - @khanacademy/wonder-blocks-icon@5.3.14
+    - @khanacademy/wonder-blocks-styles@0.2.45
+
+## 3.3.34
+
+### Patch Changes
+
+- Updated dependencies [245229a]
+    - @khanacademy/wonder-blocks-tokens@16.4.1
+    - @khanacademy/wonder-blocks-icon@5.3.13
+    - @khanacademy/wonder-blocks-styles@0.2.44
+
+## 3.3.33
+
+### Patch Changes
+
+- Updated dependencies [c1c74df]
+- Updated dependencies [72c5272]
+    - @khanacademy/wonder-blocks-tokens@16.4.0
+    - @khanacademy/wonder-blocks-icon@5.3.12
+    - @khanacademy/wonder-blocks-styles@0.2.43
+
+## 3.3.32
+
+### Patch Changes
+
+- Updated dependencies [40f217b]
+    - @khanacademy/wonder-blocks-tokens@16.3.0
+    - @khanacademy/wonder-blocks-icon@5.3.11
+    - @khanacademy/wonder-blocks-styles@0.2.42
+
+## 3.3.31
+
+### Patch Changes
+
+- Updated dependencies [488728a]
+    - @khanacademy/wonder-blocks-tokens@16.2.0
+    - @khanacademy/wonder-blocks-icon@5.3.10
+    - @khanacademy/wonder-blocks-styles@0.2.41
+
+## 3.3.30
+
+### Patch Changes
+
+- Updated dependencies [358eb9b]
+    - @khanacademy/wonder-blocks-tokens@16.1.0
+    - @khanacademy/wonder-blocks-icon@5.3.9
+    - @khanacademy/wonder-blocks-styles@0.2.40
+
+## 3.3.29
+
+### Patch Changes
+
+- Updated dependencies [c75abe9]
+- Updated dependencies [c75abe9]
+- Updated dependencies [530d692]
+    - @khanacademy/wonder-blocks-tokens@16.0.0
+    - @khanacademy/wonder-blocks-icon@5.3.8
+    - @khanacademy/wonder-blocks-styles@0.2.39
+
+## 3.3.28
+
+### Patch Changes
+
+- 12e04c3: Update component documentation for the `disabled` props to include details about `aria-disabled` being set internally to keep an element focusable while in a disabled state
+
+## 3.3.27
+
+### Patch Changes
+
+- 8bb7ada: Update color tokens to use semanticColor.core.foreground.instructive changes
+- Updated dependencies [8bb7ada]
+    - @khanacademy/wonder-blocks-tokens@15.0.0
+    - @khanacademy/wonder-blocks-icon@5.3.7
+    - @khanacademy/wonder-blocks-styles@0.2.38
+
+## 3.3.26
+
+### Patch Changes
+
+- Updated dependencies [d6ae5fb]
+    - @khanacademy/wonder-blocks-core@12.4.3
+    - @khanacademy/wonder-blocks-icon@5.3.6
+    - @khanacademy/wonder-blocks-styles@0.2.37
+    - @khanacademy/wonder-blocks-theming@4.0.2
+    - @khanacademy/wonder-blocks-tokens@14.1.3
+
+## 3.3.25
+
+### Patch Changes
+
+- Updated dependencies [70d6c08]
+    - @khanacademy/wonder-blocks-tokens@14.1.3
+    - @khanacademy/wonder-blocks-icon@5.3.5
+    - @khanacademy/wonder-blocks-styles@0.2.37
+
+## 3.3.24
+
+### Patch Changes
+
+- 8a36c70: Re-publish to publish with Trusted Publishing
+- 3e0d137: Re-publishing via Trusted Publishing
+- Updated dependencies [8a36c70]
+- Updated dependencies [3e0d137]
+    - @khanacademy/wonder-blocks-core@12.4.2
+    - @khanacademy/wonder-blocks-icon@5.3.4
+    - @khanacademy/wonder-blocks-styles@0.2.36
+    - @khanacademy/wonder-blocks-theming@4.0.2
+    - @khanacademy/wonder-blocks-tokens@14.1.2
+
+## 3.3.23
+
+### Patch Changes
+
+- Updated dependencies [540371d]
+    - @khanacademy/wonder-blocks-tokens@14.1.1
+    - @khanacademy/wonder-blocks-icon@5.3.3
+    - @khanacademy/wonder-blocks-styles@0.2.35
+
+## 3.3.22
+
+### Patch Changes
+
+- Updated dependencies [272bf31]
+    - @khanacademy/wonder-blocks-tokens@14.1.0
+    - @khanacademy/wonder-blocks-icon@5.3.2
+    - @khanacademy/wonder-blocks-styles@0.2.34
+
+## 3.3.21
+
+### Patch Changes
+
+- 6d5c485: Include provenance information when publishing to npmjs
+- Updated dependencies [6d5c485]
+    - @khanacademy/wonder-blocks-core@12.4.1
+    - @khanacademy/wonder-blocks-icon@5.3.1
+    - @khanacademy/wonder-blocks-styles@0.2.33
+    - @khanacademy/wonder-blocks-theming@4.0.1
+    - @khanacademy/wonder-blocks-tokens@14.0.1
+
+## 3.3.20
+
+### Patch Changes
+
+- Updated dependencies [44f77b7]
+    - @khanacademy/wonder-blocks-icon@5.3.0
+
+## 3.3.19
+
+### Patch Changes
+
+- Updated dependencies [6963849]
+- Updated dependencies [f627dca]
+    - @khanacademy/wonder-blocks-tokens@14.0.0
+    - @khanacademy/wonder-blocks-icon@5.2.20
+    - @khanacademy/wonder-blocks-styles@0.2.32
+
+## 3.3.18
+
+### Patch Changes
+
+- Updated dependencies [ede6085]
+- Updated dependencies [a70f274]
+    - @khanacademy/wonder-blocks-tokens@13.0.0
+    - @khanacademy/wonder-blocks-icon@5.2.19
+    - @khanacademy/wonder-blocks-styles@0.2.31
+
+## 3.3.17
+
+### Patch Changes
+
+- Updated dependencies [1feec01]
+    - @khanacademy/wonder-blocks-styles@0.2.30
+    - @khanacademy/wonder-blocks-tokens@12.2.1
+    - @khanacademy/wonder-blocks-icon@5.2.18
+
+## 3.3.16
+
+### Patch Changes
+
+- aa6ad92: Move away from using `foreground.inverse` and `border.inverse` tokens in favour of the new knockout tokens
+- Updated dependencies [5a02279]
+- Updated dependencies [aa6ad92]
+- Updated dependencies [aa6ad92]
+- Updated dependencies [aa6ad92]
+    - @khanacademy/wonder-blocks-tokens@12.2.0
+    - @khanacademy/wonder-blocks-styles@0.2.29
+    - @khanacademy/wonder-blocks-icon@5.2.17
+
+## 3.3.15
+
+### Patch Changes
+
+- Updated dependencies [4aad557]
+    - @khanacademy/wonder-blocks-tokens@12.1.0
+    - @khanacademy/wonder-blocks-icon@5.2.16
+    - @khanacademy/wonder-blocks-styles@0.2.28
+
+## 3.3.14
+
+### Patch Changes
+
+- Updated dependencies [1334e74]
+    - @khanacademy/wonder-blocks-core@12.4.0
+    - @khanacademy/wonder-blocks-icon@5.2.15
+
+## 3.3.13
+
+### Patch Changes
+
+- Updated dependencies [e559ab0]
+- Updated dependencies [98f4272]
+- Updated dependencies [b3dd28f]
+- Updated dependencies [3c3d8fb]
+    - @khanacademy/wonder-blocks-tokens@12.0.2
+    - @khanacademy/wonder-blocks-icon@5.2.14
+    - @khanacademy/wonder-blocks-styles@0.2.27
+
+## 3.3.12
+
+### Patch Changes
+
+- Updated dependencies [9aad939]
+    - @khanacademy/wonder-blocks-tokens@12.0.1
+    - @khanacademy/wonder-blocks-icon@5.2.13
+    - @khanacademy/wonder-blocks-styles@0.2.26
+
+## 3.3.11
+
+### Patch Changes
+
+- eafcfa3: Replaces `semanticColor.icon` with `semanticColor.core.foreground` tokens
+- Updated dependencies [eafcfa3]
+- Updated dependencies [0f16c2e]
+- Updated dependencies [956f8bd]
+- Updated dependencies [956f8bd]
+- Updated dependencies [eafcfa3]
+- Updated dependencies [b42b694]
+- Updated dependencies [956f8bd]
+    - @khanacademy/wonder-blocks-tokens@12.0.0
+    - @khanacademy/wonder-blocks-theming@4.0.0
+    - @khanacademy/wonder-blocks-styles@0.2.25
+    - @khanacademy/wonder-blocks-icon@5.2.12
+
+## 3.3.10
+
+### Patch Changes
+
+- Updated dependencies [03415d1]
+    - @khanacademy/wonder-blocks-tokens@11.4.1
+    - @khanacademy/wonder-blocks-icon@5.2.11
+    - @khanacademy/wonder-blocks-styles@0.2.24
+
+## 3.3.9
+
+### Patch Changes
+
+- Updated dependencies [4d207b1]
+    - @khanacademy/wonder-blocks-tokens@11.4.0
+    - @khanacademy/wonder-blocks-icon@5.2.10
+    - @khanacademy/wonder-blocks-styles@0.2.23
+
+## 3.3.8
+
+### Patch Changes
+
+- Updated dependencies [7cd0ebf]
+- Updated dependencies [51b6e69]
+- Updated dependencies [51b6e69]
+    - @khanacademy/wonder-blocks-tokens@11.3.1
+    - @khanacademy/wonder-blocks-icon@5.2.9
+    - @khanacademy/wonder-blocks-styles@0.2.22
+
+## 3.3.7
+
+### Patch Changes
+
+- Updated dependencies [a98fe6c]
+- Updated dependencies [e21e448]
+- Updated dependencies [dddbe55]
+    - @khanacademy/wonder-blocks-tokens@11.3.0
+    - @khanacademy/wonder-blocks-icon@5.2.8
+    - @khanacademy/wonder-blocks-styles@0.2.21
+
+## 3.3.6
+
+### Patch Changes
+
+- Updated dependencies [d8716ab]
+    - @khanacademy/wonder-blocks-tokens@11.2.2
+    - @khanacademy/wonder-blocks-icon@5.2.7
+    - @khanacademy/wonder-blocks-styles@0.2.20
+
+## 3.3.5
+
+### Patch Changes
+
+- Updated dependencies [de9435a]
+- Updated dependencies [f50aafc]
+    - @khanacademy/wonder-blocks-tokens@11.2.1
+    - @khanacademy/wonder-blocks-icon@5.2.6
+    - @khanacademy/wonder-blocks-styles@0.2.19
+
+## 3.3.4
+
+### Patch Changes
+
+- Updated dependencies [e457d8c]
+    - @khanacademy/wonder-blocks-tokens@11.2.0
+    - @khanacademy/wonder-blocks-icon@5.2.5
+    - @khanacademy/wonder-blocks-styles@0.2.18
+
+## 3.3.3
+
+### Patch Changes
+
+- Updated dependencies [f26858a]
+    - @khanacademy/wonder-blocks-tokens@11.1.1
+    - @khanacademy/wonder-blocks-icon@5.2.4
+    - @khanacademy/wonder-blocks-styles@0.2.17
+
+## 3.3.2
+
+### Patch Changes
+
+- Updated dependencies [0f4f771]
+    - @khanacademy/wonder-blocks-tokens@11.1.0
+    - @khanacademy/wonder-blocks-icon@5.2.3
+    - @khanacademy/wonder-blocks-styles@0.2.16
+
+## 3.3.1
+
+### Patch Changes
+
+- Updated dependencies [1ac2ba7]
+- Updated dependencies [0cb7a69]
+- Updated dependencies [cbf58b0]
+- Updated dependencies [cbf58b0]
+    - @khanacademy/wonder-blocks-tokens@11.0.0
+    - @khanacademy/wonder-blocks-icon@5.2.2
+    - @khanacademy/wonder-blocks-styles@0.2.15
+
+## 3.3.0
+
+### Minor Changes
+
+- e8fc6e4: Add support for Thunderblocks theming
+
+### Patch Changes
+
+- Updated dependencies [7811eb1]
+    - @khanacademy/wonder-blocks-tokens@10.6.0
+    - @khanacademy/wonder-blocks-icon@5.2.1
+    - @khanacademy/wonder-blocks-styles@0.2.14
+
+## 3.2.10
+
+### Patch Changes
+
+- Updated dependencies [8468d8d]
+- Updated dependencies [308696e]
+- Updated dependencies [dc34e0c]
+- Updated dependencies [2cace08]
+- Updated dependencies [f714517]
+- Updated dependencies [8468d8d]
+    - @khanacademy/wonder-blocks-tokens@10.5.0
+    - @khanacademy/wonder-blocks-icon@5.2.0
+    - @khanacademy/wonder-blocks-styles@0.2.13
+
+## 3.2.9
+
+### Patch Changes
+
+- 7abcccf: Replace call sites to use `core.background` instead of `action`.
+- Updated dependencies [b1ee2b4]
+- Updated dependencies [7abcccf]
+- Updated dependencies [9bacc1a]
+- Updated dependencies [9bacc1a]
+- Updated dependencies [7abcccf]
+- Updated dependencies [1c3c335]
+- Updated dependencies [689f5d3]
+    - @khanacademy/wonder-blocks-tokens@10.4.0
+    - @khanacademy/wonder-blocks-styles@0.2.12
+
+## 3.2.8
+
+### Patch Changes
+
+- Updated dependencies [dd76e7c]
+    - @khanacademy/wonder-blocks-tokens@10.3.0
+    - @khanacademy/wonder-blocks-core@12.3.0
+    - @khanacademy/wonder-blocks-icon@5.1.4
+    - @khanacademy/wonder-blocks-styles@0.2.11
+    - @khanacademy/wonder-blocks-theming@3.4.0
+
+## 3.2.7
+
+### Patch Changes
+
+- Updated dependencies [1338494]
+    - @khanacademy/wonder-blocks-tokens@10.2.1
+    - @khanacademy/wonder-blocks-styles@0.2.10
+
+## 3.2.6
+
+### Patch Changes
+
+- Updated dependencies [c7d95bf]
+- Updated dependencies [668093b]
+    - @khanacademy/wonder-blocks-theming@3.4.0
+    - @khanacademy/wonder-blocks-tokens@10.2.0
+    - @khanacademy/wonder-blocks-core@12.3.0
+    - @khanacademy/wonder-blocks-icon@5.1.4
+    - @khanacademy/wonder-blocks-styles@0.2.9
+
+## 3.2.5
+
+### Patch Changes
+
+- Updated dependencies [a1be4c5]
+- Updated dependencies [d00a6f1]
+- Updated dependencies [abf5496]
+- Updated dependencies [812c167]
+    - @khanacademy/wonder-blocks-tokens@10.1.0
+    - @khanacademy/wonder-blocks-styles@0.2.8
+
+## 3.2.4
+
+### Patch Changes
+
+- Updated dependencies [28fa0c0]
+- Updated dependencies [28fa0c0]
+    - @khanacademy/wonder-blocks-core@12.3.0
+    - @khanacademy/wonder-blocks-icon@5.1.4
+
+## 3.2.3
+
+### Patch Changes
+
+- Updated dependencies [b9e4946]
+    - @khanacademy/wonder-blocks-tokens@10.0.0
+    - @khanacademy/wonder-blocks-styles@0.2.7
+    - @khanacademy/wonder-blocks-core@12.2.1
+    - @khanacademy/wonder-blocks-icon@5.1.3
+    - @khanacademy/wonder-blocks-theming@3.3.0
+
 ## 3.2.2
 
 ### Patch Changes

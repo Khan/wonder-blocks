@@ -1,3 +1,6 @@
+/* eslint-disable @khanacademy/wonder-blocks/no-raw-button */
+// This file implements the SelectOpener button primitive used by WB dropdowns —
+// it intentionally wraps addStyle("button") as its underlying DOM element.
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
@@ -5,15 +8,13 @@ import {keys, type AriaProps} from "@khanacademy/wonder-blocks-core";
 
 import {addStyle} from "@khanacademy/wonder-blocks-core";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
-import {LabelMedium} from "@khanacademy/wonder-blocks-typography";
-import {
-    border,
-    semanticColor,
-    spacing,
-} from "@khanacademy/wonder-blocks-tokens";
+import {BodyText} from "@khanacademy/wonder-blocks-typography";
+import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import caretDownIcon from "@phosphor-icons/core/bold/caret-down-bold.svg";
+import {focusStyles} from "@khanacademy/wonder-blocks-styles";
 import {DROPDOWN_ITEM_HEIGHT} from "../util/constants";
 import {OptionLabel} from "../util/types";
+import theme from "../theme";
 
 const StyledButton = addStyle("button");
 
@@ -25,8 +26,15 @@ type SelectOpenerProps = AriaProps & {
     /**
      * Whether the SelectOpener is disabled. If disabled, disallows interaction.
      * Default false.
+     *
+     * Internally, the `aria-disabled` attribute will be set so that the
+     * element remains focusable and will be included in the tab order.
      */
     disabled: boolean;
+    /**
+     * Specifies if the dropdown is read-only. Defaults to false.
+     */
+    readOnly?: boolean;
     /**
      * Whether or not the input is in an error state. Defaults to false.
      */
@@ -65,6 +73,7 @@ type SelectOpenerProps = AriaProps & {
 
 type DefaultProps = {
     disabled: SelectOpenerProps["disabled"];
+    readOnly: SelectOpenerProps["readOnly"];
     error: SelectOpenerProps["error"];
     isPlaceholder: SelectOpenerProps["isPlaceholder"];
 };
@@ -89,6 +98,7 @@ export default class SelectOpener extends React.Component<
 > {
     static defaultProps: DefaultProps = {
         disabled: false,
+        readOnly: false,
         error: false,
         isPlaceholder: false,
     };
@@ -131,6 +141,7 @@ export default class SelectOpener extends React.Component<
         const {
             children,
             disabled,
+            readOnly,
             error,
             id,
             isPlaceholder,
@@ -145,23 +156,33 @@ export default class SelectOpener extends React.Component<
             ...sharedProps
         } = this.props;
 
-        const stateStyles = _generateStyles(isPlaceholder, error);
-
         const iconColor = disabled
-            ? semanticColor.icon.disabled
-            : semanticColor.icon.primary;
+            ? semanticColor.core.foreground.disabled.default
+            : semanticColor.core.foreground.neutral.default;
 
         const style = [
             styles.shared,
-            stateStyles.default,
-            disabled && stateStyles.disabled,
-            !disabled && this.state.pressed && stateStyles.press,
+            styles.default,
+            disabled && styles.disabled,
+            error && styles.error,
+            isPlaceholder && styles.placeholder,
+            isPlaceholder && disabled && styles.disabledPlaceholder,
+            !disabled && !readOnly && this.state.pressed && styles.press,
+            readOnly && styles.readOnly,
+            // Re-apply placeholder styles for readOnly + placeholder combination
+            readOnly && isPlaceholder && styles.placeholder,
         ];
+
+        const allowInteraction = !disabled && !readOnly;
 
         return (
             <StyledButton
                 {...sharedProps}
-                aria-disabled={disabled}
+                // Set aria-disabled if readOnly or disabled state. If none are
+                // true, set to undefined so attribute isn't set
+                // Note: We set `aria-disabled` instead of `aria-readonly` due to
+                // low browser + screen reader support for `aria-readonly` on comboboxes.
+                aria-disabled={readOnly || disabled || undefined}
                 aria-expanded={open ? "true" : "false"}
                 aria-invalid={error}
                 aria-label={ariaLabel ?? undefined}
@@ -174,18 +195,18 @@ export default class SelectOpener extends React.Component<
                 /* Note(marcysutton): type=button prevents form submits on click */
                 type="button"
                 style={style}
-                onClick={!disabled ? this.handleClick : undefined}
-                onKeyDown={!disabled ? this.handleKeyDown : undefined}
-                onKeyUp={!disabled ? this.handleKeyUp : undefined}
+                onClick={allowInteraction ? this.handleClick : undefined}
+                onKeyDown={allowInteraction ? this.handleKeyDown : undefined}
+                onKeyUp={allowInteraction ? this.handleKeyUp : undefined}
                 onBlur={onBlur}
             >
-                <LabelMedium style={styles.text}>
+                <BodyText tag="span" style={styles.text}>
                     {/* Note(tamarab): Prevents unwanted vertical
                                 shift for empty selection.
                         Note2(marcysutton): aria-hidden prevents "space"
                                 from being read in VoiceOver. */}
                     {children || <span aria-hidden="true">&nbsp;</span>}
-                </LabelMedium>
+                </BodyText>
                 <PhosphorIcon
                     icon={caretDownIcon}
                     color={iconColor}
@@ -198,6 +219,10 @@ export default class SelectOpener extends React.Component<
     }
 }
 
+// Use box shadow to make the border in the press state look thicker without
+// changing the border
+const PRESS_SHADOW = `0 0 0 ${border.width.thin} ${semanticColor.input.default.border}`;
+
 const styles = StyleSheet.create({
     // TODO: Dedupe with Button styles
     shared: {
@@ -205,15 +230,15 @@ const styles = StyleSheet.create({
         display: "inline-flex",
         alignItems: "center",
         justifyContent: "space-between",
-        color: semanticColor.text.primary,
+        color: semanticColor.core.foreground.neutral.strong,
         height: DROPDOWN_ITEM_HEIGHT,
         // This asymmetry arises from the Icon on the right side, which has
         // extra padding built in. To have the component look more balanced,
         // we need to take off some paddingRight here.
-        paddingLeft: spacing.medium_16,
-        paddingRight: spacing.small_12,
+        paddingInlineStart: theme.opener.layout.padding.inlineStart,
+        paddingInlineEnd: theme.opener.layout.padding.inlineEnd,
         borderWidth: 0,
-        borderRadius: border.radius.radius_040,
+        borderRadius: theme.opener.border.radius.rest,
         borderStyle: "solid",
         outline: "none",
         textDecoration: "none",
@@ -225,7 +250,7 @@ const styles = StyleSheet.create({
     },
 
     text: {
-        marginRight: spacing.xSmall_8,
+        marginInlineEnd: sizing.size_080,
         whiteSpace: "nowrap",
         userSelect: "none",
         overflow: "hidden",
@@ -233,113 +258,71 @@ const styles = StyleSheet.create({
     },
 
     caret: {
-        minWidth: 16,
+        minInlineSize: sizing.size_160,
+    },
+    /**
+     * Theming
+     */
+    default: {
+        background: semanticColor.input.default.background,
+        border: `${border.width.thin} solid ${semanticColor.input.default.border}`,
+        color: semanticColor.input.default.foreground,
+        cursor: "pointer",
+        ":active": {
+            boxShadow: PRESS_SHADOW,
+        },
+        ":focus": {
+            // Using :focus instead of :focus-visible to ensure the focus ring is
+            // visible when the button is focused (even when clicked). This makes
+            // the focus behaviour more consistent with the other field components.
+            ...focusStyles.focus[":focus-visible"],
+        },
+        [":focus:active" as any]: {
+            boxShadow: `${PRESS_SHADOW}, ${focusStyles.focus[":focus-visible"].boxShadow}`,
+        },
+    },
+    error: {
+        background: semanticColor.input.error.background,
+        border: `${theme.opener.border.width.error} solid ${semanticColor.input.error.border}`,
+        color: semanticColor.input.error.foreground,
+        [":focus:active" as any]: {
+            boxShadow: `${PRESS_SHADOW}, ${focusStyles.focus[":focus-visible"].boxShadow}`,
+        },
+    },
+    disabled: {
+        background: semanticColor.input.disabled.background,
+        border: `${border.width.thin} solid ${semanticColor.input.disabled.border}`,
+        color: semanticColor.input.disabled.foreground,
+        cursor: "not-allowed",
+        ":active": {
+            boxShadow: "none",
+        },
+        [":focus:active" as any]: {
+            boxShadow: focusStyles.focus[":focus-visible"].boxShadow,
+        },
+    },
+    press: {
+        boxShadow: PRESS_SHADOW,
+        ":focus-visible": {
+            // We merge the focus styles with the press styles so that the focus
+            // ring is visible when the button is pressed.
+            boxShadow: `${PRESS_SHADOW}, ${focusStyles.focus[":focus-visible"].boxShadow}`,
+        },
+    },
+    placeholder: {
+        color: semanticColor.input.default.placeholder,
+    },
+    disabledPlaceholder: {
+        color: semanticColor.input.disabled.placeholder,
+    },
+    readOnly: {
+        background: semanticColor.input.readOnly.background,
+        color: semanticColor.input.readOnly.text,
+        ":active": {
+            boxShadow: "none",
+        },
+        [":focus:active" as any]: {
+            boxShadow: focusStyles.focus[":focus-visible"].boxShadow,
+        },
     },
 });
-
-const stateStyles: Record<string, any> = {};
-
-const _generateStyles = (placeholder: boolean, error: boolean) => {
-    // "hash" the parameters
-    const styleKey = `${placeholder}-${error}`;
-    if (stateStyles[styleKey]) {
-        return stateStyles[styleKey];
-    }
-
-    // The different states that the component can be in.
-    const states = {
-        // Resting state
-        default: {
-            border: semanticColor.border.strong,
-            background: semanticColor.surface.primary,
-            foreground: semanticColor.text.primary,
-        },
-        disabled: {
-            border: semanticColor.action.secondary.disabled.border,
-            background: semanticColor.action.secondary.disabled.background,
-            // NOTE: This color is specific for form fields.
-            // TODO(WB-1895): Revisit disabled styles.
-            foreground: semanticColor.text.secondary,
-        },
-        // Form validation error state
-        error: {
-            border: semanticColor.status.critical.foreground,
-            background: semanticColor.status.critical.background,
-            foreground: semanticColor.text.primary,
-        },
-    };
-
-    // The color is based on the action color.
-    const actionType = error ? "destructive" : "progressive";
-    // NOTE: We are using the secondary action type for all the non-resting
-    // states as the opener is a bit different from a regular button in its
-    // resting/default state.
-    const action = semanticColor.action.secondary[actionType];
-
-    // TODO(WB-1868): Address outlineOffset to include hover and focus states
-    const sharedOutlineStyling = {
-        // Outline sits inside the border (inset)
-        outlineOffset: `calc(${border.width.medium} * -1)`,
-        outlineStyle: "solid",
-        outlineWidth: border.width.medium,
-    };
-
-    const focusStyling = {
-        ...sharedOutlineStyling,
-        outlineColor: semanticColor.focus.outer,
-    };
-    const hoverStyling = {
-        ...sharedOutlineStyling,
-        outlineColor: action.hover.border,
-    };
-    const pressStyling = {
-        background: action.press.background,
-        color: placeholder
-            ? error
-                ? semanticColor.text.secondary
-                : semanticColor.action.secondary.progressive.press.foreground
-            : semanticColor.text.primary,
-        outlineColor: action.press.border,
-        ...sharedOutlineStyling,
-    };
-
-    const currentState = error ? states.error : states.default;
-
-    const newStyles = {
-        default: {
-            background: currentState.background,
-            borderColor: currentState.border,
-            borderWidth: border.width.thin,
-            color: placeholder
-                ? semanticColor.text.secondary
-                : currentState.foreground,
-            ":hover:not([aria-disabled=true])": hoverStyling,
-            // Allow hover styles on non-touch devices only. This prevents an
-            // issue with hover being sticky on touch devices (e.g. mobile).
-            ["@media not (hover: hover)"]: {
-                ":hover:not([aria-disabled=true])": {
-                    borderColor: currentState.border,
-                    borderWidth: border.width.thin,
-                    paddingLeft: spacing.medium_16,
-                    paddingRight: spacing.small_12,
-                },
-            },
-            ":focus-visible:not([aria-disabled=true])": focusStyling,
-            ":active:not([aria-disabled=true])": pressStyling,
-        },
-        disabled: {
-            background: states.disabled.background,
-            borderColor: states.disabled.border,
-            color: states.disabled.foreground,
-            cursor: "not-allowed",
-            ":focus-visible": {
-                outlineColor: semanticColor.focus.outer,
-                ...sharedOutlineStyling,
-            },
-        },
-        press: pressStyling,
-    };
-
-    stateStyles[styleKey] = StyleSheet.create(newStyles);
-    return stateStyles[styleKey];
-};

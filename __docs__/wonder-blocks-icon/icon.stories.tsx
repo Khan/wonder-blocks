@@ -1,0 +1,137 @@
+import * as React from "react";
+import type {Meta, StoryObj} from "@storybook/react-vite";
+import {StyleSheet} from "aphrodite";
+import AriaArgTypes from "../wonder-blocks-core/aria.argtypes";
+import ComponentInfo from "../components/component-info";
+import packageConfig from "../../packages/wonder-blocks-icon/package.json";
+import {GemIcon, Icon, StreakIcon} from "@khanacademy/wonder-blocks-icon";
+import {View} from "@khanacademy/wonder-blocks-core";
+import {border, sizing} from "@khanacademy/wonder-blocks-tokens";
+import {BodyText} from "@khanacademy/wonder-blocks-typography";
+import {
+    multiColoredIcon,
+    singleColoredIcon,
+} from "../components/icons-for-testing";
+
+export default {
+    title: "Packages / Icon / Icon",
+    component: Icon,
+    argTypes: {
+        ...AriaArgTypes,
+    },
+    parameters: {
+        componentSubtitle: (
+            <ComponentInfo
+                name={packageConfig.name}
+                version={packageConfig.version}
+            />
+        ),
+        chromatic: {
+            // Disable snapshots since they're covered by the testing snapshots
+            disableSnapshot: true,
+        },
+    },
+} as Meta<typeof Icon>;
+
+type StoryComponentType = StoryObj<typeof Icon>;
+
+export const Default: StoryComponentType = {
+    args: {
+        children: <img src="logo.svg" alt="Wonder Blocks" />,
+    },
+    parameters: {
+        chromatic: {
+            disableSnapshot: true,
+        },
+    },
+};
+
+/**
+ * The different sizes supported by the Icon component.
+ */
+export const Sizes: StoryComponentType = {
+    render: () => {
+        return (
+            <View style={styles.container}>
+                {(["small", "medium", "large", "xlarge"] as const).map(
+                    (size) => (
+                        <View style={styles.iconContainer} key={size}>
+                            <BodyText size="small">{size}</BodyText>
+                            <Icon size={size}>
+                                <img src="logo.svg" alt="Wonder Blocks" />
+                            </Icon>
+                        </View>
+                    ),
+                )}
+            </View>
+        );
+    },
+};
+
+/**
+ * Custom styles can be applied to the icon using the `style` prop.
+ */
+export const CustomStyles: StoryComponentType = {
+    args: {
+        children: <img src="logo.svg" alt="Wonder Blocks" />,
+        size: "xlarge",
+        style: {
+            borderRadius: border.radius.radius_full,
+            overflow: "hidden",
+        },
+    },
+    parameters: {
+        chromatic: {
+            // Enable snapshot for custom styles coverage
+            disableSnapshot: false,
+        },
+    },
+};
+
+/**
+ * The Icon component can be used with:
+ * - `img` elements
+ * - Inline svg elements
+ * - Custom icon components from the Wonder Blocks Icon package
+ */
+export const CompatibleElements: StoryComponentType = {
+    render: (args) => {
+        return (
+            <View style={{gap: sizing.size_160}}>
+                <BodyText size="small">Img element with .svg src</BodyText>
+                <Icon {...args}>
+                    <img src="logo.svg" alt="Wonder Blocks" />
+                </Icon>
+                <BodyText size="small">Img element with .png src</BodyText>
+                <Icon {...args}>
+                    <img src="avatar.png" alt="Example avatar" />
+                </Icon>
+                <BodyText size="small">Inline single-colored svg</BodyText>
+                <Icon {...args}>{singleColoredIcon}</Icon>
+                <BodyText size="small">Inline multi-colored svg</BodyText>
+                <Icon {...args}>{multiColoredIcon}</Icon>
+                <BodyText size="small">Custom Icon Components</BodyText>
+                <View style={{gap: sizing.size_080, flexDirection: "row"}}>
+                    <Icon {...args}>
+                        <GemIcon aria-label="Gem" />
+                    </Icon>
+                    <Icon {...args}>
+                        <StreakIcon aria-label="Streak" />
+                    </Icon>
+                </View>
+            </View>
+        );
+    },
+    args: {size: "large"},
+};
+
+const styles = StyleSheet.create({
+    container: {
+        flexDirection: "row",
+        gap: sizing.size_360,
+    },
+    iconContainer: {
+        alignItems: "center",
+        gap: sizing.size_080,
+    },
+});

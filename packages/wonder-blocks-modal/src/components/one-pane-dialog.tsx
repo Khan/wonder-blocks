@@ -1,10 +1,11 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 import {Breadcrumbs} from "@khanacademy/wonder-blocks-breadcrumbs";
-import {MediaLayout} from "@khanacademy/wonder-blocks-layout";
 import type {StyleType} from "@khanacademy/wonder-blocks-core";
 
 import {Id} from "@khanacademy/wonder-blocks-core";
+// TODO [WB-2137]: standardize media query breakpoint tokens
+import {modalMediaQuery} from "../util/constants";
 import ModalDialog from "./modal-dialog";
 import ModalPanel from "./modal-panel";
 import ModalHeader from "./modal-header";
@@ -93,10 +94,6 @@ type WithBreadcrumbs = Common & {
 
 type Props = Common | WithSubtitle | WithBreadcrumbs;
 
-type DefaultProps = {
-    closeButtonVisible: Props["closeButtonVisible"];
-};
-
 /**
  * This is the standard layout for most straightforward modal experiences.
  *
@@ -108,12 +105,12 @@ type DefaultProps = {
  *
  * ```jsx
  * import {OnePaneDialog} from "@khanacademy/wonder-blocks-modal";
- * import {Body} from "@khanacademy/wonder-blocks-typography";
+ * import {BodyText} from "@khanacademy/wonder-blocks-typography";
  *
  * <OnePaneDialog
  *     title="Some title"
  *     content={
- *         <Body>
+ *         <BodyText>
  *             {`Lorem ipsum dolor sit amet, consectetur adipiscing
  *             elit, sed do eiusmod tempor incididunt ut labore et
  *             dolore magna aliqua. Ut enim ad minim veniam,
@@ -123,122 +120,110 @@ type DefaultProps = {
  *             cillum dolore eu fugiat nulla pariatur. Excepteur
  *             sint occaecat cupidatat non proident, sunt in culpa
  *             qui officia deserunt mollit anim id est.`}
- *         </Body>
+ *         </BodyText>
  *     }
  * />
  * ```
  */
-export default class OnePaneDialog extends React.Component<Props> {
-    static defaultProps: DefaultProps = {
-        closeButtonVisible: true,
-    };
+const renderHeader = (
+    props: Props,
+    uniqueId: string,
+): React.ReactElement<React.ComponentProps<typeof ModalHeader>> => {
+    const {
+        title,
+        // @ts-expect-error [FEI-5019] - TS2339 - Property 'breadcrumbs' does not exist on type 'Props'.
+        breadcrumbs = undefined,
+        // @ts-expect-error [FEI-5019] - TS2339 - Property 'subtitle' does not exist on type 'Props'.
+        subtitle = undefined,
+        testId,
+    } = props;
 
-    renderHeader(
-        uniqueId: string,
-    ): React.ReactElement<React.ComponentProps<typeof ModalHeader>> {
-        const {
-            title,
-            // @ts-expect-error [FEI-5019] - TS2339 - Property 'breadcrumbs' does not exist on type 'Readonly<Props> & Readonly<{ children?: ReactNode; }>'.
-            breadcrumbs = undefined,
-            // @ts-expect-error [FEI-5019] - TS2339 - Property 'subtitle' does not exist on type 'Readonly<Props> & Readonly<{ children?: ReactNode; }>'.
-            subtitle = undefined,
-            testId,
-        } = this.props;
-
-        if (breadcrumbs) {
-            return (
-                <ModalHeader
-                    title={title}
-                    breadcrumbs={
-                        breadcrumbs as React.ReactElement<
-                            React.ComponentProps<typeof Breadcrumbs>
-                        >
-                    }
-                    titleId={uniqueId}
-                    testId={testId && `${testId}-header`}
-                />
-            );
-        } else if (subtitle) {
-            return (
-                <ModalHeader
-                    title={title}
-                    subtitle={subtitle as string}
-                    titleId={uniqueId}
-                    testId={testId && `${testId}-header`}
-                />
-            );
-        } else {
-            return (
-                <ModalHeader
-                    title={title}
-                    titleId={uniqueId}
-                    testId={testId && `${testId}-header`}
-                />
-            );
-        }
-    }
-
-    render(): React.ReactNode {
-        const {
-            onClose,
-            footer,
-            content,
-            above,
-            below,
-            style,
-            closeButtonVisible,
-            testId,
-            titleId,
-            role,
-            "aria-describedby": ariaDescribedBy,
-        } = this.props;
-
+    if (breadcrumbs) {
         return (
-            <MediaLayout styleSheets={styleSheets}>
-                {({styles}) => (
-                    <Id id={titleId}>
-                        {(uniqueId) => (
-                            <ModalDialog
-                                style={[styles.dialog, style]}
-                                above={above}
-                                below={below}
-                                testId={testId}
-                                aria-labelledby={uniqueId}
-                                aria-describedby={ariaDescribedBy}
-                                role={role}
-                            >
-                                <ModalPanel
-                                    onClose={onClose}
-                                    header={this.renderHeader(uniqueId)}
-                                    content={content}
-                                    footer={footer}
-                                    closeButtonVisible={closeButtonVisible}
-                                    testId={testId}
-                                />
-                            </ModalDialog>
-                        )}
-                    </Id>
-                )}
-            </MediaLayout>
+            <ModalHeader
+                title={title}
+                breadcrumbs={
+                    breadcrumbs as React.ReactElement<
+                        React.ComponentProps<typeof Breadcrumbs>
+                    >
+                }
+                titleId={uniqueId}
+                testId={testId && `${testId}-header`}
+            />
+        );
+    } else if (subtitle) {
+        return (
+            <ModalHeader
+                title={title}
+                subtitle={subtitle as string}
+                titleId={uniqueId}
+                testId={testId && `${testId}-header`}
+            />
+        );
+    } else {
+        return (
+            <ModalHeader
+                title={title}
+                titleId={uniqueId}
+                testId={testId && `${testId}-header`}
+            />
         );
     }
-}
+};
 
-const styleSheets = {
-    small: StyleSheet.create({
-        dialog: {
+const OnePaneDialog = (props: Props): React.ReactElement => {
+    const {
+        onClose,
+        footer,
+        content,
+        above,
+        below,
+        style,
+        closeButtonVisible = true,
+        testId,
+        titleId,
+        role,
+        "aria-describedby": ariaDescribedBy,
+    } = props;
+    return (
+        <Id id={titleId}>
+            {(uniqueId) => (
+                <ModalDialog
+                    style={[styles.dialog, style]}
+                    above={above}
+                    below={below}
+                    testId={testId}
+                    aria-labelledby={uniqueId}
+                    aria-describedby={ariaDescribedBy}
+                    role={role}
+                >
+                    <ModalPanel
+                        onClose={onClose}
+                        header={renderHeader(props, uniqueId)}
+                        content={content}
+                        footer={footer}
+                        closeButtonVisible={closeButtonVisible}
+                        testId={testId}
+                    />
+                </ModalDialog>
+            )}
+        </Id>
+    );
+};
+
+export default OnePaneDialog;
+
+const styles = StyleSheet.create({
+    dialog: {
+        maxInlineSize: 576,
+        width: "93.75%",
+        height: "81.25%",
+        maxBlockSize: 624,
+
+        [modalMediaQuery.midOrSmaller as any]: {
             width: "100%",
             height: "100%",
             overflow: "hidden",
         },
-    }),
-
-    mdOrLarger: StyleSheet.create({
-        dialog: {
-            width: "93.75%",
-            maxWidth: 576,
-            height: "81.25%",
-            maxHeight: 624,
-        },
-    }),
-} as const;
+    },
+});

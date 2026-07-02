@@ -1,4 +1,4 @@
-import type {ArgTypes} from "@storybook/react";
+import type {ArgTypes} from "@storybook/react-vite";
 
 import * as React from "react";
 
@@ -32,11 +32,12 @@ const dismissMappings = {
     },
 } as const;
 
+const iconMappingsWithNone = {...IconMappings, none: "none"};
+
 export default {
     kind: {
         control: {type: "select"},
         defaultValue: "info",
-        description: "Determines the color and icon of the banner.",
         options: ["info", "success", "warning", "critical"],
         table: {
             type: {summary: `"info" | "success" | "warning" | "critical"`},
@@ -48,19 +49,8 @@ export default {
             required: false,
         },
     },
-    layout: {
-        control: {type: "select"},
-        description: "Determines the edge style of the Banner.",
-        options: ["floating", "full-width"],
-        table: {
-            type: {summary: `"floating" | "full-width"`},
-        },
-        type: {name: "enum", value: ["floating", "full-width"], required: true},
-    },
     text: {
         control: {type: "text"},
-        description:
-            "Text on the banner (LabelSmall) or a node if you want something different.",
         table: {type: {summary: "string | React.Node"}},
         type: {
             name: "union",
@@ -73,9 +63,6 @@ export default {
     },
     actions: {
         control: {type: "select"},
-        description: `Links or tertiary Buttons that appear to the right of the
-            text.\n\nThe ActionTrigger must have either an onClick or an href
-            field, or both.`,
         options: Object.keys(actionsMappings) as Array<React.ReactNode>,
         mapping: actionsMappings,
         table: {
@@ -87,16 +74,12 @@ export default {
     },
     onDismiss: {
         control: {type: "select"},
-        description:
-            "If present, dismiss button is on right side. If not, no button appears.",
         options: Object.keys(dismissMappings) as Array<React.ReactNode>,
         mapping: dismissMappings,
         table: {required: false},
     },
     dismissAriaLabel: {
         control: {type: "text"},
-        description:
-            "The accessible label for the dismiss button. Please pass in a translated string.",
         defaultValue: "Dismiss banner.",
         table: {
             type: {summary: "string"},
@@ -115,11 +98,11 @@ export default {
     },
     icon: {
         control: {type: "select"},
-        options: Object.keys(IconMappings),
-        mapping: IconMappings,
+        options: Object.keys(iconMappingsWithNone),
+        mapping: iconMappingsWithNone,
         table: {
             type: {
-                summary: "PhosphorIconAsset | string",
+                summary: "PhosphorIconAsset | string | `none`",
             },
         },
     },

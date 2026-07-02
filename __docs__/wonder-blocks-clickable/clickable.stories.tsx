@@ -2,11 +2,11 @@ import * as React from "react";
 import {StyleSheet} from "aphrodite";
 import {MemoryRouter} from "react-router-dom";
 import {CompatRouter, Route, Routes} from "react-router-dom-v5-compat";
-import type {Meta, StoryObj} from "@storybook/react";
+import type {Meta, StoryObj} from "@storybook/react-vite";
 
 import {View} from "@khanacademy/wonder-blocks-core";
-import {semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
-import {Body, LabelLarge} from "@khanacademy/wonder-blocks-typography";
+import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
+import {BodyText} from "@khanacademy/wonder-blocks-typography";
 
 import Clickable from "@khanacademy/wonder-blocks-clickable";
 import packageConfig from "../../packages/wonder-blocks-clickable/package.json";
@@ -22,7 +22,6 @@ export default {
     args: {
         testId: "",
         disabled: false,
-        light: false,
         hideDefaultFocusRing: false,
     },
     decorators: [
@@ -64,7 +63,7 @@ export const Default: StoryComponentType = (args: any) => (
                     focused && styles.focused,
                 ]}
             >
-                <Body>This text is clickable!</Body>
+                <BodyText tag="span">This text is clickable!</BodyText>
             </View>
         )}
     </Clickable>
@@ -90,7 +89,7 @@ export const Basic: StoryComponentType = () => (
                         pressed && styles.pressed,
                     ]}
                 >
-                    <Body>This text is clickable!</Body>
+                    <BodyText tag="span">This text is clickable!</BodyText>
                 </View>
             )}
         </Clickable>
@@ -112,47 +111,6 @@ Basic.parameters = {
 };
 
 /**
- * Clickable usage on dark backgrounds
- */
-export const Light: StoryComponentType = () => (
-    <View style={styles.dark}>
-        <Clickable
-            href="https://www.khanacademy.org/about/tos"
-            skipClientNav={true}
-            light={true}
-        >
-            {({hovered, pressed}) => (
-                <View
-                    style={[
-                        styles.clickable,
-                        hovered && styles.hovered,
-                        pressed && styles.pressed,
-                    ]}
-                >
-                    <Body>This text is clickable!</Body>
-                </View>
-            )}
-        </Clickable>
-    </View>
-);
-
-Light.parameters = {
-    chromatic: {
-        // Not needed because the default state doesn't test the disabled
-        // clickable behavior.
-        disableSnapshot: true,
-    },
-    docs: {
-        description: {
-            story: "Clickable has a `light` prop which changes the default focus ring color to fit a dark background.",
-        },
-    },
-    backgrounds: {
-        default: "darkBlue",
-    },
-};
-
-/**
  * Disabled state
  */
 export const Disabled: StoryComponentType = (args: any) => (
@@ -166,9 +124,9 @@ export const Disabled: StoryComponentType = (args: any) => (
                         pressed && styles.pressed,
                     ]}
                 >
-                    <Body>
+                    <BodyText tag="span">
                         Disabled clickable using the default disabled style
-                    </Body>
+                    </BodyText>
                 </View>
             )}
         </Clickable>
@@ -182,9 +140,9 @@ export const Disabled: StoryComponentType = (args: any) => (
                         args.disabled && styles.disabled,
                     ]}
                 >
-                    <Body>
+                    <BodyText tag="span">
                         Disabled clickable passing custom disabled styles
-                    </Body>
+                    </BodyText>
                 </View>
             )}
         </Clickable>
@@ -217,7 +175,9 @@ export const ClientSideNavigation: StoryComponentType = () => (
                         }}
                     >
                         {(eventState) => (
-                            <LabelLarge>Uses Client-side Nav</LabelLarge>
+                            <BodyText tag="span" weight="bold">
+                                Uses Client-side Nav
+                            </BodyText>
                         )}
                     </Clickable>
                     <Clickable
@@ -226,7 +186,9 @@ export const ClientSideNavigation: StoryComponentType = () => (
                         skipClientNav
                     >
                         {(eventState) => (
-                            <LabelLarge>Avoids Client-side Nav</LabelLarge>
+                            <BodyText tag="span" weight="bold">
+                                Avoids Client-side Nav
+                            </BodyText>
                         )}
                     </Clickable>
                 </View>
@@ -287,7 +249,7 @@ export const Ref: StoryComponentType = () => {
                             focused && styles.focused,
                         ]}
                     >
-                        <Body>Press below to focus me!</Body>
+                        <BodyText tag="span">Press below to focus me!</BodyText>
                     </View>
                 )}
             </Clickable>
@@ -319,7 +281,7 @@ const progressive = semanticColor.action.secondary.progressive;
 const styles = StyleSheet.create({
     clickable: {
         borderWidth: 1,
-        padding: spacing.medium_16,
+        padding: sizing.size_160,
     },
     hovered: {
         textDecoration: "underline",
@@ -332,32 +294,32 @@ const styles = StyleSheet.create({
         outline: `solid 4px ${semanticColor.focus.outer}`,
     },
     centerText: {
-        gap: spacing.medium_16,
+        gap: sizing.size_160,
         textAlign: "center",
     },
     dark: {
-        backgroundColor: semanticColor.surface.inverse,
-        color: semanticColor.text.inverse,
-        padding: spacing.xSmall_8,
+        backgroundColor: semanticColor.core.background.neutral.strong,
+        color: semanticColor.core.foreground.knockout.default,
+        padding: sizing.size_080,
     },
     row: {
         flexDirection: "row",
         alignItems: "center",
     },
     heading: {
-        marginRight: spacing.large_24,
+        marginInlineEnd: sizing.size_240,
     },
     navigation: {
-        border: `1px dashed ${semanticColor.border.primary}`,
-        marginTop: spacing.large_24,
-        padding: spacing.large_24,
+        border: `1px dashed ${semanticColor.core.border.neutral.subtle}`,
+        marginBlockStart: sizing.size_240,
+        padding: sizing.size_240,
     },
     disabled: {
-        color: semanticColor.text.inverse,
-        backgroundColor: semanticColor.surface.overlay,
+        color: semanticColor.action.primary.disabled.foreground,
+        backgroundColor: semanticColor.action.primary.disabled.background,
     },
     button: {
-        maxWidth: 150,
+        maxInlineSize: 150,
     },
     centered: {
         alignItems: "center",

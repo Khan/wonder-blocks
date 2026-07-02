@@ -1,13 +1,13 @@
-import {action} from "@storybook/addon-actions";
-import {useArgs} from "@storybook/preview-api";
-import {Meta, StoryObj} from "@storybook/react";
-import {expect, userEvent, within} from "@storybook/test";
+import {action} from "storybook/actions";
+import {useArgs} from "storybook/preview-api";
+import {Meta, StoryObj} from "@storybook/react-vite";
+import {expect, userEvent, within} from "storybook/test";
 import {StyleSheet} from "aphrodite";
 import * as React from "react";
 import magnifyingGlassIcon from "@phosphor-icons/core/bold/magnifying-glass-bold.svg";
 
-import {LabelLarge, LabelMedium} from "@khanacademy/wonder-blocks-typography";
-import {semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {BodyText} from "@khanacademy/wonder-blocks-typography";
+import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {Checkbox} from "@khanacademy/wonder-blocks-form";
 import {Combobox, OptionItem} from "@khanacademy/wonder-blocks-dropdown";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
@@ -38,7 +38,7 @@ const customItems = allProfilesWithPictures.map((user, index) => (
         key={user.id}
         value={user.id}
         horizontalRule="full-width"
-        label={<LabelLarge>{user.name}</LabelLarge>}
+        label={<BodyText weight="bold">{user.name}</BodyText>}
         // TODO(WB-1752): Refactor API and types to enforce this prop when
         // `label` is not a string.
         labelAsText={user.name}
@@ -49,8 +49,8 @@ const customItems = allProfilesWithPictures.map((user, index) => (
 
 const styles = StyleSheet.create({
     example: {
-        background: semanticColor.surface.secondary,
-        padding: spacing.medium_16,
+        background: semanticColor.core.background.base.subtle,
+        padding: sizing.size_160,
         width: 300,
     },
     wrapper: {
@@ -65,6 +65,7 @@ const defaultArgs = {
     testId: "",
     autoComplete: "none",
     loading: false,
+    "aria-label": "", // Setting to empty string to avoid SB control showing as an object to represent undefined
 };
 
 export default {
@@ -202,7 +203,7 @@ export const ControlledCombobox: Story = {
         }, [args.opened]);
 
         return (
-            <View style={{gap: spacing.medium_16}}>
+            <View style={{gap: sizing.size_160}}>
                 <Checkbox label="Open" onChange={setOpened} checked={opened} />
                 <Combobox
                     {...args}
@@ -439,7 +440,7 @@ export const Error: Story = {
  *
  * **NOTE:** When `startIcon` is set, we set some default values for the icon:
  * - `size`: "small"
- * - `color`: `semanticColor.icon.default`
+ * - `color`: `semanticColor.core.foreground.neutral.default`
  *
  * You can customize the size and color of the icon by passing the `size` and
  * `color` props to the `PhosphorIcon` component.
@@ -449,8 +450,8 @@ export const StartIcon: Story = {
         const [_, updateArgs] = useArgs();
 
         return (
-            <View style={{gap: spacing.medium_16}}>
-                <LabelMedium>With default size and color:</LabelMedium>
+            <View style={{gap: sizing.size_160}}>
+                <BodyText>With default size and color:</BodyText>
                 <Combobox
                     {...args}
                     startIcon={<PhosphorIcon icon={magnifyingGlassIcon} />}
@@ -459,7 +460,7 @@ export const StartIcon: Story = {
                         action("onChange")(newValue);
                     }}
                 />
-                <LabelMedium>With custom size:</LabelMedium>
+                <BodyText>With custom size:</BodyText>
                 <Combobox
                     {...args}
                     startIcon={
@@ -473,14 +474,16 @@ export const StartIcon: Story = {
                         action("onChange")(newValue);
                     }}
                 />
-                <LabelMedium>With custom color:</LabelMedium>
+                <BodyText>With custom color:</BodyText>
                 <Combobox
                     {...args}
                     startIcon={
                         <PhosphorIcon
                             icon={magnifyingGlassIcon}
                             size="small"
-                            color={semanticColor.icon.action}
+                            color={
+                                semanticColor.core.foreground.instructive.strong
+                            }
                         />
                     }
                     onChange={(newValue) => {
@@ -488,14 +491,16 @@ export const StartIcon: Story = {
                         action("onChange")(newValue);
                     }}
                 />
-                <LabelMedium>Disabled (overrides color prop):</LabelMedium>
+                <BodyText>Disabled (overrides color prop):</BodyText>
                 <Combobox
                     {...args}
                     startIcon={
                         <PhosphorIcon
                             icon={magnifyingGlassIcon}
                             size="small"
-                            color={semanticColor.icon.action}
+                            color={
+                                semanticColor.core.foreground.instructive.strong
+                            }
                         />
                     }
                     disabled={true}

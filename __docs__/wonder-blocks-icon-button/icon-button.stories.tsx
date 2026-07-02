@@ -3,8 +3,8 @@ import * as React from "react";
 import {MemoryRouter} from "react-router-dom";
 import {CompatRouter, Route, Routes} from "react-router-dom-v5-compat";
 import {StyleSheet} from "aphrodite";
-import {action} from "@storybook/addon-actions";
-import type {Meta, StoryObj} from "@storybook/react";
+import {action} from "storybook/actions";
+import type {Meta, StoryObj} from "@storybook/react-vite";
 
 import caretLeft from "@phosphor-icons/core/regular/caret-left.svg";
 import caretRight from "@phosphor-icons/core/regular/caret-right.svg";
@@ -15,14 +15,15 @@ import magnifyingGlassBold from "@phosphor-icons/core/bold/magnifying-glass-bold
 import minusCircle from "@phosphor-icons/core/regular/minus-circle.svg";
 
 import {View} from "@khanacademy/wonder-blocks-core";
-import {LabelMedium} from "@khanacademy/wonder-blocks-typography";
+import {BodyText} from "@khanacademy/wonder-blocks-typography";
 import IconButton from "@khanacademy/wonder-blocks-icon-button";
-import {spacing} from "@khanacademy/wonder-blocks-tokens";
+import {sizing} from "@khanacademy/wonder-blocks-tokens";
 
 import ComponentInfo from "../components/component-info";
 import packageConfig from "../../packages/wonder-blocks-icon-button/package.json";
 import IconButtonArgtypes from "./icon-button.argtypes";
 import TextField from "../../packages/wonder-blocks-form/src/components/text-field";
+import {Icon} from "@khanacademy/wonder-blocks-icon";
 
 /**
  * An `IconButton` is a button whose contents are an SVG image.
@@ -63,7 +64,7 @@ import TextField from "../../packages/wonder-blocks-form/src/components/text-fie
  * ```
  */
 export default {
-    title: "Packages / IconButton",
+    title: "Packages / IconButton / IconButton",
     component: IconButton,
     decorators: [(Story): React.ReactElement => <View>{Story()}</View>],
     parameters: {
@@ -75,7 +76,7 @@ export default {
         ),
         chromatic: {
             // Disabling all snapshots because we are testing all the variants
-            // in `icon-button-variants.stories.tsx`.
+            // in `icon-button-testing-snapshots.stories.tsx`.
             disableSnapshot: true,
         },
         docs: {
@@ -127,9 +128,9 @@ export const Sizes: StoryComponentType = {
         icon: magnifyingGlass,
     },
     render: (args) => (
-        <View style={{gap: spacing.medium_16}}>
+        <View style={{gap: sizing.size_160}}>
             <View style={styles.row}>
-                <LabelMedium style={styles.label}>xsmall</LabelMedium>
+                <BodyText style={styles.label}>xsmall</BodyText>
                 <IconButton
                     {...args}
                     icon={magnifyingGlassBold}
@@ -137,15 +138,15 @@ export const Sizes: StoryComponentType = {
                 />
             </View>
             <View style={styles.row}>
-                <LabelMedium style={styles.label}>small</LabelMedium>
+                <BodyText style={styles.label}>small</BodyText>
                 <IconButton {...args} size="small" />
             </View>
             <View style={styles.row}>
-                <LabelMedium style={styles.label}>medium</LabelMedium>
+                <BodyText style={styles.label}>medium</BodyText>
                 <IconButton {...args} size="medium" />
             </View>
             <View style={styles.row}>
-                <LabelMedium style={styles.label}>large</LabelMedium>
+                <BodyText style={styles.label}>large</BodyText>
                 <IconButton {...args} size="large" />
             </View>
         </View>
@@ -156,7 +157,7 @@ export const Sizes: StoryComponentType = {
  * In this example, we have `primary`, `secondary`, `tertiary`,
  * and disabled `IconButton`s from left to right.
  */
-export const Variants: StoryComponentType = {
+export const Kinds: StoryComponentType = {
     render: () => {
         return (
             <View style={styles.row}>
@@ -195,7 +196,7 @@ export const Variants: StoryComponentType = {
 export const WithActionType: StoryComponentType = {
     name: "ActionType",
     render: (args) => (
-        <View style={{gap: spacing.medium_16}}>
+        <View style={{gap: sizing.size_160}}>
             <View style={styles.row}>
                 <IconButton
                     {...args}
@@ -353,14 +354,14 @@ export const SubmittingForms: StoryComponentType = {
             }}
         >
             <View style={styles.row}>
-                <LabelMedium tag="label" style={styles.row}>
+                <BodyText tag="label" style={styles.row}>
                     Search:{" "}
                     <TextField
                         id="foo"
                         value="press the button"
                         onChange={() => {}}
                     />
-                </LabelMedium>
+                </BodyText>
                 <IconButton
                     icon={magnifyingGlass}
                     aria-label="Search"
@@ -377,18 +378,42 @@ export const SubmittingForms: StoryComponentType = {
     },
 };
 
+/**
+ * For non-Phosphor icons, you can use the Wonder Blocks Icon component to wrap
+ * the custom icon.
+ *
+ * Note: The IconButton component will handle the sizing for the icon.
+ */
+export const WithCustomIcon: StoryComponentType = {
+    render: (args) => (
+        <IconButton
+            {...args}
+            icon={
+                <Icon>
+                    <img src="logo.svg" alt="" />
+                </Icon>
+            }
+            aria-label="Wonder Blocks"
+            onClick={(e) => action("clicked")(e)}
+        />
+    ),
+    args: {
+        kind: "secondary",
+    },
+};
+
 const styles = StyleSheet.create({
     arrowsWrapper: {
         flexDirection: "row",
-        gap: spacing.medium_16,
+        gap: sizing.size_160,
     },
     row: {
         display: "flex",
         flexDirection: "row",
-        gap: spacing.medium_16,
+        gap: sizing.size_160,
         alignItems: "center",
     },
     label: {
-        width: spacing.xxxLarge_64,
+        width: sizing.size_640,
     },
 });

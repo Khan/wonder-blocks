@@ -1,7 +1,7 @@
 import {border, semanticColor} from "@khanacademy/wonder-blocks-tokens";
 import {focus} from "./focus-styles";
 
-const pressColor = `color-mix(in srgb, ${semanticColor.border.strong} 55%, ${semanticColor.border.inverse})`;
+const pressColor = `color-mix(in srgb, ${semanticColor.core.border.neutral.default} 55%, ${semanticColor.core.border.knockout.default})`;
 
 /**
  * The inverse styles for an interactive control.
@@ -15,16 +15,16 @@ export const inverse = {
     // button, as there might be some cases where the interactive element
     // already includes a border.
     ":not([aria-disabled=true])": {
-        borderColor: semanticColor.border.inverse,
-        color: semanticColor.text.inverse,
+        borderColor: semanticColor.core.border.knockout.default,
+        color: semanticColor.core.foreground.knockout.default,
     },
 
     ":hover:not([aria-disabled=true])": {
-        color: semanticColor.text.inverse,
+        color: semanticColor.core.foreground.knockout.default,
         // Overriding borderColor only to preserve the visual integrity of the
         // button, as there might be some cases where the interactive element
         // already includes a border.
-        borderColor: semanticColor.border.inverse,
+        borderColor: semanticColor.core.border.knockout.default,
     },
 
     // Use the global focus styles to ensure that the focus state is consistent
@@ -34,6 +34,6 @@ export const inverse = {
         borderRadius: border.radius.radius_080,
         // This is a slightly darker color than the inverse color.
         borderColor: pressColor,
-        background: `color-mix(in srgb, ${semanticColor.surface.primary} 5%, transparent)`,
+        background: `color-mix(in srgb, ${semanticColor.core.background.base.default} 5%, transparent)`,
     },
 };

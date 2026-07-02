@@ -1,9 +1,7 @@
 import * as React from "react";
 
 import {addStyle} from "@khanacademy/wonder-blocks-core";
-import {Strut} from "@khanacademy/wonder-blocks-layout";
-import {spacing} from "@khanacademy/wonder-blocks-tokens";
-import {LabelMedium, LabelSmall} from "@khanacademy/wonder-blocks-typography";
+import {BodyText} from "@khanacademy/wonder-blocks-typography";
 import type {StyleType} from "@khanacademy/wonder-blocks-core";
 
 import styles from "./group-styles";
@@ -137,25 +135,24 @@ const CheckboxGroup = React.forwardRef(function CheckboxGroup(
         >
             {label && (
                 <StyledLegend style={styles.legend}>
-                    <LabelMedium>{label}</LabelMedium>
+                    <BodyText tag="span">{label}</BodyText>
                 </StyledLegend>
             )}
             {description && (
-                <LabelSmall style={styles.description}>
+                <BodyText size="small" tag="span" style={styles.description}>
                     {description}
-                </LabelSmall>
+                </BodyText>
             )}
             {errorMessage && (
-                <LabelSmall style={styles.error}>{errorMessage}</LabelSmall>
+                <BodyText size="small" tag="span" style={styles.error}>
+                    {errorMessage}
+                </BodyText>
             )}
-            {(label || description || errorMessage) && (
-                <Strut size={spacing.small_12} />
-            )}
-
             {allChildren.map((child, index) => {
                 // @ts-expect-error [FEI-5019] - TS2339 - Property 'props' does not exist on type 'ReactChild | ReactFragment | ReactPortal'.
                 const {style, value} = child.props;
                 const checked = selectedValues.includes(value);
+                const hasMeta = !!(label || description || errorMessage);
                 // @ts-expect-error [FEI-5019] - TS2769 - No overload matches this call.
                 return React.cloneElement(child, {
                     checked: checked,
@@ -164,7 +161,11 @@ const CheckboxGroup = React.forwardRef(function CheckboxGroup(
                     id: `${groupName}-${value}`,
                     key: value,
                     onChange: () => handleChange(value, checked),
-                    style: [index > 0 && styles.defaultLineGap, style],
+                    style: [
+                        index === 0 && hasMeta && styles.firstChoiceMetaSpacing,
+                        index > 0 && styles.choiceLineGap,
+                        style,
+                    ],
                     variant: "checkbox",
                 });
             })}

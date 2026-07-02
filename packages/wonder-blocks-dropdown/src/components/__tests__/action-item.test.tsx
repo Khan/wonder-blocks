@@ -3,7 +3,7 @@ import {render, screen} from "@testing-library/react";
 import * as ReactRouterDOM from "react-router-dom";
 import * as ReactRouterDOMV5Compat from "react-router-dom-v5-compat";
 
-import {HeadingSmall} from "@khanacademy/wonder-blocks-typography";
+import {Heading} from "@khanacademy/wonder-blocks-typography";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 
 import plusIcon from "@phosphor-icons/core/regular/plus.svg";
@@ -88,13 +88,60 @@ describe("ActionItem", () => {
         // Arrange
 
         // Act
+        render(<ActionItem label={<Heading>A heading as an item</Heading>} />);
+
+        // Assert
+        expect(screen.getByRole("heading")).toBeInTheDocument();
+    });
+
+    it("should apply aria-current if active is true", () => {
+        // Arrange
+
+        // Act
+        render(<ActionItem label="Example" active={true} />);
+
+        // Assert
+        expect(screen.getByRole("menuitem")).toHaveAttribute(
+            "aria-current",
+            "true",
+        );
+    });
+
+    it("should allow passing subtitle1", () => {
+        // Arrange
+
+        // Act
+        render(<ActionItem label="ActionItem" subtitle1={"Subtitle 1"} />);
+
+        // Assert
+        expect(screen.getByText("Subtitle 1")).toBeInTheDocument();
+    });
+
+    it("should allow passing subtitle2", () => {
+        // Arrange
+
+        // Act
+        render(<ActionItem label="ActionItem" subtitle2={"Subtitle 2"} />);
+
+        // Assert
+        expect(screen.getByText("Subtitle 2")).toBeInTheDocument();
+    });
+
+    it("should set aria-label if provided", () => {
+        // Arrange
+        // Act
         render(
             <ActionItem
-                label={<HeadingSmall>A heading as an item</HeadingSmall>}
+                label="ActionItem"
+                aria-label="ActionItem aria-label"
+                onClick={jest.fn()}
             />,
         );
 
         // Assert
-        expect(screen.getByRole("heading")).toBeInTheDocument();
+        expect(screen.getByRole("menuitem")).toHaveAttribute(
+            "aria-label",
+            "ActionItem aria-label",
+        );
     });
 });

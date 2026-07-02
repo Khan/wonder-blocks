@@ -3,26 +3,20 @@ import * as React from "react";
 import {StyleSheet} from "aphrodite";
 import planetIcon from "@phosphor-icons/core/regular/planet.svg";
 
-import {action} from "@storybook/addon-actions";
-import type {Meta, StoryObj} from "@storybook/react";
+import type {Meta, StoryObj} from "@storybook/react-vite";
 
 import Button from "@khanacademy/wonder-blocks-button";
-import {
-    border,
-    semanticColor,
-    spacing,
-} from "@khanacademy/wonder-blocks-tokens";
+import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {PropsFor, View} from "@khanacademy/wonder-blocks-core";
 import {TextField} from "@khanacademy/wonder-blocks-form";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
-import {Strut} from "@khanacademy/wonder-blocks-layout";
 import {OnePaneDialog, ModalLauncher} from "@khanacademy/wonder-blocks-modal";
-import Pill from "@khanacademy/wonder-blocks-pill";
-import {Body, HeadingLarge} from "@khanacademy/wonder-blocks-typography";
+import {BodyText} from "@khanacademy/wonder-blocks-typography";
 import {
     SingleSelect,
     OptionItem,
     SeparatorItem,
+    CustomOpener,
 } from "@khanacademy/wonder-blocks-dropdown";
 
 import type {SingleSelectLabelsValues} from "@khanacademy/wonder-blocks-dropdown";
@@ -37,8 +31,9 @@ import {
     allProfilesWithPictures,
     currencies,
 } from "./option-item-examples";
-import {OpenerProps} from "../../packages/wonder-blocks-dropdown/src/util/types";
+
 import {LabeledField} from "@khanacademy/wonder-blocks-labeled-field";
+import {StatusBadge} from "@khanacademy/wonder-blocks-badge";
 
 type StoryComponentType = StoryObj<typeof SingleSelect>;
 type SingleSelectArgs = Partial<typeof SingleSelect>;
@@ -93,9 +88,15 @@ export default {
         isFilterable: true,
         opened: false,
         disabled: false,
+        readOnly: false,
         "aria-label": "Fruit",
         placeholder: "Choose a fruit",
         selectedValue: "",
+    },
+    globals: {
+        backgrounds: {
+            value: "baseDefault",
+        },
     },
     parameters: {
         componentSubtitle: (
@@ -105,7 +106,7 @@ export default {
             />
         ),
         backgrounds: {
-            default: "offWhite",
+            value: "baseSubtle",
         },
     },
 } as Meta<typeof SingleSelect>;
@@ -121,28 +122,34 @@ const styles = StyleSheet.create({
         justifyContent: "space-between",
     },
     dropdown: {
-        maxHeight: 200,
+        maxBlockSize: 200,
     },
     /**
      * Custom opener styles
      */
     customOpener: {
-        borderLeft: `${border.width.thick} solid ${semanticColor.status.warning.foreground}`,
+        display: "inline-flex",
+        alignItems: "center",
+        gap: sizing.size_080,
+        height: sizing.size_400,
+        paddingInline: sizing.size_160,
+        border: `${border.width.thin} solid ${semanticColor.core.border.instructive.default}`,
+        borderInlineStart: `${border.width.thick} solid ${semanticColor.core.border.instructive.default}`,
         borderRadius: border.radius.radius_040,
-        background: semanticColor.status.warning.background,
-        color: semanticColor.text.primary,
-        padding: spacing.medium_16,
+        color: semanticColor.core.foreground.instructive.default,
+        background: semanticColor.core.background.base.default,
     },
-    focused: {
-        outlineColor: semanticColor.focus.outer,
-        outlineOffset: spacing.xxxxSmall_2,
+    customOpenerHovered: {
+        background: semanticColor.core.background.instructive.subtle,
     },
-    hovered: {
-        textDecoration: "underline",
-        cursor: "pointer",
+    customOpenerPressed: {
+        background: semanticColor.core.background.instructive.default,
     },
-    pressed: {
-        color: semanticColor.status.warning.foreground,
+    customOpenerDisabled: {
+        color: semanticColor.core.foreground.neutral.subtle,
+        borderColor: semanticColor.core.border.neutral.subtle,
+        background: semanticColor.core.background.base.default,
+        cursor: "not-allowed",
     },
 
     fullBleed: {
@@ -163,7 +170,7 @@ const styles = StyleSheet.create({
     // AutoFocus
     icon: {
         position: "absolute",
-        right: spacing.medium_16,
+        insetInlineEnd: sizing.size_160,
     },
 });
 
@@ -209,6 +216,24 @@ export const Default: StoryComponentType = {
 };
 
 /**
+ * This example demonstrates how SingleSelect behaves with an initial value.
+ * The screen reader will not announce the initial value on mount, but will
+ * announce when the value changes through user interaction.
+ */
+export const WithInitialValue: StoryComponentType = {
+    render: Template,
+    args: {
+        selectedValue: "banana",
+    },
+    parameters: {
+        chromatic: {
+            // Disabling because this is for manual testing purposes
+            disableSnapshot: true,
+        },
+    },
+};
+
+/**
  * The field can be used with the LabeledField component to provide a label,
  * description, required indicator, and/or error message for the field.
  *
@@ -230,13 +255,14 @@ export const WithLabeledField: StoryComponentType = {
                         selectedValue={value}
                         onChange={setValue}
                         onValidate={setErrorMessage}
+                        required={true}
                     >
                         {optionItems}
                     </SingleSelect>
                 }
                 description="Description"
-                required={true}
                 errorMessage={errorMessage}
+                contextLabel="required"
             />
         );
     },
@@ -392,7 +418,7 @@ export const LongOptionLabels: StoryComponentType = {
  */
 export const Disabled: StoryComponentType = {
     render: () => (
-        <View style={{gap: spacing.xLarge_32}}>
+        <View style={{gap: sizing.size_320}}>
             <LabeledField
                 label="Disabled prop is set to true"
                 field={
@@ -429,6 +455,50 @@ export const Disabled: StoryComponentType = {
             />
         </View>
     ),
+};
+
+/**
+ * A SingleSelect can be set to read-only by passing `readOnly` to `true`.
+ * When `true`, read-only styling is applied and the aria-disabled attribute is
+ * set to "true". A user won't be able to open the dropdown or change the
+ * selected value.
+ *
+ * We recommend using the SingleSelect with `LabeledField`. The
+ * `readOnlyMessage` prop in `LabeledField` can be set so that users know why
+ * the field is marked as read only.
+ *
+ * Note: We set `aria-disabled` instead of `aria-readonly` due to low
+ * browser + screen reader support for `aria-readonly`.
+ */
+export const ReadOnly: StoryComponentType = {
+    render: function ReadOnlyStory(args) {
+        const [selectedValue, setSelectedValue] = React.useState(
+            items[0].props.value,
+        );
+        return (
+            <LabeledField
+                label="Example Label"
+                field={
+                    <SingleSelect
+                        {...args}
+                        placeholder="Choose a fruit"
+                        readOnly={true}
+                        onChange={setSelectedValue}
+                        selectedValue={selectedValue}
+                    >
+                        {items}
+                    </SingleSelect>
+                }
+                readOnlyMessage="Message about why it is read only"
+            />
+        );
+    },
+    parameters: {
+        chromatic: {
+            // Disabling because this is covered in testing snapshots story
+            disableSnapshot: true,
+        },
+    },
 };
 
 const ControlledSingleSelect = (
@@ -540,7 +610,7 @@ export const Required: StoryComponentType = {
 export const ErrorFromValidation: StoryComponentType = {
     render: (args: PropsFor<typeof SingleSelect>) => {
         return (
-            <View style={{gap: spacing.large_24}}>
+            <View style={{gap: sizing.size_240}}>
                 <ControlledSingleSelect
                     {...args}
                     label="Validation example (try picking lemon to trigger an error)"
@@ -724,15 +794,14 @@ export const DropdownInModal: StoryComponentType = {
 
         const modalContent = (
             <View style={styles.scrollableArea}>
-                <View>
-                    <Body>
+                <View style={{gap: sizing.size_240}}>
+                    <BodyText>
                         Sometimes we want to include Dropdowns inside a Modal,
                         and these controls can be accessed only by scrolling
                         down. This example help us to demonstrate that
                         SingleSelect components can correctly be displayed
                         within the visible scrolling area.
-                    </Body>
-                    <Strut size={spacing.large_24} />
+                    </BodyText>
                     <SingleSelect
                         onChange={(selected) => setValue(selected)}
                         isFilterable={true}
@@ -771,51 +840,72 @@ export const DropdownInModal: StoryComponentType = {
 };
 
 /**
- * In case you need to use a custom opener with the `SingleSelect`, you can use
- * the opener property to achieve this. In this example, the opener prop accepts
- * a function with the following arguments:
- *  - `eventState`: lets you customize the style for different states, such as
- *    pressed, hovered and focused.
- *  - `text`: Passes the menu label defined in the parent component. This value
- *   is passed using the placeholder prop set in the `SingleSelect` component.
- *  - `opened`: Whether the dropdown is opened.
+ * When you need a fully custom-styled opener, use `CustomOpener`. It provides
+ * a blank-slate `<button>` with the WB focus ring baked in and correct ref
+ * forwarding for the dropdown's focus management wiring.
  *
- * **Note:** If you need to use a custom ID for testing the opener, make sure to
- * pass the testId prop inside the opener component/element.
+ * The `opener` render prop receives `hovered`, `focused`, `pressed`, `text`,
+ * and `opened` values that can be passed to child content for conditional
+ * styling. Focus ring styles are handled automatically by `CustomOpener` via
+ * CSS — you do not need to apply `focusStyles` yourself.
  *
- * **Accessibility:** When a custom opener is used, the following attributes are
- * added automatically: `aria-expanded`, `aria-haspopup`, and `aria-controls`.
+ * **Note:** Pass `testId` directly to `CustomOpener` for e2e test targeting.
+ *
+ * **Accessibility:** When a custom opener is used, `aria-expanded`,
+ * `aria-haspopup`, and `aria-controls` are added automatically.
  */
-export const CustomOpener: StoryComponentType = {
-    render: Template,
+export const WithCustomOpener: StoryComponentType = {
+    render: function Render(args) {
+        const [selectedValue, setSelectedValue] = React.useState(
+            args.selectedValue ?? "",
+        );
+        return (
+            <SingleSelect
+                {...args}
+                selectedValue={selectedValue}
+                onChange={setSelectedValue}
+                opener={({hovered, pressed, text}) => (
+                    <CustomOpener
+                        testId="single-select-custom-opener"
+                        styles={{
+                            root: [
+                                styles.customOpener,
+                                hovered && styles.customOpenerHovered,
+                                pressed && styles.customOpenerPressed,
+                                args.disabled && styles.customOpenerDisabled,
+                            ],
+                        }}
+                    >
+                        <PhosphorIcon
+                            icon={IconMappings.plusCircle}
+                            size="small"
+                        />
+                        <BodyText tag="span" weight="bold">
+                            {text}
+                        </BodyText>
+                    </CustomOpener>
+                )}
+            >
+                {items}
+            </SingleSelect>
+        );
+    },
     args: {
         selectedValue: "",
-        opener: ({focused, hovered, pressed, text, opened}: OpenerProps) => {
-            action(JSON.stringify({focused, hovered, pressed, opened}))(
-                "state changed!",
-            );
-
-            return (
-                <HeadingLarge
-                    onClick={() => {
-                        // eslint-disable-next-line no-console
-                        console.log("custom click!!!!!");
-                    }}
-                    style={[
-                        styles.customOpener,
-                        focused && styles.focused,
-                        hovered && styles.hovered,
-                        pressed && styles.pressed,
-                        opened && styles.focused,
-                    ]}
-                >
-                    {text}
-                    {opened ? ": opened" : ""}
-                </HeadingLarge>
-            );
-        },
+        disabled: false,
     } as SingleSelectArgs,
     name: "With custom opener",
+};
+
+/**
+ * When in the right-to-left direction, the single select is mirrored.
+ */
+export const RightToLeft: StoryComponentType = {
+    ...ControlledOpened,
+    name: "Right to Left",
+    globals: {
+        direction: "rtl",
+    },
 };
 
 /**
@@ -996,7 +1086,7 @@ export const CustomOptionItems: StoryComponentType = {
                             leftAccessory={user.picture}
                             subtitle1={
                                 index === 1 ? (
-                                    <Pill kind="accent">New</Pill>
+                                    <StatusBadge label="New" kind="info" />
                                 ) : undefined
                             }
                             subtitle2={user.email}
@@ -1107,6 +1197,7 @@ export const CustomOptionItemsVirtualized: StoryComponentType = {
                                 icon={planetIcon}
                                 role="img"
                                 size="medium"
+                                aria-hidden={true}
                             />
                         }
                     />

@@ -1,5 +1,24 @@
 # @khanacademy/wonder-blocks-timing
 
+## 7.1.0
+
+### Minor Changes
+
+- f2b8006: Add useAnimationFrame and useActionScheduler hooks to wonder-blocks-timing
+
+## 7.0.4
+
+### Patch Changes
+
+- 8a36c70: Re-publish to publish with Trusted Publishing
+- 3e0d137: Re-publishing via Trusted Publishing
+
+## 7.0.3
+
+### Patch Changes
+
+- 6d5c485: Include provenance information when publishing to npmjs
+
 ## 7.0.2
 
 ### Patch Changes

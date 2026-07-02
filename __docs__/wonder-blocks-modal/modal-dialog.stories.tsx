@@ -1,13 +1,10 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
-import type {Meta, StoryObj} from "@storybook/react";
-import {useGlobals} from "@storybook/preview-api";
+import type {Meta, StoryObj} from "@storybook/react-vite";
 import Button from "@khanacademy/wonder-blocks-button";
 import {View} from "@khanacademy/wonder-blocks-core";
-import {Strut} from "@khanacademy/wonder-blocks-layout";
-import {Body, Title} from "@khanacademy/wonder-blocks-typography";
-import {ThemeSwitcherContext} from "@khanacademy/wonder-blocks-theming";
-import {semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {BodyText, Heading} from "@khanacademy/wonder-blocks-typography";
+import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 
 import {
     ModalLauncher,
@@ -18,32 +15,8 @@ import {
 import ComponentInfo from "../components/component-info";
 import packageConfig from "../../packages/wonder-blocks-modal/package.json";
 import modalDialogArgtypes from "./modal-dialog.argtypes";
-import {allModes} from "../../.storybook/modes";
-import {actionStyles} from "@khanacademy/wonder-blocks-styles";
-
-const customViewports = {
-    phone: {
-        name: "phone",
-        styles: {
-            width: "320px",
-            height: "568px",
-        },
-    },
-    tablet: {
-        name: "tablet",
-        styles: {
-            width: "640px",
-            height: "960px",
-        },
-    },
-    desktop: {
-        name: "desktop",
-        styles: {
-            width: "1024px",
-            height: "768px",
-        },
-    },
-} as const;
+import {reallyLongText} from "../components/text-for-testing";
+import {modalPositionerStyle} from "./modal-story-utils";
 
 /**
  * `ModalDialog` is a component that contains these elements:
@@ -81,15 +54,9 @@ export default {
                 excludeDecorators: true,
             },
         },
-        viewport: {
-            viewports: customViewports,
-            defaultViewport: "desktop",
-        },
         chromatic: {
-            modes: {
-                small: allModes.small,
-                large: allModes.large,
-            },
+            // We already have screenshots in one-pane-dialog.stories.tsx
+            disableSnapshot: true,
         },
     },
     // Make the following props null in the control panel
@@ -127,13 +94,14 @@ export const Default: StoryComponentType = {
                 >
                     <ModalPanel
                         content={
-                            <>
-                                <Title id="modal-title-0">Modal Title</Title>
-                                <Strut size={spacing.large_24} />
-                                <Body id="modal-desc-0">
+                            <View style={{gap: sizing.size_240}}>
+                                <Heading size="xxlarge" id="modal-title-0">
+                                    Modal Title
+                                </Heading>
+                                <BodyText id="modal-desc-0">
                                     Here is some text in the modal.
-                                </Body>
-                            </>
+                                </BodyText>
+                            </View>
                         }
                     />
                 </ModalDialog>
@@ -190,13 +158,14 @@ export const WithAboveAndBelow: StoryComponentType = {
                     >
                         <ModalPanel
                             content={
-                                <>
-                                    <Title id="modal-title-2">
+                                <View style={{gap: sizing.size_240}}>
+                                    <Heading size="xxlarge" id="modal-title-2">
                                         Modal Title
-                                    </Title>
-                                    <Strut size={spacing.large_24} />
-                                    <Body>Here is some text in the modal.</Body>
-                                </>
+                                    </Heading>
+                                    <BodyText>
+                                        Here is some text in the modal.
+                                    </BodyText>
+                                </View>
                             }
                         />
                     </ModalDialog>
@@ -226,11 +195,12 @@ export const WithLauncher: StoryComponentType = {
             >
                 <ModalPanel
                     content={
-                        <>
-                            <Title id="modal-title-3">Modal Title</Title>
-                            <Strut size={spacing.large_24} />
-                            <Body>Here is some text in the modal.</Body>
-                        </>
+                        <View style={{gap: sizing.size_240}}>
+                            <Heading size="xxlarge" id="modal-title-3">
+                                Modal Title
+                            </Heading>
+                            <BodyText>Here is some text in the modal.</BodyText>
+                        </View>
                     }
                 />
             </ModalDialog>
@@ -246,74 +216,28 @@ export const WithLauncher: StoryComponentType = {
             </ModalLauncher>
         );
     },
-    parameters: {
-        chromatic: {
-            // Don't take screenshots of this story since it would only show a
-            // button and not the actual modal.
-            disableSnapshot: true,
-        },
-    },
 };
 
 /**
- * This example shows how a modal dialog/panel can be created with a dark
- * background. The `light` prop of the `<ModalPanel>` element is set to `false`
- * to create a dark background.
- *
- * **NOTE:** We are using the `khanmigo` theme for this example for chromatic
- * tests. But you can use any theme you want by clicking in the `theme` option
- * in the toolbar.
+ * When the content in a modal is longer than the available space, the modal
+ * becomes scrollable by default. The `scrollOverflow` prop on `<ModalPanel>`
+ * controls this behavior (defaults to `true`). This example demonstrates how
+ * a modal with long contents will automatically enable scrolling, keeping the
+ * header and footer fixed while the main content scrolls.
  */
-export const WithDarkPanel: StoryComponentType = {
+export const WithLongContents: StoryComponentType = {
     render: (args) => (
         <View style={styles.previewSizer}>
             <View style={styles.modalPositioner}>
-                <ModalDialog
-                    {...args}
-                    aria-labelledby="modal-title-0"
-                    aria-describedby="modal-desc-0"
-                >
+                <ModalDialog {...args}>
                     <ModalPanel
                         content={
-                            <>
-                                <img
-                                    width="100%"
-                                    src="https://cdn.kastatic.org/images/lohp/laptop_collage@2x.png"
-                                    alt=""
-                                />
-                                <View
-                                    style={{
-                                        marginTop: spacing.medium_16,
-                                    }}
-                                >
-                                    <Title id="modal-title-0">
-                                        Modal Title
-                                    </Title>
-                                    <Strut size={spacing.large_24} />
-                                    <Body id="modal-desc-0">
-                                        Here is some text in the modal.
-                                    </Body>
-                                </View>
-                            </>
-                        }
-                        light={false}
-                        footer={
-                            <Button
-                                kind="secondary"
-                                style={[
-                                    actionStyles.inverse,
-                                    // NOTE: This is a workaround while we move
-                                    // this button to DAB and remove the
-                                    // `Button.khanmigo` theme.
-                                    {
-                                        background: "transparent",
-                                        ":hover": {background: "transparent"},
-                                    },
-                                ]}
-                                onClick={() => {}}
-                            >
-                                Continue
-                            </Button>
+                            <View style={{gap: sizing.size_240}} tabIndex={0}>
+                                <Heading size="xxlarge" id="modal-title-4">
+                                    Terms of Service
+                                </Heading>
+                                {reallyLongText}
+                            </View>
                         }
                     />
                 </ModalDialog>
@@ -322,23 +246,11 @@ export const WithDarkPanel: StoryComponentType = {
     ),
     args: {
         style: {
-            maxWidth: 300,
+            maxWidth: 500,
             maxHeight: 500,
         },
+        "aria-labelledby": "modal-title-4",
     },
-    decorators: [
-        (Story) => {
-            const [globals] = useGlobals();
-            // Defaults to khanmigo theme for chromatic tests.
-            const {theme = "khanmigo"} = globals;
-
-            return (
-                <ThemeSwitcherContext.Provider value={theme}>
-                    <Story />
-                </ThemeSwitcherContext.Provider>
-            );
-        },
-    ],
 };
 
 const styles = StyleSheet.create({
@@ -346,25 +258,9 @@ const styles = StyleSheet.create({
         alignItems: "center",
         justifyContent: "center",
     },
-    modalPositioner: {
-        // Checkerboard background
-        backgroundImage:
-            "linear-gradient(45deg, #ccc 25%, transparent 25%), linear-gradient(-45deg, #ccc 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #ccc 75%), linear-gradient(-45deg, transparent 75%, #ccc 75%)",
-        backgroundSize: "20px 20px",
-        backgroundPosition: "0 0, 0 10px, 10px -10px, -10px 0px",
-
-        flexDirection: "row",
-        alignItems: "center",
-        justifyContent: "center",
-
-        position: "absolute",
-        left: 0,
-        right: 0,
-        top: 0,
-        bottom: 0,
-    },
+    modalPositioner: modalPositionerStyle,
     previewSizer: {
-        minHeight: 600,
+        minBlockSize: 600,
         width: "100%",
     },
     row: {
@@ -378,12 +274,12 @@ const styles = StyleSheet.create({
         width: "100%",
     },
     squareDialog: {
-        maxHeight: 500,
-        maxWidth: 500,
-        backgroundColor: semanticColor.surface.inverse,
+        maxBlockSize: 500,
+        maxInlineSize: 500,
+        backgroundColor: semanticColor.core.background.neutral.strong,
     },
     smallSquarePanel: {
-        maxHeight: 400,
-        maxWidth: 400,
+        maxBlockSize: 400,
+        maxInlineSize: 400,
     },
 });

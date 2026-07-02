@@ -1,5 +1,419 @@
 # @khanacademy/wonder-blocks-clickable
 
+## 8.2.5
+
+### Patch Changes
+
+- Updated dependencies [0735aef]
+    - @khanacademy/wonder-blocks-tokens@16.8.1
+
+## 8.2.4
+
+### Patch Changes
+
+- Updated dependencies [f13552a]
+    - @khanacademy/wonder-blocks-tokens@16.8.0
+
+## 8.2.3
+
+### Patch Changes
+
+- Updated dependencies [0907f64]
+- Updated dependencies [9773405]
+- Updated dependencies [9773405]
+- Updated dependencies [022e775]
+- Updated dependencies [e181c15]
+- Updated dependencies [c033245]
+- Updated dependencies [a2bbc0a]
+    - @khanacademy/wonder-blocks-tokens@16.7.0
+
+## 8.2.2
+
+### Patch Changes
+
+- d69335d: Disables no-raw-button lint rule for internal button usage
+    - @khanacademy/wonder-blocks-core@12.4.4
+
+## 8.2.1
+
+### Patch Changes
+
+- Updated dependencies [a676ce6]
+    - @khanacademy/wonder-blocks-tokens@16.6.0
+
+## 8.2.0
+
+### Minor Changes
+
+- c97ece4: Accepts the `state` prop from the React router Link component.
+
+### Patch Changes
+
+- Updated dependencies [40cb70f]
+- Updated dependencies [40cb70f]
+    - @khanacademy/wonder-blocks-core@12.4.4
+
+## 8.1.10
+
+### Patch Changes
+
+- Updated dependencies [44bde5e]
+- Updated dependencies [27a211d]
+    - @khanacademy/wonder-blocks-tokens@16.5.0
+
+## 8.1.9
+
+### Patch Changes
+
+- Updated dependencies [245229a]
+    - @khanacademy/wonder-blocks-tokens@16.4.1
+
+## 8.1.8
+
+### Patch Changes
+
+- Updated dependencies [c1c74df]
+- Updated dependencies [72c5272]
+    - @khanacademy/wonder-blocks-tokens@16.4.0
+
+## 8.1.7
+
+### Patch Changes
+
+- Updated dependencies [40f217b]
+    - @khanacademy/wonder-blocks-tokens@16.3.0
+
+## 8.1.6
+
+### Patch Changes
+
+- Updated dependencies [488728a]
+    - @khanacademy/wonder-blocks-tokens@16.2.0
+
+## 8.1.5
+
+### Patch Changes
+
+- Updated dependencies [358eb9b]
+    - @khanacademy/wonder-blocks-tokens@16.1.0
+
+## 8.1.4
+
+### Patch Changes
+
+- Updated dependencies [c75abe9]
+- Updated dependencies [c75abe9]
+- Updated dependencies [530d692]
+    - @khanacademy/wonder-blocks-tokens@16.0.0
+
+## 8.1.3
+
+### Patch Changes
+
+- 12e04c3: Update component documentation for the `disabled` props to include details about `aria-disabled` being set internally to keep an element focusable while in a disabled state
+
+## 8.1.2
+
+### Patch Changes
+
+- Updated dependencies [8bb7ada]
+    - @khanacademy/wonder-blocks-tokens@15.0.0
+
+## 8.1.1
+
+### Patch Changes
+
+- Updated dependencies [d6ae5fb]
+    - @khanacademy/wonder-blocks-core@12.4.3
+    - @khanacademy/wonder-blocks-tokens@14.1.3
+
+## 8.1.0
+
+### Minor Changes
+
+- 6e257eb: Add `onBlur` event handler to Clickable API
+
+## 8.0.5
+
+### Patch Changes
+
+- Updated dependencies [70d6c08]
+    - @khanacademy/wonder-blocks-tokens@14.1.3
+
+## 8.0.4
+
+### Patch Changes
+
+- 8a36c70: Re-publish to publish with Trusted Publishing
+- 3e0d137: Re-publishing via Trusted Publishing
+- Updated dependencies [8a36c70]
+- Updated dependencies [3e0d137]
+    - @khanacademy/wonder-blocks-core@12.4.2
+    - @khanacademy/wonder-blocks-tokens@14.1.2
+
+## 8.0.3
+
+### Patch Changes
+
+- Updated dependencies [540371d]
+    - @khanacademy/wonder-blocks-tokens@14.1.1
+
+## 8.0.2
+
+### Patch Changes
+
+- Updated dependencies [272bf31]
+    - @khanacademy/wonder-blocks-tokens@14.1.0
+
+## 8.0.1
+
+### Patch Changes
+
+- 6d5c485: Include provenance information when publishing to npmjs
+- Updated dependencies [6d5c485]
+    - @khanacademy/wonder-blocks-core@12.4.1
+    - @khanacademy/wonder-blocks-tokens@14.0.1
+
+## 8.0.0
+
+### Major Changes
+
+- 59e0211: Removes light prop from Clickable as it is no longer used/recommended. Please use `actionStyles.inverse` instead.
+
+## 7.1.26
+
+### Patch Changes
+
+- Updated dependencies [6963849]
+- Updated dependencies [f627dca]
+    - @khanacademy/wonder-blocks-tokens@14.0.0
+
+## 7.1.25
+
+### Patch Changes
+
+- Updated dependencies [ede6085]
+- Updated dependencies [a70f274]
+    - @khanacademy/wonder-blocks-tokens@13.0.0
+
+## 7.1.24
+
+### Patch Changes
+
+- Updated dependencies [1feec01]
+    - @khanacademy/wonder-blocks-tokens@12.2.1
+
+## 7.1.23
+
+### Patch Changes
+
+- aa6ad92: Move away from using `foreground.inverse` and `border.inverse` tokens in favour of the new knockout tokens
+- Updated dependencies [5a02279]
+- Updated dependencies [aa6ad92]
+- Updated dependencies [aa6ad92]
+    - @khanacademy/wonder-blocks-tokens@12.2.0
+
+## 7.1.22
+
+### Patch Changes
+
+- Updated dependencies [4aad557]
+    - @khanacademy/wonder-blocks-tokens@12.1.0
+
+## 7.1.21
+
+### Patch Changes
+
+- Updated dependencies [1334e74]
+    - @khanacademy/wonder-blocks-core@12.4.0
+
+## 7.1.20
+
+### Patch Changes
+
+- Updated dependencies [e559ab0]
+- Updated dependencies [98f4272]
+- Updated dependencies [b3dd28f]
+- Updated dependencies [3c3d8fb]
+    - @khanacademy/wonder-blocks-tokens@12.0.2
+
+## 7.1.19
+
+### Patch Changes
+
+- Updated dependencies [9aad939]
+    - @khanacademy/wonder-blocks-tokens@12.0.1
+
+## 7.1.18
+
+### Patch Changes
+
+- Updated dependencies [eafcfa3]
+- Updated dependencies [956f8bd]
+- Updated dependencies [eafcfa3]
+- Updated dependencies [b42b694]
+- Updated dependencies [956f8bd]
+    - @khanacademy/wonder-blocks-tokens@12.0.0
+
+## 7.1.17
+
+### Patch Changes
+
+- Updated dependencies [03415d1]
+    - @khanacademy/wonder-blocks-tokens@11.4.1
+
+## 7.1.16
+
+### Patch Changes
+
+- Updated dependencies [4d207b1]
+    - @khanacademy/wonder-blocks-tokens@11.4.0
+
+## 7.1.15
+
+### Patch Changes
+
+- Updated dependencies [7cd0ebf]
+- Updated dependencies [51b6e69]
+- Updated dependencies [51b6e69]
+    - @khanacademy/wonder-blocks-tokens@11.3.1
+
+## 7.1.14
+
+### Patch Changes
+
+- Updated dependencies [a98fe6c]
+- Updated dependencies [e21e448]
+- Updated dependencies [dddbe55]
+    - @khanacademy/wonder-blocks-tokens@11.3.0
+
+## 7.1.13
+
+### Patch Changes
+
+- Updated dependencies [d8716ab]
+    - @khanacademy/wonder-blocks-tokens@11.2.2
+
+## 7.1.12
+
+### Patch Changes
+
+- Updated dependencies [de9435a]
+- Updated dependencies [f50aafc]
+    - @khanacademy/wonder-blocks-tokens@11.2.1
+
+## 7.1.11
+
+### Patch Changes
+
+- Updated dependencies [e457d8c]
+    - @khanacademy/wonder-blocks-tokens@11.2.0
+
+## 7.1.10
+
+### Patch Changes
+
+- Updated dependencies [f26858a]
+    - @khanacademy/wonder-blocks-tokens@11.1.1
+
+## 7.1.9
+
+### Patch Changes
+
+- Updated dependencies [0f4f771]
+    - @khanacademy/wonder-blocks-tokens@11.1.0
+
+## 7.1.8
+
+### Patch Changes
+
+- Updated dependencies [1ac2ba7]
+- Updated dependencies [0cb7a69]
+- Updated dependencies [cbf58b0]
+    - @khanacademy/wonder-blocks-tokens@11.0.0
+
+## 7.1.7
+
+### Patch Changes
+
+- Updated dependencies [7811eb1]
+    - @khanacademy/wonder-blocks-tokens@10.6.0
+
+## 7.1.6
+
+### Patch Changes
+
+- Updated dependencies [8468d8d]
+    - @khanacademy/wonder-blocks-tokens@10.5.0
+
+## 7.1.5
+
+### Patch Changes
+
+- 9bacc1a: Replaces all existing `semanticColor.border` references to use `semanticColor.core.border`
+- 7abcccf: Replace call sites to use `core.background` instead of `action`.
+- Updated dependencies [b1ee2b4]
+- Updated dependencies [7abcccf]
+- Updated dependencies [9bacc1a]
+- Updated dependencies [9bacc1a]
+- Updated dependencies [1c3c335]
+- Updated dependencies [689f5d3]
+    - @khanacademy/wonder-blocks-tokens@10.4.0
+
+## 7.1.4
+
+### Patch Changes
+
+- Updated dependencies [dd76e7c]
+    - @khanacademy/wonder-blocks-tokens@10.3.0
+    - @khanacademy/wonder-blocks-core@12.3.0
+
+## 7.1.3
+
+### Patch Changes
+
+- Updated dependencies [1338494]
+    - @khanacademy/wonder-blocks-tokens@10.2.1
+
+## 7.1.2
+
+### Patch Changes
+
+- Updated dependencies [c7d95bf]
+- Updated dependencies [668093b]
+    - @khanacademy/wonder-blocks-tokens@10.2.0
+    - @khanacademy/wonder-blocks-core@12.3.0
+
+## 7.1.1
+
+### Patch Changes
+
+- Updated dependencies [a1be4c5]
+- Updated dependencies [d00a6f1]
+- Updated dependencies [abf5496]
+- Updated dependencies [812c167]
+    - @khanacademy/wonder-blocks-tokens@10.1.0
+
+## 7.1.0
+
+### Minor Changes
+
+- 38042e2: Add `viewTransition` prop to support ReactRouter's v6 `Link.viewTransition` prop which supports the View Transitions API. See https://reactrouter.com/6.30.0/components/link#viewtransition
+
+### Patch Changes
+
+- Updated dependencies [28fa0c0]
+- Updated dependencies [28fa0c0]
+    - @khanacademy/wonder-blocks-core@12.3.0
+
+## 7.0.4
+
+### Patch Changes
+
+- Updated dependencies [b9e4946]
+    - @khanacademy/wonder-blocks-tokens@10.0.0
+    - @khanacademy/wonder-blocks-core@12.2.1
+
 ## 7.0.3
 
 ### Patch Changes

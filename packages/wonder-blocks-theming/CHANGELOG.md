@@ -1,5 +1,36 @@
 # @khanacademy/wonder-blocks-theming
 
+## 4.1.0
+
+### Minor Changes
+
+- 27a211d: Add support for SYL Dark theme
+
+## 4.0.2
+
+### Patch Changes
+
+- 8a36c70: Re-publish to publish with Trusted Publishing
+- 3e0d137: Re-publishing via Trusted Publishing
+
+## 4.0.1
+
+### Patch Changes
+
+- 6d5c485: Include provenance information when publishing to npmjs
+
+## 4.0.0
+
+### Major Changes
+
+- 0f16c2e: Remove most of deprecated APIs that use React Context in favor of CSS variables + custom tooling
+
+## 3.4.0
+
+### Minor Changes
+
+- c7d95bf: Add `thunderblocks` theme to Wonder Blocks.
+
 ## 3.3.0
 
 ### Minor Changes

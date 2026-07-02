@@ -1,18 +1,22 @@
 import * as React from "react";
 import {StyleSheet, css} from "aphrodite";
-import type {Meta, StoryObj} from "@storybook/react";
+import type {Meta, StoryObj} from "@storybook/react-vite";
 
 import {View} from "@khanacademy/wonder-blocks-core";
-import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
-import {Body, LabelLarge} from "@khanacademy/wonder-blocks-typography";
+import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
+import {BodyText} from "@khanacademy/wonder-blocks-typography";
 import {CircularSpinner} from "@khanacademy/wonder-blocks-progress-spinner";
 
+import AriaArgTypes from "../wonder-blocks-core/aria.argtypes";
 import ComponentInfo from "../components/component-info";
 import packageConfig from "../../packages/wonder-blocks-progress-spinner/package.json";
 
 export default {
     title: "Packages / ProgressSpinner / CircularSpinner",
     component: CircularSpinner,
+    argTypes: {
+        ...AriaArgTypes,
+    },
     parameters: {
         componentSubtitle: (
             <ComponentInfo
@@ -28,6 +32,10 @@ export default {
                 // See https://github.com/storybookjs/storybook/issues/12596
                 excludeDecorators: true,
             },
+        },
+        chromatic: {
+            // Disable snapshots for this component because it is covered by StateSheet snapshots
+            disableSnapshot: true,
         },
     },
     decorators: [
@@ -48,16 +56,24 @@ export const Sizes: StoryComponentType = () => (
         <tbody>
             <tr>
                 <th>
-                    <LabelLarge>xsmall</LabelLarge>
+                    <BodyText tag="span" weight="bold">
+                        xsmall
+                    </BodyText>
                 </th>
                 <th>
-                    <LabelLarge>small</LabelLarge>
+                    <BodyText tag="span" weight="bold">
+                        small
+                    </BodyText>
                 </th>
                 <th>
-                    <LabelLarge>medium</LabelLarge>
+                    <BodyText tag="span" weight="bold">
+                        medium
+                    </BodyText>
                 </th>
                 <th>
-                    <LabelLarge>large</LabelLarge>
+                    <BodyText tag="span" weight="bold">
+                        large
+                    </BodyText>
                 </th>
             </tr>
             <tr>
@@ -120,10 +136,13 @@ Sizes.parameters = {
 
 export const Light: StoryComponentType = () => <CircularSpinner light={true} />;
 
-Light.parameters = {
+Light.globals = {
     backgrounds: {
-        default: "darkBlue",
+        value: "neutralStrong",
     },
+};
+
+Light.parameters = {
     docs: {
         description: {
             story: `This is a progress spinner with its \`light\`
@@ -133,23 +152,28 @@ Light.parameters = {
 };
 
 export const Inline: StoryComponentType = () => (
-    <Body>
+    <BodyText>
         Inline inside{" "}
         <CircularSpinner size="xsmall" style={{display: "inline"}} /> some text.
-    </Body>
+    </BodyText>
 );
 
 Inline.parameters = {
     docs: {
         description: {story: `Circular spinners also work inline.`},
     },
+    chromatic: {
+        // Re-enable snapshots for this story since it shows the spinner in
+        // the context of text.
+        disableSnapshot: false,
+    },
 };
 
 export const WithStyle: StoryComponentType = () => {
     const spinnerStyle = {
-        border: `solid 5px ${color.teal}`,
+        border: `solid 5px ${semanticColor.core.border.instructive.default}`,
         borderRadius: "50%",
-        backgroundColor: color.offWhite,
+        backgroundColor: semanticColor.core.background.base.subtle,
     } as const;
 
     return <CircularSpinner style={spinnerStyle} />;
@@ -165,18 +189,23 @@ WithStyle.parameters = {
             of \`50%\`.`,
         },
     },
+    chromatic: {
+        // Re-enable snapshots for this story since it shows the spinner in
+        // the context of custom styles.
+        disableSnapshot: false,
+    },
 };
 
 const styles = StyleSheet.create({
     darkBackground: {
-        background: color.darkBlue,
-        padding: spacing.xLarge_32,
+        background: semanticColor.core.background.instructive.strong,
+        padding: sizing.size_320,
         width: "100%",
         alignItems: "center",
         justifyContent: "center",
     },
     distanced: {
-        margin: spacing.large_24,
+        margin: sizing.size_240,
     },
     example: {
         alignItems: "center",
@@ -184,6 +213,6 @@ const styles = StyleSheet.create({
     },
     row: {
         flexDirection: "row",
-        marginBottom: spacing.xLarge_32,
+        marginBlockEnd: sizing.size_320,
     },
 });

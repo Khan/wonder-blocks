@@ -1,16 +1,16 @@
-import {Meta} from "@storybook/react";
+import {Meta} from "@storybook/react-vite";
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 import {PropsFor, View} from "@khanacademy/wonder-blocks-core";
 import {ActionItem} from "@khanacademy/wonder-blocks-dropdown";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
-import {semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 
 import ComponentInfo from "../components/component-info";
 import packageConfig from "../../packages/wonder-blocks-dropdown/package.json";
 import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
 import actionItemArgtypes from "./action-item.argtypes";
-import {LabelLarge, LabelMedium} from "@khanacademy/wonder-blocks-typography";
+import {BodyText} from "@khanacademy/wonder-blocks-typography";
 
 const defaultArgs = {
     label: "Action Item",
@@ -27,12 +27,12 @@ const defaultArgs = {
 
 const styles = StyleSheet.create({
     example: {
-        background: semanticColor.surface.secondary,
-        padding: spacing.medium_16,
+        background: semanticColor.core.background.base.subtle,
+        padding: sizing.size_160,
         width: 300,
     },
     items: {
-        background: semanticColor.surface.primary,
+        background: semanticColor.core.background.base.default,
     },
 });
 
@@ -120,15 +120,17 @@ export const Disabled = {
 };
 
 /**
- * ActionItem can have more complex content, such as icons.
+ * ActionItem can have more complex content, such as icons and subtitles.
  *
- * This can be done by passing in a `leftAccessory` and/or `rightAccessory`
- * prop. These can be any React node, and internally use the WB Cell component
- * to render.
+ * This can be done by passing in a `subtitle1`, `subtitle2`, `leftAccessory`
+ * and/or `rightAccessory` props. These can be any React node, and internally
+ * use the WB `DetailCell` component to render.
  */
 export const CustomActionItem = {
     args: {
         label: "Action Item",
+        subtitle1: "Subtitle 1",
+        subtitle2: "Subtitle 2",
         onClick: () => {},
         leftAccessory: (
             <PhosphorIcon icon={IconMappings.calendar} size="medium" />
@@ -146,8 +148,8 @@ export const CustomActionItemMultiLine = {
     args: {
         label: (
             <View>
-                <LabelLarge>Title</LabelLarge>
-                <LabelMedium>Subtitle</LabelMedium>
+                <BodyText weight="bold">Title</BodyText>
+                <BodyText>Subtitle</BodyText>
             </View>
         ),
         onClick: () => {},

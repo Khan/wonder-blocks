@@ -15,7 +15,7 @@ export default function BannerTile(props: CommonTileProps) {
                     of informing the user of important changes.`}
             {...props}
         >
-            <Banner text="This is a banner!" layout="floating" />
+            <Banner text="This is a banner!" />
         </ComponentTile>
     );
 }

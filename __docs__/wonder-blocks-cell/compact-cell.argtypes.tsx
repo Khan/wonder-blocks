@@ -1,8 +1,8 @@
-import type {ArgTypes} from "@storybook/react";
+import type {ArgTypes} from "@storybook/react-vite";
 import * as React from "react";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
-import {LabelSmall, LabelXSmall} from "@khanacademy/wonder-blocks-typography";
+import {BodyText} from "@khanacademy/wonder-blocks-typography";
 
 import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
 
@@ -19,17 +19,21 @@ export const AccessoryMappings = {
     withCaret: (
         <PhosphorIcon icon={IconMappings.caretRight} size="medium" />
     ) as React.ReactElement<React.ComponentProps<typeof PhosphorIcon>>,
-    withText: (<LabelSmall>26.3 GB</LabelSmall>) as React.ReactElement<
-        React.ComponentProps<typeof LabelSmall>
-    >,
+    withText: (
+        <BodyText tag="span" size="small">
+            26.3 GB
+        </BodyText>
+    ) as React.ReactElement<React.ComponentProps<typeof BodyText>>,
     withIconText: (
         <View style={{alignItems: "center"}}>
             <PhosphorIcon icon={IconMappings.infoBold} size="small" />
-            <LabelXSmall>Info</LabelXSmall>
+            <BodyText tag="span" size="xsmall">
+                Info
+            </BodyText>
         </View>
     ) as React.ReactElement<React.ComponentProps<typeof View>>,
     withImage: (
-        <img src="./avatar.png" alt="ItemAvatar" width={48} height={48} />
+        <img src="avatar.png" alt="ItemAvatar" width={48} height={48} />
     ) as React.ReactElement<React.ComponentProps<"img">>,
 } as const;
 
@@ -52,16 +56,6 @@ export default {
             },
         },
     },
-    contentStyle: {
-        description: `Optional custom styles applied to the content wrapper. For example, it can be used to set a custom minWidth or a custom alignment.`,
-        table: {
-            category: "Styling",
-            type: {
-                summary: "AccessoryStyle",
-                detail: '"minWidth" | "alignSelf" | "alignItems"',
-            },
-        },
-    },
     leftAccessory: {
         description: `If provided, this adds a left accessory to the cell. Left Accessories can be defined using WB components such as PhosphorIcon, IconButton, or it can even be used for a custom node/component if needed. What ever is passed in will occupy the "LeftAccessory” area of the Cell.`,
         control: {type: "select"},
@@ -72,16 +66,6 @@ export default {
             type: {
                 summary: "React.Node",
                 detail: "By default it uses a free width and its default alignment is center (for both vertical and horizontal).",
-            },
-        },
-    },
-    leftAccessoryStyle: {
-        description: `Optional custom styles applied to the leftAccessory wrapper. For example, it can be used to set a custom minWidth or a custom alignment.`,
-        table: {
-            category: "Styling",
-            type: {
-                summary: "AccessoryStyle",
-                detail: "NOTE: leftAccessoryStyle can only be used if leftAccessory is set.",
             },
         },
     },
@@ -98,16 +82,6 @@ export default {
             },
         },
     },
-    rightAccessoryStyle: {
-        description: `Optional custom styles applied to the rightAccessory wrapper. For example, it can be used to set a custom minWidth or a custom alignment.`,
-        table: {
-            category: "Styling",
-            type: {
-                summary: "AccessoryStyle",
-                detail: "NOTE: rightAccessoryStyle can only be used if rightAccessory is set.",
-            },
-        },
-    },
     horizontalRule: {
         description:
             "Adds a horizontal rule at the bottom of the cell that can be used to separate cells within groups such as lists. Defaults to `inset`.",
@@ -121,28 +95,9 @@ export default {
             },
         },
     },
-    rootStyle: {
-        description:
-            `Optional custom styles applied to the top node.\n\n` +
-            `**NOTE:** This is the top node of the cell, not the cell ` +
-            `container. If possible, try to use this prop carefully and use ` +
-            `\`style\` instead.`,
-        control: {type: "object"},
+    styles: {
         table: {
-            category: "Styling",
-            type: {
-                summary: "StyleType",
-            },
-        },
-    },
-    style: {
-        description: "Optional custom styles.",
-        control: {type: "object"},
-        table: {
-            category: "Styling",
-            type: {
-                summary: "StyleType",
-            },
+            category: "Layout",
         },
     },
     testId: {
@@ -179,7 +134,8 @@ export default {
         },
     },
     disabled: {
-        description: "Whether the cell is disabled.",
+        description:
+            "Whether the cell is disabled. Internally, the `aria-disabled` attribute will be set so that the element remains focusable and will be included in the tab order.",
         control: {
             type: "boolean",
         },

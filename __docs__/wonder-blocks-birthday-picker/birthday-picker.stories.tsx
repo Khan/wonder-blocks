@@ -1,5 +1,5 @@
 import * as React from "react";
-import type {Meta, StoryObj} from "@storybook/react";
+import type {Meta, StoryObj} from "@storybook/react-vite";
 
 import {View} from "@khanacademy/wonder-blocks-core";
 
@@ -16,6 +16,9 @@ const meta: Meta<typeof BirthdayPicker> = {
     title: "Packages / BirthdayPicker",
     component: BirthdayPicker,
     argTypes: ArgTypes,
+    args: {
+        locale: "en-US",
+    },
     parameters: {
         componentSubtitle: (
             <ComponentInfo
@@ -23,6 +26,10 @@ const meta: Meta<typeof BirthdayPicker> = {
                 version={packageConfig.version}
             />
         ),
+        chromatic: {
+            // Disabled because this component is covered by the testing snapshots
+            disableSnapshot: true,
+        },
         docs: {
             description: {
                 component: null,
@@ -32,8 +39,10 @@ const meta: Meta<typeof BirthdayPicker> = {
                 excludeDecorators: true,
             },
         },
+    },
+    globals: {
         viewport: {
-            defaultViewport: "large",
+            value: "large",
         },
     },
     decorators: [(Story): React.ReactElement => <View>{Story()}</View>],
@@ -50,11 +59,6 @@ export const BirthdayPickerDefault: StoryComponentType = {
         onChange: () => {},
         defaultValue: "",
     },
-    parameters: {
-        chromatic: {
-            disableSnapshot: true,
-        },
-    },
 };
 
 export const BirthdayPickerWithDefaultValue: StoryComponentType = {
@@ -63,9 +67,6 @@ export const BirthdayPickerWithDefaultValue: StoryComponentType = {
         defaultValue: "2021-07-19",
     },
     parameters: {
-        chromatic: {
-            disableSnapshot: true,
-        },
         docs: {
             description: {
                 story: "This component is empty by default, but we can pass in a defined birthday by using the `defaultValue` prop.",
@@ -189,8 +190,25 @@ export const BirthdayPickerMobile: StoryComponentType = {
                 story: "A BirthdayPicker will reflow on small screens to stack controls rather than position them side-by-side.",
             },
         },
+    },
+    globals: {
         viewport: {
-            defaultViewport: "small",
+            value: "small",
         },
+    },
+};
+
+/**
+ * A BirthdayPicker can be configured to render the month names in a different
+ * locale. This can be useful when we want to display the component in a
+ * different language.
+ *
+ * If no locale is provided, the browser's `navigator.language` value will be
+ * used.
+ */
+export const Locale: StoryComponentType = {
+    args: {
+        locale: "es",
+        defaultValue: "2021-01-19",
     },
 };

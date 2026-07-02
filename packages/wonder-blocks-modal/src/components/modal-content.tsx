@@ -1,17 +1,11 @@
 import * as React from "react";
 import {View} from "@khanacademy/wonder-blocks-core";
-import {spacing} from "@khanacademy/wonder-blocks-tokens";
 
 import type {StyleType} from "@khanacademy/wonder-blocks-core";
-import {
-    ThemedStylesFn,
-    useScopedTheme,
-    useStyles,
-} from "@khanacademy/wonder-blocks-theming";
-import {
-    ModalDialogThemeContext,
-    ModalDialogThemeContract,
-} from "../themes/themed-modal-dialog";
+import {StyleSheet} from "aphrodite";
+// TODO [WB-2137]: standardize media query breakpoint tokens
+import {modalMediaQuery} from "../util/constants";
+import theme from "../theme";
 
 type Props = {
     /** Should the content scroll on overflow, or just expand. */
@@ -20,19 +14,43 @@ type Props = {
     children: React.ReactNode;
     /** Optional styling to apply to the contents. */
     style?: StyleType;
+    /**
+     * When true, allows the small-height media query to unset overflow/flex behavior.
+     * This fixes layout issues in OnePaneDialog on small screens, but should be
+     * disabled for FlexibleDialog/DrawerDialog which need scrolling at all times.
+     * @defaultValue true
+     */
+    applySmallHeightStyles?: boolean;
 };
 
 /**
  * The Modal content included after the header
  */
 function ModalContent(props: Props) {
-    const {scrollOverflow, style, children} = props;
-    const {theme} = useScopedTheme(ModalDialogThemeContext);
-    const styles = useStyles(themedStylesFn, theme);
+    const {
+        scrollOverflow,
+        style,
+        children,
+        applySmallHeightStyles = true,
+    } = props;
 
     return (
-        <View style={[styles.wrapper, scrollOverflow && styles.scrollOverflow]}>
-            <View style={[styles.content, style]}>{children}</View>
+        <View
+            style={[
+                styles.wrapper,
+                scrollOverflow && styles.scrollOverflow,
+                applySmallHeightStyles && styles.wrapperSmallHeight,
+            ]}
+        >
+            <View
+                style={[
+                    styles.content,
+                    applySmallHeightStyles && styles.contentSmallHeight,
+                    style,
+                ]}
+            >
+                {children}
+            </View>
         </View>
     );
 }
@@ -48,9 +66,7 @@ ModalContent.isComponentOf = (instance: any): boolean => {
  * TODO(WB-1655): Change this to use the theme instead (inside themedStylesFn).
  * e.g. `[theme.breakpoints.small]: {...}`
  */
-const small = "@media (max-width: 767px)";
-
-const themedStylesFn: ThemedStylesFn<ModalDialogThemeContract> = (theme) => ({
+const styles = StyleSheet.create({
     wrapper: {
         flex: 1,
 
@@ -59,23 +75,42 @@ const themedStylesFn: ThemedStylesFn<ModalDialogThemeContract> = (theme) => ({
         display: "block",
     },
 
+    // Media query styles for small height - applied conditionally via applySmallHeightStyles prop
+    wrapperSmallHeight: {
+        [modalMediaQuery.smMinOrSmallerHeight as any]: {
+            flex: "unset",
+            minBlockSize: "unset",
+            overflow: "unset",
+        },
+    },
+
     scrollOverflow: {
         overflow: "auto",
     },
 
     content: {
         flex: 1,
-        minHeight: "100%",
-        padding: spacing.xLarge_32,
+        minBlockSize: "100%",
+        padding: theme.panel.layout.gap.default,
         boxSizing: "border-box",
-        [small]: {
-            padding: `${spacing.xLarge_32}px ${spacing.medium_16}px`,
+        [modalMediaQuery.midOrSmaller as any]: {
+            paddingInline: theme.panel.layout.gap.small,
+        },
+    },
+
+    // Media query styles for small height - applied conditionally via applySmallHeightStyles prop
+    contentSmallHeight: {
+        [modalMediaQuery.smMinOrSmallerHeight as any]: {
+            flex: "unset",
+            minBlockSize: "unset",
+            overflow: "unset",
         },
     },
 });
 
 ModalContent.defaultProps = {
     scrollOverflow: true,
+    applySmallHeightStyles: true,
 };
 
 export default ModalContent;

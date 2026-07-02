@@ -1,6 +1,9 @@
-import type {ArgTypes} from "@storybook/react";
+import type {ArgTypes} from "@storybook/react-vite";
+
+import AriaArgTypes from "../wonder-blocks-core/aria.argtypes";
 
 export default {
+    ...AriaArgTypes,
     children: {
         description:
             "The child of Clickable must be a function which returns the component which should be made Clickable.  The function is passed an object with three boolean properties: hovered, focused, and pressed.",
@@ -40,23 +43,9 @@ export default {
     /**
      * States
      */
-    light: {
-        description:
-            "Whether the Clickable is on a dark colored background. Sets the default focus ring color to white, instead of blue. Defaults to false.",
-        defaultValue: false,
-        type: {
-            name: "boolean",
-            required: true,
-        },
-        table: {
-            category: "States",
-            type: {
-                summary: "boolean",
-            },
-        },
-    },
     disabled: {
-        description: "Disables or enables the child; defaults to false",
+        description:
+            "Disables or enables the child; defaults to false. Internally, the `aria-disabled` attribute will be set so that the element remains focusable and will be included in the tab order.",
         defaultValue: false,
         type: {
             name: "boolean",
@@ -117,6 +106,26 @@ export default {
             },
         },
         action: "clicked",
+    },
+    onFocus: {
+        description: "Respond to raw `focus` event.",
+        table: {
+            category: "Events",
+            type: {
+                summary: "(e: SyntheticFocusEvent<>) => mixed",
+            },
+        },
+        action: "focused",
+    },
+    onBlur: {
+        description: "Respond to raw `blur` event.",
+        table: {
+            category: "Events",
+            type: {
+                summary: "(e: SyntheticFocusEvent<>) => mixed",
+            },
+        },
+        action: "blurred",
     },
     onkeyDown: {
         description: "Respond to raw `keydown` event.",

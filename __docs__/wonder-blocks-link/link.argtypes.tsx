@@ -1,7 +1,8 @@
 import * as React from "react";
 
-import type {ArgTypes} from "@storybook/react";
+import type {ArgTypes} from "@storybook/react-vite";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
+import AriaArgTypes from "../wonder-blocks-core/aria.argtypes";
 import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
 
 const iconsMap: Record<string, React.ReactElement<typeof PhosphorIcon>> = {};
@@ -11,6 +12,7 @@ Object.entries(IconMappings).forEach(([iconLabel, iconValue]) => {
 });
 
 export default {
+    ...AriaArgTypes,
     children: {
         control: {type: "text"},
         description:
@@ -53,14 +55,6 @@ export default {
             from surrounding text.`,
         table: {type: {summary: "boolean"}},
         type: {name: "boolean", required: false},
-    },
-
-    light: {
-        control: {type: "boolean"},
-        description: "Whether the button is on a dark/colored background.",
-        table: {
-            type: {summary: "boolean"},
-        },
     },
 
     rel: {
@@ -192,6 +186,18 @@ export default {
         table: {
             category: "Events",
             type: {summary: "(e: SyntheticKeyboardEvent<>) => mixed"},
+        },
+    },
+
+    labels: {
+        control: {type: "object"},
+        description: `The object containing the custom labels used inside this component. This is useful for internationalization. Defaults to English.`,
+        table: {
+            category: "Accessibility",
+            type: {
+                summary: "{externalIconAriaLabel?: string}",
+                detail: `externalIconAriaLabel: An optional aria-label for the external link icon. This is used to provide a translatable description for screen readers.`,
+            },
         },
     },
 } satisfies ArgTypes;

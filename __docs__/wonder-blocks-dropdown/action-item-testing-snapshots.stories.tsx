@@ -1,0 +1,120 @@
+import * as React from "react";
+import type {Meta, StoryObj} from "@storybook/react-vite";
+
+import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
+import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
+import {ActionItem} from "@khanacademy/wonder-blocks-dropdown";
+import {View} from "@khanacademy/wonder-blocks-core";
+import {allThemeModes} from "../../.storybook/modes";
+import {defaultPseudoStates, StateSheet} from "../components/state-sheet";
+
+const rows = [
+    {name: "Unselected", props: {}},
+    {name: "Active", props: {active: true}},
+];
+
+const columns = [
+    {
+        name: "Default",
+        props: {},
+    },
+    {
+        name: "Disabled",
+        props: {disabled: true},
+    },
+    {
+        name: "Custom label",
+        props: {
+            label: "Action Item",
+            onClick: () => {},
+            leftAccessory: (
+                <PhosphorIcon icon={IconMappings.calendar} size="medium" />
+            ),
+            rightAccessory: (
+                <PhosphorIcon icon={IconMappings.caretRight} size="medium" />
+            ),
+            subtitle1: "Subtitle 1",
+            subtitle2: "Subtitle 2",
+        },
+    },
+    {
+        name: "Horizontal rule: Inset",
+        props: {
+            horizontalRule: "inset",
+        },
+    },
+    {
+        name: "Horizontal rule: Full width",
+        props: {
+            horizontalRule: "full-width",
+        },
+    },
+];
+
+type Story = StoryObj<typeof ActionItem>;
+
+/**
+ * The following stories are used to generate the pseudo states for the
+ * ActionItem component. This is only used for visual testing in Chromatic.
+ */
+const meta = {
+    title: "Packages / Dropdown / Testing / Snapshots / ActionItem",
+    component: ActionItem,
+    args: {
+        label: "Action Item",
+        onClick: () => {},
+        disabled: false,
+        testId: "",
+        lang: "",
+        role: "menuitem",
+        style: {},
+        horizontalRule: "none",
+        leftAccessory: null,
+        rightAccessory: null,
+    },
+    decorators: [
+        (Story): React.ReactElement<React.ComponentProps<typeof View>> => (
+            <View style={{width: 800}}>
+                <Story />
+            </View>
+        ),
+    ],
+    globals: {
+        backgrounds: {
+            value: "baseSubtle",
+        },
+    },
+    parameters: {
+        chromatic: {
+            modes: allThemeModes,
+        },
+    },
+    tags: ["!autodocs", "!manifest"],
+} satisfies Meta<typeof ActionItem>;
+
+export default meta;
+
+export const StateSheetStory: Story = {
+    name: "StateSheet",
+    render: (args) => {
+        return (
+            <StateSheet rows={rows} columns={columns}>
+                {({props, className, name}) => (
+                    // NOTE: We need to wrap it in a menu role to ensure that
+                    // a11y tools announce the listbox correctly.
+                    <View role="menu" aria-label={name}>
+                        <ActionItem
+                            {...args}
+                            {...props}
+                            className={className}
+                            key={name}
+                        />
+                    </View>
+                )}
+            </StateSheet>
+        );
+    },
+    parameters: {
+        pseudo: defaultPseudoStates,
+    },
+};

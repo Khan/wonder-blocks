@@ -42,4 +42,25 @@ describe("mapValuesToCssVars", () => {
             },
         });
     });
+
+    it("should set the prefix correctly", () => {
+        // Arrange
+        const obj = {
+            color: {
+                primary: "red",
+                secondary: "blue",
+            },
+        };
+
+        // Act
+        const cssVars = mapValuesToCssVars(obj, "--wb-custom-prefix-");
+
+        // Assert
+        expect(cssVars).toStrictEqual({
+            color: {
+                primary: "var(--wb-custom-prefix-color-primary)",
+                secondary: "var(--wb-custom-prefix-color-secondary)",
+            },
+        });
+    });
 });

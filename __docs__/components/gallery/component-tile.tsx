@@ -5,8 +5,8 @@ import externalLinkIcon from "@phosphor-icons/core/bold/arrow-square-out-bold.sv
 import Clickable from "@khanacademy/wonder-blocks-clickable";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
-import * as tokens from "@khanacademy/wonder-blocks-tokens";
-import {Body, HeadingSmall} from "@khanacademy/wonder-blocks-typography";
+import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
+import {BodyText, Heading} from "@khanacademy/wonder-blocks-typography";
 import {DetailCell} from "@khanacademy/wonder-blocks-cell";
 import {CommonTileProps} from "./types";
 import {Spring} from "@khanacademy/wonder-blocks-layout";
@@ -66,7 +66,9 @@ export default function ComponentTile(props: Props) {
                             ]}
                         >
                             <View style={styles.headingContainer}>
-                                <HeadingSmall tag="h4">{name}</HeadingSmall>
+                                <Heading size="medium" tag="h4">
+                                    {name}
+                                </Heading>
                                 <View style={styles.externalLinkIcon}>
                                     <PhosphorIcon
                                         icon={externalLinkIcon}
@@ -79,9 +81,9 @@ export default function ComponentTile(props: Props) {
                             </View>
 
                             {!compactGrid && (
-                                <Body style={styles.descriptionText}>
+                                <BodyText style={styles.descriptionText}>
                                     {description}
-                                </Body>
+                                </BodyText>
                             )}
                         </View>
                     </>
@@ -98,7 +100,7 @@ const styles = StyleSheet.create({
     tile: {
         display: "flex",
         flexDirection: "column",
-        margin: tokens.spacing.xSmall_8,
+        margin: sizing.size_080,
 
         [mobile]: {
             width: "95%",
@@ -107,53 +109,53 @@ const styles = StyleSheet.create({
     tileWithDetails: {
         // Set the width to half the max width of the stories page content.
         width: 484,
-        minHeight: 300,
+        minBlockSize: 300,
     },
     tileWithoutDetails: {
         width: "auto",
         height: "auto",
     },
     clickable: {
-        backgroundColor: tokens.color.offWhite,
-        border: `1px solid ${tokens.color.offBlack16}`,
-        borderStartStartRadius: tokens.spacing.small_12,
-        borderStartEndRadius: tokens.spacing.small_12,
+        backgroundColor: semanticColor.core.background.base.subtle,
+        border: `1px solid ${semanticColor.core.border.neutral.subtle}`,
+        borderStartStartRadius: sizing.size_120,
+        borderStartEndRadius: sizing.size_120,
 
         ":hover": {
-            border: `1px solid ${tokens.color.blue}`,
-            outline: `1px solid ${tokens.color.blue}`,
+            border: `1px solid ${semanticColor.core.border.instructive.default}`,
+            outline: `1px solid ${semanticColor.core.border.instructive.default}`,
         },
 
         ":focus": {
-            border: `1px solid ${tokens.color.blue}`,
-            outline: `1px solid ${tokens.semanticColor.focus.outer}`,
+            border: `1px solid ${semanticColor.core.border.instructive.default}`,
+            outline: `1px solid ${semanticColor.focus.outer}`,
         },
     },
     descriptionWithDetails: {
-        padding: tokens.spacing.large_24,
+        padding: sizing.size_240,
     },
     descriptionWithoutDetails: {
-        padding: tokens.spacing.small_12,
+        padding: sizing.size_120,
     },
     headingContainer: {
         flexDirection: "row",
         alignItems: "center",
     },
     descriptionText: {
-        marginTop: tokens.spacing.small_12,
+        marginBlockStart: sizing.size_120,
     },
     componentView: {
         flexDirection: "column",
         justifyContent: "center",
-        padding: tokens.spacing.large_24,
-        border: `1px solid ${tokens.color.offBlack16}`,
-        borderTop: "none",
-        borderEndStartRadius: tokens.spacing.small_12,
-        borderEndEndRadius: tokens.spacing.small_12,
+        padding: sizing.size_240,
+        border: `1px solid ${semanticColor.core.border.neutral.subtle}`,
+        borderBlockStart: "none",
+        borderEndStartRadius: sizing.size_120,
+        borderEndEndRadius: sizing.size_120,
         flexGrow: 1,
     },
     externalLinkIcon: {
-        marginLeft: tokens.spacing.xSmall_8,
-        marginRight: tokens.spacing.xSmall_8,
+        marginInlineStart: sizing.size_080,
+        marginInlineEnd: sizing.size_080,
     },
 });

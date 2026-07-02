@@ -7,20 +7,16 @@ import * as ReactDOM from "react-dom";
 import {StyleSheet} from "aphrodite";
 import {VariableSizeList as List} from "react-window";
 
-import {
-    color,
-    spacing,
-    semanticColor,
-    border,
-} from "@khanacademy/wonder-blocks-tokens";
+import {semanticColor, border, sizing} from "@khanacademy/wonder-blocks-tokens";
 
 import {PropsFor, View, keys} from "@khanacademy/wonder-blocks-core";
 import SearchField from "@khanacademy/wonder-blocks-search-field";
-import {LabelMedium} from "@khanacademy/wonder-blocks-typography";
+import {BodyText} from "@khanacademy/wonder-blocks-typography";
 import {withActionScheduler} from "@khanacademy/wonder-blocks-timing";
 
 import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
 import type {WithActionSchedulerProps} from "@khanacademy/wonder-blocks-timing";
+import {Placement} from "@popperjs/core";
 import DropdownCoreVirtualized from "./dropdown-core-virtualized";
 import SeparatorItem from "./separator-item";
 import {defaultLabels} from "../util/constants";
@@ -28,6 +24,7 @@ import type {DropdownItem} from "../util/types";
 import DropdownPopper from "./dropdown-popper";
 import {debounce, getLabel, getStringForKey} from "../util/helpers";
 import OptionItem from "./option-item";
+import theme from "../theme";
 
 /**
  * The number of options to apply the virtualized list to.
@@ -69,7 +66,7 @@ type DefaultProps = Readonly<{
      * Whether this menu should be left-aligned or right-aligned with the
      * opener component. Defaults to left-aligned.
      */
-    alignment: "left" | "right";
+    alignment: "left" | "right" | Placement;
     /**
      * Whether to auto focus an option. Defaults to true.
      */
@@ -105,7 +102,10 @@ type DefaultProps = Readonly<{
 
 type DropdownAriaRole = "listbox" | "menu";
 type ItemAriaRole = "option" | "menuitem";
-type DropdownAriaProps = Pick<AriaProps, "aria-invalid" | "aria-required">;
+type DropdownAriaProps = Pick<
+    AriaProps,
+    "aria-invalid" | "aria-required" | "aria-labelledby"
+>;
 
 type ExportProps = Readonly<{
     // Required props
@@ -181,7 +181,7 @@ type ExportProps = Readonly<{
      * Whether this menu should be left-aligned or right-aligned with the
      * opener component. Defaults to left-aligned.
      */
-    alignment?: "left" | "right";
+    alignment?: "left" | "right" | Placement;
     /**
      * Whether to auto focus an option. Defaults to true.
      */
@@ -564,7 +564,11 @@ class DropdownCore extends React.Component<Props, State> {
             // we need to schedule another focus attempt so that we run when
             // the node *is* mounted.
             if (node) {
-                node.focus();
+                // WB-2143: Add a delay to ensure expanded state is announced in NVDA/JAWS
+                // Note: aria-expanded is no longer announced in VO/Safari with this timeout
+                this.props.schedule.timeout(() => {
+                    node.focus();
+                }, 0);
                 // Keep track of the original index of the newly focused item.
                 // To be used if the set of focusable items in the menu changes
                 this.focusedOriginalIndex = currentFocusedItemRef.originalIndex;
@@ -604,16 +608,17 @@ class DropdownCore extends React.Component<Props, State> {
     }
 
     focusPreviousItem(): void {
-        if (
-            this.focusedIndex === 0 ||
-            (this.isSearchFieldFocused() && !this.props.enableTypeAhead)
-        ) {
-            // Move the focus to the search field if it is the first item.
-            if (this.hasSearchField() && !this.isSearchFieldFocused()) {
+        if (this.isSearchFieldFocused()) {
+            // From search field, up arrow goes to last item
+            this.focusedIndex = this.state.itemRefs.length - 1;
+        } else if (this.focusedIndex === 0) {
+            // At first item, go to search field if it exists
+            if (this.hasSearchField()) {
                 return this.focusSearchField();
             }
+            // Otherwise wrap to last item
             this.focusedIndex = this.state.itemRefs.length - 1;
-        } else if (!this.isSearchFieldFocused()) {
+        } else {
             this.focusedIndex -= 1;
         }
 
@@ -621,16 +626,17 @@ class DropdownCore extends React.Component<Props, State> {
     }
 
     focusNextItem(): void {
-        if (
-            this.focusedIndex === this.state.itemRefs.length - 1 ||
-            (this.isSearchFieldFocused() && !this.props.enableTypeAhead)
-        ) {
-            // Move the focus to the search field if it is the last item.
-            if (this.hasSearchField() && !this.isSearchFieldFocused()) {
+        if (this.isSearchFieldFocused()) {
+            // From search field, down arrow goes to first item
+            this.focusedIndex = 0;
+        } else if (this.focusedIndex === this.state.itemRefs.length - 1) {
+            // At last item, go to search field if it exists
+            if (this.hasSearchField()) {
                 return this.focusSearchField();
             }
+            // Otherwise wrap to first item
             this.focusedIndex = 0;
-        } else if (!this.isSearchFieldFocused()) {
+        } else {
             this.focusedIndex += 1;
         }
 
@@ -817,12 +823,12 @@ class DropdownCore extends React.Component<Props, State> {
 
         if (numResults === 0) {
             return (
-                <LabelMedium
+                <BodyText
                     style={styles.noResult}
                     testId="dropdown-core-no-results"
                 >
                     {noResults}
-                </LabelMedium>
+                </BodyText>
             );
         }
         return null;
@@ -975,6 +981,7 @@ class DropdownCore extends React.Component<Props, State> {
     ): React.ReactNode {
         const {
             "aria-invalid": ariaInvalid,
+            "aria-labelledby": ariaLabelledby,
             "aria-required": ariaRequired,
             dropdownStyle,
             isFilterable,
@@ -1007,10 +1014,11 @@ class DropdownCore extends React.Component<Props, State> {
                 <View
                     id={id}
                     role={role}
+                    aria-labelledby={ariaLabelledby}
                     style={[
                         styles.listboxOrMenu,
                         {
-                            minWidth: minDropdownWidth,
+                            minInlineSize: minDropdownWidth,
                         },
                     ]}
                     // Only the `listbox` role supports aria-invalid and aria-required because
@@ -1071,40 +1079,23 @@ class DropdownCore extends React.Component<Props, State> {
     }
 }
 
-// TODO(WB-1868): Move this to a theme file.
-const theme = {
-    dropdown: {
-        color: {
-            default: {
-                background: semanticColor.surface.primary,
-                border: semanticColor.border.primary,
-            },
-        },
-    },
-    noResults: {
-        color: {
-            foreground: semanticColor.text.secondary,
-        },
-    },
-};
-
 const styles = StyleSheet.create({
     menuWrapper: {
         width: "fit-content",
+        maxInlineSize: "100%",
     },
 
     dropdown: {
-        backgroundColor: theme.dropdown.color.default.background,
-        borderRadius: border.radius.radius_040,
-        paddingTop: spacing.xxxSmall_4,
-        paddingBottom: spacing.xxxSmall_4,
-        border: `solid 1px ${theme.dropdown.color.default.border}`,
-        // TODO(WB-1878): Move to elevation tokens.
-        boxShadow: `0px 8px 8px 0px ${color.offBlack8}`,
+        backgroundColor: semanticColor.core.background.base.default,
+        borderRadius: theme.listbox.border.radius,
+        paddingBlock: theme.listbox.layout.padding.block,
+        paddingInline: theme.listbox.layout.padding.inline,
+        border: `solid ${border.width.thin} ${semanticColor.core.border.neutral.subtle}`,
+        boxShadow: theme.listbox.shadow.default,
         // We use a custom property to set the max height of the dropdown.
         // This comes from the maxHeight custom modifier.
         // @see ../util/popper-max-height-modifier.ts
-        maxHeight: "var(--popper-max-height)",
+        maxBlockSize: "var(--popper-max-height)",
     },
 
     listboxOrMenu: {
@@ -1117,17 +1108,17 @@ const styles = StyleSheet.create({
     },
 
     noResult: {
-        color: theme.noResults.color.foreground,
+        color: semanticColor.core.foreground.neutral.default,
         alignSelf: "center",
-        marginTop: spacing.xxSmall_6,
+        marginBlockStart: sizing.size_060,
     },
 
     searchInputStyle: {
-        margin: spacing.xSmall_8,
-        marginTop: spacing.xxxSmall_4,
-        // Set `minHeight` to "auto" to stop the search field from having
+        margin: sizing.size_080,
+        marginBlockStart: sizing.size_040,
+        // Set `minBlockSize` to "auto" to stop the search field from having
         // a height of 0 and being cut off.
-        minHeight: "auto",
+        minBlockSize: "auto",
         position: "sticky",
     },
 

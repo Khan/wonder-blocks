@@ -1,0 +1,14 @@
+{
+    "$schema": "https://turborepo.com/schema.json",
+    "tasks": {
+        "build:css": {
+            "inputs": ["$TURBO_DEFAULT$", "src/theme/**.ts"],
+            "outputs": ["dist/css/vars.css"]
+        },
+        "//#build:css": {
+            "cache": false,
+            "outputs": ["packages/wonder-blocks-tokens/dist/css/index.css"],
+            "dependsOn": ["^build:css"]
+        }
+    }
+}

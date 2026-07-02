@@ -7,10 +7,9 @@ const config: StorybookConfig = {
         "../__docs__/**/*.mdx",
     ],
     addons: [
-        "@storybook/addon-essentials",
         "@storybook/addon-a11y",
         "storybook-addon-pseudo-states",
-        "@storybook/experimental-addon-test",
+        "@storybook/addon-vitest",
         {
             name: "@storybook/addon-docs",
             options: {
@@ -21,7 +20,20 @@ const config: StorybookConfig = {
                 },
             },
         },
+        "storybook-addon-tag-badges",
+        {
+            name: "@storybook/addon-mcp",
+            options: {
+                toolsets: {
+                    dev: true,
+                    docs: true,
+                },
+            },
+        },
     ],
+    features: {
+        experimentalComponentsManifest: true,
+    },
     staticDirs: ["../static"],
     core: {
         builder: "@storybook/builder-vite",
@@ -38,6 +50,13 @@ const config: StorybookConfig = {
                 assetsInlineLimit: 0,
             },
         });
+    },
+    typescript: {
+        reactDocgen: 'react-docgen-typescript',
+        reactDocgenTypescriptOptions: {
+            // Ignore props that have the @ignore tag in the docs
+            propFilter: (prop) => prop.tags?.ignore === undefined,
+        },
     },
 };
 

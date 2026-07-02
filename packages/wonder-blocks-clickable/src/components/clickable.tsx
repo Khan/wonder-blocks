@@ -1,3 +1,6 @@
+/* eslint-disable @khanacademy/wonder-blocks/no-raw-button */
+// This file IS the Wonder Blocks Clickable implementation — it intentionally
+// wraps addStyle("button") as its underlying DOM primitive.
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 import {Link, useInRouterContext} from "react-router-dom-v5-compat";
@@ -7,7 +10,11 @@ import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
 import {border, semanticColor} from "@khanacademy/wonder-blocks-tokens";
 
 import getClickableBehavior from "../util/get-clickable-behavior";
-import type {ClickableRole, ClickableState} from "./clickable-behavior";
+import type {
+    ClickableRole,
+    ClickableState,
+    ExposedEventHandlers,
+} from "./clickable-behavior";
 import {isClientSideUrl} from "../util/is-client-side-url";
 
 type CommonProps =
@@ -24,14 +31,6 @@ type CommonProps =
          */
         children: (clickableState: ClickableState) => React.ReactNode;
         /**
-         * An onClick function which Clickable can execute when clicked
-         */
-        onClick?: (e: React.SyntheticEvent) => unknown;
-        /**
-         * An onFocus function which Clickable can execute when focused
-         */
-        onFocus?: (e: React.FocusEvent) => unknown;
-        /**
          * Optional href which Clickable should direct to, uses client-side routing
          * by default if react-router is present
          */
@@ -45,13 +44,10 @@ type CommonProps =
          */
         className?: string;
         /**
-         * Whether the Clickable is on a dark colored background.
-         * Sets the default focus ring color to white, instead of blue.
-         * Defaults to false.
-         */
-        light?: boolean;
-        /**
-         * Disables or enables the child; defaults to false
+         * Disables or enables the child; defaults to false.
+         *
+         * Internally, the `aria-disabled` attribute will be set so that the
+         * element remains focusable and will be included in the tab order.
          */
         disabled?: boolean;
         /**
@@ -77,22 +73,6 @@ type CommonProps =
          * Test ID used for e2e testing.
          */
         testId?: string;
-        /**
-         * Respond to raw "keydown" event.
-         */
-        onKeyDown?: (e: React.KeyboardEvent) => unknown;
-        /**
-         * Respond to raw "keyup" event.
-         */
-        onKeyUp?: (e: React.KeyboardEvent) => unknown;
-        /**
-         * Respond to raw "mousedown" event.
-         */
-        onMouseDown?: (e: React.MouseEvent) => unknown;
-        /**
-         * Respond to raw "mouseup" event.
-         */
-        onMouseUp?: (e: React.MouseEvent) => unknown;
         /**
          * Don't show the default focus ring.  This should be used when implementing
          * a custom focus ring within your own component that uses Clickable.
@@ -124,7 +104,7 @@ type CommonProps =
          * navigation is guaranteed to succeed.
          */
         safeWithNav?: () => Promise<unknown>;
-    };
+    } & ExposedEventHandlers;
 
 type Props =
     | (CommonProps & {
@@ -275,19 +255,21 @@ const Clickable = React.forwardRef(function Clickable(
     const {
         href,
         onClick,
+        onFocus,
+        onBlur,
+        onKeyDown,
+        onKeyUp,
+        onMouseDown,
+        onMouseUp,
+        onMouseEnter,
+        onMouseLeave,
         skipClientNav,
         beforeNav = undefined,
         safeWithNav = undefined,
         style,
         target = undefined,
         testId,
-        onFocus,
-        onKeyDown,
-        onKeyUp,
-        onMouseDown,
-        onMouseUp,
         hideDefaultFocusRing,
-        light,
         disabled,
         tabIndex,
         ...restProps
@@ -301,28 +283,30 @@ const Clickable = React.forwardRef(function Clickable(
     const getStyle = (state: ClickableState): StyleType => [
         styles.reset,
         styles.link,
-        !hideDefaultFocusRing &&
-            state.focused &&
-            (light ? styles.focusedLight : styles.focused),
+        !hideDefaultFocusRing && state.focused && styles.focused,
         disabled && styles.disabled,
         style,
     ];
 
+    const sharedProps = {
+        href,
+        onClick,
+        safeWithNav,
+        onFocus,
+        onBlur,
+        onKeyDown,
+        onKeyUp,
+        onMouseDown,
+        onMouseUp,
+        onMouseEnter,
+        onMouseLeave,
+        disabled,
+        tabIndex,
+    };
+
     if (beforeNav) {
         return (
-            <ClickableBehavior
-                href={href}
-                onClick={onClick}
-                beforeNav={beforeNav}
-                safeWithNav={safeWithNav}
-                onFocus={onFocus}
-                onKeyDown={onKeyDown}
-                onKeyUp={onKeyUp}
-                onMouseDown={onMouseDown}
-                onMouseUp={onMouseUp}
-                disabled={disabled}
-                tabIndex={tabIndex}
-            >
+            <ClickableBehavior {...sharedProps} beforeNav={beforeNav}>
                 {(state, childrenProps) =>
                     getCorrectTag(state, inRouterContext, {
                         ...restProps,
@@ -335,19 +319,7 @@ const Clickable = React.forwardRef(function Clickable(
         );
     } else {
         return (
-            <ClickableBehavior
-                href={href}
-                onClick={onClick}
-                safeWithNav={safeWithNav}
-                onFocus={onFocus}
-                onKeyDown={onKeyDown}
-                onKeyUp={onKeyUp}
-                onMouseDown={onMouseDown}
-                onMouseUp={onMouseUp}
-                target={target}
-                disabled={disabled}
-                tabIndex={tabIndex}
-            >
+            <ClickableBehavior {...sharedProps} target={target}>
                 {(state, childrenProps) =>
                     getCorrectTag(state, inRouterContext, {
                         ...restProps,
@@ -361,11 +333,6 @@ const Clickable = React.forwardRef(function Clickable(
     }
 });
 
-Clickable.defaultProps = {
-    light: false,
-    disabled: false,
-};
-
 export default Clickable;
 
 // Source:  https://gist.github.com/MoOx/9137295
@@ -377,7 +344,7 @@ const styles = StyleSheet.create({
         width: "auto",
         overflow: "visible",
 
-        background: "transparent",
+        background: semanticColor.core.transparent,
         textDecoration: "none",
 
         /* inherit font & color from ancestor */
@@ -408,10 +375,6 @@ const styles = StyleSheet.create({
         ":focus": {
             outline: `solid ${border.width.medium} ${semanticColor.focus.outer}`,
         },
-    },
-    // TODO(WB-1852): Remove light variant.
-    focusedLight: {
-        outline: `solid ${border.width.medium} ${semanticColor.border.inverse}`,
     },
     disabled: {
         color: semanticColor.action.secondary.disabled.foreground,

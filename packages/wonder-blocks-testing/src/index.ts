@@ -1,11 +1,3 @@
-// Fixtures framework
-export {fixtures} from "@khanacademy/wonder-blocks-testing-core";
-export type {
-    FixtureFn,
-    FixtureProps,
-    GetPropsOptions,
-} from "@khanacademy/wonder-blocks-testing-core";
-
 // Fetch mocking framework
 export {
     mockFetch,
@@ -26,6 +18,7 @@ export type {
     TestHarnessAdapters,
     TestHarnessConfig,
     TestHarnessConfigs,
+    RouterAdapterConfig,
 } from "@khanacademy/wonder-blocks-testing-core";
 export * as harnessAdapters from "./harness/adapters";
 export {

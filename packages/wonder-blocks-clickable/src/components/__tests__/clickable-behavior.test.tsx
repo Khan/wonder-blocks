@@ -1,5 +1,7 @@
+// Raw <button> elements here are minimal test fixtures — using WB Button in
+// unit tests would add unnecessary component coupling and the tests assert
+// behavior, not design system compliance.
 /* eslint-disable testing-library/prefer-user-event */
-/* eslint-disable max-lines */
 import * as React from "react";
 import {render, screen, fireEvent, waitFor} from "@testing-library/react";
 import {MemoryRouter} from "react-router-dom";
@@ -79,6 +81,42 @@ describe("ClickableBehavior", () => {
         expect(button).toHaveTextContent("hovered");
         await userEvent.unhover(button);
         expect(button).not.toHaveTextContent("hovered");
+    });
+
+    test.each([
+        {
+            eventName: "onMouseEnter",
+            userAction: (button: HTMLElement) => userEvent.hover(button),
+            description: "calls user-provided onMouseEnter handler on hover",
+        },
+        {
+            eventName: "onMouseLeave",
+            userAction: async (button: HTMLElement) => {
+                await userEvent.hover(button);
+                await userEvent.unhover(button);
+            },
+            description: "calls user-provided onMouseLeave handler on unhover",
+        },
+    ])("$description", async ({eventName, userAction}) => {
+        // Arrange
+        const mockHandler = jest.fn();
+        const props = {[eventName]: mockHandler};
+
+        render(
+            <ClickableBehavior disabled={false} {...props}>
+                {(state: any, childrenProps: any) => {
+                    const label = labelForState(state);
+                    return <button {...childrenProps}>{label}</button>;
+                }}
+            </ClickableBehavior>,
+        );
+
+        // Act
+        const button = await screen.findByRole("button");
+        await userAction(button);
+
+        // Assert
+        expect(mockHandler).toHaveBeenCalled();
     });
 
     it("changes hovered state on mouse enter while dragging", async () => {
@@ -1465,6 +1503,75 @@ describe("ClickableBehavior", () => {
 
             const childrenProps = childrenMock.mock.calls[0][1];
             expect(childrenProps.rel).toBeUndefined();
+        });
+    });
+
+    describe("viewTransition", () => {
+        it("should call navigate with viewTransition when passed in", async () => {
+            // Arrange
+            const navigateMock = jest.fn();
+
+            render(
+                <ClickableBehavior
+                    href="https://www.khanacademy.org"
+                    navigate={navigateMock}
+                    viewTransition={true}
+                >
+                    {(state: any, childrenProps: any) => {
+                        return (
+                            <a
+                                href="https://www.khanacademy.org"
+                                {...childrenProps}
+                            >
+                                Label
+                            </a>
+                        );
+                    }}
+                </ClickableBehavior>,
+            );
+
+            // Act
+            await userEvent.click(await screen.findByRole("link"));
+
+            // Assert
+            expect(navigateMock).toHaveBeenCalledWith(
+                "https://www.khanacademy.org",
+                {
+                    viewTransition: true,
+                },
+            );
+        });
+
+        it("should not pass viewTransition to the navigate function when it is not set", async () => {
+            // Arrange
+            const navigateMock = jest.fn();
+
+            render(
+                <ClickableBehavior
+                    href="https://www.khanacademy.org"
+                    navigate={navigateMock}
+                >
+                    {(state: any, childrenProps: any) => {
+                        return (
+                            <a
+                                href="https://www.khanacademy.org"
+                                {...childrenProps}
+                            >
+                                Label
+                            </a>
+                        );
+                    }}
+                </ClickableBehavior>,
+            );
+
+            // Act
+            await userEvent.click(await screen.findByRole("link"));
+
+            // Assert
+            expect(navigateMock).toHaveBeenCalledWith(
+                "https://www.khanacademy.org",
+                {viewTransition: undefined},
+            );
         });
     });
 });

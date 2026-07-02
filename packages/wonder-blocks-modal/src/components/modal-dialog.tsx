@@ -1,16 +1,12 @@
 import * as React from "react";
 import {View} from "@khanacademy/wonder-blocks-core";
 import type {StyleType} from "@khanacademy/wonder-blocks-core";
-
-import {
-    ThemedStylesFn,
-    useScopedTheme,
-    useStyles,
-} from "@khanacademy/wonder-blocks-theming";
-import ThemeModalDialog, {
-    ModalDialogThemeContext,
-    ModalDialogThemeContract,
-} from "../themes/themed-modal-dialog";
+import {StyleSheet} from "aphrodite";
+import {semanticColor} from "@khanacademy/wonder-blocks-tokens";
+// TODO [WB-2137]: standardize media query breakpoint tokens
+import {useModalAnnouncer} from "../hooks/use-modal-announcer";
+import {modalMediaQuery} from "../util/constants";
+import theme from "../theme";
 
 type Props = {
     /**
@@ -44,6 +40,11 @@ type Props = {
      */
     testId?: string;
     /**
+     * The accessible name of dialog.
+     * See WCAG 2.1: 4.1.2 Name, Role, Value
+     */
+    "aria-label"?: string;
+    /**
      * The ID of the title labelling this dialog. Required.
      * See WCAG 2.1: 4.1.2 Name, Role, Value
      */
@@ -64,7 +65,7 @@ type Props = {
  * - If there is a custom Dialog implementation (e.g. `TwoPaneDialog`), the dialog element doesn’t have to have
  * the `aria-labelledby` attribute however this is recommended. It should match the `id` of the dialog title.
  */
-const ModalDialogCore = React.forwardRef(function ModalDialogCore(
+const ModalDialog = React.forwardRef(function ModalDialog(
     props: Props,
     ref: React.ForwardedRef<HTMLDivElement>,
 ) {
@@ -75,56 +76,62 @@ const ModalDialogCore = React.forwardRef(function ModalDialogCore(
         style,
         children,
         testId,
+        "aria-label": ariaLabel,
         "aria-labelledby": ariaLabelledBy,
         "aria-describedby": ariaDescribedBy,
     } = props;
 
-    const {theme} = useScopedTheme(ModalDialogThemeContext);
-    const styles = useStyles(themedStylesFn, theme);
+    const {ariaModalRef} = useModalAnnouncer(ref);
 
     return (
-        <View style={[styles.wrapper, style]}>
-            {below && <View style={styles.below}>{below}</View>}
-            <View
-                role={role}
-                aria-modal="true"
-                aria-labelledby={ariaLabelledBy}
-                aria-describedby={ariaDescribedBy}
-                ref={ref}
-                style={styles.dialog}
-                testId={testId}
-            >
-                {children}
+        <View style={componentStyles.paddingLayer} data-modal-padding-layer>
+            {/* WB-2197: We add a data attribute for identifying this layer on backdrop clicks */}
+            <View style={[componentStyles.wrapper, style]}>
+                {below && <View style={componentStyles.below}>{below}</View>}
+                <View
+                    role={role}
+                    aria-modal="true"
+                    aria-label={ariaLabel}
+                    aria-labelledby={ariaLabelledBy}
+                    aria-describedby={ariaDescribedBy}
+                    ref={ariaModalRef}
+                    style={componentStyles.dialog}
+                    testId={testId}
+                >
+                    {children}
+                </View>
+                {above && <View style={componentStyles.above}>{above}</View>}
             </View>
-            {above && <View style={styles.above}>{above}</View>}
         </View>
     );
 });
 
-const ModalDialog = React.forwardRef(function ModalDialog(
-    props: Props,
-    ref: React.ForwardedRef<HTMLDivElement>,
-) {
-    return (
-        <ThemeModalDialog>
-            <ModalDialogCore {...props} ref={ref} />
-        </ThemeModalDialog>
-    );
-});
-
-const small = "@media (max-width: 767px)";
-
-const themedStylesFn: ThemedStylesFn<ModalDialogThemeContract> = (theme) => ({
-    wrapper: {
-        display: "flex",
-        flexDirection: "row",
-        alignItems: "stretch",
+const componentStyles = StyleSheet.create({
+    // pad outside of the shadow layer so the background color stays aligned
+    paddingLayer: {
+        alignItems: "center",
+        height: "100%",
+        justifyContent: "center",
         width: "100%",
+        [modalMediaQuery.midOrSmaller as any]: {
+            padding: theme.dialog.layout.padding,
+        },
+    },
+    wrapper: {
+        alignItems: "stretch",
+        borderRadius: theme.root.border.radius,
+        boxShadow: theme.dialog.shadow.default,
+        // Allows propagating the text color to all the children.
+        color: semanticColor.core.foreground.neutral.strong,
+        flexDirection: "row",
         height: "100%",
         position: "relative",
-        [small]: {
-            padding: theme.dialog.spacing.padding,
+        width: "100%",
+        [modalMediaQuery.midOrSmaller as any]: {
             flexDirection: "column",
+        },
+        [modalMediaQuery.smMinOrSmallerHeight as any]: {
+            overflow: "auto",
         },
     },
 
@@ -136,25 +143,28 @@ const themedStylesFn: ThemedStylesFn<ModalDialogThemeContract> = (theme) => ({
         height: "100%",
         borderRadius: theme.root.border.radius,
         overflow: "hidden",
+        [modalMediaQuery.smMinOrSmallerHeight as any]: {
+            overflow: "auto",
+        },
     },
 
     above: {
         pointerEvents: "none",
         position: "absolute",
-        top: 0,
-        left: 0,
-        bottom: 0,
-        right: 0,
+        insetBlockStart: 0,
+        insetInlineStart: 0,
+        insetBlockEnd: 0,
+        insetInlineEnd: 0,
         zIndex: 1,
     },
 
     below: {
         pointerEvents: "none",
         position: "absolute",
-        top: 0,
-        left: 0,
-        bottom: 0,
-        right: 0,
+        insetBlockStart: 0,
+        insetInlineStart: 0,
+        insetBlockEnd: 0,
+        insetInlineEnd: 0,
         zIndex: -1,
     },
 });

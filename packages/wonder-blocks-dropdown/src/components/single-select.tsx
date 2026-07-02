@@ -58,8 +58,15 @@ type DefaultProps = Readonly<{
     /**
      * Whether this component is disabled. A disabled dropdown may not be opened
      * and does not support interaction. Defaults to false.
+     *
+     * Internally, the `aria-disabled` attribute will be set so that the
+     * element remains focusable and will be included in the tab order.
      */
     disabled?: boolean;
+    /**
+     * Specifies if the dropdown is read-only. Defaults to false.
+     */
+    readOnly?: boolean;
     /**
      * Whether to enable the type-ahead suggestions feature. Defaults to true.
      *
@@ -259,6 +266,7 @@ type Props = AriaProps &
  */
 const SingleSelect = (props: Props) => {
     const selectedIndex = React.useRef(0);
+    const isInitialRender = React.useRef(true);
     const {
         children,
         error = false,
@@ -287,6 +295,7 @@ const SingleSelect = (props: Props) => {
         "aria-invalid": ariaInvalid,
         "aria-required": ariaRequired,
         disabled = false,
+        readOnly = false,
         dropdownId,
         validate,
         onValidate,
@@ -319,13 +328,13 @@ const SingleSelect = (props: Props) => {
 
     React.useEffect(() => {
         // Used to sync the `opened` state when this component acts as a controlled
-        if (disabled) {
-            // open should always be false if select is disabled
+        if (disabled || readOnly) {
+            // open should always be false if select is disabled or readOnly
             setOpen(false);
         } else if (typeof opened === "boolean") {
             setOpen(opened);
         }
-    }, [disabled, opened]);
+    }, [disabled, opened, readOnly]);
 
     const handleOpenChanged = (opened: boolean) => {
         setOpen(opened);
@@ -432,15 +441,15 @@ const SingleSelect = (props: Props) => {
     };
 
     const handleAnnouncement = (message: string) => {
-        announceMessage({
-            message,
-        });
+        announceMessage({message, level: "polite"});
     };
 
-    // Announce when selectedValue or children changes in the opener
-    React.useEffect(() => {
+    const childrenRef = React.useRef(children);
+    childrenRef.current = children;
+
+    const announceSelectedItem = () => {
         const optionItems = React.Children.toArray(
-            children,
+            childrenRef.current,
         ) as OptionItemComponentArray;
         const selectedItem = optionItems.find(
             (option) => option.props.value === selectedValue,
@@ -451,7 +460,20 @@ const SingleSelect = (props: Props) => {
                 handleAnnouncement(label);
             }
         }
-    }, [selectedValue, children]);
+    };
+
+    // Announces the selected item's label after each selection change.
+    React.useEffect(() => {
+        if (isInitialRender.current) {
+            isInitialRender.current = false;
+            return;
+        }
+        announceSelectedItem();
+    }, [selectedValue]); // eslint-disable-line react-hooks/exhaustive-deps
+
+    // If aria-required was supplied, use that. Otherwise, convert `required` to a boolean
+    // and apply that value to aria-required.
+    const computedRequired = ariaRequired ?? !!required;
 
     const renderOpener = (
         isDisabled: boolean,
@@ -486,6 +508,7 @@ const SingleSelect = (props: Props) => {
                             id={uniqueOpenerId}
                             aria-label={ariaLabel}
                             aria-controls={dropdownId}
+                            aria-required={computedRequired}
                             aria-haspopup="listbox"
                             onClick={handleClick}
                             disabled={isDisabled}
@@ -495,6 +518,7 @@ const SingleSelect = (props: Props) => {
                             opened={open}
                             error={hasError}
                             onBlur={onOpenerBlurValidation}
+                            readOnly={readOnly}
                         >
                             {opener}
                         </DropdownOpener>
@@ -503,6 +527,7 @@ const SingleSelect = (props: Props) => {
                             {...sharedProps}
                             aria-label={ariaLabel}
                             aria-controls={dropdownId}
+                            aria-required={computedRequired}
                             disabled={isDisabled}
                             id={uniqueOpenerId}
                             error={hasError}
@@ -512,6 +537,7 @@ const SingleSelect = (props: Props) => {
                             ref={handleOpenerRef}
                             testId={testId}
                             onBlur={onOpenerBlurValidation}
+                            readOnly={readOnly}
                         >
                             {menuContent}
                         </SelectOpener>
@@ -533,19 +559,20 @@ const SingleSelect = (props: Props) => {
     ).length;
     const items = getMenuItems(allChildren);
     const isDisabled = numEnabledOptions === 0 || disabled;
+    const disableInteraction = isDisabled || readOnly;
 
-    // Extract out someResults. When we put labels in the dependency array,
-    // useEffect happens on every render (I think because labels is a new object)
-    // each time so it thinks it has changed
     const {someResults} = labels;
+    const someResultsRef = React.useRef(someResults);
+    someResultsRef.current = someResults;
+    const openRef = React.useRef(open);
+    openRef.current = open;
 
-    // Announce in a screen reader when the number of filtered items changes
-    // when the dropdown is open
+    // Announces the filtered count when the search filter changes while open.
     React.useEffect(() => {
-        if (open) {
-            handleAnnouncement(someResults(items.length));
+        if (openRef.current) {
+            handleAnnouncement(someResultsRef.current(items.length));
         }
-    }, [items.length, someResults, open]);
+    }, [items.length]); // eslint-disable-line react-hooks/exhaustive-deps
 
     return (
         <Id id={dropdownId}>
@@ -578,7 +605,10 @@ const SingleSelect = (props: Props) => {
                     labels={labels}
                     aria-invalid={ariaInvalid}
                     aria-required={ariaRequired}
-                    disabled={isDisabled}
+                    // If readOnly is true, DropdownCore should be disabled to
+                    // prevent interactions. Note: SingleSelect is responsible
+                    // for adding attributes to the opener
+                    disabled={disableInteraction}
                 />
             )}
         </Id>

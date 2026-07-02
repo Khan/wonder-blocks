@@ -1,15 +1,11 @@
-/**
- * Test for Wonder Blocks Button component.
- *
- * The test for buttons with icons are in a separate file
- * (button-with-icon.test.tsx) since this one is already too long.
- */
 import * as React from "react";
+import Plus from "@phosphor-icons/core/regular/plus.svg";
 import {MemoryRouter} from "react-router-dom";
 import {CompatRouter, Route, Routes} from "react-router-dom-v5-compat";
 import {render, screen, waitFor} from "@testing-library/react";
 import {userEvent} from "@testing-library/user-event";
 
+import {Icon, PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import Button from "../button";
 
 describe("Button", () => {
@@ -23,7 +19,71 @@ describe("Button", () => {
     });
 
     afterAll(() => {
-        window.location = location;
+        // The DOM types treat `window.location` as non-reassignable, so cast
+        // the saved value to restore it (a targeted cast rather than an
+        // `@ts-expect-error` that would suppress the whole line).
+        window.location = location as any;
+    });
+
+    describe("attributes", () => {
+        test("no explicit role for anchor with href", () => {
+            // Arrange
+            render(<Button href="/">Text</Button>);
+
+            // Act
+            const link = screen.getByRole("link");
+
+            // Assert
+            expect(link).not.toHaveAttribute("role");
+        });
+
+        test("no explicit link role for anchor with href", () => {
+            // Arrange
+            render(<Button href="/">Text</Button>);
+
+            // Act
+            const link = screen.getByRole("link");
+
+            // Assert
+            expect(link).not.toHaveAttribute("role", "link");
+        });
+
+        test("no explicit role for button", () => {
+            // Arrange
+            render(<Button>Text</Button>);
+
+            // Act
+            const button = screen.getByRole("button");
+
+            // Assert
+            expect(button).not.toHaveAttribute("role");
+        });
+
+        test("no explicit button role for button element", () => {
+            // Arrange
+            render(<Button>Text</Button>);
+
+            // Act
+            const button = screen.getByRole("button");
+
+            // Assert
+            expect(button).not.toHaveAttribute("role", "button");
+        });
+
+        test("allow other explicit roles", () => {
+            // Arrange
+            render(
+                <Button role="treeitem" aria-selected="false">
+                    Tree Item
+                </Button>,
+            );
+
+            // Act
+            const treeItem = screen.getByRole("treeitem");
+
+            // Assert
+            expect(treeItem).toHaveAttribute("role");
+        });
     });
 
     test("client-side navigation", async () => {
@@ -45,11 +105,74 @@ describe("Button", () => {
         );
 
         // Act
-        const button = await screen.findByRole("button");
-        await userEvent.click(button);
+        const linkButton = await screen.findByRole("link");
+        await userEvent.click(linkButton);
 
         // Assert
         expect(await screen.findByText("Hello, world!")).toBeInTheDocument();
+    });
+
+    test.each([
+        {
+            eventName: "onMouseEnter",
+            userAction: (button: HTMLElement) => userEvent.hover(button),
+            description: "calls onMouseEnter handler when button is hovered",
+        },
+        {
+            eventName: "onMouseDown",
+            userAction: (button: HTMLElement) =>
+                userEvent.pointer({
+                    target: button,
+                    keys: "[MouseLeft>]",
+                }),
+            description: "calls onMouseDown handler when mouse is pressed",
+        },
+        {
+            eventName: "onMouseUp",
+            userAction: async (button: HTMLElement) => {
+                await userEvent.pointer({
+                    target: button,
+                    keys: "[MouseLeft>][/MouseLeft]",
+                });
+            },
+            description: "calls onMouseUp handler when mouse is released",
+        },
+        {
+            eventName: "onMouseLeave",
+            userAction: async (button: HTMLElement) => {
+                await userEvent.hover(button);
+                await userEvent.unhover(button);
+            },
+            description: "calls onMouseLeave handler when button is unhovered",
+        },
+        {
+            eventName: "onFocus",
+            userAction: async (button: HTMLElement) => {
+                await userEvent.click(button);
+            },
+            description: "calls onFocus handler when button receives focus",
+        },
+        {
+            eventName: "onBlur",
+            userAction: async (button: HTMLElement) => {
+                await userEvent.click(button);
+                await userEvent.tab();
+            },
+            description: "calls onBlur handler when button loses focus",
+        },
+    ])("$description", async ({eventName, userAction}) => {
+        // Arrange
+        const mockHandler = jest.fn();
+        const props = {[eventName]: mockHandler};
+
+        render(<Button {...props}>Test Button</Button>);
+
+        // Act
+        const button = screen.getByRole("button");
+        await userAction(button);
+
+        // Assert
+        expect(mockHandler).toHaveBeenCalledTimes(1);
     });
 
     test("beforeNav rejection blocks client-side navigation", async () => {
@@ -73,8 +196,8 @@ describe("Button", () => {
         );
 
         // Act
-        const button = await screen.findByRole("button");
-        await userEvent.click(button);
+        const linkButton = await screen.findByRole("link");
+        await userEvent.click(linkButton);
 
         // Assert
         expect(screen.queryByText("Hello, world!")).not.toBeInTheDocument();
@@ -106,8 +229,8 @@ describe("Button", () => {
         );
 
         // Act
-        const button = await screen.findByRole("button");
-        await userEvent.click(button);
+        const linkButton = await screen.findByRole("link");
+        await userEvent.click(linkButton);
 
         // Assert
         expect(safeWithNavMock).not.toHaveBeenCalled();
@@ -134,7 +257,7 @@ describe("Button", () => {
         );
 
         // Act
-        await userEvent.click(await screen.findByRole("button"));
+        await userEvent.click(await screen.findByRole("link"));
 
         // Assert
         await waitFor(async () => {
@@ -170,7 +293,7 @@ describe("Button", () => {
         );
 
         // Act
-        await userEvent.click(await screen.findByRole("button"));
+        await userEvent.click(await screen.findByRole("link"));
 
         // Assert
         await waitFor(() => {
@@ -202,8 +325,8 @@ describe("Button", () => {
         );
 
         // Act
-        const button = await screen.findByRole("button");
-        await userEvent.click(button);
+        const linkButton = await screen.findByRole("link");
+        await userEvent.click(linkButton);
 
         // Assert
         // TODO(juan): Find a way to use a more accessible query.
@@ -236,7 +359,7 @@ describe("Button", () => {
         );
 
         // Act
-        await userEvent.click(await screen.findByRole("button"));
+        await userEvent.click(await screen.findByRole("link"));
 
         // Assert
         await waitFor(() => {
@@ -270,8 +393,8 @@ describe("Button", () => {
         );
 
         // Act
-        const button = await screen.findByRole("button");
-        await userEvent.click(button);
+        const linkButton = await screen.findByRole("link");
+        await userEvent.click(linkButton);
 
         // Assert
         expect(await screen.findByTestId("button-spinner")).toBeInTheDocument();
@@ -304,8 +427,8 @@ describe("Button", () => {
         );
 
         // Act
-        const button = await screen.findByRole("button");
-        await userEvent.click(button);
+        const linkButton = await screen.findByRole("link");
+        await userEvent.click(linkButton);
 
         // Assert
         await waitFor(() => {
@@ -339,8 +462,8 @@ describe("Button", () => {
         );
 
         // Act
-        const button = await screen.findByRole("button");
-        await userEvent.click(button);
+        const linkButton = await screen.findByRole("link");
+        await userEvent.click(linkButton);
 
         // Assert
         expect(window.location.assign).toHaveBeenCalledWith("/foo");
@@ -371,8 +494,8 @@ describe("Button", () => {
         );
 
         // Act
-        const button = await screen.findByRole("button");
-        await userEvent.click(button);
+        const linkButton = await screen.findByRole("link");
+        await userEvent.click(linkButton);
 
         // Assert
         expect(safeWithNavMock).toHaveBeenCalled();
@@ -407,7 +530,7 @@ describe("Button", () => {
         );
 
         // Act
-        await userEvent.click(await screen.findByRole("button"));
+        await userEvent.click(await screen.findByRole("link"));
 
         // Assert
         await waitFor(() => {
@@ -416,185 +539,6 @@ describe("Button", () => {
         await waitFor(() => {
             expect(window.location.assign).toHaveBeenCalledWith("/foo");
         });
-    });
-
-    test("client-side navigation with unknown URL fails", async () => {
-        // Arrange
-        render(
-            <MemoryRouter>
-                <CompatRouter>
-                    <div>
-                        <Button href="/unknown">Click me!</Button>
-                        <Routes>
-                            <Route
-                                path="/foo"
-                                element={<div id="foo">Hello, world!</div>}
-                            />
-                        </Routes>
-                    </div>
-                </CompatRouter>
-            </MemoryRouter>,
-        );
-
-        // Act
-        const button = await screen.findByRole("button");
-        await userEvent.click(button);
-
-        // Assert
-        expect(screen.queryByText("Hello, world!")).not.toBeInTheDocument();
-    });
-
-    test("client-side navigation with `skipClientNav` set to `true` fails", async () => {
-        // Arrange
-        render(
-            <MemoryRouter>
-                <CompatRouter>
-                    <div>
-                        <Button href="/foo" skipClientNav>
-                            Click me!
-                        </Button>
-                        <Routes>
-                            <Route
-                                path="/foo"
-                                element={<div id="foo">Hello, world!</div>}
-                            />
-                        </Routes>
-                    </div>
-                </CompatRouter>
-            </MemoryRouter>,
-        );
-
-        // Act
-        const button = await screen.findByRole("button");
-        await userEvent.click(button);
-
-        // Assert
-        expect(screen.queryByText("Hello, world!")).not.toBeInTheDocument();
-    });
-
-    test("disallow navigation when href and disabled are both set", async () => {
-        // Arrange
-        render(
-            <MemoryRouter>
-                <CompatRouter>
-                    <div>
-                        <Button href="/foo" disabled={true}>
-                            Click me!
-                        </Button>
-                        <Routes>
-                            <Route
-                                path="/foo"
-                                element={<div id="foo">Hello, world!</div>}
-                            />
-                        </Routes>
-                    </div>
-                </CompatRouter>
-            </MemoryRouter>,
-        );
-
-        // Act
-        const button = await screen.findByRole("button");
-        await userEvent.click(button);
-
-        // Assert
-        expect(screen.queryByText("Hello, world!")).not.toBeInTheDocument();
-    });
-
-    test("don't call beforeNav when href and disabled are both set", async () => {
-        // Arrange
-        const beforeNavMock = jest.fn();
-        render(
-            <MemoryRouter>
-                <CompatRouter>
-                    <div>
-                        <Button
-                            href="/foo"
-                            disabled={true}
-                            beforeNav={beforeNavMock}
-                        >
-                            Click me!
-                        </Button>
-                        <Routes>
-                            <Route
-                                path="/foo"
-                                element={<div id="foo">Hello, world!</div>}
-                            />
-                        </Routes>
-                    </div>
-                </CompatRouter>
-            </MemoryRouter>,
-        );
-
-        // Act
-        const button = await screen.findByRole("button");
-        await userEvent.click(button);
-
-        // Assert
-        expect(beforeNavMock).not.toHaveBeenCalled();
-    });
-
-    test("don't call safeWithNav when href and disabled are both set", async () => {
-        // Arrange
-        const safeWithNavMock = jest.fn();
-        render(
-            <MemoryRouter>
-                <CompatRouter>
-                    <div>
-                        <Button
-                            href="/foo"
-                            disabled={true}
-                            safeWithNav={safeWithNavMock}
-                        >
-                            Click me!
-                        </Button>
-                        <Routes>
-                            <Route
-                                path="/foo"
-                                element={<div id="foo">Hello, world!</div>}
-                            />
-                        </Routes>
-                    </div>
-                </CompatRouter>
-            </MemoryRouter>,
-        );
-
-        // Act
-        const button = await screen.findByRole("button");
-        await userEvent.click(button);
-
-        // Assert
-        expect(safeWithNavMock).not.toHaveBeenCalled();
-    });
-
-    it("should set attribute on the underlying button", async () => {
-        // Arrange
-
-        // Act
-        render(
-            <Button id="foo" onClick={() => {}}>
-                Click me!
-            </Button>,
-        );
-
-        // Assert
-        expect(await screen.findByRole("button")).toHaveAttribute("id", "foo");
-    });
-
-    it("should set attribute on the underlying link", async () => {
-        // Arrange
-
-        // Act
-        render(
-            <Button id="foo" href="/bar">
-                Click me!
-            </Button>,
-        );
-
-        // Assert
-        expect(await screen.findByRole("button")).toHaveAttribute(
-            "href",
-            "/bar",
-        );
     });
 
     describe("client-side navigation with keyboard", () => {
@@ -617,8 +561,8 @@ describe("Button", () => {
             );
 
             // Act
-            const button = await screen.findByRole("button");
-            await userEvent.type(button, "{space}");
+            const linkButton = await screen.findByRole("link");
+            await userEvent.type(linkButton, "{space}");
 
             // Assert
             expect(
@@ -645,8 +589,8 @@ describe("Button", () => {
             );
 
             // Act
-            const button = await screen.findByRole("button");
-            await userEvent.type(button, "{enter}");
+            const linkButton = await screen.findByRole("link");
+            await userEvent.type(linkButton, "{enter}");
 
             // Assert
             expect(
@@ -678,8 +622,8 @@ describe("Button", () => {
             );
 
             // Act
-            const button = await screen.findByRole("button");
-            await userEvent.type(button, "{enter}");
+            const linkButton = await screen.findByRole("link");
+            await userEvent.type(linkButton, "{enter}");
 
             // Assert
             expect(screen.queryByText("Hello, world!")).not.toBeInTheDocument();
@@ -709,8 +653,8 @@ describe("Button", () => {
             );
 
             // Act
-            const button = await screen.findByRole("button");
-            await userEvent.type(button, "{enter}");
+            const linkButton = await screen.findByRole("link");
+            await userEvent.type(linkButton, "{enter}");
 
             // Assert
             await waitFor(async () => {
@@ -746,8 +690,8 @@ describe("Button", () => {
             );
 
             // Act
-            const button = await screen.findByRole("button");
-            await userEvent.type(button, "{enter}");
+            const linkButton = await screen.findByRole("link");
+            await userEvent.type(linkButton, "{enter}");
 
             // Assert
             expect(window.location.assign).toHaveBeenCalledWith("/foo");
@@ -779,8 +723,8 @@ describe("Button", () => {
             );
 
             // Act
-            const button = await screen.findByRole("button");
-            await userEvent.type(button, "{enter}");
+            const linkButton = await screen.findByRole("link");
+            await userEvent.type(linkButton, "{enter}");
 
             // Assert
             await waitFor(() => {
@@ -815,8 +759,8 @@ describe("Button", () => {
             );
 
             // Act
-            const button = await screen.findByRole("button");
-            await userEvent.type(button, "{enter}");
+            const linkButton = await screen.findByRole("link");
+            await userEvent.type(linkButton, "{enter}");
 
             // Assert
             await waitFor(() => {
@@ -828,100 +772,122 @@ describe("Button", () => {
         });
     });
 
-    describe("button focus", () => {
-        test("primary button can have focus", async () => {
-            // Arrange
-            render(<Button testId={"button-focus-test"}>Label</Button>);
+    describe("Accessibility", () => {
+        describe("Icons", () => {
+            describe("With Icon components", () => {
+                it("should include the accessible name of the start and end icons in the accessible name of the button", () => {
+                    // Arrange
+                    // Act
+                    render(
+                        <Button
+                            startIcon={
+                                <Icon>
+                                    <img src="icon.svg" alt="Start icon" />
+                                </Icon>
+                            }
+                            endIcon={
+                                <Icon>
+                                    <img src="icon.svg" alt="End icon" />
+                                </Icon>
+                            }
+                        >
+                            Label
+                        </Button>,
+                    );
 
-            // Act
-            const button = await screen.findByTestId("button-focus-test");
-            button.focus();
+                    // Assert
+                    expect(screen.getByRole("button")).toHaveAccessibleName(
+                        "Start icon Label End icon",
+                    );
+                });
 
-            // Assert
-            expect(button).toHaveFocus();
-        });
+                it("should not include image roles in the button if the icons are marked as decorative only", () => {
+                    // Arrange
+                    // Act
+                    render(
+                        <Button
+                            startIcon={
+                                <Icon>
+                                    <img src="icon.svg" alt="" />
+                                </Icon>
+                            }
+                            endIcon={
+                                <Icon>
+                                    <img src="icon.svg" alt="" />
+                                </Icon>
+                            }
+                        >
+                            Label
+                        </Button>,
+                    );
 
-        test("primary button can have focus when disabled", async () => {
-            // Arrange
-            render(
-                <Button disabled={true} testId={"button-focus-test"}>
-                    Label
-                </Button>,
-            );
+                    // Assert
+                    expect(screen.queryByRole("img")).not.toBeInTheDocument();
+                });
+            });
 
-            // Act
-            const button = await screen.findByTestId("button-focus-test");
-            button.focus();
+            describe("With PhosphorIcon components", () => {
+                it("should include the accessible name of the start and end icons in the accessible name of the button", () => {
+                    // Arrange
+                    // Act
+                    render(
+                        <Button
+                            startIcon={
+                                <PhosphorIcon
+                                    icon={Plus}
+                                    aria-label="Start icon"
+                                    role="img"
+                                />
+                            }
+                            endIcon={
+                                <PhosphorIcon
+                                    icon={Plus}
+                                    aria-label="End icon"
+                                    role="img"
+                                />
+                            }
+                        >
+                            Label
+                        </Button>,
+                    );
 
-            // Assert
-            expect(button).toHaveFocus();
-        });
+                    // Assert
+                    expect(screen.getByRole("button")).toHaveAccessibleName(
+                        "Start icon Label End icon",
+                    );
+                });
 
-        test("tertiary button can have focus when disabled", async () => {
-            // Arrange
-            render(
-                <Button
-                    disabled={true}
-                    testId={"button-focus-test"}
-                    kind="tertiary"
-                >
-                    Label
-                </Button>,
-            );
+                it("should not include image roles in the button if the icons are not marked with an accessible name", () => {
+                    // Arrange
+                    // Act
+                    render(
+                        <Button
+                            startIcon={<PhosphorIcon icon={Plus} />}
+                            endIcon={<PhosphorIcon icon={Plus} />}
+                        >
+                            Label
+                        </Button>,
+                    );
 
-            // Act
-            const button = await screen.findByTestId("button-focus-test");
-            button.focus();
+                    // Assert
+                    expect(screen.queryByRole("img")).not.toBeInTheDocument();
+                });
+            });
 
-            // Assert
-            expect(button).toHaveFocus();
-        });
-    });
+            describe("With phosphor icon asset", () => {
+                it("should not include image roles in the button if a phosphor icon asset is used directly", () => {
+                    // Arrange
+                    // Act
+                    render(
+                        <Button startIcon={Plus} endIcon={Plus}>
+                            Label
+                        </Button>,
+                    );
 
-    describe("type='submit'", () => {
-        test("submit button within form via click", async () => {
-            // Arrange
-            const submitFnMock = jest.fn();
-            render(
-                <form onSubmit={submitFnMock}>
-                    <Button type="submit">Click me!</Button>
-                </form>,
-            );
-
-            // Act
-            const button = await screen.findByRole("button");
-            await userEvent.click(button);
-
-            // Assert
-            expect(submitFnMock).toHaveBeenCalled();
-        });
-
-        test("submit button within form via keyboard", async () => {
-            // Arrange
-            const submitFnMock = jest.fn();
-            render(
-                <form onSubmit={submitFnMock}>
-                    <Button type="submit">Click me!</Button>
-                </form>,
-            );
-
-            // Act
-            const button = await screen.findByRole("button");
-            await userEvent.type(button, "{enter}");
-
-            // Assert
-            expect(submitFnMock).toHaveBeenCalled();
-        });
-
-        test("submit button doesn't break if it's not in a form", async () => {
-            // Arrange
-            render(<Button type="submit">Click me!</Button>);
-
-            // Act
-            expect(async () => {
-                // Assert
-                await userEvent.click(await screen.findByRole("button"));
-            }).not.toThrow();
+                    // Assert
+                    expect(screen.queryByRole("img")).not.toBeInTheDocument();
+                });
+            });
         });
     });
 });

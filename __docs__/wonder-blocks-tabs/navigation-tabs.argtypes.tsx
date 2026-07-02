@@ -1,6 +1,9 @@
-import {ArgTypes} from "@storybook/react";
+import {ArgTypes} from "@storybook/react-vite";
+
+import AriaArgTypes from "../wonder-blocks-core/aria.argtypes";
 
 export default {
+    ...AriaArgTypes,
     children: {
         table: {
             type: {
@@ -22,6 +25,16 @@ export default {
         },
         control: {
             type: undefined,
+        },
+    },
+    tag: {
+        control: {
+            type: "text",
+        },
+        table: {
+            type: {
+                summary: "keyof JSX.IntrinsicElements",
+            },
         },
     },
 } satisfies ArgTypes;

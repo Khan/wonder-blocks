@@ -1,13 +1,12 @@
-/* eslint-disable max-lines */
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
-import type {Meta, StoryObj} from "@storybook/react";
+import type {Meta, StoryObj} from "@storybook/react-vite";
 
 import {PropsFor, View} from "@khanacademy/wonder-blocks-core";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
-import {semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import Button from "@khanacademy/wonder-blocks-button";
-import {LabelLarge, Body} from "@khanacademy/wonder-blocks-typography";
+import {BodyText} from "@khanacademy/wonder-blocks-typography";
 
 import {TextField} from "@khanacademy/wonder-blocks-form";
 import {LabeledField} from "@khanacademy/wonder-blocks-labeled-field";
@@ -38,6 +37,10 @@ export default {
                 version={packageConfig.version}
             />
         ),
+        chromatic: {
+            // Disabling snapshots because this is covered by the testing snapshots
+            disableSnapshot: true,
+        },
     },
     argTypes: TextFieldArgTypes,
 } as Meta<typeof TextField>;
@@ -45,6 +48,13 @@ export default {
 type StoryComponentType = StoryObj<typeof TextField>;
 type ControlledStoryComponentType = StoryObj<typeof ControlledTextField>;
 
+/**
+ * This example shows the default layout of the TextField component.
+ *
+ * NOTE: We recommend using the LabeledField component to provide a label,
+ * description, required indicator, and/or error message for the field.
+ * See the WithLabeledField story for an example.
+ */
 export const Default: StoryComponentType = {
     args: {
         type: "text",
@@ -61,6 +71,10 @@ export const Default: StoryComponentType = {
         onKeyDown: () => {},
         onFocus: () => {},
         onBlur: () => {},
+        // NOTE: This is added to preserve the default layout of this component
+        // and prevent a11y errors, but we want to avoid adding aria-labels to
+        // this component and use LabeledField instead.
+        "aria-label": "Default Text Field",
     },
 };
 
@@ -86,52 +100,46 @@ export const WithLabeledField: StoryComponentType = {
                         value={value}
                         onChange={setValue}
                         onValidate={setErrorMessage}
+                        required={true}
                     />
                 }
                 description="Description"
-                required={true}
                 errorMessage={errorMessage}
+                contextLabel="required"
             />
         );
     },
-    parameters: {
-        chromatic: {
-            // Disabling because this is for documentation purposes and is
-            // covered by the LabeledField stories
-            disableSnapshot: true,
-        },
-    },
 };
 
-export const Text: StoryComponentType = () => {
-    const [value, setValue] = React.useState("");
+/**
+ * An input field with type `text` takes all kinds of characters.
+ */
+export const Text: StoryComponentType = {
+    render: function Render() {
+        const [value, setValue] = React.useState("");
 
-    const handleChange = (newValue: string) => {
-        setValue(newValue);
-    };
+        const handleChange = (newValue: string) => {
+            setValue(newValue);
+        };
 
-    const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
-        if (event.key === "Enter") {
-            event.currentTarget.blur();
-        }
-    };
+        const handleKeyDown = (
+            event: React.KeyboardEvent<HTMLInputElement>,
+        ) => {
+            if (event.key === "Enter") {
+                event.currentTarget.blur();
+            }
+        };
 
-    return (
-        <TextField
-            id="tf-1"
-            type="text"
-            value={value}
-            placeholder="Text"
-            onChange={handleChange}
-            onKeyDown={handleKeyDown}
-        />
-    );
-};
-
-Text.parameters = {
-    docs: {
-        storyDescription:
-            "An input field with type `text` takes all kinds of characters.",
+        return (
+            <TextField
+                id="tf-1"
+                type="text"
+                value={value}
+                placeholder="Text"
+                onChange={handleChange}
+                onKeyDown={handleKeyDown}
+            />
+        );
     },
 };
 
@@ -172,226 +180,247 @@ export const Required: StoryComponentType = {
         required: true,
     },
     render: ControlledTextField,
-    parameters: {
-        chromatic: {
-            // Disabling because this doesn't test anything visual.
-            disableSnapshot: true,
-        },
+};
+
+/**
+ * An input field with type `number` will only take numeric characters as input.
+ * Number inputs have a few props that other input types don't have - `min`,
+ * `max`, and `step`. In this example, the first number input has no
+ * restrictions, while the second number input has a minimum value of 0, a
+ * maximum value of 15, and a step of 3. Observe that using the arrow keys will
+ * automatically snap to the step, and stop at the min and max values.
+ */
+export const Number: StoryComponentType = {
+    render: function Render() {
+        const [value, setValue] = React.useState("1234");
+        const [value2, setValue2] = React.useState("12");
+
+        const handleChange = (newValue: string) => {
+            setValue(newValue);
+        };
+
+        const handleKeyDown = (
+            event: React.KeyboardEvent<HTMLInputElement>,
+        ) => {
+            if (event.key === "Enter") {
+                event.currentTarget.blur();
+            }
+        };
+
+        return (
+            <View>
+                <TextField
+                    id="tf-3"
+                    type="number"
+                    value={value}
+                    placeholder="Number"
+                    onChange={handleChange}
+                    onKeyDown={handleKeyDown}
+                />
+                <Strut size={12} />
+                <BodyText>
+                    The following text field has a min of 0, a max of 15, and a
+                    step of 3
+                </BodyText>
+                <TextField
+                    id="tf-3a"
+                    type="number"
+                    value={value2}
+                    placeholder="Number"
+                    onChange={setValue2}
+                    onKeyDown={handleKeyDown}
+                    min={0}
+                    max={15}
+                    step={3}
+                />
+            </View>
+        );
     },
 };
 
-export const Number: StoryComponentType = () => {
-    const [value, setValue] = React.useState("1234");
-    const [value2, setValue2] = React.useState("12");
+/**
+ * An input field with type `whole-number` is identical to a number input, but it
+ * will only take positive whole number characters as input.
+ */
+export const WholeNumber: StoryComponentType = {
+    render: function Render() {
+        const [value, setValue] = React.useState("1234");
 
-    const handleChange = (newValue: string) => {
-        setValue(newValue);
-    };
+        const handleChange = (newValue: string) => {
+            setValue(newValue);
+        };
 
-    const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
-        if (event.key === "Enter") {
-            event.currentTarget.blur();
-        }
-    };
+        const handleKeyDown = (
+            event: React.KeyboardEvent<HTMLInputElement>,
+        ) => {
+            if (event.key === "Enter") {
+                event.currentTarget.blur();
+            }
+        };
 
-    return (
-        <View>
-            <TextField
-                id="tf-3"
-                type="number"
-                value={value}
-                placeholder="Number"
-                onChange={handleChange}
-                onKeyDown={handleKeyDown}
+        return (
+            <View>
+                <TextField
+                    id="tf-3"
+                    type="whole-number"
+                    value={value}
+                    placeholder="Whole Number"
+                    onChange={handleChange}
+                    onKeyDown={handleKeyDown}
+                />
+            </View>
+        );
+    },
+};
+
+/**
+ * An input field with type `password` will obscure the input value. It also
+ * often contains validation. In this example, the password must be over 8
+ * characters long and must contain a numeric value.
+ */
+export const Password: StoryComponentType = {
+    render: function Render() {
+        const [value, setValue] = React.useState("Password123");
+        const [errorMessage, setErrorMessage] = React.useState<any>();
+
+        const handleChange = (newValue: string) => {
+            setValue(newValue);
+        };
+
+        const validate = (value: string) => {
+            if (value.length < 8) {
+                return "Password must be at least 8 characters long";
+            }
+            if (!/\d/.test(value)) {
+                return "Password must contain a numeric value";
+            }
+        };
+
+        const handleValidate = (errorMessage?: string | null) => {
+            setErrorMessage(errorMessage);
+        };
+
+        const handleKeyDown = (
+            event: React.KeyboardEvent<HTMLInputElement>,
+        ) => {
+            if (event.key === "Enter") {
+                event.currentTarget.blur();
+            }
+        };
+
+        return (
+            <LabeledField
+                label="Password"
+                errorMessage={errorMessage}
+                field={
+                    <TextField
+                        id="tf-4"
+                        type="password"
+                        value={value}
+                        placeholder="Password"
+                        validate={validate}
+                        onValidate={handleValidate}
+                        onChange={handleChange}
+                        onKeyDown={handleKeyDown}
+                    />
+                }
             />
-            <Strut size={spacing.small_12} />
-            <Body>
-                The following text field has a min of 0, a max of 15, and a step
-                of 3
-            </Body>
-            <TextField
-                id="tf-3a"
-                type="number"
-                value={value2}
-                placeholder="Number"
-                onChange={setValue2}
-                onKeyDown={handleKeyDown}
-                min={0}
-                max={15}
-                step={3}
+        );
+    },
+};
+
+/**
+ * An input field with type `email` will automatically validate an input on
+ * submit to ensure it's either formatted properly or blank. `TextField` will
+ * run validation on change if the `validate` prop is passed in, as in this
+ * example.
+ */
+export const Email: StoryComponentType = {
+    render: function Render() {
+        const [value, setValue] = React.useState("khan@khanacademy.org");
+        const [errorMessage, setErrorMessage] = React.useState<any>();
+
+        const handleChange = (newValue: string) => {
+            setValue(newValue);
+        };
+
+        const handleValidate = (errorMessage?: string | null) => {
+            setErrorMessage(errorMessage);
+        };
+
+        const handleKeyDown = (
+            event: React.KeyboardEvent<HTMLInputElement>,
+        ) => {
+            if (event.key === "Enter") {
+                event.currentTarget.blur();
+            }
+        };
+
+        return (
+            <LabeledField
+                label="Email"
+                errorMessage={errorMessage}
+                field={
+                    <TextField
+                        id="tf-5"
+                        type="email"
+                        value={value}
+                        placeholder="Email"
+                        validate={validateEmail}
+                        onValidate={handleValidate}
+                        onChange={handleChange}
+                        onKeyDown={handleKeyDown}
+                    />
+                }
             />
-        </View>
-    );
-};
-
-Number.parameters = {
-    docs: {
-        description: {
-            story: `An input field with type \`number\` will only take
-                numeric characters as input.\n\nNumber inputs have a few props
-                that other input types don't have - \`min\`, \`max\`, and
-                \`step\`. In this example, the first number input has no
-                restrictions, while the second number input has a minimum
-                value of 0, a maximum value of 15, and a step of 3. Observe
-                that using the arrow keys will automatically snap to the
-                step, and stop at the min and max values.`,
-        },
+        );
     },
 };
 
-export const Password: StoryComponentType = () => {
-    const [value, setValue] = React.useState("Password123");
-    const [errorMessage, setErrorMessage] = React.useState<any>();
+/**
+ * An input field with type `tel` will NOT validate an input on submit by
+ * default as telephone numbers can vary considerably. `TextField` will run
+ * validation on blur if the `validate` prop is passed in, as in this example.
+ */
+export const Telephone: StoryComponentType = {
+    render: function Render() {
+        const [value, setValue] = React.useState("123-456-7890");
+        const [errorMessage, setErrorMessage] = React.useState<any>();
 
-    const handleChange = (newValue: string) => {
-        setValue(newValue);
-    };
+        const handleChange = (newValue: string) => {
+            setValue(newValue);
+        };
 
-    const validate = (value: string) => {
-        if (value.length < 8) {
-            return "Password must be at least 8 characters long";
-        }
-        if (!/\d/.test(value)) {
-            return "Password must contain a numeric value";
-        }
-    };
+        const handleValidate = (errorMessage?: string | null) => {
+            setErrorMessage(errorMessage);
+        };
 
-    const handleValidate = (errorMessage?: string | null) => {
-        setErrorMessage(errorMessage);
-    };
-
-    const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
-        if (event.key === "Enter") {
-            event.currentTarget.blur();
-        }
-    };
-
-    return (
-        <LabeledField
-            label="Password"
-            errorMessage={errorMessage}
-            field={
-                <TextField
-                    id="tf-4"
-                    type="password"
-                    value={value}
-                    placeholder="Password"
-                    validate={validate}
-                    onValidate={handleValidate}
-                    onChange={handleChange}
-                    onKeyDown={handleKeyDown}
-                />
+        const handleKeyDown = (
+            event: React.KeyboardEvent<HTMLInputElement>,
+        ) => {
+            if (event.key === "Enter") {
+                event.currentTarget.blur();
             }
-        />
-    );
-};
+        };
 
-Password.parameters = {
-    docs: {
-        description: {
-            story: `An input field with type \`password\` will
-        obscure the input value. It also often contains validation.
-        In this example, the password must be over 8 characters long and
-        must contain a numeric value.`,
-        },
-    },
-};
-
-export const Email: StoryComponentType = () => {
-    const [value, setValue] = React.useState("khan@khanacademy.org");
-    const [errorMessage, setErrorMessage] = React.useState<any>();
-
-    const handleChange = (newValue: string) => {
-        setValue(newValue);
-    };
-
-    const handleValidate = (errorMessage?: string | null) => {
-        setErrorMessage(errorMessage);
-    };
-
-    const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
-        if (event.key === "Enter") {
-            event.currentTarget.blur();
-        }
-    };
-
-    return (
-        <LabeledField
-            label="Email"
-            errorMessage={errorMessage}
-            field={
-                <TextField
-                    id="tf-5"
-                    type="email"
-                    value={value}
-                    placeholder="Email"
-                    validate={validateEmail}
-                    onValidate={handleValidate}
-                    onChange={handleChange}
-                    onKeyDown={handleKeyDown}
-                />
-            }
-        />
-    );
-};
-
-Email.parameters = {
-    docs: {
-        description: {
-            story: `An input field with type \`email\` will automatically
-        validate an input on submit to ensure it's either formatted properly
-        or blank. \`TextField\` will run validation on change if the
-        \`validate\` prop is passed in, as in this example.`,
-        },
-    },
-};
-
-export const Telephone: StoryComponentType = () => {
-    const [value, setValue] = React.useState("123-456-7890");
-    const [errorMessage, setErrorMessage] = React.useState<any>();
-
-    const handleChange = (newValue: string) => {
-        setValue(newValue);
-    };
-
-    const handleValidate = (errorMessage?: string | null) => {
-        setErrorMessage(errorMessage);
-    };
-
-    const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
-        if (event.key === "Enter") {
-            event.currentTarget.blur();
-        }
-    };
-
-    return (
-        <LabeledField
-            label="Telephone"
-            errorMessage={errorMessage}
-            field={
-                <TextField
-                    id="tf-6"
-                    type="tel"
-                    value={value}
-                    placeholder="Telephone"
-                    validate={validatePhoneNumber}
-                    onValidate={handleValidate}
-                    onChange={handleChange}
-                    onKeyDown={handleKeyDown}
-                />
-            }
-        />
-    );
-};
-
-Telephone.parameters = {
-    docs: {
-        description: {
-            story: `An input field with type \`tel\` will NOT
-        validate an input on submit by default as telephone numbers
-        can vary considerably. \`TextField\` will run validation on blur
-        if the \`validate\` prop is passed in, as in this example.`,
-        },
+        return (
+            <LabeledField
+                label="Telephone"
+                errorMessage={errorMessage}
+                field={
+                    <TextField
+                        id="tf-6"
+                        type="tel"
+                        value={value}
+                        placeholder="Telephone"
+                        validate={validatePhoneNumber}
+                        onValidate={handleValidate}
+                        onChange={handleChange}
+                        onKeyDown={handleKeyDown}
+                    />
+                }
+            />
+        );
     },
 };
 
@@ -413,12 +442,6 @@ export const Error: ControlledStoryComponentType = {
         value: "khan",
         label: "Error state using error prop",
     },
-    parameters: {
-        chromatic: {
-            // Disabling because this doesn't test anything visual.
-            disableSnapshot: true,
-        },
-    },
 };
 
 /**
@@ -438,12 +461,6 @@ export const ErrorFromValidation: ControlledStoryComponentType = {
         label: "Error state from validation",
         validate: validateEmail,
         value: "khan",
-    },
-    parameters: {
-        chromatic: {
-            // Disabling because this doesn't test anything visual.
-            disableSnapshot: true,
-        },
     },
 };
 
@@ -483,7 +500,7 @@ export const ErrorFromPropAndValidation = (
     const errorMessage = validationErrorMessage || backendErrorMessage;
 
     return (
-        <View style={{gap: spacing.medium_16}}>
+        <View style={{gap: sizing.size_160}}>
             <LabeledField
                 label="Error state from prop and validation"
                 errorMessage={errorMessage}
@@ -515,13 +532,6 @@ export const ErrorFromPropAndValidation = (
     );
 };
 
-ErrorFromPropAndValidation.parameters = {
-    chromatic: {
-        // Disabling because this doesn't test anything visual.
-        disableSnapshot: true,
-    },
-};
-
 /**
  * The `instantValidation` prop controls when validation is triggered. Validation
  * is triggered if the `validate` or `required` props are set.
@@ -548,7 +558,7 @@ export const InstantValidation: StoryComponentType = {
     },
     render: (args) => {
         return (
-            <View style={{gap: spacing.small_12}}>
+            <View style={{gap: sizing.size_120}}>
                 <ControlledTextField
                     {...args}
                     label="Validation on mount if there is a value"
@@ -587,12 +597,6 @@ export const InstantValidation: StoryComponentType = {
             </View>
         );
     },
-    parameters: {
-        chromatic: {
-            // Disabling because this doesn't test anything visual.
-            disableSnapshot: true,
-        },
-    },
 };
 
 /**
@@ -605,271 +609,241 @@ export const InstantValidation: StoryComponentType = {
  * This `disabled` prop will also set the `readonly` attribute to prevent
  * typing in the field.
  */
-export const Disabled: StoryComponentType = () => (
-    <TextField
-        id="tf-8"
-        value=""
-        placeholder="This field is disabled."
-        onChange={() => {}}
-        disabled={true}
-    />
-);
-
-Disabled.parameters = {
-    docs: {
-        description: {
-            story: `If the \`disabled\` prop is set to true,
-        \`TextField\` will have disabled styling and will not be interactable.`,
-        },
+export const Disabled: StoryComponentType = {
+    args: {
+        id: "tf-8",
+        value: "",
+        placeholder: "This field is disabled.",
+        onChange: () => {},
+        disabled: true,
     },
 };
 
-export const CustomStyle: StoryComponentType = () => {
-    const [value, setValue] = React.useState("");
+/**
+ * TextField can take in custom styles that override the default styles. This
+ * example has custom styles for the `backgroundColor`, `color`, `border`,
+ * `maxWidth`, and placeholder `color` properties.
+ */
+export const CustomStyle: StoryComponentType = {
+    render: function Render() {
+        const [value, setValue] = React.useState("");
 
-    const handleChange = (newValue: string) => {
-        setValue(newValue);
-    };
+        const handleChange = (newValue: string) => {
+            setValue(newValue);
+        };
 
-    const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
-        if (event.key === "Enter") {
-            event.currentTarget.blur();
-        }
-    };
+        const handleKeyDown = (
+            event: React.KeyboardEvent<HTMLInputElement>,
+        ) => {
+            if (event.key === "Enter") {
+                event.currentTarget.blur();
+            }
+        };
 
-    return (
-        <TextField
-            id="tf-10"
-            style={styles.customField}
-            type="text"
-            value={value}
-            placeholder="Text"
-            onChange={handleChange}
-            onKeyDown={handleKeyDown}
-        />
-    );
-};
-
-CustomStyle.parameters = {
-    docs: {
-        description: {
-            story: `\`TextField\` can take in custom styles that
-        override the default styles. This example has custom styles for the
-        \`backgroundColor\`, \`color\`, \`border\`, \`maxWidth\`, and
-        placeholder \`color\` properties.`,
-        },
-    },
-};
-
-export const Ref: StoryComponentType = () => {
-    const [value, setValue] = React.useState("");
-    const inputRef: React.RefObject<HTMLInputElement> = React.createRef();
-
-    const handleChange = (newValue: string) => {
-        setValue(newValue);
-    };
-
-    const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
-        if (event.key === "Enter") {
-            event.currentTarget.blur();
-        }
-    };
-
-    const handleSubmit = () => {
-        if (inputRef.current) {
-            inputRef.current.focus();
-        }
-    };
-
-    return (
-        <View>
+        return (
             <TextField
-                id="tf-11"
+                id="tf-10"
+                style={styles.customField}
                 type="text"
                 value={value}
                 placeholder="Text"
                 onChange={handleChange}
                 onKeyDown={handleKeyDown}
-                ref={inputRef}
             />
-            <Strut size={spacing.medium_16} />
-            <Button style={styles.button} onClick={handleSubmit}>
-                Focus Input
-            </Button>
-        </View>
-    );
-};
-
-Ref.parameters = {
-    docs: {
-        description: {
-            story: `If you need to save a reference to the input
-        field, you can do so by using the \`ref\` prop. In this example,
-        we want the input field to receive focus when the button is
-        pressed. We can do this by creating a React ref of type
-        \`HTMLInputElement\` and passing it into \`TextField\`'s \`ref\` prop.
-        Now we can use the ref variable in the \`handleSubmit\` function to
-        shift focus to the field.`,
-        },
-        chromatic: {
-            // Disabling snapshot because this is testing interaction,
-            // not visuals.
-            disableSnapshot: true,
-        },
+        );
     },
 };
 
-export const ReadOnly: StoryComponentType = () => {
-    const [value, setValue] = React.useState("Khan");
+/**
+ * If you need to save a reference to the input field, you can do so by using
+ * the `ref` prop. In this example, we want the input field to receive focus
+ * when the button is pressed. We can do this by creating a React ref of type
+ * `HTMLInputElement` and passing it into `TextField`'s `ref` prop. Now we can
+ * use the ref variable in the `handleSubmit` function to shift focus to the
+ * field.
+ */
+export const Ref: StoryComponentType = {
+    render: function Render() {
+        const [value, setValue] = React.useState("");
+        const inputRef: React.RefObject<HTMLInputElement> = React.createRef();
 
-    const handleChange = (newValue: string) => {
-        setValue(newValue);
-    };
+        const handleChange = (newValue: string) => {
+            setValue(newValue);
+        };
 
-    const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
-        if (event.key === "Enter") {
-            event.currentTarget.blur();
-        }
-    };
+        const handleKeyDown = (
+            event: React.KeyboardEvent<HTMLInputElement>,
+        ) => {
+            if (event.key === "Enter") {
+                event.currentTarget.blur();
+            }
+        };
 
-    return (
-        <TextField
-            id="tf-12"
-            type="text"
-            value={value}
-            placeholder="Text"
-            onChange={handleChange}
-            onKeyDown={handleKeyDown}
-            readOnly={true}
-        />
-    );
-};
+        const handleSubmit = () => {
+            if (inputRef.current) {
+                inputRef.current.focus();
+            }
+        };
 
-ReadOnly.parameters = {
-    docs: {
-        description: {
-            story: `An input field with the prop \`readOnly\` set
-        to true is not interactable. It looks the same as if it were not
-        read only, and it can still receive focus, but the interaction
-        point will not appear and the input will not change.`,
-        },
-        chromatic: {
-            // Disabling snapshot because this is testing interaction,
-            // not visuals.
-            disableSnapshot: true,
-        },
+        return (
+            <View>
+                <TextField
+                    id="tf-11"
+                    type="text"
+                    value={value}
+                    placeholder="Text"
+                    onChange={handleChange}
+                    onKeyDown={handleKeyDown}
+                    ref={inputRef}
+                />
+                <Strut size={16} />
+                <Button style={styles.button} onClick={handleSubmit}>
+                    Focus Input
+                </Button>
+            </View>
+        );
     },
 };
 
-export const WithAutofocus: StoryComponentType = () => {
-    const [value, setValue] = React.useState("");
-    const [showDemo, setShowDemo] = React.useState(false);
+/**
+ * An input field with the prop `readOnly` set to true is not interactable. It
+ * looks the same as if it were not read only, and it can still receive focus,
+ * but the interaction point will not appear and the input will not change.
+ */
+export const ReadOnly: StoryComponentType = {
+    render: function Render() {
+        const [value, setValue] = React.useState("Khan");
 
-    const handleChange = (newValue: string) => {
-        setValue(newValue);
-    };
+        const handleChange = (newValue: string) => {
+            setValue(newValue);
+        };
 
-    const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
-        if (event.key === "Enter") {
-            event.currentTarget.blur();
-        }
-    };
+        const handleKeyDown = (
+            event: React.KeyboardEvent<HTMLInputElement>,
+        ) => {
+            if (event.key === "Enter") {
+                event.currentTarget.blur();
+            }
+        };
 
-    const handleShowDemo = () => {
-        setShowDemo(!showDemo);
-    };
-
-    const AutoFocusDemo = () => (
-        <View style={{flexDirection: "row"}}>
-            <Button onClick={() => {}}>Some other focusable element</Button>
+        return (
             <TextField
-                id="tf-13"
-                value={value}
-                placeholder="Placeholder"
-                autoFocus={true}
-                onChange={handleChange}
-                onKeyDown={handleKeyDown}
-                style={{flexGrow: 1, marginLeft: spacing.small_12}}
-            />
-        </View>
-    );
-
-    return (
-        <View>
-            <LabelLarge style={{marginBottom: spacing.small_12}}>
-                Press the button to view the text field with autofocus.
-            </LabelLarge>
-            <Button
-                onClick={handleShowDemo}
-                style={{width: 300, marginBottom: spacing.large_24}}
-            >
-                Toggle autoFocus demo
-            </Button>
-            {showDemo && <AutoFocusDemo />}
-        </View>
-    );
-};
-
-WithAutofocus.parameters = {
-    docs: {
-        description: {
-            story: `TextField takes an \`autoFocus\` prop, which
-            makes it autofocus on page load. Try to avoid using this if
-            possible as it is bad for accessibility.\n\nPress the button
-            to view this example. Notice that the text field automatically
-            receives focus. Upon pressing the botton, try typing and
-            notice that the text appears directly in the text field. There
-            is another focusable element present to demonstrate that
-            focus skips that element and goes straight to the text field.`,
-        },
-    },
-};
-
-export const AutoComplete: StoryComponentType = () => {
-    const [value, setValue] = React.useState("");
-
-    const handleChange = (newValue: string) => {
-        setValue(newValue);
-    };
-
-    const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
-        if (event.key === "Enter") {
-            event.currentTarget.blur();
-        }
-    };
-
-    return (
-        <form>
-            <TextField
-                id="tf-14"
+                id="tf-12"
                 type="text"
                 value={value}
-                placeholder="Name"
+                placeholder="Text"
                 onChange={handleChange}
                 onKeyDown={handleKeyDown}
-                style={styles.fieldWithButton}
-                autoComplete="name"
+                readOnly={true}
             />
-            <Button type="submit">Submit</Button>
-        </form>
-    );
+        );
+    },
 };
 
-AutoComplete.parameters = {
-    docs: {
-        description: {
-            story: `If \`TextField\`'s \`autocomplete\` prop is set,
-        the browser can predict values for the input. When the user starts
-        to type in the field, a list of options will show up based on
-        values that may have been submitted at a previous time.
-        In this example, the text field provides options after you
-        input a value, press the submit button, and refresh the page.`,
-        },
-        chromatic: {
-            // Disabling snapshot because this is testing interaction,
-            // not visuals.
-            disableSnapshot: true,
-        },
+/**
+ * TextField takes an `autoFocus` prop, which makes it autofocus on page load.
+ * Try to avoid using this if possible as it is bad for accessibility.
+ *
+ * Press the button to view this example. Notice that the text field
+ * automatically receives focus. Upon pressing the botton, try typing and notice
+ * that the text appears directly in the text field. There is another focusable
+ * element present to demonstrate that focus skips that element and goes
+ * straight to the text field.
+ */
+export const WithAutofocus: StoryComponentType = {
+    render: function Render() {
+        const [value, setValue] = React.useState("");
+        const [showDemo, setShowDemo] = React.useState(false);
+
+        const handleChange = (newValue: string) => {
+            setValue(newValue);
+        };
+
+        const handleKeyDown = (
+            event: React.KeyboardEvent<HTMLInputElement>,
+        ) => {
+            if (event.key === "Enter") {
+                event.currentTarget.blur();
+            }
+        };
+
+        const handleShowDemo = () => {
+            setShowDemo(!showDemo);
+        };
+
+        const AutoFocusDemo = () => (
+            <View style={{flexDirection: "row"}}>
+                <Button onClick={() => {}}>Some other focusable element</Button>
+                <TextField
+                    id="tf-13"
+                    value={value}
+                    placeholder="Placeholder"
+                    autoFocus={true}
+                    onChange={handleChange}
+                    onKeyDown={handleKeyDown}
+                    style={{flexGrow: 1, marginInlineStart: sizing.size_120}}
+                />
+            </View>
+        );
+
+        return (
+            <View>
+                <BodyText
+                    weight="bold"
+                    style={{marginBlockEnd: sizing.size_120}}
+                >
+                    Press the button to view the text field with autofocus.
+                </BodyText>
+                <Button
+                    onClick={handleShowDemo}
+                    style={{width: 300, marginBlockEnd: sizing.size_240}}
+                >
+                    Toggle autoFocus demo
+                </Button>
+                {showDemo && <AutoFocusDemo />}
+            </View>
+        );
+    },
+};
+
+/**
+ * If the `autoComplete` prop is set, the browser can predict values for the
+ * input. When the user starts to type in the field, a list of options will show
+ * up based on values that may have been submitted at a previous time. In this
+ * example, the text field provides options after you input a value, press the
+ * submit button, and refresh the page.
+ */
+export const AutoComplete: StoryComponentType = {
+    render: function Render() {
+        const [value, setValue] = React.useState("");
+
+        const handleChange = (newValue: string) => {
+            setValue(newValue);
+        };
+
+        const handleKeyDown = (
+            event: React.KeyboardEvent<HTMLInputElement>,
+        ) => {
+            if (event.key === "Enter") {
+                event.currentTarget.blur();
+            }
+        };
+
+        return (
+            <form>
+                <TextField
+                    id="tf-14"
+                    type="text"
+                    value={value}
+                    placeholder="Name"
+                    onChange={handleChange}
+                    onKeyDown={handleKeyDown}
+                    style={styles.fieldWithButton}
+                    autoComplete="name"
+                />
+                <Button type="submit">Submit</Button>
+            </form>
+        );
     },
 };
 
@@ -878,15 +852,15 @@ const styles = StyleSheet.create({
         backgroundColor: semanticColor.status.notice.background,
         color: semanticColor.status.notice.foreground,
         border: "none",
-        maxWidth: 250,
+        maxInlineSize: 250,
         "::placeholder": {
-            color: semanticColor.text.secondary,
+            color: semanticColor.core.foreground.neutral.default,
         },
     },
     button: {
-        maxWidth: 150,
+        maxInlineSize: 150,
     },
     fieldWithButton: {
-        marginBottom: spacing.medium_16,
+        marginBlockEnd: sizing.size_160,
     },
 });

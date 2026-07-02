@@ -1,10 +1,10 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
-import type {Meta, StoryObj} from "@storybook/react";
+import type {Meta, StoryObj} from "@storybook/react-vite";
 
 import {View} from "@khanacademy/wonder-blocks-core";
-import {semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
-import {LabelLarge, LabelMedium} from "@khanacademy/wonder-blocks-typography";
+import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
+import {BodyText} from "@khanacademy/wonder-blocks-typography";
 
 import {Choice, RadioGroup} from "@khanacademy/wonder-blocks-form";
 import packageConfig from "../../packages/wonder-blocks-form/package.json";
@@ -154,9 +154,9 @@ export const MultipleChoiceStyling: StoryComponentType = () => {
 
     return (
         <>
-            <LabelLarge style={styles.prompt}>
+            <BodyText weight="bold" tag="span" style={styles.prompt}>
                 Select your blood type
-            </LabelLarge>
+            </BodyText>
             <RadioGroup
                 groupName="science-classes"
                 onChange={setSelectedValue}
@@ -230,9 +230,8 @@ FiltersOutFalsyChildren.parameters = {
 
 /**
  * There are specific situations where you might want to use a custom label
- * component instead of using the default `LabelMedium` component. This example
- * demonstrates how to use a custom label component that can be passed in as a
- * prop to the `RadioGroup` component.
+ * component. This example demonstrates how to use a custom label component
+ * that can be passed in as a prop to the `RadioGroup` component.
  */
 export const CustomLabel: StoryComponentType = {
     ...Default,
@@ -245,14 +244,16 @@ export const CustomLabel: StoryComponentType = {
         label: (
             <View
                 style={{
-                    border: `1px dashed ${semanticColor.border.strong}`,
-                    padding: spacing.medium_16,
+                    border: `1px dashed ${semanticColor.core.border.neutral.default}`,
+                    padding: sizing.size_160,
                     flexDirection: "row",
                     justifyContent: "space-between",
                 }}
             >
-                <LabelLarge>Pokemon</LabelLarge>
-                <LabelMedium>(optional)</LabelMedium>
+                <BodyText weight="bold" tag="span">
+                    Pokemon
+                </BodyText>
+                <BodyText tag="span">(optional)</BodyText>
             </View>
         ),
     },
@@ -262,13 +263,13 @@ const styles = StyleSheet.create({
     choice: {
         margin: 0,
         height: 48,
-        borderTop: "solid 1px #CCC",
+        borderBlockStart: `solid 1px ${semanticColor.core.border.neutral.subtle}`,
         justifyContent: "center",
     },
     lastChoice: {
-        borderBottom: "solid 1px #CCC",
+        borderBlockEnd: `solid 1px ${semanticColor.core.border.neutral.subtle}`,
     },
     prompt: {
-        marginBottom: 16,
+        marginBlockEnd: 16,
     },
 });

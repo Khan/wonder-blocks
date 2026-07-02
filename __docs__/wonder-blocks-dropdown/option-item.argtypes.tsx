@@ -1,16 +1,18 @@
 import * as React from "react";
-import {ArgTypes} from "@storybook/react";
+import {ArgTypes} from "@storybook/react-vite";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
-import Pill from "@khanacademy/wonder-blocks-pill";
+import AriaArgTypes from "../wonder-blocks-core/aria.argtypes";
 import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
+import {StatusBadge} from "@khanacademy/wonder-blocks-badge";
 
 export const AccessoryMappings = {
     none: null,
     icon: <PhosphorIcon icon={IconMappings.play} size="medium" />,
-    pill: <Pill kind="accent">New</Pill>,
+    badge: <StatusBadge label="New" kind="info" />,
 };
 
 export default {
+    ...AriaArgTypes,
     label: {
         control: {type: "text"},
         description: "Display text of the option item.",
@@ -44,7 +46,6 @@ export default {
     },
     disabled: {
         control: {type: "boolean"},
-        description: "Whether or not the option item is disabled.",
         table: {
             defaultValue: {summary: "false"},
             type: {summary: "boolean"},

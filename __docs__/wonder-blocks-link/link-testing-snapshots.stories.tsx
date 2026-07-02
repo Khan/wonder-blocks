@@ -1,0 +1,101 @@
+import * as React from "react";
+import type {Meta, StoryObj} from "@storybook/react-vite";
+
+import Link from "@khanacademy/wonder-blocks-link";
+
+import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
+import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
+import {defaultPseudoStates, StateSheet} from "../components/state-sheet";
+import {allModes, allThemeModes} from "../../.storybook/modes";
+import {rtlText} from "../components/text-for-testing";
+
+const rows = [
+    {name: "Default", props: {}},
+    {
+        name: "Inline",
+        props: {inline: true},
+    },
+];
+
+const generateCells = (rtl: boolean = false) => [
+    {
+        name: "Primary",
+        props: {
+            children: rtl ? rtlText : "This is my Link",
+        },
+    },
+    {
+        name: "startIcon",
+        props: {
+            children: rtl ? rtlText : "With startIcon",
+            startIcon: <PhosphorIcon icon={IconMappings.plusCircleBold} />,
+        },
+    },
+    {
+        name: "endIcon",
+        props: {
+            children: rtl ? rtlText : "With endIcon",
+            endIcon: <PhosphorIcon icon={IconMappings.magnifyingGlassBold} />,
+            target: "_blank",
+        },
+    },
+    {
+        name: "External",
+        props: {
+            children: rtl ? rtlText : "External link",
+            href: "https://www.khanacademy.org",
+            target: "_blank",
+        },
+    },
+];
+
+const columns = generateCells();
+const rtlColumns = generateCells(true);
+
+type Story = StoryObj<typeof Link>;
+
+/**
+ * The following stories are used to generate the pseudo states for the Radio
+ * component. This is only used for visual testing in Chromatic.
+ */
+const meta = {
+    title: "Packages / Link / Testing / Snapshots / Link",
+    parameters: {
+        chromatic: {
+            modes: {
+                ...allThemeModes,
+                "default rtl": allModes["themeDefault rtl"],
+            },
+        },
+    },
+    tags: ["!autodocs", "!manifest"],
+} satisfies Meta<typeof Link>;
+
+export const StateSheetStory: Story = {
+    name: "StateSheet",
+    render: (args, {globals}) => {
+        const isRTL = globals.direction === "rtl";
+        const columnsPerMode = isRTL ? rtlColumns : columns;
+
+        return (
+            <StateSheet rows={rows} columns={columnsPerMode}>
+                {({props, className, name}) => (
+                    <Link
+                        {...args}
+                        {...props}
+                        href="https://www.khanacademy.org"
+                        className={className}
+                        key={name}
+                    >
+                        {props.children}
+                    </Link>
+                )}
+            </StateSheet>
+        );
+    },
+    parameters: {
+        pseudo: defaultPseudoStates,
+    },
+};
+
+export default meta;

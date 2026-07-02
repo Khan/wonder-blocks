@@ -84,7 +84,8 @@ export function maybeGetCssVariableInfo(value: string) {
     if (value.startsWith("var(--")) {
         const cssVariable = value.slice(4, -1);
         const rawValue = getComputedStyle(
-            document.documentElement,
+            document.querySelector("[data-wb-theme]") ||
+                document.documentElement,
         ).getPropertyValue(cssVariable);
 
         return {name: cssVariable, value: rawValue};

@@ -1,0 +1,34 @@
+import * as React from "react";
+import {StyleSheet} from "aphrodite";
+import {addStyle, StyleType, View} from "@khanacademy/wonder-blocks-core";
+import {font, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
+import {CopyButton} from "./copy-button";
+
+const StyledCode = addStyle("code");
+
+type Props = {
+    children: string;
+    style?: StyleType;
+};
+export const Code = (props: Props) => {
+    return (
+        <View style={[styles.codeContainer, props.style]}>
+            <StyledCode {...props} style={[styles.code]} />
+            <CopyButton value={props.children} />
+        </View>
+    );
+};
+
+const styles = StyleSheet.create({
+    codeContainer: {
+        display: "flex",
+        flexDirection: "row",
+        alignItems: "center",
+        gap: sizing.size_040,
+    },
+    code: {
+        backgroundColor: semanticColor.core.background.base.subtle,
+        padding: sizing.size_040,
+        fontSize: font.body.size.xsmall,
+    },
+});

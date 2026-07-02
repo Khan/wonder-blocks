@@ -6,16 +6,14 @@ import {
     StyleType,
     addStyle,
     View,
+    useOnMountEffect,
 } from "@khanacademy/wonder-blocks-core";
-import {
-    border,
-    font,
-    semanticColor,
-    spacing,
-} from "@khanacademy/wonder-blocks-tokens";
+import {border, font, semanticColor} from "@khanacademy/wonder-blocks-tokens";
 import {styles as typographyStyles} from "@khanacademy/wonder-blocks-typography";
 import {useId} from "react";
+import {focusStyles} from "@khanacademy/wonder-blocks-styles";
 import {useFieldValidation} from "../hooks/use-field-validation";
+import theme from "../theme";
 
 type TextAreaProps = AriaProps & {
     /**
@@ -51,6 +49,9 @@ type TextAreaProps = AriaProps & {
     placeholder?: string;
     /**
      * Whether the text area should be disabled.
+     *
+     * Internally, the `aria-disabled` attribute will be set so that the
+     * element remains focusable and will be included in the tab order.
      */
     disabled?: boolean;
     /**
@@ -75,10 +76,12 @@ type TextAreaProps = AriaProps & {
      */
     autoFocus?: boolean;
     /**
-     * The number of visible lines of text for the textarea.
-     * By default, 2 rows are shown.
-     * `rows` is ignored if a height is applied to the textarea using CSS.
-     * The number of rows can change if the resize control is used by the user.
+     * The number of visible lines of text for the textarea. Defaults to 2.
+     *
+     * If `autoResize` is `true`, `rows` is the starting number of rows and more
+     * content increases the number of rows, up until the `maxRows` prop value
+     * is reached. If `autoResize` is `false`, the textarea will be scrollable
+     * with the number of rows set by the `rows` prop.
      */
     rows?: number;
     /**
@@ -130,6 +133,11 @@ type TextAreaProps = AriaProps & {
      */
     onBlur?: React.FocusEventHandler<HTMLTextAreaElement>;
     /**
+     * Called when text is pasted into the element.
+     * @param event The paste event
+     */
+    onPaste?: React.ClipboardEventHandler<HTMLTextAreaElement>;
+    /**
      * Provide a validation for the textarea value.
      * Return a string error message or null | void for a valid input.
      *
@@ -179,14 +187,93 @@ type TextAreaProps = AriaProps & {
      */
     required?: boolean | string;
     /**
+     * @deprecated This prop is deprecated in favour of the `autoResize` prop.
      * Specifies the resizing behaviour for the textarea. Defaults to both
      * behaviour. For more details, see the [CSS resize property values MDN docs](https://developer.mozilla.org/en-US/docs/Web/CSS/resize#values)
      */
     resizeType?: "horizontal" | "vertical" | "both" | "none";
+    /**
+     * Whether the textarea should automatically resize to fit the content.
+     * If `true`, the textarea will resize to fit the content. If `false`,
+     * the textarea will not change in size and the textarea will be scrollable if
+     * content exceeds the height of the textarea.
+     *
+     * Defaults to `false`.
+     *
+     * See related `maxRows` prop for setting the max height for the textarea.
+     */
+    autoResize?: boolean;
+    /**
+     * The maximum number of rows to show when `autoResize` is `true` to prevent
+     * the textarea from becoming too tall. The textarea will become scrollable
+     * if content exceeds the max number of rows.
+     *
+     * Defaults to 6. If `rows` > `maxRows`, `rows` will be used for `maxRows`.
+     */
+    maxRows?: number;
 };
 
 const StyledTextarea = addStyle("textarea");
 
+/**
+ * Calculate the height of x number of rows, including padding and border.
+ *
+ * Height = (number of rows * line height) + (2 * vertical padding) + (2 * border width)
+ */
+function getHeightForNumberOfRows(rows: number) {
+    return `calc((${rows} * ${font.body.lineHeight.medium}) + (2 * ${theme.field.layout.paddingBlock}) + (2 * ${border.width.thin}))`;
+}
+
+/**
+ * Calculate the height needed for a textarea element to fit the content
+ * @param textArea - The textarea element.
+ * @returns The height to use for the textarea element.
+ */
+function getTextAreaHeight(textArea: HTMLTextAreaElement): string {
+    // Save the original style properties. Note this only gets the value from
+    // the style object, not the computed style which considers css classes
+    const originalStyleHeightValue = textArea.style.getPropertyValue("height");
+    const originalStyleHeightPriority =
+        textArea.style.getPropertyPriority("height");
+    const originalStyleOverflowValue =
+        textArea.style.getPropertyValue("overflow");
+    const originalStyleOverflowPriority =
+        textArea.style.getPropertyPriority("overflow");
+
+    // Force the textarea to shrink by setting height to 0 and hiding overflow.
+    textArea.style.setProperty("height", "0px", "important");
+    textArea.style.setProperty("overflow", "hidden", "important");
+
+    // Get the scrollHeight needed for the content. We account for the border
+    // width so the scrollbar is not shown.
+    const computedStyle = getComputedStyle(textArea);
+    const borderTop = computedStyle.borderTopWidth;
+    const borderBottom = computedStyle.borderBottomWidth;
+    const newHeight = `calc(${textArea.scrollHeight}px + ${borderTop} + ${borderBottom})`;
+
+    // Restore the original style properties if they were set. Otherwise, remove
+    // the temporary properties used to calculate the content height.
+    if (originalStyleHeightValue) {
+        textArea.style.setProperty(
+            "height",
+            originalStyleHeightValue,
+            originalStyleHeightPriority,
+        );
+    } else {
+        textArea.style.removeProperty("height");
+    }
+    if (originalStyleOverflowValue) {
+        textArea.style.setProperty(
+            "overflow",
+            originalStyleOverflowValue,
+            originalStyleOverflowPriority,
+        );
+    } else {
+        textArea.style.removeProperty("overflow");
+    }
+
+    return newHeight;
+}
 /**
  * A TextArea is an element used to accept text from the user.
  *
@@ -216,7 +303,7 @@ const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
             name,
             className,
             autoFocus,
-            rows,
+            rows = 2,
             spellCheck,
             wrap,
             minLength,
@@ -226,12 +313,15 @@ const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
             onKeyUp,
             onFocus,
             onBlur,
+            onPaste,
             validate,
             onValidate,
             required,
             resizeType,
             rootStyle,
             error,
+            autoResize = false,
+            maxRows = 6,
             instantValidation = true,
             // Should only include aria related props
             ...otherProps
@@ -247,6 +337,11 @@ const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
                 instantValidation,
             });
 
+        const textAreaContainerRef = React.useRef<HTMLDivElement>(null);
+
+        // height is a string so that we can use the calc function
+        const [height, setHeight] = React.useState("0px");
+
         const hasError = error || !!errorMessage;
 
         const generatedUniqueId = useId();
@@ -258,6 +353,12 @@ const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
             const newValue = event.target.value;
             onChangeValidation(newValue);
             onChange(newValue);
+
+            // When the textarea value is changed, we need to recalculate the
+            // height if autoResize is true
+            if (autoResize) {
+                setHeight(getTextAreaHeight(event.target));
+            }
         };
 
         const handleBlur = (event: React.FocusEvent<HTMLTextAreaElement>) => {
@@ -268,8 +369,65 @@ const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
             }
         };
 
+        useOnMountEffect(() => {
+            // If autoResize is false, we don't need to set up the resize observer
+            if (!autoResize) {
+                return;
+            }
+            // We use a ref to the container to get the child textarea element
+            // so that consumers can pass in a ref to the textarea element
+            // directly.
+            const ref = textAreaContainerRef.current?.children[0];
+
+            if (ref && window?.ResizeObserver) {
+                const observer = new window.ResizeObserver(([entry]) => {
+                    if (entry) {
+                        // When the resize observer is triggered from things like
+                        // a change in size or zoom level, we need to recalculate
+                        // the height
+                        setHeight(
+                            getTextAreaHeight(
+                                entry.target as HTMLTextAreaElement,
+                            ),
+                        );
+                    }
+                });
+
+                observer.observe(ref);
+
+                return () => {
+                    observer.disconnect();
+                };
+            }
+        });
+
+        const autoResizeStyles = [
+            styles.autoResize,
+            {
+                // Dynamically set the height
+                height,
+                // Set the max height so the textarea can't grow infinitely
+                maxHeight: getHeightForNumberOfRows(Math.max(maxRows, rows)),
+            },
+        ];
+
+        React.useEffect(() => {
+            // If `autoResize` becomes `true`, we need to recalculate the height
+            if (autoResize) {
+                setHeight(
+                    getTextAreaHeight(
+                        textAreaContainerRef.current
+                            ?.children[0] as HTMLTextAreaElement,
+                    ),
+                );
+            }
+        }, [autoResize, ref]);
+
         return (
-            <View style={[{width: "100%"}, rootStyle]}>
+            <View
+                style={[{width: "100%"}, rootStyle]}
+                ref={textAreaContainerRef}
+            >
                 <StyledTextarea
                     id={uniqueId}
                     data-testid={testId}
@@ -277,12 +435,17 @@ const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
                     className={className}
                     style={[
                         styles.textarea,
-                        typographyStyles.LabelMedium,
+                        typographyStyles.BodyTextMediumMediumWeight,
                         resizeType && resizeStyles[resizeType],
                         styles.default,
-                        !disabled && styles.defaultFocus,
                         disabled && styles.disabled,
                         hasError && styles.error,
+                        readOnly && styles.readOnly,
+                        rows && {
+                            // Set the min height to the height of the number of rows
+                            minBlockSize: getHeightForNumberOfRows(rows),
+                        },
+                        autoResize && autoResizeStyles,
                         style,
                     ]}
                     value={value}
@@ -293,7 +456,6 @@ const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
                     autoComplete={autoComplete}
                     name={name}
                     autoFocus={autoFocus}
-                    rows={rows}
                     spellCheck={spellCheck}
                     wrap={wrap}
                     minLength={minLength}
@@ -304,6 +466,7 @@ const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
                     onKeyUp={disabled ? undefined : onKeyUp}
                     onFocus={onFocus} // TextArea can be focused on if it is disabled
                     onBlur={handleBlur} // TextArea can be blurred if it is disabled
+                    onPaste={disabled ? undefined : onPaste}
                     required={!!required}
                     {...otherProps}
                     aria-invalid={hasError}
@@ -313,80 +476,65 @@ const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
     },
 );
 
-const VERTICAL_SPACING_PX = 10;
-
-// The different states that the component can be in.
-const states = {
-    // Resting state
-    default: {
-        border: semanticColor.border.strong,
-        background: semanticColor.surface.primary,
-        foreground: semanticColor.text.primary,
-    },
-    disabled: {
-        border: semanticColor.action.secondary.disabled.border,
-        background: semanticColor.action.secondary.disabled.background,
-        // NOTE: This color is specific for form fields.
-        // TODO(WB-1895): Revisit disabled styles.
-        foreground: semanticColor.text.secondary,
-    },
-    // Form validation error state
-    error: {
-        border: semanticColor.status.critical.foreground,
-        background: semanticColor.status.critical.background,
-        foreground: semanticColor.text.primary,
-    },
-};
+const ACTIVE_BOX_SHADOW = `0 0 0 ${theme.field.border.width.press} ${semanticColor.input.default.border}`;
 
 const styles = StyleSheet.create({
     textarea: {
-        borderRadius: border.radius.radius_040,
+        borderRadius: theme.field.border.radius,
         boxSizing: "border-box",
-        padding: `${VERTICAL_SPACING_PX}px ${spacing.medium_16}px`,
-        // This minHeight is equivalent to when the textarea has one row
-        minHeight: `calc(${VERTICAL_SPACING_PX * 2 + 2}px + ${font.lineHeight.medium})`,
+        paddingInline: theme.field.layout.paddingInline,
+        paddingBlock: theme.field.layout.paddingBlock,
+    },
+    autoResize: {
+        // Disable the resize control
+        resize: "none",
+    },
+    readOnly: {
+        background: semanticColor.input.readOnly.background,
+        color: semanticColor.input.readOnly.text,
     },
     default: {
-        background: states.default.background,
-        border: `${border.width.thin} solid ${states.default.border}`,
-        color: states.default.foreground,
+        background: semanticColor.input.default.background,
+        border: `${border.width.thin} solid ${semanticColor.input.default.border}`,
+        color: semanticColor.input.default.foreground,
         "::placeholder": {
-            color: semanticColor.text.secondary,
+            color: semanticColor.input.default.placeholder,
         },
-    },
-    defaultFocus: {
-        ":focus-visible": {
-            borderColor: semanticColor.focus.outer,
-            outline: `${border.width.thin} solid ${semanticColor.focus.outer}`,
-            // Negative outline offset so it focus outline is not cropped off if
-            // an ancestor element has overflow: hidden
-            outlineOffset: -2,
+        ...focusStyles.focus,
+        // TODO(WB-2365): Use rounded corners for the active state instead
+        // Don't show active styles if field is disabled or readonly
+        [":active:not([aria-disabled='true']):not([readonly])" as any]: {
+            // Use box shadow to make the border in the press state look thicker
+            // without changing the border
+            boxShadow: ACTIVE_BOX_SHADOW,
         },
+        // Focus + Active (and not disabled and not readonly)
+        [":focus-visible:active:not([aria-disabled='true']):not([readonly])" as any]:
+            {
+                boxShadow: `${ACTIVE_BOX_SHADOW}, ${focusStyles.focus[":focus-visible"].boxShadow}`,
+            },
     },
     disabled: {
-        background: states.disabled.background,
-        border: `${border.width.thin} solid ${states.disabled.border}`,
-        color: states.disabled.foreground,
+        background: semanticColor.input.disabled.background,
+        border: `${border.width.thin} solid ${semanticColor.input.disabled.border}`,
+        color: semanticColor.input.disabled.foreground,
         "::placeholder": {
-            color: states.disabled.foreground,
+            color: semanticColor.input.disabled.placeholder,
         },
         cursor: "not-allowed",
-        ":focus-visible": {
-            outline: `${border.width.medium} solid ${semanticColor.focus.outer}`,
-            outlineOffset: -3,
-        },
     },
     error: {
-        background: states.error.background,
-        border: `${border.width.thin} solid ${states.error.border}`,
-        color: states.error.foreground,
+        background: semanticColor.input.error.background,
+        border: `${theme.field.border.width.error} solid ${semanticColor.input.error.border}`,
+        color: semanticColor.input.error.foreground,
         "::placeholder": {
-            color: semanticColor.text.secondary,
+            color: semanticColor.input.default.placeholder,
         },
-        ":focus-visible": {
-            outline: `${border.width.medium} solid ${semanticColor.focus.outer}`,
-            borderColor: states.error.border,
-        },
+        // Focus + Active (and not disabled and not readonly)
+        [":focus-visible:active:not([aria-disabled='true']):not([readonly])" as any]:
+            {
+                boxShadow: `${ACTIVE_BOX_SHADOW}, ${focusStyles.focus[":focus-visible"].boxShadow}`,
+            },
     },
 });
 

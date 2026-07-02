@@ -1,5 +1,44 @@
 # @khanacademy/wonder-blocks-core
 
+## 12.4.4
+
+### Patch Changes
+
+- 40cb70f: Add `require-logical-properties-for-rtl` ESLint rule to `eslint-plugin-wonder-blocks` recommended config, and migrate all Wonder Blocks component source files to use CSS logical properties for improved RTL layout support.
+- 40cb70f: Enable RTL logical-properties ESLint rule in recommended config
+
+## 12.4.3
+
+### Patch Changes
+
+- d6ae5fb: Export findFocusableNodes utility function
+
+## 12.4.2
+
+### Patch Changes
+
+- 8a36c70: Re-publish to publish with Trusted Publishing
+- 3e0d137: Re-publishing via Trusted Publishing
+
+## 12.4.1
+
+### Patch Changes
+
+- 6d5c485: Include provenance information when publishing to npmjs
+
+## 12.4.0
+
+### Minor Changes
+
+- 1334e74: Adding dir to View's type to support RTL usage.
+
+## 12.3.0
+
+### Minor Changes
+
+- 28fa0c0: Add focus utilities: `findFocusableNodes` and `isFocusable`
+- 28fa0c0: Add constants for `ArrowLeft`, `ArrowRight`, `Home`, and `End` keys
+
 ## 12.2.1
 
 ### Patch Changes

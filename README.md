@@ -11,8 +11,8 @@ More information: https://khan.github.io/wonder-blocks/
 
 ### Prerequisites
 
-- [Node.JS v16.x](https://nodejs.org/download/release/v16.16.0/)
-- [Yarn](https://yarnpkg.com/lang/en/docs/install/)
+- [Node.JS v20.x](https://nodejs.org/en/download)
+- [pnpm](https://pnpm.io/installation)
 
 ### Installation
 
@@ -22,12 +22,18 @@ To install Wonder Blocks, you need to run the following commands:
 
 Installs project dependencies
 
+#### `pnpm dev`
+
+Builds all the packages and watches for changes
+
 #### `pnpm start`
 
 Runs the docs in dev mode
 
 Now you can open http://localhost:6061 to view the docs. This page will
 automatically update as you make changes to components.
+
+**AI agents / Storybook MCP:** To use the Wonder Blocks MCP from another project (e.g. Cursor), clone this repo, run `pnpm install` and `pnpm start`, then add `http://localhost:6061/mcp` to your MCP client config (e.g. `mcp.json`). See [AGENTS.md](./AGENTS.md) for full install steps and agentic workflows.
 
 ## Contributing
 
@@ -40,10 +46,11 @@ please refer to the [internal documentation](https://khanacademy.atlassian.net/w
 
 Please note – before contributing ensure that any design changes you are wanting
 to make are reflected in the [Wonder Blocks project in
-Figma](https://www.figma.com/file/VbVu3h2BpBhH80niq101MHHE/Wonder-Blocks).
+Figma](https://khanacademy.atlassian.net/wiki/spaces/WB/pages/4396089552/Resources#Figma).
 
 ## Thanks
 
 <a href="https://www.chromaticqa.com/"><img src="https://cdn-images-1.medium.com/letterbox/147/36/50/50/1*oHHjTjInDOBxIuYHDY2gFA.png?source=logoAvatar-d7276495b101---37816ec27d7a" width="120"/></a>
 
 Thanks to [Chromatic](https://www.chromaticqa.com/) for providing the visual testing platform that helps us catch unexpected changes on time.
+

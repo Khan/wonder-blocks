@@ -1,16 +1,11 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
-import type {Meta, StoryObj} from "@storybook/react";
+import type {Meta, StoryObj} from "@storybook/react-vite";
 
 import Button from "@khanacademy/wonder-blocks-button";
 import {View} from "@khanacademy/wonder-blocks-core";
-import {Strut} from "@khanacademy/wonder-blocks-layout";
-import {
-    border,
-    semanticColor,
-    spacing,
-} from "@khanacademy/wonder-blocks-tokens";
-import {Body, Title} from "@khanacademy/wonder-blocks-typography";
+import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
+import {BodyText, Heading} from "@khanacademy/wonder-blocks-typography";
 
 import {
     ModalDialog,
@@ -22,40 +17,16 @@ import packageConfig from "../../packages/wonder-blocks-modal/package.json";
 import ComponentInfo from "../components/component-info";
 import modalPanelArgtypes from "./modal-panel.argtypes";
 import {allModes} from "../../.storybook/modes";
-import {actionStyles} from "@khanacademy/wonder-blocks-styles";
-
-const customViewports = {
-    phone: {
-        name: "phone",
-        styles: {
-            width: "320px",
-            height: "568px",
-        },
-    },
-    tablet: {
-        name: "tablet",
-        styles: {
-            width: "640px",
-            height: "960px",
-        },
-    },
-    desktop: {
-        name: "desktop",
-        styles: {
-            width: "1024px",
-            height: "768px",
-        },
-    },
-} as const;
+import {focusStyles} from "@khanacademy/wonder-blocks-styles";
+import {modalPositionerStyle} from "./modal-story-utils";
 
 const longBody = (
-    <>
-        <Body>
+    <View style={{gap: sizing.size_160}}>
+        <BodyText>
             {`Let's make this body content long in order
 to test scroll overflow.`}
-        </Body>
-        <br />
-        <Body>
+        </BodyText>
+        <BodyText>
             {`Lorem ipsum dolor sit amet, consectetur
 adipiscing elit, sed do eiusmod tempor incididunt
 ut labore et dolore magna aliqua. Ut enim ad minim
@@ -66,9 +37,8 @@ esse cillum dolore eu fugiat nulla pariatur.
 Excepteur sint occaecat cupidatat non proident,
 sunt in culpa qui officia deserunt mollit anim id
 est.`}
-        </Body>
-        <br />
-        <Body>
+        </BodyText>
+        <BodyText>
             {`Lorem ipsum dolor sit amet, consectetur
 adipiscing elit, sed do eiusmod tempor incididunt
 ut labore et dolore magna aliqua. Ut enim ad minim
@@ -79,9 +49,8 @@ esse cillum dolore eu fugiat nulla pariatur.
 Excepteur sint occaecat cupidatat non proident,
 sunt in culpa qui officia deserunt mollit anim id
 est.`}
-        </Body>
-        <br />
-        <Body>
+        </BodyText>
+        <BodyText>
             {`Lorem ipsum dolor sit amet, consectetur
 adipiscing elit, sed do eiusmod tempor incididunt
 ut labore et dolore magna aliqua. Ut enim ad minim
@@ -92,8 +61,8 @@ esse cillum dolore eu fugiat nulla pariatur.
 Excepteur sint occaecat cupidatat non proident,
 sunt in culpa qui officia deserunt mollit anim id
 est.`}
-        </Body>
-    </>
+        </BodyText>
+    </View>
 );
 
 /**
@@ -103,11 +72,11 @@ est.`}
  *
  * If you are creating a custom Dialog, make sure to follow these guidelines:
  * - Make sure to add this component inside the
- *   [ModalDialog](../?path=/docs/packages-modal-building-blocks-modaldialog--docs).
+ *   [ModalDialog](./?path=/docs/packages-modal-building-blocks-modaldialog--docs).
  * - If needed, you can also add a
- *   [ModalHeader](../?path=/docs/packages-modal-building-blocks-modalheader--docs) using
+ *   [ModalHeader](./?path=/docs/packages-modal-building-blocks-modalheader--docs) using
  *   the `header` prop. Same goes for
- *   [ModalFooter](../?path=/docs/packages-modal-building-blocks-modalfooter--docs).
+ *   [ModalFooter](./?path=/docs/packages-modal-building-blocks-modalfooter--docs).
  * - If you need to create e2e tests, make sure to pass a `testId` prop. This
  *   will be passed down to this component using a sufix: e.g.
  *   `some-random-id-ModalPanel`. This scope will be propagated to the
@@ -145,14 +114,11 @@ export default {
                 excludeDecorators: true,
             },
         },
-        viewport: {
-            viewports: customViewports,
-            defaultViewport: "desktop",
-        },
         chromatic: {
             modes: {
                 small: allModes.small,
                 large: allModes.large,
+                thunderblocks: allModes.themeThunderBlocks,
             },
         },
     },
@@ -171,35 +137,25 @@ export const Default: StoryComponentType = {
             <ModalPanel
                 {...args}
                 content={
-                    <>
-                        <Title id="modal-title-0">Modal Title</Title>
-                        <Strut size={spacing.large_24} />
+                    <View
+                        style={[styles.content, styles.scrollContainer]}
+                        tabIndex={0}
+                    >
+                        <Heading size="xxlarge" id="modal-title-0">
+                            Modal Title
+                        </Heading>
                         {longBody}
-                    </>
+                    </View>
                 }
             />
         </ModalDialog>
     ),
-};
-
-/**
- * This is what a modal panel looks like when its `light` prop is set to false.
- */
-export const Dark: StoryComponentType = {
-    render: () => (
-        <ModalDialog aria-labelledby="modal-title-a" style={styles.dialog}>
-            <ModalPanel
-                content={
-                    <>
-                        <Title id="modal-title-a">Modal Title</Title>
-                        <Strut size={spacing.large_24} />
-                        {longBody}
-                    </>
-                }
-                light={false}
-            />
-        </ModalDialog>
-    ),
+    parameters: {
+        chromatic: {
+            // We already have screenshots in one-pane-dialog.stories.tsx
+            disableSnapshot: true,
+        },
+    },
 };
 
 /**
@@ -214,10 +170,20 @@ export const WithHeader: StoryComponentType = {
                 header={
                     <ModalHeader titleId="modal-title-2" title="Modal Title" />
                 }
-                content={longBody}
+                content={
+                    <View tabIndex={0} style={styles.scrollContainer}>
+                        {longBody}
+                    </View>
+                }
             />
         </ModalDialog>
     ),
+    parameters: {
+        chromatic: {
+            // We already have screenshots in one-pane-dialog.stories.tsx
+            disableSnapshot: true,
+        },
+    },
 };
 
 /**
@@ -229,11 +195,15 @@ export const WithFooter: StoryComponentType = {
         <ModalDialog aria-labelledby="modal-title-3" style={styles.dialog}>
             <ModalPanel
                 content={
-                    <>
-                        <Title id="modal-title-3">Modal Title</Title>
-                        <Strut size={spacing.large_24} />
+                    <View
+                        style={[styles.content, styles.scrollContainer]}
+                        tabIndex={0}
+                    >
+                        <Heading size="xxlarge" id="modal-title-3">
+                            Modal Title
+                        </Heading>
                         {longBody}
-                    </>
+                    </View>
                 }
                 footer={
                     <ModalFooter>
@@ -243,32 +213,12 @@ export const WithFooter: StoryComponentType = {
             />
         </ModalDialog>
     ),
-};
-
-/**
- * Here is a dark `<ModalPanel>` with a header and a footer. The `<Button>` in
- * the footer must have the `light` prop set to true in order to be visible on
- * the dark background.
- */
-export const DarkWithHeaderAndFooter: StoryComponentType = {
-    render: () => (
-        <ModalDialog aria-labelledby="modal-title-3" style={styles.dialog}>
-            <ModalPanel
-                header={
-                    <ModalHeader titleId="modal-title-2" title="Modal Title" />
-                }
-                content={longBody}
-                footer={
-                    <ModalFooter>
-                        <Button onClick={() => {}} style={actionStyles.inverse}>
-                            Continue
-                        </Button>
-                    </ModalFooter>
-                }
-                light={false}
-            />
-        </ModalDialog>
-    ),
+    parameters: {
+        chromatic: {
+            // We already have screenshots in one-pane-dialog.stories.tsx
+            disableSnapshot: true,
+        },
+    },
 };
 
 /**
@@ -316,32 +266,30 @@ export const TwoPanels: StoryComponentType = {
                 <View style={panelGroupStyle}>
                     <ModalPanel
                         content={
-                            <View>
-                                <Title id="sidebar-title-id">Sidebar</Title>
-                                <Strut size={spacing.large_24} />
-                                <Body>
+                            <View style={styles.content}>
+                                <Heading size="xxlarge" id="sidebar-title-id">
+                                    Sidebar
+                                </Heading>
+                                <BodyText>
                                     Lorem ipsum dolor sit amet, consectetur
                                     adipiscing elit, sed do eiusmod tempor
                                     incididunt ut labore et dolore magna aliqua.
                                     Ut enim ad minim veniam, quis nostrud
                                     exercitation ullamco laboris.
-                                </Body>
+                                </BodyText>
                             </View>
                         }
-                        light={false}
                         closeButtonVisible={false}
                     />
                     <ModalPanel
                         content={
-                            <View>
-                                <Title>Contents</Title>
-                                <Strut size={spacing.large_24} />
-                                <Body>
+                            <View style={styles.content}>
+                                <Heading size="xxlarge">Contents</Heading>
+                                <BodyText>
                                     Lorem ipsum dolor sit amet, consectetur
                                     adipiscing elit, sed do eiusmod tempor
                                     incididunt ut labore et dolore magna aliqua.
-                                </Body>
-                                <Strut size={spacing.large_24} />
+                                </BodyText>
                                 <Button>Primary action</Button>
                             </View>
                         }
@@ -367,6 +315,18 @@ export const WithStyle: StoryComponentType = {
             borderRadius: 20,
         } as const;
 
+        const button = (
+            <BodyText style={{display: "flex"}}>
+                <Button
+                    style={{
+                        marginInlineStart: "auto",
+                        marginBlockStart: sizing.size_100,
+                    }}
+                >
+                    A button
+                </Button>
+            </BodyText>
+        );
         return (
             <ModalDialog aria-labelledby="modal-title-1" style={styles.dialog}>
                 <ModalPanel
@@ -376,7 +336,12 @@ export const WithStyle: StoryComponentType = {
                             title="Modal Title"
                         />
                     }
-                    content={longBody}
+                    content={
+                        <>
+                            {longBody}
+                            {button}
+                        </>
+                    }
                     style={modalStyles}
                 />
             </ModalDialog>
@@ -386,31 +351,21 @@ export const WithStyle: StoryComponentType = {
 
 const styles = StyleSheet.create({
     dialog: {
-        maxWidth: 600,
-        maxHeight: 500,
+        maxInlineSize: 600,
+        maxBlockSize: 500,
     },
-    modalPositioner: {
-        // Checkerboard background
-        backgroundImage:
-            "linear-gradient(45deg, #ccc 25%, transparent 25%), linear-gradient(-45deg, #ccc 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #ccc 75%), linear-gradient(-45deg, transparent 75%, #ccc 75%)",
-        backgroundSize: "20px 20px",
-        backgroundPosition: "0 0, 0 10px, 10px -10px, -10px 0px",
-
-        flexDirection: "row",
-        alignItems: "center",
-        justifyContent: "center",
-
-        position: "absolute",
-        left: 0,
-        right: 0,
-        top: 0,
-        bottom: 0,
-    },
+    modalPositioner: modalPositionerStyle,
     previewSizer: {
         height: 600,
     },
     example: {
         alignItems: "center",
         justifyContent: "center",
+    },
+    content: {
+        gap: sizing.size_240,
+    },
+    scrollContainer: {
+        ":focus-visible": focusStyles.focus[":focus-visible"],
     },
 });

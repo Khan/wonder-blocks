@@ -6,7 +6,7 @@ inputs:
   node-version:
     description: 'Node version to use'
     required: false
-    default: '20.x'
+    default: '24.x'
   cache-bust:
     description: 'A unique string to bust the cache'
     required: true
@@ -16,13 +16,13 @@ runs:
   using: "composite"
   steps:
 
-    - uses: pnpm/action-setup@v4
+    - uses: pnpm/action-setup@v5
       name: Install pnpm
       with:
         run_install: false
 
     - name: Use Node.js ${{ inputs.node-version }}
-      uses: actions/setup-node@v4
+      uses: actions/setup-node@v6
       with:
         node-version: ${{ inputs.node-version }}
         cache: 'pnpm'

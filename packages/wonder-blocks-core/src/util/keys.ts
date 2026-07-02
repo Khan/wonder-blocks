@@ -9,4 +9,8 @@ export const keys = {
     space: " ",
     up: "ArrowUp",
     down: "ArrowDown",
+    left: "ArrowLeft",
+    right: "ArrowRight",
+    home: "Home",
+    end: "End",
 } as const;

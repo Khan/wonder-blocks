@@ -1,11 +1,17 @@
-import {Meta, ColorPalette, ColorItem} from "@storybook/blocks";
+import {
+    Meta,
+    ColorPalette,
+    ColorItem,
+    Canvas,
+} from "@storybook/addon-docs/blocks";
 import {StyleSheet} from "aphrodite";
 
 import Banner from "@khanacademy/wonder-blocks-banner";
 import {View} from "@khanacademy/wonder-blocks-core";
 import Link from "@khanacademy/wonder-blocks-link";
-import {color, semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {LabelLarge} from "@khanacademy/wonder-blocks-typography";
+import * as SemanticColorGroups from "./wonder-blocks-tokens/semantic-color-groups.stories";
 
 import {ColorGroup, ActionColorGroup} from "./components/color";
 
@@ -35,7 +41,7 @@ export const styles = StyleSheet.create({
     },
 
     banner: {
-        marginBottom: spacing.xLarge_32,
+        marginBottom: sizing.size_320,
     },
 
 });
@@ -46,11 +52,6 @@ Colors are a key part of our design system. They help us communicate information
 and create visual hierarchy. This document outlines the semantic colors we use
 in our product and how these are reflected in our primitive tokens.
 
-Colors are defined into two categories:
-
-- <Link href="#semantic-colors">Semantic Colors</Link>
-- <Link href="#primitive-colors">Primitive Colors</Link>
-
 ## Semantic Colors
 
 Semantic colors are a key part of our design system. They help us communicate
@@ -60,7 +61,6 @@ how to use these colors depending on the context.
 <View style={styles.banner}>
     <Banner
         kind="info"
-        layout="full-width"
         text="This is the recommended approach. To use these colors in your project, check out the corresponding tokens page."
         actions={[
             {
@@ -69,7 +69,7 @@ how to use these colors depending on the context.
                 // link doesn't work correctly with iframes.
                 node: (
                     <a
-                        href="/?path=/docs/packages-tokens-semantic-color--docs"
+                        href="./?path=/docs/packages-tokens-semantic-color--docs"
                         target="_blank"
                     >
                         Semantic Color tokens
@@ -80,139 +80,71 @@ how to use these colors depending on the context.
     />
 </View>
 
-### Action
+### Core
 
-For buttons, links, and controls to communicate the presence and meaning of
-interaction.
+Core colors are used for the most common elements in the UI. These colors are
+used for backgrounds, borders, and text. They are the foundation of our color
+system and are used to create a consistent look and feel across the product.
 
-#### Primary
+#### Border
 
-Communicates strong emphasis and primary actions.
+Borders define structure for elements. Generally borders for component elements
+would use `core.border.neutral.subtle`, `core.border.neutral.default` for when
+3:1 contrast is a priority (ex. form elements) and `core.border.neutral.strong`
+for 4.5:1 contrast.
 
-##### Progressive
+<Canvas of={SemanticColorGroups.CoreBorder} layout="fullscreen" />
 
-<View style={styles.gridCompact}>
-    <ActionColorGroup
-        category={semanticColor.action.primary.progressive}
-        group="action.primary.progressive"
-    />
-</View>
+#### Background
 
-##### Destructive
+Background colors are used to define the background of elements. This includes
+the background of components like buttons, banners, and other elements that
+require a background color.
 
-<View style={styles.gridCompact}>
-    <ActionColorGroup
-        category={semanticColor.action.primary.destructive}
-        group="action.primary.destructive"
-    />
-</View>
+<Canvas of={SemanticColorGroups.CoreBackground} layout="fullscreen" />
 
-##### Neutral
+#### Foreground
 
-<View style={styles.gridCompact}>
-    <ActionColorGroup
-        category={semanticColor.action.primary.neutral}
-        group="action.primary.neutral"
-    />
-</View>
-
-#### Disabled
-
-<ColorGroup
-    colors={semanticColor.action.primary.disabled}
-    group="action.primary.disabled"
-    variant="compact"
-    style={styles.gridCompact}
-/>
-
-#### Secondary
-
-Communicates secondary actions and less emphasis.
-
-#### Progressive
-
-<View style={styles.gridCompact}>
-    <ActionColorGroup
-        category={semanticColor.action.secondary.progressive}
-        group="action.secondary.progressive"
-    />
-</View>
-
-#### Destructive
-
-<View style={styles.gridCompact}>
-    <ActionColorGroup
-        category={semanticColor.action.secondary.destructive}
-        group="action.secondary.destructive"
-    />
-</View>
-
-##### Neutral
-
-<View style={styles.gridCompact}>
-    <ActionColorGroup
-        category={semanticColor.action.secondary.neutral}
-        group="action.secondary.neutral"
-    />
-</View>
-
-#### Disabled
-
-<ColorGroup
-    colors={semanticColor.action.secondary.disabled}
-    group="action.secondary.disabled"
-    variant="compact"
-    style={styles.gridCompact}
-/>
-
-#### Tertiary
-
-Communicates tertiary actions that have the lowest hierarchy.
-
-#### Progressive
-
-<View style={styles.gridCompact}>
-    <ActionColorGroup
-        category={semanticColor.action.tertiary.progressive}
-        group="action.tertiary.progressive"
-    />
-</View>
-
-#### Destructive
-
-<View style={styles.gridCompact}>
-    <ActionColorGroup
-        category={semanticColor.action.tertiary.destructive}
-        group="action.tertiary.destructive"
-    />
-</View>
-
-##### Neutral
-
-<View style={styles.gridCompact}>
-    <ActionColorGroup
-        category={semanticColor.action.tertiary.neutral}
-        group="action.tertiary.neutral"
-    />
-</View>
-
-#### Disabled
-
-<ColorGroup
-    colors={semanticColor.action.tertiary.disabled}
-    group="action.tertiary.disabled"
-    variant="compact"
-    style={styles.gridCompact}
-/>
-
-### Status
-
-For labels, icons, filters, alerts, and other elements where color can add
-meaning to the state of the system or an item in the system.
+Foreground colors are used to define the foreground of elements. This includes
+the text and icons that are displayed on top of the background color. This is
+important for ensuring that the text and icons are legible and accessible.
 
 <Banner
     kind="success"
-    layout="full-width"
+    text="Make sure to use these colors consistently to ensure readability and accessibility. This includes checking contrast ratios for text and background colors."
+    actions={[
+        {
+            type: "custom",
+            node: (
+                <a
+                    href="https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum.html"
+                    target="_blank"
+                >
+                    WCAG Guidelines - Contrast (minimum)
+                </a>
+            ),
+        },
+    ]}
+/>
+
+<Canvas of={SemanticColorGroups.CoreForeground} layout="fullscreen" />
+
+#### Shadow
+
+Shadow colors are used for box shadows and other shadow effects on elements.
+
+- `transparent` tokens provide elevation shadows at different intensities (`low`, `mid`, `high`) and tinted color variants (`color.strong`, `color.subtle`).
+- `chonky` tokens are used for bold, decorative shadow effects on interactive elements like buttons.
+
+<Canvas of={SemanticColorGroups.CoreShadow} layout="fullscreen" />
+
+### Feedback
+
+For elements where color can add meaning to the state of the system or an item
+in the system.
+
+<Banner
+    kind="success"
     text="Make sure to use these colors consistently to communicate the same meaning
 and include an icon or label to provide more context and clarity."
     actions={[
@@ -230,58 +162,25 @@ and include an icon or label to provide more context and clarity."
     ]}
 />
 
-<View style={styles.grid}>
-    <ColorGroup
-        colors={semanticColor.status.critical}
-        group="status.critical"
-    />
-    <ColorGroup colors={semanticColor.status.warning} group="status.warning" />
-    <ColorGroup colors={semanticColor.status.success} group="status.success" />
-    <ColorGroup colors={semanticColor.status.notice} group="status.notice" />
-    <ColorGroup colors={semanticColor.status.neutral} group="status.neutral" />
-</View>
+#### Info
 
-### Surface
+<Canvas of={SemanticColorGroups.FeedbackInfo} layout="fullscreen" />
 
-For background colors. Overlays act as supplementary surfaces that mask areas of
-the UI.
+#### Success
 
-<ColorGroup colors={semanticColor.surface} group="surface" />
+<Canvas of={SemanticColorGroups.FeedbackSuccess} layout="fullscreen" />
 
-### Text
+#### Warning
 
-For all type to ensure contrast for legibility. Inverse text applies for dark
-backgrounds in light mode.
+<Canvas of={SemanticColorGroups.FeedbackWarning} layout="fullscreen" />
 
-<Banner
-    kind="success"
-    layout="full-width"
-    text="Make sure to use these colors consistently to ensure readability and accessibility. This includes checking contrast ratios for text and background colors."
-    actions={[
-        {
-            type: "custom",
-            node: (
-                <a
-                    href="https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum.html"
-                    target="_blank"
-                >
-                    WCAG Guidelines - Contrast (minimum)
-                </a>
-            ),
-        },
-    ]}
-/>
+#### Critical
 
-<ColorGroup colors={semanticColor.text} group="text" />
+<Canvas of={SemanticColorGroups.FeedbackCritical} layout="fullscreen" />
 
-### Border
+#### Neutral
 
-Borders define structure for elements. Generally borders for component elements
-would use `border.primary`, rows and layout elements use
-`border.subtle` and `border.strong` for when 3:1
-contrast is a priority (ex. form elements)
-
-<ColorGroup colors={semanticColor.border} group="border" />
+<Canvas of={SemanticColorGroups.FeedbackNeutral} layout="fullscreen" />
 
 ### Focus
 
@@ -291,216 +190,75 @@ all interactive elements regardless of the state (disabled, error, etc).
 - `outer`: The outer ring of the focus state.
 - `inner`: The inner ring of the focus state.
 
-<ColorGroup colors={semanticColor.focus} group="focus" />
+<Canvas of={SemanticColorGroups.Focus} layout="fullscreen" />
 
-### Icon
+### Input
 
-Default icon colors that change in context (like actions).
+For form elements, inputs, and other interactive elements that require user
+interaction. This includes text inputs, checkboxes, radio buttons, and
+selects. These colors are used to communicate the state of the input and its
+validity.
 
-<ColorGroup colors={semanticColor.icon} group="icon" />
+<Canvas of={SemanticColorGroups.Input} layout="fullscreen" />
+
+### Learning
+
+Learning colors are used for elements that are related to learning experiences,
+such as practice and mastery, among others.
+
+#### Math
+
+For MathJax elements, these colors are used to render mathematical expressions
+in the UI.
+
+<Canvas of={SemanticColorGroups.LearningMath} layout="fullscreen" />
+
+#### Border
+
+<Canvas of={SemanticColorGroups.LearningBorder} layout="fullscreen" />
+
+#### Background
+
+<Canvas of={SemanticColorGroups.LearningBackground} layout="fullscreen" />
+
+#### Foreground
+
+<Canvas of={SemanticColorGroups.LearningForeground} layout="fullscreen" />
+
+#### Shadow
+
+<Canvas of={SemanticColorGroups.LearningShadow} layout="fullscreen" />
 
 ### Khanmigo
 
 Colors to be used exclusively for Khanmigo or to communicate a relationship to
 it.
 
-<ColorGroup colors={semanticColor.khanmigo} group="khanmigo" />
+<Canvas of={SemanticColorGroups.Khanmigo} layout="fullscreen" />
 
 ### Mastery
 
 Standalone colors used only for communicating mastery.
 
-<ColorGroup colors={semanticColor.mastery} group="mastery" />
+<Canvas of={SemanticColorGroups.Mastery} layout="fullscreen" />
 
-## Primitive Colors
+## Getting raw token values
 
-Wonder Blocks also exports a set of primitive colors that can be used for any
-other use cases that don't fit into the semantic color categories.
+Semantic colors are exported as CSS `var(--...)` references so the active theme
+can switch values through the CSS cascade. This is great for styling, but less
+useful when something expects a concrete hex value (e.g. a third-party library).
+Use the [tokenValue](./?path=/docs/packages-tokens-utilities-tokenvalue--docs)
+utility to resolve a token to its computed raw value at runtime.
 
-<View style={styles.banner}>
-    <Banner
-        kind="warning"
-        layout="full-width"
-        text="We recommend using semantic colors whenever possible, but if you need a color that doesn't fit into any of the categories, you can use these primitive colors."
-        actions={[
-            {
-                type: "custom",
-                // NOTE: This is a hack to bypass a Storybook bug where the
-                // link doesn't work correctly with iframes.
-                node: (
-                    <a
-                        href="/?path=/docs/packages-tokens-color--docs"
-                        target="_blank"
-                    >
-                        Primitive Color tokens
-                    </a>
-                ),
-            },
-        ]}
-    />
-</View>
-
-export const ProductColors = {
-    blue: color.blue,
-    purple: color.purple,
-    gold: color.gold,
-    green: color.green,
-    red: color.red,
-};
-
-### Product
-
-<ColorGroup
-    colors={ProductColors}
-    group="color"
-    variant="primitive"
-    style={styles.gridSmall}
-/>
-
-### Off-Black
-
-#### Solid (hex)
-
-export const NeutralColors = {
-    offBlack: color.offBlack,
-    fadedOffBlack64: color.fadedOffBlack64,
-    fadedOffBlack50: color.fadedOffBlack50,
-    fadedOffBlack32: color.fadedOffBlack32,
-    fadedOffBlack16: color.fadedOffBlack16,
-};
-
-<ColorGroup
-    colors={NeutralColors}
-    group="color"
-    variant="primitive"
-    style={styles.gridSmall}
-/>
-
-#### Transparent (rgba)
-
-export const TransparentNeutralColors = {
-    offBlack: color.offBlack,
-    offBlack64: color.offBlack64,
-    offBlack50: color.offBlack50,
-    offBlack32: color.offBlack32,
-    offBlack16: color.offBlack16,
-};
-
-<ColorGroup
-    colors={TransparentNeutralColors}
-    group="color"
-    variant="primitive"
-    style={styles.gridSmall}
-/>
-
-### White
-
-export const WhiteShades = {
-    offWhite: color.offWhite,
-    white64: color.white64,
-    white50: color.white50,
-    white: color.white,
-};
-
-<ColorGroup
-    colors={WhiteShades}
-    group="color"
-    variant="primitive"
-    style={styles.gridSmall}
-/>
-
-### Blue
-
-export const BlueShades = {
-    activeBlue: color.activeBlue,
-    blue: color.blue,
-    fadedBlue: color.fadedBlue,
-    fadedBlue24: color.fadedBlue24,
-    fadedBlue16: color.fadedBlue16,
-    fadedBlue8: color.fadedBlue8,
-};
-
-<ColorGroup
-    colors={BlueShades}
-    group="color"
-    variant="primitive"
-    style={styles.gridSmall}
-/>
-
-### Green
-
-export const GreenShades = {
-    green: color.green,
-    fadedGreen24: color.fadedGreen24,
-    fadedGreen16: color.fadedGreen16,
-    fadedGreen8: color.fadedGreen8,
-};
-
-<ColorGroup
-    colors={GreenShades}
-    group="color"
-    variant="primitive"
-    style={styles.gridSmall}
-/>
-
-### Gold
-
-export const GoldShades = {
-    gold: color.gold,
-    fadedGold24: color.fadedGold24,
-    fadedGold16: color.fadedGold16,
-    fadedGold8: color.fadedGold8,
-};
-
-<ColorGroup
-    colors={GoldShades}
-    group="color"
-    variant="primitive"
-    style={styles.gridSmall}
-/>
-
-### Purple
-
-export const PurpleShades = {
-    purple: color.purple,
-    fadedPurple24: color.fadedPurple24,
-    fadedPurple16: color.fadedPurple16,
-    fadedPurple8: color.fadedPurple8,
-};
-
-<ColorGroup
-    colors={PurpleShades}
-    group="color"
-    variant="primitive"
-    style={styles.gridSmall}
-/>
-
-### Brand
-
-export const BrandColors = {
-    darkBlue: color.darkBlue,
-    teal: color.teal,
-};
-
-<ColorGroup
-    colors={BrandColors}
-    group="color"
-    variant="primitive"
-    style={styles.gridSmall}
-/>
-
-### Khanmigo
-
-export const KhanmigoColors = {
-    eggplant: color.eggplant,
-    fadedEggplant8: color.fadedEggplant8,
-};
-
-<ColorGroup
-    colors={KhanmigoColors}
-    group="color"
-    variant="primitive"
-    style={styles.gridSmall}
+<Banner
+    kind="info"
+    text={
+        <>
+            Use <code>tokenValue</code> only for edge cases where a concrete raw
+            value is required. Favour using tokens directly wherever possible,
+            since resolving raw values can break theming if overused.
+        </>
+    }
 />
 
 ## Accessibility
@@ -523,3 +281,8 @@ For more detail, you can check the following Success Criteria documents:
 - <a href="https://www.w3.org/WAI/WCAG22/Understanding/non-text-contrast">
       Non-text Contrast (Level AA)
   </a>
+
+## Deprecated semantic colors
+
+To reference the semantic colors that have been deprecated and will be removed
+in the future, see <a href="./?path=/docs/packages-tokens-deprecated-deprecated-semantic-colors--docs">Deprecated Semantic Colors</a>

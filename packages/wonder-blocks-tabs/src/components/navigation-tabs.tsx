@@ -1,15 +1,10 @@
-import {
-    addStyle,
-    AriaProps,
-    StyleType,
-    useOnMountEffect,
-    View,
-} from "@khanacademy/wonder-blocks-core";
-import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
+import {addStyle, AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
+import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {StyleSheet} from "aphrodite";
 import * as React from "react";
+import {useTabIndicator} from "../hooks/use-tab-indicator";
 
-type Props = AriaProps & {
+export type NavigationTabsProps = AriaProps & {
     /**
      * The NavigationTabItem components to render.
      */
@@ -54,9 +49,18 @@ type Props = AriaProps & {
      * if the user has `prefers-reduced-motion` opted in. Defaults to `false`.
      */
     animated?: boolean;
+
+    /**
+     * The HTML tag to render. Defaults to `nav`.
+     */
+    tag?: keyof JSX.IntrinsicElements;
+
+    /**
+     * Whether to show a divider under the tabs. Defaults to `false`.
+     */
+    showDivider?: boolean;
 };
 
-const StyledNav = addStyle("nav");
 const StyledUl = addStyle("ul");
 const StyledDiv = addStyle("div");
 
@@ -84,7 +88,7 @@ const StyledDiv = addStyle("div");
  * ```
  */
 export const NavigationTabs = React.forwardRef(function NavigationTabs(
-    props: Props,
+    props: NavigationTabsProps,
     ref: React.ForwardedRef<HTMLElement>,
 ) {
     const {
@@ -95,8 +99,12 @@ export const NavigationTabs = React.forwardRef(function NavigationTabs(
         "aria-labelledby": ariaLabelledBy,
         styles: stylesProp,
         animated = false,
+        tag = "nav",
+        showDivider = false,
         ...otherProps
     } = props;
+
+    const StyledTag = React.useMemo(() => addStyle(tag), [tag]);
 
     /**
      * Ref for the list element so we can observe when the size of the children
@@ -107,122 +115,45 @@ export const NavigationTabs = React.forwardRef(function NavigationTabs(
      */
     const listRef = React.useRef<HTMLUListElement>(null);
 
-    /**
-     * Determines if we should show the underline current indicator. We only
-     * want to show it if the list has been measured at least once after the
-     * initial aphrodite styles have loaded.
-     */
-    const indicatorIsReady = React.useRef(false);
+    const isTabActive = React.useCallback(
+        (navTabItemElement: Element): boolean => {
+            // Check the link inside the NavigationTabItem to see if it has aria-current="page"
+            return navTabItemElement.children[0]?.ariaCurrent === "page";
+        },
+        [],
+    );
 
-    /**
-     * The styles for the underline current indicator.
-     */
-    const [underlineStyle, setUnderlineStyle] = React.useState({
-        left: 0,
-        width: 0,
+    const {indicatorProps} = useTabIndicator({
+        animated,
+        tabsContainerRef: listRef,
+        isTabActive,
     });
-
-    const updateUnderlineStyle = React.useCallback(() => {
-        if (!listRef.current) {
-            return;
-        }
-
-        // Find the active tab based on which link (child of NavigationTabItem) has
-        // the aria-current set
-        const activeTab = Array.from(listRef.current.children).find(
-            (child) => child.children[0]?.ariaCurrent,
-        );
-
-        if (activeTab) {
-            const tabRect = activeTab.getBoundingClientRect();
-            const parentRect = listRef.current.getBoundingClientRect();
-            const zoomFactor = parentRect.width / listRef.current.offsetWidth;
-
-            // When calculating, we divide by the zoom factor so the underline
-            // is proportional to the rest of the component
-            const left = (tabRect.left - parentRect.left) / zoomFactor; // Get position relative to parent
-            const width = tabRect.width / zoomFactor; // Use bounding width
-
-            setUnderlineStyle({
-                left,
-                width,
-            });
-        }
-    }, [setUnderlineStyle, listRef]);
-
-    /**
-     * On mount, set up the resize observer to watch the list element. We
-     * recalculate the underline style when the list size changes.
-     */
-    useOnMountEffect(() => {
-        // If the list ref is not set or if the ResizeObserver is not available,
-        // don't set up a resize observer. Note: ResizeObserver is supported in
-        // the browsers we support, but not in jsdom for tests
-        // https://github.com/jsdom/jsdom/issues/3368
-        if (!listRef.current || !window.ResizeObserver) {
-            return;
-        }
-        const observer = new window.ResizeObserver(([entry]) => {
-            if (entry) {
-                // Update underline style when the list size changes
-                updateUnderlineStyle();
-                if (!indicatorIsReady.current) {
-                    // Mark indicator as ready to show
-                    indicatorIsReady.current = true;
-                }
-            }
-        });
-
-        observer.observe(listRef.current);
-
-        return () => {
-            observer.disconnect();
-        };
-    });
-
-    React.useEffect(() => {
-        // Update the underline style when children change
-        updateUnderlineStyle();
-    }, [children, updateUnderlineStyle]);
 
     return (
-        <StyledNav
+        <StyledTag
             id={id}
             data-testid={testId}
             aria-label={ariaLabel}
             aria-labelledby={ariaLabelledBy}
             ref={ref}
-            style={[styles.nav, stylesProp?.root]}
+            style={[
+                styles.nav,
+                showDivider && styles.divider,
+                stylesProp?.root,
+            ]}
             {...otherProps}
         >
             {/* Wrap the contents so that any custom styles (like padding) set
-            on the root doesn't affect the positioning of the underline. */}
+            on the root doesn't affect the positioning of the underline indicator. */}
             <StyledDiv style={styles.contents}>
                 <StyledUl style={[styles.list, stylesProp?.list]} ref={listRef}>
                     {children}
                 </StyledUl>
                 {/* Underline indicator for the current tab item. It is a sibling of
-            the list so that it can slide between tab items. We only show it
-            once it is ready so that we don't show the indicator re-positioning
-            itself after aphrodite styles are first loaded in */}
-                {indicatorIsReady.current && (
-                    <View
-                        style={[
-                            {
-                                // Translate x position instead of setting the
-                                // left position so layout doesn't need to be
-                                // recalculated each time
-                                transform: `translateX(${underlineStyle.left}px)`,
-                                width: `${underlineStyle.width}px`,
-                            },
-                            styles.currentUnderline,
-                            animated && styles.underlineTransition,
-                        ]}
-                        role="presentation"
-                    />
-                )}
+            the list so that it can slide between tab items. */}
+                {<div {...indicatorProps} />}
             </StyledDiv>
-        </StyledNav>
+        </StyledTag>
     );
 });
 
@@ -242,15 +173,7 @@ const styles = StyleSheet.create({
         gap: sizing.size_160,
         flexWrap: "nowrap",
     },
-    currentUnderline: {
-        position: "absolute",
-        bottom: 0,
-        left: 0,
-        height: sizing.size_040,
-        backgroundColor:
-            semanticColor.action.secondary.progressive.default.foreground,
-    },
-    underlineTransition: {
-        transition: "transform 0.3s ease, width 0.3s ease",
+    divider: {
+        borderBlockEnd: `${border.width.thin} solid ${semanticColor.core.border.neutral.subtle}`,
     },
 });

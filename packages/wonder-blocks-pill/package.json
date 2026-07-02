@@ -1,8 +1,21 @@
 {
   "name": "@khanacademy/wonder-blocks-pill",
-  "version": "3.1.10",
-  "design": "v1",
   "description": "Pill components for Wonder Blocks.",
+  "author": "Khan Academy",
+  "license": "MIT",
+  "version": "3.1.69",
+  "publishConfig": {
+    "access": "public"
+  },
+  "design": "v1",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Khan/wonder-blocks.git",
+    "directory": "packages/wonder-blocks-pill"
+  },
+  "bugs": {
+    "url": "https://github.com/Khan/wonder-blocks/issues"
+  },
   "main": "dist/index.js",
   "module": "dist/es/index.js",
   "types": "dist/index.d.ts",
@@ -11,15 +24,11 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "prepublishOnly": "../../utils/publish/package-pre-publish-check.sh"
   },
-  "author": "",
-  "license": "MIT",
-  "publishConfig": {
-    "access": "public"
-  },
   "dependencies": {
     "@khanacademy/wonder-blocks-clickable": "workspace:*",
     "@khanacademy/wonder-blocks-core": "workspace:*",
     "@khanacademy/wonder-blocks-link": "workspace:*",
+    "@khanacademy/wonder-blocks-styles": "workspace:*",
     "@khanacademy/wonder-blocks-tokens": "workspace:*",
     "@khanacademy/wonder-blocks-typography": "workspace:*"
   },

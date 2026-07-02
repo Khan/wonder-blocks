@@ -13,7 +13,7 @@ export const mockRequester = <TOperationType, TResponseData>(
     operationMatcher: OperationMatcher<any>,
     operationToString: (...args: Array<any>) => string,
 ): MockFn<TOperationType, TResponseData> => {
-    // We want this to work in jest and in fixtures to make life easy for folks.
+    // We want this to work in jest and in stories to make life easy for folks.
     // This is the array of mocked operations that we will traverse and
     // manipulate.
     const mocks: Array<OperationMock<any>> = [];
