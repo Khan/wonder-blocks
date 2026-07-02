@@ -5,7 +5,7 @@ import type {Meta, StoryObj} from "@storybook/react-vite";
 import {PropsFor, View} from "@khanacademy/wonder-blocks-core";
 import Button from "@khanacademy/wonder-blocks-button";
 import {sizing} from "@khanacademy/wonder-blocks-tokens";
-import {LabelLarge} from "@khanacademy/wonder-blocks-typography";
+import {BodyText} from "@khanacademy/wonder-blocks-typography";
 
 import SearchField from "@khanacademy/wonder-blocks-search-field";
 
@@ -228,9 +228,12 @@ export const WithAutofocus: StoryComponentType = {
 
         return (
             <View>
-                <LabelLarge style={{marginBlockEnd: sizing.size_120}}>
+                <BodyText
+                    weight="bold"
+                    style={{marginBlockEnd: sizing.size_120}}
+                >
                     Press the button to view the search field with autofocus.
-                </LabelLarge>
+                </BodyText>
                 <Button
                     onClick={handleShowDemo}
                     style={{width: 300, marginBlockEnd: sizing.size_240}}

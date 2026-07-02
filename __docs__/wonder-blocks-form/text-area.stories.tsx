@@ -8,7 +8,7 @@ import packageConfig from "../../packages/wonder-blocks-form/package.json";
 import ComponentInfo from "../components/component-info";
 import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import Button from "@khanacademy/wonder-blocks-button";
-import {LabelLarge} from "@khanacademy/wonder-blocks-typography";
+import {BodyText} from "@khanacademy/wonder-blocks-typography";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
 import {PropsFor, View} from "@khanacademy/wonder-blocks-core";
 import {LabeledField} from "@khanacademy/wonder-blocks-labeled-field";
@@ -506,9 +506,9 @@ export const AutoFocus = () => {
 
     return (
         <View>
-            <LabelLarge style={{marginBlockEnd: sizing.size_120}}>
+            <BodyText weight="bold" style={{marginBlockEnd: sizing.size_120}}>
                 Press the button to view the textarea with autofocus.
-            </LabelLarge>
+            </BodyText>
             <Button
                 onClick={handleShowDemo}
                 style={{width: 300, marginBlockEnd: sizing.size_240}}

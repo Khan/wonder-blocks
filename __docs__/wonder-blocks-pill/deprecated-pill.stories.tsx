@@ -7,12 +7,7 @@ import Link from "@khanacademy/wonder-blocks-link";
 import Pill from "@khanacademy/wonder-blocks-pill";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
 import * as tokens from "@khanacademy/wonder-blocks-tokens";
-import {
-    Body,
-    BodySerif,
-    BodyText,
-    LabelMedium,
-} from "@khanacademy/wonder-blocks-typography";
+import {BodySerif, BodyText} from "@khanacademy/wonder-blocks-typography";
 import type {StyleType} from "@khanacademy/wonder-blocks-core";
 import type {
     PillKind,
@@ -107,7 +102,7 @@ Clickable.parameters = {
 
 export const Inline: StoryComponentType = () => (
     <View>
-        <Body>
+        <BodyText>
             Hello! This pill is{" "}
             <Pill kind="neutral" size="medium">
                 inline (medium)
@@ -117,9 +112,9 @@ export const Inline: StoryComponentType = () => (
                 small
             </Pill>{" "}
             if you need it to be.
-        </Body>
+        </BodyText>
         <Strut size={12} />
-        <Body>
+        <BodyText>
             This pill is also{" "}
             <Pill kind="neutral" size="medium" onClick={() => {}}>
                 inline (medium, clickable)
@@ -129,7 +124,7 @@ export const Inline: StoryComponentType = () => (
                 small (clickable)
             </Pill>
             .
-        </Body>
+        </BodyText>
     </View>
 );
 
@@ -329,7 +324,7 @@ export const InList: StoryComponentType = () => {
                 ))}
             </View>
             <Strut size={12} />
-            <Body>You have selected: {selected}</Body>
+            <BodyText>You have selected: {selected}</BodyText>
         </View>
     );
 };
@@ -364,7 +359,7 @@ export const VerticallyStacked: StoryComponentType = {
                         key={size}
                         style={{marginInlineEnd: tokens.sizing.size_160}}
                     >
-                        <LabelMedium>{size}px margin</LabelMedium>
+                        <BodyText>{size}px margin</BodyText>
                         <Strut size={12} />
                         {titles.map((title) => (
                             <View key={title}>

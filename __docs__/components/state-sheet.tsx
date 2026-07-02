@@ -4,7 +4,7 @@ import {StyleSheet} from "aphrodite";
 import {PropsFor, View} from "@khanacademy/wonder-blocks-core";
 import {AllVariants} from "./all-variants";
 import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
-import {LabelSmall} from "@khanacademy/wonder-blocks-typography";
+import {BodyText} from "@khanacademy/wonder-blocks-typography";
 
 export const commonStates = {
     rest: {name: "Rest", className: "rest"},
@@ -96,9 +96,9 @@ export function StateSheet({
                                     className={className}
                                     style={styles.flexStartContainer}
                                 >
-                                    <LabelSmall style={styles.label}>
+                                    <BodyText size="small" style={styles.label}>
                                         {stateName}
-                                    </LabelSmall>
+                                    </BodyText>
                                     <View style={styles.content}>
                                         {children({
                                             props,

@@ -3,10 +3,7 @@ import {StyleSheet} from "aphrodite";
 import type {Meta, StoryObj} from "@storybook/react-vite";
 
 import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
-import {
-    HeadingMedium,
-    LabelMedium,
-} from "@khanacademy/wonder-blocks-typography";
+import {BodyText, Heading} from "@khanacademy/wonder-blocks-typography";
 
 import {View} from "@khanacademy/wonder-blocks-core";
 import packageConfig from "../../packages/wonder-blocks-core/package.json";
@@ -52,7 +49,7 @@ export const Default: StoryComponentType = {
 export const InlineStyles: StoryComponentType = {
     render: () => (
         <View style={styles.container}>
-            <HeadingMedium>Hello, world!</HeadingMedium>
+            <Heading size="large">Hello, world!</Heading>
             <View
                 style={[
                     styles.container,
@@ -94,23 +91,23 @@ export const OtherProps: StoryComponentType = {
 export const DefiningLayout: StoryComponentType = {
     render: () => (
         <View style={styles.container}>
-            <HeadingMedium>View as a column</HeadingMedium>
+            <Heading size="large">View as a column</Heading>
             <View style={styles.view}>
                 <View style={styles.item}>
-                    <LabelMedium>First item</LabelMedium>
+                    <BodyText>First item</BodyText>
                 </View>
                 <View style={styles.item}>
-                    <LabelMedium>Second item</LabelMedium>
+                    <BodyText>Second item</BodyText>
                 </View>
             </View>
 
-            <HeadingMedium>View as a row</HeadingMedium>
+            <Heading size="large">View as a row</Heading>
             <View style={[styles.view, {flexDirection: "row"}]}>
                 <View style={styles.item}>
-                    <LabelMedium>First item</LabelMedium>
+                    <BodyText>First item</BodyText>
                 </View>
                 <View style={styles.item}>
-                    <LabelMedium>Second item</LabelMedium>
+                    <BodyText>Second item</BodyText>
                 </View>
             </View>
         </View>

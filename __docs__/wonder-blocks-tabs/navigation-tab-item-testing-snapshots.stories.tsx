@@ -10,7 +10,7 @@ import {defaultPseudoStates, StateSheet} from "../components/state-sheet";
 import Link from "@khanacademy/wonder-blocks-link";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
-import {HeadingLarge} from "@khanacademy/wonder-blocks-typography";
+import {Heading} from "@khanacademy/wonder-blocks-typography";
 import {
     longText,
     longTextWithNoWordBreak,
@@ -177,7 +177,7 @@ export const StateSheetStory: Story = {
                 )}
             </StateSheet>
             <div dir="rtl">
-                <HeadingLarge>RTL</HeadingLarge>
+                <Heading size="xlarge">RTL</Heading>
                 <StateSheet rows={rtlRows} columns={columns}>
                     {({props, className}) => (
                         <View
@@ -208,7 +208,7 @@ export const Zoom: Story = {
                 )}
             </StateSheet>
             <div dir="rtl">
-                <HeadingLarge>RTL</HeadingLarge>
+                <Heading size="xlarge">RTL</Heading>
                 <StateSheet rows={rtlRows} columns={columns} layout="list">
                     {({props}) => (
                         <View style={styles.container} tag="ul">
