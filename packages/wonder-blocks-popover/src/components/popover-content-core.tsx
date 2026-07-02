@@ -10,7 +10,6 @@ import {
     sizing,
 } from "@khanacademy/wonder-blocks-tokens";
 
-import {actionStyles} from "@khanacademy/wonder-blocks-styles";
 import CloseButton from "./close-button";
 
 type Props = AriaProps & {
@@ -18,10 +17,6 @@ type Props = AriaProps & {
      * The content to render inside the popover.
      */
     children: React.ReactNode;
-    /**
-     * Close button color
-     */
-    closeButtonLight?: boolean;
     /**
      * Close button label for use in screen readers
      */
@@ -41,7 +36,6 @@ type Props = AriaProps & {
 };
 
 type DefaultProps = {
-    closeButtonLight: Props["closeButtonLight"];
     closeButtonVisible: Props["closeButtonVisible"];
 };
 
@@ -63,7 +57,6 @@ type DefaultProps = {
  */
 export default class PopoverContentCore extends React.Component<Props> {
     static defaultProps: DefaultProps = {
-        closeButtonLight: false,
         closeButtonVisible: false,
     };
 
@@ -71,7 +64,6 @@ export default class PopoverContentCore extends React.Component<Props> {
         const {
             "aria-label": ariaLabel,
             children,
-            closeButtonLight,
             closeButtonLabel,
             closeButtonVisible,
             style,
@@ -87,10 +79,7 @@ export default class PopoverContentCore extends React.Component<Props> {
                 {closeButtonVisible && (
                     <CloseButton
                         aria-label={closeButtonLabel}
-                        style={[
-                            styles.closeButton,
-                            closeButtonLight && actionStyles.inverse,
-                        ]}
+                        style={styles.closeButton}
                         testId={`${testId || "popover"}-close-btn`}
                     />
                 )}

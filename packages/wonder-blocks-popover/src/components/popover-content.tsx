@@ -210,7 +210,6 @@ export default class PopoverContent extends React.Component<Props> {
             closeButtonVisible,
             content,
             icon,
-            image,
             style,
             title,
             titleHeadingTag,
@@ -226,7 +225,6 @@ export default class PopoverContent extends React.Component<Props> {
 
                     return (
                         <PopoverContentCore
-                            closeButtonLight={image && placement === "top"}
                             closeButtonLabel={closeButtonLabel}
                             closeButtonVisible={closeButtonVisible}
                             style={style}
