@@ -10,6 +10,14 @@ on:
             target:
                 required: true
                 type: string
+            # Git ref (branch or SHA) to check out and build. Defaults to the
+            # ref that triggered the workflow. Used by chromatic-comment.yml to
+            # build a specific PR head when triggered from an `issue_comment`
+            # event (which otherwise runs against the default branch).
+            ref:
+                required: false
+                type: string
+                default: ""
         # Map the workflow outputs to the job outputs - used in workflows that use
         # this reusable workflow (e.g. chromatic-push.yml)
         outputs:
@@ -62,6 +70,9 @@ jobs:
             - name: Checking out latest commit
               uses: actions/checkout@v5
               with:
+                  # When `ref` is provided (e.g. a `/chromatic` comment build),
+                  # check out that ref; otherwise fall back to the triggering ref.
+                  ref: ${{ inputs.ref || github.ref }}
                   # This makes Actions fetch all Git history so that Chromatic can track
                   # baselines with the correct commits.
                   # see: https://www.chromatic.com/docs/branching-and-baselines
@@ -109,8 +120,8 @@ jobs:
                   # See: https://www.chromatic.com/docs/turbosnap
                   onlyChanged: true
 
-            # (if) Run this step on dependabot or changesets PRs.
-            - name: Skip Chromatic builds (dependabot or changesets PRs)
+            # (if) Run this step on dependabot, changesets, or draft PRs.
+            - name: Skip Chromatic snapshots (dependabot, changesets, or draft PRs)
               if: ${{ inputs.target == 'bot' }}
               uses: chromaui/action@latest
               with:
@@ -118,8 +129,10 @@ jobs:
                   projectToken: ${{ secrets.projectToken }}
                   storybookBuildDir: storybook-static
                   exitZeroOnChanges: true
-                  # Skip Chromatic tests, but mark the Release PR as passing. It avoids
-                  # blocking this PR due to required merge checks.
+                  # Skip Chromatic snapshots, but mark the PR as passing. It
+                  # avoids blocking this PR due to required merge checks.
+                  # Storybook is still built above, so build breakages are still
+                  # caught.
                   skip: true
 
             # (if) Run this step on the main branch.
