@@ -18,6 +18,15 @@ on:
                 required: false
                 type: string
                 default: ""
+            # When true, the Storybook is built with Chromatic snapshots
+            # disabled for all stories (via STORYBOOK_CHROMATIC_DISABLE_SNAPSHOTS,
+            # see .storybook/preview.tsx). Chromatic still publishes the
+            # Storybook (so a preview URL is generated) but captures no
+            # snapshots, so no snapshot quota is consumed. Used for draft PRs.
+            disableSnapshots:
+                required: false
+                type: boolean
+                default: false
         # Map the workflow outputs to the job outputs - used in workflows that use
         # this reusable workflow (e.g. chromatic-push.yml)
         outputs:
@@ -102,6 +111,12 @@ jobs:
               run: pnpm build
             - name: Build Storybook
               run: pnpm build:storybook
+              env:
+                  # Disables Chromatic snapshots for all stories when requested
+                  # (draft PRs). Read by .storybook/preview.tsx via
+                  # import.meta.env. Storybook is still published to Chromatic,
+                  # but no snapshots are captured.
+                  STORYBOOK_CHROMATIC_DISABLE_SNAPSHOTS: ${{ inputs.disableSnapshots }}
 
             # (if) Run this step on non-dependabot PRs.
             - name: Publish to Chromatic for visual testing (review PRs only)
@@ -120,8 +135,8 @@ jobs:
                   # See: https://www.chromatic.com/docs/turbosnap
                   onlyChanged: true
 
-            # (if) Run this step on dependabot, changesets, or draft PRs.
-            - name: Skip Chromatic snapshots (dependabot, changesets, or draft PRs)
+            # (if) Run this step on dependabot or changesets PRs.
+            - name: Skip Chromatic builds (dependabot or changesets PRs)
               if: ${{ inputs.target == 'bot' }}
               uses: chromaui/action@latest
               with:
@@ -129,10 +144,8 @@ jobs:
                   projectToken: ${{ secrets.projectToken }}
                   storybookBuildDir: storybook-static
                   exitZeroOnChanges: true
-                  # Skip Chromatic snapshots, but mark the PR as passing. It
-                  # avoids blocking this PR due to required merge checks.
-                  # Storybook is still built above, so build breakages are still
-                  # caught.
+                  # Skip Chromatic tests, but mark the Release PR as passing. It avoids
+                  # blocking this PR due to required merge checks.
                   skip: true
 
             # (if) Run this step on the main branch.

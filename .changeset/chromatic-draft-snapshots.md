@@ -1,7 +1,8 @@
 ---
 ---
 
-CI only (WB-2391): skip Chromatic snapshot builds on draft PRs to reduce
-snapshot usage. Draft PRs still build Storybook and report a passing Chromatic
-check; full snapshots run automatically when a PR is marked ready for review, or
-on demand via a `/chromatic` comment. No published package changes.
+CI only (WB-2391): reduce Chromatic snapshot usage by disabling snapshots on
+draft PRs. Draft PRs still publish their Storybook to Chromatic (so a preview
+URL is available) but capture no snapshots, so no snapshot quota is consumed.
+Full snapshots run automatically when a PR is marked ready for review, or on
+demand via a `/chromatic` PR comment. No published package changes.

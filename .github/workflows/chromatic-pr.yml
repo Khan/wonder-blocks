@@ -22,38 +22,27 @@ jobs:
         secrets:
             projectToken: ${{ secrets.CHROMATIC_APP_CODE }}
 
-    # ------- Regular (non-draft) PRs --------
+    # ------- Regular PRs --------
     chromatic_review:
-        # (if) Run this step on regular PRs that are ready for review (not drafts).
-        # Draft PRs are handled by `chromatic_draft` below so we don't burn
-        # Chromatic snapshots on work-in-progress PRs.
+        # (if) Run this step on regular PRs (draft or not).
+        #
+        # Draft PRs still publish their Storybook to Chromatic (so reviewers get
+        # a preview URL) but with snapshots disabled, so no snapshot quota is
+        # consumed while a PR is a work in progress. `disableSnapshots` is
+        # forwarded to the Storybook build as an env var (see
+        # chromatic-build.yml and .storybook/preview.tsx).
+        #
+        # Full snapshots run automatically once the PR is marked ready for review
+        # (the `ready_for_review` trigger re-runs this with draft == false), or
+        # on demand via a `/chromatic` comment (see chromatic-comment.yml).
         if: |
             github.actor != 'dependabot[bot]' && github.actor != 'dependabot-preview[bot]' &&
-            !startsWith(github.head_ref, 'changeset-release/') &&
-            github.event.pull_request.draft == false
+            !startsWith(github.head_ref, 'changeset-release/')
         name: Build on regular PRs
         uses: ./.github/workflows/chromatic-build.yml
         with:
             target: "review"
-        secrets:
-            projectToken: ${{ secrets.CHROMATIC_APP_CODE }}
-
-    # ------- Draft PRs --------
-    chromatic_draft:
-        # (if) Run this step on draft PRs. We build Storybook but skip snapshot
-        # capture (target: "bot" => skip: true) to avoid consuming Chromatic's
-        # snapshot quota while a PR is still a work in progress. The Chromatic
-        # check is still reported as passing so required checks aren't blocked.
-        # Snapshots run automatically once the PR is marked ready for review, or
-        # on demand via a `/chromatic` comment (see chromatic-comment.yml).
-        if: |
-            github.actor != 'dependabot[bot]' && github.actor != 'dependabot-preview[bot]' &&
-            !startsWith(github.head_ref, 'changeset-release/') &&
-            github.event.pull_request.draft == true
-        name: Skip snapshots on draft PRs
-        uses: ./.github/workflows/chromatic-build.yml
-        with:
-            target: "bot"
+            disableSnapshots: ${{ github.event.pull_request.draft }}
         secrets:
             projectToken: ${{ secrets.CHROMATIC_APP_CODE }}
 
