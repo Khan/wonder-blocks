@@ -1,5 +1,23 @@
 # eslint-plugin-wonder-blocks-demo
 
+## 0.4.6
+
+### Patch Changes
+
+- Updated dependencies [9d8e5e3]
+- Updated dependencies [f1cd1ce]
+- Updated dependencies [9d8e5e3]
+- Updated dependencies [9d8e5e3]
+    - @khanacademy/wonder-blocks-button@11.7.4
+    - @khanacademy/wonder-blocks-icon@5.3.20
+    - @khanacademy/wonder-blocks-tokens@17.0.0
+    - @khanacademy/wonder-blocks-typography@5.0.0
+    - @khanacademy/wonder-blocks-dropdown@10.11.5
+    - @khanacademy/wonder-blocks-form@7.6.7
+    - @khanacademy/wonder-blocks-icon-button@11.4.2
+    - @khanacademy/wonder-blocks-link@10.3.6
+    - @khanacademy/wonder-blocks-clickable@8.2.6
+
 ## 0.4.5
 
 ### Patch Changes

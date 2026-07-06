@@ -1,5 +1,13 @@
 # @khanacademy/wonder-blocks-icon
 
+## 5.3.20
+
+### Patch Changes
+
+- f1cd1ce: PhosphorIcon already support the tabIndex prop, this change updates the types to reflect that
+- Updated dependencies [9d8e5e3]
+    - @khanacademy/wonder-blocks-tokens@17.0.0
+
 ## 5.3.19
 
 ### Patch Changes
