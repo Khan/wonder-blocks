@@ -400,7 +400,6 @@ const _generateStyles = (
                 transform: "none",
             },
             // Reset hover and active styles on the chonky element.
-            [":is(:hover) .chonky" as any]: disabledStatesStyles,
             [":is(:hover) .chonky" as any]: chonkyDisabled,
             [":is(:active) .chonky" as any]: chonkyDisabled,
         },

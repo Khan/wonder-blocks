@@ -7,15 +7,7 @@ import ComponentInfo from "../components/component-info";
 import TypographyArgTypes from "./typography.argtypes";
 
 import {View} from "@khanacademy/wonder-blocks-core";
-import {
-    Footnote,
-    BodyText,
-    LabelXSmall,
-    LabelSmall,
-    LabelMedium,
-    LabelLarge,
-    Body,
-} from "@khanacademy/wonder-blocks-typography";
+import {BodyText} from "@khanacademy/wonder-blocks-typography";
 import {allThemeModes} from "../../.storybook/modes";
 import {font, sizing} from "@khanacademy/wonder-blocks-tokens";
 
@@ -36,9 +28,9 @@ A corresponding line-height token will be automatically selected from our
 
 Each size resolves to the following font-size and automatic line-height using `font.body` tokens:
 
-- xsmall: `sizing.size_120` / `sizing.size_160` (`LabelXSmall`)
-- small: `sizing.size_140` / `sizing.size_180` (`LabelSmall`)
-- medium (default): `sizing.size_160` / `sizing.size_200` (`LabelMedium`, `LabelLarge`, `Body`)
+- xsmall: `sizing.size_120` / `sizing.size_160`
+- small: `sizing.size_140` / `sizing.size_180`
+- medium (default): `sizing.size_160` / `sizing.size_200`
 
 With no `size` prop set, `BodyText` will default to `medium` font size and line height.
 
@@ -146,59 +138,6 @@ export const SizesAndWeights = {
 };
 
 /**
- * A table showing the conversion from Classic Typography components to BodyText.
- */
-export const ClassicConversionGuide = {
-    parameters: {
-        chromatic: {
-            // Disabling because all typography components are covered together
-            // in the Typography stories
-            disableSnapshot: true,
-        },
-    },
-    render: () => (
-        <View style={[styles.grid, styles.conversionGuide]}>
-            <View style={styles.row}>
-                <Footnote tag="p" style={styles.classic}>
-                    Footnote
-                </Footnote>
-                <BodyText size="xsmall">BodyText size=xsmall</BodyText>
-            </View>
-            <View style={styles.row}>
-                <LabelXSmall tag="p" style={styles.classic}>
-                    LabelXSmall
-                </LabelXSmall>
-                <BodyText size="xsmall">BodyText size=xsmall</BodyText>
-            </View>
-            <View style={styles.row}>
-                <LabelSmall tag="p" style={styles.classic}>
-                    LabelSmall
-                </LabelSmall>
-                <BodyText size="small">BodyText size=small</BodyText>
-            </View>
-            <View style={styles.row}>
-                <LabelMedium tag="p" style={styles.classic}>
-                    LabelMedium
-                </LabelMedium>
-                <BodyText>BodyText</BodyText>
-            </View>
-            <View style={styles.row}>
-                <LabelLarge tag="p" style={styles.classic}>
-                    LabelLarge
-                </LabelLarge>
-                <BodyText weight="bold">BodyText weight=bold</BodyText>
-            </View>
-            <View style={styles.row}>
-                <Body tag="p" style={styles.classic}>
-                    Body
-                </Body>
-                <BodyText>BodyText</BodyText>
-            </View>
-        </View>
-    ),
-};
-
-/**
  * An example of overriding `BodyText` component's styling.
  */
 export const CustomStyling = {
@@ -225,15 +164,8 @@ const styles = StyleSheet.create({
         rowGap: sizing.size_160,
         columnGap: sizing.size_240,
     },
-    conversionGuide: {
-        justifyContent: "flex-start",
-        gridTemplateColumns: "max-content max-content",
-    },
     row: {
         display: "contents",
-    },
-    classic: {
-        margin: 0,
     },
     customStyle: {
         fontSize: sizing.size_280,

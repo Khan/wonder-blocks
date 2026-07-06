@@ -1,5 +1,12 @@
 # @khanacademy/wonder-blocks-tokens
 
+## 17.0.0
+
+### Major Changes
+
+- 9d8e5e3: Remove the deprecated legacy `font.size.*` and `font.lineHeight.*` token scales.
+  Use `font.body.*` / `font.heading.*` for typography.
+
 ## 16.8.1
 
 ### Patch Changes

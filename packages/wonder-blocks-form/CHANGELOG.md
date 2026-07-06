@@ -1,5 +1,18 @@
 # @khanacademy/wonder-blocks-form
 
+## 7.6.7
+
+### Patch Changes
+
+- Updated dependencies [f1cd1ce]
+- Updated dependencies [9d8e5e3]
+- Updated dependencies [9d8e5e3]
+    - @khanacademy/wonder-blocks-icon@5.3.20
+    - @khanacademy/wonder-blocks-tokens@17.0.0
+    - @khanacademy/wonder-blocks-typography@5.0.0
+    - @khanacademy/wonder-blocks-clickable@8.2.6
+    - @khanacademy/wonder-blocks-layout@3.1.57
+
 ## 7.6.6
 
 ### Patch Changes

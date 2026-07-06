@@ -66,24 +66,9 @@ import Tooltip from "@khanacademy/wonder-blocks-tooltip";
 import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
 import Link from "@khanacademy/wonder-blocks-link";
 import {
-    Body,
     BodyMonospace,
-    BodySerif,
-    BodySerifBlock,
     BodyText,
-    Caption,
-    Footnote,
     Heading,
-    HeadingLarge,
-    HeadingMedium,
-    HeadingSmall,
-    HeadingXSmall,
-    LabelLarge,
-    LabelMedium,
-    LabelSmall,
-    LabelXSmall,
-    Tagline,
-    Title,
 } from "@khanacademy/wonder-blocks-typography";
 import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import customBackgroundImage from "../../static/celebration_bg.svg";
@@ -117,39 +102,6 @@ export type ComponentConfig<ComponentType extends React.ElementType> = {
 const createComponentConfig = <C extends React.ElementType>(
     config: ComponentConfig<C>,
 ): ComponentConfig<C> => config;
-
-const legacyTypographyComponents = [
-    {name: "BodyMonospace", TypographyComponent: BodyMonospace},
-    {name: "BodySerifBlock", TypographyComponent: BodySerifBlock},
-    {name: "BodySerif", TypographyComponent: BodySerif},
-    {name: "Body", TypographyComponent: Body},
-    {name: "Caption", TypographyComponent: Caption},
-    {name: "Footnote", TypographyComponent: Footnote},
-    {name: "HeadingLarge", TypographyComponent: HeadingLarge},
-    {name: "HeadingMedium", TypographyComponent: HeadingMedium},
-    {name: "HeadingSmall", TypographyComponent: HeadingSmall},
-    {name: "HeadingXSmall", TypographyComponent: HeadingXSmall},
-    {name: "LabelLarge", TypographyComponent: LabelLarge},
-    {name: "LabelMedium", TypographyComponent: LabelMedium},
-    {name: "LabelSmall", TypographyComponent: LabelSmall},
-    {name: "LabelXSmall", TypographyComponent: LabelXSmall},
-    {name: "Tagline", TypographyComponent: Tagline},
-    {name: "Title", TypographyComponent: Title},
-];
-
-const LegacyTypographyComponents = () => {
-    return (
-        <View style={{gap: sizing.size_120}}>
-            {legacyTypographyComponents.map(({name, TypographyComponent}) => (
-                // Use span tag to avoid semantic issues with header tags in a11y tools
-                // This story is for visual testing purposes
-                <TypographyComponent key={name} tag="span">
-                    {name}
-                </TypographyComponent>
-            ))}
-        </View>
-    );
-};
 
 const formFieldsToUseWithLabeledField: {
     componentName: string;
@@ -327,7 +279,7 @@ export const buttonComponents = [
 ];
 
 /**
- * Typography and icons components (Heading, BodyText, Legacy Typography, PhosphorIcon, Icon)
+ * Typography and icons components (Heading, BodyText, PhosphorIcon, Icon)
  */
 export const typographyAndIconsComponents = [
     createComponentConfig({
@@ -372,10 +324,12 @@ export const typographyAndIconsComponents = [
         package: "wonder-blocks-typography",
     }),
     createComponentConfig({
-        name: "Legacy Typography",
-        Component: LegacyTypographyComponents,
+        name: "BodyMonospace",
+        Component: BodyMonospace,
         variantProps: [],
-        defaultProps: {},
+        defaultProps: {
+            children: "BodyMonospace",
+        },
         states: [],
         package: "wonder-blocks-typography",
     }),
