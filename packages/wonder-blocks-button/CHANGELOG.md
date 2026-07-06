@@ -1,5 +1,20 @@
 # @khanacademy/wonder-blocks-button
 
+## 11.7.4
+
+### Patch Changes
+
+- 9d8e5e3: Internal refactor: replace deprecated `font.lineHeight.*` tokens with their value-equivalent `sizing.size_*` tokens in the button theme. No visual or behavioral change.
+- Updated dependencies [f1cd1ce]
+- Updated dependencies [9d8e5e3]
+- Updated dependencies [9d8e5e3]
+    - @khanacademy/wonder-blocks-icon@5.3.20
+    - @khanacademy/wonder-blocks-tokens@17.0.0
+    - @khanacademy/wonder-blocks-typography@5.0.0
+    - @khanacademy/wonder-blocks-clickable@8.2.6
+    - @khanacademy/wonder-blocks-progress-spinner@3.1.57
+    - @khanacademy/wonder-blocks-styles@0.2.50
+
 ## 11.7.3
 
 ### Patch Changes
