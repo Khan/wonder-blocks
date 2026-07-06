@@ -1,6 +1,6 @@
 import {StyleSheet} from "aphrodite";
 import type {StyleDeclaration} from "aphrodite";
-import {font, sizing} from "@khanacademy/wonder-blocks-tokens";
+import {font} from "@khanacademy/wonder-blocks-tokens";
 
 const common = {
     display: "block",
@@ -172,8 +172,8 @@ const styles: StyleDeclaration = StyleSheet.create({
         ...common,
         fontFamily: font.family.mono,
         fontWeight: font.weight.medium,
-        fontSize: sizing.size_160,
-        lineHeight: sizing.size_200,
+        fontSize: font.body.size.medium,
+        lineHeight: font.body.lineHeight.medium,
     },
 });
 

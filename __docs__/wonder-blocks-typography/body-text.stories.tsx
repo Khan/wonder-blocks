@@ -28,9 +28,9 @@ A corresponding line-height token will be automatically selected from our
 
 Each size resolves to the following font-size and automatic line-height using `font.body` tokens:
 
-- xsmall: `sizing.size_120` / `sizing.size_160` (`LabelXSmall`)
-- small: `sizing.size_140` / `sizing.size_180` (`LabelSmall`)
-- medium (default): `sizing.size_160` / `sizing.size_200` (`LabelMedium`, `LabelLarge`, `Body`)
+- xsmall: `sizing.size_120` / `sizing.size_160`
+- small: `sizing.size_140` / `sizing.size_180`
+- medium (default): `sizing.size_160` / `sizing.size_200`
 
 With no `size` prop set, `BodyText` will default to `medium` font size and line height.
 

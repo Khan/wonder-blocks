@@ -30,31 +30,31 @@ export const font = {
     },
     body: {
         size: {
-            xsmall: sizing.size_120, // Used by LabelXSmall
-            small: sizing.size_140, // Used by LabelSmall
-            medium: sizing.size_160, // Used by LabelMedium, LabelLarge and Body
+            xsmall: sizing.size_120,
+            small: sizing.size_140,
+            medium: sizing.size_160,
         },
         lineHeight: {
-            xsmall: sizing.size_160, // LabelXSmall
-            small: sizing.size_180, // LabelSmall
-            medium: sizing.size_200, // LabelLarge
-            large: sizing.size_220, // Body
+            xsmall: sizing.size_160,
+            small: sizing.size_180,
+            medium: sizing.size_200,
+            large: sizing.size_220,
         },
     },
     heading: {
         size: {
-            small: sizing.size_120, // HeadingXSmall
-            medium: sizing.size_200, // HeadingSmall and Tagline
-            large: sizing.size_240, // HeadingMedium
-            xlarge: sizing.size_280, // HeadingLarge
-            xxlarge: sizing.size_360, // Title
+            small: sizing.size_120,
+            medium: sizing.size_200,
+            large: sizing.size_240,
+            xlarge: sizing.size_280,
+            xxlarge: sizing.size_360,
         },
         lineHeight: {
-            small: sizing.size_160, // HeadingXSmall
-            medium: sizing.size_240, // HeadingSmall and Tagline
-            large: sizing.size_280, // HeadingMedium
-            xlarge: sizing.size_320, // HeadingLarge
-            xxlarge: sizing.size_400, // Title
+            small: sizing.size_160,
+            medium: sizing.size_240,
+            large: sizing.size_280,
+            xlarge: sizing.size_320,
+            xxlarge: sizing.size_400,
         },
     },
     textDecoration: {

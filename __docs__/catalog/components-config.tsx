@@ -65,7 +65,11 @@ import Toolbar from "@khanacademy/wonder-blocks-toolbar";
 import Tooltip from "@khanacademy/wonder-blocks-tooltip";
 import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
 import Link from "@khanacademy/wonder-blocks-link";
-import {BodyText, Heading} from "@khanacademy/wonder-blocks-typography";
+import {
+    BodyMonospace,
+    BodyText,
+    Heading,
+} from "@khanacademy/wonder-blocks-typography";
 import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import customBackgroundImage from "../../static/celebration_bg.svg";
 
@@ -315,6 +319,16 @@ export const typographyAndIconsComponents = [
         ],
         defaultProps: {
             children: "BodyText",
+        },
+        states: [],
+        package: "wonder-blocks-typography",
+    }),
+    createComponentConfig({
+        name: "BodyMonospace",
+        Component: BodyMonospace,
+        variantProps: [],
+        defaultProps: {
+            children: "BodyMonospace",
         },
         states: [],
         package: "wonder-blocks-typography",

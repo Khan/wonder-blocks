@@ -131,11 +131,6 @@ export const FontFamily = {
  * `font.body.lineHeight.*` token for the line height. As an alternative, the
  * WB `BodyText` component can be used instead, which will apply all the needed
  * font properties by default.
- *
- * **Note:** the legacy font token API (e.g. `font.size.*` and
- * `font.lineHeight.*`) has been removed. Use `font.body.*` / `font.heading.*`
- * for typography, or the underlying `sizing.size_*` tokens where a raw value is
- * needed.
  */
 export const BodyFontSize = {
     name: "Font Size (Body)",
