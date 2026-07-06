@@ -40,7 +40,7 @@ export const AccessoryMappings = {
 export default {
     title: {
         description:
-            "The title / main content of the cell. You can either provide a string or a Typography component. If a string is provided, typography defaults to `LabelLarge`.",
+            "The title / main content of the cell. You can either provide a string or a Typography component. If a string is provided, typography defaults to `BodyText`.",
         type: {
             name: "union",
             value: [

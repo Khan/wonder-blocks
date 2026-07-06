@@ -7,7 +7,7 @@ import Link from "@khanacademy/wonder-blocks-link";
 import Pill from "@khanacademy/wonder-blocks-pill";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
 import * as tokens from "@khanacademy/wonder-blocks-tokens";
-import {BodySerif, BodyText} from "@khanacademy/wonder-blocks-typography";
+import {BodyText} from "@khanacademy/wonder-blocks-typography";
 import type {StyleType} from "@khanacademy/wonder-blocks-core";
 import type {
     PillKind,
@@ -238,10 +238,10 @@ export const Variants: StoryComponentType = {
 
 export const WithTypography: StoryComponentType = () => (
     <Pill size="large" kind="info">
-        <BodySerif>
+        <BodyText style={{fontFamily: tokens.font.family.serif}}>
             This is a {<Link href="#link">link example</Link>} inside the text
             of a pill.
-        </BodySerif>
+        </BodyText>
     </Pill>
 );
 
@@ -250,7 +250,7 @@ WithTypography.parameters = {
         description: {
             story: `Pills can have Wonder Blocks Typography elements
                 as children. In this example, the Pill has a Wonder Blocks
-                Typography \`BodySerif\` component as its child.
+                Typography \`BodyText\` component as its child.
                 Note that this also allows you to include a link inside
                 the text, as is shown here.`,
         },

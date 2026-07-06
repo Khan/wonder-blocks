@@ -28,7 +28,7 @@ export type CellProps = {
     /**
      * The title / main content of the cell. You can either provide a string or
      * a Typography component. If a string is provided, typography defaults to
-     * LabelLarge.
+     * `BodyText` with a `medium` size.
      */
     title: TypographyText;
     /**
