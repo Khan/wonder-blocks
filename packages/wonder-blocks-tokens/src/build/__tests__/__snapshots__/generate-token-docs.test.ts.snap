@@ -128,18 +128,21 @@ import {breakpoint} from "@khanacademy/wonder-blocks-tokens";
 | \`breakpoint.width.mdMin\` | \`682\` |
 | \`breakpoint.width.mdMax\` | \`1023\` |
 | \`breakpoint.width.lgMin\` | \`1024\` |
+| \`breakpoint.width.lgMax\` | \`1199\` |
+| \`breakpoint.width.xlMin\` | \`1200\` |
 | \`breakpoint.mediaQuery.xs\` | \`@media screen and (max-width: 567px) /* breakpoint.mediaQuery.xs */\` |
 | \`breakpoint.mediaQuery.sm\` | \`@media screen and (min-width: 568px) and (max-width: 681px) /* breakpoint.mediaQuery.sm */\` |
 | \`breakpoint.mediaQuery.md\` | \`@media screen and (min-width: 682px) and (max-width: 1023px) /* breakpoint.mediaQuery.md */\` |
-| \`breakpoint.mediaQuery.lg\` | \`@media screen and (min-width: 682px) and (max-width: 1024px) /* breakpoint.mediaQuery.lg */\` |
-| \`breakpoint.mediaQuery.xl\` | \`@media screen and (min-width: 1024px) /* breakpoint.mediaQuery.xl */\` |
+| \`breakpoint.mediaQuery.lg\` | \`@media screen and (min-width: 1024px) and (max-width: 1199px) /* breakpoint.mediaQuery.lg */\` |
+| \`breakpoint.mediaQuery.xl\` | \`@media screen and (min-width: 1200px) /* breakpoint.mediaQuery.xl */\` |
 | \`breakpoint.mediaQuery.xsOrSmaller\` | \`@media screen and (max-width: 567px) /* breakpoint.mediaQuery.xsOrSmaller */\` |
 | \`breakpoint.mediaQuery.smOrSmaller\` | \`@media screen and (max-width: 681px) /* breakpoint.mediaQuery.smOrSmaller */\` |
 | \`breakpoint.mediaQuery.mdOrSmaller\` | \`@media screen and (max-width: 1023px) /* breakpoint.mediaQuery.mdOrSmaller */\` |
-| \`breakpoint.mediaQuery.lgOrSmaller\` | \`@media screen and (max-width: 1024px) /* breakpoint.mediaQuery.lgOrSmaller */\` |
+| \`breakpoint.mediaQuery.lgOrSmaller\` | \`@media screen and (max-width: 1199px) /* breakpoint.mediaQuery.lgOrSmaller */\` |
 | \`breakpoint.mediaQuery.smOrLarger\` | \`@media screen and (min-width: 568px) /* breakpoint.mediaQuery.smOrLarger */\` |
 | \`breakpoint.mediaQuery.mdOrLarger\` | \`@media screen and (min-width: 682px) /* breakpoint.mediaQuery.mdOrLarger */\` |
 | \`breakpoint.mediaQuery.lgOrLarger\` | \`@media screen and (min-width: 1024px) /* breakpoint.mediaQuery.lgOrLarger */\` |
+| \`breakpoint.mediaQuery.xlOrLarger\` | \`@media screen and (min-width: 1200px) /* breakpoint.mediaQuery.xlOrLarger */\` |
 "
 `;
 
