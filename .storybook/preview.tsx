@@ -176,6 +176,14 @@ const withThemeSwitcher: Decorator = (Story, {globals: {theme}}) => {
         if (theme) {
             // Switch the body class based on the theme.
             document.body.setAttribute(THEME_DATA_ATTRIBUTE, theme);
+            // Set `color-scheme: dark` on the `:root` element when the theme is
+            // a dark theme (e.g. `syl-dark`). This ensures that browser-rendered
+            // UI (form controls, scrollbars, etc.) matches the dark theme.
+            if (theme.endsWith("-dark")) {
+                document.documentElement.style.colorScheme = "dark";
+            } else {
+                document.documentElement.style.removeProperty("color-scheme");
+            }
             setLocalTheme(theme);
         }
     }, [theme]);
