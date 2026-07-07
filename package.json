@@ -13,7 +13,7 @@
     "build": "rollup -c ./build-settings/rollup.config.mjs && pnpm -r build && turbo build:css",
     "build:css": "node -r @swc-node/register ./build-settings/build-css.ts",
     "build:token-docs": "pnpm --filter @khanacademy/wonder-blocks-tokens build:token-docs",
-    "build:types": "pnpm tsc --build tsconfig-build.json && ./build-settings/check-type-definitions.ts",
+    "build:types": "tsgo --build tsconfig-build.json && ./build-settings/check-type-definitions.ts",
     "build:storybook": "storybook build --stats-json",
     "prebuild:storybook": "pnpm build:token-docs",
     "clean": "rm -rf packages/wonder-blocks-*/dist && rm -rf packages/wonder-blocks-*/node_modules && rm -f packages/*/*.tsbuildinfo && rm -f utils/tsconfig.tsbuildinfo",
