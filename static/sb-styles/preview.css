@@ -10,6 +10,13 @@ html {
     color: var(--wb-semanticColor-core-foreground-neutral-strong);
 }
 
+/* Set `color-scheme: dark` on the `:root` element when the body uses a dark
+ * theme (e.g. `syl-dark`). This ensures that browser-rendered UI (form
+ * controls, scrollbars, etc.) matches the dark theme. */
+:root:has(body[data-wb-theme$="-dark"]) {
+    color-scheme: dark;
+}
+
 /* These overrides depend on a Base 10 font size */
 .sb-show-main.sb-main-padded {
     padding: 0.8rem;
