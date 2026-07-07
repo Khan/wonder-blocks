@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-tokens
 
+## 17.1.0
+
+### Minor Changes
+
+- dfcf49b: Update media-query breakpoint and constant tokens to cover full range of widths
+
 ## 17.0.0
 
 ### Major Changes
