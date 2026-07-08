@@ -51,6 +51,14 @@ type RadioGroupProps = {
      */
     selectedValue: string;
     /**
+     * Controls the visual appearance of every radio in the group.
+     *
+     * - `"default"` (the default) renders each radio as a compact row.
+     * - `"cell"` renders each radio using the full `DetailCell` style (padding
+     *   and a horizontal rule), so the group reads as a list of cells.
+     */
+    appearance?: "default" | "cell";
+    /**
      * Test ID used for e2e testing.
      */
     testId?: string;
@@ -107,6 +115,7 @@ const RadioGroup = React.forwardRef(function RadioGroup(
         onChange,
         selectedValue,
         style,
+        appearance,
         testId,
     } = props;
 
@@ -152,6 +161,9 @@ const RadioGroup = React.forwardRef(function RadioGroup(
                         style,
                     ],
                     variant: "radio",
+                    // Only forward appearance when set, so a per-Choice
+                    // appearance can still take precedence if left unset here.
+                    ...(appearance ? {appearance} : {}),
                 });
             })}
         </StyledFieldset>

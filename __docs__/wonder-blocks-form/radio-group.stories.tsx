@@ -97,6 +97,50 @@ Basic.parameters = {
     },
 };
 
+export const CellAppearance: StoryComponentType = () => {
+    const [selectedValue, setSelectedValue] = React.useState("squirtle-cell");
+
+    return (
+        <RadioGroup
+            groupName="pokemon-cell"
+            label="Pokemon"
+            description="Your first Pokemon."
+            appearance="cell"
+            onChange={setSelectedValue}
+            selectedValue={selectedValue}
+        >
+            <Choice
+                label="Bulbasaur"
+                value="bulbasaur-cell"
+                description="A grass-type Pokemon."
+            />
+            <Choice
+                label="Charmander"
+                value="charmander-cell"
+                description="Oops, we ran out of Charmanders"
+                disabled
+            />
+            <Choice
+                label="Squirtle"
+                value="squirtle-cell"
+                description="A water-type Pokemon."
+            />
+            <Choice label="Pikachu" value="pikachu-cell" />
+        </RadioGroup>
+    );
+};
+
+CellAppearance.parameters = {
+    docs: {
+        description: {
+            story: `Setting \`appearance="cell"\` on the \`RadioGroup\`
+        forwards it to every radio, rendering each option with the full
+        \`DetailCell\` style (padding and a horizontal rule) so the group reads
+        as a list of cells.`,
+        },
+    },
+};
+
 export const Error: StoryComponentType = () => {
     const emptyError = "You must select an option to continue.";
     const [selectedValue, setSelectedValue] = React.useState("");

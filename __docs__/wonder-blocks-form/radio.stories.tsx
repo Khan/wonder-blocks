@@ -128,6 +128,46 @@ WithLabel.parameters = {
     },
 };
 
+export const Appearance: StoryComponentType = () => {
+    const [selected, setSelected] = React.useState("default");
+
+    return (
+        <View style={styles.appearanceColumn}>
+            <Radio
+                label="Default appearance"
+                description="Renders as a compact row with no padding or divider."
+                checked={selected === "default"}
+                onChange={() => setSelected("default")}
+            />
+            <Radio
+                appearance="cell"
+                label="Cell appearance"
+                description="Adds the DetailCell padding and an inset divider so a list of radios reads as a set of cells."
+                checked={selected === "cell"}
+                onChange={() => setSelected("cell")}
+            />
+            <Radio
+                appearance="cell"
+                label="Another cell"
+                description="Cell-appearance radios stack into a list."
+                checked={selected === "another"}
+                onChange={() => setSelected("another")}
+            />
+        </View>
+    );
+};
+
+Appearance.parameters = {
+    docs: {
+        description: {
+            story: `The \`appearance\` prop controls how the radio's
+            underlying \`DetailCell\` is styled. \`"default"\` (the default)
+            keeps the compact radio row. \`"cell"\` opts into the full
+            \`DetailCell\` look, adding padding and a horizontal rule.`,
+        },
+    },
+};
+
 export const AdditionalClickTarget: StoryComponentType = () => {
     const [checked, setChecked] = React.useState(false);
     const headingText = "Functions";
@@ -167,6 +207,10 @@ const styles = StyleSheet.create({
     row: {
         flexDirection: "row",
         gap: sizing.size_240,
+    },
+    appearanceColumn: {
+        gap: sizing.size_080,
+        maxInlineSize: 400,
     },
     wrapper: {
         flexDirection: "row",

@@ -18,6 +18,14 @@ type Props = AriaProps & {
     /** User-defined. Optional additional styling. */
     style?: StyleType;
     /**
+     * User-defined. Controls the visual appearance of the choice. Only applies
+     * to radio choices (within a `RadioGroup`); ignored for checkboxes.
+     *
+     * - `"default"` renders the compact radio row.
+     * - `"cell"` renders the radio using the full `DetailCell` style.
+     */
+    appearance?: "default" | "cell";
+    /**
      * Auto-populated by parent. Whether this choice is checked.
      * @ignore
      */
@@ -129,23 +137,28 @@ const Choice = React.forwardRef(function Choice(
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
         value,
         variant,
+        // `appearance` only applies to Radio, so it's pulled out here and
+        // forwarded to Radio explicitly below (Checkbox does not support it).
+        appearance,
         ...remainingProps
     } = props;
 
-    const getChoiceComponent = (
-        variant?: string | null,
-    ): typeof Radio | typeof Checkbox => {
-        if (variant === "checkbox") {
-            return Checkbox;
-        } else {
-            return Radio;
-        }
-    };
+    if (variant === "checkbox") {
+        return (
+            <Checkbox
+                {...remainingProps}
+                checked={checked}
+                disabled={disabled}
+                onChange={onChange}
+                ref={ref}
+            />
+        );
+    }
 
-    const ChoiceComponent = getChoiceComponent(variant);
     return (
-        <ChoiceComponent
+        <Radio
             {...remainingProps}
+            appearance={appearance}
             checked={checked}
             disabled={disabled}
             onChange={onChange}

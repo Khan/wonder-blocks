@@ -1026,6 +1026,9 @@ importers:
 
   packages/wonder-blocks-form:
     dependencies:
+      '@khanacademy/wonder-blocks-cell':
+        specifier: workspace:*
+        version: link:../wonder-blocks-cell
       '@khanacademy/wonder-blocks-clickable':
         specifier: workspace:*
         version: link:../wonder-blocks-clickable

@@ -1,7 +1,14 @@
 import * as React from "react";
+import {StyleSheet} from "aphrodite";
 
+import {Id, View} from "@khanacademy/wonder-blocks-core";
+import {font, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
+import {BodyText} from "@khanacademy/wonder-blocks-typography";
+import {DetailCell} from "@khanacademy/wonder-blocks-cell";
 import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
-import ChoiceInternal from "./choice-internal";
+
+import RadioCore from "./radio-core";
+import theme from "../theme";
 
 // Keep synced with ChoiceComponentProps in ../util/types.js
 type ChoiceComponentProps = AriaProps & {
@@ -41,7 +48,7 @@ type ChoiceComponentProps = AriaProps & {
      */
     style?: StyleType;
     /**
-     * Adds CSS classes to the Checkbox.
+     * Adds CSS classes to the Radio.
      */
     className?: string;
     /**
@@ -54,6 +61,19 @@ type ChoiceComponentProps = AriaProps & {
      * @ignore
      */
     groupName?: string;
+    /**
+     * Controls the visual appearance of the radio.
+     *
+     * - `"default"` (the default) renders the radio as a compact row (radio
+     *   input + label + description) with no surrounding padding or divider.
+     * - `"cell"` renders the radio using the full `DetailCell` style, adding the
+     *   cell's padding and a horizontal rule so a list of radios reads as a set
+     *   of cells.
+     *
+     * In both cases the layout is composed from `DetailCell`; `appearance` only
+     * toggles the cell's own padding/divider styling.
+     */
+    appearance?: "default" | "cell";
 };
 
 /**
@@ -62,21 +82,162 @@ type ChoiceComponentProps = AriaProps & {
  *
  * This component should not really be used by itself because radio buttons are
  * often grouped together. See RadioGroup.
+ *
+ * Internally, `Radio` is composed from `DetailCell`: the radio input is rendered
+ * as the cell's `leftAccessory`, the label as its `title`, and the description
+ * as its `subtitle2`. The cell has no `onClick`/`href` so it renders a plain
+ * container (not a `Clickable`), keeping the native `<input>` as the single
+ * interactive element.
  */ const Radio = React.forwardRef(function Radio(
     props: ChoiceComponentProps,
     ref: React.ForwardedRef<HTMLInputElement>,
 ) {
-    const {disabled = false, error = false, ...otherProps} = props;
+    const {
+        checked,
+        description,
+        disabled = false,
+        error = false,
+        id,
+        label,
+        onChange,
+        style,
+        className,
+        testId,
+        groupName,
+        appearance = "default",
+        ...ariaProps
+    } = props;
+
+    const handleClick: () => void = () => {
+        // Radio buttons cannot be unchecked.
+        if (checked) {
+            return;
+        }
+        onChange(!checked);
+    };
 
     return (
-        <ChoiceInternal
-            {...otherProps}
-            variant="radio"
-            disabled={disabled}
-            error={error}
-            ref={ref}
-        />
+        // A radio element should always have a unique ID set so that the label
+        // can always refer to this element. This guarantees that clicking on
+        // the label will always click on the radio as well. If an ID is passed
+        // in as a prop, use that one. Otherwise, create a unique ID.
+        <Id id={id}>
+            {(uniqueId) => {
+                // Create a unique ID for the description section to be used by
+                // this element's `aria-describedby`.
+                const descriptionId = description
+                    ? `${uniqueId}-description`
+                    : undefined;
+
+                const labelNode = label ? (
+                    <BodyText
+                        tag="div"
+                        weight="semi"
+                        style={[styles.label, disabled && styles.disabledLabel]}
+                    >
+                        <label htmlFor={uniqueId}>{label}</label>
+                    </BodyText>
+                ) : (
+                    // DetailCell requires a title; render an empty node when
+                    // there is no label.
+                    ""
+                );
+
+                const descriptionNode = description ? (
+                    <BodyText
+                        size="small"
+                        id={descriptionId}
+                        style={styles.description}
+                    >
+                        {description}
+                    </BodyText>
+                ) : undefined;
+
+                return (
+                    <View style={style} className={className}>
+                        <DetailCell
+                            testId={testId}
+                            horizontalRule={
+                                appearance === "cell" ? "inset" : "none"
+                            }
+                            styles={
+                                appearance === "cell"
+                                    ? undefined
+                                    : {
+                                          root: styles.compactRoot,
+                                          content: styles.compactContent,
+                                          leftAccessory:
+                                              styles.compactAccessory,
+                                      }
+                            }
+                            leftAccessory={
+                                <RadioCore
+                                    {...ariaProps}
+                                    id={uniqueId}
+                                    checked={checked}
+                                    disabled={disabled}
+                                    error={error}
+                                    groupName={groupName}
+                                    aria-describedby={descriptionId}
+                                    onClick={handleClick}
+                                    ref={ref}
+                                />
+                            }
+                            title={labelNode}
+                            subtitle2={descriptionNode}
+                        />
+                    </View>
+                );
+            }}
+        </Id>
     );
+});
+
+const styles = StyleSheet.create({
+    // Strip the DetailCell padding/min-height/background so the default
+    // appearance renders as the compact radio row it was before.
+    compactRoot: {
+        paddingBlock: 0,
+        paddingInline: 0,
+        minBlockSize: 0,
+        gap: sizing.size_080,
+        background: semanticColor.core.transparent,
+        // DetailCell clips overflow to contain its selected/press indicator.
+        // The compact radio has no such indicator, and clipping would cut off
+        // the radio input's focus ring, so restore visible overflow.
+        overflow: "visible",
+        // DetailCell's wrapper uses `flex: 1`, which makes the cell grow to
+        // fill the container. That would swallow any vertical alignment (e.g.
+        // `justifyContent`/fixed height) applied by a consumer to the choice's
+        // container. Keep the cell at its natural height so those styles work
+        // as they did before this component composed DetailCell.
+        flex: "0 1 auto",
+    },
+    // Top-align the label/description with the radio input, and match the
+    // original 4px (size_040) spacing between the label and description
+    // (DetailCell's default content gap is only 2px).
+    compactContent: {
+        alignSelf: "flex-start",
+        gap: sizing.size_040,
+    },
+    // Account for half of the default label lineHeight difference, which is
+    // 18px (label text) - 16px (radio size). This equals 1 pixel above and 1
+    // pixel below to be vertically centered with the label.
+    compactAccessory: {
+        alignSelf: "flex-start",
+        marginBlockStart: sizing.size_010,
+    },
+    label: {
+        color: semanticColor.core.foreground.neutral.strong,
+        lineHeight: font.body.lineHeight.small,
+    },
+    disabledLabel: {
+        // Match disabled text input label color
+        color: semanticColor.core.foreground.disabled.subtle,
+    },
+    description: {
+        color: theme.description.color.foreground,
+    },
 });
 
 export default Radio;
