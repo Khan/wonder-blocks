@@ -4,7 +4,7 @@ import {StyleSheet} from "aphrodite";
 import type {AriaProps} from "@khanacademy/wonder-blocks-core";
 import {addStyle} from "@khanacademy/wonder-blocks-core";
 import Link from "@khanacademy/wonder-blocks-link";
-import {font, sizing} from "@khanacademy/wonder-blocks-tokens";
+import {font, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 
 type Props = AriaProps & {
     /**
@@ -78,6 +78,7 @@ const styles = StyleSheet.create({
 
     separator: {
         marginInlineStart: sizing.size_040,
+        fill: semanticColor.core.foreground.neutral.default,
     },
 });
 

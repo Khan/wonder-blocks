@@ -1,5 +1,86 @@
 # @khanacademy/wonder-blocks-icon-button
 
+## 11.4.3
+
+### Patch Changes
+
+- Updated dependencies [dfcf49b]
+    - @khanacademy/wonder-blocks-tokens@17.1.0
+    - @khanacademy/wonder-blocks-clickable@8.2.7
+    - @khanacademy/wonder-blocks-icon@5.3.21
+    - @khanacademy/wonder-blocks-styles@0.2.51
+    - @khanacademy/wonder-blocks-typography@5.0.1
+
+## 11.4.2
+
+### Patch Changes
+
+- Updated dependencies [f1cd1ce]
+- Updated dependencies [9d8e5e3]
+- Updated dependencies [9d8e5e3]
+    - @khanacademy/wonder-blocks-icon@5.3.20
+    - @khanacademy/wonder-blocks-tokens@17.0.0
+    - @khanacademy/wonder-blocks-typography@5.0.0
+    - @khanacademy/wonder-blocks-clickable@8.2.6
+    - @khanacademy/wonder-blocks-styles@0.2.50
+
+## 11.4.1
+
+### Patch Changes
+
+- Updated dependencies [0735aef]
+    - @khanacademy/wonder-blocks-tokens@16.8.1
+    - @khanacademy/wonder-blocks-clickable@8.2.5
+    - @khanacademy/wonder-blocks-icon@5.3.19
+    - @khanacademy/wonder-blocks-styles@0.2.49
+    - @khanacademy/wonder-blocks-typography@4.3.9
+
+## 11.4.0
+
+### Minor Changes
+
+- 48a4552: `ActivityIconButton`: improve fitting of long, translated labels. The visible label now renders at Body/Small and uses locale-aware hyphenation (`hyphens: auto` with `wordBreak: normal` + `overflowWrap: break-word`) so longer international strings stay within two lines instead of being clipped. Hyphenation follows the document/ancestor `lang`. (WB-2354)
+
+## 11.3.5
+
+### Patch Changes
+
+- Updated dependencies [f13552a]
+    - @khanacademy/wonder-blocks-tokens@16.8.0
+    - @khanacademy/wonder-blocks-clickable@8.2.4
+    - @khanacademy/wonder-blocks-icon@5.3.18
+    - @khanacademy/wonder-blocks-styles@0.2.48
+    - @khanacademy/wonder-blocks-typography@4.3.8
+
+## 11.3.4
+
+### Patch Changes
+
+- 9773405: ActivityIconButton: Add component theme token for the label to accommodate syl-dark
+- Updated dependencies [ddcaaeb]
+- Updated dependencies [0907f64]
+- Updated dependencies [9773405]
+- Updated dependencies [9773405]
+- Updated dependencies [022e775]
+- Updated dependencies [e181c15]
+- Updated dependencies [c033245]
+- Updated dependencies [a2bbc0a]
+    - @khanacademy/wonder-blocks-icon@5.3.17
+    - @khanacademy/wonder-blocks-tokens@16.7.0
+    - @khanacademy/wonder-blocks-clickable@8.2.3
+    - @khanacademy/wonder-blocks-styles@0.2.47
+    - @khanacademy/wonder-blocks-typography@4.3.7
+
+## 11.3.3
+
+### Patch Changes
+
+- d69335d: Disables no-raw-button lint rule for internal button usage
+- 34d66ac: `IconButton`, `ActivityIconButton`, `ConversationIconButton`, and `NodeIconButton` no longer activate (fire `onClick` or enter the pressed state) when they are `disabled` and the Enter/Space key is used. Keyboard activation now respects the `disabled` state, matching the existing mouse-click behavior. Default key handling (e.g. preventing a disabled `type="submit"` button from submitting its form) is preserved.
+- Updated dependencies [d69335d]
+    - @khanacademy/wonder-blocks-clickable@8.2.2
+    - @khanacademy/wonder-blocks-core@12.4.4
+
 ## 11.3.2
 
 ### Patch Changes

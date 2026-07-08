@@ -4,7 +4,7 @@ import type {Meta, StoryObj} from "@storybook/react-vite";
 
 import {NodeIconButton} from "@khanacademy/wonder-blocks-icon-button";
 import {defaultPseudoStates, StateSheet} from "../components/state-sheet";
-import {themeModes} from "../../.storybook/modes";
+import {allThemeModes} from "../../.storybook/modes";
 
 import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
 import assignmentPracticeIcon from "./images/assignment-practice.svg";
@@ -24,7 +24,7 @@ export default {
     },
     parameters: {
         chromatic: {
-            modes: themeModes,
+            modes: allThemeModes,
         },
     },
 } as Meta<typeof NodeIconButton>;

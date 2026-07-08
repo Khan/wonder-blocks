@@ -10,11 +10,7 @@ import masteryCourseIconBold from "./icons/mastery-course-bold.svg";
 
 import Banner from "@khanacademy/wonder-blocks-banner";
 import {addStyle, View} from "@khanacademy/wonder-blocks-core";
-import {
-    Body,
-    HeadingSmall,
-    LabelMedium,
-} from "@khanacademy/wonder-blocks-typography";
+import {BodyText, Heading} from "@khanacademy/wonder-blocks-typography";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 
@@ -60,6 +56,10 @@ export default {
                 version={packageConfig.version}
             />
         ),
+        chromatic: {
+            // Disable snapshots since they're covered by the testing snapshots
+            disableSnapshot: true,
+        },
     },
     argTypes: PhosphorIconArgtypes,
 } satisfies Meta<typeof PhosphorIcon>;
@@ -118,21 +118,21 @@ export const Sizes: StoryComponentType = {
         return (
             <View style={styles.container}>
                 <View style={styles.row}>
-                    <LabelMedium>small</LabelMedium>
+                    <BodyText>small</BodyText>
                     <PhosphorIcon
                         icon={IconMappings.magnifyingGlassBold}
                         size="small"
                     />
                 </View>
                 <View style={styles.row}>
-                    <LabelMedium>medium</LabelMedium>
+                    <BodyText>medium</BodyText>
                     <PhosphorIcon
                         icon={IconMappings.magnifyingGlass}
                         size="medium"
                     />
                 </View>
                 <View style={styles.row}>
-                    <LabelMedium>large</LabelMedium>
+                    <BodyText>large</BodyText>
 
                     <PhosphorIcon
                         icon={IconMappings.magnifyingGlass}
@@ -140,7 +140,7 @@ export const Sizes: StoryComponentType = {
                     />
                 </View>
                 <View style={styles.row}>
-                    <LabelMedium>xlarge</LabelMedium>
+                    <BodyText>xlarge</BodyText>
 
                     <PhosphorIcon
                         icon={IconMappings.magnifyingGlass}
@@ -211,7 +211,7 @@ export const Variants: StoryComponentType = {
                 return (
                     <tr key={index}>
                         <StyledTd style={styles.tableCell}>
-                            <LabelMedium>{name}</LabelMedium>
+                            <BodyText>{name}</BodyText>
                         </StyledTd>
                         <StyledTd style={styles.tableCell}>
                             {SmallIcon && (
@@ -241,11 +241,6 @@ export const Variants: StoryComponentType = {
             </StyledTable>
         );
     },
-    parameters: {
-        chromatic: {
-            disableSnapshot: true,
-        },
-    },
     decorators: [
         (Story) => (
             <View style={{gap: sizing.size_160}}>
@@ -273,7 +268,7 @@ export const WithColor: StoryComponentType = {
 export const Inline: StoryComponentType = {
     render: () => {
         return (
-            <Body tag="p">
+            <BodyText tag="p">
                 Here is an icon
                 <PhosphorIcon
                     size="small"
@@ -282,8 +277,14 @@ export const Inline: StoryComponentType = {
                     className="foo"
                 />
                 when it is inline.
-            </Body>
+            </BodyText>
         );
+    },
+    parameters: {
+        chromatic: {
+            // Enable snapshot for inline alignment coverage
+            disableSnapshot: false,
+        },
     },
 };
 
@@ -322,7 +323,7 @@ export const CustomIcons: StoryComponentType = {
             <View style={styles.row}>
                 {Object.entries(customIcoms).map(([name, icon], index) => (
                     <View style={styles.container} key={index}>
-                        <HeadingSmall>{name}</HeadingSmall>
+                        <Heading size="medium">{name}</Heading>
                         <PhosphorIcon icon={icon} size="small" />
                         <PhosphorIcon icon={icon} size="medium" />
                         <PhosphorIcon icon={icon} size="large" />
@@ -375,13 +376,6 @@ export const DescriptiveIcon: StoryComponentType = {
         role: "img",
         "aria-label": "Search",
     },
-    parameters: {
-        chromatic: {
-            // This story is not meant to be visually tested, so we disable
-            // snapshots.
-            disableSnapshot: true,
-        },
-    },
 };
 
 /**
@@ -393,12 +387,5 @@ export const DecorativeIcon: StoryComponentType = {
         icon: IconMappings.magnifyingGlassBold,
         size: "small",
         "aria-hidden": true,
-    },
-    parameters: {
-        chromatic: {
-            // This story is not meant to be visually tested, so we disable
-            // snapshots.
-            disableSnapshot: true,
-        },
     },
 };

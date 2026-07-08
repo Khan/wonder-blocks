@@ -17,7 +17,7 @@ import {OptionItem, SingleSelect} from "@khanacademy/wonder-blocks-dropdown";
 import {addStyle, View} from "@khanacademy/wonder-blocks-core";
 import Tooltip from "@khanacademy/wonder-blocks-tooltip";
 import {Popover, PopoverContent} from "@khanacademy/wonder-blocks-popover";
-import {HeadingMedium} from "@khanacademy/wonder-blocks-typography";
+import {Heading} from "@khanacademy/wonder-blocks-typography";
 
 export default {
     title: "Packages / Tabs / ResponsiveNavigationTabs / Subcomponents / NavigationTabs",
@@ -396,7 +396,7 @@ export const ChildrenRenderFunction: StoryComponentType = {
                         </NavigationTabItem>
                     </NavigationTabs>
                 </View>
-                <HeadingMedium>Opened state</HeadingMedium>
+                <Heading size="large">Opened state</Heading>
                 <View
                     style={{
                         flexDirection: "row",

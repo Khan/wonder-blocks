@@ -1,5 +1,156 @@
 # @khanacademy/wonder-blocks-dropdown
 
+## 10.11.6
+
+### Patch Changes
+
+- Updated dependencies [dfcf49b]
+    - @khanacademy/wonder-blocks-tokens@17.1.0
+    - @khanacademy/wonder-blocks-cell@6.2.8
+    - @khanacademy/wonder-blocks-clickable@8.2.7
+    - @khanacademy/wonder-blocks-form@7.6.8
+    - @khanacademy/wonder-blocks-icon@5.3.21
+    - @khanacademy/wonder-blocks-icon-button@11.4.3
+    - @khanacademy/wonder-blocks-modal@8.7.9
+    - @khanacademy/wonder-blocks-pill@3.1.71
+    - @khanacademy/wonder-blocks-search-field@5.1.78
+    - @khanacademy/wonder-blocks-styles@0.2.51
+    - @khanacademy/wonder-blocks-typography@5.0.1
+    - @khanacademy/wonder-blocks-announcer@1.1.1
+
+## 10.11.5
+
+### Patch Changes
+
+- Updated dependencies [f1cd1ce]
+- Updated dependencies [9d8e5e3]
+- Updated dependencies [9d8e5e3]
+    - @khanacademy/wonder-blocks-icon@5.3.20
+    - @khanacademy/wonder-blocks-tokens@17.0.0
+    - @khanacademy/wonder-blocks-typography@5.0.0
+    - @khanacademy/wonder-blocks-announcer@1.1.1
+    - @khanacademy/wonder-blocks-form@7.6.7
+    - @khanacademy/wonder-blocks-icon-button@11.4.2
+    - @khanacademy/wonder-blocks-search-field@5.1.77
+    - @khanacademy/wonder-blocks-cell@6.2.7
+    - @khanacademy/wonder-blocks-clickable@8.2.6
+    - @khanacademy/wonder-blocks-modal@8.7.8
+    - @khanacademy/wonder-blocks-pill@3.1.70
+    - @khanacademy/wonder-blocks-styles@0.2.50
+
+## 10.11.4
+
+### Patch Changes
+
+- 77ba389: Fixes a bug in MultiSelect with incorrect screen reader announcements for more than 2 items
+
+## 10.11.3
+
+### Patch Changes
+
+- Updated dependencies [0735aef]
+    - @khanacademy/wonder-blocks-tokens@16.8.1
+    - @khanacademy/wonder-blocks-cell@6.2.6
+    - @khanacademy/wonder-blocks-clickable@8.2.5
+    - @khanacademy/wonder-blocks-form@7.6.6
+    - @khanacademy/wonder-blocks-icon@5.3.19
+    - @khanacademy/wonder-blocks-icon-button@11.4.1
+    - @khanacademy/wonder-blocks-modal@8.7.7
+    - @khanacademy/wonder-blocks-pill@3.1.69
+    - @khanacademy/wonder-blocks-search-field@5.1.76
+    - @khanacademy/wonder-blocks-styles@0.2.49
+    - @khanacademy/wonder-blocks-typography@4.3.9
+    - @khanacademy/wonder-blocks-announcer@1.1.1
+
+## 10.11.2
+
+### Patch Changes
+
+- Updated dependencies [48a4552]
+    - @khanacademy/wonder-blocks-icon-button@11.4.0
+    - @khanacademy/wonder-blocks-modal@8.7.6
+    - @khanacademy/wonder-blocks-search-field@5.1.75
+
+## 10.11.1
+
+### Patch Changes
+
+- Updated dependencies [f13552a]
+    - @khanacademy/wonder-blocks-tokens@16.8.0
+    - @khanacademy/wonder-blocks-cell@6.2.5
+    - @khanacademy/wonder-blocks-clickable@8.2.4
+    - @khanacademy/wonder-blocks-form@7.6.5
+    - @khanacademy/wonder-blocks-icon@5.3.18
+    - @khanacademy/wonder-blocks-icon-button@11.3.5
+    - @khanacademy/wonder-blocks-modal@8.7.5
+    - @khanacademy/wonder-blocks-pill@3.1.68
+    - @khanacademy/wonder-blocks-search-field@5.1.74
+    - @khanacademy/wonder-blocks-styles@0.2.48
+    - @khanacademy/wonder-blocks-typography@4.3.8
+    - @khanacademy/wonder-blocks-announcer@1.1.1
+
+## 10.11.0
+
+### Minor Changes
+
+- 8413cfe: Combobox: Add support for `aria-label`
+
+### Patch Changes
+
+- e6c705d: Combobox: Reset boxshadow of TextField
+- 5928e1c: Combobox: Remove state styling for the dropdown button and the internal text field
+- 022e775: SingleSelect and MultiSelect opener - Updating styles:
+    - Use `semanticColor.core.foreground.neutral.default` for the dropdown icon in all themes
+    - Fixed `placeholder` styling in selects when the field is `disabled` or `readOnly`
+    - Improved the `press + focus` styling to work with `syl-dark`
+- Updated dependencies [c033245]
+- Updated dependencies [ddcaaeb]
+- Updated dependencies [1921d68]
+- Updated dependencies [0907f64]
+- Updated dependencies [9773405]
+- Updated dependencies [e6c705d]
+- Updated dependencies [9773405]
+- Updated dependencies [fcf3bb1]
+- Updated dependencies [022e775]
+- Updated dependencies [e181c15]
+- Updated dependencies [29ae44b]
+- Updated dependencies [dd15fbf]
+- Updated dependencies [c033245]
+- Updated dependencies [a2bbc0a]
+    - @khanacademy/wonder-blocks-modal@8.7.4
+    - @khanacademy/wonder-blocks-icon@5.3.17
+    - @khanacademy/wonder-blocks-pill@3.1.67
+    - @khanacademy/wonder-blocks-tokens@16.7.0
+    - @khanacademy/wonder-blocks-icon-button@11.3.4
+    - @khanacademy/wonder-blocks-form@7.6.4
+    - @khanacademy/wonder-blocks-search-field@5.1.73
+    - @khanacademy/wonder-blocks-cell@6.2.4
+    - @khanacademy/wonder-blocks-clickable@8.2.3
+    - @khanacademy/wonder-blocks-styles@0.2.47
+    - @khanacademy/wonder-blocks-typography@4.3.7
+    - @khanacademy/wonder-blocks-announcer@1.1.1
+
+## 10.10.0
+
+### Minor Changes
+
+- d69335d: Add new CustomOpener component for custom Dropdowns
+
+### Patch Changes
+
+- Updated dependencies [d69335d]
+- Updated dependencies [34d66ac]
+    - @khanacademy/wonder-blocks-icon-button@11.3.3
+    - @khanacademy/wonder-blocks-clickable@8.2.2
+    - @khanacademy/wonder-blocks-modal@8.7.3
+    - @khanacademy/wonder-blocks-search-field@5.1.72
+    - @khanacademy/wonder-blocks-cell@6.2.3
+    - @khanacademy/wonder-blocks-form@7.6.3
+    - @khanacademy/wonder-blocks-pill@3.1.66
+    - @khanacademy/wonder-blocks-core@12.4.4
+    - @khanacademy/wonder-blocks-timing@7.1.0
+    - @khanacademy/wonder-blocks-announcer@1.1.1
+
 ## 10.9.2
 
 ### Patch Changes

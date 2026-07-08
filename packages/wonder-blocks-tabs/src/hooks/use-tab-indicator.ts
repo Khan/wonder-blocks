@@ -169,8 +169,7 @@ const styles = {
         bottom: 0,
         left: 0,
         height: border.width.thick,
-        backgroundColor:
-            semanticColor.action.secondary.progressive.default.foreground,
+        backgroundColor: semanticColor.core.background.instructive.default,
     },
     underlineTransition: {
         transition: "transform 0.3s ease, width 0.3s ease",

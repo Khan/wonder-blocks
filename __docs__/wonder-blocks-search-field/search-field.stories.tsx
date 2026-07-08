@@ -5,7 +5,7 @@ import type {Meta, StoryObj} from "@storybook/react-vite";
 import {PropsFor, View} from "@khanacademy/wonder-blocks-core";
 import Button from "@khanacademy/wonder-blocks-button";
 import {sizing} from "@khanacademy/wonder-blocks-tokens";
-import {LabelLarge} from "@khanacademy/wonder-blocks-typography";
+import {BodyText} from "@khanacademy/wonder-blocks-typography";
 
 import SearchField from "@khanacademy/wonder-blocks-search-field";
 
@@ -54,6 +54,10 @@ export default {
                 version={packageConfig.version}
             />
         ),
+        chromatic: {
+            // Disabling snapshots because this is covered by the testing snapshots
+            disableSnapshot: true,
+        },
     },
     argTypes: SearchFieldArgtypes,
 } as Meta<typeof SearchField>;
@@ -143,13 +147,6 @@ export const WithLabeledField: StoryComponentType = {
             />
         );
     },
-    parameters: {
-        chromatic: {
-            // Disabling because this is for documentation purposes and is
-            // covered by the LabeledField stories
-            disableSnapshot: true,
-        },
-    },
 };
 
 /**
@@ -231,9 +228,12 @@ export const WithAutofocus: StoryComponentType = {
 
         return (
             <View>
-                <LabelLarge style={{marginBlockEnd: sizing.size_120}}>
+                <BodyText
+                    weight="bold"
+                    style={{marginBlockEnd: sizing.size_120}}
+                >
                     Press the button to view the search field with autofocus.
-                </LabelLarge>
+                </BodyText>
                 <Button
                     onClick={handleShowDemo}
                     style={{width: 300, marginBlockEnd: sizing.size_240}}
@@ -254,12 +254,6 @@ export const Error: StoryComponentType = {
         error: true,
     },
     render: Template,
-    parameters: {
-        chromatic: {
-            // Disabling because this is covered by the All Variants stories
-            disableSnapshot: true,
-        },
-    },
 };
 
 /**
@@ -297,11 +291,5 @@ export const Validation: StoryComponentType = {
                 />
             </View>
         );
-    },
-    parameters: {
-        chromatic: {
-            // Disabling because this doesn't test anything visual.
-            disableSnapshot: true,
-        },
     },
 };

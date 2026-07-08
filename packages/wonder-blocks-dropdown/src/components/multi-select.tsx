@@ -551,9 +551,7 @@ const MultiSelect = (props: Props) => {
     };
 
     const handleAnnouncement = (message: string) => {
-        announceMessage({
-            message,
-        });
+        announceMessage({message, level: "polite"});
     };
 
     const maybeGetOpenerStringValue = React.useCallback(
@@ -577,26 +575,65 @@ const MultiSelect = (props: Props) => {
         [selectedValues],
     );
 
-    React.useEffect(() => {
-        if (isInitialRender.current) {
-            isInitialRender.current = false;
-            return;
-        }
+    const prevOpenRef = React.useRef(open);
+    const selectionChangedRef = React.useRef(false);
+    // Refs so announceOpenerValue always reads current values: the effect only
+    // re-runs on [selectedValues, open], so plain closure vars would be stale
+    // if children/labels change identity mid-session (parent re-renders).
+    const childrenRef = React.useRef(children);
+    childrenRef.current = children;
+    const getMenuTextOrNodeRef = React.useRef(getMenuTextOrNode);
+    getMenuTextOrNodeRef.current = getMenuTextOrNode;
+    const maybeGetOpenerStringValueRef = React.useRef(
+        maybeGetOpenerStringValue,
+    );
+    maybeGetOpenerStringValueRef.current = maybeGetOpenerStringValue;
 
+    const announceOpenerValue = () => {
         const optionItems = React.Children.toArray(
-            children,
+            childrenRef.current,
         ) as OptionItemComponentArray;
-        const openerContent = getMenuTextOrNode(optionItems);
-        const openerStringValue = maybeGetOpenerStringValue(
+        const openerContent = getMenuTextOrNodeRef.current(optionItems);
+        const openerStringValue = maybeGetOpenerStringValueRef.current(
             optionItems,
             openerContent,
         );
-
         if (openerStringValue) {
-            // opener value changed, so let's announce it
             handleAnnouncement(openerStringValue);
         }
-    }, [children, getMenuTextOrNode, maybeGetOpenerStringValue]);
+    };
+
+    // Announces the current selection when selectedValues changes while open,
+    // and when the dropdown closes after a selection change (polite workaround
+    // for VoiceOver/Safari caching a stale combobox value on close).
+    React.useEffect(() => {
+        if (isInitialRender.current) {
+            isInitialRender.current = false;
+            prevOpenRef.current = open;
+            return;
+        }
+        const justOpened = open && !prevOpenRef.current;
+        const justClosed = !open && prevOpenRef.current;
+        prevOpenRef.current = open;
+        if (justOpened) {
+            // Intercept open transition so it doesn't fall into the selection
+            // branch below; reset so prior-session selections don't carry over.
+            selectionChangedRef.current = false;
+        } else if (justClosed) {
+            // Announce the final value on close — works around VoiceOver/Safari
+            // caching a stale combobox value when the dropdown closes.
+            if (selectionChangedRef.current) {
+                announceOpenerValue();
+                selectionChangedRef.current = false;
+            }
+        } else if (open) {
+            // Selection changed while open — announce and track for close.
+            selectionChangedRef.current = true;
+            announceOpenerValue();
+        }
+        // announceOpenerValue excluded from deps intentionally — it reads via refs
+        // to avoid re-firing on label identity churn (see comment above).
+    }, [selectedValues, open]); // eslint-disable-line react-hooks/exhaustive-deps
 
     // If aria-required was supplied, use that. Otherwise, convert `required` to a boolean
     // and apply that value to aria-required.
@@ -666,6 +703,11 @@ const MultiSelect = (props: Props) => {
 
     const {clearSearch, filter, noResults, someSelected} = labels;
 
+    // Use refs so the effects below only re-fire when their relevant values
+    // change, not on every render caused by label prop object identity churn.
+    const someSelectedRef = React.useRef(someSelected);
+    someSelectedRef.current = someSelected;
+
     const allChildren = (
         React.Children.toArray(children) as Array<
             React.ReactElement<React.ComponentProps<typeof OptionItem>>
@@ -678,11 +720,12 @@ const MultiSelect = (props: Props) => {
     const isDisabled = numEnabledOptions === 0 || disabled;
     const disableInteraction = isDisabled || readOnly;
 
+    // Announces the filtered count when the user types in the search field.
     React.useEffect(() => {
-        if (open) {
-            handleAnnouncement(someSelected(filteredItems.length));
+        if (searchText) {
+            handleAnnouncement(someSelectedRef.current(filteredItems.length));
         }
-    }, [filteredItems.length, someSelected, open]);
+    }, [filteredItems.length, someSelectedRef]); // eslint-disable-line react-hooks/exhaustive-deps
     return (
         <Id id={dropdownId}>
             {(uniqueDropdownId) => (

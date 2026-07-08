@@ -4,11 +4,7 @@ import type {Meta, StoryObj} from "@storybook/react-vite";
 
 import {View} from "@khanacademy/wonder-blocks-core";
 import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
-import {
-    Body,
-    HeadingSmall,
-    HeadingLarge,
-} from "@khanacademy/wonder-blocks-typography";
+import {BodyText, Heading} from "@khanacademy/wonder-blocks-typography";
 
 import type {
     MediaSpec,
@@ -238,22 +234,22 @@ export const CustomSpec: StoryComponentType = () => {
         <MediaLayoutContext.Provider value={contextValue}>
             <MediaLayout styleSheets={styleSheets}>
                 {({mediaSize, styles}) => {
-                    const HeadingComponent =
-                        mediaSize === "small" ? HeadingSmall : HeadingLarge;
+                    const headingSize =
+                        mediaSize === "small" ? "medium" : "xlarge";
 
                     return (
                         <View style={styles.example}>
-                            <HeadingComponent>
+                            <Heading size={headingSize}>
                                 Current mediaSpec: {mediaSize}
-                            </HeadingComponent>
-                            <Body tag="p">
+                            </Heading>
+                            <BodyText>
                                 {`Lorem ipsum dolor sit amet, consectetur
                                 adipiscing elit, sed do eiusmod tempor
                                 incididunt ut labore et dolore magna aliqua.
                                 Ut enim ad minim veniam, quis nostrud
                                 exercitation ullamco laboris nisi ut aliquip
                                 ex ea commodo consequat.`}
-                            </Body>
+                            </BodyText>
                         </View>
                     );
                 }}

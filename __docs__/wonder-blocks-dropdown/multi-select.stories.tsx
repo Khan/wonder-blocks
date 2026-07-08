@@ -1,14 +1,20 @@
+/* eslint-disable max-lines */
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
-import {action} from "storybook/actions";
 import type {Meta, StoryObj} from "@storybook/react-vite";
 import {PropsFor, View} from "@khanacademy/wonder-blocks-core";
 import Button from "@khanacademy/wonder-blocks-button";
+import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {Checkbox} from "@khanacademy/wonder-blocks-form";
 import {OnePaneDialog, ModalLauncher} from "@khanacademy/wonder-blocks-modal";
 import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
-import {MultiSelect, OptionItem} from "@khanacademy/wonder-blocks-dropdown";
+import {
+    MultiSelect,
+    OptionItem,
+    CustomOpener,
+} from "@khanacademy/wonder-blocks-dropdown";
+import {BodyText} from "@khanacademy/wonder-blocks-typography";
 import type {LabelsValues} from "@khanacademy/wonder-blocks-dropdown";
 
 import ComponentInfo from "../components/component-info";
@@ -20,9 +26,8 @@ import {
     locales,
     chatIcon,
 } from "./option-item-examples";
-import {OpenerProps} from "../../packages/wonder-blocks-dropdown/src/util/types";
+
 import {LabeledField} from "@khanacademy/wonder-blocks-labeled-field";
-import {focusStyles} from "@khanacademy/wonder-blocks-styles";
 import {StatusBadge} from "@khanacademy/wonder-blocks-badge";
 import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
 
@@ -96,6 +101,14 @@ const styles = StyleSheet.create({
         minInlineSize: 170,
         width: "100%",
     },
+    twoSelectsContainer: {
+        flexDirection: "row",
+        gap: sizing.size_080,
+        alignItems: "flex-start",
+    },
+    fullWidth: {
+        inlineSize: "100%",
+    },
     customDropdown: {
         maxBlockSize: 200,
     },
@@ -125,21 +138,28 @@ const styles = StyleSheet.create({
      * Custom opener styles
      */
     customOpener: {
+        display: "inline-flex",
+        alignItems: "center",
+        gap: sizing.size_080,
+        height: sizing.size_400,
+        paddingInline: sizing.size_160,
+        border: `${border.width.thin} solid ${semanticColor.core.border.instructive.default}`,
         borderInlineStart: `${border.width.thick} solid ${semanticColor.core.border.instructive.default}`,
         borderRadius: border.radius.radius_040,
-        background: semanticColor.core.background.instructive.subtle,
         color: semanticColor.core.foreground.instructive.default,
-        padding: sizing.size_160,
+        background: semanticColor.core.background.base.default,
     },
-    focused: focusStyles.focus[":focus-visible"],
-    hovered: {
+    customOpenerHovered: {
         background: semanticColor.core.background.instructive.subtle,
-        textDecoration: "underline",
-        cursor: "pointer",
     },
-    pressed: {
-        background: semanticColor.core.background.instructive.subtle,
-        color: semanticColor.core.foreground.instructive.strong,
+    customOpenerPressed: {
+        background: semanticColor.core.background.instructive.default,
+    },
+    customOpenerDisabled: {
+        color: semanticColor.core.foreground.neutral.subtle,
+        borderColor: semanticColor.core.border.neutral.subtle,
+        background: semanticColor.core.background.base.default,
+        cursor: "not-allowed",
     },
 });
 
@@ -757,52 +777,63 @@ export const VirtualizedFilterable: StoryComponentType = {
 };
 
 /**
- * In case you need to use a custom opener with the `MultiSelect`, you can use
- * the opener property to achieve this. In this example, the opener prop accepts
- * a function with the following arguments:
- *  - `eventState`: lets you customize the style for different states, such as
- *    pressed, hovered and focused.
- *  - `text`: Passes the menu value defined in the parent component. This value
- *  is passed using the placeholder prop set in the `MultiSelect` component.
- *  - `opened`: Whether the dropdown is opened.
+ * When you need a fully custom-styled opener, use `CustomOpener`. It provides
+ * a blank-slate `<button>` with the WB focus ring baked in and correct ref
+ * forwarding for the dropdown's focus management wiring.
  *
- * **Note:** If you need to use a custom ID for testing the opener, make sure to
- * pass the testId prop inside the opener component/element.
+ * The `opener` render prop receives `hovered`, `focused`, `pressed`, `text`,
+ * and `opened` values that can be passed to child content for conditional
+ * styling. Focus ring styles are handled automatically by `CustomOpener` via
+ * CSS — you do not need to apply `focusStyles` yourself.
  *
- * **Accessibility:** When a custom opener is used, the following attributes are
- * added automatically: `aria-expanded`, `aria-haspopup`, and `aria-controls`.
- * With a custom opener, you are still responsible for labeling the `MultiSelect`
- * by wrapping it in a `<LabeledField>` or using `aria-label` on the parent component
- * to describe the purpose of the control. Because it is a combobox, the value
- * can't also be used for the label.
+ * **Note:** Pass `testId` directly to `CustomOpener` for e2e test targeting.
+ *
+ * **Accessibility:** When a custom opener is used, `aria-expanded`,
+ * `aria-haspopup`, and `aria-controls` are added automatically. You are still
+ * responsible for labeling the `MultiSelect` by wrapping it in a `LabeledField`
+ * or using `aria-label` on the parent component, because a combobox's value
+ * cannot double as its label.
  */
-export const CustomOpener: StoryComponentType = {
-    render: Template,
+export const WithCustomOpener: StoryComponentType = {
+    render: function Render(args) {
+        const [selectedValues, setSelectedValues] = React.useState<string[]>(
+            args.selectedValues ?? [],
+        );
+        return (
+            <MultiSelect
+                {...args}
+                selectedValues={selectedValues}
+                onChange={setSelectedValues}
+                opener={({hovered, pressed, text}) => (
+                    <CustomOpener
+                        testId="multi-select-custom-opener"
+                        styles={{
+                            root: [
+                                styles.customOpener,
+                                hovered && styles.customOpenerHovered,
+                                pressed && styles.customOpenerPressed,
+                                args.disabled && styles.customOpenerDisabled,
+                            ],
+                        }}
+                    >
+                        <PhosphorIcon
+                            icon={IconMappings.plusCircle}
+                            size="small"
+                        />
+                        <BodyText tag="span" weight="bold">
+                            {text}
+                        </BodyText>
+                    </CustomOpener>
+                )}
+            >
+                {items}
+            </MultiSelect>
+        );
+    },
     args: {
         selectedValues: [],
         "aria-label": "Custom opener",
-        opener: ({focused, hovered, pressed, text, opened}: OpenerProps) => {
-            action(JSON.stringify({focused, hovered, pressed, opened}))(
-                "state changed!",
-            );
-
-            return (
-                <Button
-                    kind="secondary"
-                    onClick={() => {
-                        // eslint-disable-next-line no-console
-                        console.log("custom click!!!!!");
-                    }}
-                    style={[
-                        styles.customOpener,
-                        focused && styles.focused,
-                        hovered && styles.hovered,
-                        pressed && styles.pressed,
-                    ]}
-                    startIcon={IconMappings.plusCircle}
-                >{`${text} ${opened ? ": opened" : ""}`}</Button>
-            );
-        },
+        disabled: false,
     } as MultiSelectArgs,
     name: "With custom opener",
 };
@@ -974,4 +1005,84 @@ export const CustomOptionItemsWithNodeLabel: StoryComponentType = {
             <View style={styles.wrapper}>{Story()}</View>
         ),
     ],
+};
+
+/**
+ * Two MultiSelects side by side for manual screen reader testing.
+ * - Only the interacted select announces — the neighboring select stays silent
+ *   even as the parent re-renders.
+ * - Selecting items announces the updated count while the dropdown is open.
+ * - Closing the dropdown after making selections announces the final state
+ *   (VoiceOver/Safari workaround for stale combobox values).
+ */
+export const TwoMultiSelects: StoryComponentType = {
+    render: function Render() {
+        const [gradeValues, setGradeValues] = React.useState<Array<string>>([
+            "6",
+            "7",
+        ]);
+        const [categoryValues, setCategoryValues] = React.useState<
+            Array<string>
+        >([]);
+
+        return (
+            <View style={styles.twoSelectsContainer}>
+                <LabeledField
+                    label="Grade Level"
+                    field={
+                        <MultiSelect
+                            aria-label="Select grade levels"
+                            isFilterable={true}
+                            labels={{
+                                noneSelected: "All grades",
+                                someSelected: (n: number) =>
+                                    n === 1
+                                        ? "1 grade selected"
+                                        : `${n} grades selected`,
+                            }}
+                            onChange={setGradeValues}
+                            selectedValues={gradeValues}
+                            style={styles.fullWidth}
+                        >
+                            <OptionItem label="Grade 3" value="3" />
+                            <OptionItem label="Grade 4" value="4" />
+                            <OptionItem label="Grade 5" value="5" />
+                            <OptionItem label="Grade 6" value="6" />
+                            <OptionItem label="Grade 7" value="7" />
+                            <OptionItem label="Grade 8" value="8" />
+                        </MultiSelect>
+                    }
+                />
+                <LabeledField
+                    label="Categories"
+                    field={
+                        <MultiSelect
+                            aria-label="Select categories"
+                            labels={{
+                                noneSelected: "All categories",
+                                someSelected: (n: number) =>
+                                    n === 1
+                                        ? "1 category selected"
+                                        : `${n} categories selected`,
+                            }}
+                            onChange={setCategoryValues}
+                            selectedValues={categoryValues}
+                            style={styles.fullWidth}
+                        >
+                            <OptionItem label="Argumentative" value="arg" />
+                            <OptionItem label="Expository" value="exp" />
+                            <OptionItem label="Narrative" value="nar" />
+                            <OptionItem label="Persuasive" value="per" />
+                        </MultiSelect>
+                    }
+                />
+            </View>
+        );
+    },
+    parameters: {
+        chromatic: {
+            // Manual screen reader testing story — no snapshot needed
+            disableSnapshot: true,
+        },
+    },
 };

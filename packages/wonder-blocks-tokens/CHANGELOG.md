@@ -1,5 +1,45 @@
 # @khanacademy/wonder-blocks-tokens
 
+## 17.1.0
+
+### Minor Changes
+
+- dfcf49b: Update media-query breakpoint and constant tokens to cover full range of widths
+
+## 17.0.0
+
+### Major Changes
+
+- 9d8e5e3: Remove the deprecated legacy `font.size.*` and `font.lineHeight.*` token scales.
+  Use `font.body.*` / `font.heading.*` for typography.
+
+## 16.8.1
+
+### Patch Changes
+
+- 0735aef: Add `Helvetica` and `Corbel` fallback fonts to the `default` theme's `font.family.sans` token
+
+## 16.8.0
+
+### Minor Changes
+
+- f13552a: Add learning tokens for character flesh background and border
+
+## 16.7.0
+
+### Minor Changes
+
+- 9773405: Add `core.shadow.chonky.disabled.subtle/default` tokens and use for `chonky.disabled.*` tokens. Update semantic color core tokens in `syl-dark` related to chonky tokens and border neutral tokens
+
+### Patch Changes
+
+- 0907f64: Update yellow_01 and green_01 primitives. Update syl-dark background.success/warning.subtle to address color contrast issues with interactive elements in banners
+- 9773405: ActivityIconButton: Add component theme token for the label to accommodate syl-dark
+- 022e775: SYL Dark - Update disabled semantic color core tokens
+- e181c15: syl-dark theme: Update `core.background.neutral.default` to `gray_30`
+- c033245: SYL Dark tokens: Update background.base.subtle/default
+- a2bbc0a: SYL Dark semantic color tokens: Use TB tokens for `input.checked`
+
 ## 16.6.0
 
 ### Minor Changes

@@ -19,7 +19,10 @@ describe("Button", () => {
     });
 
     afterAll(() => {
-        window.location = location;
+        // The DOM types treat `window.location` as non-reassignable, so cast
+        // the saved value to restore it (a targeted cast rather than an
+        // `@ts-expect-error` that would suppress the whole line).
+        window.location = location as any;
     });
 
     describe("attributes", () => {
@@ -141,6 +144,21 @@ describe("Button", () => {
                 await userEvent.unhover(button);
             },
             description: "calls onMouseLeave handler when button is unhovered",
+        },
+        {
+            eventName: "onFocus",
+            userAction: async (button: HTMLElement) => {
+                await userEvent.click(button);
+            },
+            description: "calls onFocus handler when button receives focus",
+        },
+        {
+            eventName: "onBlur",
+            userAction: async (button: HTMLElement) => {
+                await userEvent.click(button);
+                await userEvent.tab();
+            },
+            description: "calls onBlur handler when button loses focus",
         },
     ])("$description", async ({eventName, userAction}) => {
         // Arrange

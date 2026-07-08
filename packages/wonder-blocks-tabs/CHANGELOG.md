@@ -1,5 +1,105 @@
 # @khanacademy/wonder-blocks-tabs
 
+## 0.5.24
+
+### Patch Changes
+
+- Updated dependencies [dfcf49b]
+    - @khanacademy/wonder-blocks-tokens@17.1.0
+    - @khanacademy/wonder-blocks-button@11.7.5
+    - @khanacademy/wonder-blocks-dropdown@10.11.6
+    - @khanacademy/wonder-blocks-icon@5.3.21
+    - @khanacademy/wonder-blocks-link@10.3.7
+    - @khanacademy/wonder-blocks-typography@5.0.1
+
+## 0.5.23
+
+### Patch Changes
+
+- Updated dependencies [9d8e5e3]
+- Updated dependencies [f1cd1ce]
+- Updated dependencies [9d8e5e3]
+- Updated dependencies [9d8e5e3]
+    - @khanacademy/wonder-blocks-button@11.7.4
+    - @khanacademy/wonder-blocks-icon@5.3.20
+    - @khanacademy/wonder-blocks-tokens@17.0.0
+    - @khanacademy/wonder-blocks-typography@5.0.0
+    - @khanacademy/wonder-blocks-dropdown@10.11.5
+    - @khanacademy/wonder-blocks-link@10.3.6
+
+## 0.5.22
+
+### Patch Changes
+
+- Updated dependencies [77ba389]
+    - @khanacademy/wonder-blocks-dropdown@10.11.4
+
+## 0.5.21
+
+### Patch Changes
+
+- Updated dependencies [0735aef]
+    - @khanacademy/wonder-blocks-tokens@16.8.1
+    - @khanacademy/wonder-blocks-button@11.7.3
+    - @khanacademy/wonder-blocks-dropdown@10.11.3
+    - @khanacademy/wonder-blocks-icon@5.3.19
+    - @khanacademy/wonder-blocks-link@10.3.5
+    - @khanacademy/wonder-blocks-typography@4.3.9
+
+## 0.5.20
+
+### Patch Changes
+
+- @khanacademy/wonder-blocks-dropdown@10.11.2
+
+## 0.5.19
+
+### Patch Changes
+
+- Updated dependencies [f13552a]
+    - @khanacademy/wonder-blocks-tokens@16.8.0
+    - @khanacademy/wonder-blocks-button@11.7.2
+    - @khanacademy/wonder-blocks-dropdown@10.11.1
+    - @khanacademy/wonder-blocks-icon@5.3.18
+    - @khanacademy/wonder-blocks-link@10.3.4
+    - @khanacademy/wonder-blocks-typography@4.3.8
+
+## 0.5.18
+
+### Patch Changes
+
+- 36b936a: Tabs components: Update token usage to align with design
+- Updated dependencies [ddcaaeb]
+- Updated dependencies [0907f64]
+- Updated dependencies [9773405]
+- Updated dependencies [e6c705d]
+- Updated dependencies [9773405]
+- Updated dependencies [5928e1c]
+- Updated dependencies [022e775]
+- Updated dependencies [e181c15]
+- Updated dependencies [022e775]
+- Updated dependencies [8413cfe]
+- Updated dependencies [c033245]
+- Updated dependencies [a2bbc0a]
+    - @khanacademy/wonder-blocks-icon@5.3.17
+    - @khanacademy/wonder-blocks-tokens@16.7.0
+    - @khanacademy/wonder-blocks-dropdown@10.11.0
+    - @khanacademy/wonder-blocks-button@11.7.1
+    - @khanacademy/wonder-blocks-link@10.3.3
+    - @khanacademy/wonder-blocks-typography@4.3.7
+
+## 0.5.17
+
+### Patch Changes
+
+- d69335d: Disables no-raw-button lint rule for internal button usage
+- Updated dependencies [d69335d]
+- Updated dependencies [d69335d]
+    - @khanacademy/wonder-blocks-dropdown@10.10.0
+    - @khanacademy/wonder-blocks-button@11.7.0
+    - @khanacademy/wonder-blocks-link@10.3.2
+    - @khanacademy/wonder-blocks-core@12.4.4
+
 ## 0.5.16
 
 ### Patch Changes

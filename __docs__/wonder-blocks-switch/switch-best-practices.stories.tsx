@@ -4,7 +4,7 @@ import type {Meta, StoryObj} from "@storybook/react-vite";
 import Switch from "@khanacademy/wonder-blocks-switch";
 import {CompactCell, DetailCell} from "@khanacademy/wonder-blocks-cell";
 import Tooltip from "@khanacademy/wonder-blocks-tooltip";
-import {LabelMedium, LabelSmall} from "@khanacademy/wonder-blocks-typography";
+import {BodyText} from "@khanacademy/wonder-blocks-typography";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
@@ -51,14 +51,14 @@ export const WithLabel: StoryComponentType = (() => {
                 onChange={setChecked}
                 aria-labelledby="label-for-switch-with-label"
             />
-            <LabelMedium
+            <BodyText
                 id="label-for-switch-with-label"
                 htmlFor="switch-with-label"
                 style={{marginInlineStart: sizing.size_080}}
                 tag="label"
             >
                 Superpowers
-            </LabelMedium>
+            </BodyText>
         </View>
     );
 }) as StoryComponentType;
@@ -81,14 +81,15 @@ export const WithLabelAndDescription: StoryComponentType = (() => {
                 aria-describedby="desc-for-switch-with-desc"
             />
             <View style={{marginInlineStart: sizing.size_080}}>
-                <LabelMedium
+                <BodyText
                     id="label-for-switch-with-desc"
                     htmlFor="switch-with-desc"
                     tag="label"
                 >
                     Getting a Healthy Amount of Sleep
-                </LabelMedium>
-                <LabelSmall
+                </BodyText>
+                <BodyText
+                    size="small"
                     id="desc-for-switch-with-desc"
                     style={{
                         color: semanticColor.core.foreground.neutral.subtle,
@@ -97,7 +98,7 @@ export const WithLabelAndDescription: StoryComponentType = (() => {
                     Sleep is important for your health. The benefits of a good
                     night sleep include improved memory, longer life, and
                     increased creativity.
-                </LabelSmall>
+                </BodyText>
             </View>
         </View>
     );
@@ -114,21 +115,22 @@ export const WithLabelAndOnOff: StoryComponentType = (() => {
                 alignItems: "center",
             }}
         >
-            <LabelMedium
+            <BodyText
                 id="label-for-switch-with-on-off"
                 htmlFor="switch-with-on-off"
                 style={{marginInlineEnd: sizing.size_080}}
                 tag="label"
             >
                 Gravity
-            </LabelMedium>
+            </BodyText>
             <Switch
                 id="switch-with-on-off"
                 checked={checked}
                 onChange={setChecked}
                 aria-labelledby="label-for-switch-with-on-off"
             />
-            <LabelSmall
+            <BodyText
+                size="small"
                 style={{
                     marginInlineStart: sizing.size_080,
                     color: semanticColor.core.foreground.neutral.subtle,
@@ -136,7 +138,7 @@ export const WithLabelAndOnOff: StoryComponentType = (() => {
                 aria-hidden={true}
             >
                 {checked ? "ON" : "OFF"}
-            </LabelSmall>
+            </BodyText>
         </View>
     );
 }) as StoryComponentType;
@@ -165,13 +167,13 @@ export const InsideCell: StoryComponentType = (() => {
     return (
         <CompactCell
             title={
-                <LabelMedium
+                <BodyText
                     id="label-for-switch-inside-cell"
                     htmlFor="switch-inside-cell"
                     tag="label"
                 >
                     Click me!
-                </LabelMedium>
+                </BodyText>
             }
             rightAccessory={
                 <Switch
@@ -191,16 +193,17 @@ export const InsideDetailCell: StoryComponentType = (() => {
     return (
         <DetailCell
             title={
-                <LabelMedium
+                <BodyText
                     id="label-for-switch-inside-detail-cell"
                     htmlFor="switch-inside-detail-cell"
                     tag="label"
                 >
                     Click me! I will change the state of the switch.
-                </LabelMedium>
+                </BodyText>
             }
             subtitle2={
-                <LabelSmall
+                <BodyText
+                    size="small"
                     id="desc-for-switch-inside-detail-cell"
                     style={{
                         color: semanticColor.core.foreground.neutral.subtle,
@@ -208,7 +211,7 @@ export const InsideDetailCell: StoryComponentType = (() => {
                 >
                     I am a long description that does not change the state of
                     the switch. Click me all you want and nothing will change.
-                </LabelSmall>
+                </BodyText>
             }
             leftAccessory={<PhosphorIcon icon={IconMappings.infoBold} />}
             rightAccessory={

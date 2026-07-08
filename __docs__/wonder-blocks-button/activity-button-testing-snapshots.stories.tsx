@@ -5,7 +5,7 @@ import type {Meta, StoryObj} from "@storybook/react-vite";
 import paperPlaneIcon from "@phosphor-icons/core/fill/paper-plane-tilt-fill.svg";
 import {ActivityButton} from "@khanacademy/wonder-blocks-button";
 import {defaultPseudoStates, StateSheet} from "../components/state-sheet";
-import {themeModes} from "../../.storybook/modes";
+import {allThemeModes} from "../../.storybook/modes";
 import {ScenariosLayout} from "../components/scenarios-layout";
 import {longTextWithNoWordBreak} from "../components/text-for-testing";
 import {View} from "@khanacademy/wonder-blocks-core";
@@ -27,7 +27,7 @@ export default {
     },
     parameters: {
         chromatic: {
-            modes: themeModes,
+            modes: allThemeModes,
         },
     },
 } as Meta;

@@ -5,7 +5,7 @@ import type {Meta, StoryObj} from "@storybook/react-vite";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
-import {Body, LabelLarge} from "@khanacademy/wonder-blocks-typography";
+import {BodyText} from "@khanacademy/wonder-blocks-typography";
 
 import {PopoverContentCore} from "@khanacademy/wonder-blocks-popover";
 import packageConfig from "../../packages/wonder-blocks-popover/package.json";
@@ -77,10 +77,12 @@ export const WithIcon: StoryComponentType = {
             <>
                 <PhosphorIcon size="large" icon={IconMappings.article} />
                 <View>
-                    <LabelLarge id="custom-popover-title">
+                    <BodyText weight="bold" id="custom-popover-title">
                         This is an article
-                    </LabelLarge>
-                    <Body id="custom-popover-content">With the content</Body>
+                    </BodyText>
+                    <BodyText id="custom-popover-content">
+                        With the content
+                    </BodyText>
                 </View>
             </>
         ),

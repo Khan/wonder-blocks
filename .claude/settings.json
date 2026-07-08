@@ -4,8 +4,8 @@
         "filesystem": {
             "allowWrite": [
                 ".",
-                "/tmp/claude",
-                "/private/tmp/claude",
+                "/tmp",
+                "/private/tmp",
                 "~/.claude/session-env",
                 "~/.claude/debug",
                 "~/.cache/gh",
@@ -14,7 +14,8 @@
                 "~/.local/share/mise",
                 "~/.local/state/mise",
                 "~/.cache/node/corepack",
-                "~/Library/pnpm"
+                "~/Library/pnpm",
+                "~/Library/Caches/pnpm"
             ],
             "denyWrite": [
                 ".claude/settings.json",
@@ -57,7 +58,7 @@
                 "hooks": [
                     {
                         "type": "command",
-                        "command": "$CLAUDE_PROJECT_DIR/.claude/hooks/gh-install.sh"
+                        "command": "$CLAUDE_PROJECT_DIR/.claude/hooks/gh-install.mjs"
                     }
                 ]
             },
@@ -92,15 +93,101 @@
                         "command": "$CLAUDE_PROJECT_DIR/.claude/hooks/gh-filter.mjs"
                     }
                 ]
+            },
+            {
+                "matcher": "Bash",
+                "hooks": [
+                    {
+                        "type": "command",
+                        "command": "$CLAUDE_PROJECT_DIR/.claude/hooks/echo-banner-filter.mjs"
+                    }
+                ]
             }
         ]
     },
     "permissions": {
-        "ask": [
-            "mcp__*"
-        ],
         "allow": [
-            "Bash(pbcopy)"
+            "mcp__Atlassian__atlassianUserInfo",
+            "mcp__Atlassian__fetch",
+            "mcp__Atlassian__getAccessibleAtlassianResources",
+            "mcp__Atlassian__getConfluenceCommentChildren",
+            "mcp__Atlassian__getConfluencePage",
+            "mcp__Atlassian__getConfluencePageDescendants",
+            "mcp__Atlassian__getConfluencePageFooterComments",
+            "mcp__Atlassian__getConfluencePageInlineComments",
+            "mcp__Atlassian__getConfluenceSpaces",
+            "mcp__Atlassian__getIssueLinkTypes",
+            "mcp__Atlassian__getJiraIssue",
+            "mcp__Atlassian__getJiraIssueRemoteIssueLinks",
+            "mcp__Atlassian__getJiraIssueTypeMetaWithFields",
+            "mcp__Atlassian__getJiraProjectIssueTypesMetadata",
+            "mcp__Atlassian__getPagesInConfluenceSpace",
+            "mcp__Atlassian__getTransitionsForJiraIssue",
+            "mcp__Atlassian__getVisibleJiraProjects",
+            "mcp__Atlassian__lookupJiraAccountId",
+            "mcp__Atlassian__search",
+            "mcp__Atlassian__searchConfluenceUsingCql",
+            "mcp__Atlassian__searchJiraIssuesUsingJql",
+            "mcp__slack__slack_get_reactions",
+            "mcp__slack__slack_list_channel_members",
+            "mcp__slack__slack_read_canvas",
+            "mcp__slack__slack_read_channel",
+            "mcp__slack__slack_read_file",
+            "mcp__slack__slack_read_thread",
+            "mcp__slack__slack_read_user_profile",
+            "mcp__slack__slack_search_channels",
+            "mcp__slack__slack_search_emojis",
+            "mcp__slack__slack_search_public",
+            "mcp__slack__slack_search_public_and_private",
+            "mcp__slack__slack_search_users",
+            "mcp__google_drive__download_file_content",
+            "mcp__google_drive__get_file_metadata",
+            "mcp__google_drive__get_file_permissions",
+            "mcp__google_drive__list_recent_files",
+            "mcp__google_drive__read_file_content",
+            "mcp__google_drive__search_files",
+            "mcp__github",
+            "Bash(pbcopy)",
+            "mcp__figma__get_code_connect_map",
+            "mcp__figma__get_code_connect_suggestions",
+            "mcp__figma__get_context_for_code_connect",
+            "mcp__figma__get_design_context",
+            "mcp__figma__get_figjam",
+            "mcp__figma__get_libraries",
+            "mcp__figma__get_metadata",
+            "mcp__figma__get_screenshot",
+            "mcp__figma__get_variable_defs",
+            "mcp__figma__search_design_system",
+            "mcp__figma__whoami",
+            "mcp__wonder-blocks-storybook",
+            "mcp__perseus-storybook",
+            "mcp__storybook"
+        ],
+        "ask": [
+            "mcp__Atlassian__addCommentToJiraIssue",
+            "mcp__Atlassian__addWorklogToJiraIssue",
+            "mcp__Atlassian__createConfluenceFooterComment",
+            "mcp__Atlassian__createConfluenceInlineComment",
+            "mcp__Atlassian__createConfluencePage",
+            "mcp__Atlassian__createIssueLink",
+            "mcp__Atlassian__createJiraIssue",
+            "mcp__Atlassian__editJiraIssue",
+            "mcp__Atlassian__transitionJiraIssue",
+            "mcp__Atlassian__updateConfluencePage",
+            "mcp__slack__slack_add_reaction",
+            "mcp__slack__slack_create_canvas",
+            "mcp__slack__slack_schedule_message",
+            "mcp__slack__slack_send_message",
+            "mcp__slack__slack_send_message_draft",
+            "mcp__slack__slack_update_canvas",
+            "mcp__google_drive__copy_file",
+            "mcp__google_drive__create_file",
+            "mcp__figma__add_code_connect_map",
+            "mcp__figma__create_new_file",
+            "mcp__figma__generate_diagram",
+            "mcp__figma__send_code_connect_mappings",
+            "mcp__figma__upload_assets",
+            "mcp__figma__use_figma"
         ]
     },
     "env": {

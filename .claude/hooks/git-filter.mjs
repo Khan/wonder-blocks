@@ -13,21 +13,44 @@ const chunks = [];
 for await (const chunk of process.stdin) chunks.push(chunk);
 const inputData = JSON.parse(Buffer.concat(chunks).toString("utf8"));
 
-// Detect agent format: Cursor sends `command` at the top level and includes
-// `hook_event_name`; Claude Code / Codex send `tool_name` + `tool_input`.
-const isCursor = !("tool_name" in inputData);
+// Which agent harness is running this hook, detected by its install path: the
+// same script is copied into .claude/, .codex/, and .cursor/. Defaults to
+// "claude" (also the path the unit tests run from). The harnesses share an input
+// shape but differ on PreToolUse output — see allow()/ask() below.
+const hookPath = process.argv[1] ?? "";
+const harness = hookPath.includes("/.codex/")
+    ? "codex"
+    : hookPath.includes("/.cursor/")
+      ? "cursor"
+      : "claude";
 const toolName = inputData.tool_name ?? "";
-const command = isCursor
-    ? (inputData.command ?? "")
-    : ((inputData.tool_input ?? {}).command ?? "");
+// Cursor's beforeShellExecution puts the command at the top level; Claude Code
+// and Codex pass it as tool_input.command on a Bash tool call.
+const command =
+    harness === "cursor" ? (inputData.command ?? "") : ((inputData.tool_input ?? {}).command ?? "");
 
 function allow() {
-    if (isCursor) return { continue: true, permission: "allow" };
+    if (harness === "cursor") return { permission: "allow" };
+    // Codex: a bare permissionDecision:"allow" is unsupported and surfaces a hook
+    // error, so emit a no-op (no decision) and let the command run under Codex's
+    // own sandbox/approval policy.
+    if (harness === "codex") return { hookSpecificOutput: { hookEventName: "PreToolUse" } };
     return { hookSpecificOutput: { hookEventName: "PreToolUse", permissionDecision: "allow" } };
 }
 
 function ask(reason) {
-    if (isCursor) return { continue: true, permission: "ask", agentMessage: reason };
+    if (harness === "cursor") return { permission: "ask", agent_message: reason };
+    // Codex cannot prompt from a PreToolUse hook ("ask" is unsupported), so deny
+    // to gate the sensitive operation; the reason is surfaced to the model.
+    if (harness === "codex") {
+        return {
+            hookSpecificOutput: {
+                hookEventName: "PreToolUse",
+                permissionDecision: "deny",
+                permissionDecisionReason: reason,
+            },
+        };
+    }
     return {
         hookSpecificOutput: {
             hookEventName: "PreToolUse",
@@ -38,9 +61,9 @@ function ask(reason) {
 }
 
 function allowWithRewrite(rewrittenCommand) {
-    if (isCursor) {
+    if (harness === "cursor") {
         // Cursor does not support command rewriting — allow as-is.
-        return { continue: true, permission: "allow" };
+        return { permission: "allow" };
     }
     return {
         hookSpecificOutput: {
@@ -51,7 +74,7 @@ function allowWithRewrite(rewrittenCommand) {
     };
 }
 
-if (!isCursor && toolName !== "Bash") {
+if (harness !== "cursor" && toolName !== "Bash") {
     console.log(JSON.stringify(allow()));
     process.exit(0);
 }
@@ -218,10 +241,14 @@ function stripHeredocs(cmd) {
 
 const commandForParsing = stripHeredocs(command);
 
-// Extract the single git invocation from the command.
-const gitInvocationPattern = /\bgit\s+((?:[^\n;|&`$(){}<>]|\\.)+?)(?=\s*[;&|`$(){}<>\n]|$)/;
-const match = gitInvocationPattern.exec(commandForParsing);
-const invocations = match ? [match[1].trim()] : [];
+// Extract every git invocation from the command. Compound commands joined
+// by &&, ||, ;, or pipes contain multiple invocations and each one needs to
+// be validated — using a single-match regex would let later invocations slip
+// past whatever check the first invocation passes.
+const gitInvocationPattern = /\bgit\s+((?:[^\n;|&`$(){}<>]|\\.)+?)(?=\s*[;&|`$(){}<>\n]|$)/g;
+const invocations = Array.from(commandForParsing.matchAll(gitInvocationPattern), (m) =>
+    m[1].trim(),
+);
 
 // If we couldn't parse any invocations but git is present, ask to be safe.
 if (invocations.length === 0) {
@@ -327,14 +354,18 @@ for (const invocation of invocations) {
         if (hasFlag(normalized, "--no-verify")) {
             console.log(
                 JSON.stringify(
-                    ask(`git push --no-verify requires user approval — bypassing hooks is a sensitive operation.`),
+                    ask(
+                        `git push --no-verify requires user approval — bypassing hooks is a sensitive operation.`,
+                    ),
                 ),
             );
             process.exit(0);
         }
 
         // Block pushes that include changes to sensitive paths.
-        // Only examines commits that are actually being pushed (not already on remote).
+        // Only examines non-merge commits that are actually being pushed (not already on remote).
+        // Merge commits are excluded so that merging main (which may contain workflow changes
+        // made by others) doesn't trigger a warning.
         const BLOCKED_PUSH_PATHS = [
             {
                 pattern: /^\.github\/(workflows|actions)\//,
@@ -376,10 +407,15 @@ for (const invocation of invocations) {
             }
 
             if (baseRef) {
-                const changedFiles = execSync(`git diff --name-only ${baseRef}..HEAD`, {
-                    encoding: "utf8",
-                    stdio: "pipe",
-                })
+                // Use git log with --no-merges to get files changed only in non-merge commits.
+                // This excludes changes that came in via merge commits (e.g., merging main).
+                const changedFiles = execSync(
+                    `git log --no-merges --name-only --pretty=format: ${baseRef}..HEAD`,
+                    {
+                        encoding: "utf8",
+                        stdio: "pipe",
+                    },
+                )
                     .trim()
                     .split("\n")
                     .filter(Boolean);

@@ -4,7 +4,7 @@ import type {Meta, StoryObj} from "@storybook/react-vite";
 
 import {View} from "@khanacademy/wonder-blocks-core";
 import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
-import {Body, LabelLarge} from "@khanacademy/wonder-blocks-typography";
+import {BodyText} from "@khanacademy/wonder-blocks-typography";
 import {CircularSpinner} from "@khanacademy/wonder-blocks-progress-spinner";
 
 import AriaArgTypes from "../wonder-blocks-core/aria.argtypes";
@@ -33,6 +33,10 @@ export default {
                 excludeDecorators: true,
             },
         },
+        chromatic: {
+            // Disable snapshots for this component because it is covered by StateSheet snapshots
+            disableSnapshot: true,
+        },
     },
     decorators: [
         (Story: any): React.ReactElement<React.ComponentProps<typeof View>> => (
@@ -52,16 +56,24 @@ export const Sizes: StoryComponentType = () => (
         <tbody>
             <tr>
                 <th>
-                    <LabelLarge>xsmall</LabelLarge>
+                    <BodyText tag="span" weight="bold">
+                        xsmall
+                    </BodyText>
                 </th>
                 <th>
-                    <LabelLarge>small</LabelLarge>
+                    <BodyText tag="span" weight="bold">
+                        small
+                    </BodyText>
                 </th>
                 <th>
-                    <LabelLarge>medium</LabelLarge>
+                    <BodyText tag="span" weight="bold">
+                        medium
+                    </BodyText>
                 </th>
                 <th>
-                    <LabelLarge>large</LabelLarge>
+                    <BodyText tag="span" weight="bold">
+                        large
+                    </BodyText>
                 </th>
             </tr>
             <tr>
@@ -140,15 +152,20 @@ Light.parameters = {
 };
 
 export const Inline: StoryComponentType = () => (
-    <Body>
+    <BodyText>
         Inline inside{" "}
         <CircularSpinner size="xsmall" style={{display: "inline"}} /> some text.
-    </Body>
+    </BodyText>
 );
 
 Inline.parameters = {
     docs: {
         description: {story: `Circular spinners also work inline.`},
+    },
+    chromatic: {
+        // Re-enable snapshots for this story since it shows the spinner in
+        // the context of text.
+        disableSnapshot: false,
     },
 };
 
@@ -171,6 +188,11 @@ WithStyle.parameters = {
             is \`solid 5px \${Color.teal}\` as well as a \`borderRadius\`
             of \`50%\`.`,
         },
+    },
+    chromatic: {
+        // Re-enable snapshots for this story since it shows the spinner in
+        // the context of custom styles.
+        disableSnapshot: false,
     },
 };
 

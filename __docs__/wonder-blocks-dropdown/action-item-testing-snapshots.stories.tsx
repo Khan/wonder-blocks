@@ -5,10 +5,13 @@ import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
 import {ActionItem} from "@khanacademy/wonder-blocks-dropdown";
 import {View} from "@khanacademy/wonder-blocks-core";
-import {themeModes} from "../../.storybook/modes";
+import {allThemeModes} from "../../.storybook/modes";
 import {defaultPseudoStates, StateSheet} from "../components/state-sheet";
 
-const rows = [{name: "Unselected", props: {}}];
+const rows = [
+    {name: "Unselected", props: {}},
+    {name: "Active", props: {active: true}},
+];
 
 const columns = [
     {
@@ -32,6 +35,18 @@ const columns = [
             ),
             subtitle1: "Subtitle 1",
             subtitle2: "Subtitle 2",
+        },
+    },
+    {
+        name: "Horizontal rule: Inset",
+        props: {
+            horizontalRule: "inset",
+        },
+    },
+    {
+        name: "Horizontal rule: Full width",
+        props: {
+            horizontalRule: "full-width",
         },
     },
 ];
@@ -71,7 +86,7 @@ const meta = {
     },
     parameters: {
         chromatic: {
-            modes: themeModes,
+            modes: allThemeModes,
         },
     },
     tags: ["!autodocs", "!manifest"],

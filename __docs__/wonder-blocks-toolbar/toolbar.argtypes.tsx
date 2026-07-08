@@ -13,7 +13,7 @@ import IconButton from "@khanacademy/wonder-blocks-icon-button";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
 import Link from "@khanacademy/wonder-blocks-link";
 import {sizing} from "@khanacademy/wonder-blocks-tokens";
-import {LabelLarge} from "@khanacademy/wonder-blocks-typography";
+import {BodyText} from "@khanacademy/wonder-blocks-typography";
 import {actionStyles} from "@khanacademy/wonder-blocks-styles";
 
 const mobile = "@media (max-width: 1023px)";
@@ -77,9 +77,9 @@ export const leftContentMappings: Mappings = {
                 Exit
             </Button>
             |
-            <LabelLarge>
+            <BodyText weight="bold">
                 Algebra Test<sup>BETA</sup>
-            </LabelLarge>
+            </BodyText>
         </View>
     ),
 };
@@ -98,12 +98,12 @@ export const rightContentMappings: Mappings = {
     ),
     link: (
         <Link href="#exercise">
-            <LabelLarge>Go to exercise</LabelLarge>
+            <BodyText weight="bold">Go to exercise</BodyText>
         </Link>
     ),
     multipleContent: (
         <>
-            <LabelLarge>7 questions</LabelLarge>
+            <BodyText weight="bold">7 questions</BodyText>
             <Strut size={16} />
             <Button style={buttonStyle} kind="secondary">
                 Try again

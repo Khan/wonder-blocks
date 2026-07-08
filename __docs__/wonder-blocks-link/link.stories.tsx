@@ -16,12 +16,7 @@ import {View} from "@khanacademy/wonder-blocks-core";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
 import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
-import {
-    Body,
-    HeadingMedium,
-    HeadingSmall,
-    LabelLarge,
-} from "@khanacademy/wonder-blocks-typography";
+import {BodyText, Heading} from "@khanacademy/wonder-blocks-typography";
 import Link from "@khanacademy/wonder-blocks-link";
 import packageConfig from "../../packages/wonder-blocks-link/package.json";
 
@@ -147,7 +142,7 @@ export const StartAndEndIcons: StoryComponentType = {
                 >
                     This is a multi-line link with start and end icons
                 </Link>
-                <Body>
+                <BodyText>
                     This is an inline{" "}
                     <Link
                         href="#link"
@@ -170,7 +165,7 @@ export const StartAndEndIcons: StoryComponentType = {
                         link with an end icon
                     </Link>
                     .
-                </Body>
+                </BodyText>
             </View>
             {/* Light */}
             <View
@@ -231,7 +226,7 @@ export const StartAndEndIcons: StoryComponentType = {
                 >
                     This is a multi-line link with start and end icons
                 </Link>
-                <Body
+                <BodyText
                     style={{
                         color: semanticColor.core.foreground.knockout.default,
                     }}
@@ -260,7 +255,7 @@ export const StartAndEndIcons: StoryComponentType = {
                         link with an end icon
                     </Link>
                     .
-                </Body>
+                </BodyText>
             </View>
         </View>
     ),
@@ -273,7 +268,7 @@ export const StartAndEndIcons: StoryComponentType = {
  */
 export const Inline: StoryComponentType = {
     render: () => (
-        <Body style={{width: 530}}>
+        <BodyText style={{width: 530}}>
             This is an inline{" "}
             <Link href="#link" inline={true}>
                 regular link
@@ -287,7 +282,7 @@ export const Inline: StoryComponentType = {
                 external link
             </Link>
             .
-        </Body>
+        </BodyText>
     ),
     parameters: {
         chromatic: {
@@ -306,11 +301,11 @@ export const Inline: StoryComponentType = {
  */
 export const WithTypography: StoryComponentType = {
     render: () => (
-        <HeadingSmall>
+        <Heading size="medium">
             <Link href="#nonexistent-link" id="typography-link">
                 Link inside a Heading element
             </Link>
-        </HeadingSmall>
+        </Heading>
     ),
     parameters: {
         chromatic: {
@@ -363,14 +358,18 @@ export const Navigation: StoryComponentType = {
                                 console.log("I'm still on the same page!");
                             }}
                         >
-                            <LabelLarge>Uses Client-side Nav</LabelLarge>
+                            <BodyText weight="bold">
+                                Uses Client-side Nav
+                            </BodyText>
                         </Link>
                         <Link
                             href="/iframe.html?id=link--default&viewMode=story"
                             style={styles.heading}
                             skipClientNav
                         >
-                            <LabelLarge>Avoids Client-side Nav</LabelLarge>
+                            <BodyText weight="bold">
+                                Avoids Client-side Nav
+                            </BodyText>
                         </Link>
                     </View>
                     <View style={styles.navigation}>
@@ -406,10 +405,10 @@ function Layout() {
         <View>
             <View style={styles.row}>
                 <Link href="/one" style={styles.heading} viewTransition>
-                    <LabelLarge>First Page</LabelLarge>
+                    <BodyText weight="bold">First Page</BodyText>
                 </Link>
                 <Link href="/two" style={styles.heading} viewTransition>
-                    <LabelLarge>Second Page</LabelLarge>
+                    <BodyText weight="bold">Second Page</BodyText>
                 </Link>
             </View>
             <View style={[styles.navigation]}>
@@ -461,7 +460,9 @@ export const ViewTransition: StoryComponentType = {
                             },
                         ]}
                     >
-                        <Body>The first link opens the second tab.</Body>
+                        <BodyText>
+                            The first link opens the second tab.
+                        </BodyText>
 
                         <Link
                             href={to}
@@ -507,7 +508,7 @@ export const ViewTransition: StoryComponentType = {
                             },
                         ]}
                     >
-                        <HeadingMedium>This is the Detail page</HeadingMedium>
+                        <Heading size="large">This is the Detail page</Heading>
                         <img
                             src="./km-ready.svg"
                             alt="detail screenshot"
@@ -566,11 +567,11 @@ export const ViewTransition: StoryComponentType = {
  */
 export const WithTitle: StoryComponentType = {
     render: () => (
-        <Body>
+        <BodyText>
             <Link href="#link" title="I am a title 😎">
                 This link has a title.
             </Link>
-        </Body>
+        </BodyText>
     ),
 };
 

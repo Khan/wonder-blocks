@@ -287,12 +287,12 @@ const preview: Preview = {
                     {
                         value: "thunderblocks",
                         icon: "lightning",
-                        title: "Shape Your Learning (Thunder Blocks)",
+                        title: "Shape Your Learning (thunderblocks)",
                     },
                     {
                         value: "syl-dark",
                         icon: "moon",
-                        title: "Shape Your Learning - Dark (WIP)",
+                        title: "Shape Your Learning - Dark (syl-dark)",
                     },
                 ],
                 // Change title based on selected value

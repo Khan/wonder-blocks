@@ -79,8 +79,12 @@ export default {
                 version={packageConfig.version}
             />
         ),
-        // Added to ensure that the tooltip is rendered using PopperJS.
-        chromatic: {delay: 500},
+        chromatic: {
+            // Added to ensure that the tooltip is rendered using PopperJS.
+            delay: 500,
+            // Visual coverage is provided by the Tooltip StateSheet snapshot.
+            disableSnapshot: true,
+        },
     },
     decorators: [
         (Story, {parameters}): React.ReactElement =>
@@ -163,6 +167,12 @@ export const ComplexAnchorAndTitle: StoryComponentType = {
             await canvas.findByText("This tooltip has a title"),
         ).toBeInTheDocument();
     },
+    parameters: {
+        chromatic: {
+            // Snapshot to confirm complex anchor and title
+            disableSnapshot: false,
+        },
+    },
 };
 
 /**
@@ -199,6 +209,12 @@ export const WithLinkAnchor: StoryComponentType = {
                 "This link navigates to the Khan Academy homepage.",
             ),
         ).toBeInTheDocument();
+    },
+    parameters: {
+        chromatic: {
+            // Snapshot to confirm tooltip with link anchor
+            disableSnapshot: false,
+        },
     },
 };
 
@@ -252,12 +268,6 @@ export const AnchorInScrollableParent: StoryComponentType = {
             </View>
         );
     },
-    parameters: {
-        // Disable Chromatic because it only shows the trigger element.
-        chromatic: {
-            disableSnapshot: true,
-        },
-    },
 };
 
 /**
@@ -292,12 +302,6 @@ export const TooltipInModal: StoryComponentType = {
             </ModalLauncher>
         );
     },
-    parameters: {
-        // Disable Chromatic because it initially renders the modal offscreen.
-        chromatic: {
-            disableSnapshot: true,
-        },
-    },
 };
 
 /**
@@ -323,12 +327,6 @@ export const SideBySide: StoryComponentType = {
         </View>
     ),
     name: "Side-by-side",
-    parameters: {
-        // Disable Chromatic because it only shows the trigger element.
-        chromatic: {
-            disableSnapshot: true,
-        },
-    },
 };
 
 /**
@@ -357,11 +355,6 @@ export const TooltipOnButtons: StoryComponentType = {
                 </Tooltip>
             </View>
         );
-    },
-    parameters: {
-        chromatic: {
-            disableSnapshot: true,
-        },
     },
 };
 
@@ -551,8 +544,8 @@ export const InCorners = {
     parameters: {
         layout: "fullscreen",
         chromatic: {
-            // Disabling snapshot since this is for testing purposes
-            disableSnapshot: true,
+            // Enable snapshot for corner alignment examples
+            disableSnapshot: false,
         },
     },
     render: (args: PropsFor<typeof Tooltip>) => {
@@ -561,6 +554,7 @@ export const InCorners = {
                 <Tooltip
                     {...args}
                     content="This is an example descriptor that's long with more content to see if it will display properly in different browsers"
+                    opened={true}
                 >
                     <Button>Open tooltip</Button>
                 </Tooltip>

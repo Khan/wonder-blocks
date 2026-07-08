@@ -17,7 +17,7 @@ import {
 import {CatalogComponentInfo, ComponentList} from "./catalog-component-info";
 
 export default {
-    title: "Catalog",
+    title: "Catalog / Components",
     tags: ["!autodocs", "!manifest"],
     parameters: {
         chromatic: {
@@ -50,6 +50,14 @@ export default {
                         // Ignore label violations at this level,
                         // this is covered at the component level
                         id: "label",
+                        enabled: false,
+                    },
+                    {
+                        // The Overlays story renders components inside
+                        // iframes, which axe-core cannot reach into. Each
+                        // embedded story is tested individually anyways, so it
+                        // is not needed at the catalog level
+                        id: "frame-tested",
                         enabled: false,
                     },
                 ],
@@ -104,7 +112,7 @@ export const Overlays: StoryObj = {
                         </Heading>
                         <iframe
                             title={component.name}
-                            src={`/iframe.html?id=${component.storyId}&globals=theme:${globals.theme};direction:${globals.direction}`}
+                            src={`./iframe.html?id=${component.storyId}&globals=theme:${globals.theme};direction:${globals.direction}`}
                             style={{
                                 height: "500px",
                                 border: `${border.width.thin} solid ${semanticColor.core.border.neutral.subtle}`,

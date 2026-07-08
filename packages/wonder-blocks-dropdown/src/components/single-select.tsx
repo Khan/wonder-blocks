@@ -441,20 +441,15 @@ const SingleSelect = (props: Props) => {
     };
 
     const handleAnnouncement = (message: string) => {
-        announceMessage({
-            message,
-        });
+        announceMessage({message, level: "polite"});
     };
 
-    // Announce when selectedValue or children changes in the opener, but skip initial render
-    React.useEffect(() => {
-        if (isInitialRender.current) {
-            isInitialRender.current = false;
-            return;
-        }
+    const childrenRef = React.useRef(children);
+    childrenRef.current = children;
 
+    const announceSelectedItem = () => {
         const optionItems = React.Children.toArray(
-            children,
+            childrenRef.current,
         ) as OptionItemComponentArray;
         const selectedItem = optionItems.find(
             (option) => option.props.value === selectedValue,
@@ -465,7 +460,16 @@ const SingleSelect = (props: Props) => {
                 handleAnnouncement(label);
             }
         }
-    }, [selectedValue, children]);
+    };
+
+    // Announces the selected item's label after each selection change.
+    React.useEffect(() => {
+        if (isInitialRender.current) {
+            isInitialRender.current = false;
+            return;
+        }
+        announceSelectedItem();
+    }, [selectedValue]); // eslint-disable-line react-hooks/exhaustive-deps
 
     // If aria-required was supplied, use that. Otherwise, convert `required` to a boolean
     // and apply that value to aria-required.
@@ -557,18 +561,18 @@ const SingleSelect = (props: Props) => {
     const isDisabled = numEnabledOptions === 0 || disabled;
     const disableInteraction = isDisabled || readOnly;
 
-    // Extract out someResults. When we put labels in the dependency array,
-    // useEffect happens on every render (I think because labels is a new object)
-    // each time so it thinks it has changed
     const {someResults} = labels;
+    const someResultsRef = React.useRef(someResults);
+    someResultsRef.current = someResults;
+    const openRef = React.useRef(open);
+    openRef.current = open;
 
-    // Announce in a screen reader when the number of filtered items changes
-    // when the dropdown is open
+    // Announces the filtered count when the search filter changes while open.
     React.useEffect(() => {
-        if (open) {
-            handleAnnouncement(someResults(items.length));
+        if (openRef.current) {
+            handleAnnouncement(someResultsRef.current(items.length));
         }
-    }, [items.length, someResults, open]);
+    }, [items.length]); // eslint-disable-line react-hooks/exhaustive-deps
 
     return (
         <Id id={dropdownId}>

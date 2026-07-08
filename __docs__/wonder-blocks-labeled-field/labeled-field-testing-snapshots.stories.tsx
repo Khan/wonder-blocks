@@ -4,7 +4,7 @@ import {StyleSheet} from "aphrodite";
 import {LabeledField} from "@khanacademy/wonder-blocks-labeled-field";
 import packageConfig from "../../packages/wonder-blocks-labeled-field/package.json";
 import ComponentInfo from "../components/component-info";
-import {themeModes} from "../../.storybook/modes";
+import {allThemeModes} from "../../.storybook/modes";
 import {PropsFor, View} from "@khanacademy/wonder-blocks-core";
 import {ScenariosLayout} from "../components/scenarios-layout";
 import {border, semanticColor} from "@khanacademy/wonder-blocks-tokens";
@@ -25,7 +25,7 @@ export default {
             />
         ),
         chromatic: {
-            modes: themeModes,
+            modes: allThemeModes,
         },
     },
 } as Meta<typeof LabeledField>;

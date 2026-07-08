@@ -2,7 +2,7 @@ import * as React from "react";
 import type {StrictArgs} from "@storybook/react-vite";
 import {StyleSheet} from "aphrodite";
 import {StyleType, View} from "@khanacademy/wonder-blocks-core";
-import {LabelLarge} from "@khanacademy/wonder-blocks-typography";
+import {BodyText} from "@khanacademy/wonder-blocks-typography";
 import {sizing} from "@khanacademy/wonder-blocks-tokens";
 
 type Props = {
@@ -31,7 +31,7 @@ export const ScenariosLayout = (props: Props) => {
                 const {decorator: Decorator} = scenario;
                 return (
                     <View key={scenario.name} style={styles.scenario}>
-                        <LabelLarge>{scenario.name}</LabelLarge>
+                        <BodyText weight="bold">{scenario.name}</BodyText>
                         {Decorator
                             ? React.cloneElement(Decorator, {
                                   children: renderer,

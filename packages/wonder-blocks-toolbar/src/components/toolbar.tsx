@@ -5,7 +5,7 @@ import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
 import {View} from "@khanacademy/wonder-blocks-core";
-import {color, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
+import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {Heading, BodyText} from "@khanacademy/wonder-blocks-typography";
 import type {AriaProps} from "@khanacademy/wonder-blocks-core";
 
@@ -150,8 +150,8 @@ const sharedStyles = StyleSheet.create({
     },
     // TODO(WB-1852): Remove light variant.
     dark: {
-        background: color.darkBlue,
-        boxShadow: `0 1px 0 0 ${color.white64}`,
+        background: semanticColor.core.background.base.strong,
+        boxShadow: `0 1px 0 0 ${semanticColor.core.foreground.knockout.default}`,
         color: semanticColor.core.foreground.knockout.default,
     },
     leftColumn: {

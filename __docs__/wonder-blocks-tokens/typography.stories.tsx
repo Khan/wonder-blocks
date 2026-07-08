@@ -131,9 +131,6 @@ export const FontFamily = {
  * `font.body.lineHeight.*` token for the line height. As an alternative, the
  * WB `BodyText` component can be used instead, which will apply all the needed
  * font properties by default.
- *
- * **Note:** the legacy font token API will be deprecated in the future (e.g. `font.size.small`) to support
- * both Classic and Thunderblocks with the same theme structure.
  */
 export const BodyFontSize = {
     name: "Font Size (Body)",

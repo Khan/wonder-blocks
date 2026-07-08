@@ -1,9 +1,10 @@
 import * as React from "react";
+import {StyleSheet} from "aphrodite";
 import type {Meta, StoryObj} from "@storybook/react-vite";
 
 import {TextArea} from "@khanacademy/wonder-blocks-form";
 import {LabeledField} from "@khanacademy/wonder-blocks-labeled-field";
-import {themeModes} from "../../.storybook/modes";
+import {allThemeModes} from "../../.storybook/modes";
 import {defaultPseudoStates, StateSheet} from "../components/state-sheet";
 import {ScenariosLayout} from "../components/scenarios-layout";
 import {
@@ -13,7 +14,7 @@ import {
     repeatText,
 } from "../components/text-for-testing";
 import {AllVariants} from "../components/all-variants";
-import {sizing} from "@khanacademy/wonder-blocks-tokens";
+import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 
 /**
  * The following stories are used to generate the pseudo states for the
@@ -23,7 +24,7 @@ export default {
     title: "Packages / Form / Testing / Snapshots / TextArea",
     parameters: {
         chromatic: {
-            modes: themeModes,
+            modes: allThemeModes,
         },
     },
     tags: ["!autodocs", "!manifest"],
@@ -246,6 +247,49 @@ export const Scenarios: Story = {
                     maxRows: 2,
                 },
             },
+            {
+                name: "Wrap: default (soft)",
+                props: {value: longText},
+            },
+            {
+                name: "Wrap: soft",
+                props: {wrap: "soft", value: longText},
+            },
+            {
+                name: "Wrap: hard",
+                props: {wrap: "hard", value: longText},
+            },
+            {
+                name: "Wrap: off",
+                props: {wrap: "off", value: longText},
+            },
+            {
+                name: "Resize type: both (default)",
+                props: {resizeType: "both", value: "Resizable text"},
+            },
+            {
+                name: "Resize type: horizontal",
+                props: {resizeType: "horizontal", value: "Resizable text"},
+            },
+            {
+                name: "Resize type: vertical",
+                props: {resizeType: "vertical", value: "Resizable text"},
+            },
+            {
+                name: "Resize type: none",
+                props: {resizeType: "none", value: "Resizable text"},
+            },
+            {
+                name: "Custom style",
+                props: {style: styles.customField, value: "Custom style"},
+            },
+            {
+                name: "Custom root style",
+                props: {
+                    rootStyle: styles.customRoot,
+                    value: "Custom root style",
+                },
+            },
         ];
         return (
             <ScenariosLayout
@@ -262,3 +306,20 @@ export const Scenarios: Story = {
         );
     },
 };
+
+const styles = StyleSheet.create({
+    customField: {
+        backgroundColor: semanticColor.status.notice.background,
+        color: semanticColor.status.notice.foreground,
+        border: "none",
+        maxInlineSize: 250,
+        "::placeholder": {
+            color: semanticColor.core.foreground.neutral.default,
+        },
+    },
+    customRoot: {
+        padding: sizing.size_120,
+        borderRadius: sizing.size_080,
+        backgroundColor: semanticColor.status.notice.background,
+    },
+});

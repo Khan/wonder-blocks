@@ -1,5 +1,50 @@
 # @khanacademy/wonder-blocks-typography
 
+## 5.0.1
+
+### Patch Changes
+
+- Updated dependencies [dfcf49b]
+    - @khanacademy/wonder-blocks-tokens@17.1.0
+
+## 5.0.0
+
+### Major Changes
+
+- 9d8e5e3: Remove the deprecated legacy typography components. `Title`, `HeadingLarge`, `HeadingMedium`, `HeadingSmall`, `HeadingXSmall`, `Tagline`, `Body`, `BodySerif`, `BodySerifBlock`, `LabelLarge`, `LabelMedium`, `LabelSmall`, `LabelXSmall`, `Caption`, and `Footnote` have been removed. Use `Heading` (with the appropriate `size`/`weight`) and `BodyText` instead, per the typography conversion guide. `BodyText`, `Heading`, and `BodyMonospace` remain. The exported `Typography` type now resolves to the surviving components, and the `Label` union type has been removed.
+
+### Patch Changes
+
+- Updated dependencies [9d8e5e3]
+    - @khanacademy/wonder-blocks-tokens@17.0.0
+
+## 4.3.9
+
+### Patch Changes
+
+- Updated dependencies [0735aef]
+    - @khanacademy/wonder-blocks-tokens@16.8.1
+
+## 4.3.8
+
+### Patch Changes
+
+- Updated dependencies [f13552a]
+    - @khanacademy/wonder-blocks-tokens@16.8.0
+
+## 4.3.7
+
+### Patch Changes
+
+- Updated dependencies [0907f64]
+- Updated dependencies [9773405]
+- Updated dependencies [9773405]
+- Updated dependencies [022e775]
+- Updated dependencies [e181c15]
+- Updated dependencies [c033245]
+- Updated dependencies [a2bbc0a]
+    - @khanacademy/wonder-blocks-tokens@16.7.0
+
 ## 4.3.6
 
 ### Patch Changes

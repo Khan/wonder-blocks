@@ -8,7 +8,7 @@ import packageConfig from "../../packages/wonder-blocks-form/package.json";
 import ComponentInfo from "../components/component-info";
 import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import Button from "@khanacademy/wonder-blocks-button";
-import {LabelLarge} from "@khanacademy/wonder-blocks-typography";
+import {BodyText} from "@khanacademy/wonder-blocks-typography";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
 import {PropsFor, View} from "@khanacademy/wonder-blocks-core";
 import {LabeledField} from "@khanacademy/wonder-blocks-labeled-field";
@@ -53,6 +53,10 @@ export default {
                     },
                 ],
             },
+        },
+        chromatic: {
+            // Disabling snapshots because this is covered by the testing snapshots
+            disableSnapshot: true,
         },
     },
     argTypes: TextAreaArgTypes,
@@ -138,13 +142,6 @@ export const WithLabeledField: StoryComponentType = {
             />
         );
     },
-    parameters: {
-        chromatic: {
-            // Disabling because this is for documentation purposes and is
-            // covered by the LabeledField stories
-            disableSnapshot: true,
-        },
-    },
 };
 
 /**
@@ -155,12 +152,6 @@ export const Controlled: ControlledStoryComponentType = {
     render: ControlledTextArea,
     args: {
         label: "Controlled",
-    },
-    parameters: {
-        chromatic: {
-            // Disabling because this doesn't test anything visual.
-            disableSnapshot: true,
-        },
     },
 };
 
@@ -227,12 +218,6 @@ export const AutoResize: StoryComponentType = {
             </View>
         );
     },
-    parameters: {
-        chromatic: {
-            // Disabling because it is covered by scenarios
-            disableSnapshot: true,
-        },
-    },
 };
 
 /**
@@ -296,12 +281,6 @@ export const Error: ControlledStoryComponentType = {
         error: true,
         label: "Error using error prop",
     },
-    parameters: {
-        chromatic: {
-            // Disabling because this doesn't test anything visual.
-            disableSnapshot: true,
-        },
-    },
 };
 
 /**
@@ -322,12 +301,6 @@ export const ErrorFromValidation: ControlledStoryComponentType = {
         label: "Error from validation",
     },
     render: ControlledTextArea,
-    parameters: {
-        chromatic: {
-            // Disabling because this doesn't test anything visual.
-            disableSnapshot: true,
-        },
-    },
 };
 
 /**
@@ -396,13 +369,6 @@ export const ErrorFromPropAndValidation = (args: PropsFor<typeof TextArea>) => {
     );
 };
 
-ErrorFromPropAndValidation.parameters = {
-    chromatic: {
-        // Disabling because this doesn't test anything visual.
-        disableSnapshot: true,
-    },
-};
-
 /**
  * The `instantValidation` prop controls when validation is triggered. Validation
  * is triggered if the `validate` or `required` props are set.
@@ -467,12 +433,6 @@ export const InstantValidation: StoryComponentType = {
             </View>
         );
     },
-    parameters: {
-        chromatic: {
-            // Disabling because this doesn't test anything visual.
-            disableSnapshot: true,
-        },
-    },
 };
 
 /**
@@ -486,12 +446,6 @@ export const Required: StoryComponentType = {
         required: true,
     },
     render: ControlledTextArea,
-    parameters: {
-        chromatic: {
-            // Disabling because this doesn't test anything visual.
-            disableSnapshot: true,
-        },
-    },
 };
 
 /**
@@ -511,12 +465,6 @@ export const Rows: StoryComponentType = {
 export const AutoComplete: StoryComponentType = {
     args: {
         autoComplete: "on",
-    },
-    parameters: {
-        chromatic: {
-            // Disabling because this doesn't test anything visual.
-            disableSnapshot: true,
-        },
     },
 };
 
@@ -558,9 +506,9 @@ export const AutoFocus = () => {
 
     return (
         <View>
-            <LabelLarge style={{marginBlockEnd: sizing.size_120}}>
+            <BodyText weight="bold" style={{marginBlockEnd: sizing.size_120}}>
                 Press the button to view the textarea with autofocus.
-            </LabelLarge>
+            </BodyText>
             <Button
                 onClick={handleShowDemo}
                 style={{width: 300, marginBlockEnd: sizing.size_240}}
@@ -570,12 +518,6 @@ export const AutoFocus = () => {
             {showDemo && <AutoFocusDemo />}
         </View>
     );
-};
-AutoFocus.parameters = {
-    chromatic: {
-        // Disabling because this doesn't test anything visual.
-        disableSnapshot: true,
-    },
 };
 
 /**
@@ -591,23 +533,11 @@ export const SpellCheckEnabled: StoryComponentType = {
         value: "This exampull will be checkd fur spellung when you try to edit it.",
     },
 };
-SpellCheckEnabled.parameters = {
-    chromatic: {
-        // Disabling because this doesn't test anything visual.
-        disableSnapshot: true,
-    },
-};
 
 export const SpellCheckDisabled: StoryComponentType = {
     args: {
         spellCheck: false,
         value: "This exampull will nut be checkd fur spellung when you try to edit it.",
-    },
-};
-SpellCheckDisabled.parameters = {
-    chromatic: {
-        // Disabling because this doesn't test anything visual.
-        disableSnapshot: true,
     },
 };
 
@@ -694,12 +624,6 @@ export const MinMaxLength: StoryComponentType = {
         minLength: 2,
         maxLength: 4,
         value: "Text",
-    },
-    parameters: {
-        chromatic: {
-            // Disabling because this doesn't test anything visual.
-            disableSnapshot: true,
-        },
     },
 };
 
@@ -804,10 +728,4 @@ export const WithRef = () => {
             <Button onClick={handleClick}>Focus using ref</Button>
         </View>
     );
-};
-WithRef.parameters = {
-    chromatic: {
-        // Disabling because this doesn't test anything visual.
-        disableSnapshot: true,
-    },
 };

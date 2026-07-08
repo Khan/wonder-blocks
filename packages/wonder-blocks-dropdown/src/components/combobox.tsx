@@ -131,6 +131,11 @@ type Props = {
     startIcon?: React.ReactElement<
         React.ComponentProps<typeof PhosphorIcon>
     > | null;
+
+    /**
+     * An optional aria-label to display on the combobox.
+     */
+    "aria-label"?: string;
 };
 
 /**
@@ -160,6 +165,7 @@ export default function Combobox({
     startIcon,
     testId,
     value = "",
+    "aria-label": ariaLabel,
 }: Props) {
     // eslint-disable-next-line import/no-deprecated
     const generatedUniqueId = useId();
@@ -580,6 +586,7 @@ export default function Combobox({
                 {maybeRenderStartIcon()}
 
                 <TextField
+                    aria-label={ariaLabel}
                     id={textFieldId}
                     testId={testId}
                     style={styles.combobox}
@@ -636,7 +643,11 @@ export default function Combobox({
                     actionType="neutral"
                     kind="tertiary"
                     size="medium"
-                    style={[styles.button, openState && styles.buttonOpen]}
+                    style={[
+                        styles.button,
+                        styles.openButtonResetStates,
+                        openState && styles.buttonOpen,
+                    ]}
                     tabIndex={-1}
                     aria-controls={uniqueId}
                     aria-expanded={openState}
@@ -750,10 +761,25 @@ const styles = StyleSheet.create({
         width: "auto",
         display: "inline-grid",
         gridArea: "1 / 2",
+        // The combobox wrapper handles the focus and press indicators, so we
+        // reset the TextField's own focus and press states to avoid showing a
+        // duplicate focus ring / press border on the inner input.
         ":focus-visible": {
             outline: "none",
             border: "none",
+            boxShadow: "none",
         },
+        // Matches the TextField's press selector so this reset takes
+        // precedence over the press box shadow it applies.
+        [":active:not([aria-disabled='true']):not([readonly])" as any]: {
+            boxShadow: "none",
+        },
+        // Matches the TextField's selector so this reset takes precedence over
+        // the box shadow it applies.
+        [":focus-visible:active:not([aria-disabled='true']):not([readonly])" as any]:
+            {
+                boxShadow: "none",
+            },
     },
     /**
      * Listbox custom styles
@@ -783,6 +809,25 @@ const styles = StyleSheet.create({
     },
     buttonOpen: {
         transform: "rotate(180deg)",
+    },
+    /**
+     * The dropdown toggle button is not directly focusable (`tabIndex={-1}`)
+     * and its state is already communicated by the combobox input, so we
+     * remove the IconButton's hover, focus, and press styles to keep it
+     * visually static. Values are reset to match the tertiary/neutral rest
+     * state.
+     */
+    openButtonResetStates: {
+        ":hover": {
+            borderColor: semanticColor.core.transparent,
+        },
+        ":active": {
+            borderColor: semanticColor.core.transparent,
+        },
+        ":focus-visible": {
+            outline: "none",
+            boxShadow: "none",
+        },
     },
     /**
      * Clear selection button

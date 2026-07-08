@@ -4,7 +4,7 @@ import githubLogo from "@phosphor-icons/core/fill/github-logo-fill.svg";
 import Button from "@khanacademy/wonder-blocks-button";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {semanticColor} from "@khanacademy/wonder-blocks-tokens";
-import {Caption} from "@khanacademy/wonder-blocks-typography";
+import {BodyText} from "@khanacademy/wonder-blocks-typography";
 
 type Props = {
     /**
@@ -32,9 +32,9 @@ function ComponentInfo({name, version}: Props): React.ReactElement {
                 gap: 10,
             }}
         >
-            <Caption>
+            <BodyText size="small" tag="span">
                 {name}@{version}
-            </Caption>
+            </BodyText>
             <Button
                 kind="secondary"
                 href={`https://github.com/Khan/wonder-blocks/tree/main/packages/${packageFolder}`}

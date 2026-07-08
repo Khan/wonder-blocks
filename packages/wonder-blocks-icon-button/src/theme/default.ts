@@ -1,4 +1,4 @@
-import {border, sizing} from "@khanacademy/wonder-blocks-tokens";
+import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 
 export default {
     iconButton: {
@@ -47,6 +47,13 @@ export default {
                 small: sizing.size_240,
                 medium: sizing.size_240,
                 large: sizing.size_240,
+            },
+        },
+    },
+    activityIconButton: {
+        label: {
+            color: {
+                progressive: semanticColor.core.foreground.instructive.default,
             },
         },
     },

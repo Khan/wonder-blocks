@@ -242,6 +242,7 @@ export const WithFocusableContent: StoryComponentType = {
                 panel: (
                     <div>
                         Tab contents with button{" "}
+                        {/* eslint-disable-next-line @khanacademy/wonder-blocks/no-raw-button -- raw <button> is intentional here to verify focus management works with native HTML elements, not just WB components */}
                         <button>Focusable Button</button>
                     </div>
                 ),

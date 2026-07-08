@@ -7,7 +7,7 @@ import type {Meta, StoryObj} from "@storybook/react-vite";
 import Button from "@khanacademy/wonder-blocks-button";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
-import {HeadingMedium, LabelLarge} from "@khanacademy/wonder-blocks-typography";
+import {BodyText, Heading} from "@khanacademy/wonder-blocks-typography";
 import type {Placement} from "@khanacademy/wonder-blocks-tooltip";
 
 import {Popover, PopoverContent} from "@khanacademy/wonder-blocks-popover";
@@ -50,6 +50,11 @@ export default {
                 version={packageConfig.version}
             />
         ),
+        chromatic: {
+            // Disabling most snapshots in favour of statesheet. Explicitly
+            // enabling snapshots for specific stories.
+            disableSnapshot: true,
+        },
     },
     decorators: [
         (Story): React.ReactElement<React.ComponentProps<typeof View>> => (
@@ -113,12 +118,6 @@ export const Default: StoryComponentType = {
         testId: "",
         onClose: () => {},
     } as PopoverArgs,
-    parameters: {
-        chromatic: {
-            // Popover is closed by default, so we don't need to test it.
-            disableSnapshot: true,
-        },
-    },
 };
 
 /**
@@ -143,12 +142,6 @@ export const NoTail: StoryComponentType = {
         onClose: () => {},
         showTail: false,
     } as PopoverArgs,
-    parameters: {
-        chromatic: {
-            // Popover is closed by default, so we don't need to test it.
-            disableSnapshot: true,
-        },
-    },
 };
 
 /**
@@ -185,12 +178,6 @@ export const TriggerElement: StoryComponentType = {
             {({open}) => <Button onClick={open}>Trigger element</Button>}
         </Popover>
     ),
-    parameters: {
-        chromatic: {
-            // Popover is closed by default, so we don't need to test it.
-            disableSnapshot: true,
-        },
-    },
 };
 
 /**
@@ -226,12 +213,6 @@ export const DismissEnabled: StoryComponentType = {
             />
         ),
     } as PopoverArgs,
-    parameters: {
-        chromatic: {
-            // This story tests behavior, so we don't need create a snapshot.
-            disableSnapshot: true,
-        },
-    },
 };
 
 /**
@@ -312,9 +293,9 @@ export const WithActions: StoryComponentType = {
                                     {gap: sizing.size_160},
                                 ]}
                             >
-                                <LabelLarge>
+                                <BodyText weight="bold">
                                     Step {step} of {totalSteps}
-                                </LabelLarge>
+                                </BodyText>
                                 <Button
                                     kind="tertiary"
                                     onClick={() => {
@@ -338,12 +319,6 @@ export const WithActions: StoryComponentType = {
                 <Button>Open popover with actions</Button>
             </Popover>
         );
-    },
-    parameters: {
-        chromatic: {
-            // Popover is closed by default, so we don't need to test it.
-            disableSnapshot: true,
-        },
     },
 };
 
@@ -387,12 +362,6 @@ export const WithInitialFocusId: StoryComponentType = {
         dismissEnabled: true,
         initialFocusId: "popover-button-2",
     } as PopoverArgs,
-    parameters: {
-        chromatic: {
-            // Popover is closed by default, so we don't need to test it.
-            disableSnapshot: true,
-        },
-    },
 };
 
 /**
@@ -424,11 +393,6 @@ export const WithClosedFocusId: StoryComponentType = {
             </Popover>
         </View>
     ),
-    parameters: {
-        chromatic: {
-            disableSnapshot: true,
-        },
-    },
 };
 
 /**
@@ -447,12 +411,6 @@ export const CustomPopoverContent: StoryComponentType = {
         content: ContentMappings.coreWithIcon,
         id: "custom-popover",
     } as PopoverArgs,
-    parameters: {
-        chromatic: {
-            // Popover is closed by default, so we don't need to test it.
-            disableSnapshot: true,
-        },
-    },
 };
 
 /**
@@ -561,12 +519,6 @@ export const KeyboardNavigation: StoryComponentType = {
                 </View>
             </View>
         );
-    },
-    parameters: {
-        // This example is behavior based, not visual.
-        chromatic: {
-            disableSnapshot: true,
-        },
     },
 };
 
@@ -684,12 +636,6 @@ export const CustomKeyboardNavigation: StoryComponentType = {
             </View>
         );
     },
-    parameters: {
-        // This example is behavior based, not visual.
-        chromatic: {
-            disableSnapshot: true,
-        },
-    },
 };
 
 type ArrowButtonProps = {
@@ -774,6 +720,12 @@ export const PopoverAlignment: StoryComponentType = {
             <BasePopoverExample placement="left" />
         </View>
     ),
+    parameters: {
+        chromatic: {
+            // Include snapshot for alignment examples
+            disableSnapshot: false,
+        },
+    },
 };
 
 /**
@@ -802,12 +754,6 @@ export const WithDocumentRootBoundary: StoryComponentType = {
             </View>
         );
     },
-    parameters: {
-        chromatic: {
-            // Popover is closed by default, so we don't need to test it.
-            disableSnapshot: true,
-        },
-    },
 };
 
 /**
@@ -825,12 +771,6 @@ export const WithCustomAriaLabel: StoryComponentType = {
         onClose: () => {},
         "aria-label": "Popover with custom aria label",
     } as PopoverArgs,
-    parameters: {
-        chromatic: {
-            // Popover is closed by default, so we don't need to test it.
-            disableSnapshot: true,
-        },
-    },
 };
 
 /**
@@ -849,13 +789,14 @@ export const WithCustomAriaDescribedBy: StoryComponentType = {
                     onClose={() => setOpened(false)}
                     content={
                         <>
-                            <HeadingMedium
+                            <Heading
+                                size="large"
                                 id="custom-popover-description"
                                 style={styles.srOnly}
                             >
                                 Hidden text that would describe the popover
                                 content
-                            </HeadingMedium>
+                            </Heading>
                             <PopoverContent
                                 title="Title"
                                 content="Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip commodo."
@@ -874,12 +815,6 @@ export const WithCustomAriaDescribedBy: StoryComponentType = {
                 </Popover>
             </View>
         );
-    },
-    parameters: {
-        chromatic: {
-            // Popover is closed by default, so we don't need to test it.
-            disableSnapshot: true,
-        },
     },
 };
 
@@ -908,12 +843,6 @@ export const WithTitleHeadingTag: StoryComponentType = {
                 </Button>
             </Popover>
         );
-    },
-    parameters: {
-        chromatic: {
-            // Popover is closed by default, so we don't need to test it.
-            disableSnapshot: true,
-        },
     },
 };
 
@@ -980,6 +909,10 @@ export const InCorners: StoryComponentType = {
     },
     parameters: {
         layout: "fullscreen",
+        chromatic: {
+            // Include snapshot for corner alignment examples
+            disableSnapshot: false,
+        },
     },
 };
 

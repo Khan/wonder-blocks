@@ -1,3 +1,6 @@
+/* eslint-disable @khanacademy/wonder-blocks/no-raw-button */
+// This file IS the Wonder Blocks button implementation — it intentionally
+// wraps addStyle("button") as its underlying DOM primitive.
 import * as React from "react";
 import {Link, useInRouterContext} from "react-router-dom-v5-compat";
 

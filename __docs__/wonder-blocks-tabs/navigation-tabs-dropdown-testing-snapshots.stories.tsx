@@ -7,7 +7,7 @@ import {
     longTextWithNoWordBreak,
 } from "../components/text-for-testing";
 import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
-import {allModes, themeModes} from "../../.storybook/modes";
+import {allModes, allThemeModes} from "../../.storybook/modes";
 import {Icon, PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
 
@@ -17,7 +17,7 @@ export default {
     tags: ["!autodocs", "!manifest"],
     parameters: {
         chromatic: {
-            modes: {...themeModes, small: allModes.small},
+            modes: {...allThemeModes, small: allModes.small},
         },
     },
 } as Meta<typeof NavigationTabsDropdown>;
