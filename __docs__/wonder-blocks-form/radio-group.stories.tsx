@@ -180,6 +180,39 @@ export const CellAppearance: StoryComponentType = () => {
             <Link href="https://www.khanacademy.org">
                 Select a different course
             </Link>
+
+            {/*
+             * "Other assignment options" belongs to the SAME radio group as the
+             * courses above: it reuses the `course` groupName and shares the
+             * `selectedValue`/`onChange` state, so selecting any option here
+             * deselects the course cards (and vice versa). It's a separate
+             * RadioGroup only because it needs its own heading and a horizontal
+             * (two-up) layout.
+             */}
+            <View style={styles.otherOptions}>
+                <BodyText weight="bold" tag="span">
+                    Other assignment options
+                </BodyText>
+                <RadioGroup
+                    groupName="course"
+                    appearance="cell"
+                    style={styles.otherOptionsRow}
+                    onChange={setSelectedValue}
+                    selectedValue={selectedValue}
+                >
+                    <Choice
+                        value="upload-pacing-guide"
+                        label="Upload a pacing guide"
+                        description="Math only"
+                        style={styles.otherOption}
+                    />
+                    <Choice
+                        value="manually-assign"
+                        label="Manually assign content"
+                        style={styles.otherOption}
+                    />
+                </RadioGroup>
+            </View>
         </View>
     );
 };
@@ -380,5 +413,18 @@ const styles = StyleSheet.create({
     },
     recommended: {
         color: semanticColor.core.foreground.neutral.default,
+    },
+    otherOptions: {
+        gap: sizing.size_120,
+    },
+    otherOptionsRow: {
+        flexDirection: "row",
+        gap: sizing.size_120,
+    },
+    otherOption: {
+        // Each card takes an equal share of the row, and we clear the vertical
+        // gap the group injects between stacked choices (not wanted in a row).
+        flex: 1,
+        marginBlockStart: 0,
     },
 });
