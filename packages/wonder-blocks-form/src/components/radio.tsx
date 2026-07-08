@@ -2,7 +2,12 @@ import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
 import {Id, View} from "@khanacademy/wonder-blocks-core";
-import {font, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
+import {
+    border,
+    font,
+    semanticColor,
+    sizing,
+} from "@khanacademy/wonder-blocks-tokens";
 import {BodyText} from "@khanacademy/wonder-blocks-typography";
 import {DetailCell} from "@khanacademy/wonder-blocks-cell";
 import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
@@ -38,6 +43,12 @@ type ChoiceComponentProps = AriaProps & {
      */
     description?: React.ReactNode;
     /**
+     * Optional content rendered at the end of the row (e.g. a "Recommended"
+     * label or an icon). Maps to the underlying `DetailCell`'s `rightAccessory`.
+     * Most useful with `appearance="cell"`.
+     */
+    rightAccessory?: React.ReactNode;
+    /**
      * Unique identifier attached to the HTML input element. If used, need to
      * guarantee that the ID is unique within everything rendered on a page.
      * Used to match `<label>` with `<input>` elements for screenreaders.
@@ -65,13 +76,13 @@ type ChoiceComponentProps = AriaProps & {
      * Controls the visual appearance of the radio.
      *
      * - `"default"` (the default) renders the radio as a compact row (radio
-     *   input + label + description) with no surrounding padding or divider.
-     * - `"cell"` renders the radio using the full `DetailCell` style, adding the
-     *   cell's padding and a horizontal rule so a list of radios reads as a set
-     *   of cells.
+     *   input + label + description) with no surrounding padding or border.
+     * - `"cell"` renders the radio as an individually bordered, rounded card
+     *   (with the `DetailCell` padding). When checked, the card's border uses
+     *   the selected/instructive color, so a group of radios reads as a set of
+     *   selectable cards.
      *
-     * In both cases the layout is composed from `DetailCell`; `appearance` only
-     * toggles the cell's own padding/divider styling.
+     * In both cases the layout is composed from `DetailCell`.
      */
     appearance?: "default" | "cell";
 };
@@ -105,6 +116,7 @@ type ChoiceComponentProps = AriaProps & {
         testId,
         groupName,
         appearance = "default",
+        rightAccessory,
         ...ariaProps
     } = props;
 
@@ -157,12 +169,25 @@ type ChoiceComponentProps = AriaProps & {
                     <View style={style} className={className}>
                         <DetailCell
                             testId={testId}
-                            horizontalRule={
-                                appearance === "cell" ? "inset" : "none"
-                            }
+                            // Both appearances draw their own separators (the
+                            // "cell" appearance renders each radio as a bordered
+                            // card), so DetailCell's built-in rule is never used.
+                            horizontalRule="none"
                             styles={
                                 appearance === "cell"
-                                    ? undefined
+                                    ? {
+                                          // Render the radio as a bordered card
+                                          // that shows a colored border when
+                                          // checked (the "radio as cell" look).
+                                          root: [
+                                              styles.cellCard,
+                                              checked &&
+                                                  styles.cellCardSelected,
+                                          ],
+                                          content: styles.cellContent,
+                                          leftAccessory: styles.cellAccessory,
+                                          rightAccessory: styles.cellAccessory,
+                                      }
                                     : {
                                           root: styles.compactRoot,
                                           content: styles.compactContent,
@@ -185,6 +210,7 @@ type ChoiceComponentProps = AriaProps & {
                             }
                             title={labelNode}
                             subtitle2={descriptionNode}
+                            rightAccessory={rightAccessory}
                         />
                     </View>
                 );
@@ -225,6 +251,30 @@ const styles = StyleSheet.create({
     // pixel below to be vertically centered with the label.
     compactAccessory: {
         alignSelf: "flex-start",
+        marginBlockStart: sizing.size_010,
+    },
+    // "cell" appearance: render each radio as an individually bordered,
+    // rounded card (keeping DetailCell's padding). The border width stays
+    // constant across states to avoid layout shift when selecting.
+    cellCard: {
+        borderStyle: "solid",
+        borderWidth: border.width.medium,
+        borderColor: semanticColor.core.border.neutral.subtle,
+        borderRadius: border.radius.radius_120,
+    },
+    // When checked, the card shows the instructive (selected) border color.
+    cellCardSelected: {
+        borderColor: semanticColor.core.border.instructive.default,
+    },
+    // Align the title/subtitle and the radio to the top of the card so the
+    // radio lines up with the title rather than the vertical center.
+    cellContent: {
+        alignSelf: "flex-start",
+    },
+    cellAccessory: {
+        alignSelf: "flex-start",
+        // Nudge the radio down to vertically center it against the title's
+        // line height.
         marginBlockStart: sizing.size_010,
     },
     label: {

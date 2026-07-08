@@ -26,6 +26,12 @@ type Props = AriaProps & {
      */
     appearance?: "default" | "cell";
     /**
+     * User-defined. Optional content rendered at the end of the row (e.g. a
+     * "Recommended" label). Only applies to radio choices; ignored for
+     * checkboxes. Most useful with `appearance="cell"`.
+     */
+    rightAccessory?: React.ReactNode;
+    /**
      * Auto-populated by parent. Whether this choice is checked.
      * @ignore
      */
@@ -137,9 +143,11 @@ const Choice = React.forwardRef(function Choice(
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
         value,
         variant,
-        // `appearance` only applies to Radio, so it's pulled out here and
-        // forwarded to Radio explicitly below (Checkbox does not support it).
+        // `appearance` and `rightAccessory` only apply to Radio, so they're
+        // pulled out here and forwarded to Radio explicitly below (Checkbox does
+        // not support them).
         appearance,
+        rightAccessory,
         ...remainingProps
     } = props;
 
@@ -159,6 +167,7 @@ const Choice = React.forwardRef(function Choice(
         <Radio
             {...remainingProps}
             appearance={appearance}
+            rightAccessory={rightAccessory}
             checked={checked}
             disabled={disabled}
             onChange={onChange}

@@ -54,8 +54,9 @@ type RadioGroupProps = {
      * Controls the visual appearance of every radio in the group.
      *
      * - `"default"` (the default) renders each radio as a compact row.
-     * - `"cell"` renders each radio using the full `DetailCell` style (padding
-     *   and a horizontal rule), so the group reads as a list of cells.
+     * - `"cell"` renders each radio as an individually bordered, rounded card
+     *   (the selected card uses a colored border), so the group reads as a set
+     *   of selectable cards.
      */
     appearance?: "default" | "cell";
     /**

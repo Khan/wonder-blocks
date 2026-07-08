@@ -5,6 +5,7 @@ import type {Meta, StoryObj} from "@storybook/react-vite";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {BodyText} from "@khanacademy/wonder-blocks-typography";
+import Link from "@khanacademy/wonder-blocks-link";
 
 import {Choice, RadioGroup} from "@khanacademy/wonder-blocks-form";
 import packageConfig from "../../packages/wonder-blocks-form/package.json";
@@ -97,36 +98,70 @@ Basic.parameters = {
     },
 };
 
+const COURSES = [
+    {
+        value: "2nd-grade",
+        title: "2nd grade math",
+        units: 12,
+        hours: 13,
+        recommended: true,
+    },
+    {value: "3rd-grade", title: "3rd grade math", units: 12, hours: 13},
+    {value: "4th-grade", title: "4th grade math", units: 9, hours: 14},
+];
+
+/**
+ * A course-picker built from `appearance="cell"` radios. Each option renders
+ * as a bordered card (the selected card uses a colored border), with a subtitle
+ * and an "Overview" link, plus an optional `rightAccessory` used here for the
+ * "Recommended" label.
+ */
 export const CellAppearance: StoryComponentType = () => {
-    const [selectedValue, setSelectedValue] = React.useState("squirtle-cell");
+    const [selectedValue, setSelectedValue] = React.useState("2nd-grade");
 
     return (
-        <RadioGroup
-            groupName="pokemon-cell"
-            label="Pokemon"
-            description="Your first Pokemon."
-            appearance="cell"
-            onChange={setSelectedValue}
-            selectedValue={selectedValue}
-        >
-            <Choice
-                label="Bulbasaur"
-                value="bulbasaur-cell"
-                description="A grass-type Pokemon."
-            />
-            <Choice
-                label="Charmander"
-                value="charmander-cell"
-                description="Oops, we ran out of Charmanders"
-                disabled
-            />
-            <Choice
-                label="Squirtle"
-                value="squirtle-cell"
-                description="A water-type Pokemon."
-            />
-            <Choice label="Pikachu" value="pikachu-cell" />
-        </RadioGroup>
+        <View style={styles.coursePicker}>
+            <RadioGroup
+                groupName="course"
+                appearance="cell"
+                onChange={setSelectedValue}
+                selectedValue={selectedValue}
+            >
+                {COURSES.map((course) => (
+                    <Choice
+                        key={course.value}
+                        value={course.value}
+                        label={course.title}
+                        description={
+                            <>
+                                {`${course.units} units • est. ${course.hours} hours`}
+                                <Link
+                                    href="https://www.khanacademy.org"
+                                    target="_blank"
+                                    style={styles.overviewLink}
+                                >
+                                    Overview
+                                </Link>
+                            </>
+                        }
+                        rightAccessory={
+                            course.recommended ? (
+                                <BodyText
+                                    size="small"
+                                    tag="span"
+                                    style={styles.recommended}
+                                >
+                                    Recommended
+                                </BodyText>
+                            ) : undefined
+                        }
+                    />
+                ))}
+            </RadioGroup>
+            <Link href="https://www.khanacademy.org">
+                Select a different course
+            </Link>
+        </View>
     );
 };
 
@@ -134,9 +169,10 @@ CellAppearance.parameters = {
     docs: {
         description: {
             story: `Setting \`appearance="cell"\` on the \`RadioGroup\`
-        forwards it to every radio, rendering each option with the full
-        \`DetailCell\` style (padding and a horizontal rule) so the group reads
-        as a list of cells.`,
+        forwards it to every radio, rendering each option as a bordered card.
+        The selected card uses a colored border. This example also uses each
+        \`Choice\`'s \`rightAccessory\` (for the "Recommended" label) and a
+        rich \`description\` (metadata plus an "Overview" link).`,
         },
     },
 };
@@ -315,5 +351,15 @@ const styles = StyleSheet.create({
     },
     prompt: {
         marginBlockEnd: 16,
+    },
+    coursePicker: {
+        gap: sizing.size_120,
+        maxInlineSize: 520,
+    },
+    overviewLink: {
+        marginInlineStart: sizing.size_160,
+    },
+    recommended: {
+        color: semanticColor.core.foreground.neutral.default,
     },
 });
