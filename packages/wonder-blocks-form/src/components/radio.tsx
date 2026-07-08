@@ -254,18 +254,24 @@ const styles = StyleSheet.create({
         marginBlockStart: sizing.size_010,
     },
     // "cell" appearance: render each radio as an individually bordered,
-    // rounded card (keeping DetailCell's padding). The border width stays
-    // constant across states to avoid layout shift when selecting.
+    // rounded card (keeping DetailCell's padding).
     cellCard: {
         borderStyle: "solid",
         borderWidth: border.width.thin,
         borderColor: semanticColor.core.border.neutral.subtle,
         borderRadius: border.radius.radius_120,
     },
-    // When checked, the card shows the instructive (selected) border color.
+    // When checked, the card shows the instructive (selected) color. We use an
+    // outline (drawn on top of, and overlapping, the existing border via a
+    // negative offset) rather than changing the border itself, so selecting an
+    // option does not shift the card's layout.
     cellCardSelected: {
-        borderColor: semanticColor.core.border.instructive.default,
-        borderWidth: border.width.medium,
+        outlineStyle: "solid",
+        outlineWidth: border.width.medium,
+        outlineColor: semanticColor.core.border.instructive.default,
+        // Pull the outline in by the border width so it overlaps (and hides)
+        // the neutral border instead of doubling up with it.
+        outlineOffset: `calc(${border.width.thin} * -1)`,
     },
     // Align the title/subtitle and the radio to the top of the card so the
     // radio lines up with the title rather than the vertical center.
