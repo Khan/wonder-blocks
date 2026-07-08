@@ -1,6 +1,6 @@
 import * as React from "react";
 import {Meta, StoryObj} from "@storybook/react-vite";
-import packageConfig from "@khanacademy/wonder-blocks-typography/package.json";
+import packageConfig from "../../packages/wonder-blocks-typography/package.json";
 
 import ComponentInfo from "../components/component-info";
 import TypographyArgTypes from "./typography.argtypes";
