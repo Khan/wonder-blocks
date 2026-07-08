@@ -24,7 +24,6 @@ export default {
         },
     },
     argTypes: TypographyArgTypes,
-    tags: ["!manifest"],
 } as Meta<typeof BodyMonospace>;
 
 type StoryComponentType = StoryObj<typeof BodyMonospace>;
