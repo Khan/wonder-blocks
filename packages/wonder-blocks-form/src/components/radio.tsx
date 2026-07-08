@@ -258,13 +258,14 @@ const styles = StyleSheet.create({
     // constant across states to avoid layout shift when selecting.
     cellCard: {
         borderStyle: "solid",
-        borderWidth: border.width.medium,
+        borderWidth: border.width.thin,
         borderColor: semanticColor.core.border.neutral.subtle,
         borderRadius: border.radius.radius_120,
     },
     // When checked, the card shows the instructive (selected) border color.
     cellCardSelected: {
         borderColor: semanticColor.core.border.instructive.default,
+        borderWidth: border.width.medium,
     },
     // Align the title/subtitle and the radio to the top of the card so the
     // radio lines up with the title rather than the vertical center.

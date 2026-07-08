@@ -4,7 +4,10 @@ import type {Meta, StoryObj} from "@storybook/react-vite";
 
 import {View} from "@khanacademy/wonder-blocks-core";
 import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
-import {BodyText} from "@khanacademy/wonder-blocks-typography";
+import {
+    BodyText,
+    styles as typographyStyles,
+} from "@khanacademy/wonder-blocks-typography";
 import Link from "@khanacademy/wonder-blocks-link";
 
 import {Choice, RadioGroup} from "@khanacademy/wonder-blocks-form";
@@ -126,6 +129,22 @@ export const CellAppearance: StoryComponentType = () => {
                 appearance="cell"
                 onChange={setSelectedValue}
                 selectedValue={selectedValue}
+                label={
+                    <BodyText
+                        weight="semi"
+                        tag="span"
+                        style={{textAlign: "center"}}
+                    >
+                        Assign to{" "}
+                        <BodyText
+                            style={typographyStyles.HeadingXxLargeBoldWeight}
+                            tag="span"
+                        >
+                            Period 1 - Algegra 1A
+                        </BodyText>
+                    </BodyText>
+                }
+                description="Choose a course to assign unit missions and instantly start students on personalized practice proven to help reach growth targets. "
             >
                 {COURSES.map((course) => (
                     <Choice
