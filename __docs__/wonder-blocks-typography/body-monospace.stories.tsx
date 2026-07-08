@@ -1,6 +1,6 @@
 import * as React from "react";
 import {Meta, StoryObj} from "@storybook/react-vite";
-import packageConfig from "../../packages/wonder-blocks-typography/package.json";
+import packageConfig from "@khanacademy/wonder-blocks-typography/package.json";
 
 import ComponentInfo from "../components/component-info";
 import TypographyArgTypes from "./typography.argtypes";
@@ -8,7 +8,7 @@ import TypographyArgTypes from "./typography.argtypes";
 import {BodyMonospace} from "@khanacademy/wonder-blocks-typography";
 
 export default {
-    title: "Packages / Typography / Deprecated / BodyMonospace",
+    title: "Packages / Typography / BodyMonospace",
     component: BodyMonospace,
     parameters: {
         componentSubtitle: (
@@ -24,7 +24,7 @@ export default {
         },
     },
     argTypes: TypographyArgTypes,
-    tags: ["deprecated", "!manifest"],
+    tags: ["!manifest"],
 } as Meta<typeof BodyMonospace>;
 
 type StoryComponentType = StoryObj<typeof BodyMonospace>;
