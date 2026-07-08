@@ -12,7 +12,8 @@ html {
 
 /* Set `color-scheme: dark` on the `:root` element when the body uses a dark
  * theme (e.g. `syl-dark`). This ensures that browser-rendered UI (form
- * controls, scrollbars, etc.) matches the dark theme. */
+ * controls, scrollbars, etc.) matches the dark theme.
+ * This will be moved to WB global styles in WB-2394. */
 :root:has(body[data-wb-theme$="-dark"]) {
     color-scheme: dark;
 }
