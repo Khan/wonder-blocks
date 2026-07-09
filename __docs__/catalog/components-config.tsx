@@ -71,7 +71,8 @@ import {
     Heading,
 } from "@khanacademy/wonder-blocks-typography";
 import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
-import customBackgroundImage from "../../static/celebration_bg.svg";
+import customBackgroundImage from "../../static/EOT-Background.svg";
+import {CardBackgroundExample} from "../wonder-blocks-card/card-background-example";
 
 export type VariantProp<T> = {
     [K in keyof T & string]: {
@@ -977,7 +978,14 @@ export const layoutBlocksComponents = [
             },
             {
                 propName: "background",
-                options: ["base-subtle", "base-default", customBackgroundImage],
+                options: [
+                    "base-subtle",
+                    "base-default",
+                    {
+                        type: "inline-svg",
+                        component: <CardBackgroundExample />,
+                    },
+                ],
             },
             {
                 propName: "elevation",
