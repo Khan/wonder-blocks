@@ -167,10 +167,9 @@ const sharedFeedbackStrongTokens = {
 /**
  * Graphics tokens are used for illustrative and decorative elements such as
  * character art, gems, streaks, progress indicators, role badges, and
- * external brand colors. They map to the Figma "5 - Graphics" collection.
+ * external brand colors.
  */
 const graphics = {
-    palette: graphicsPalette,
     characters: {
         flesh: {
             blue: {
