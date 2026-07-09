@@ -235,6 +235,27 @@ const graphics = {
             },
         },
     },
+    externalBrands: {
+        google: {
+            red: "#EA4335",
+            yellow: "#FBBC05",
+            green: "#34A853",
+            blue: "#4285F4",
+        },
+        facebook: {
+            blue: "#1877F2",
+            white: "#FFFFFF",
+        },
+        microsoft: {
+            red: "#F35325",
+            green: "#81BC06",
+            blue: "#05A6F0",
+            yellow: "#FFBA08",
+        },
+        apple: {
+            brand: "#000000",
+        },
+    },
     gems: {
         background: {
             subtle: graphicsPalette.magenta_80,
@@ -244,12 +265,6 @@ const graphics = {
             subtle: graphicsPalette.magenta_60,
             default: graphicsPalette.magenta_30,
             strong: graphicsPalette.magenta_20,
-        },
-    },
-    neutral: {
-        background: {
-            subtle: graphicsPalette.white_100,
-            default: graphicsPalette.blue_90,
         },
     },
     progress: {
@@ -263,6 +278,12 @@ const graphics = {
                 strong: graphicsPalette.yellow_10,
             },
         },
+        notStarted: {
+            foreground: {
+                subtle: graphicsPalette.gray_50,
+                strong: graphicsPalette.gray_10,
+            },
+        },
         complete: {
             background: {
                 subtle: graphicsPalette.green_90,
@@ -272,23 +293,17 @@ const graphics = {
                 strong: graphicsPalette.green_10,
             },
         },
-        notStarted: {
-            foreground: {
-                subtle: graphicsPalette.gray_50,
-                strong: graphicsPalette.gray_10,
-            },
-        },
     },
     role: {
-        administrator: {
-            background: graphicsPalette.cyan_70,
-            foreground: graphicsPalette.cyan_40,
-        },
         all: {
             current: {
                 background: graphicsPalette.blue_90,
                 foreground: graphicsPalette.blue_80,
             },
+        },
+        administrator: {
+            background: graphicsPalette.cyan_70,
+            foreground: graphicsPalette.cyan_40,
         },
         learner: {
             background: graphicsPalette.orange_60,
@@ -314,25 +329,10 @@ const graphics = {
             strong: graphicsPalette.orange_20,
         },
     },
-    externalBrands: {
-        google: {
-            blue: "#4285F4",
-            green: "#34A853",
-            red: "#EA4335",
-            yellow: "#FBBC05",
-        },
-        facebook: {
-            blue: "#1877F2",
-            white: "#FFFFFF",
-        },
-        microsoft: {
-            blue: "#05A6F0",
-            green: "#81BC06",
-            red: "#F35325",
-            yellow: "#FFBA08",
-        },
-        apple: {
-            brand: "#000000",
+    neutral: {
+        background: {
+            subtle: graphicsPalette.white_100,
+            default: graphicsPalette.blue_90,
         },
     },
 };

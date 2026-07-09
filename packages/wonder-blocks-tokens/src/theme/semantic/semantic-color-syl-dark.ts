@@ -614,6 +614,11 @@ export const semanticColor = mergeTheme(thunderblocksSemanticColor, {
                 },
             },
         },
+        externalBrands: {
+            apple: {
+                brand: "#FFFFFF",
+            },
+        },
         gems: {
             background: {
                 subtle: graphicsPalette.magenta_01,
@@ -623,12 +628,6 @@ export const semanticColor = mergeTheme(thunderblocksSemanticColor, {
                 subtle: graphicsPalette.magenta_20,
                 default: graphicsPalette.magenta_30,
                 strong: graphicsPalette.magenta_90,
-            },
-        },
-        neutral: {
-            background: {
-                subtle: graphicsPalette.gray_05,
-                default: graphicsPalette.black_100,
             },
         },
         progress: {
@@ -642,6 +641,12 @@ export const semanticColor = mergeTheme(thunderblocksSemanticColor, {
                     strong: graphicsPalette.yellow_05,
                 },
             },
+            notStarted: {
+                foreground: {
+                    subtle: graphicsPalette.gray_50,
+                    strong: graphicsPalette.gray_10,
+                },
+            },
             complete: {
                 background: {
                     subtle: graphicsPalette.green_01,
@@ -651,23 +656,17 @@ export const semanticColor = mergeTheme(thunderblocksSemanticColor, {
                     strong: graphicsPalette.green_10,
                 },
             },
-            notStarted: {
-                foreground: {
-                    subtle: graphicsPalette.gray_50,
-                    strong: graphicsPalette.gray_10,
-                },
-            },
         },
         role: {
-            administrator: {
-                background: graphicsPalette.cyan_05,
-                foreground: graphicsPalette.cyan_10,
-            },
             all: {
                 current: {
                     background: graphicsPalette.black_100,
                     foreground: graphicsPalette.blue_01,
                 },
+            },
+            administrator: {
+                background: graphicsPalette.cyan_05,
+                foreground: graphicsPalette.cyan_10,
             },
             learner: {
                 background: graphicsPalette.orange_05,
@@ -683,19 +682,20 @@ export const semanticColor = mergeTheme(thunderblocksSemanticColor, {
             },
         },
         streaks: {
-            background: {
-                subtle: graphicsPalette.orange_01,
-                default: graphicsPalette.orange_05,
-            },
             foreground: {
                 subtle: graphicsPalette.orange_20,
                 default: graphicsPalette.orange_30,
                 strong: graphicsPalette.orange_90,
             },
+            background: {
+                subtle: graphicsPalette.orange_01,
+                default: graphicsPalette.orange_05,
+            },
         },
-        externalBrands: {
-            apple: {
-                brand: "#FFFFFF",
+        neutral: {
+            background: {
+                subtle: graphicsPalette.gray_05,
+                default: graphicsPalette.black_100,
             },
         },
     },
