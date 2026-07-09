@@ -160,6 +160,178 @@ const sharedFeedbackStrongTokens = {
     text: core.foreground.knockout.default,
 };
 
+/**
+ * Graphics tokens are used for illustrative and decorative elements such as
+ * character art, gems, streaks, progress indicators, role badges, and
+ * external brand colors. They map to the Figma "5 - Graphics" collection.
+ */
+const graphics = {
+    characters: {
+        flesh: {
+            blue: {
+                background: {
+                    subtle: thunderBlocksColor.blue_40,
+                    default: thunderBlocksColor.blue_30,
+                    strong: thunderBlocksColor.blue_20,
+                },
+                border: {
+                    subtle: thunderBlocksColor.blue_40,
+                    default: thunderBlocksColor.blue_20,
+                    strong: thunderBlocksColor.blue_10,
+                },
+            },
+            cyan: {
+                background: {
+                    subtle: thunderBlocksColor.cyan_40,
+                    default: thunderBlocksColor.cyan_30,
+                    strong: thunderBlocksColor.cyan_20,
+                },
+                border: {
+                    subtle: thunderBlocksColor.cyan_40,
+                    default: thunderBlocksColor.cyan_20,
+                    strong: thunderBlocksColor.cyan_10,
+                },
+            },
+            green: {
+                background: {
+                    subtle: thunderBlocksColor.green_40,
+                    default: thunderBlocksColor.green_30,
+                    strong: thunderBlocksColor.green_20,
+                },
+                border: {
+                    subtle: thunderBlocksColor.green_40,
+                    default: thunderBlocksColor.green_20,
+                    strong: thunderBlocksColor.green_10,
+                },
+            },
+            magenta: {
+                background: {
+                    subtle: thunderBlocksColor.magenta_40,
+                    default: thunderBlocksColor.magenta_30,
+                    strong: thunderBlocksColor.magenta_20,
+                },
+                border: {
+                    subtle: thunderBlocksColor.magenta_40,
+                    default: thunderBlocksColor.magenta_20,
+                    strong: thunderBlocksColor.magenta_10,
+                },
+            },
+            orange: {
+                background: {
+                    subtle: thunderBlocksColor.orange_40,
+                    default: thunderBlocksColor.orange_30,
+                    strong: thunderBlocksColor.orange_20,
+                },
+                border: {
+                    subtle: thunderBlocksColor.orange_40,
+                    default: thunderBlocksColor.orange_20,
+                    strong: thunderBlocksColor.orange_10,
+                },
+            },
+        },
+    },
+    gems: {
+        background: {
+            subtle: thunderBlocksColor.magenta_80,
+            default: thunderBlocksColor.magenta_70,
+        },
+        foreground: {
+            subtle: thunderBlocksColor.magenta_60,
+            default: thunderBlocksColor.magenta_30,
+            strong: thunderBlocksColor.magenta_20,
+        },
+    },
+    neutral: {
+        background: {
+            subtle: thunderBlocksColor.white_100,
+            default: thunderBlocksColor.blue_90,
+        },
+    },
+    progress: {
+        attempted: {
+            background: {
+                subtle: thunderBlocksColor.yellow_90,
+                default: thunderBlocksColor.yellow_70,
+            },
+            foreground: {
+                subtle: thunderBlocksColor.yellow_50,
+                strong: thunderBlocksColor.yellow_10,
+            },
+        },
+        complete: {
+            background: {
+                subtle: thunderBlocksColor.green_90,
+                default: thunderBlocksColor.green_70,
+            },
+            foreground: {
+                strong: thunderBlocksColor.green_10,
+            },
+        },
+        notStarted: {
+            foreground: {
+                subtle: thunderBlocksColor.gray_50,
+                strong: thunderBlocksColor.gray_10,
+            },
+        },
+    },
+    role: {
+        administrator: {
+            background: thunderBlocksColor.cyan_70,
+            foreground: thunderBlocksColor.cyan_40,
+        },
+        all: {
+            current: {
+                background: thunderBlocksColor.blue_90,
+                foreground: thunderBlocksColor.blue_80,
+            },
+        },
+        learner: {
+            background: thunderBlocksColor.orange_60,
+            foreground: thunderBlocksColor.orange_30,
+        },
+        parent: {
+            background: thunderBlocksColor.green_70,
+            foreground: thunderBlocksColor.green_40,
+        },
+        teacher: {
+            background: thunderBlocksColor.yellow_50,
+            foreground: thunderBlocksColor.yellow_30,
+        },
+    },
+    streaks: {
+        background: {
+            subtle: thunderBlocksColor.orange_80,
+            default: thunderBlocksColor.orange_70,
+        },
+        foreground: {
+            subtle: thunderBlocksColor.orange_60,
+            default: thunderBlocksColor.orange_30,
+            strong: thunderBlocksColor.orange_20,
+        },
+    },
+    externalBrands: {
+        google: {
+            blue: "#4285F4",
+            green: "#34A853",
+            red: "#EA4335",
+            yellow: "#FBBC05",
+        },
+        facebook: {
+            blue: "#1877F2",
+            white: "#FFFFFF",
+        },
+        microsoft: {
+            blue: "#05A6F0",
+            green: "#81BC06",
+            red: "#F35325",
+            yellow: "#FFBA08",
+        },
+        apple: {
+            brand: "#000000",
+        },
+    },
+};
+
 export const semanticColor = {
     /**
      * Our core colors are used for the most common elements in our UI. They
@@ -167,6 +339,12 @@ export const semanticColor = {
      * consistently across all components.
      */
     core,
+    /**
+     * Graphics tokens are used for illustrative and decorative elements such
+     * as character art, gems, streaks, progress indicators, role badges, and
+     * external brand colors.
+     */
+    graphics,
     /**
      * Learning tokens are used for elements that are related to learning
      * experiences, such as practice and mastery, among others.
