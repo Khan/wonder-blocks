@@ -351,7 +351,10 @@ const styles = StyleSheet.create({
     },
     gridCompact: {
         display: "grid",
-        gridTemplateColumns: "repeat(3, minmax(100px, auto))",
+        // Always lay out 3 equal-width columns so items stay the same size
+        // regardless of how many are in the group (e.g. a group with 2 items
+        // matches the size of a group with 3).
+        gridTemplateColumns: "repeat(3, minmax(0, 1fr))",
     },
 
     banner: {
