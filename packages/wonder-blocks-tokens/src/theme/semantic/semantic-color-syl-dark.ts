@@ -1,5 +1,5 @@
 import {mergeTheme} from "@khanacademy/wonder-blocks-theming";
-import {color} from "./internal/primitive-color-thunderblocks";
+import {color, graphicsPalette} from "./internal/primitive-color-thunderblocks";
 import {semanticColor as thunderblocksSemanticColor} from "./semantic-color-thunderblocks";
 
 const transparent = "transparent";
@@ -554,162 +554,146 @@ export const semanticColor = mergeTheme(thunderblocksSemanticColor, {
             flesh: {
                 blue: {
                     background: {
-                        subtle: color.blue_20,
-                        default: color.blue_30,
-                        strong: color.blue_40,
+                        subtle: graphicsPalette.blue_20,
+                        default: graphicsPalette.blue_30,
+                        strong: graphicsPalette.blue_40,
                     },
                     border: {
-                        subtle: color.blue_10,
-                        default: color.blue_20,
-                        strong: color.blue_40,
+                        subtle: graphicsPalette.blue_10,
+                        default: graphicsPalette.blue_20,
+                        strong: graphicsPalette.blue_40,
                     },
                 },
                 cyan: {
                     background: {
-                        subtle: color.cyan_20,
-                        default: color.cyan_30,
-                        strong: color.cyan_40,
+                        subtle: graphicsPalette.cyan_20,
+                        default: graphicsPalette.cyan_30,
+                        strong: graphicsPalette.cyan_40,
                     },
                     border: {
-                        subtle: color.cyan_10,
-                        default: color.cyan_20,
-                        strong: color.cyan_40,
+                        subtle: graphicsPalette.cyan_10,
+                        default: graphicsPalette.cyan_20,
+                        strong: graphicsPalette.cyan_40,
                     },
                 },
                 green: {
                     background: {
-                        subtle: color.green_20,
-                        default: color.green_30,
-                        strong: color.green_40,
+                        subtle: graphicsPalette.green_20,
+                        default: graphicsPalette.green_30,
+                        strong: graphicsPalette.green_40,
                     },
                     border: {
-                        subtle: color.green_20,
-                        default: color.green_30,
-                        strong: color.green_50,
+                        subtle: graphicsPalette.green_20,
+                        default: graphicsPalette.green_30,
+                        strong: graphicsPalette.green_50,
                     },
                 },
                 magenta: {
                     background: {
-                        subtle: color.magenta_20,
-                        default: color.magenta_30,
-                        strong: color.magenta_40,
+                        subtle: graphicsPalette.magenta_20,
+                        default: graphicsPalette.magenta_30,
+                        strong: graphicsPalette.magenta_40,
                     },
                     border: {
-                        subtle: color.magenta_10,
-                        default: color.magenta_20,
-                        strong: color.magenta_40,
+                        subtle: graphicsPalette.magenta_10,
+                        default: graphicsPalette.magenta_20,
+                        strong: graphicsPalette.magenta_40,
                     },
                 },
                 orange: {
                     background: {
-                        subtle: color.orange_20,
-                        default: color.orange_30,
-                        strong: color.orange_40,
+                        subtle: graphicsPalette.orange_20,
+                        default: graphicsPalette.orange_30,
+                        strong: graphicsPalette.orange_40,
                     },
                     border: {
-                        subtle: color.orange_10,
-                        default: color.orange_20,
-                        strong: color.orange_40,
+                        subtle: graphicsPalette.orange_10,
+                        default: graphicsPalette.orange_20,
+                        strong: graphicsPalette.orange_40,
                     },
                 },
             },
         },
         gems: {
             background: {
-                subtle: color.magenta_01,
-                default: color.magenta_05,
+                subtle: graphicsPalette.magenta_01,
+                default: graphicsPalette.magenta_05,
             },
             foreground: {
-                subtle: color.magenta_20,
-                default: color.magenta_30,
-                strong: color.magenta_90,
+                subtle: graphicsPalette.magenta_20,
+                default: graphicsPalette.magenta_30,
+                strong: graphicsPalette.magenta_90,
             },
         },
         neutral: {
             background: {
-                subtle: color.gray_05,
-                default: color.black_100,
+                subtle: graphicsPalette.gray_05,
+                default: graphicsPalette.black_100,
             },
         },
         progress: {
             attempted: {
                 background: {
-                    subtle: color.yellow_01,
-                    default: color.yellow_05,
+                    subtle: graphicsPalette.yellow_01,
+                    default: graphicsPalette.yellow_05,
                 },
                 foreground: {
-                    subtle: color.yellow_20,
-                    strong: color.yellow_05,
+                    subtle: graphicsPalette.yellow_20,
+                    strong: graphicsPalette.yellow_05,
                 },
             },
             complete: {
                 background: {
-                    subtle: color.green_01,
-                    default: color.green_05,
+                    subtle: graphicsPalette.green_01,
+                    default: graphicsPalette.green_05,
                 },
                 foreground: {
-                    strong: color.green_10,
+                    strong: graphicsPalette.green_10,
                 },
             },
             notStarted: {
                 foreground: {
-                    subtle: color.gray_50,
-                    strong: color.gray_10,
+                    subtle: graphicsPalette.gray_50,
+                    strong: graphicsPalette.gray_10,
                 },
             },
         },
         role: {
             administrator: {
-                background: color.cyan_05,
-                foreground: color.cyan_10,
+                background: graphicsPalette.cyan_05,
+                foreground: graphicsPalette.cyan_10,
             },
             all: {
                 current: {
-                    background: color.black_100,
-                    foreground: color.blue_01,
+                    background: graphicsPalette.black_100,
+                    foreground: graphicsPalette.blue_01,
                 },
             },
             learner: {
-                background: color.orange_05,
-                foreground: color.orange_10,
+                background: graphicsPalette.orange_05,
+                foreground: graphicsPalette.orange_10,
             },
             parent: {
-                background: color.green_05,
-                foreground: color.green_10,
+                background: graphicsPalette.green_05,
+                foreground: graphicsPalette.green_10,
             },
             teacher: {
-                background: color.yellow_05,
-                foreground: color.yellow_10,
+                background: graphicsPalette.yellow_05,
+                foreground: graphicsPalette.yellow_10,
             },
         },
         streaks: {
             background: {
-                subtle: color.orange_01,
-                default: color.orange_05,
+                subtle: graphicsPalette.orange_01,
+                default: graphicsPalette.orange_05,
             },
             foreground: {
-                subtle: color.orange_20,
-                default: color.orange_30,
-                strong: color.orange_90,
+                subtle: graphicsPalette.orange_20,
+                default: graphicsPalette.orange_30,
+                strong: graphicsPalette.orange_90,
             },
         },
         externalBrands: {
-            google: {
-                blue: "#4285F4",
-                green: "#34A853",
-                red: "#EA4335",
-                yellow: "#FBBC05",
-            },
-            facebook: {
-                blue: "#1877F2",
-                white: "#FFFFFF",
-            },
-            microsoft: {
-                blue: "#05A6F0",
-                green: "#81BC06",
-                red: "#F35325",
-                yellow: "#FFBA08",
-            },
             apple: {
                 brand: "#FFFFFF",
             },

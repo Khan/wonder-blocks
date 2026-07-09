@@ -5,7 +5,10 @@
 import {color} from "../../tokens/color";
 // NOTE: This import is only to provide backwards compatibility with some
 // colors that don't exist in the OG primitives.
-import {color as thunderBlocksColor} from "./internal/primitive-color-thunderblocks";
+import {
+    graphicsPalette,
+    color as thunderBlocksColor,
+} from "./internal/primitive-color-thunderblocks";
 
 const transparent = "transparent";
 
@@ -167,147 +170,148 @@ const sharedFeedbackStrongTokens = {
  * external brand colors. They map to the Figma "5 - Graphics" collection.
  */
 const graphics = {
+    palette: graphicsPalette,
     characters: {
         flesh: {
             blue: {
                 background: {
-                    subtle: thunderBlocksColor.blue_40,
-                    default: thunderBlocksColor.blue_30,
-                    strong: thunderBlocksColor.blue_20,
+                    subtle: graphicsPalette.blue_40,
+                    default: graphicsPalette.blue_30,
+                    strong: graphicsPalette.blue_20,
                 },
                 border: {
-                    subtle: thunderBlocksColor.blue_40,
-                    default: thunderBlocksColor.blue_20,
-                    strong: thunderBlocksColor.blue_10,
+                    subtle: graphicsPalette.blue_40,
+                    default: graphicsPalette.blue_20,
+                    strong: graphicsPalette.blue_10,
                 },
             },
             cyan: {
                 background: {
-                    subtle: thunderBlocksColor.cyan_40,
-                    default: thunderBlocksColor.cyan_30,
-                    strong: thunderBlocksColor.cyan_20,
+                    subtle: graphicsPalette.cyan_40,
+                    default: graphicsPalette.cyan_30,
+                    strong: graphicsPalette.cyan_20,
                 },
                 border: {
-                    subtle: thunderBlocksColor.cyan_40,
-                    default: thunderBlocksColor.cyan_20,
-                    strong: thunderBlocksColor.cyan_10,
+                    subtle: graphicsPalette.cyan_40,
+                    default: graphicsPalette.cyan_20,
+                    strong: graphicsPalette.cyan_10,
                 },
             },
             green: {
                 background: {
-                    subtle: thunderBlocksColor.green_40,
-                    default: thunderBlocksColor.green_30,
-                    strong: thunderBlocksColor.green_20,
+                    subtle: graphicsPalette.green_40,
+                    default: graphicsPalette.green_30,
+                    strong: graphicsPalette.green_20,
                 },
                 border: {
-                    subtle: thunderBlocksColor.green_40,
-                    default: thunderBlocksColor.green_20,
-                    strong: thunderBlocksColor.green_10,
+                    subtle: graphicsPalette.green_40,
+                    default: graphicsPalette.green_20,
+                    strong: graphicsPalette.green_10,
                 },
             },
             magenta: {
                 background: {
-                    subtle: thunderBlocksColor.magenta_40,
-                    default: thunderBlocksColor.magenta_30,
-                    strong: thunderBlocksColor.magenta_20,
+                    subtle: graphicsPalette.magenta_40,
+                    default: graphicsPalette.magenta_30,
+                    strong: graphicsPalette.magenta_20,
                 },
                 border: {
-                    subtle: thunderBlocksColor.magenta_40,
-                    default: thunderBlocksColor.magenta_20,
-                    strong: thunderBlocksColor.magenta_10,
+                    subtle: graphicsPalette.magenta_40,
+                    default: graphicsPalette.magenta_20,
+                    strong: graphicsPalette.magenta_10,
                 },
             },
             orange: {
                 background: {
-                    subtle: thunderBlocksColor.orange_40,
-                    default: thunderBlocksColor.orange_30,
-                    strong: thunderBlocksColor.orange_20,
+                    subtle: graphicsPalette.orange_40,
+                    default: graphicsPalette.orange_30,
+                    strong: graphicsPalette.orange_20,
                 },
                 border: {
-                    subtle: thunderBlocksColor.orange_40,
-                    default: thunderBlocksColor.orange_20,
-                    strong: thunderBlocksColor.orange_10,
+                    subtle: graphicsPalette.orange_40,
+                    default: graphicsPalette.orange_20,
+                    strong: graphicsPalette.orange_10,
                 },
             },
         },
     },
     gems: {
         background: {
-            subtle: thunderBlocksColor.magenta_80,
-            default: thunderBlocksColor.magenta_70,
+            subtle: graphicsPalette.magenta_80,
+            default: graphicsPalette.magenta_70,
         },
         foreground: {
-            subtle: thunderBlocksColor.magenta_60,
-            default: thunderBlocksColor.magenta_30,
-            strong: thunderBlocksColor.magenta_20,
+            subtle: graphicsPalette.magenta_60,
+            default: graphicsPalette.magenta_30,
+            strong: graphicsPalette.magenta_20,
         },
     },
     neutral: {
         background: {
-            subtle: thunderBlocksColor.white_100,
-            default: thunderBlocksColor.blue_90,
+            subtle: graphicsPalette.white_100,
+            default: graphicsPalette.blue_90,
         },
     },
     progress: {
         attempted: {
             background: {
-                subtle: thunderBlocksColor.yellow_90,
-                default: thunderBlocksColor.yellow_70,
+                subtle: graphicsPalette.yellow_90,
+                default: graphicsPalette.yellow_70,
             },
             foreground: {
-                subtle: thunderBlocksColor.yellow_50,
-                strong: thunderBlocksColor.yellow_10,
+                subtle: graphicsPalette.yellow_50,
+                strong: graphicsPalette.yellow_10,
             },
         },
         complete: {
             background: {
-                subtle: thunderBlocksColor.green_90,
-                default: thunderBlocksColor.green_70,
+                subtle: graphicsPalette.green_90,
+                default: graphicsPalette.green_70,
             },
             foreground: {
-                strong: thunderBlocksColor.green_10,
+                strong: graphicsPalette.green_10,
             },
         },
         notStarted: {
             foreground: {
-                subtle: thunderBlocksColor.gray_50,
-                strong: thunderBlocksColor.gray_10,
+                subtle: graphicsPalette.gray_50,
+                strong: graphicsPalette.gray_10,
             },
         },
     },
     role: {
         administrator: {
-            background: thunderBlocksColor.cyan_70,
-            foreground: thunderBlocksColor.cyan_40,
+            background: graphicsPalette.cyan_70,
+            foreground: graphicsPalette.cyan_40,
         },
         all: {
             current: {
-                background: thunderBlocksColor.blue_90,
-                foreground: thunderBlocksColor.blue_80,
+                background: graphicsPalette.blue_90,
+                foreground: graphicsPalette.blue_80,
             },
         },
         learner: {
-            background: thunderBlocksColor.orange_60,
-            foreground: thunderBlocksColor.orange_30,
+            background: graphicsPalette.orange_60,
+            foreground: graphicsPalette.orange_30,
         },
         parent: {
-            background: thunderBlocksColor.green_70,
-            foreground: thunderBlocksColor.green_40,
+            background: graphicsPalette.green_70,
+            foreground: graphicsPalette.green_40,
         },
         teacher: {
-            background: thunderBlocksColor.yellow_50,
-            foreground: thunderBlocksColor.yellow_30,
+            background: graphicsPalette.yellow_50,
+            foreground: graphicsPalette.yellow_30,
         },
     },
     streaks: {
         background: {
-            subtle: thunderBlocksColor.orange_80,
-            default: thunderBlocksColor.orange_70,
+            subtle: graphicsPalette.orange_80,
+            default: graphicsPalette.orange_70,
         },
         foreground: {
-            subtle: thunderBlocksColor.orange_60,
-            default: thunderBlocksColor.orange_30,
-            strong: thunderBlocksColor.orange_20,
+            subtle: graphicsPalette.orange_60,
+            default: graphicsPalette.orange_30,
+            strong: graphicsPalette.orange_20,
         },
     },
     externalBrands: {
