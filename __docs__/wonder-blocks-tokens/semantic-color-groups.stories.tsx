@@ -249,9 +249,103 @@ export const Mastery = () => {
     );
 };
 
+export const GraphicsCharactersFlesh = () => {
+    return (
+        <View style={styles.groupOfColorGroupStory}>
+            {Object.entries(semanticColor.graphics.characters.flesh).map(
+                ([colorName, colorGroup]) => (
+                    <React.Fragment key={colorName}>
+                        <Heading size="medium" style={styles.capitalized}>
+                            Characters Flesh {colorName}
+                        </Heading>
+                        <ColorGroupStory
+                            category={colorGroup}
+                            group={`graphics.characters.flesh.${colorName}`}
+                        />
+                    </React.Fragment>
+                ),
+            )}
+        </View>
+    );
+};
+
+export const GraphicsGems = () => {
+    return (
+        <ColorGroupStory
+            category={semanticColor.graphics.gems}
+            group="graphics.gems"
+        />
+    );
+};
+
+export const GraphicsStreaks = () => {
+    return (
+        <ColorGroupStory
+            category={semanticColor.graphics.streaks}
+            group="graphics.streaks"
+        />
+    );
+};
+
+export const GraphicsProgress = () => {
+    return (
+        <View style={styles.groupOfColorGroupStory}>
+            {Object.entries(semanticColor.graphics.progress).map(
+                ([state, colorGroup]) => (
+                    <React.Fragment key={state}>
+                        <Heading size="medium" style={styles.capitalized}>
+                            {state}
+                        </Heading>
+                        <ColorGroupStory
+                            category={colorGroup}
+                            group={`graphics.progress.${state}`}
+                        />
+                    </React.Fragment>
+                ),
+            )}
+        </View>
+    );
+};
+
+export const GraphicsRole = () => {
+    return (
+        <ColorGroupStory
+            category={{
+                "all.current": semanticColor.graphics.role.all.current,
+                administrator: semanticColor.graphics.role.administrator,
+                learner: semanticColor.graphics.role.learner,
+                parent: semanticColor.graphics.role.parent,
+                teacher: semanticColor.graphics.role.teacher,
+            }}
+            group="graphics.role"
+        />
+    );
+};
+
+export const GraphicsNeutral = () => {
+    return (
+        <ColorGroupStory
+            category={semanticColor.graphics.neutral}
+            group="graphics.neutral"
+        />
+    );
+};
+
+export const GraphicsExternalBrands = () => {
+    return (
+        <ColorGroupStory
+            category={semanticColor.graphics.externalBrands}
+            group="graphics.externalBrands"
+        />
+    );
+};
+
 const styles = StyleSheet.create({
     groupOfColorGroupStory: {
         gap: sizing.size_080,
+    },
+    capitalized: {
+        textTransform: "capitalize",
     },
     grid: {
         display: "grid",
