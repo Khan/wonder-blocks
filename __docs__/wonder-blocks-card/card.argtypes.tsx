@@ -29,7 +29,7 @@ export default {
                 detail: `Can be either:
                 - Semantic color token: 'base-subtle' or 'base-default'
                 - Imported image: import myImage from './my-image.svg' then use background={myImage}. Images are displayed with background-size: cover
-                - Inline SVG: import MySvgComponent from './my-svg.svg' then use background={{ type: 'inline-svg', value: <MySvgComponent /> }}. MySvgComponent should render an svg element inline.`,
+                - Inline SVG: import MySvgComponent from './my-sv-component.tsx' then use background={{ type: 'inline-svg', value: <MySvgComponent /> }}. MySvgComponent should render an svg element inline.`,
             },
             defaultValue: {summary: '"base-default"'},
             category: "Styling",

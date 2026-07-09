@@ -228,7 +228,7 @@ export const WithBackgroundImage: StoryComponentType = {
 
 /**
  * If an image background is meant to adapt based on the theme, set `background`
- * to `{ type: "inline-svg", value: <MySvgComponent /> }`. MySvgComponent should:
+ * to `{ type: "inline-svg", component: <MySvgComponent /> }`. MySvgComponent should:
  * - render an svg element inline
  * - use semantic color tokens for colors and fills
  * - have no width or height attributes set on the root element. The inline svg

@@ -1,7 +1,7 @@
 import * as React from "react";
 
 import {StyleSheet} from "aphrodite";
-import {StyleType, View} from "@khanacademy/wonder-blocks-core";
+import {addStyle, StyleType, View} from "@khanacademy/wonder-blocks-core";
 import type {AriaProps} from "@khanacademy/wonder-blocks-core";
 
 import {
@@ -181,6 +181,8 @@ type StyleProps = {
 };
 
 type CardProps = BaseCardProps & TagProps & DismissProps;
+
+const StyledSpan = addStyle("span");
 /**
  * The Card component is a flexible, reusable UI building block designed to
  * encapsulate content within a structured, visually distinct container.
@@ -244,24 +246,6 @@ const Card = React.forwardRef(function Card(
         elevation,
     });
 
-    const inlineBackgroundSvg =
-        backgroundType === "inline-svg" ? (
-            <div
-                style={{
-                    position: "absolute",
-                    top: 0,
-                    left: 0,
-                    bottom: 0,
-                    right: 0,
-                    width: "100%",
-                    height: "100%",
-                    zIndex: -1,
-                }}
-            >
-                {background.component}
-            </div>
-        ) : null;
-
     return (
         <View
             aria-busy={ariaBusy}
@@ -281,7 +265,11 @@ const Card = React.forwardRef(function Card(
             testId={testId}
             {...{inert: inert ? "" : undefined}}
         >
-            {inlineBackgroundSvg}
+            {backgroundType === "inline-svg" && (
+                <StyledSpan style={staticStyles.inlineSvgBackgroundContainer}>
+                    {background.component}
+                </StyledSpan>
+            )}
             {onDismiss ? (
                 <DismissButton
                     aria-label={labels?.dismissButtonAriaLabel || "Close"}
@@ -346,5 +334,18 @@ const getComponentStyles = ({
         },
     });
 };
+
+const staticStyles = StyleSheet.create({
+    inlineSvgBackgroundContainer: {
+        position: "absolute",
+        top: 0,
+        left: 0,
+        bottom: 0,
+        right: 0,
+        width: "100%",
+        height: "100%",
+        zIndex: -1,
+    },
+});
 
 export default Card;
