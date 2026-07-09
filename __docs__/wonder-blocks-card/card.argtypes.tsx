@@ -18,14 +18,18 @@ export default {
                 Image: "Image (import and pass as prop)",
             },
         },
-        options: ["base-subtle", "base-default", "Image"],
+        options: ["base-subtle", "base-default", "Image", "inline-svg"],
         defaultValue: "base-default",
         description:
             "The background style of the card. Can be either a semantic color token or an imported image URL.",
         table: {
             type: {
-                summary: '"base-subtle" | "base-default" | Image',
-                detail: "Can be either:\n- Semantic color token: 'base-subtle' or 'base-default'\n- Imported image: import myImage from './my-image.svg' then use background={myImage}\nImages are displayed with background-size: cover",
+                summary:
+                    '"base-subtle" | "base-default" | Image | { type: "inline-svg", value: ReactElement }',
+                detail: `Can be either:
+                - Semantic color token: 'base-subtle' or 'base-default'
+                - Imported image: import myImage from './my-image.svg' then use background={myImage}. Images are displayed with background-size: cover
+                - Inline SVG: import MySvgComponent from './my-svg.svg' then use background={{ type: 'inline-svg', value: <MySvgComponent /> }}. MySvgComponent should render an svg element inline.`,
             },
             defaultValue: {summary: '"base-default"'},
             category: "Styling",

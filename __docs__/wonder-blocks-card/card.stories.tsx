@@ -227,10 +227,12 @@ export const WithBackgroundImage: StoryComponentType = {
 };
 
 /**
- * To make sure image backgrounds work across themes, provide a component
- * that renders an SVG inline. The svg should:
- * - use semantic color tokens for colors
- * - not have the width or height attributes set on the root element
+ * If an image background is meant to adapt based on the theme, set `background`
+ * to `{ type: "inline-svg", value: <MySvgComponent /> }`. MySvgComponent should:
+ * - render an svg element inline
+ * - use semantic color tokens for colors and fills
+ * - have no width or height attributes set on the root element. The inline svg
+ * background will be sized to fit the card.
  */
 export const WithInlineSvgBackground: StoryComponentType = {
     render: () => (
