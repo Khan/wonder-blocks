@@ -403,6 +403,8 @@ export const semanticColor = {
                     default: thunderBlocksColor.green_60,
                 },
             },
+            // TODO(WB-2380): Remove in favour of the flesh tokens as part of
+            // graphics tier
             characters: {
                 flesh: {
                     blue: {
@@ -523,7 +525,7 @@ export const semanticColor = {
             },
         },
         // TODO(WB-2380): Remove in favour of the flesh tokens as part of
-        // learning.background/border
+        // graphics tier
         characters: {
             flesh: {
                 blue: {
