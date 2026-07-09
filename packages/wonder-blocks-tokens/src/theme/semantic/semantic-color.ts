@@ -234,6 +234,10 @@ const graphics = {
             },
         },
     },
+    /**
+     * External brand colors are expected to be hardcoded since they are not part
+     * of the design system.
+     */
     externalBrands: {
         google: {
             red: "#EA4335",
@@ -450,6 +454,8 @@ export const semanticColor = {
                 default: thunderBlocksColor.cyan_60,
                 strong: thunderBlocksColor.cyan_30,
             },
+            // TODO(WB-2380): Remove in favour of the flesh tokens as part of
+            // graphics tier
             characters: {
                 flesh: {
                     blue: {
