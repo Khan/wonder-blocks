@@ -71,7 +71,6 @@ import {
     Heading,
 } from "@khanacademy/wonder-blocks-typography";
 import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
-import customBackgroundImage from "../../static/EOT-Background.svg";
 import {CardBackgroundExample} from "../wonder-blocks-card/card-background-example";
 
 export type VariantProp<T> = {

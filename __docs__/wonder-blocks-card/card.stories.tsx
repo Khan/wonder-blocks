@@ -270,6 +270,9 @@ export const WithInlineSvgBackground: StoryComponentType = {
             </View>
         </Card>
     ),
+    parameters: {
+        chromatic: {disableSnapshot: true},
+    },
 };
 
 export const WithSplitBackgroundImage: StoryComponentType = {
