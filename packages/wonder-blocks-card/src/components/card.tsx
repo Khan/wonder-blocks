@@ -117,19 +117,41 @@ type TagProps = {
 
 type BackgroundInlineSvg = {type: "inline-svg"; component: React.ReactElement};
 
-function getBackgroundType(
+type BackgroundToken = "base-subtle" | "base-default";
+
+/**
+ * Type guard to check if the background is a semanticColor token.
+ */
+function isBackgroundToken(
     background: CardProps["background"],
-): "token" | "image" | "inline-svg" | undefined {
-    if (!background) {
-        return undefined;
-    }
-    if (background === "base-default" || background === "base-subtle") {
-        return "token";
-    }
-    if ((background as BackgroundInlineSvg)?.type === "inline-svg") {
-        return "inline-svg";
-    }
-    return "image";
+): background is BackgroundToken {
+    return background === "base-default" || background === "base-subtle";
+}
+
+/**
+ * Type guard to check if the background is an inline SVG configuration.
+ */
+function isBackgroundInlineSvg(
+    background: CardProps["background"],
+): background is BackgroundInlineSvg {
+    return (
+        typeof background === "object" &&
+        background !== null &&
+        background.type === "inline-svg"
+    );
+}
+
+/**
+ * Type guard to check if the background is an image.
+ */
+function isBackgroundImage(
+    background: CardProps["background"],
+): background is typeof Image {
+    return (
+        !!background &&
+        !isBackgroundToken(background) &&
+        !isBackgroundInlineSvg(background)
+    );
 }
 
 type StyleProps = {
@@ -238,9 +260,8 @@ const Card = React.forwardRef(function Card(
         role,
     } = props;
 
-    const backgroundType = getBackgroundType(background);
     const componentStyles = getComponentStyles({
-        background: backgroundType === "token" ? background : null,
+        background: isBackgroundToken(background) ? background : null,
         borderRadius,
         paddingSize,
         elevation,
@@ -253,7 +274,7 @@ const Card = React.forwardRef(function Card(
             aria-labelledby={ariaLabelledBy}
             style={[
                 componentStyles.root,
-                backgroundType === "image" && {
+                isBackgroundImage(background) && {
                     background: `url(${background})`,
                     backgroundSize: "cover",
                 },
@@ -265,7 +286,7 @@ const Card = React.forwardRef(function Card(
             testId={testId}
             {...{inert: inert ? "" : undefined}}
         >
-            {backgroundType === "inline-svg" && (
+            {isBackgroundInlineSvg(background) && (
                 <StyledSpan style={staticStyles.inlineSvgBackgroundContainer}>
                     {background.component}
                 </StyledSpan>
