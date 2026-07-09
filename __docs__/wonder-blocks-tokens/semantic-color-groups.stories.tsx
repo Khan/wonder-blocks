@@ -245,7 +245,11 @@ export const GraphicsCharactersFlesh = () => {
             {Object.entries(semanticColor.graphics.characters.flesh).map(
                 ([colorName, colorGroup]) => (
                     <React.Fragment key={colorName}>
-                        <Heading size="medium" style={styles.capitalized}>
+                        <Heading
+                            size="medium"
+                            style={styles.capitalized}
+                            tag="h5"
+                        >
                             Characters Flesh {colorName}
                         </Heading>
                         <ColorGroupStory
