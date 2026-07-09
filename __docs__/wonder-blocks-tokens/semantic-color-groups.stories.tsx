@@ -166,11 +166,6 @@ export const LearningBorder = () => {
                 }}
                 group="learning.border"
             />
-            <Heading size="medium">Characters Flesh</Heading>
-            <ColorGroupStory
-                category={semanticColor.learning.border.characters.flesh}
-                group="learning.border.characters.flesh"
-            />
         </View>
     );
 };
@@ -190,11 +185,6 @@ export const LearningBackground = () => {
             <ColorGroupStory
                 category={semanticColor.learning.background.progress}
                 group="learning.background.progress"
-            />
-            <Heading size="medium">Characters Flesh</Heading>
-            <ColorGroupStory
-                category={semanticColor.learning.background.characters.flesh}
-                group="learning.background.characters.flesh"
             />
         </View>
     );
