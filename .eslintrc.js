@@ -224,5 +224,11 @@ module.exports = {
         "@typescript-eslint/no-empty-function": "off",
         "@typescript-eslint/prefer-enum-initializers": "error",
         "@typescript-eslint/prefer-literal-enum-member": "error",
+
+        /**
+         * @khanacademy/wonder-blocks rules
+         */
+        "@khanacademy/wonder-blocks/require-logical-properties-for-rtl":
+            "error",
     },
 };

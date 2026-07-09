@@ -359,12 +359,12 @@ const getComponentStyles = ({
 const staticStyles = StyleSheet.create({
     inlineSvgBackgroundContainer: {
         position: "absolute",
-        top: 0,
-        left: 0,
-        bottom: 0,
-        right: 0,
-        width: "100%",
-        height: "100%",
+        insetBlockStart: 0,
+        insetInlineStart: 0,
+        insetBlockEnd: 0,
+        insetInlineEnd: 0,
+        inlineSize: "100%",
+        blockSize: "100%",
         zIndex: -1,
     },
 });
