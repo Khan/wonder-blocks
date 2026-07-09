@@ -1,3 +1,4 @@
+/* eslint-disable max-lines */
 // This import is valid as this is the only place in the codebase where we
 // should import/reference primitive colors.
 /* eslint-disable import/no-deprecated */
