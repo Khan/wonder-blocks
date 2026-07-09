@@ -244,7 +244,6 @@ const Card = React.forwardRef(function Card(
         elevation,
     });
 
-    console.log(background);
     const inlineBackgroundSvg =
         backgroundType === "inline-svg" ? (
             <div
