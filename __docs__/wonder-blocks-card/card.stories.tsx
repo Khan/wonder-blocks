@@ -19,6 +19,7 @@ import Link from "@khanacademy/wonder-blocks-link";
 import eotBackground from "../../static/EOT-Background.svg";
 import eotIcon from "../../static/EOT-Icon.svg";
 import blooketBg from "../../static/Blooket.svg";
+import {CardBackgroundExample} from "./card-background-example";
 
 type StoryComponentType = StoryObj<typeof Card>;
 
@@ -196,6 +197,50 @@ export const WithTag: StoryComponentType = {
 export const WithBackgroundImage: StoryComponentType = {
     render: () => (
         <Card background={eotBackground} styles={{root: styles.card}}>
+            <View
+                style={{
+                    alignItems: "center",
+                }}
+            >
+                <Heading size="small" style={styles.eotCardText}>
+                    Practice
+                </Heading>
+                <img
+                    src={eotIcon}
+                    alt=""
+                    style={{maxInlineSize: sizing.size_640}}
+                />
+                <Heading
+                    size="small"
+                    weight="semi"
+                    tag="h3"
+                    style={styles.eotCardText}
+                >
+                    Proficient
+                </Heading>
+                <Heading size="xxlarge" tag="h4" style={styles.eotCardText}>
+                    100%
+                </Heading>
+            </View>
+        </Card>
+    ),
+};
+
+/**
+ * To make sure image backgrounds work across themes, provide a component
+ * that renders an SVG inline. The svg should:
+ * - use semantic color tokens for colors
+ * - not have the width or height attributes set on the root element
+ */
+export const WithInlineSvgBackground: StoryComponentType = {
+    render: () => (
+        <Card
+            background={{
+                type: "inline-svg",
+                component: <CardBackgroundExample />,
+            }}
+            styles={{root: styles.card}}
+        >
             <View
                 style={{
                     alignItems: "center",

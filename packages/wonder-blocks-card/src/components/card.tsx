@@ -115,6 +115,23 @@ type TagProps = {
     tag?: Exclude<keyof JSX.IntrinsicElements, "button" | "a">;
 } & AccessibilityProps;
 
+type BackgroundInlineSvg = {type: "inline-svg"; component: React.ReactElement};
+
+function getBackgroundType(
+    background: CardProps["background"],
+): "token" | "image" | "inline-svg" | undefined {
+    if (!background) {
+        return undefined;
+    }
+    if (background === "base-default" || background === "base-subtle") {
+        return "token";
+    }
+    if ((background as BackgroundInlineSvg)?.type === "inline-svg") {
+        return "inline-svg";
+    }
+    return "image";
+}
+
 type StyleProps = {
     /**
      * The background style of the card, as a string identifier that matches a semanticColor token.
@@ -127,7 +144,12 @@ type StyleProps = {
      *
      * Default: `"base-default"`
      */
-    background?: "base-subtle" | "base-default" | typeof Image | null;
+    background?:
+        | "base-subtle"
+        | "base-default"
+        | typeof Image
+        | null
+        | BackgroundInlineSvg;
     /**
      * The border radius of the card, as a string identifier that matches a border.radius token.
      * This can be one of:
@@ -214,14 +236,32 @@ const Card = React.forwardRef(function Card(
         role,
     } = props;
 
-    const isBackgroundToken =
-        background === "base-default" || background === "base-subtle";
+    const backgroundType = getBackgroundType(background);
     const componentStyles = getComponentStyles({
-        background: isBackgroundToken ? background : null,
+        background: backgroundType === "token" ? background : null,
         borderRadius,
         paddingSize,
         elevation,
     });
+
+    console.log(background);
+    const inlineBackgroundSvg =
+        backgroundType === "inline-svg" ? (
+            <div
+                style={{
+                    position: "absolute",
+                    top: 0,
+                    left: 0,
+                    bottom: 0,
+                    right: 0,
+                    width: "100%",
+                    height: "100%",
+                    zIndex: -1,
+                }}
+            >
+                {background.component}
+            </div>
+        ) : null;
 
     return (
         <View
@@ -230,7 +270,7 @@ const Card = React.forwardRef(function Card(
             aria-labelledby={ariaLabelledBy}
             style={[
                 componentStyles.root,
-                !isBackgroundToken && {
+                backgroundType === "image" && {
                     background: `url(${background})`,
                     backgroundSize: "cover",
                 },
@@ -242,6 +282,7 @@ const Card = React.forwardRef(function Card(
             testId={testId}
             {...{inert: inert ? "" : undefined}}
         >
+            {inlineBackgroundSvg}
             {onDismiss ? (
                 <DismissButton
                     aria-label={labels?.dismissButtonAriaLabel || "Close"}
@@ -301,6 +342,8 @@ const getComponentStyles = ({
             borderRadius: styleMap.borderRadius[borderRadius],
             boxShadow: styleMap.elevation[elevation],
             padding: styleMap.padding[paddingSize],
+            // Hide overflow in cards
+            overflow: "hidden",
         },
     });
 };

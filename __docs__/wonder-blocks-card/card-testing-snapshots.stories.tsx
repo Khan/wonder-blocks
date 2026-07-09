@@ -7,6 +7,7 @@ import {View} from "@khanacademy/wonder-blocks-core";
 import {sizing} from "@khanacademy/wonder-blocks-tokens";
 import {AllVariants} from "../components/all-variants";
 import eotBackground from "../../static/EOT-Background.svg";
+import {CardBackgroundExample} from "./card-background-example";
 
 /**
  * The following stories are used to generate all possible prop combinations
@@ -30,6 +31,15 @@ const backgrounds = [
     {name: "Default", props: {background: "base-default"}},
     {name: "Subtle", props: {background: "base-subtle"}},
     {name: "Image", props: {background: eotBackground}},
+    {
+        name: "Inline SVG background",
+        props: {
+            background: {
+                type: "inline-svg",
+                component: <CardBackgroundExample />,
+            },
+        },
+    },
 ];
 
 const borderRadii = [
