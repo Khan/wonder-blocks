@@ -25,6 +25,7 @@ const StyledButton = addStyle("button");
  */
 export function Spike({label, badge}: Props): React.ReactElement {
     return (
+        // eslint-disable-next-line @khanacademy/wonder-blocks/no-raw-button -- Testing raw button with CSS modules
         <StyledButton
             type="button"
             style={[styles.root, aphroditeStyles.root, inlineStyles.root]}
