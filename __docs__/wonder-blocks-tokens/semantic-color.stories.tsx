@@ -146,7 +146,10 @@ const remainingTokens = Object.fromEntries(
         ([key, _]) =>
             !key.includes("core.") &&
             !key.includes("learning.") &&
-            !key.includes("graphics."),
+            !key.includes("graphics.") &&
+            // Exclude tokens to be deprecated
+            !key.includes("status.") &&
+            !key.includes("action."),
     ),
 );
 
