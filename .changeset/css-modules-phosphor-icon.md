@@ -16,4 +16,8 @@ WB-2331) — the package now has zero `aphrodite` imports.
   pipeline has no autoprefixer, and `mask-*` still needs `-webkit-` on older
   browsers, so this preserves the previous prefixed output exactly.
 
+Also adopt RTL-safe logical properties (`inline-size` / `block-size` instead
+of `width` / `height`) for the icon size classes in both `phosphor-icon.module.css`
+and `icon.module.css`.
+
 Public API and DOM output are unchanged.
