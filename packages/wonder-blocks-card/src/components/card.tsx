@@ -287,7 +287,10 @@ const Card = React.forwardRef(function Card(
             {...{inert: inert ? "" : undefined}}
         >
             {isBackgroundInlineSvg(background) && (
-                <StyledSpan style={staticStyles.inlineSvgBackgroundContainer}>
+                <StyledSpan
+                    style={staticStyles.inlineSvgBackgroundContainer}
+                    aria-hidden="true"
+                >
                     {background.component}
                 </StyledSpan>
             )}
