@@ -1,10 +1,14 @@
+/* eslint-disable max-lines */
 // This import is valid as this is the only place in the codebase where we
 // should import/reference primitive colors.
 /* eslint-disable import/no-deprecated */
 import {color} from "../../tokens/color";
 // NOTE: This import is only to provide backwards compatibility with some
 // colors that don't exist in the OG primitives.
-import {color as thunderBlocksColor} from "./internal/primitive-color-thunderblocks";
+import {
+    graphicsPalette,
+    color as thunderBlocksColor,
+} from "./internal/primitive-color-thunderblocks";
 
 const transparent = "transparent";
 
@@ -160,6 +164,182 @@ const sharedFeedbackStrongTokens = {
     text: core.foreground.knockout.default,
 };
 
+/**
+ * Graphics tokens are used for illustrative and decorative elements such as
+ * character art, gems, streaks, progress indicators, role badges, and
+ * external brand colors.
+ */
+const graphics = {
+    characters: {
+        flesh: {
+            blue: {
+                background: {
+                    subtle: graphicsPalette.blue_40,
+                    default: graphicsPalette.blue_30,
+                    strong: graphicsPalette.blue_20,
+                },
+                border: {
+                    subtle: graphicsPalette.blue_40,
+                    default: graphicsPalette.blue_20,
+                    strong: graphicsPalette.blue_10,
+                },
+            },
+            cyan: {
+                background: {
+                    subtle: graphicsPalette.cyan_40,
+                    default: graphicsPalette.cyan_30,
+                    strong: graphicsPalette.cyan_20,
+                },
+                border: {
+                    subtle: graphicsPalette.cyan_40,
+                    default: graphicsPalette.cyan_20,
+                    strong: graphicsPalette.cyan_10,
+                },
+            },
+            green: {
+                background: {
+                    subtle: graphicsPalette.green_40,
+                    default: graphicsPalette.green_30,
+                    strong: graphicsPalette.green_20,
+                },
+                border: {
+                    subtle: graphicsPalette.green_40,
+                    default: graphicsPalette.green_20,
+                    strong: graphicsPalette.green_10,
+                },
+            },
+            magenta: {
+                background: {
+                    subtle: graphicsPalette.magenta_40,
+                    default: graphicsPalette.magenta_30,
+                    strong: graphicsPalette.magenta_20,
+                },
+                border: {
+                    subtle: graphicsPalette.magenta_40,
+                    default: graphicsPalette.magenta_20,
+                    strong: graphicsPalette.magenta_10,
+                },
+            },
+            orange: {
+                background: {
+                    subtle: graphicsPalette.orange_40,
+                    default: graphicsPalette.orange_30,
+                    strong: graphicsPalette.orange_20,
+                },
+                border: {
+                    subtle: graphicsPalette.orange_40,
+                    default: graphicsPalette.orange_20,
+                    strong: graphicsPalette.orange_10,
+                },
+            },
+        },
+    },
+    /**
+     * External brand colors are expected to be hardcoded since they are not part
+     * of the design system.
+     */
+    externalBrands: {
+        google: {
+            red: "#EA4335",
+            yellow: "#FBBC05",
+            green: "#34A853",
+            blue: "#4285F4",
+        },
+        facebook: {
+            blue: "#1877F2",
+            white: "#FFFFFF",
+        },
+        microsoft: {
+            red: "#F35325",
+            green: "#81BC06",
+            blue: "#05A6F0",
+            yellow: "#FFBA08",
+        },
+        apple: {
+            brand: "#000000",
+        },
+    },
+    gems: {
+        background: {
+            subtle: graphicsPalette.magenta_80,
+            default: graphicsPalette.magenta_70,
+        },
+        foreground: {
+            subtle: graphicsPalette.magenta_60,
+            default: graphicsPalette.magenta_30,
+            strong: graphicsPalette.magenta_20,
+        },
+    },
+    progress: {
+        attempted: {
+            background: {
+                subtle: graphicsPalette.yellow_90,
+                default: graphicsPalette.yellow_70,
+            },
+            foreground: {
+                subtle: graphicsPalette.yellow_50,
+                strong: graphicsPalette.yellow_10,
+            },
+        },
+        notStarted: {
+            foreground: {
+                subtle: graphicsPalette.gray_50,
+                strong: graphicsPalette.gray_10,
+            },
+        },
+        complete: {
+            background: {
+                subtle: graphicsPalette.green_90,
+                default: graphicsPalette.green_70,
+            },
+            foreground: {
+                strong: graphicsPalette.green_10,
+            },
+        },
+    },
+    role: {
+        all: {
+            current: {
+                background: graphicsPalette.blue_90,
+                foreground: graphicsPalette.blue_80,
+            },
+        },
+        administrator: {
+            background: graphicsPalette.cyan_70,
+            foreground: graphicsPalette.cyan_40,
+        },
+        learner: {
+            background: graphicsPalette.orange_60,
+            foreground: graphicsPalette.orange_30,
+        },
+        parent: {
+            background: graphicsPalette.green_70,
+            foreground: graphicsPalette.green_40,
+        },
+        teacher: {
+            background: graphicsPalette.yellow_50,
+            foreground: graphicsPalette.yellow_30,
+        },
+    },
+    streaks: {
+        background: {
+            subtle: graphicsPalette.orange_80,
+            default: graphicsPalette.orange_70,
+        },
+        foreground: {
+            subtle: graphicsPalette.orange_60,
+            default: graphicsPalette.orange_30,
+            strong: graphicsPalette.orange_20,
+        },
+    },
+    neutral: {
+        background: {
+            subtle: graphicsPalette.white_100,
+            default: graphicsPalette.blue_90,
+        },
+    },
+};
+
 export const semanticColor = {
     /**
      * Our core colors are used for the most common elements in our UI. They
@@ -167,6 +347,12 @@ export const semanticColor = {
      * consistently across all components.
      */
     core,
+    /**
+     * Graphics tokens are used for illustrative and decorative elements such
+     * as character art, gems, streaks, progress indicators, role badges, and
+     * external brand colors.
+     */
+    graphics,
     /**
      * Learning tokens are used for elements that are related to learning
      * experiences, such as practice and mastery, among others.
@@ -220,6 +406,8 @@ export const semanticColor = {
                     default: thunderBlocksColor.green_60,
                 },
             },
+            // TODO(WB-2380): Remove in favour of the flesh tokens as part of
+            // graphics tier
             characters: {
                 flesh: {
                     blue: {
@@ -266,6 +454,8 @@ export const semanticColor = {
                 default: thunderBlocksColor.cyan_60,
                 strong: thunderBlocksColor.cyan_30,
             },
+            // TODO(WB-2380): Remove in favour of the flesh tokens as part of
+            // graphics tier
             characters: {
                 flesh: {
                     blue: {
@@ -340,7 +530,7 @@ export const semanticColor = {
             },
         },
         // TODO(WB-2380): Remove in favour of the flesh tokens as part of
-        // learning.background/border
+        // graphics tier
         characters: {
             flesh: {
                 blue: {

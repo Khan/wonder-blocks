@@ -14,6 +14,7 @@ import packageConfig from "../../packages/wonder-blocks-tokens/package.json";
 import {flattenNestedTokens} from "../components/tokens-util";
 import {Code} from "../components/code";
 import {ColorSwatch} from "../components/color-swatch";
+import {PropsFor} from "@khanacademy/wonder-blocks-core";
 
 /**
  * The color palette containing all the semantic Wonder Blocks colors.
@@ -65,7 +66,7 @@ export default {
                     <Stories title="Tokens" />
                 </>
             ),
-            toc: false,
+            toc: true,
         },
         chromatic: {
             modes: allThemeModes,
@@ -85,13 +86,74 @@ export default {
 
 type Row = {label: string; css: string; value: string};
 
-const publicTokens = Object.fromEntries(
+const SemanticColorsTable = ({
+    tier,
+    tokens,
+}: {
+    tier: string;
+    tokens: PropsFor<typeof TokenTable<any>>["tokens"];
+}) => (
+    <TokenTable
+        columns={[
+            {
+                label: "Token",
+                cell: (row: Row) => (
+                    <Code>{`semanticColor.${tier}.${row.label}`}</Code>
+                ),
+            },
+            {
+                label: "CSS Variable",
+                cell: (row) => (
+                    <Code style={{minInlineSize: "200px"}}>{row.css}</Code>
+                ),
+            },
+            {
+                label: "Value",
+                cell: "value",
+            },
+            {
+                label: "Example",
+                cell: (row) => <ColorSwatch backgroundColor={row.value} />,
+            },
+        ]}
+        tokens={tokens}
+    />
+);
+
+export const Core = () => (
+    <SemanticColorsTable
+        tier="core"
+        tokens={flattenNestedTokens(semanticColor.core)}
+    />
+);
+
+export const Learning = () => (
+    <SemanticColorsTable
+        tier="learning"
+        tokens={flattenNestedTokens(semanticColor.learning)}
+    />
+);
+
+export const Graphics = () => (
+    <SemanticColorsTable
+        tier="graphics"
+        tokens={flattenNestedTokens(semanticColor.graphics)}
+    />
+);
+
+const remainingTokens = Object.fromEntries(
     Object.entries(flattenNestedTokens(semanticColor)).filter(
-        ([key, _]) => !key.includes("action.") && !key.includes("status."),
+        ([key, _]) =>
+            !key.includes("core.") &&
+            !key.includes("learning.") &&
+            !key.includes("graphics.") &&
+            // Exclude tokens to be deprecated
+            !key.includes("status.") &&
+            !key.includes("action."),
     ),
 );
 
-export const SemanticColors = () => (
+export const Other = () => (
     <TokenTable
         columns={[
             {
@@ -113,6 +175,6 @@ export const SemanticColors = () => (
                 cell: (row) => <ColorSwatch backgroundColor={row.value} />,
             },
         ]}
-        tokens={publicTokens}
+        tokens={remainingTokens}
     />
 );

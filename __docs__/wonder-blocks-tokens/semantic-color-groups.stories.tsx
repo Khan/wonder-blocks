@@ -166,11 +166,6 @@ export const LearningBorder = () => {
                 }}
                 group="learning.border"
             />
-            <Heading size="medium">Characters Flesh</Heading>
-            <ColorGroupStory
-                category={semanticColor.learning.border.characters.flesh}
-                group="learning.border.characters.flesh"
-            />
         </View>
     );
 };
@@ -190,11 +185,6 @@ export const LearningBackground = () => {
             <ColorGroupStory
                 category={semanticColor.learning.background.progress}
                 group="learning.background.progress"
-            />
-            <Heading size="medium">Characters Flesh</Heading>
-            <ColorGroupStory
-                category={semanticColor.learning.background.characters.flesh}
-                group="learning.background.characters.flesh"
             />
         </View>
     );
@@ -249,9 +239,107 @@ export const Mastery = () => {
     );
 };
 
+export const GraphicsCharactersFlesh = () => {
+    return (
+        <View style={styles.groupOfColorGroupStory}>
+            {Object.entries(semanticColor.graphics.characters.flesh).map(
+                ([colorName, colorGroup]) => (
+                    <React.Fragment key={colorName}>
+                        <Heading
+                            size="medium"
+                            style={styles.capitalized}
+                            tag="h5"
+                        >
+                            Characters Flesh {colorName}
+                        </Heading>
+                        <ColorGroupStory
+                            category={colorGroup}
+                            group={`graphics.characters.flesh.${colorName}`}
+                        />
+                    </React.Fragment>
+                ),
+            )}
+        </View>
+    );
+};
+
+export const GraphicsGems = () => {
+    return (
+        <ColorGroupStory
+            category={semanticColor.graphics.gems}
+            group="graphics.gems"
+        />
+    );
+};
+
+export const GraphicsStreaks = () => {
+    return (
+        <ColorGroupStory
+            category={semanticColor.graphics.streaks}
+            group="graphics.streaks"
+        />
+    );
+};
+
+export const GraphicsProgress = () => {
+    return (
+        <View style={styles.groupOfColorGroupStory}>
+            {Object.entries(semanticColor.graphics.progress).map(
+                ([state, colorGroup]) => (
+                    <React.Fragment key={state}>
+                        <Heading size="medium" style={styles.capitalized}>
+                            {state}
+                        </Heading>
+                        <ColorGroupStory
+                            category={colorGroup}
+                            group={`graphics.progress.${state}`}
+                        />
+                    </React.Fragment>
+                ),
+            )}
+        </View>
+    );
+};
+
+export const GraphicsRole = () => {
+    return (
+        <ColorGroupStory
+            category={{
+                "all.current": semanticColor.graphics.role.all.current,
+                administrator: semanticColor.graphics.role.administrator,
+                learner: semanticColor.graphics.role.learner,
+                parent: semanticColor.graphics.role.parent,
+                teacher: semanticColor.graphics.role.teacher,
+            }}
+            group="graphics.role"
+        />
+    );
+};
+
+export const GraphicsNeutral = () => {
+    return (
+        <ColorGroupStory
+            category={semanticColor.graphics.neutral}
+            group="graphics.neutral"
+        />
+    );
+};
+
+export const GraphicsExternalBrands = () => {
+    return (
+        <ColorGroupStory
+            category={semanticColor.graphics.externalBrands}
+            group="graphics.externalBrands"
+        />
+    );
+};
+
 const styles = StyleSheet.create({
     groupOfColorGroupStory: {
         gap: sizing.size_080,
+    },
+    capitalized: {
+        textTransform: "capitalize",
     },
     grid: {
         display: "grid",
@@ -263,7 +351,10 @@ const styles = StyleSheet.create({
     },
     gridCompact: {
         display: "grid",
-        gridTemplateColumns: "repeat(3, minmax(100px, auto))",
+        // Always lay out 3 equal-width columns so items stay the same size
+        // regardless of how many are in the group (e.g. a group with 2 items
+        // matches the size of a group with 3).
+        gridTemplateColumns: "repeat(3, minmax(0, 1fr))",
     },
 
     banner: {
