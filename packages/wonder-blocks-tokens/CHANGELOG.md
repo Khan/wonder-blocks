@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-tokens
 
+## 17.2.0
+
+### Minor Changes
+
+- 3e7925e: Add `semanticColor.graphics` tokens (characters, gems, streaks, progress, role, neutral, and external brand colors) from the Figma "5 - Graphics" collection. SYL Light values are defined in the default theme (and inherited by thunderblocks), and SYL Dark values are defined in the SYL Dark theme.
+
 ## 17.1.0
 
 ### Minor Changes
