@@ -1,9 +1,9 @@
 import * as React from "react";
-import {StyleSheet} from "aphrodite";
 import {addStyle, AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
-import {sizing} from "@khanacademy/wonder-blocks-tokens";
 
 import {IconSize, PhosphorIconAsset} from "../types";
+
+import styles from "./phosphor-icon.module.css";
 
 // We use a span instead of an img because we want to use the mask-image CSS
 // property.
@@ -113,6 +113,12 @@ export const PhosphorIcon = React.forwardRef(function PhosphorIcon(
                 {
                     backgroundColor: color,
                     maskImage: `url(${icon})`,
+                    // `mask-*` stays inline (routed through Aphrodite's vendor
+                    // prefixer via `processStyleList`) since the CSS Modules
+                    // pipeline has no autoprefixer. See `phosphor-icon.module.css`.
+                    maskSize: "100%",
+                    maskRepeat: "no-repeat",
+                    maskPosition: "center",
                 },
                 style,
             ]}
@@ -140,33 +146,5 @@ function getSize(size: IconSize) {
             return styles.xlarge;
     }
 }
-
-const styles = StyleSheet.create({
-    svg: {
-        display: "inline-block",
-        verticalAlign: "text-bottom",
-        flexShrink: 0,
-        flexGrow: 0,
-        maskSize: "100%",
-        maskRepeat: "no-repeat",
-        maskPosition: "center",
-    },
-    small: {
-        width: sizing.size_160,
-        height: sizing.size_160,
-    },
-    medium: {
-        width: sizing.size_240,
-        height: sizing.size_240,
-    },
-    large: {
-        width: sizing.size_480,
-        height: sizing.size_480,
-    },
-    xlarge: {
-        width: sizing.size_960,
-        height: sizing.size_960,
-    },
-});
 
 PhosphorIcon.displayName = "PhosphorIcon";
