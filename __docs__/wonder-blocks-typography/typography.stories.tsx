@@ -9,6 +9,7 @@ import {
     Heading,
     BodyText,
     styles as typographyStyles,
+    BodyMonospace,
 } from "@khanacademy/wonder-blocks-typography";
 import packageConfig from "../../packages/wonder-blocks-typography/package.json";
 
@@ -201,6 +202,16 @@ export const Paragraph: StoryObj<typeof BodyText> = {
 
         return <BodyText>{longParagraph}</BodyText>;
     },
+};
+
+/**
+ * The `BodyMonospace` typography component is usually used for code snippets
+ * and other monospaced text.
+ */
+export const Monospace: StoryObj<typeof BodyMonospace> = {
+    render: () => (
+        <BodyMonospace>This is an example of a monospaced text.</BodyMonospace>
+    ),
 };
 
 /**

@@ -5,11 +5,11 @@ import packageConfig from "../../packages/wonder-blocks-typography/package.json"
 import ComponentInfo from "../components/component-info";
 import TypographyArgTypes from "./typography.argtypes";
 
-import {LabelXSmall} from "@khanacademy/wonder-blocks-typography";
+import {BodyMonospace} from "@khanacademy/wonder-blocks-typography";
 
 export default {
-    title: "Packages / Typography / Deprecated / LabelXSmall",
-    component: LabelXSmall,
+    title: "Packages / Typography / BodyMonospace",
+    component: BodyMonospace,
     parameters: {
         componentSubtitle: (
             <ComponentInfo
@@ -24,13 +24,12 @@ export default {
         },
     },
     argTypes: TypographyArgTypes,
-    tags: ["deprecated", "!manifest"],
-} as Meta<typeof LabelXSmall>;
+} as Meta<typeof BodyMonospace>;
 
-type StoryComponentType = StoryObj<typeof LabelXSmall>;
+type StoryComponentType = StoryObj<typeof BodyMonospace>;
 
 export const Default: StoryComponentType = {
     args: {
-        children: "LabelXSmall",
+        children: "BodyMonospace",
     },
 };

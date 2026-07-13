@@ -17,7 +17,7 @@ import {
 import {CatalogComponentInfo, ComponentList} from "./catalog-component-info";
 
 export default {
-    title: "Catalog",
+    title: "Catalog / Components",
     tags: ["!autodocs", "!manifest"],
     parameters: {
         chromatic: {

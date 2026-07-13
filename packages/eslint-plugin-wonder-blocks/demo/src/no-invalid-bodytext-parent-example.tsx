@@ -7,11 +7,7 @@
 import * as React from "react";
 
 import {Checkbox, Choice} from "@khanacademy/wonder-blocks-form";
-import {
-    Heading,
-    HeadingLarge,
-    BodyText,
-} from "@khanacademy/wonder-blocks-typography";
+import {Heading, BodyText} from "@khanacademy/wonder-blocks-typography";
 import {addStyle} from "@khanacademy/wonder-blocks-core";
 
 const StyledButton = addStyle("button");
@@ -49,7 +45,11 @@ export function InvalidFormComponents() {
     return (
         <>
             <Choice value="" label={<BodyText>Option A</BodyText>} />
-            <Choice value="" label="" description={<BodyText>More details</BodyText>} />
+            <Choice
+                value=""
+                label=""
+                description={<BodyText>More details</BodyText>}
+            />
             <Checkbox
                 checked={false}
                 onChange={() => {}}
@@ -108,9 +108,6 @@ export function InvalidHeadingElements() {
             <Heading>
                 <BodyText>Sub text</BodyText>
             </Heading>
-            <HeadingLarge>
-                <BodyText>Sub text</BodyText>
-            </HeadingLarge>
             <h1>
                 <BodyText>Sub text</BodyText>
             </h1>
