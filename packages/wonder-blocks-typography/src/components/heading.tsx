@@ -1,6 +1,6 @@
 import * as React from "react";
 import {PropsFor, Text} from "@khanacademy/wonder-blocks-core";
-import styles from "../util/styles";
+import styles from "./heading.module.css";
 
 const tagMap = {
     xxlarge: "h1",
@@ -20,21 +20,21 @@ type Props = PropsFor<typeof Text> & {
 
 // List style combinations for matching with props
 const styleMapping = {
-    "small-medium": styles.HeadingSmallMediumWeight,
-    "small-semi": styles.HeadingSmallSemiWeight,
-    "small-bold": styles.HeadingSmallBoldWeight,
-    "medium-medium": styles.HeadingMediumMediumWeight,
-    "medium-semi": styles.HeadingMediumSemiWeight,
-    "medium-bold": styles.HeadingMediumBoldWeight,
-    "large-medium": styles.HeadingLargeMediumWeight,
-    "large-semi": styles.HeadingLargeSemiWeight,
-    "large-bold": styles.HeadingLargeBoldWeight,
-    "xlarge-medium": styles.HeadingXLargeMediumWeight,
-    "xlarge-semi": styles.HeadingXLargeSemiWeight,
-    "xlarge-bold": styles.HeadingXLargeBoldWeight,
-    "xxlarge-medium": styles.HeadingXxLargeMediumWeight,
-    "xxlarge-semi": styles.HeadingXxLargeSemiWeight,
-    "xxlarge-bold": styles.HeadingXxLargeBoldWeight,
+    "small-medium": styles.smallMedium,
+    "small-semi": styles.smallSemi,
+    "small-bold": styles.smallBold,
+    "medium-medium": styles.mediumMedium,
+    "medium-semi": styles.mediumSemi,
+    "medium-bold": styles.mediumBold,
+    "large-medium": styles.largeMedium,
+    "large-semi": styles.largeSemi,
+    "large-bold": styles.largeBold,
+    "xlarge-medium": styles.xlargeMedium,
+    "xlarge-semi": styles.xlargeSemi,
+    "xlarge-bold": styles.xlargeBold,
+    "xxlarge-medium": styles.xxlargeMedium,
+    "xxlarge-semi": styles.xxlargeSemi,
+    "xxlarge-bold": styles.xxlargeBold,
 } as const;
 
 const Heading = React.forwardRef(function Heading(props: Props, ref) {
@@ -53,7 +53,7 @@ const Heading = React.forwardRef(function Heading(props: Props, ref) {
         <Text
             {...otherProps}
             tag={resolvedTag}
-            style={[styles.Heading, themeHeading, style]}
+            style={[styles.heading, themeHeading, style]}
             ref={ref}
         >
             {children}

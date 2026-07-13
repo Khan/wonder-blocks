@@ -1,7 +1,7 @@
 import * as React from "react";
 import {PropsFor, Text} from "@khanacademy/wonder-blocks-core";
 
-import styles from "../util/styles";
+import styles from "./body-monospace.module.css";
 
 type Props = PropsFor<typeof Text>;
 
@@ -13,7 +13,7 @@ const BodyMonospace = React.forwardRef(function BodyMonospace(
         <Text
             {...otherProps}
             tag={tag}
-            style={[styles.BodyMonospace, style]}
+            style={[styles.bodyMonospace, style]}
             ref={ref}
         >
             {children}
