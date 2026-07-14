@@ -56,13 +56,19 @@ export const StateSheetStory: Story = {
             states={[commonStates.rest]}
             title="Icon / Style"
         >
-            {({props}) => (
-                // Custom icons expand to fill their parent, so we set a
-                // fixed size on the container.
-                <View style={styles.iconContainer}>
-                    <props.Component {...props} />
-                </View>
-            )}
+            {({props}) => {
+                // Pull `Component` out of the props so it isn't spread onto
+                // the underlying svg element (which would trigger an unknown
+                // DOM attribute warning).
+                const {Component, ...rest} = props;
+                return (
+                    // Custom icons expand to fill their parent, so we set a
+                    // fixed size on the container.
+                    <View style={styles.iconContainer}>
+                        <Component {...rest} />
+                    </View>
+                );
+            }}
         </StateSheet>
     ),
 };
