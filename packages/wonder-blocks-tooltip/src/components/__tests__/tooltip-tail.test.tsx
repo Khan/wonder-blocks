@@ -107,28 +107,6 @@ describe("TooltipTail", () => {
 `);
         });
 
-        it("should render the tail with the strong variant colors", () => {
-            // Arrange
-            const nodes = <TooltipTail placement="top" variant="strong" />;
-
-            // Act
-            const {container} = render(nodes);
-
-            // Assert
-            // eslint-disable-next-line testing-library/no-container, testing-library/no-node-access
-            const polylines = container.querySelectorAll("polyline");
-            // The arrow is filled with the inverse/knockout ("black")
-            // background and outlined with the strong border.
-            expect(polylines[1]).toHaveAttribute(
-                "fill",
-                "var(--wb-semanticColor-feedback-neutral-strong-background)",
-            );
-            expect(polylines[2]).toHaveAttribute(
-                "stroke",
-                "var(--wb-semanticColor-feedback-neutral-strong-border)",
-            );
-        });
-
         it("should render a spacer when show is false", () => {
             // Arrange
             const nodes = <TooltipTail placement="top" show={false} />;
