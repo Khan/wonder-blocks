@@ -10,7 +10,7 @@ import {
 
 import TooltipContent from "./tooltip-content";
 import TooltipTail from "./tooltip-tail";
-import {PopperElementProps} from "../util/types";
+import {PopperElementProps, TooltipVariant} from "../util/types";
 
 export type Props = {
     /** The unique identifier for this component. */
@@ -20,6 +20,12 @@ export type Props = {
     onActiveChanged: (active: boolean) => unknown;
     /** Optional background color. */
     backgroundColor?: keyof typeof color;
+    /**
+     * The visual style of the tooltip. When `strong`, the bubble uses an
+     * inverse/knockout ("black") background and light ("white") text. Defaults
+     * to `subtle`.
+     */
+    variant?: TooltipVariant;
 } & PopperElementProps; // (v3 beta introduces this) // TODO(somewhatabstract): Update react-docgen to support spread operators
 
 type State = {
@@ -55,7 +61,9 @@ export default class TooltipBubble extends React.Component<Props, State> {
             updateTailRef,
             tailOffset,
             backgroundColor,
+            variant,
         } = this.props;
+        const isStrong = variant === "strong";
         return (
             <View
                 id={id}
@@ -77,6 +85,9 @@ export default class TooltipBubble extends React.Component<Props, State> {
                         backgroundColor && {
                             backgroundColor: color[backgroundColor],
                         },
+                        // The strong variant takes precedence over the legacy
+                        // `backgroundColor` override.
+                        isStrong && styles.contentStrong,
                     ]}
                 >
                     {children}
@@ -86,6 +97,7 @@ export default class TooltipBubble extends React.Component<Props, State> {
                     placement={placement}
                     offset={tailOffset}
                     color={backgroundColor}
+                    variant={variant}
                 />
             </View>
         );
@@ -133,5 +145,16 @@ const styles = StyleSheet.create({
         backgroundColor: semanticColor.core.background.base.default,
         boxShadow: boxShadow.mid,
         justifyContent: "center",
+    },
+
+    /**
+     * The strong variant uses an inverse/knockout ("black") background with
+     * light ("white") text. The text color is set here so it cascades to the
+     * `TooltipContent` typography, which inherits the CSS `color`.
+     */
+    contentStrong: {
+        backgroundColor: semanticColor.feedback.neutral.strong.background,
+        borderColor: semanticColor.feedback.neutral.strong.border,
+        color: semanticColor.feedback.neutral.strong.text,
     },
 });

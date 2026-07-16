@@ -412,6 +412,24 @@ export const WithStyle: StoryComponentType = {
 };
 
 /**
+ * Tooltips support two visual variants via the `variant` prop:
+ *
+ * - `subtle` (default): a light background with dark text.
+ * - `strong`: an inverse/knockout tooltip with a dark ("black") background and
+ *   light ("white") text.
+ */
+export const Strong: StoryComponentType = {
+    args: {
+        content: "This is a strong tooltip.",
+        title: "Strong variant",
+        variant: "strong",
+        children: "some text",
+        opened: true,
+        forceAnchorFocusivity: false,
+    } as TooltipArgs,
+};
+
+/**
  * Tooltip by default (and for performance reasons) only updates its position
  * under the following conditions:
  *

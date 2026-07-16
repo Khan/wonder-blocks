@@ -130,6 +130,59 @@ describe("Tooltip", () => {
                 "background-color: rgb(24, 101, 242)",
             );
         });
+
+        it("should use the strong variant styles when variant is strong", async () => {
+            // Arrange
+            render(
+                <View>
+                    <Tooltip
+                        title="Title"
+                        content="Content"
+                        variant="strong"
+                        opened={true}
+                    >
+                        Anchor
+                    </Tooltip>
+                </View>,
+            );
+
+            // Act
+            const tooltipContent = await screen.findByRole("tooltip");
+            // eslint-disable-next-line testing-library/no-node-access
+            const innerTooltipContentView = tooltipContent.firstChild;
+
+            // Assert
+            // The strong variant uses the inverse/knockout ("black")
+            // background and light ("white") text.
+            expect(innerTooltipContentView).toHaveStyle({
+                backgroundColor:
+                    "var(--wb-semanticColor-feedback-neutral-strong-background)",
+                color: "var(--wb-semanticColor-feedback-neutral-strong-text)",
+            });
+        });
+
+        it("should use the subtle variant styles by default", async () => {
+            // Arrange
+            render(
+                <View>
+                    <Tooltip title="Title" content="Content" opened={true}>
+                        Anchor
+                    </Tooltip>
+                </View>,
+            );
+
+            // Act
+            const tooltipContent = await screen.findByRole("tooltip");
+            // eslint-disable-next-line testing-library/no-node-access
+            const innerTooltipContentView = tooltipContent.firstChild;
+
+            // Assert
+            // The subtle variant uses the default (light) background.
+            expect(innerTooltipContentView).toHaveStyle({
+                backgroundColor:
+                    "var(--wb-semanticColor-core-background-base-default)",
+            });
+        });
     });
 
     describe("accessibility", () => {

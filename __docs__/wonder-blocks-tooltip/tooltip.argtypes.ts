@@ -23,6 +23,25 @@ export default {
             },
         },
     },
+    variant: {
+        description:
+            "The visual style of the tooltip. `subtle` (default) uses the " +
+            "standard light background with dark text. `strong` uses an " +
+            "inverse/knockout (\u201Cblack\u201D) background with light " +
+            "(\u201Cwhite\u201D) text.",
+        control: {
+            type: "select",
+        },
+        options: ["subtle", "strong"],
+        table: {
+            type: {
+                summary: '"subtle" | "strong"',
+            },
+            defaultValue: {
+                summary: '"subtle"',
+            },
+        },
+    },
     contentStyle: {
         description:
             "Optional subset of CSS styles for the tooltip content. Currently supports `color` and `padding`.",

@@ -1,4 +1,4 @@
-import type {Placement, PopperElementProps} from "./util/types";
+import type {Placement, PopperElementProps, TooltipVariant} from "./util/types";
 
 import Tooltip from "./components/tooltip";
 import TooltipContent from "./components/tooltip-content";
@@ -7,4 +7,4 @@ import TooltipTail from "./components/tooltip-tail";
 
 export {Tooltip as default, TooltipContent, TooltipPopper, TooltipTail};
 
-export type {Placement, PopperElementProps};
+export type {Placement, PopperElementProps, TooltipVariant};

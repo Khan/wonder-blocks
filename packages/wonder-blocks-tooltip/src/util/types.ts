@@ -19,6 +19,15 @@ export type Offset = {
 export type Placement = "top" | "bottom" | "right" | "left";
 
 /**
+ * The visual style of the tooltip.
+ *
+ * - `subtle`: the default tooltip styling (light background, dark text).
+ * - `strong`: an inverse/knockout tooltip with a dark ("black") background
+ *   and light ("white") text.
+ */
+export type TooltipVariant = "subtle" | "strong";
+
+/**
  * Subset of CSS properties to allow overriding some of the default styles
  */
 export type ContentStyle = {
