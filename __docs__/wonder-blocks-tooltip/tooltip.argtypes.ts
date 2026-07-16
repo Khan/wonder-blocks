@@ -1,3 +1,5 @@
+import {color} from "@khanacademy/wonder-blocks-tokens";
+
 import AriaArgTypes from "../wonder-blocks-core/aria.argtypes";
 
 export default {
@@ -52,6 +54,13 @@ export default {
                 detail: "Only supports color and padding styles.",
             },
         },
+    },
+    backgroundColor: {
+        description: "Optional background color for the tooltip content.",
+        control: {
+            type: "select",
+        },
+        options: Object.keys(color) as Array<string>,
     },
     forceAnchorFocusivity: {
         description:
