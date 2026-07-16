@@ -17,9 +17,9 @@ export type Props = {
      */
     color?: keyof typeof color;
     /**
-     * The visual style of the tail. When `strong`, the tail is filled with the
-     * inverse/knockout ("black") background so it matches the strong tooltip
-     * bubble. Defaults to `subtle`.
+     * The visual style of the tail. When `strong`, the tail matches the
+     * higher-emphasis inverse/knockout treatment of the strong tooltip bubble.
+     * Defaults to `subtle`.
      */
     variant?: TooltipVariant;
     /** The offset of the tail indicating where it should be positioned. */
@@ -354,8 +354,8 @@ export default class TooltipTail extends React.Component<Props> {
         const isStrong = variant === "strong";
         // When no primitive override is passed, use the same semantic
         // background as the bubble so the tail follows the theme. The strong
-        // variant uses the inverse/knockout ("black") background and takes
-        // precedence over any primitive `color` override.
+        // variant uses the inverse/knockout background and takes precedence
+        // over any primitive `color` override.
         const tailFill = isStrong
             ? semanticColor.feedback.neutral.strong.background
             : arrowColor !== undefined && color[arrowColor]

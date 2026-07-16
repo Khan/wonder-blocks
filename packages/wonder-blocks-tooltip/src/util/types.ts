@@ -21,9 +21,10 @@ export type Placement = "top" | "bottom" | "right" | "left";
 /**
  * The visual style of the tooltip.
  *
- * - `subtle`: the default tooltip styling (light background, dark text).
- * - `strong`: an inverse/knockout tooltip with a dark ("black") background
- *   and light ("white") text.
+ * - `subtle`: the default, standard tooltip styling.
+ * - `strong`: a higher-emphasis tooltip that uses an inverse/knockout
+ *   treatment. Its colors are defined with semantic tokens, so they adapt to
+ *   the active theme.
  */
 export type TooltipVariant = "subtle" | "strong";
 

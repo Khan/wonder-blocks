@@ -108,10 +108,11 @@ type Props = AriaProps &
         /**
          * The visual style of the tooltip.
          *
-         * - `subtle` (default): the standard tooltip styling with a light
-         *   background and dark text.
-         * - `strong`: an inverse/knockout tooltip with a dark ("black")
-         *   background and light ("white") text.
+         * - `subtle` (default): the standard tooltip styling, used for most
+         *   cases.
+         * - `strong`: a higher-emphasis tooltip that uses an inverse/knockout
+         *   treatment. Its colors are defined with semantic tokens, so they
+         *   adapt to the active theme.
          *
          * Defaults to `subtle`.
          */

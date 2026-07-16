@@ -414,9 +414,9 @@ export const WithStyle: StoryComponentType = {
 /**
  * Tooltips support two visual variants via the `variant` prop:
  *
- * - `subtle` (default): a light background with dark text.
- * - `strong`: an inverse/knockout tooltip with a dark ("black") background and
- *   light ("white") text.
+ * - `subtle` (default): the standard tooltip styling.
+ * - `strong`: a higher-emphasis, inverse/knockout variant whose colors adapt
+ *   to the active theme.
  */
 export const Strong: StoryComponentType = {
     args: {

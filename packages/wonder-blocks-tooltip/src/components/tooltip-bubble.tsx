@@ -21,9 +21,8 @@ export type Props = {
     /** Optional background color. */
     backgroundColor?: keyof typeof color;
     /**
-     * The visual style of the tooltip. When `strong`, the bubble uses an
-     * inverse/knockout ("black") background and light ("white") text. Defaults
-     * to `subtle`.
+     * The visual style of the tooltip. When `strong`, the bubble uses a
+     * higher-emphasis inverse/knockout treatment. Defaults to `subtle`.
      */
     variant?: TooltipVariant;
 } & PopperElementProps; // (v3 beta introduces this) // TODO(somewhatabstract): Update react-docgen to support spread operators
@@ -148,9 +147,9 @@ const styles = StyleSheet.create({
     },
 
     /**
-     * The strong variant uses an inverse/knockout ("black") background with
-     * light ("white") text. The text color is set here so it cascades to the
-     * `TooltipContent` typography, which inherits the CSS `color`.
+     * The strong variant uses a higher-emphasis inverse/knockout treatment.
+     * The text color is set here so it cascades to the `TooltipContent`
+     * typography, which inherits the CSS `color`.
      */
     contentStrong: {
         backgroundColor: semanticColor.feedback.neutral.strong.background,

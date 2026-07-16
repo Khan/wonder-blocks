@@ -25,10 +25,9 @@ export default {
     },
     variant: {
         description:
-            "The visual style of the tooltip. `subtle` (default) uses the " +
-            "standard light background with dark text. `strong` uses an " +
-            "inverse/knockout (\u201Cblack\u201D) background with light " +
-            "(\u201Cwhite\u201D) text.",
+            "The visual style of the tooltip. `subtle` (default) is the " +
+            "standard tooltip styling. `strong` is a higher-emphasis, " +
+            "inverse/knockout variant whose colors adapt to the active theme.",
         control: {
             type: "select",
         },
