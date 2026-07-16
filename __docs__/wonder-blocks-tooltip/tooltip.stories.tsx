@@ -386,21 +386,21 @@ export const Controlled: StoryComponentType = {
 };
 
 /**
- * Tooltips can be styled with the `backgroundColor` and `contentStyle` props.
- * The example below shows a tooltip with a dark blue background, white text,
- * and 32px of padding.
+ * Tooltips can be customized with the `contentStyle` prop, which supports
+ * `padding` and `color`. Combine it with the `strong` variant to get a
+ * color-agnostic dark tooltip that adapts to light and dark modes. The example
+ * below shows a strong tooltip with 32px of padding.
  */
 export const WithStyle: StoryComponentType = {
     render: function Render() {
         return (
             <View style={[styles.centered, styles.row]}>
                 <Tooltip
+                    variant="strong"
                     contentStyle={{
-                        color: semanticColor.core.foreground.knockout.default,
                         padding: sizing.size_320,
                     }}
                     content={`This is a styled tooltip.`}
-                    backgroundColor="darkBlue"
                     opened={true}
                     testId="test-tooltip"
                 >

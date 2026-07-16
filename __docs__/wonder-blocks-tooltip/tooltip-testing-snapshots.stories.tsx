@@ -3,7 +3,7 @@ import {StyleSheet} from "aphrodite";
 import type {Meta, StoryObj} from "@storybook/react-vite";
 
 import {View} from "@khanacademy/wonder-blocks-core";
-import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
+import {sizing} from "@khanacademy/wonder-blocks-tokens";
 import {BodyText} from "@khanacademy/wonder-blocks-typography";
 import Tooltip, {TooltipContent} from "@khanacademy/wonder-blocks-tooltip";
 
@@ -72,21 +72,6 @@ const rows = [
                     </BodyText>
                 </TooltipContent>
             ),
-        },
-    },
-    {
-        name: "Custom primitive background color",
-        props: {
-            content: "Custom background color",
-            // TODO(WB-2125): Remove this once `backgroundColor` prop is removed
-            // in favour of a strong tooltip variant.
-            //
-            // Note: This won't look right in syl-dark. We include this to ensure
-            // existing behaviour is not broken.
-            backgroundColor: "darkBlue",
-            contentStyle: {
-                color: semanticColor.core.foreground.knockout.default,
-            },
         },
     },
 ];
