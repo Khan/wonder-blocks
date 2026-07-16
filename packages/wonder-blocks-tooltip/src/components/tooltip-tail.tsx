@@ -352,15 +352,16 @@ export default class TooltipTail extends React.Component<Props> {
 
         const {color: arrowColor, show, variant} = this.props;
         const isStrong = variant === "strong";
-        // When no primitive override is passed, use the same semantic
-        // background as the bubble so the tail follows the theme. The strong
-        // variant uses the inverse/knockout background and takes precedence
-        // over any primitive `color` override.
-        const tailFill = isStrong
-            ? semanticColor.feedback.neutral.strong.background
-            : arrowColor !== undefined && color[arrowColor]
-              ? color[arrowColor]
-              : semanticColor.core.background.base.default;
+        // A primitive `color` override takes precedence (used to support custom
+        // popovers). Otherwise, the strong variant uses the inverse/knockout
+        // background, falling back to the same semantic background as the bubble
+        // so the tail follows the theme.
+        const tailFill =
+            arrowColor !== undefined && color[arrowColor]
+                ? color[arrowColor]
+                : isStrong
+                  ? semanticColor.feedback.neutral.strong.background
+                  : semanticColor.core.background.base.default;
         // The strong variant uses a matching strong border so the tail outline
         // stays flush with the bubble outline.
         const tailBorder = isStrong
