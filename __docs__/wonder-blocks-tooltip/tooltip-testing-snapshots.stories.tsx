@@ -91,7 +91,10 @@ const rows = [
     },
 ];
 
-const columns = [{name: "Default", props: {}}];
+const columns = [
+    {name: "Subtle", props: {variant: "subtle"}},
+    {name: "Strong", props: {variant: "strong"}},
+];
 
 // Tooltip with `opened` controlled to `true` has no interactive pseudo states
 // here, so render a single "Default" state per cell instead of cycling through

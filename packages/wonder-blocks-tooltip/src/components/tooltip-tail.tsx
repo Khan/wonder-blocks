@@ -5,7 +5,7 @@ import {View} from "@khanacademy/wonder-blocks-core";
 import {color, semanticColor} from "@khanacademy/wonder-blocks-tokens";
 
 import type {StyleType} from "@khanacademy/wonder-blocks-core";
-import type {getRefFn, Placement, Offset} from "../util/types";
+import type {getRefFn, Placement, Offset, TooltipVariant} from "../util/types";
 
 export type Props = {
     /**
@@ -16,6 +16,12 @@ export type Props = {
      * @ignore
      */
     color?: keyof typeof color;
+    /**
+     * The visual style of the tail. When `strong`, the tail matches the
+     * higher-emphasis inverse/knockout treatment of the strong tooltip bubble.
+     * Defaults to `subtle`.
+     */
+    variant?: TooltipVariant;
     /** The offset of the tail indicating where it should be positioned. */
     offset?: Offset;
     /** The placement of the tail with respect to the tooltip anchor. */
@@ -344,13 +350,23 @@ export default class TooltipTail extends React.Component<Props> {
         const {trimlinePoints, points, height, width} =
             this._calculateDimensionsFromPlacement();
 
-        const {color: arrowColor, show} = this.props;
-        // When no primitive override is passed, use the same semantic
-        // background as the bubble so the tail follows the theme
+        const {color: arrowColor, show, variant} = this.props;
+        const isStrong = variant === "strong";
+        // A primitive `color` override takes precedence (used to support custom
+        // popovers). Otherwise, the strong variant uses the inverse/knockout
+        // background, falling back to the same semantic background as the bubble
+        // so the tail follows the theme.
         const tailFill =
             arrowColor !== undefined && color[arrowColor]
                 ? color[arrowColor]
-                : semanticColor.core.background.base.default;
+                : isStrong
+                  ? semanticColor.feedback.neutral.strong.background
+                  : semanticColor.core.background.base.default;
+        // The strong variant uses a matching strong border so the tail outline
+        // stays flush with the bubble outline.
+        const tailBorder = isStrong
+            ? semanticColor.feedback.neutral.strong.border
+            : semanticColor.core.border.neutral.subtle;
 
         if (!show) {
             // If we aren't showing the tail, we still need to take up space
@@ -397,7 +413,7 @@ export default class TooltipTail extends React.Component<Props> {
                     // the border of the tooltip.
                     fill={tailFill}
                     points={points.join(" ")}
-                    stroke={semanticColor.core.border.neutral.subtle}
+                    stroke={tailBorder}
                 />
                 {/* Draw a trimline to make the arrow appear flush */}
                 <polyline stroke={tailFill} points={trimlinePoints.join(" ")} />
