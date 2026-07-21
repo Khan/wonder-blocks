@@ -28,17 +28,6 @@ runs:
         cache: 'pnpm'
         cache-dependency-path: 'pnpm-lock.yaml'
 
-    - name: ⬆️ Upgrade npm for OIDC support
-      shell: bash
-      run: |
-          # npm trusted publishing requires npm CLI v11.5.1+, but NOT
-          # the new v12, which is broken when detecting which packages
-          # need to be published!
-          #
-          # We force the install here to be sure we're on npm 11
-          npm install -g npm@11
-          echo "✅ npm upgraded to $(npm --version)"
-
     - name: Install Dependencies
       shell: bash
       run: pnpm install --frozen-lockfile
