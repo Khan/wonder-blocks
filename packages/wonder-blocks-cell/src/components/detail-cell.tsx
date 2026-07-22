@@ -14,6 +14,9 @@ type SubtitleProps = {
     /**
      * If true, the subtitle will use the alpha color defined in the parent
      * component/element.
+     *
+     * Internally, the `aria-disabled` attribute will be set so that the
+     * element remains focusable and will be included in the tab order.
      */
     disabled?: boolean;
 };

@@ -65,6 +65,7 @@ const defaultArgs = {
     testId: "",
     autoComplete: "none",
     loading: false,
+    "aria-label": "", // Setting to empty string to avoid SB control showing as an object to represent undefined
 };
 
 export default {
@@ -481,8 +482,7 @@ export const StartIcon: Story = {
                             icon={magnifyingGlassIcon}
                             size="small"
                             color={
-                                semanticColor.core.foreground.instructive
-                                    .default
+                                semanticColor.core.foreground.instructive.strong
                             }
                         />
                     }
@@ -499,8 +499,7 @@ export const StartIcon: Story = {
                             icon={magnifyingGlassIcon}
                             size="small"
                             color={
-                                semanticColor.core.foreground.instructive
-                                    .default
+                                semanticColor.core.foreground.instructive.strong
                             }
                         />
                     }

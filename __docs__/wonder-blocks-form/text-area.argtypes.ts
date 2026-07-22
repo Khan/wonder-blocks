@@ -1,4 +1,7 @@
+import AriaArgTypes from "../wonder-blocks-core/aria.argtypes";
+
 export default {
+    ...AriaArgTypes,
     /**
      * General
      */

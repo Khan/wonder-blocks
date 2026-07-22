@@ -1,5 +1,297 @@
 # @khanacademy/wonder-blocks-birthday-picker
 
+## 4.1.59
+
+### Patch Changes
+
+- Updated dependencies [3e7925e]
+    - @khanacademy/wonder-blocks-tokens@17.2.0
+    - @khanacademy/wonder-blocks-dropdown@10.11.7
+    - @khanacademy/wonder-blocks-icon@5.3.22
+    - @khanacademy/wonder-blocks-layout@3.1.59
+    - @khanacademy/wonder-blocks-typography@5.0.2
+
+## 4.1.58
+
+### Patch Changes
+
+- Updated dependencies [dfcf49b]
+    - @khanacademy/wonder-blocks-tokens@17.1.0
+    - @khanacademy/wonder-blocks-dropdown@10.11.6
+    - @khanacademy/wonder-blocks-icon@5.3.21
+    - @khanacademy/wonder-blocks-layout@3.1.58
+    - @khanacademy/wonder-blocks-typography@5.0.1
+
+## 4.1.57
+
+### Patch Changes
+
+- Updated dependencies [f1cd1ce]
+- Updated dependencies [9d8e5e3]
+- Updated dependencies [9d8e5e3]
+    - @khanacademy/wonder-blocks-icon@5.3.20
+    - @khanacademy/wonder-blocks-tokens@17.0.0
+    - @khanacademy/wonder-blocks-typography@5.0.0
+    - @khanacademy/wonder-blocks-dropdown@10.11.5
+    - @khanacademy/wonder-blocks-layout@3.1.57
+
+## 4.1.56
+
+### Patch Changes
+
+- Updated dependencies [77ba389]
+    - @khanacademy/wonder-blocks-dropdown@10.11.4
+
+## 4.1.55
+
+### Patch Changes
+
+- Updated dependencies [0735aef]
+    - @khanacademy/wonder-blocks-tokens@16.8.1
+    - @khanacademy/wonder-blocks-dropdown@10.11.3
+    - @khanacademy/wonder-blocks-icon@5.3.19
+    - @khanacademy/wonder-blocks-layout@3.1.56
+    - @khanacademy/wonder-blocks-typography@4.3.9
+
+## 4.1.54
+
+### Patch Changes
+
+- @khanacademy/wonder-blocks-dropdown@10.11.2
+
+## 4.1.53
+
+### Patch Changes
+
+- Updated dependencies [f13552a]
+    - @khanacademy/wonder-blocks-tokens@16.8.0
+    - @khanacademy/wonder-blocks-dropdown@10.11.1
+    - @khanacademy/wonder-blocks-icon@5.3.18
+    - @khanacademy/wonder-blocks-layout@3.1.55
+    - @khanacademy/wonder-blocks-typography@4.3.8
+
+## 4.1.52
+
+### Patch Changes
+
+- Updated dependencies [ddcaaeb]
+- Updated dependencies [0907f64]
+- Updated dependencies [9773405]
+- Updated dependencies [e6c705d]
+- Updated dependencies [9773405]
+- Updated dependencies [5928e1c]
+- Updated dependencies [022e775]
+- Updated dependencies [e181c15]
+- Updated dependencies [022e775]
+- Updated dependencies [8413cfe]
+- Updated dependencies [c033245]
+- Updated dependencies [a2bbc0a]
+    - @khanacademy/wonder-blocks-icon@5.3.17
+    - @khanacademy/wonder-blocks-tokens@16.7.0
+    - @khanacademy/wonder-blocks-dropdown@10.11.0
+    - @khanacademy/wonder-blocks-layout@3.1.54
+    - @khanacademy/wonder-blocks-typography@4.3.7
+
+## 4.1.51
+
+### Patch Changes
+
+- Updated dependencies [d69335d]
+    - @khanacademy/wonder-blocks-dropdown@10.10.0
+    - @khanacademy/wonder-blocks-core@12.4.4
+
+## 4.1.50
+
+### Patch Changes
+
+- Updated dependencies [1fdc9db]
+- Updated dependencies [a676ce6]
+    - @khanacademy/wonder-blocks-dropdown@10.9.2
+    - @khanacademy/wonder-blocks-tokens@16.6.0
+    - @khanacademy/wonder-blocks-icon@5.3.16
+    - @khanacademy/wonder-blocks-layout@3.1.53
+    - @khanacademy/wonder-blocks-typography@4.3.6
+
+## 4.1.49
+
+### Patch Changes
+
+- 40cb70f: Add `require-logical-properties-for-rtl` ESLint rule to `eslint-plugin-wonder-blocks` recommended config, and migrate all Wonder Blocks component source files to use CSS logical properties for improved RTL layout support.
+- 40cb70f: Enable RTL logical-properties ESLint rule in recommended config
+- Updated dependencies [40cb70f]
+- Updated dependencies [40cb70f]
+    - @khanacademy/wonder-blocks-core@12.4.4
+    - @khanacademy/wonder-blocks-dropdown@10.9.1
+    - @khanacademy/wonder-blocks-icon@5.3.15
+    - @khanacademy/wonder-blocks-layout@3.1.52
+    - @khanacademy/wonder-blocks-typography@4.3.5
+
+## 4.1.48
+
+### Patch Changes
+
+- Updated dependencies [44bde5e]
+- Updated dependencies [27a211d]
+    - @khanacademy/wonder-blocks-tokens@16.5.0
+    - @khanacademy/wonder-blocks-dropdown@10.9.0
+    - @khanacademy/wonder-blocks-icon@5.3.14
+    - @khanacademy/wonder-blocks-layout@3.1.51
+    - @khanacademy/wonder-blocks-typography@4.3.4
+
+## 4.1.47
+
+### Patch Changes
+
+- Updated dependencies [245229a]
+    - @khanacademy/wonder-blocks-tokens@16.4.1
+    - @khanacademy/wonder-blocks-dropdown@10.8.9
+    - @khanacademy/wonder-blocks-icon@5.3.13
+    - @khanacademy/wonder-blocks-layout@3.1.50
+    - @khanacademy/wonder-blocks-typography@4.3.3
+
+## 4.1.46
+
+### Patch Changes
+
+- 0fadf9f: Migrate internal usage of the deprecated `spacing` primitive token to the
+  `sizing` token. No public API or visual changes — each `spacing.<name>`
+  value maps 1:1 to a `sizing.size_<n>` token with the same rendered value.
+  A handful of internal `Strut` usages are replaced with CSS `gap` /
+  `margin` (since `sizing.X` is a CSS variable string at runtime, not a
+  number). Layout-spec and SVG sites that genuinely need JS numbers use
+  hardcoded values that mirror the matching `sizing.size_*` tokens (with
+  comments). Prep for removal of the `spacing` export in a future major
+  release of `@khanacademy/wonder-blocks-tokens`.
+- Updated dependencies [0fadf9f]
+- Updated dependencies [c1c74df]
+- Updated dependencies [72c5272]
+    - @khanacademy/wonder-blocks-layout@3.1.49
+    - @khanacademy/wonder-blocks-tokens@16.4.0
+    - @khanacademy/wonder-blocks-dropdown@10.8.8
+    - @khanacademy/wonder-blocks-icon@5.3.12
+    - @khanacademy/wonder-blocks-typography@4.3.2
+
+## 4.1.45
+
+### Patch Changes
+
+- Updated dependencies [40f217b]
+    - @khanacademy/wonder-blocks-tokens@16.3.0
+    - @khanacademy/wonder-blocks-dropdown@10.8.7
+    - @khanacademy/wonder-blocks-icon@5.3.11
+    - @khanacademy/wonder-blocks-layout@3.1.48
+    - @khanacademy/wonder-blocks-typography@4.3.1
+
+## 4.1.44
+
+### Patch Changes
+
+- @khanacademy/wonder-blocks-dropdown@10.8.6
+
+## 4.1.43
+
+### Patch Changes
+
+- 00e6dda: Updates internal WB typography references to use the new system (Heading and BodyText)
+- Updated dependencies [488728a]
+- Updated dependencies [00e6dda]
+    - @khanacademy/wonder-blocks-tokens@16.2.0
+    - @khanacademy/wonder-blocks-typography@4.3.0
+    - @khanacademy/wonder-blocks-dropdown@10.8.5
+    - @khanacademy/wonder-blocks-icon@5.3.10
+    - @khanacademy/wonder-blocks-layout@3.1.47
+
+## 4.1.42
+
+### Patch Changes
+
+- @khanacademy/wonder-blocks-dropdown@10.8.4
+
+## 4.1.41
+
+### Patch Changes
+
+- @khanacademy/wonder-blocks-dropdown@10.8.3
+
+## 4.1.40
+
+### Patch Changes
+
+- Updated dependencies [358eb9b]
+    - @khanacademy/wonder-blocks-tokens@16.1.0
+    - @khanacademy/wonder-blocks-dropdown@10.8.2
+    - @khanacademy/wonder-blocks-icon@5.3.9
+    - @khanacademy/wonder-blocks-layout@3.1.46
+    - @khanacademy/wonder-blocks-typography@4.2.31
+
+## 4.1.39
+
+### Patch Changes
+
+- Updated dependencies [c75abe9]
+- Updated dependencies [c75abe9]
+- Updated dependencies [530d692]
+    - @khanacademy/wonder-blocks-tokens@16.0.0
+    - @khanacademy/wonder-blocks-dropdown@10.8.1
+    - @khanacademy/wonder-blocks-icon@5.3.8
+    - @khanacademy/wonder-blocks-layout@3.1.45
+    - @khanacademy/wonder-blocks-typography@4.2.30
+
+## 4.1.38
+
+### Patch Changes
+
+- Updated dependencies [9abc34a]
+- Updated dependencies [a46a842]
+- Updated dependencies [e0aaa9e]
+    - @khanacademy/wonder-blocks-dropdown@10.8.0
+
+## 4.1.37
+
+### Patch Changes
+
+- 12e04c3: Update component documentation for the `disabled` props to include details about `aria-disabled` being set internally to keep an element focusable while in a disabled state
+- Updated dependencies [12e04c3]
+    - @khanacademy/wonder-blocks-dropdown@10.7.1
+
+## 4.1.36
+
+### Patch Changes
+
+- Updated dependencies [be1c83f]
+    - @khanacademy/wonder-blocks-dropdown@10.7.0
+
+## 4.1.35
+
+### Patch Changes
+
+- 8bb7ada: Updates styles to reflect new core.foreground tokens
+- Updated dependencies [8bb7ada]
+- Updated dependencies [8bb7ada]
+    - @khanacademy/wonder-blocks-tokens@15.0.0
+    - @khanacademy/wonder-blocks-dropdown@10.6.7
+    - @khanacademy/wonder-blocks-icon@5.3.7
+    - @khanacademy/wonder-blocks-layout@3.1.44
+    - @khanacademy/wonder-blocks-typography@4.2.29
+
+## 4.1.34
+
+### Patch Changes
+
+- Updated dependencies [d6ae5fb]
+    - @khanacademy/wonder-blocks-core@12.4.3
+    - @khanacademy/wonder-blocks-dropdown@10.6.6
+    - @khanacademy/wonder-blocks-icon@5.3.6
+    - @khanacademy/wonder-blocks-layout@3.1.43
+    - @khanacademy/wonder-blocks-tokens@14.1.3
+    - @khanacademy/wonder-blocks-typography@4.2.28
+
+## 4.1.33
+
+### Patch Changes
+
+- @khanacademy/wonder-blocks-dropdown@10.6.5
+
 ## 4.1.32
 
 ### Patch Changes

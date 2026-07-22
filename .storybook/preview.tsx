@@ -1,5 +1,6 @@
 import * as React from "react";
 import wonderBlocksTheme from "./wonder-blocks-theme";
+import wonderBlocksDarkTheme from "./wonder-blocks-dark-theme";
 import {Decorator} from "@storybook/react-vite";
 import {DocsContainer} from "@storybook/addon-docs/blocks";
 import {semanticColor} from "@khanacademy/wonder-blocks-tokens";
@@ -67,7 +68,13 @@ function DocsContainerWithTheme({children, context, ...props}) {
     const theme = context.store.userGlobals.globals.theme;
 
     return (
-        <DocsContainer context={context} {...props}>
+        <DocsContainer
+            context={context}
+            {...props}
+            theme={
+                theme === "syl-dark" ? wonderBlocksDarkTheme : wonderBlocksTheme
+            }
+        >
             <ThemeSwitcher theme={theme}>{children}</ThemeSwitcher>
         </DocsContainer>
     );
@@ -92,7 +99,17 @@ const parameters: Preview["parameters"] = {
          * See https://github.com/dequelabs/axe-core/blob/develop/doc/API.md#options-parameter
          * to learn more about the available options.
          */
-        options: {},
+        options: {
+            /*
+             * Disable axe-core's asset preloading. It fetches cross-origin
+             * stylesheets (for the color-contrast checks), which can't be
+             * loaded in the headless/network-isolated test browser and log a
+             * noisy `Couldn't load preload assets: ProgressEvent` warning for
+             * every story. Same-origin styles are already in the CSSOM, so
+             * audit results are unchanged — this only silences the warning.
+             */
+            preload: false,
+        },
     },
     backgrounds: {
         default: "baseDefault",
@@ -111,10 +128,6 @@ const parameters: Preview["parameters"] = {
             },
         },
     },
-    initialGlobals: {
-        // 👇 Set the initial background color
-        backgrounds: {value: "baseDefault"},
-    },
     // https://storybook.js.org/docs/react/configure/story-layout
     layout: "padded",
     options: {
@@ -122,7 +135,15 @@ const parameters: Preview["parameters"] = {
         // display the stories (or examples first), then we will display all the
         // mdx pages under __docs__.
         storySort: {
-            order: ["Components", "**/__docs__/**", "Overview"],
+            order: [
+                "Foundations",
+                "Packages",
+                "Tools",
+                "Catalog",
+                "Components",
+                "**/__docs__/**",
+                "Overview",
+            ],
         },
     },
     docs: {
@@ -266,7 +287,12 @@ const preview: Preview = {
                     {
                         value: "thunderblocks",
                         icon: "lightning",
-                        title: "Shape Your Learning (Thunder Blocks)",
+                        title: "Shape Your Learning (thunderblocks)",
+                    },
+                    {
+                        value: "syl-dark",
+                        icon: "moon",
+                        title: "Shape Your Learning - Dark (syl-dark)",
                     },
                 ],
                 // Change title based on selected value
@@ -318,6 +344,10 @@ const preview: Preview = {
     },
 
     tags: ["autodocs"],
+    initialGlobals: {
+        // 👇 Set the initial background color
+        backgrounds: {value: "baseDefault"},
+    },
 };
 
 export default preview;

@@ -4,7 +4,6 @@ import {
     border,
     boxShadow,
     font,
-    semanticColor,
     sizing,
 } from "@khanacademy/wonder-blocks-tokens";
 import defaultTheme from "./default";
@@ -32,9 +31,6 @@ export default mergeTheme(defaultTheme, {
             radius: {
                 rest: border.radius.radius_080,
             },
-        },
-        color: {
-            icon: semanticColor.core.foreground.instructive.default,
         },
         layout: {
             padding: {

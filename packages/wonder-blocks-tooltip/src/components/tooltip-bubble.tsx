@@ -10,7 +10,7 @@ import {
 
 import TooltipContent from "./tooltip-content";
 import TooltipTail from "./tooltip-tail";
-import {PopperElementProps} from "../util/types";
+import {PopperElementProps, TooltipVariant} from "../util/types";
 
 export type Props = {
     /** The unique identifier for this component. */
@@ -20,6 +20,11 @@ export type Props = {
     onActiveChanged: (active: boolean) => unknown;
     /** Optional background color. */
     backgroundColor?: keyof typeof color;
+    /**
+     * The visual style of the tooltip. When `strong`, the bubble uses a
+     * higher-emphasis inverse/knockout treatment. Defaults to `subtle`.
+     */
+    variant?: TooltipVariant;
 } & PopperElementProps; // (v3 beta introduces this) // TODO(somewhatabstract): Update react-docgen to support spread operators
 
 type State = {
@@ -55,7 +60,9 @@ export default class TooltipBubble extends React.Component<Props, State> {
             updateTailRef,
             tailOffset,
             backgroundColor,
+            variant,
         } = this.props;
+        const isStrong = variant === "strong";
         return (
             <View
                 id={id}
@@ -77,6 +84,9 @@ export default class TooltipBubble extends React.Component<Props, State> {
                         backgroundColor && {
                             backgroundColor: color[backgroundColor],
                         },
+                        // The strong variant takes precedence over the legacy
+                        // `backgroundColor` override.
+                        isStrong && styles.contentStrong,
                     ]}
                 >
                     {children}
@@ -86,6 +96,7 @@ export default class TooltipBubble extends React.Component<Props, State> {
                     placement={placement}
                     offset={tailOffset}
                     color={backgroundColor}
+                    variant={variant}
                 />
             </View>
         );
@@ -106,8 +117,8 @@ const styles = StyleSheet.create({
     hide: {
         pointerEvents: "none",
         opacity: 0,
-        backgroundColor: "transparent",
-        color: "transparent",
+        backgroundColor: semanticColor.core.transparent,
+        color: semanticColor.core.transparent,
     },
 
     /**
@@ -127,11 +138,22 @@ const styles = StyleSheet.create({
     },
 
     content: {
-        maxWidth: 472,
+        maxInlineSize: 472,
         borderRadius: border.radius.radius_040,
         border: `solid 1px ${semanticColor.core.border.neutral.subtle}`,
         backgroundColor: semanticColor.core.background.base.default,
         boxShadow: boxShadow.mid,
         justifyContent: "center",
+    },
+
+    /**
+     * The strong variant uses a higher-emphasis inverse/knockout treatment.
+     * The text color is set here so it cascades to the `TooltipContent`
+     * typography, which inherits the CSS `color`.
+     */
+    contentStrong: {
+        backgroundColor: semanticColor.feedback.neutral.strong.background,
+        borderColor: semanticColor.feedback.neutral.strong.border,
+        color: semanticColor.feedback.neutral.strong.text,
     },
 });

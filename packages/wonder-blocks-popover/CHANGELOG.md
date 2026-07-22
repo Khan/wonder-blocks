@@ -1,5 +1,310 @@
 # @khanacademy/wonder-blocks-popover
 
+## 6.3.11
+
+### Patch Changes
+
+- Updated dependencies [b2bf6d3]
+    - @khanacademy/wonder-blocks-tooltip@4.2.0
+
+## 6.3.10
+
+### Patch Changes
+
+- Updated dependencies [3e7925e]
+    - @khanacademy/wonder-blocks-tokens@17.2.0
+    - @khanacademy/wonder-blocks-icon-button@11.4.4
+    - @khanacademy/wonder-blocks-modal@8.7.10
+    - @khanacademy/wonder-blocks-styles@0.2.52
+    - @khanacademy/wonder-blocks-tooltip@4.1.85
+    - @khanacademy/wonder-blocks-typography@5.0.2
+
+## 6.3.9
+
+### Patch Changes
+
+- Updated dependencies [dfcf49b]
+    - @khanacademy/wonder-blocks-tokens@17.1.0
+    - @khanacademy/wonder-blocks-icon-button@11.4.3
+    - @khanacademy/wonder-blocks-modal@8.7.9
+    - @khanacademy/wonder-blocks-styles@0.2.51
+    - @khanacademy/wonder-blocks-tooltip@4.1.84
+    - @khanacademy/wonder-blocks-typography@5.0.1
+
+## 6.3.8
+
+### Patch Changes
+
+- Updated dependencies [9d8e5e3]
+- Updated dependencies [9d8e5e3]
+    - @khanacademy/wonder-blocks-tokens@17.0.0
+    - @khanacademy/wonder-blocks-typography@5.0.0
+    - @khanacademy/wonder-blocks-icon-button@11.4.2
+    - @khanacademy/wonder-blocks-modal@8.7.8
+    - @khanacademy/wonder-blocks-styles@0.2.50
+    - @khanacademy/wonder-blocks-tooltip@4.1.83
+
+## 6.3.7
+
+### Patch Changes
+
+- Updated dependencies [0735aef]
+    - @khanacademy/wonder-blocks-tokens@16.8.1
+    - @khanacademy/wonder-blocks-icon-button@11.4.1
+    - @khanacademy/wonder-blocks-modal@8.7.7
+    - @khanacademy/wonder-blocks-styles@0.2.49
+    - @khanacademy/wonder-blocks-tooltip@4.1.82
+    - @khanacademy/wonder-blocks-typography@4.3.9
+
+## 6.3.6
+
+### Patch Changes
+
+- Updated dependencies [48a4552]
+    - @khanacademy/wonder-blocks-icon-button@11.4.0
+    - @khanacademy/wonder-blocks-modal@8.7.6
+    - @khanacademy/wonder-blocks-tooltip@4.1.81
+
+## 6.3.5
+
+### Patch Changes
+
+- Updated dependencies [f13552a]
+    - @khanacademy/wonder-blocks-tokens@16.8.0
+    - @khanacademy/wonder-blocks-icon-button@11.3.5
+    - @khanacademy/wonder-blocks-modal@8.7.5
+    - @khanacademy/wonder-blocks-styles@0.2.48
+    - @khanacademy/wonder-blocks-tooltip@4.1.80
+    - @khanacademy/wonder-blocks-typography@4.3.8
+
+## 6.3.4
+
+### Patch Changes
+
+- Updated dependencies [c033245]
+- Updated dependencies [0907f64]
+- Updated dependencies [9773405]
+- Updated dependencies [9773405]
+- Updated dependencies [022e775]
+- Updated dependencies [e181c15]
+- Updated dependencies [29ae44b]
+- Updated dependencies [b1fff24]
+- Updated dependencies [c033245]
+- Updated dependencies [a2bbc0a]
+    - @khanacademy/wonder-blocks-modal@8.7.4
+    - @khanacademy/wonder-blocks-tokens@16.7.0
+    - @khanacademy/wonder-blocks-icon-button@11.3.4
+    - @khanacademy/wonder-blocks-tooltip@4.1.79
+    - @khanacademy/wonder-blocks-styles@0.2.47
+    - @khanacademy/wonder-blocks-typography@4.3.7
+
+## 6.3.3
+
+### Patch Changes
+
+- Updated dependencies [d69335d]
+- Updated dependencies [34d66ac]
+    - @khanacademy/wonder-blocks-icon-button@11.3.3
+    - @khanacademy/wonder-blocks-modal@8.7.3
+    - @khanacademy/wonder-blocks-core@12.4.4
+    - @khanacademy/wonder-blocks-tooltip@4.1.78
+
+## 6.3.2
+
+### Patch Changes
+
+- Updated dependencies [a676ce6]
+    - @khanacademy/wonder-blocks-tokens@16.6.0
+    - @khanacademy/wonder-blocks-icon-button@11.3.2
+    - @khanacademy/wonder-blocks-modal@8.7.2
+    - @khanacademy/wonder-blocks-styles@0.2.46
+    - @khanacademy/wonder-blocks-tooltip@4.1.77
+    - @khanacademy/wonder-blocks-typography@4.3.6
+
+## 6.3.1
+
+### Patch Changes
+
+- Updated dependencies [40cb70f]
+- Updated dependencies [40cb70f]
+    - @khanacademy/wonder-blocks-core@12.4.4
+    - @khanacademy/wonder-blocks-modal@8.7.1
+    - @khanacademy/wonder-blocks-tooltip@4.1.76
+    - @khanacademy/wonder-blocks-icon-button@11.3.1
+    - @khanacademy/wonder-blocks-typography@4.3.5
+
+## 6.3.0
+
+### Minor Changes
+
+- dbc9011: Add a new prop to the PopoverContent component that represents the heading tag for the title prop. This allows users to specify the proper heading level for their page for a11y compliance.
+
+## 6.2.5
+
+### Patch Changes
+
+- Updated dependencies [44bde5e]
+- Updated dependencies [27a211d]
+    - @khanacademy/wonder-blocks-tokens@16.5.0
+    - @khanacademy/wonder-blocks-icon-button@11.3.0
+    - @khanacademy/wonder-blocks-modal@8.7.0
+    - @khanacademy/wonder-blocks-styles@0.2.45
+    - @khanacademy/wonder-blocks-tooltip@4.1.75
+    - @khanacademy/wonder-blocks-typography@4.3.4
+
+## 6.2.4
+
+### Patch Changes
+
+- Updated dependencies [245229a]
+    - @khanacademy/wonder-blocks-tokens@16.4.1
+    - @khanacademy/wonder-blocks-modal@8.6.5
+    - @khanacademy/wonder-blocks-icon-button@11.2.4
+    - @khanacademy/wonder-blocks-styles@0.2.44
+    - @khanacademy/wonder-blocks-tooltip@4.1.74
+    - @khanacademy/wonder-blocks-typography@4.3.3
+
+## 6.2.3
+
+### Patch Changes
+
+- 0fadf9f: Migrate internal usage of the deprecated `spacing` primitive token to the
+  `sizing` token. No public API or visual changes — each `spacing.<name>`
+  value maps 1:1 to a `sizing.size_<n>` token with the same rendered value.
+  A handful of internal `Strut` usages are replaced with CSS `gap` /
+  `margin` (since `sizing.X` is a CSS variable string at runtime, not a
+  number). Layout-spec and SVG sites that genuinely need JS numbers use
+  hardcoded values that mirror the matching `sizing.size_*` tokens (with
+  comments). Prep for removal of the `spacing` export in a future major
+  release of `@khanacademy/wonder-blocks-tokens`.
+- Updated dependencies [0fadf9f]
+- Updated dependencies [c1c74df]
+- Updated dependencies [72c5272]
+    - @khanacademy/wonder-blocks-tooltip@4.1.73
+    - @khanacademy/wonder-blocks-tokens@16.4.0
+    - @khanacademy/wonder-blocks-modal@8.6.4
+    - @khanacademy/wonder-blocks-icon-button@11.2.3
+    - @khanacademy/wonder-blocks-styles@0.2.43
+    - @khanacademy/wonder-blocks-typography@4.3.2
+
+## 6.2.2
+
+### Patch Changes
+
+- Updated dependencies [40f217b]
+    - @khanacademy/wonder-blocks-tokens@16.3.0
+    - @khanacademy/wonder-blocks-icon-button@11.2.2
+    - @khanacademy/wonder-blocks-modal@8.6.3
+    - @khanacademy/wonder-blocks-styles@0.2.42
+    - @khanacademy/wonder-blocks-tooltip@4.1.72
+    - @khanacademy/wonder-blocks-typography@4.3.1
+
+## 6.2.1
+
+### Patch Changes
+
+- 00e6dda: Updates internal WB typography references to use the new system (Heading and BodyText)
+- Updated dependencies [488728a]
+- Updated dependencies [00e6dda]
+- Updated dependencies [00e6dda]
+    - @khanacademy/wonder-blocks-tokens@16.2.0
+    - @khanacademy/wonder-blocks-tooltip@4.1.71
+    - @khanacademy/wonder-blocks-typography@4.3.0
+    - @khanacademy/wonder-blocks-icon-button@11.2.1
+    - @khanacademy/wonder-blocks-modal@8.6.2
+    - @khanacademy/wonder-blocks-styles@0.2.41
+
+## 6.2.0
+
+### Minor Changes
+
+- 6ecb7cc: Add autoUpdate prop to Popover component
+
+## 6.1.57
+
+### Patch Changes
+
+- Updated dependencies [d3d2580]
+    - @khanacademy/wonder-blocks-icon-button@11.2.0
+    - @khanacademy/wonder-blocks-modal@8.6.1
+    - @khanacademy/wonder-blocks-tooltip@4.1.70
+
+## 6.1.56
+
+### Patch Changes
+
+- Updated dependencies [cd3884c]
+    - @khanacademy/wonder-blocks-modal@8.6.0
+    - @khanacademy/wonder-blocks-tooltip@4.1.69
+
+## 6.1.55
+
+### Patch Changes
+
+- Updated dependencies [358eb9b]
+    - @khanacademy/wonder-blocks-tokens@16.1.0
+    - @khanacademy/wonder-blocks-icon-button@11.1.6
+    - @khanacademy/wonder-blocks-modal@8.5.17
+    - @khanacademy/wonder-blocks-styles@0.2.40
+    - @khanacademy/wonder-blocks-tooltip@4.1.68
+    - @khanacademy/wonder-blocks-typography@4.2.31
+
+## 6.1.54
+
+### Patch Changes
+
+- Updated dependencies [c75abe9]
+- Updated dependencies [c75abe9]
+- Updated dependencies [530d692]
+    - @khanacademy/wonder-blocks-tokens@16.0.0
+    - @khanacademy/wonder-blocks-icon-button@11.1.5
+    - @khanacademy/wonder-blocks-modal@8.5.16
+    - @khanacademy/wonder-blocks-styles@0.2.39
+    - @khanacademy/wonder-blocks-tooltip@4.1.67
+    - @khanacademy/wonder-blocks-typography@4.2.30
+
+## 6.1.53
+
+### Patch Changes
+
+- Updated dependencies [12e04c3]
+    - @khanacademy/wonder-blocks-icon-button@11.1.4
+    - @khanacademy/wonder-blocks-modal@8.5.15
+    - @khanacademy/wonder-blocks-tooltip@4.1.66
+
+## 6.1.52
+
+### Patch Changes
+
+- Updated dependencies [8bb7ada]
+    - @khanacademy/wonder-blocks-tokens@15.0.0
+    - @khanacademy/wonder-blocks-icon-button@11.1.3
+    - @khanacademy/wonder-blocks-modal@8.5.14
+    - @khanacademy/wonder-blocks-styles@0.2.38
+    - @khanacademy/wonder-blocks-tooltip@4.1.65
+    - @khanacademy/wonder-blocks-typography@4.2.29
+
+## 6.1.51
+
+### Patch Changes
+
+- Updated dependencies [d6ae5fb]
+    - @khanacademy/wonder-blocks-core@12.4.3
+    - @khanacademy/wonder-blocks-icon-button@11.1.2
+    - @khanacademy/wonder-blocks-modal@8.5.13
+    - @khanacademy/wonder-blocks-styles@0.2.37
+    - @khanacademy/wonder-blocks-tokens@14.1.3
+    - @khanacademy/wonder-blocks-tooltip@4.1.64
+    - @khanacademy/wonder-blocks-typography@4.2.28
+
+## 6.1.50
+
+### Patch Changes
+
+- Updated dependencies [673432c]
+    - @khanacademy/wonder-blocks-modal@8.5.12
+    - @khanacademy/wonder-blocks-tooltip@4.1.63
+
 ## 6.1.49
 
 ### Patch Changes

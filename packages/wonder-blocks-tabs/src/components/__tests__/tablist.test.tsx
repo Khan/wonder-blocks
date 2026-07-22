@@ -1,3 +1,4 @@
+// Allowing raw button in tabs for internal testing
 import * as React from "react";
 import {render, screen} from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
@@ -49,7 +50,12 @@ describe("Tablist", () => {
                 const onBlur = jest.fn();
                 render(
                     <Tablist onBlur={onBlur}>
-                        <button role="tab">Tab</button>
+                        <button
+                            // eslint-disable-next-line @khanacademy/wonder-blocks/no-custom-tab-role -- Explicitly testing an example with an element with role="tab"
+                            role="tab"
+                        >
+                            Tab
+                        </button>
                     </Tablist>,
                 );
                 await userEvent.tab(); // Focus on the tab
@@ -101,6 +107,7 @@ describe("Tablist", () => {
                     <div>
                         <Tablist>
                             <button
+                                // eslint-disable-next-line @khanacademy/wonder-blocks/no-custom-tab-role -- Explicitly testing an example with an element with role="tab"
                                 role="tab"
                                 id={tabId}
                                 aria-controls={panelId}

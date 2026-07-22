@@ -3,12 +3,8 @@ import {StyleSheet} from "aphrodite";
 import type {StyleDeclaration} from "aphrodite";
 
 import {View} from "@khanacademy/wonder-blocks-core";
-import {
-    border,
-    semanticColor,
-    spacing,
-} from "@khanacademy/wonder-blocks-tokens";
-import {Body} from "@khanacademy/wonder-blocks-typography";
+import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
+import {BodyText} from "@khanacademy/wonder-blocks-typography";
 import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
 
 import {useId} from "react";
@@ -296,7 +292,9 @@ const AccordionSection = React.forwardRef(function AccordionSection(
                 testId={testId ? `${testId}-content-panel` : undefined}
             >
                 {typeof children === "string" ? (
-                    <Body style={styles.stringContent}>{children}</Body>
+                    <BodyText tag="span" style={styles.stringContent}>
+                        {children}
+                    </BodyText>
                 ) : (
                     children
                 )}
@@ -338,7 +336,7 @@ const styles = StyleSheet.create({
         visibility: "visible",
     },
     stringContent: {
-        padding: spacing.medium_16,
+        padding: sizing.size_160,
     },
 });
 
@@ -383,16 +381,16 @@ const _generateStyles = (
 
         if (isFirstSection) {
             firstSectionStyle = {
-                borderStartStartRadius: spacing.small_12,
-                borderStartEndRadius: spacing.small_12,
+                borderStartStartRadius: sizing.size_120,
+                borderStartEndRadius: sizing.size_120,
             };
         }
 
         if (isLastSection) {
             lastSectionStyle = {
                 borderBottom: borderStyle,
-                borderEndStartRadius: spacing.small_12,
-                borderEndEndRadius: spacing.small_12,
+                borderEndStartRadius: sizing.size_120,
+                borderEndEndRadius: sizing.size_120,
             };
 
             contentWrapperStyle = {
@@ -401,8 +399,8 @@ const _generateStyles = (
                 // overflow out the corners. This issue can't be solved by
                 // putting `overflow: "hidden"` on the overall container
                 // because that cuts off the header's focus outline.
-                borderEndEndRadius: spacing.small_12,
-                borderEndStartRadius: spacing.small_12,
+                borderEndEndRadius: sizing.size_120,
+                borderEndStartRadius: sizing.size_120,
             };
         }
     }
@@ -411,7 +409,7 @@ const _generateStyles = (
         wrapperStyle = {
             border: borderStyle,
             borderRadius: border.radius.radius_120,
-            marginBottom: spacing.medium_16,
+            marginBlockEnd: sizing.size_160,
         };
 
         contentWrapperStyle = {
@@ -419,8 +417,8 @@ const _generateStyles = (
             // so that the content doesn't overflow out the corners. We
             // can't put `overflow: "hidden"` on the overall container
             // because it cuts off the header's focus outline.
-            borderEndEndRadius: spacing.small_12,
-            borderEndStartRadius: spacing.small_12,
+            borderEndEndRadius: sizing.size_120,
+            borderEndStartRadius: sizing.size_120,
         };
     }
 

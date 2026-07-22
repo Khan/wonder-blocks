@@ -17,10 +17,10 @@ import {OptionItem, SingleSelect} from "@khanacademy/wonder-blocks-dropdown";
 import {addStyle, View} from "@khanacademy/wonder-blocks-core";
 import Tooltip from "@khanacademy/wonder-blocks-tooltip";
 import {Popover, PopoverContent} from "@khanacademy/wonder-blocks-popover";
-import {HeadingMedium} from "@khanacademy/wonder-blocks-typography";
+import {Heading} from "@khanacademy/wonder-blocks-typography";
 
 export default {
-    title: "Packages / Tabs / NavigationTabs",
+    title: "Packages / Tabs / ResponsiveNavigationTabs / Subcomponents / NavigationTabs",
     component: NavigationTabs,
     subcomponents: {NavigationTabItem},
     parameters: {
@@ -30,6 +30,10 @@ export default {
                 version={packageConfig.version}
             />
         ),
+        chromatic: {
+            // Disabling because it's covered by the Scenarios stories
+            disableSnapshot: true,
+        },
     },
     argTypes,
 } as Meta<typeof NavigationTabs>;
@@ -51,12 +55,6 @@ const navigationTabItems = [
 export const Default: StoryComponentType = {
     args: {
         children: navigationTabItems,
-    },
-    parameters: {
-        chromatic: {
-            // Disabling because it's covered by All Variants
-            disableSnapshot: true,
-        },
     },
 };
 
@@ -112,12 +110,6 @@ export const WithIcons: StoryComponentType = {
             </NavigationTabItem>,
         ],
     },
-    parameters: {
-        chromatic: {
-            // Disabling because it's covered by All Variants
-            disableSnapshot: true,
-        },
-    },
 };
 
 /**
@@ -165,7 +157,7 @@ export const HeaderWithNavigationTabsExample: StoryComponentType = {
                 display: "flex",
                 alignItems: "center",
                 flexWrap: "wrap",
-                borderBottom: `1px solid ${semanticColor.core.border.neutral.subtle}`,
+                borderBlockEnd: `1px solid ${semanticColor.core.border.neutral.subtle}`,
                 gap: sizing.size_240,
                 padding: `${headerVerticalSpacing} ${sizing.size_240}`,
             },
@@ -216,6 +208,10 @@ export const HeaderWithNavigationTabsExample: StoryComponentType = {
     },
     parameters: {
         layout: "fullscreen",
+        chromatic: {
+            // Enable so we can confirm it looks okay in this example
+            disableSnapshot: false,
+        },
     },
     args: {
         animated: true,
@@ -244,12 +240,6 @@ export const Animated: StoryComponentType = {
     },
     args: {
         animated: true,
-    },
-    parameters: {
-        chromatic: {
-            // Disabling because this doesn't test anything visual.
-            disableSnapshot: true,
-        },
     },
     play: async ({canvasElement}) => {
         // Arrange
@@ -367,7 +357,7 @@ export const ChildrenRenderFunction: StoryComponentType = {
             <View
                 style={{
                     // Need to set the height so tooltip/popover are captured in chromatic
-                    minHeight: 400,
+                    minBlockSize: 400,
                     gap: sizing.size_240,
                 }}
             >
@@ -406,7 +396,7 @@ export const ChildrenRenderFunction: StoryComponentType = {
                         </NavigationTabItem>
                     </NavigationTabs>
                 </View>
-                <HeadingMedium>Opened state</HeadingMedium>
+                <Heading size="large">Opened state</Heading>
                 <View
                     style={{
                         flexDirection: "row",
@@ -453,7 +443,11 @@ export const ChildrenRenderFunction: StoryComponentType = {
     },
     parameters: {
         // Added to ensure that the popover/tooltip is rendered using PopperJS.
-        chromatic: {delay: 500},
+        chromatic: {
+            delay: 500,
+            // Enable snapshot so we can confirm it looks okay in this example
+            disableSnapshot: false,
+        },
     },
 };
 
@@ -472,5 +466,16 @@ export const Tag: StoryComponentType = {
             // Disabling because this story doesn't test anything visual.
             disableSnapshot: true,
         },
+    },
+};
+
+/**
+ * Use the `showDivider` prop to show a divider under the tabs. `showDivider` is
+ * `false` by default.
+ */
+export const ShowDivider: StoryComponentType = {
+    args: {
+        children: navigationTabItems,
+        showDivider: true,
     },
 };

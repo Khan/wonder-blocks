@@ -52,6 +52,9 @@ export type BaseButtonProps =
 
         /**
          * Whether the button is disabled.
+         *
+         * Internally, the `aria-disabled` attribute will be set so that the
+         * element remains focusable and will be included in the tab order.
          */
         disabled?: boolean;
         /**
@@ -145,6 +148,16 @@ export type BaseButtonProps =
          * Respond to a raw "mouseleave" event.
          */
         onMouseLeave?: (e: React.MouseEvent) => unknown;
+
+        /**
+         * Respond to a raw "blur" event.
+         */
+        onBlur?: (e: React.FocusEvent) => unknown;
+
+        /**
+         * Respond to a raw "focus" event.
+         */
+        onFocus?: (e: React.FocusEvent) => unknown;
         /**
          * Run async code before navigating. If the promise returned rejects then
          * navigation will not occur.
@@ -201,6 +214,23 @@ export type ButtonProps = BaseButtonProps & {
      * Optional custom styles.
      */
     style?: StyleType;
+
+    /**
+     * Optional custom styles for specific sub-elements within the Button.
+     *
+     * **Note:** Use this prop sparingly and only when the default theme
+     * styling does not meet your needs. Overriding internal styles may
+     * lead to visual inconsistencies across the design system.
+     *
+     * - `startIcon`: Styles applied to the start icon element. These
+     *   styles take precedence over theme-defined icon sizing.
+     * - `endIcon`: Styles applied to the end icon element. These
+     *   styles take precedence over theme-defined icon sizing.
+     */
+    styles?: {
+        startIcon?: StyleType;
+        endIcon?: StyleType;
+    };
 };
 
 export type ActivityButtonProps = BaseButtonProps & {

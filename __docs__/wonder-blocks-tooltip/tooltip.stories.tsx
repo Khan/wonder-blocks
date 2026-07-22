@@ -8,12 +8,13 @@ import magnifyingGlass from "@phosphor-icons/core/regular/magnifying-glass.svg";
 import info from "@phosphor-icons/core/regular/info.svg";
 
 import Button from "@khanacademy/wonder-blocks-button";
+import Link from "@khanacademy/wonder-blocks-link";
 import {PropsFor, View} from "@khanacademy/wonder-blocks-core";
 import {TextField} from "@khanacademy/wonder-blocks-form";
 import IconButton from "@khanacademy/wonder-blocks-icon-button";
 import {OnePaneDialog, ModalLauncher} from "@khanacademy/wonder-blocks-modal";
-import {semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
-import {Body} from "@khanacademy/wonder-blocks-typography";
+import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
+import {BodyText} from "@khanacademy/wonder-blocks-typography";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 
 import Tooltip from "@khanacademy/wonder-blocks-tooltip";
@@ -26,8 +27,8 @@ import {LabeledField} from "@khanacademy/wonder-blocks-labeled-field";
 const styles = StyleSheet.create({
     storyCanvas: {
         // NOTE: This is needed for Chromatic to include the tooltip bubble.
-        minHeight: 280,
-        padding: spacing.xxxLarge_64,
+        minBlockSize: 280,
+        padding: sizing.size_640,
         justifyContent: "center",
         textAlign: "center",
     },
@@ -37,25 +38,25 @@ const styles = StyleSheet.create({
     centered: {
         alignItems: "center",
         justifyContent: "center",
-        gap: spacing.medium_16,
-        padding: spacing.xxLarge_48,
+        gap: sizing.size_160,
+        padding: sizing.size_480,
     },
     scrollbox: {
         height: 100,
         overflow: "auto",
-        border: "1px solid black",
-        margin: spacing.small_12,
+        border: `1px solid ${semanticColor.core.border.neutral.strong}`,
+        margin: sizing.size_120,
     },
     hostbox: {
-        minHeight: "200vh",
+        minBlockSize: "200vh",
     },
     modalbox: {
         height: "200vh",
     },
     block: {
         border: `solid 1px ${semanticColor.mastery.primary}`,
-        width: spacing.xLarge_32,
-        height: spacing.xLarge_32,
+        width: sizing.size_320,
+        height: sizing.size_320,
         alignItems: "center",
         justifyContent: "center",
     },
@@ -78,8 +79,12 @@ export default {
                 version={packageConfig.version}
             />
         ),
-        // Added to ensure that the tooltip is rendered using PopperJS.
-        chromatic: {delay: 500},
+        chromatic: {
+            // Added to ensure that the tooltip is rendered using PopperJS.
+            delay: 500,
+            // Visual coverage is provided by the Tooltip StateSheet snapshot.
+            disableSnapshot: true,
+        },
     },
     decorators: [
         (Story, {parameters}): React.ReactElement =>
@@ -162,6 +167,82 @@ export const ComplexAnchorAndTitle: StoryComponentType = {
             await canvas.findByText("This tooltip has a title"),
         ).toBeInTheDocument();
     },
+    parameters: {
+        chromatic: {
+            // Snapshot to confirm complex anchor and title
+            disableSnapshot: false,
+        },
+    },
+};
+
+/**
+ * Tooltips can be used with links as anchors.
+ * When a `Link` is the anchor element, set `forceAnchorFocusivity={false}`
+ * since the link is already keyboard focusable. The tooltip will appear on
+ * hover or focus and the `aria-describedby` attribute is automatically applied
+ * to the `Link` element.
+ */
+export const WithLinkAnchor: StoryComponentType = {
+    render: function Render() {
+        return (
+            <Tooltip
+                content="This link navigates to the Khan Academy homepage."
+                placement="top"
+                forceAnchorFocusivity={false}
+            >
+                <Link href="https://www.khanacademy.org">Khan Academy</Link>
+            </Tooltip>
+        );
+    },
+    play: async ({canvasElement}) => {
+        // Arrange
+        // NOTE: Using `body` here to work with React Portals.
+        const canvas = within(canvasElement.ownerDocument.body);
+
+        // Act
+        const link = await canvas.findByRole("link", {name: "Khan Academy"});
+        await userEvent.hover(link);
+
+        // Assert
+        await expect(
+            await canvas.findByText(
+                "This link navigates to the Khan Academy homepage.",
+            ),
+        ).toBeInTheDocument();
+    },
+    parameters: {
+        chromatic: {
+            // Snapshot to confirm tooltip with link anchor
+            disableSnapshot: false,
+        },
+    },
+};
+
+/**
+ * To render rich text in tooltip content, pass a React element as the `content`
+ * prop instead of a plain string. When a string is passed it is rendered as
+ * plain text — HTML tags in a string will appear literally (e.g.
+ * `<i>text</i>`). Use inline HTML elements inside a typography component to
+ * control formatting.
+ */
+export const WithRichTextContent: StoryComponentType = {
+    render: function Render() {
+        return (
+            <Tooltip
+                content={
+                    <BodyText style={{padding: sizing.size_120}}>
+                        Use <strong>bold</strong>, <em>italic</em>, or{" "}
+                        <u>underlined</u> text by passing a React element
+                        instead of a plain string.
+                    </BodyText>
+                }
+                opened={true}
+                forceAnchorFocusivity={false}
+            >
+                <Link href="https://www.khanacademy.org">Khan Academy</Link>
+            </Tooltip>
+        );
+    },
 };
 
 /**
@@ -173,7 +254,7 @@ export const AnchorInScrollableParent: StoryComponentType = {
         return (
             <View style={styles.scrollbox}>
                 <View style={styles.hostbox}>
-                    <Body>
+                    <BodyText>
                         This is a big long piece of text with a
                         <Tooltip
                             content="This tooltip will disappear when scrolled out of bounds"
@@ -182,16 +263,10 @@ export const AnchorInScrollableParent: StoryComponentType = {
                             [tooltip]
                         </Tooltip>{" "}
                         in the middle.
-                    </Body>
+                    </BodyText>
                 </View>
             </View>
         );
-    },
-    parameters: {
-        // Disable Chromatic because it only shows the trigger element.
-        chromatic: {
-            disableSnapshot: true,
-        },
     },
 };
 
@@ -227,12 +302,6 @@ export const TooltipInModal: StoryComponentType = {
             </ModalLauncher>
         );
     },
-    parameters: {
-        // Disable Chromatic because it initially renders the modal offscreen.
-        chromatic: {
-            disableSnapshot: true,
-        },
-    },
 };
 
 /**
@@ -258,12 +327,6 @@ export const SideBySide: StoryComponentType = {
         </View>
     ),
     name: "Side-by-side",
-    parameters: {
-        // Disable Chromatic because it only shows the trigger element.
-        chromatic: {
-            disableSnapshot: true,
-        },
-    },
 };
 
 /**
@@ -292,11 +355,6 @@ export const TooltipOnButtons: StoryComponentType = {
                 </Tooltip>
             </View>
         );
-    },
-    parameters: {
-        chromatic: {
-            disableSnapshot: true,
-        },
     },
 };
 
@@ -339,7 +397,7 @@ export const WithStyle: StoryComponentType = {
                 <Tooltip
                     contentStyle={{
                         color: semanticColor.core.foreground.knockout.default,
-                        padding: spacing.xLarge_32,
+                        padding: sizing.size_320,
                     }}
                     content={`This is a styled tooltip.`}
                     backgroundColor="darkBlue"
@@ -351,6 +409,24 @@ export const WithStyle: StoryComponentType = {
             </View>
         );
     },
+};
+
+/**
+ * Tooltips support two visual variants via the `variant` prop:
+ *
+ * - `subtle` (default): the standard tooltip styling.
+ * - `strong`: a higher-emphasis, inverse/knockout variant whose colors adapt
+ *   to the active theme.
+ */
+export const Strong: StoryComponentType = {
+    args: {
+        content: "This is a strong tooltip.",
+        title: "Strong variant",
+        variant: "strong",
+        children: "some text",
+        opened: true,
+        forceAnchorFocusivity: false,
+    } as TooltipArgs,
 };
 
 /**
@@ -402,8 +478,8 @@ export const AutoUpdate: StoryComponentType = {
                         style={[
                             position && {
                                 position: "absolute",
-                                top: position.y,
-                                left: position.x,
+                                insetBlockStart: position.y,
+                                insetInlineStart: position.x,
                             },
                         ]}
                     >
@@ -456,8 +532,8 @@ export const InTopCorner = {
         <View
             style={{
                 position: "absolute",
-                top: 0,
-                left: 0,
+                insetBlockStart: 0,
+                insetInlineStart: 0,
             }}
         >
             <Tooltip content="This is an example descriptor that's long with more content to see if it will display properly in different browsers">
@@ -486,8 +562,8 @@ export const InCorners = {
     parameters: {
         layout: "fullscreen",
         chromatic: {
-            // Disabling snapshot since this is for testing purposes
-            disableSnapshot: true,
+            // Enable snapshot for corner alignment examples
+            disableSnapshot: false,
         },
     },
     render: (args: PropsFor<typeof Tooltip>) => {
@@ -496,6 +572,7 @@ export const InCorners = {
                 <Tooltip
                     {...args}
                     content="This is an example descriptor that's long with more content to see if it will display properly in different browsers"
+                    opened={true}
                 >
                     <Button>Open tooltip</Button>
                 </Tooltip>

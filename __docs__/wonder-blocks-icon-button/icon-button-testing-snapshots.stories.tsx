@@ -8,7 +8,7 @@ import {AllVariants} from "../components/all-variants";
 import {defaultPseudoStates, StateSheet} from "../components/state-sheet";
 import {sizing} from "@khanacademy/wonder-blocks-tokens";
 import {View} from "@khanacademy/wonder-blocks-core";
-import {themeModes} from "../../.storybook/modes";
+import {allThemeModes} from "../../.storybook/modes";
 import {ScenariosLayout} from "../components/scenarios-layout";
 import {Icon} from "@khanacademy/wonder-blocks-icon";
 
@@ -18,18 +18,13 @@ import {Icon} from "@khanacademy/wonder-blocks-icon";
  */
 export default {
     title: "Packages / IconButton / Testing / Snapshots / IconButton",
-    tags: ["!autodocs"],
+    tags: ["!autodocs", "!manifest"],
     args: {
         "aria-label": "Send",
         icon: paperPlaneIcon,
         onClick: action("clicked"),
         actionType: "progressive",
         size: "medium",
-    },
-    parameters: {
-        chromatic: {
-            modes: themeModes,
-        },
     },
 } as Meta;
 
@@ -74,6 +69,9 @@ export const StateSheetStory: StoryComponentType = {
     },
     parameters: {
         pseudo: defaultPseudoStates,
+        chromatic: {
+            modes: allThemeModes,
+        },
     },
 };
 

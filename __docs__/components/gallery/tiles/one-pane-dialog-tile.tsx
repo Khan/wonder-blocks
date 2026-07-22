@@ -4,10 +4,11 @@ import {StyleSheet} from "aphrodite";
 import Button from "@khanacademy/wonder-blocks-button";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {OnePaneDialog} from "@khanacademy/wonder-blocks-modal";
-import {Body} from "@khanacademy/wonder-blocks-typography";
+import {BodyText} from "@khanacademy/wonder-blocks-typography";
 
 import ComponentTile from "../component-tile";
 import {CommonTileProps} from "../types";
+import {modalPositionerStyle} from "../../../wonder-blocks-modal/modal-story-utils";
 
 export default function OnePaneDialogTile(props: CommonTileProps) {
     return (
@@ -25,7 +26,7 @@ export default function OnePaneDialogTile(props: CommonTileProps) {
                     <OnePaneDialog
                         title="Dialog title"
                         content={
-                            <Body>
+                            <BodyText>
                                 {`Lorem ipsum dolor sit amet, consectetur adipiscing elit,
                 sed do eiusmod tempor incididunt ut labore et dolore magna
                 aliqua. Ut enim ad minim veniam, quis nostrud exercitation
@@ -34,7 +35,7 @@ export default function OnePaneDialogTile(props: CommonTileProps) {
                 esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
                 occaecat cupidatat non proident, sunt in culpa qui officia
                 deserunt mollit anim id est.`}
-                            </Body>
+                            </BodyText>
                         }
                         footer={
                             <View style={localStyles.footer}>
@@ -51,25 +52,9 @@ export default function OnePaneDialogTile(props: CommonTileProps) {
 const mobile = "@media (max-width: 1023px)";
 
 const localStyles = StyleSheet.create({
-    modalPositioner: {
-        // Checkerboard background
-        backgroundImage:
-            "linear-gradient(45deg, #ccc 25%, transparent 25%), linear-gradient(-45deg, #ccc 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #ccc 75%), linear-gradient(-45deg, transparent 75%, #ccc 75%)",
-        backgroundSize: "20px 20px",
-        backgroundPosition: "0 0, 0 10px, 10px -10px, -10px 0px",
-
-        flexDirection: "row",
-        alignItems: "center",
-        justifyContent: "center",
-
-        position: "absolute",
-        left: 0,
-        right: 0,
-        top: 0,
-        bottom: 0,
-    },
+    modalPositioner: modalPositionerStyle,
     previewSizer: {
-        minHeight: 500,
+        minBlockSize: 500,
         width: "100%",
 
         [mobile]: {

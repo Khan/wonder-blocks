@@ -1,8 +1,12 @@
 import {fade} from "../../../util/color-utils";
 
 // Base colors
-const black = "#191918";
+const black = "#151521";
 const white = "#FFFFFF";
+
+// Blue base colors (used for alpha variants)
+const blue30 = "#5753FA";
+const blue05 = "#252368";
 
 /**
  * The color primitives for the Thunder Blocks theme.
@@ -15,7 +19,7 @@ const white = "#FFFFFF";
 export const color = {
     // Red
     red_90: "#FEF4F4",
-    red_80: "#FDE9E9",
+    red_80: "#FFEBEB",
     red_70: "#FDDFDF",
     red_60: "#FBB1B1",
     red_50: "#F97F7F",
@@ -24,6 +28,7 @@ export const color = {
     red_20: "#BE2626",
     red_10: "#8E1C1C",
     red_05: "#621414",
+    red_01: "#3B141A",
     // Orange
     orange_90: "#FEF4F2",
     orange_80: "#FEE9E5",
@@ -35,6 +40,7 @@ export const color = {
     orange_20: "#C8481A",
     orange_10: "#983C1A",
     orange_05: "#672912",
+    orange_01: "#3E1F19",
     // Yellow
     yellow_90: "#FEF8E7",
     yellow_80: "#FEF1D0",
@@ -46,17 +52,19 @@ export const color = {
     yellow_20: "#D69900",
     yellow_10: "#966B00",
     yellow_05: "#5F4500",
+    yellow_01: "#312405",
     // Green
     green_90: "#F1FBF1",
     green_80: "#E3F7E3",
     green_70: "#D5F3D5",
     green_60: "#BCEBBB",
-    green_50: "#97D38E",
+    green_50: "#97D39E",
     green_40: "#72BB82",
     green_30: "#579F6C",
     green_20: "#3C6D4A",
     green_10: "#2C5037",
     green_05: "#24432D",
+    green_01: "#1A2924",
     // Cyan
     cyan_90: "#EEF7FE",
     cyan_80: "#DDF0FE",
@@ -68,17 +76,22 @@ export const color = {
     cyan_20: "#2485C7",
     cyan_10: "#20628F",
     cyan_05: "#1D3F58",
+    cyan_01: "#192A3C",
     // Blue
     blue_90: "#F8F9FB",
     blue_80: "#EBF1FD",
     blue_70: "#DFEAFF",
     blue_60: "#BFCAFF",
     blue_50: "#8DA2FF",
-    blue_40: "#6E78FF",
-    blue_30: "#5753FA",
+    blue_40: "#6C82FF",
+    blue_30: blue30,
     blue_20: "#4340D0",
     blue_10: "#363498",
-    blue_05: "#252368",
+    blue_05: blue05,
+    blue_01: "#222149",
+    // Blue (alpha variants)
+    blue_30_alpha20: `${blue30}33`, // color.blue_30 with 20% alpha
+    blue_05_alpha20: `${blue05}33`, // color.blue_05 with 20% alpha
     // Magenta
     magenta_90: "#FCEEF7",
     magenta_80: "#FFE3F4",
@@ -87,9 +100,10 @@ export const color = {
     magenta_50: "#F8A2D6",
     magenta_40: "#F670C1",
     magenta_30: "#E83FA4",
-    magenta_20: "#C03187",
+    magenta_20: "#BB3183",
     magenta_10: "#84275E",
     magenta_05: "#521B3C",
+    magenta_01: "#33182E",
     // Gray
     gray_90: "#F6F6F6",
     gray_80: "#EDEDEE",
@@ -100,10 +114,136 @@ export const color = {
     gray_30: "#8A8B90",
     gray_20: "#717279",
     gray_10: "#4A4C53",
-    gray_05: "#35373F",
+    gray_05: "#252531",
+    gray_01: "#1D1D29",
     // Black
     black_100: black,
+    black_90: fade(black, 0.9),
+    black_80: fade(black, 0.8),
+    black_70: fade(black, 0.7),
+    black_60: fade(black, 0.6),
     black_50: fade(black, 0.5),
+    black_40: fade(black, 0.4),
+    black_30: fade(black, 0.3),
+    black_20: fade(black, 0.2),
+    black_10: fade(black, 0.1),
+    black_01: fade(black, 0.01),
+    black_00: fade(black, 0.0),
     // White
     white_100: white,
+    white_90: fade(white, 0.9),
+    white_80: fade(white, 0.8),
+    white_70: fade(white, 0.7),
+    white_60: fade(white, 0.6),
+    white_50: fade(white, 0.5),
+    white_40: fade(white, 0.4),
+    white_30: fade(white, 0.3),
+    white_20: fade(white, 0.2),
+    white_10: fade(white, 0.1),
+    white_01: fade(white, 0.01),
+    white_00: fade(white, 0.0),
+};
+
+/**
+ * The tokens for the graphics palette.
+ */
+export const graphicsPalette = {
+    red_90: color.red_90,
+    red_80: color.red_80,
+    red_70: color.red_70,
+    red_60: color.red_60,
+    red_50: color.red_50,
+    red_40: color.red_40,
+    red_30: color.red_30,
+    red_20: color.red_20,
+    red_10: color.red_10,
+    red_05: color.red_05,
+    red_01: color.red_01,
+
+    orange_90: color.orange_90,
+    orange_80: color.orange_80,
+    orange_70: color.orange_70,
+    orange_60: color.orange_60,
+    orange_50: color.orange_50,
+    orange_40: color.orange_40,
+    orange_30: color.orange_30,
+    orange_20: color.orange_20,
+    orange_10: color.orange_10,
+    orange_05: color.orange_05,
+    orange_01: color.orange_01,
+
+    yellow_90: color.yellow_90,
+    yellow_80: color.yellow_80,
+    yellow_70: color.yellow_70,
+    yellow_60: color.yellow_60,
+    yellow_50: color.yellow_50,
+    yellow_40: color.yellow_40,
+    yellow_30: color.yellow_30,
+    yellow_20: color.yellow_20,
+    yellow_10: color.yellow_10,
+    yellow_05: color.yellow_05,
+    yellow_01: color.yellow_01,
+
+    green_90: color.green_90,
+    green_80: color.green_80,
+    green_70: color.green_70,
+    green_60: color.green_60,
+    green_50: color.green_50,
+    green_40: color.green_40,
+    green_30: color.green_30,
+    green_20: color.green_20,
+    green_10: color.green_10,
+    green_05: color.green_05,
+    green_01: color.green_01,
+
+    cyan_90: color.cyan_90,
+    cyan_80: color.cyan_80,
+    cyan_70: color.cyan_70,
+    cyan_60: color.cyan_60,
+    cyan_50: color.cyan_50,
+    cyan_40: color.cyan_40,
+    cyan_30: color.cyan_30,
+    cyan_20: color.cyan_20,
+    cyan_10: color.cyan_10,
+    cyan_05: color.cyan_05,
+    cyan_01: color.cyan_01,
+
+    blue_90: color.blue_90,
+    blue_80: color.blue_80,
+    blue_70: color.blue_70,
+    blue_60: color.blue_60,
+    blue_50: color.blue_50,
+    blue_40: color.blue_40,
+    blue_30: color.blue_30,
+    blue_20: color.blue_20,
+    blue_10: color.blue_10,
+    blue_05: color.blue_05,
+    blue_01: color.blue_01,
+
+    magenta_90: color.magenta_90,
+    magenta_80: color.magenta_80,
+    magenta_70: color.magenta_70,
+    magenta_60: color.magenta_60,
+    magenta_50: color.magenta_50,
+    magenta_40: color.magenta_40,
+    magenta_30: color.magenta_30,
+    magenta_20: color.magenta_20,
+    magenta_10: color.magenta_10,
+    magenta_05: color.magenta_05,
+    magenta_01: color.magenta_01,
+
+    gray_90: color.gray_90,
+    gray_80: color.gray_80,
+    gray_70: color.gray_70,
+    gray_60: color.gray_60,
+    gray_50: color.gray_50,
+    gray_40: color.gray_40,
+    gray_30: color.gray_30,
+    gray_20: color.gray_20,
+    gray_10: color.gray_10,
+    gray_05: color.gray_05,
+    gray_01: color.gray_01,
+
+    black_100: color.black_100,
+    white_100: color.white_100,
 };

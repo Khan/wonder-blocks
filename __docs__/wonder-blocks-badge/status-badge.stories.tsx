@@ -8,10 +8,10 @@ import {Icon, PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import singleColoredIcon from "../components/single-colored-icon.svg";
 import {PropsFor, View} from "@khanacademy/wonder-blocks-core";
 import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
-import {HeadingLarge} from "@khanacademy/wonder-blocks-typography";
+import {Heading} from "@khanacademy/wonder-blocks-typography";
 import badgeArgtypes, {iconArgType} from "./badge.argtypes";
 import {multiColoredIcon} from "../components/icons-for-testing";
-import {themeModes} from "../../.storybook/modes";
+import {allThemeModes} from "../../.storybook/modes";
 
 export default {
     title: "Packages / Badge / StatusBadge",
@@ -37,7 +37,6 @@ export default {
         chromatic: {
             // Disable snapshots since they're covered by the testing snapshots
             disableSnapshot: true,
-            modes: themeModes,
         },
     },
     render: (
@@ -186,9 +185,9 @@ export const CustomIcons: StoryComponentType = {
     render: () => {
         return (
             <View style={{gap: sizing.size_240}}>
-                <HeadingLarge>
+                <Heading size="xlarge">
                     Custom single colored svg icon using PhosphorIcon
-                </HeadingLarge>
+                </Heading>
                 <View style={styles.container}>
                     {kinds.map((kind) => {
                         return (
@@ -206,10 +205,10 @@ export const CustomIcons: StoryComponentType = {
                         );
                     })}
                 </View>
-                <HeadingLarge>
+                <Heading size="xlarge">
                     Custom single colored svg icon using PhosphorIcon and color
                     prop
-                </HeadingLarge>
+                </Heading>
                 <View style={styles.container}>
                     {kinds.map((kind) => {
                         return (
@@ -231,9 +230,9 @@ export const CustomIcons: StoryComponentType = {
                         );
                     })}
                 </View>
-                <HeadingLarge>
+                <Heading size="xlarge">
                     Custom multi-colored inline svg using the Icon component
-                </HeadingLarge>
+                </Heading>
                 <View style={styles.container}>
                     {kinds.map((kind) => {
                         return (
@@ -246,9 +245,9 @@ export const CustomIcons: StoryComponentType = {
                         );
                     })}
                 </View>
-                <HeadingLarge>
+                <Heading size="xlarge">
                     Custom img element using the Icon component with a svg src
-                </HeadingLarge>
+                </Heading>
                 <View style={styles.container}>
                     {kinds.map((kind) => {
                         return (
@@ -268,9 +267,9 @@ export const CustomIcons: StoryComponentType = {
                         );
                     })}
                 </View>
-                <HeadingLarge>
+                <Heading size="xlarge">
                     Custom img element using the Icon component with a png src
-                </HeadingLarge>
+                </Heading>
                 <View style={styles.container}>
                     {kinds.map((kind) => {
                         return (
@@ -298,6 +297,7 @@ export const CustomIcons: StoryComponentType = {
             // Enable snapshots for this story so we can verify custom icons
             // are used correctly
             disableSnapshot: false,
+            modes: allThemeModes,
         },
     },
 };

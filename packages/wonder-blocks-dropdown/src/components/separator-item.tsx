@@ -40,9 +40,9 @@ export default class SeparatorItem extends React.Component<{
 
 const styles = StyleSheet.create({
     separator: {
-        borderTop: `${border.width.thin} solid ${semanticColor.core.border.neutral.subtle}`,
+        borderBlockStart: `${border.width.thin} solid ${semanticColor.core.border.neutral.subtle}`,
         height: 1,
-        minHeight: 1,
+        minBlockSize: 1,
         marginBlock: sizing.size_040,
     },
 });

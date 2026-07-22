@@ -5,7 +5,7 @@ import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
 import {OptionItem} from "@khanacademy/wonder-blocks-dropdown";
 import {View} from "@khanacademy/wonder-blocks-core";
-import {themeModes} from "../../.storybook/modes";
+import {allThemeModes} from "../../.storybook/modes";
 import {
     commonStates,
     defaultPseudoStates,
@@ -79,10 +79,10 @@ const meta = {
     },
     parameters: {
         chromatic: {
-            modes: themeModes,
+            modes: allThemeModes,
         },
     },
-    tags: ["!autodocs"],
+    tags: ["!autodocs", "!manifest"],
 } satisfies Meta<typeof OptionItem>;
 
 export default meta;

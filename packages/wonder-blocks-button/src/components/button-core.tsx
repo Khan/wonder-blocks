@@ -48,6 +48,7 @@ const ButtonCore: React.ForwardRefExoticComponent<
         spinner,
         startIcon,
         endIcon,
+        styles: stylesProp,
         id,
         waiting: _,
         onMouseDown,
@@ -119,6 +120,7 @@ const ButtonCore: React.ForwardRefExoticComponent<
                             sharedStyles.startIcon,
                             kind === "tertiary" &&
                                 sharedStyles.tertiaryStartIcon,
+                            stylesProp?.startIcon,
                         ]}
                         testId={testId ? `${testId}-start-icon` : undefined}
                     />
@@ -147,6 +149,7 @@ const ButtonCore: React.ForwardRefExoticComponent<
                     <ButtonIcon
                         size={iconSize}
                         icon={endIcon}
+                        style={stylesProp?.endIcon}
                         testId={testId ? `${testId}-end-icon` : undefined}
                     />
                 </View>
@@ -170,6 +173,7 @@ const ButtonCore: React.ForwardRefExoticComponent<
             onMouseUp={onMouseUp}
             onMouseEnter={onMouseEnter}
             onMouseLeave={onMouseLeave}
+            kind={kind}
         >
             {contents}
         </ButtonUnstyled>
@@ -227,10 +231,10 @@ const sharedStyles = StyleSheet.create({
     },
     iconWrapper: {
         padding: theme.icon.padding,
-        // View has a default minWidth of 0, which causes the label text
+        // View has a default minInlineSize of 0, which causes the label text
         // to encroach on the icon when it needs to truncate. We can fix
-        // this by setting the minWidth to auto.
-        minWidth: "auto",
+        // this by setting the minInlineSize to auto.
+        minInlineSize: "auto",
     },
     endIconWrapper: {
         marginInlineStart: theme.icon.margin.inline.inner,

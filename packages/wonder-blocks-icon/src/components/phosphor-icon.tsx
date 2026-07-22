@@ -42,6 +42,11 @@ type Props = Pick<AriaProps, "aria-hidden" | "aria-label" | "role"> & {
     testId?: string;
 
     /**
+     * Set the tabindex attribute on the rendered element.
+     */
+    tabIndex?: 0 | -1;
+
+    /**
      * The icon to display. This is a reference to the icon asset (imported as a
      * static SVG file).
      *
@@ -70,7 +75,7 @@ type Props = Pick<AriaProps, "aria-hidden" | "aria-label" | "role"> & {
  *     icon={MagnifyingGlass}
  *     color={Color.blue}
  *     size="medium"
- *     style={{margin: Spacing.xxxxSmall_2}}
+ *     style={{margin: sizing.size_020}}
  * />
  * ```
  *

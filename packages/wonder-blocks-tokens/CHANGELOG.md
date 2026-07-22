@@ -1,5 +1,123 @@
 # @khanacademy/wonder-blocks-tokens
 
+## 17.2.0
+
+### Minor Changes
+
+- 3e7925e: Add `semanticColor.graphics` tokens (characters, gems, streaks, progress, role, neutral, and external brand colors) from the Figma "5 - Graphics" collection. SYL Light values are defined in the default theme (and inherited by thunderblocks), and SYL Dark values are defined in the SYL Dark theme.
+
+## 17.1.0
+
+### Minor Changes
+
+- dfcf49b: Update media-query breakpoint and constant tokens to cover full range of widths
+
+## 17.0.0
+
+### Major Changes
+
+- 9d8e5e3: Remove the deprecated legacy `font.size.*` and `font.lineHeight.*` token scales.
+  Use `font.body.*` / `font.heading.*` for typography.
+
+## 16.8.1
+
+### Patch Changes
+
+- 0735aef: Add `Helvetica` and `Corbel` fallback fonts to the `default` theme's `font.family.sans` token
+
+## 16.8.0
+
+### Minor Changes
+
+- f13552a: Add learning tokens for character flesh background and border
+
+## 16.7.0
+
+### Minor Changes
+
+- 9773405: Add `core.shadow.chonky.disabled.subtle/default` tokens and use for `chonky.disabled.*` tokens. Update semantic color core tokens in `syl-dark` related to chonky tokens and border neutral tokens
+
+### Patch Changes
+
+- 0907f64: Update yellow_01 and green_01 primitives. Update syl-dark background.success/warning.subtle to address color contrast issues with interactive elements in banners
+- 9773405: ActivityIconButton: Add component theme token for the label to accommodate syl-dark
+- 022e775: SYL Dark - Update disabled semantic color core tokens
+- e181c15: syl-dark theme: Update `core.background.neutral.default` to `gray_30`
+- c033245: SYL Dark tokens: Update background.base.subtle/default
+- a2bbc0a: SYL Dark semantic color tokens: Use TB tokens for `input.checked`
+
+## 16.6.0
+
+### Minor Changes
+
+- a676ce6: Add `learning.characters.flesh` semantic color tokens (`blue`, `cyan`, `green`, `magenta`, `orange` × `subtle`/`default`/`strong`) for use with learning characters, sourced from the Foundations Figma library.
+
+## 16.5.0
+
+### Minor Changes
+
+- 27a211d: Add support for SYL Dark theme
+
+### Patch Changes
+
+- 44bde5e: Update `semanticColor.core.border.neutral.*` and `semanticColor.core.background.neutral.strong` tokens in `syl-dark`
+- Updated dependencies [27a211d]
+    - @khanacademy/wonder-blocks-theming@4.1.0
+
+## 16.4.1
+
+### Patch Changes
+
+- 245229a: Make `tokenValue` safe to call in environments without a `document` (e.g. SSR or node-based test environments). Returns an empty string for `var(...)` tokens when `document` is undefined, instead of throwing `ReferenceError: document is not defined`.
+
+## 16.4.0
+
+### Minor Changes
+
+- c1c74df: Soft-deprecate the `spacing` primitive token in favor of `sizing`. Editors
+  will now show deprecation warnings on `spacing`, `VALID_PRIMARY_SPACING`,
+  `VALID_SECONDARY_SPACING`, and `VALID_SPACING`. No runtime or visual changes
+  — each `spacing.<name>` value still maps 1:1 to a `sizing.size_<n>` token. A
+  codemod is available at `wb-codemod/transforms/migrate-spacing-to-sizing.ts`
+  to help migrate consumers; run it with
+  `npx @khanacademy/wb-codemod -t migrate-spacing-to-sizing <paths>`.
+- 72c5272: Add `tokenValue()` helper to resolve the raw value of a semantic token at runtime. Useful for interoperating with third-party libraries that expect raw color values instead of CSS `var(...)` references.
+
+## 16.3.0
+
+### Minor Changes
+
+- 40f217b: Add Noto as fallback font for Thunderblocks in tokens.fontFamily
+
+## 16.2.0
+
+### Minor Changes
+
+- 488728a: Thunderblocks: Change `background.neutral.strong` from `black_100` to `gray_10`. If consumers are needing to use the `black_100` value, migrate it to `background.base.strong`
+
+## 16.1.0
+
+### Minor Changes
+
+- 358eb9b: Add `semanticColor.core.shadow.transparent.color.subtle/strong` tokens
+
+## 16.0.0
+
+### Major Changes
+
+- c75abe9: Update semantic color core tokens. `core.background.base.strong` is now a dark color in both default (darkBlue) and thunderblocks (black_100) to improve theming support. Migrate existing `core.background.base.strong` usage to `core.background.instructive.subtle`
+
+### Patch Changes
+
+- c75abe9: In the thunderblocks theme, updated critical/success/warning subtle background colors to red_80, green_80, yellow_80. Update overlay to black_60
+- 530d692: Tokens: Update SYL Primitive values for blue40, black100, gray5. Add color level 1 primitives (red1). Make sure colors are in sync with Figma values.
+
+## 15.0.0
+
+### Major Changes
+
+- 8bb7ada: Update core.foreground.x tokens to new values (default theme)
+
 ## 14.1.3
 
 ### Patch Changes

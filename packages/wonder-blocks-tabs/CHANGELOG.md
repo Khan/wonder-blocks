@@ -1,5 +1,330 @@
 # @khanacademy/wonder-blocks-tabs
 
+## 0.5.25
+
+### Patch Changes
+
+- Updated dependencies [3e7925e]
+    - @khanacademy/wonder-blocks-tokens@17.2.0
+    - @khanacademy/wonder-blocks-button@11.7.6
+    - @khanacademy/wonder-blocks-dropdown@10.11.7
+    - @khanacademy/wonder-blocks-icon@5.3.22
+    - @khanacademy/wonder-blocks-link@10.3.8
+    - @khanacademy/wonder-blocks-typography@5.0.2
+
+## 0.5.24
+
+### Patch Changes
+
+- Updated dependencies [dfcf49b]
+    - @khanacademy/wonder-blocks-tokens@17.1.0
+    - @khanacademy/wonder-blocks-button@11.7.5
+    - @khanacademy/wonder-blocks-dropdown@10.11.6
+    - @khanacademy/wonder-blocks-icon@5.3.21
+    - @khanacademy/wonder-blocks-link@10.3.7
+    - @khanacademy/wonder-blocks-typography@5.0.1
+
+## 0.5.23
+
+### Patch Changes
+
+- Updated dependencies [9d8e5e3]
+- Updated dependencies [f1cd1ce]
+- Updated dependencies [9d8e5e3]
+- Updated dependencies [9d8e5e3]
+    - @khanacademy/wonder-blocks-button@11.7.4
+    - @khanacademy/wonder-blocks-icon@5.3.20
+    - @khanacademy/wonder-blocks-tokens@17.0.0
+    - @khanacademy/wonder-blocks-typography@5.0.0
+    - @khanacademy/wonder-blocks-dropdown@10.11.5
+    - @khanacademy/wonder-blocks-link@10.3.6
+
+## 0.5.22
+
+### Patch Changes
+
+- Updated dependencies [77ba389]
+    - @khanacademy/wonder-blocks-dropdown@10.11.4
+
+## 0.5.21
+
+### Patch Changes
+
+- Updated dependencies [0735aef]
+    - @khanacademy/wonder-blocks-tokens@16.8.1
+    - @khanacademy/wonder-blocks-button@11.7.3
+    - @khanacademy/wonder-blocks-dropdown@10.11.3
+    - @khanacademy/wonder-blocks-icon@5.3.19
+    - @khanacademy/wonder-blocks-link@10.3.5
+    - @khanacademy/wonder-blocks-typography@4.3.9
+
+## 0.5.20
+
+### Patch Changes
+
+- @khanacademy/wonder-blocks-dropdown@10.11.2
+
+## 0.5.19
+
+### Patch Changes
+
+- Updated dependencies [f13552a]
+    - @khanacademy/wonder-blocks-tokens@16.8.0
+    - @khanacademy/wonder-blocks-button@11.7.2
+    - @khanacademy/wonder-blocks-dropdown@10.11.1
+    - @khanacademy/wonder-blocks-icon@5.3.18
+    - @khanacademy/wonder-blocks-link@10.3.4
+    - @khanacademy/wonder-blocks-typography@4.3.8
+
+## 0.5.18
+
+### Patch Changes
+
+- 36b936a: Tabs components: Update token usage to align with design
+- Updated dependencies [ddcaaeb]
+- Updated dependencies [0907f64]
+- Updated dependencies [9773405]
+- Updated dependencies [e6c705d]
+- Updated dependencies [9773405]
+- Updated dependencies [5928e1c]
+- Updated dependencies [022e775]
+- Updated dependencies [e181c15]
+- Updated dependencies [022e775]
+- Updated dependencies [8413cfe]
+- Updated dependencies [c033245]
+- Updated dependencies [a2bbc0a]
+    - @khanacademy/wonder-blocks-icon@5.3.17
+    - @khanacademy/wonder-blocks-tokens@16.7.0
+    - @khanacademy/wonder-blocks-dropdown@10.11.0
+    - @khanacademy/wonder-blocks-button@11.7.1
+    - @khanacademy/wonder-blocks-link@10.3.3
+    - @khanacademy/wonder-blocks-typography@4.3.7
+
+## 0.5.17
+
+### Patch Changes
+
+- d69335d: Disables no-raw-button lint rule for internal button usage
+- Updated dependencies [d69335d]
+- Updated dependencies [d69335d]
+    - @khanacademy/wonder-blocks-dropdown@10.10.0
+    - @khanacademy/wonder-blocks-button@11.7.0
+    - @khanacademy/wonder-blocks-link@10.3.2
+    - @khanacademy/wonder-blocks-core@12.4.4
+
+## 0.5.16
+
+### Patch Changes
+
+- Updated dependencies [1fdc9db]
+- Updated dependencies [a676ce6]
+    - @khanacademy/wonder-blocks-dropdown@10.9.2
+    - @khanacademy/wonder-blocks-tokens@16.6.0
+    - @khanacademy/wonder-blocks-button@11.6.2
+    - @khanacademy/wonder-blocks-icon@5.3.16
+    - @khanacademy/wonder-blocks-link@10.3.1
+    - @khanacademy/wonder-blocks-typography@4.3.6
+
+## 0.5.15
+
+### Patch Changes
+
+- 40cb70f: Add `require-logical-properties-for-rtl` ESLint rule to `eslint-plugin-wonder-blocks` recommended config, and migrate all Wonder Blocks component source files to use CSS logical properties for improved RTL layout support.
+- 40cb70f: Enable RTL logical-properties ESLint rule in recommended config
+- Updated dependencies [40cb70f]
+- Updated dependencies [40cb70f]
+- Updated dependencies [c97ece4]
+    - @khanacademy/wonder-blocks-button@11.6.1
+    - @khanacademy/wonder-blocks-core@12.4.4
+    - @khanacademy/wonder-blocks-dropdown@10.9.1
+    - @khanacademy/wonder-blocks-link@10.3.0
+    - @khanacademy/wonder-blocks-icon@5.3.15
+    - @khanacademy/wonder-blocks-typography@4.3.5
+
+## 0.5.14
+
+### Patch Changes
+
+- Updated dependencies [44bde5e]
+- Updated dependencies [27a211d]
+    - @khanacademy/wonder-blocks-tokens@16.5.0
+    - @khanacademy/wonder-blocks-dropdown@10.9.0
+    - @khanacademy/wonder-blocks-button@11.6.0
+    - @khanacademy/wonder-blocks-link@10.2.0
+    - @khanacademy/wonder-blocks-icon@5.3.14
+    - @khanacademy/wonder-blocks-typography@4.3.4
+
+## 0.5.13
+
+### Patch Changes
+
+- Updated dependencies [245229a]
+    - @khanacademy/wonder-blocks-tokens@16.4.1
+    - @khanacademy/wonder-blocks-dropdown@10.8.9
+    - @khanacademy/wonder-blocks-button@11.5.4
+    - @khanacademy/wonder-blocks-icon@5.3.13
+    - @khanacademy/wonder-blocks-link@10.1.11
+    - @khanacademy/wonder-blocks-typography@4.3.3
+
+## 0.5.12
+
+### Patch Changes
+
+- Updated dependencies [0fadf9f]
+- Updated dependencies [c1c74df]
+- Updated dependencies [72c5272]
+    - @khanacademy/wonder-blocks-link@10.1.10
+    - @khanacademy/wonder-blocks-tokens@16.4.0
+    - @khanacademy/wonder-blocks-dropdown@10.8.8
+    - @khanacademy/wonder-blocks-button@11.5.3
+    - @khanacademy/wonder-blocks-icon@5.3.12
+    - @khanacademy/wonder-blocks-typography@4.3.2
+
+## 0.5.11
+
+### Patch Changes
+
+- Updated dependencies [40f217b]
+    - @khanacademy/wonder-blocks-tokens@16.3.0
+    - @khanacademy/wonder-blocks-button@11.5.2
+    - @khanacademy/wonder-blocks-dropdown@10.8.7
+    - @khanacademy/wonder-blocks-icon@5.3.11
+    - @khanacademy/wonder-blocks-link@10.1.9
+    - @khanacademy/wonder-blocks-typography@4.3.1
+
+## 0.5.10
+
+### Patch Changes
+
+- @khanacademy/wonder-blocks-dropdown@10.8.6
+
+## 0.5.9
+
+### Patch Changes
+
+- 77156ee: Improve robustness of responsive logic in ResponsiveTabs and ResponsiveNavigationTabs by:
+    - Using a MutationObserver to trigger when we should check for overflow to decide if a dropdown or horizontal tabs layout should be used
+    - Fixing edge cases where additional container padding/margin could cause continuous layout changes
+    - Only trigger the check for overflow when the width changes in the ResizeObserver
+
+## 0.5.8
+
+### Patch Changes
+
+- 00e6dda: Updates internal WB typography references to use the new system (Heading and BodyText)
+- Updated dependencies [488728a]
+- Updated dependencies [00e6dda]
+    - @khanacademy/wonder-blocks-tokens@16.2.0
+    - @khanacademy/wonder-blocks-typography@4.3.0
+    - @khanacademy/wonder-blocks-button@11.5.1
+    - @khanacademy/wonder-blocks-dropdown@10.8.5
+    - @khanacademy/wonder-blocks-icon@5.3.10
+    - @khanacademy/wonder-blocks-link@10.1.8
+
+## 0.5.7
+
+### Patch Changes
+
+- Updated dependencies [d3d2580]
+    - @khanacademy/wonder-blocks-button@11.5.0
+    - @khanacademy/wonder-blocks-dropdown@10.8.4
+
+## 0.5.6
+
+### Patch Changes
+
+- @khanacademy/wonder-blocks-dropdown@10.8.3
+
+## 0.5.5
+
+### Patch Changes
+
+- Updated dependencies [358eb9b]
+    - @khanacademy/wonder-blocks-tokens@16.1.0
+    - @khanacademy/wonder-blocks-button@11.4.2
+    - @khanacademy/wonder-blocks-dropdown@10.8.2
+    - @khanacademy/wonder-blocks-icon@5.3.9
+    - @khanacademy/wonder-blocks-link@10.1.7
+    - @khanacademy/wonder-blocks-typography@4.2.31
+
+## 0.5.4
+
+### Patch Changes
+
+- Updated dependencies [c75abe9]
+- Updated dependencies [c75abe9]
+- Updated dependencies [530d692]
+    - @khanacademy/wonder-blocks-tokens@16.0.0
+    - @khanacademy/wonder-blocks-button@11.4.1
+    - @khanacademy/wonder-blocks-dropdown@10.8.1
+    - @khanacademy/wonder-blocks-icon@5.3.8
+    - @khanacademy/wonder-blocks-link@10.1.6
+    - @khanacademy/wonder-blocks-typography@4.2.30
+
+## 0.5.3
+
+### Patch Changes
+
+- Updated dependencies [7c7c3d3]
+    - @khanacademy/wonder-blocks-button@11.4.0
+
+## 0.5.2
+
+### Patch Changes
+
+- Updated dependencies [9abc34a]
+- Updated dependencies [a46a842]
+- Updated dependencies [e0aaa9e]
+    - @khanacademy/wonder-blocks-dropdown@10.8.0
+
+## 0.5.1
+
+### Patch Changes
+
+- Updated dependencies [12e04c3]
+    - @khanacademy/wonder-blocks-dropdown@10.7.1
+    - @khanacademy/wonder-blocks-button@11.3.4
+    - @khanacademy/wonder-blocks-link@10.1.5
+
+## 0.5.0
+
+### Minor Changes
+
+- 27a30ad: Adds TabsDropdown component
+- a633e23: Adds ResponsiveNavigationTabs component
+- be1c83f: ResponsiveTabs and TabsDropdown: Add support for tab item aria-label
+- cae9768: Adds ResponsiveTabs component
+- 61d61a9: Adds support for icons in ResponsiveTabs, Tabs, and TabsDropdown
+
+### Patch Changes
+
+- e0c42a6: Adds internal NavigationTabsDropdown component for the upcoming ResponsiveNavigationTabs component
+- 6928835: Update component docs for ResponsiveTabs and ResponsiveNavigationTabs
+- 75b5418: TabsDropdown: Improve a11y
+- Updated dependencies [a633e23]
+- Updated dependencies [be1c83f]
+- Updated dependencies [61d61a9]
+    - @khanacademy/wonder-blocks-link@10.1.4
+    - @khanacademy/wonder-blocks-dropdown@10.7.0
+    - @khanacademy/wonder-blocks-button@11.3.3
+
+## 0.4.3
+
+### Patch Changes
+
+- Updated dependencies [8bb7ada]
+    - @khanacademy/wonder-blocks-tokens@15.0.0
+    - @khanacademy/wonder-blocks-typography@4.2.29
+
+## 0.4.2
+
+### Patch Changes
+
+- Updated dependencies [d6ae5fb]
+    - @khanacademy/wonder-blocks-core@12.4.3
+    - @khanacademy/wonder-blocks-tokens@14.1.3
+    - @khanacademy/wonder-blocks-typography@4.2.28
+
 ## 0.4.1
 
 ### Patch Changes

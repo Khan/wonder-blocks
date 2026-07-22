@@ -20,13 +20,14 @@ export const generateTabs = (
                     flexDirection: "row",
                 }}
             >
-                {withIcons && <PhosphorIcon icon={IconMappings.cookie} />}
                 {`${tabContent} ${index + 1}`}
-                {withIcons && <PhosphorIcon icon={IconMappings.iceCream} />}
             </View>
         ),
         id: `tab-${index + 1}`,
         panel: <Placeholder>Tab contents {index + 1}</Placeholder>,
+        icon: withIcons ? (
+            <PhosphorIcon icon={IconMappings.cookie} />
+        ) : undefined,
     }));
 };
 

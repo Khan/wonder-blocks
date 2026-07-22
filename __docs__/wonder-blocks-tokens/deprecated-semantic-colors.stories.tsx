@@ -39,7 +39,7 @@ export default {
             disableSnapshot: true,
         },
     },
-    tags: ["!dev"],
+    tags: ["!dev", "!manifest"],
 };
 
 const styles = StyleSheet.create({

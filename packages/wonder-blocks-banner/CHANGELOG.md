@@ -1,5 +1,292 @@
 # @khanacademy/wonder-blocks-banner
 
+## 5.1.10
+
+### Patch Changes
+
+- Updated dependencies [3e7925e]
+    - @khanacademy/wonder-blocks-tokens@17.2.0
+    - @khanacademy/wonder-blocks-button@11.7.6
+    - @khanacademy/wonder-blocks-icon@5.3.22
+    - @khanacademy/wonder-blocks-icon-button@11.4.4
+    - @khanacademy/wonder-blocks-link@10.3.8
+    - @khanacademy/wonder-blocks-typography@5.0.2
+
+## 5.1.9
+
+### Patch Changes
+
+- Updated dependencies [dfcf49b]
+    - @khanacademy/wonder-blocks-tokens@17.1.0
+    - @khanacademy/wonder-blocks-button@11.7.5
+    - @khanacademy/wonder-blocks-icon@5.3.21
+    - @khanacademy/wonder-blocks-icon-button@11.4.3
+    - @khanacademy/wonder-blocks-link@10.3.7
+    - @khanacademy/wonder-blocks-typography@5.0.1
+
+## 5.1.8
+
+### Patch Changes
+
+- Updated dependencies [9d8e5e3]
+- Updated dependencies [f1cd1ce]
+- Updated dependencies [9d8e5e3]
+- Updated dependencies [9d8e5e3]
+    - @khanacademy/wonder-blocks-button@11.7.4
+    - @khanacademy/wonder-blocks-icon@5.3.20
+    - @khanacademy/wonder-blocks-tokens@17.0.0
+    - @khanacademy/wonder-blocks-typography@5.0.0
+    - @khanacademy/wonder-blocks-icon-button@11.4.2
+    - @khanacademy/wonder-blocks-link@10.3.6
+
+## 5.1.7
+
+### Patch Changes
+
+- Updated dependencies [0735aef]
+    - @khanacademy/wonder-blocks-tokens@16.8.1
+    - @khanacademy/wonder-blocks-button@11.7.3
+    - @khanacademy/wonder-blocks-icon@5.3.19
+    - @khanacademy/wonder-blocks-icon-button@11.4.1
+    - @khanacademy/wonder-blocks-link@10.3.5
+    - @khanacademy/wonder-blocks-typography@4.3.9
+
+## 5.1.6
+
+### Patch Changes
+
+- Updated dependencies [48a4552]
+    - @khanacademy/wonder-blocks-icon-button@11.4.0
+
+## 5.1.5
+
+### Patch Changes
+
+- Updated dependencies [f13552a]
+    - @khanacademy/wonder-blocks-tokens@16.8.0
+    - @khanacademy/wonder-blocks-button@11.7.2
+    - @khanacademy/wonder-blocks-icon@5.3.18
+    - @khanacademy/wonder-blocks-icon-button@11.3.5
+    - @khanacademy/wonder-blocks-link@10.3.4
+    - @khanacademy/wonder-blocks-typography@4.3.8
+
+## 5.1.4
+
+### Patch Changes
+
+- 0907f64: Banner: Use borderless style for banners in Thunderblocks and syl-dark
+- Updated dependencies [ddcaaeb]
+- Updated dependencies [0907f64]
+- Updated dependencies [9773405]
+- Updated dependencies [9773405]
+- Updated dependencies [022e775]
+- Updated dependencies [e181c15]
+- Updated dependencies [c033245]
+- Updated dependencies [a2bbc0a]
+    - @khanacademy/wonder-blocks-icon@5.3.17
+    - @khanacademy/wonder-blocks-tokens@16.7.0
+    - @khanacademy/wonder-blocks-icon-button@11.3.4
+    - @khanacademy/wonder-blocks-button@11.7.1
+    - @khanacademy/wonder-blocks-link@10.3.3
+    - @khanacademy/wonder-blocks-typography@4.3.7
+
+## 5.1.3
+
+### Patch Changes
+
+- Updated dependencies [d69335d]
+- Updated dependencies [d69335d]
+- Updated dependencies [34d66ac]
+    - @khanacademy/wonder-blocks-icon-button@11.3.3
+    - @khanacademy/wonder-blocks-button@11.7.0
+    - @khanacademy/wonder-blocks-link@10.3.2
+    - @khanacademy/wonder-blocks-core@12.4.4
+
+## 5.1.2
+
+### Patch Changes
+
+- Updated dependencies [a676ce6]
+    - @khanacademy/wonder-blocks-tokens@16.6.0
+    - @khanacademy/wonder-blocks-button@11.6.2
+    - @khanacademy/wonder-blocks-icon@5.3.16
+    - @khanacademy/wonder-blocks-icon-button@11.3.2
+    - @khanacademy/wonder-blocks-link@10.3.1
+    - @khanacademy/wonder-blocks-typography@4.3.6
+
+## 5.1.1
+
+### Patch Changes
+
+- Updated dependencies [40cb70f]
+- Updated dependencies [40cb70f]
+- Updated dependencies [c97ece4]
+    - @khanacademy/wonder-blocks-button@11.6.1
+    - @khanacademy/wonder-blocks-core@12.4.4
+    - @khanacademy/wonder-blocks-link@10.3.0
+    - @khanacademy/wonder-blocks-icon@5.3.15
+    - @khanacademy/wonder-blocks-icon-button@11.3.1
+    - @khanacademy/wonder-blocks-typography@4.3.5
+
+## 5.1.0
+
+### Minor Changes
+
+- 27a211d: Add support for SYL Dark theme
+
+### Patch Changes
+
+- Updated dependencies [44bde5e]
+- Updated dependencies [27a211d]
+    - @khanacademy/wonder-blocks-tokens@16.5.0
+    - @khanacademy/wonder-blocks-icon-button@11.3.0
+    - @khanacademy/wonder-blocks-button@11.6.0
+    - @khanacademy/wonder-blocks-link@10.2.0
+    - @khanacademy/wonder-blocks-icon@5.3.14
+    - @khanacademy/wonder-blocks-typography@4.3.4
+
+## 5.0.23
+
+### Patch Changes
+
+- Updated dependencies [245229a]
+    - @khanacademy/wonder-blocks-tokens@16.4.1
+    - @khanacademy/wonder-blocks-button@11.5.4
+    - @khanacademy/wonder-blocks-icon@5.3.13
+    - @khanacademy/wonder-blocks-icon-button@11.2.4
+    - @khanacademy/wonder-blocks-link@10.1.11
+    - @khanacademy/wonder-blocks-typography@4.3.3
+
+## 5.0.22
+
+### Patch Changes
+
+- Updated dependencies [0fadf9f]
+- Updated dependencies [c1c74df]
+- Updated dependencies [72c5272]
+    - @khanacademy/wonder-blocks-link@10.1.10
+    - @khanacademy/wonder-blocks-tokens@16.4.0
+    - @khanacademy/wonder-blocks-button@11.5.3
+    - @khanacademy/wonder-blocks-icon@5.3.12
+    - @khanacademy/wonder-blocks-icon-button@11.2.3
+    - @khanacademy/wonder-blocks-typography@4.3.2
+
+## 5.0.21
+
+### Patch Changes
+
+- Updated dependencies [40f217b]
+    - @khanacademy/wonder-blocks-tokens@16.3.0
+    - @khanacademy/wonder-blocks-button@11.5.2
+    - @khanacademy/wonder-blocks-icon@5.3.11
+    - @khanacademy/wonder-blocks-icon-button@11.2.2
+    - @khanacademy/wonder-blocks-link@10.1.9
+    - @khanacademy/wonder-blocks-typography@4.3.1
+
+## 5.0.20
+
+### Patch Changes
+
+- Updated dependencies [488728a]
+- Updated dependencies [00e6dda]
+    - @khanacademy/wonder-blocks-tokens@16.2.0
+    - @khanacademy/wonder-blocks-typography@4.3.0
+    - @khanacademy/wonder-blocks-button@11.5.1
+    - @khanacademy/wonder-blocks-icon@5.3.10
+    - @khanacademy/wonder-blocks-icon-button@11.2.1
+    - @khanacademy/wonder-blocks-link@10.1.8
+
+## 5.0.19
+
+### Patch Changes
+
+- Updated dependencies [d3d2580]
+    - @khanacademy/wonder-blocks-icon-button@11.2.0
+    - @khanacademy/wonder-blocks-button@11.5.0
+
+## 5.0.18
+
+### Patch Changes
+
+- Updated dependencies [358eb9b]
+    - @khanacademy/wonder-blocks-tokens@16.1.0
+    - @khanacademy/wonder-blocks-button@11.4.2
+    - @khanacademy/wonder-blocks-icon@5.3.9
+    - @khanacademy/wonder-blocks-icon-button@11.1.6
+    - @khanacademy/wonder-blocks-link@10.1.7
+    - @khanacademy/wonder-blocks-typography@4.2.31
+
+## 5.0.17
+
+### Patch Changes
+
+- Updated dependencies [c75abe9]
+- Updated dependencies [c75abe9]
+- Updated dependencies [530d692]
+    - @khanacademy/wonder-blocks-tokens@16.0.0
+    - @khanacademy/wonder-blocks-button@11.4.1
+    - @khanacademy/wonder-blocks-icon@5.3.8
+    - @khanacademy/wonder-blocks-icon-button@11.1.5
+    - @khanacademy/wonder-blocks-link@10.1.6
+    - @khanacademy/wonder-blocks-typography@4.2.30
+
+## 5.0.16
+
+### Patch Changes
+
+- Updated dependencies [7c7c3d3]
+    - @khanacademy/wonder-blocks-button@11.4.0
+
+## 5.0.15
+
+### Patch Changes
+
+- Updated dependencies [12e04c3]
+    - @khanacademy/wonder-blocks-icon-button@11.1.4
+    - @khanacademy/wonder-blocks-button@11.3.4
+    - @khanacademy/wonder-blocks-link@10.1.5
+
+## 5.0.14
+
+### Patch Changes
+
+- Updated dependencies [a633e23]
+- Updated dependencies [61d61a9]
+    - @khanacademy/wonder-blocks-link@10.1.4
+    - @khanacademy/wonder-blocks-button@11.3.3
+
+## 5.0.13
+
+### Patch Changes
+
+- Updated dependencies [8bb7ada]
+    - @khanacademy/wonder-blocks-tokens@15.0.0
+    - @khanacademy/wonder-blocks-button@11.3.2
+    - @khanacademy/wonder-blocks-icon@5.3.7
+    - @khanacademy/wonder-blocks-icon-button@11.1.3
+    - @khanacademy/wonder-blocks-link@10.1.3
+    - @khanacademy/wonder-blocks-typography@4.2.29
+
+## 5.0.12
+
+### Patch Changes
+
+- Updated dependencies [d6ae5fb]
+    - @khanacademy/wonder-blocks-core@12.4.3
+    - @khanacademy/wonder-blocks-button@11.3.1
+    - @khanacademy/wonder-blocks-icon@5.3.6
+    - @khanacademy/wonder-blocks-icon-button@11.1.2
+    - @khanacademy/wonder-blocks-link@10.1.2
+    - @khanacademy/wonder-blocks-tokens@14.1.3
+    - @khanacademy/wonder-blocks-typography@4.2.28
+
+## 5.0.11
+
+### Patch Changes
+
+- Updated dependencies [5e61bf3]
+    - @khanacademy/wonder-blocks-button@11.3.0
+
 ## 5.0.10
 
 ### Patch Changes

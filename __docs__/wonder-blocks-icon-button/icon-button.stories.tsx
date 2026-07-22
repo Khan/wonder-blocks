@@ -15,9 +15,9 @@ import magnifyingGlassBold from "@phosphor-icons/core/bold/magnifying-glass-bold
 import minusCircle from "@phosphor-icons/core/regular/minus-circle.svg";
 
 import {View} from "@khanacademy/wonder-blocks-core";
-import {LabelMedium} from "@khanacademy/wonder-blocks-typography";
+import {BodyText} from "@khanacademy/wonder-blocks-typography";
 import IconButton from "@khanacademy/wonder-blocks-icon-button";
-import {spacing} from "@khanacademy/wonder-blocks-tokens";
+import {sizing} from "@khanacademy/wonder-blocks-tokens";
 
 import ComponentInfo from "../components/component-info";
 import packageConfig from "../../packages/wonder-blocks-icon-button/package.json";
@@ -128,9 +128,9 @@ export const Sizes: StoryComponentType = {
         icon: magnifyingGlass,
     },
     render: (args) => (
-        <View style={{gap: spacing.medium_16}}>
+        <View style={{gap: sizing.size_160}}>
             <View style={styles.row}>
-                <LabelMedium style={styles.label}>xsmall</LabelMedium>
+                <BodyText style={styles.label}>xsmall</BodyText>
                 <IconButton
                     {...args}
                     icon={magnifyingGlassBold}
@@ -138,15 +138,15 @@ export const Sizes: StoryComponentType = {
                 />
             </View>
             <View style={styles.row}>
-                <LabelMedium style={styles.label}>small</LabelMedium>
+                <BodyText style={styles.label}>small</BodyText>
                 <IconButton {...args} size="small" />
             </View>
             <View style={styles.row}>
-                <LabelMedium style={styles.label}>medium</LabelMedium>
+                <BodyText style={styles.label}>medium</BodyText>
                 <IconButton {...args} size="medium" />
             </View>
             <View style={styles.row}>
-                <LabelMedium style={styles.label}>large</LabelMedium>
+                <BodyText style={styles.label}>large</BodyText>
                 <IconButton {...args} size="large" />
             </View>
         </View>
@@ -196,7 +196,7 @@ export const Kinds: StoryComponentType = {
 export const WithActionType: StoryComponentType = {
     name: "ActionType",
     render: (args) => (
-        <View style={{gap: spacing.medium_16}}>
+        <View style={{gap: sizing.size_160}}>
             <View style={styles.row}>
                 <IconButton
                     {...args}
@@ -354,14 +354,14 @@ export const SubmittingForms: StoryComponentType = {
             }}
         >
             <View style={styles.row}>
-                <LabelMedium tag="label" style={styles.row}>
+                <BodyText tag="label" style={styles.row}>
                     Search:{" "}
                     <TextField
                         id="foo"
                         value="press the button"
                         onChange={() => {}}
                     />
-                </LabelMedium>
+                </BodyText>
                 <IconButton
                     icon={magnifyingGlass}
                     aria-label="Search"
@@ -405,15 +405,15 @@ export const WithCustomIcon: StoryComponentType = {
 const styles = StyleSheet.create({
     arrowsWrapper: {
         flexDirection: "row",
-        gap: spacing.medium_16,
+        gap: sizing.size_160,
     },
     row: {
         display: "flex",
         flexDirection: "row",
-        gap: spacing.medium_16,
+        gap: sizing.size_160,
         alignItems: "center",
     },
     label: {
-        width: spacing.xxxLarge_64,
+        width: sizing.size_640,
     },
 });

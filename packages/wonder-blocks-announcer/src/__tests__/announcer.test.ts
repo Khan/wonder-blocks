@@ -55,6 +55,7 @@ describe("Announcer class", () => {
                 "polite",
                 element1 as HTMLElement,
                 element2 as HTMLElement,
+                "document",
             );
 
             // ACT
@@ -62,6 +63,7 @@ describe("Announcer class", () => {
                 "Saved by the bell!",
                 "polite",
                 regionList,
+                "document",
             );
 
             // ASSERT
@@ -76,6 +78,7 @@ describe("Announcer class", () => {
                 "assertive",
                 element1 as HTMLElement,
                 element2 as HTMLElement,
+                "document",
             );
 
             // ACT
@@ -83,6 +86,7 @@ describe("Announcer class", () => {
                 "Saved by the bell!",
                 "assertive",
                 regionList,
+                "document",
             );
 
             // ASSERT
@@ -100,14 +104,14 @@ describe("Announcer class", () => {
         test("a single message", async () => {
             // Arrange
             const announcer = Announcer.getInstance();
-            expect(announcer.regionFactory.pIndex).toBe(0);
+            expect(announcer.regionFactory.get("document")?.pIndex).toBe(0);
 
             // Act
-            announcer.announce("a thing", "polite");
+            announcer.announce("a thing", "polite", false);
 
             // // Assert
             jest.advanceTimersByTime(500);
-            expect(announcer.regionFactory.pIndex).toBe(1);
+            expect(announcer.regionFactory.get("document")?.pIndex).toBe(1);
             expect(
                 announcer.dictionary.get("wbARegion-polite1")?.element
                     .textContent,
@@ -117,25 +121,25 @@ describe("Announcer class", () => {
         test("two messages", async () => {
             // Arrange
             const announcer = Announcer.getInstance();
-            expect(announcer.regionFactory.pIndex).toBe(0);
+            expect(announcer.regionFactory.get("document")?.pIndex).toBe(0);
 
             // Act
-            announcer.announce("a nice thing", "polite");
+            announcer.announce("a nice thing", "polite", false);
 
             // Assert
             jest.advanceTimersByTime(500);
-            expect(announcer.regionFactory.pIndex).toBe(1);
+            expect(announcer.regionFactory.get("document")?.pIndex).toBe(1);
 
             expect(
                 announcer.dictionary.get("wbARegion-polite1")?.element
                     .textContent,
             ).toBe("a nice thing");
 
-            announcer.announce("another nice thing", "polite");
+            announcer.announce("another nice thing", "polite", false);
 
             // Assert
             jest.advanceTimersByTime(500);
-            expect(announcer.regionFactory.pIndex).toBe(0);
+            expect(announcer.regionFactory.get("document")?.pIndex).toBe(0);
             expect(
                 announcer.dictionary.get("wbARegion-polite0")?.element
                     .textContent,
@@ -145,10 +149,10 @@ describe("Announcer class", () => {
         test("returning an IDREF", async () => {
             // Arrange
             const announcer = Announcer.getInstance();
-            expect(announcer.regionFactory.pIndex).toBe(0);
+            expect(announcer.regionFactory.get("document")?.pIndex).toBe(0);
 
             // Act
-            const idRef = announcer.announce("another thing", "polite");
+            const idRef = announcer.announce("another thing", "polite", false);
 
             // Assert
             jest.advanceTimersByTime(500);
@@ -162,8 +166,8 @@ describe("Announcer class", () => {
 
             // Act
             // The second call will win out in the trailing edge implementation
-            announcer.announce("a thing", "polite", waitThreshold);
-            announcer.announce("two things", "polite", waitThreshold);
+            announcer.announce("a thing", "polite", false, waitThreshold);
+            announcer.announce("two things", "polite", false, waitThreshold);
 
             // Assert
             jest.advanceTimersByTime(1010);
@@ -179,11 +183,125 @@ describe("Announcer class", () => {
         });
     });
 
+    describe("modal layer", () => {
+        let modalElement: HTMLElement;
+
+        beforeEach(() => {
+            modalElement = document.createElement("div");
+            modalElement.setAttribute("role", "dialog");
+            modalElement.setAttribute("aria-modal", "true");
+            modalElement.setAttribute("data-testid", "test-modal");
+            document.body.appendChild(modalElement);
+        });
+
+        afterEach(() => {
+            const announcer = Announcer.getInstance();
+            jest.advanceTimersByTime(REMOVAL_TIMEOUT_DELAY);
+            announcer.detachAnnouncerFromModal(modalElement);
+            modalElement.remove();
+            announcer.reset();
+        });
+
+        test("attachAnnouncerToModal creates live regions inside the modal", () => {
+            const announcer = Announcer.getInstance();
+            announcer.attachAnnouncerToModal(modalElement);
+
+            // Use regex to match regardless of the counter suffix
+            const modalAnnouncer = screen.getByTestId(/^wbAnnounce-modal/);
+            expect(modalAnnouncer).toBeInTheDocument();
+            // eslint-disable-next-line testing-library/no-node-access
+            expect(modalElement.contains(modalAnnouncer)).toBe(true);
+            expect(
+                screen.getByTestId(/^wbARegion-modal-polite0/),
+            ).toBeInTheDocument();
+            expect(
+                screen.getByTestId(/^wbARegion-modal-polite1/),
+            ).toBeInTheDocument();
+            expect(
+                screen.getByTestId(/^wbARegion-modal-assertive0/),
+            ).toBeInTheDocument();
+            expect(
+                screen.getByTestId(/^wbARegion-modal-assertive1/),
+            ).toBeInTheDocument();
+        });
+
+        test("attachAnnouncerToModal registers regions in the dictionary", () => {
+            const announcer = Announcer.getInstance();
+            announcer.attachAnnouncerToModal(modalElement);
+
+            // 4 document + 4 modal regions
+            expect(announcer.dictionary.size).toBe(8);
+            expect(
+                [...announcer.dictionary.values()].filter(
+                    (r) => r.layerId === "modal",
+                ).length,
+            ).toBe(4);
+        });
+
+        test("hasActiveModal returns true after attach, false after detach", () => {
+            const announcer = Announcer.getInstance();
+            expect(announcer.hasActiveModal()).toBe(false);
+
+            announcer.attachAnnouncerToModal(modalElement);
+            expect(announcer.hasActiveModal()).toBe(true);
+
+            announcer.detachAnnouncerFromModal(modalElement);
+            expect(announcer.hasActiveModal()).toBe(false);
+        });
+
+        test("detachAnnouncerFromModal removes the container and cleans up the dictionary", () => {
+            const announcer = Announcer.getInstance();
+            announcer.attachAnnouncerToModal(modalElement);
+            expect(announcer.dictionary.size).toBe(8);
+
+            announcer.detachAnnouncerFromModal(modalElement);
+            expect(announcer.dictionary.size).toBe(4);
+            expect(
+                screen.queryByTestId(/^wbAnnounce-modal/),
+            ).not.toBeInTheDocument();
+        });
+
+        test("announcing in modal context routes to modal regions", () => {
+            const announcer = Announcer.getInstance();
+            announcer.attachAnnouncerToModal(modalElement);
+
+            announcer.announce("modal message", "polite", true, 0);
+            jest.advanceTimersByTime(500);
+
+            expect(announcer.regionFactory.get("modal")?.pIndex).toBe(1);
+            // Find the modal polite region at index 1 via layerId filter
+            const modalPoliteRegion = [...announcer.dictionary.values()].find(
+                (r) =>
+                    r.layerId === "modal" &&
+                    r.level === "polite" &&
+                    r.levelIndex === 1,
+            );
+            expect(modalPoliteRegion?.element.textContent).toBe(
+                "modal message",
+            );
+        });
+
+        test("falls back to document layer when no modal regions exist", () => {
+            const announcer = Announcer.getInstance();
+            // Do NOT call attachAnnouncerToModal
+
+            announcer.announce("fallback message", "polite", true, 0);
+            jest.advanceTimersByTime(500);
+
+            // Without modal regions, falls back to document layer
+            expect(announcer.regionFactory.get("document")?.pIndex).toBe(1);
+            expect(
+                announcer.dictionary.get("wbARegion-polite1")?.element
+                    .textContent,
+            ).toBe("fallback message");
+        });
+    });
+
     describe("clearing messages", () => {
         test("clearing by IDREF", async () => {
             // Arrange
             const announcer = Announcer.getInstance();
-            expect(announcer.regionFactory.pIndex).toBe(0);
+            expect(announcer.regionFactory.get("document")?.pIndex).toBe(0);
 
             // Act
             const idRef = "wbARegion-polite0";
@@ -205,7 +323,7 @@ describe("Announcer class", () => {
             const announcer = Announcer.getInstance();
 
             // Act
-            announcer.announce("One Fish", "polite", 0);
+            announcer.announce("One Fish", "polite", false, 0);
             jest.advanceTimersByTime(5);
             expect(screen.getByText("One Fish")).toBeInTheDocument();
 

@@ -100,8 +100,16 @@ export type TextViewSharedProps = {
     title?: string;
 
     // TODO(kevinb) remove the need for this
+    /**
+     * Should be ignored
+     * @ignore
+     */
     "data-modal-launcher-portal"?: boolean;
     // Used by tooltip bubble
+    /**
+     * Should be ignored
+     * @ignore
+     */
     "data-placement"?: string;
 } & AriaProps &
     EventHandlers;

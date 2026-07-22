@@ -52,6 +52,7 @@ import gear from "@phosphor-icons/core/regular/gear.svg";
 import cookie from "@phosphor-icons/core/regular/cookie.svg";
 import cookieBold from "@phosphor-icons/core/bold/cookie-bold.svg";
 import iceCream from "@phosphor-icons/core/regular/ice-cream.svg";
+import iceCreamBold from "@phosphor-icons/core/bold/ice-cream-bold.svg";
 import arrowRight from "@phosphor-icons/core/regular/arrow-right.svg";
 import arrowLeft from "@phosphor-icons/core/regular/arrow-left.svg";
 import arrowElbowDownLeft from "@phosphor-icons/core/regular/arrow-elbow-down-left.svg";
@@ -63,6 +64,8 @@ import arrowElbowLeftUp from "@phosphor-icons/core/regular/arrow-elbow-left-up.s
 import arrowElbowRightDown from "@phosphor-icons/core/regular/arrow-elbow-right-down.svg";
 import arrowElbowRightUp from "@phosphor-icons/core/regular/arrow-elbow-right-up.svg";
 import lightningFill from "@phosphor-icons/core/fill/lightning-fill.svg";
+
+import AriaArgTypes from "../wonder-blocks-core/aria.argtypes";
 
 import {semanticColor} from "@khanacademy/wonder-blocks-tokens";
 import {flattenNestedTokens} from "../components/tokens-util";
@@ -123,6 +126,7 @@ export const IconMappings = {
     cookie,
     cookieBold,
     iceCream,
+    iceCreamBold,
     arrowRight,
     arrowLeft,
     arrowElbowDownLeft,
@@ -152,6 +156,7 @@ const semanticIconColorsCollection = Object.entries(
 const semanticIconColors = Object.fromEntries(semanticIconColorsCollection);
 
 export default {
+    ...AriaArgTypes,
     icon: {
         options: Object.keys(IconMappings),
         mapping: IconMappings,

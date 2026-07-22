@@ -8,7 +8,7 @@ import {
     SchedulePolicy,
 } from "../../packages/wonder-blocks-timing/src/util/policies";
 import {useTimeout, useInterval} from "@khanacademy/wonder-blocks-timing";
-import {Body} from "@khanacademy/wonder-blocks-typography";
+import {BodyText} from "@khanacademy/wonder-blocks-typography";
 
 export default {
     title: "Packages / Timing / useTimeout",
@@ -36,9 +36,9 @@ export const Immediately = () => {
     }, 100);
     return (
         <View>
-            <Body>
+            <BodyText>
                 Timeout should fire in 5 seconds unless set again or cleared
-            </Body>
+            </BodyText>
             <View>isSet = {String(timeoutSet)}</View>
             <View>callCount = {callCount}</View>
             <View style={{flexDirection: "row"}}>
@@ -74,10 +74,10 @@ export const OnDemandAndResolveOnClear = () => {
     }, 100);
     return (
         <View>
-            <Body>
+            <BodyText>
                 Timeout should fire in 5 seconds or when cleared unless set
                 again
-            </Body>
+            </BodyText>
             <View>isSet = {String(timeoutSet)}</View>
             <View>callCount = {callCount}</View>
             <View style={{flexDirection: "row"}}>

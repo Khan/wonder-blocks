@@ -1,4 +1,3 @@
-/* eslint-disable max-lines */
 import * as React from "react";
 import {
     fireEvent,
@@ -293,7 +292,6 @@ describe("SingleSelect", () => {
 
                 // Act
                 await userEvent.click(opener);
-
                 // Assert
                 const options = screen.getAllByRole("option", {hidden: true});
                 expect(options[0]).toHaveFocus();
@@ -392,7 +390,6 @@ describe("SingleSelect", () => {
 
                         // Act
                         await userEvent.keyboard(key);
-
                         // Assert
                         const options = screen.getAllByRole("option", {
                             hidden: true,
@@ -409,7 +406,6 @@ describe("SingleSelect", () => {
 
                 // Act
                 await userEvent.keyboard("{Enter}"); // open
-
                 // Ensure first option is focused, not the opener
                 const firstItem = await screen.findByRole("option", {
                     name: /item 1/,
@@ -423,7 +419,6 @@ describe("SingleSelect", () => {
                 const {userEvent} = doRender(uncontrolledSingleSelect);
                 await userEvent.tab();
                 await userEvent.keyboard("{Enter}"); // open
-
                 // Act
                 await userEvent.keyboard("{Enter}");
 
@@ -1139,7 +1134,7 @@ describe("SingleSelect", () => {
                 "dropdown-core-container",
             );
             expect(dropdownMenuWrapper).toHaveStyle(
-                "max-height: var(--popper-max-height)",
+                "max-block-size: var(--popper-max-height)",
             );
         });
 
@@ -1174,7 +1169,7 @@ describe("SingleSelect", () => {
             );
             // Max allowed height
             expect(dropdownMenuWrapper).toHaveStyle(
-                "max-height: var(--popper-max-height)",
+                "max-block-size: var(--popper-max-height)",
             );
         });
 
@@ -1224,8 +1219,8 @@ describe("SingleSelect", () => {
         });
 
         it("should not announce initial value on mount", async () => {
-            // Arrange & Act
-            doRender(
+            // Arrange
+            const element = (
                 <SingleSelect
                     onChange={onChange}
                     placeholder="Choose"
@@ -1233,8 +1228,11 @@ describe("SingleSelect", () => {
                 >
                     <OptionItem label="item 1" value="1" />
                     <OptionItem label="item 2" value="2" />
-                </SingleSelect>,
+                </SingleSelect>
             );
+
+            // Act
+            doRender(element);
 
             // Assert
             expect(announceMessageSpy).not.toHaveBeenCalled();
@@ -1264,12 +1262,38 @@ describe("SingleSelect", () => {
             await userEvent.click(await screen.findByText("item 1")); // Selects item
 
             // Assert
-            // First call announces total options ("2 items")
-            // Second call announces selected item
-            expect(announceMessageSpy).toHaveBeenNthCalledWith(2, {
+            expect(announceMessageSpy).toHaveBeenCalledWith({
                 message: "item 1",
+                level: "polite",
             });
         });
+
+        it.each([
+            ["non-filterable", false],
+            ["filterable", true],
+        ])(
+            "should not announce when a %s dropdown is opened",
+            async (_label, isFilterable) => {
+                // Arrange
+                const {userEvent} = doRender(
+                    <SingleSelect
+                        onChange={onChange}
+                        placeholder="Choose"
+                        selectedValue="2"
+                        isFilterable={isFilterable}
+                    >
+                        <OptionItem label="item 1" value="1" />
+                        <OptionItem label="item 2" value="2" />
+                    </SingleSelect>,
+                );
+
+                // Act
+                await userEvent.click(await screen.findByRole("combobox"));
+
+                // Assert
+                expect(announceMessageSpy).not.toHaveBeenCalled();
+            },
+        );
 
         it("should change the number of options after using the search filter", async () => {
             // Arrange
@@ -1293,6 +1317,7 @@ describe("SingleSelect", () => {
             // Assert
             await expect(announceMessageSpy).toHaveBeenCalledWith({
                 message: "1 item",
+                level: "polite",
             });
         });
     });

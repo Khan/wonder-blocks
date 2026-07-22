@@ -23,8 +23,8 @@ const styles = StyleSheet.create({
     header: {
         // User agent stylesheets add vertical margins to header tags by
         // default. We prefer to be more deliberate in our spacing instead.
-        marginTop: 0,
-        marginBottom: 0,
+        marginBlockStart: 0,
+        marginBlockEnd: 0,
     },
 });
 
@@ -41,10 +41,14 @@ const styles = StyleSheet.create({
  * - An array combining the above
  */
 const Text = React.forwardRef(function Text(
-    {children, style, tag: Tag = "span", testId, ...otherProps}: Props,
+    {children, style, tag = "span", testId, ...otherProps}: Props,
     ref,
 ) {
-    const isHeader = isHeaderRegex.test(Tag);
+    // `tag` is typed as `string`, so we cast it to `React.ElementType` to
+    // allow rendering it as a JSX element that accepts arbitrary DOM props
+    // (e.g. `style`, `className`).
+    const Tag = tag as React.ElementType;
+    const isHeader = isHeaderRegex.test(tag);
     const styleAttributes = processStyleList([
         styles.text,
         isHeader && styles.header,
@@ -57,7 +61,6 @@ const Text = React.forwardRef(function Text(
         : styleAttributes.className;
 
     return (
-        // @ts-expect-error [FEI-5019] - TS2322 - Type '{ children: ReactNode; style: any; className: string; "data-testid": string | undefined; tabIndex?: number | undefined; id?: string | undefined; "data-modal-launcher-portal"?: boolean | undefined; ... 69 more ...; onBlur?: ((e: FocusEvent<...>) => unknown) | undefined; }' is not assignable to type 'IntrinsicAttributes'.
         <Tag
             {...otherProps}
             style={styleAttributes.style}

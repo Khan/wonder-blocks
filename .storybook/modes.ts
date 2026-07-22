@@ -19,6 +19,9 @@ export const allModes = {
     themeThunderBlocks: {
         theme: "thunderblocks",
     },
+    themeSylDark: {
+        theme: "syl-dark",
+    },
     // NOTE: This will go away when we fully remove the light variants.
     dark: {
         background: "neutralStrong",
@@ -30,7 +33,8 @@ export const allModes = {
     },
 };
 
-export const themeModes = {
+export const allThemeModes = {
     default: allModes.themeDefault,
     thunderblocks: allModes.themeThunderBlocks,
+    sylDark: allModes.themeSylDark,
 };

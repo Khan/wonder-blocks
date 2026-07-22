@@ -1,3 +1,4 @@
+// Allowing raw button in tabs for internal testing
 import * as React from "react";
 import {act, render, screen} from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
@@ -122,6 +123,7 @@ describe("TabPanel", () => {
                     <div>
                         <div role="tablist">
                             <button
+                                // eslint-disable-next-line @khanacademy/wonder-blocks/no-custom-tab-role -- Explicitly testing an example with an element with role="tab"
                                 role="tab"
                                 id={tabId}
                                 aria-controls={panelId}

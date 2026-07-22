@@ -34,6 +34,9 @@ type OptionProps = AriaProps & {
     value: string;
     /**
      * Whether this option item is disabled.
+     *
+     * Internally, the `aria-disabled` attribute will be set so that the
+     * element remains focusable and will be included in the tab order.
      */
     disabled: boolean;
     /**
@@ -289,7 +292,7 @@ const styles = StyleSheet.create({
         paddingInlineEnd: theme.item.layout.padding.inlineEnd,
         whiteSpace: "nowrap",
         // Make sure that the item is always at least as tall as 40px.
-        minHeight: sizing.size_400,
+        minBlockSize: sizing.size_400,
 
         /**
          * States

@@ -102,7 +102,10 @@ type DefaultProps = Readonly<{
 
 type DropdownAriaRole = "listbox" | "menu";
 type ItemAriaRole = "option" | "menuitem";
-type DropdownAriaProps = Pick<AriaProps, "aria-invalid" | "aria-required">;
+type DropdownAriaProps = Pick<
+    AriaProps,
+    "aria-invalid" | "aria-required" | "aria-labelledby"
+>;
 
 type ExportProps = Readonly<{
     // Required props
@@ -561,7 +564,11 @@ class DropdownCore extends React.Component<Props, State> {
             // we need to schedule another focus attempt so that we run when
             // the node *is* mounted.
             if (node) {
-                node.focus();
+                // WB-2143: Add a delay to ensure expanded state is announced in NVDA/JAWS
+                // Note: aria-expanded is no longer announced in VO/Safari with this timeout
+                this.props.schedule.timeout(() => {
+                    node.focus();
+                }, 0);
                 // Keep track of the original index of the newly focused item.
                 // To be used if the set of focusable items in the menu changes
                 this.focusedOriginalIndex = currentFocusedItemRef.originalIndex;
@@ -601,16 +608,17 @@ class DropdownCore extends React.Component<Props, State> {
     }
 
     focusPreviousItem(): void {
-        if (
-            this.focusedIndex === 0 ||
-            (this.isSearchFieldFocused() && !this.props.enableTypeAhead)
-        ) {
-            // Move the focus to the search field if it is the first item.
-            if (this.hasSearchField() && !this.isSearchFieldFocused()) {
+        if (this.isSearchFieldFocused()) {
+            // From search field, up arrow goes to last item
+            this.focusedIndex = this.state.itemRefs.length - 1;
+        } else if (this.focusedIndex === 0) {
+            // At first item, go to search field if it exists
+            if (this.hasSearchField()) {
                 return this.focusSearchField();
             }
+            // Otherwise wrap to last item
             this.focusedIndex = this.state.itemRefs.length - 1;
-        } else if (!this.isSearchFieldFocused()) {
+        } else {
             this.focusedIndex -= 1;
         }
 
@@ -618,16 +626,17 @@ class DropdownCore extends React.Component<Props, State> {
     }
 
     focusNextItem(): void {
-        if (
-            this.focusedIndex === this.state.itemRefs.length - 1 ||
-            (this.isSearchFieldFocused() && !this.props.enableTypeAhead)
-        ) {
-            // Move the focus to the search field if it is the last item.
-            if (this.hasSearchField() && !this.isSearchFieldFocused()) {
+        if (this.isSearchFieldFocused()) {
+            // From search field, down arrow goes to first item
+            this.focusedIndex = 0;
+        } else if (this.focusedIndex === this.state.itemRefs.length - 1) {
+            // At last item, go to search field if it exists
+            if (this.hasSearchField()) {
                 return this.focusSearchField();
             }
+            // Otherwise wrap to first item
             this.focusedIndex = 0;
-        } else if (!this.isSearchFieldFocused()) {
+        } else {
             this.focusedIndex += 1;
         }
 
@@ -972,6 +981,7 @@ class DropdownCore extends React.Component<Props, State> {
     ): React.ReactNode {
         const {
             "aria-invalid": ariaInvalid,
+            "aria-labelledby": ariaLabelledby,
             "aria-required": ariaRequired,
             dropdownStyle,
             isFilterable,
@@ -1004,10 +1014,11 @@ class DropdownCore extends React.Component<Props, State> {
                 <View
                     id={id}
                     role={role}
+                    aria-labelledby={ariaLabelledby}
                     style={[
                         styles.listboxOrMenu,
                         {
-                            minWidth: minDropdownWidth,
+                            minInlineSize: minDropdownWidth,
                         },
                     ]}
                     // Only the `listbox` role supports aria-invalid and aria-required because
@@ -1071,7 +1082,7 @@ class DropdownCore extends React.Component<Props, State> {
 const styles = StyleSheet.create({
     menuWrapper: {
         width: "fit-content",
-        maxWidth: "100%",
+        maxInlineSize: "100%",
     },
 
     dropdown: {
@@ -1084,7 +1095,7 @@ const styles = StyleSheet.create({
         // We use a custom property to set the max height of the dropdown.
         // This comes from the maxHeight custom modifier.
         // @see ../util/popper-max-height-modifier.ts
-        maxHeight: "var(--popper-max-height)",
+        maxBlockSize: "var(--popper-max-height)",
     },
 
     listboxOrMenu: {
@@ -1105,9 +1116,9 @@ const styles = StyleSheet.create({
     searchInputStyle: {
         margin: sizing.size_080,
         marginBlockStart: sizing.size_040,
-        // Set `minHeight` to "auto" to stop the search field from having
+        // Set `minBlockSize` to "auto" to stop the search field from having
         // a height of 0 and being cut off.
-        minHeight: "auto",
+        minBlockSize: "auto",
         position: "sticky",
     },
 

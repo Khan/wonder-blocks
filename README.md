@@ -11,8 +11,8 @@ More information: https://khan.github.io/wonder-blocks/
 
 ### Prerequisites
 
-- [Node.JS v16.x](https://nodejs.org/download/release/v16.16.0/)
-- [Yarn](https://yarnpkg.com/lang/en/docs/install/)
+- [Node.JS v20.x](https://nodejs.org/en/download)
+- [pnpm](https://pnpm.io/installation)
 
 ### Installation
 
@@ -32,6 +32,8 @@ Runs the docs in dev mode
 
 Now you can open http://localhost:6061 to view the docs. This page will
 automatically update as you make changes to components.
+
+**AI agents / Storybook MCP:** To use the Wonder Blocks MCP from another project (e.g. Cursor), clone this repo, run `pnpm install` and `pnpm start`, then add `http://localhost:6061/mcp` to your MCP client config (e.g. `mcp.json`). See [AGENTS.md](./AGENTS.md) for full install steps and agentic workflows.
 
 ## Contributing
 

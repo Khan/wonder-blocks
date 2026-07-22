@@ -547,7 +547,7 @@ export const WithNoIcon: StoryComponentType = {
  */
 export const RightToLeft: StoryComponentType = {
     render: () => (
-        <View style={[styles.rightToLeft, styles.container]}>
+        <View dir="rtl" style={styles.container}>
             <Banner
                 text="یہ اردو میں لکھا ہے۔"
                 actions={[
@@ -579,7 +579,7 @@ export const RightToLeft: StoryComponentType = {
  */
 export const RightToLeftMultiline: StoryComponentType = {
     render: () => (
-        <View style={styles.rightToLeft}>
+        <View dir="rtl">
             <Banner
                 text={`یہ اردو میں لکھا ہے۔یہ اردو میں لکھا ہے۔یہ اردو میں لکھا ہے۔یہ
              اردو میں لکھا ہے۔یہ اردو میں لکھا ہے۔یہ اردو میں لکھا ہے۔یہ
@@ -650,10 +650,6 @@ const styles = StyleSheet.create({
         gap: sizing.size_160,
     },
     narrowBanner: {
-        maxWidth: 400,
-    },
-    rightToLeft: {
-        width: "100%",
-        direction: "rtl",
+        maxInlineSize: 400,
     },
 });

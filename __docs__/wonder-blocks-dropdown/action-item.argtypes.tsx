@@ -1,6 +1,7 @@
 import * as React from "react";
 import type {ArgTypes} from "@storybook/react-vite";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
+import AriaArgTypes from "../wonder-blocks-core/aria.argtypes";
 import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
 import type {ActionItem} from "@khanacademy/wonder-blocks-dropdown";
 import {StatusBadge} from "@khanacademy/wonder-blocks-badge";
@@ -12,6 +13,7 @@ const AccessoryMappings = {
 };
 
 export default {
+    ...AriaArgTypes,
     label: {
         control: {type: "text"},
         description: "Display text of the action item.",
@@ -22,7 +24,6 @@ export default {
     },
     disabled: {
         control: {type: "boolean"},
-        description: "Whether or not the action item is disabled.",
         table: {
             defaultValue: {summary: "false"},
             type: {summary: "boolean"},

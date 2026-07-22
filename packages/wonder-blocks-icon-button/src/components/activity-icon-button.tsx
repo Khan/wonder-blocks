@@ -15,6 +15,7 @@ import type {
 } from "../util/icon-button.types";
 
 import {IconButtonUnstyled} from "./icon-button-unstyled";
+import themeTokens from "../theme";
 
 type AriaLabelOnly = {
     /**
@@ -123,6 +124,7 @@ export const ActivityIconButton: React.ForwardRefExoticComponent<
         <IconButtonUnstyled
             {...restProps}
             disabled={disabled}
+            kind={kind}
             onPress={handlePress}
             ref={ref}
             style={styles}
@@ -137,7 +139,7 @@ export const ActivityIconButton: React.ForwardRefExoticComponent<
                 {hasVisibleLabel && (
                     <BodyText
                         tag="span"
-                        size="medium"
+                        size="small"
                         weight="semi"
                         style={[buttonStyles.label, stylesProp?.label]}
                     >
@@ -191,7 +193,7 @@ const theme = {
     },
     label: {
         color: {
-            progressive: semanticColor.core.foreground.instructive.default,
+            progressive: themeTokens.activityIconButton.label.color.progressive,
             neutral: semanticColor.core.foreground.neutral.default,
             disabled: semanticColor.core.foreground.disabled.default,
         },
@@ -334,7 +336,14 @@ const _generateStyles = (
             // We restrict the label to a maximum of 2 lines.
             WebkitLineClamp: "2",
             overflow: "hidden",
-            wordBreak: "break-word",
+            // Label fitting for long (esp. translated) labels: prefer
+            // locale-aware hyphenation, then fall back to breaking long words
+            // so nothing overflows. `wordBreak: normal` is required so hyphens
+            // can win — `break-word` would force a hard break first.
+            // @see WB-2354
+            hyphens: "auto",
+            wordBreak: "normal",
+            overflowWrap: "break-word",
         },
     } as const;
 

@@ -51,7 +51,7 @@ const core = {
         base: {
             subtle: color.blue_90,
             default: color.white_100,
-            strong: color.blue_70,
+            strong: color.black_100,
         },
         instructive: {
             subtle: color.blue_80,
@@ -61,20 +61,20 @@ const core = {
         neutral: {
             subtle: color.gray_80,
             default: color.gray_20,
-            strong: color.black_100,
+            strong: color.gray_10,
         },
         critical: {
-            subtle: color.red_90,
+            subtle: color.red_80,
             default: color.red_20,
             strong: color.red_05,
         },
         success: {
-            subtle: color.green_90,
+            subtle: color.green_80,
             default: color.green_30,
             strong: color.green_20,
         },
         warning: {
-            subtle: color.yellow_90,
+            subtle: color.yellow_80,
             default: color.yellow_60,
             strong: color.yellow_10,
         },
@@ -84,7 +84,7 @@ const core = {
             strong: color.gray_70,
         },
         overlay: {
-            default: color.black_50,
+            default: color.black_60,
         },
     },
 
@@ -131,6 +131,10 @@ const core = {
             low: transparentShadowColor,
             mid: transparentShadowColor,
             high: transparentShadowColor,
+            color: {
+                subtle: color.blue_30_alpha20,
+                strong: color.blue_05_alpha20,
+            },
         },
         chonky: {
             instructive: {
@@ -142,12 +146,16 @@ const core = {
                 default: color.gray_30,
                 strong: color.gray_10,
             },
+            disabled: {
+                subtle: transparent,
+                default: color.gray_60,
+            },
         },
     },
 };
 
 const sharedFeedbackStrongTokens = {
-    background: core.background.neutral.strong,
+    background: core.background.base.strong,
     border: core.border.neutral.strong,
     text: core.foreground.knockout.default,
 };
@@ -521,9 +529,9 @@ export const semanticColor = mergeTheme(defaultSemanticColor, {
                 tertiary: color.gray_50,
             },
             shadow: {
-                primary: core.shadow.chonky.neutral.subtle,
-                secondary: core.shadow.chonky.neutral.subtle,
-                tertiary: core.transparent,
+                primary: core.shadow.chonky.disabled.default,
+                secondary: core.shadow.chonky.disabled.default,
+                tertiary: core.shadow.chonky.disabled.subtle,
             },
         },
     },
@@ -665,6 +673,35 @@ export const semanticColor = mergeTheme(defaultSemanticColor, {
                     default: color.green_60,
                 },
             },
+            characters: {
+                flesh: {
+                    blue: {
+                        subtle: color.blue_40,
+                        default: color.blue_30,
+                        strong: color.blue_20,
+                    },
+                    cyan: {
+                        subtle: color.cyan_40,
+                        default: color.cyan_30,
+                        strong: color.cyan_20,
+                    },
+                    green: {
+                        subtle: color.green_40,
+                        default: color.green_30,
+                        strong: color.green_20,
+                    },
+                    magenta: {
+                        subtle: color.magenta_40,
+                        default: color.magenta_30,
+                        strong: color.magenta_20,
+                    },
+                    orange: {
+                        subtle: color.orange_40,
+                        default: color.orange_30,
+                        strong: color.orange_20,
+                    },
+                },
+            },
         },
         border: {
             gems: {
@@ -681,6 +718,35 @@ export const semanticColor = mergeTheme(defaultSemanticColor, {
                 subtle: color.cyan_80,
                 default: color.cyan_60,
                 strong: color.cyan_30,
+            },
+            characters: {
+                flesh: {
+                    blue: {
+                        subtle: color.blue_40,
+                        default: color.blue_20,
+                        strong: color.blue_10,
+                    },
+                    cyan: {
+                        subtle: color.cyan_40,
+                        default: color.cyan_20,
+                        strong: color.cyan_10,
+                    },
+                    green: {
+                        subtle: color.green_40,
+                        default: color.green_20,
+                        strong: color.green_10,
+                    },
+                    magenta: {
+                        subtle: color.magenta_40,
+                        default: color.magenta_20,
+                        strong: color.magenta_10,
+                    },
+                    orange: {
+                        subtle: color.orange_40,
+                        default: color.orange_20,
+                        strong: color.orange_10,
+                    },
+                },
             },
         },
         foreground: {
@@ -723,6 +789,25 @@ export const semanticColor = mergeTheme(defaultSemanticColor, {
                 },
                 complete: {
                     default: color.green_30,
+                },
+            },
+        },
+        characters: {
+            flesh: {
+                blue: {
+                    default: color.blue_30,
+                },
+                cyan: {
+                    default: color.cyan_30,
+                },
+                green: {
+                    default: color.green_30,
+                },
+                magenta: {
+                    default: color.magenta_30,
+                },
+                orange: {
+                    default: color.orange_30,
                 },
             },
         },

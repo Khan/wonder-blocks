@@ -50,7 +50,7 @@ describe("TooltipTail", () => {
   <div
     class=""
     data-placement="top"
-    style="align-items: stretch; border-width: 0px; border-style: solid; box-sizing: border-box; display: flex; flex-direction: column; margin: 0px; padding: 0px; position: relative; z-index: 0; min-height: 0; min-width: 0; pointer-events: none; top: -1px; width: 40px; height: 20px;"
+    style="align-items: stretch; border-width: 0px; border-style: solid; box-sizing: border-box; display: flex; flex-direction: column; margin: 0px; padding: 0px; position: relative; z-index: 0; min-block-size: 0; min-inline-size: 0; pointer-events: none; top: -1px; width: 40px; height: 20px;"
   >
     <svg
       aria-hidden="true"
@@ -88,18 +88,18 @@ describe("TooltipTail", () => {
         />
       </g>
       <polyline
-        fill="#ffffff"
+        fill="var(--wb-semanticColor-core-background-base-default)"
         points="0,0 12,12 24,0"
-        stroke="#ffffff"
+        stroke="var(--wb-semanticColor-core-background-base-default)"
       />
       <polyline
-        fill="#ffffff"
+        fill="var(--wb-semanticColor-core-background-base-default)"
         points="0,0 12,12 24,0"
-        stroke="var(--wb-semanticColor-core-shadow-transparent-mid)"
+        stroke="var(--wb-semanticColor-core-border-neutral-subtle)"
       />
       <polyline
         points="0,-0.5 24,-0.5"
-        stroke="#ffffff"
+        stroke="var(--wb-semanticColor-core-background-base-default)"
       />
     </svg>
   </div>
@@ -120,12 +120,12 @@ describe("TooltipTail", () => {
                   <div
                     class=""
                     data-placement="top"
-                    style="align-items: stretch; border-width: 0px; border-style: solid; box-sizing: border-box; display: flex; flex-direction: column; margin: 0px; padding: 0px; position: relative; z-index: 0; min-height: 0; min-width: 0; pointer-events: none; top: -1px; width: 40px; height: 20px;"
+                    style="align-items: stretch; border-width: 0px; border-style: solid; box-sizing: border-box; display: flex; flex-direction: column; margin: 0px; padding: 0px; position: relative; z-index: 0; min-block-size: 0; min-inline-size: 0; pointer-events: none; top: -1px; width: 40px; height: 20px;"
                   >
                     <div
                       aria-hidden="true"
                       class=""
-                      style="align-items: stretch; border-width: 0px; border-style: solid; box-sizing: border-box; display: flex; flex-direction: column; margin: 0px; padding: 0px; position: relative; z-index: 0; min-height: 0; min-width: 0; width: 12px; flex-basis: 12px; flex-shrink: 0;"
+                      style="align-items: stretch; border-width: 0px; border-style: solid; box-sizing: border-box; display: flex; flex-direction: column; margin: 0px; padding: 0px; position: relative; z-index: 0; min-block-size: 0; min-inline-size: 0; inline-size: 12px; flex-basis: 12px; flex-shrink: 0;"
                     />
                   </div>
                 </div>

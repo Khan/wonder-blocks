@@ -1,5 +1,291 @@
 # @khanacademy/wonder-blocks-modal
 
+## 8.7.10
+
+### Patch Changes
+
+- Updated dependencies [3e7925e]
+    - @khanacademy/wonder-blocks-tokens@17.2.0
+    - @khanacademy/wonder-blocks-breadcrumbs@3.2.26
+    - @khanacademy/wonder-blocks-icon-button@11.4.4
+    - @khanacademy/wonder-blocks-layout@3.1.59
+    - @khanacademy/wonder-blocks-styles@0.2.52
+    - @khanacademy/wonder-blocks-typography@5.0.2
+    - @khanacademy/wonder-blocks-announcer@1.1.1
+
+## 8.7.9
+
+### Patch Changes
+
+- Updated dependencies [dfcf49b]
+    - @khanacademy/wonder-blocks-tokens@17.1.0
+    - @khanacademy/wonder-blocks-breadcrumbs@3.2.25
+    - @khanacademy/wonder-blocks-icon-button@11.4.3
+    - @khanacademy/wonder-blocks-layout@3.1.58
+    - @khanacademy/wonder-blocks-styles@0.2.51
+    - @khanacademy/wonder-blocks-typography@5.0.1
+    - @khanacademy/wonder-blocks-announcer@1.1.1
+
+## 8.7.8
+
+### Patch Changes
+
+- Updated dependencies [9d8e5e3]
+- Updated dependencies [9d8e5e3]
+    - @khanacademy/wonder-blocks-tokens@17.0.0
+    - @khanacademy/wonder-blocks-typography@5.0.0
+    - @khanacademy/wonder-blocks-announcer@1.1.1
+    - @khanacademy/wonder-blocks-icon-button@11.4.2
+    - @khanacademy/wonder-blocks-breadcrumbs@3.2.24
+    - @khanacademy/wonder-blocks-layout@3.1.57
+    - @khanacademy/wonder-blocks-styles@0.2.50
+
+## 8.7.7
+
+### Patch Changes
+
+- Updated dependencies [0735aef]
+    - @khanacademy/wonder-blocks-tokens@16.8.1
+    - @khanacademy/wonder-blocks-breadcrumbs@3.2.23
+    - @khanacademy/wonder-blocks-icon-button@11.4.1
+    - @khanacademy/wonder-blocks-layout@3.1.56
+    - @khanacademy/wonder-blocks-styles@0.2.49
+    - @khanacademy/wonder-blocks-typography@4.3.9
+    - @khanacademy/wonder-blocks-announcer@1.1.1
+
+## 8.7.6
+
+### Patch Changes
+
+- Updated dependencies [48a4552]
+    - @khanacademy/wonder-blocks-icon-button@11.4.0
+
+## 8.7.5
+
+### Patch Changes
+
+- Updated dependencies [f13552a]
+    - @khanacademy/wonder-blocks-tokens@16.8.0
+    - @khanacademy/wonder-blocks-breadcrumbs@3.2.22
+    - @khanacademy/wonder-blocks-icon-button@11.3.5
+    - @khanacademy/wonder-blocks-layout@3.1.55
+    - @khanacademy/wonder-blocks-styles@0.2.48
+    - @khanacademy/wonder-blocks-typography@4.3.8
+    - @khanacademy/wonder-blocks-announcer@1.1.1
+
+## 8.7.4
+
+### Patch Changes
+
+- c033245: Update modal and drawer panel background color to `semanticColor.core.background.base.default` to align with Figma specs
+- 29ae44b: Update modal and drawer panel background color to `semanticColor.core.background.base.subtle` to align with Figma specs
+- Updated dependencies [0907f64]
+- Updated dependencies [9773405]
+- Updated dependencies [9773405]
+- Updated dependencies [167298c]
+- Updated dependencies [022e775]
+- Updated dependencies [e181c15]
+- Updated dependencies [c033245]
+- Updated dependencies [a2bbc0a]
+    - @khanacademy/wonder-blocks-tokens@16.7.0
+    - @khanacademy/wonder-blocks-icon-button@11.3.4
+    - @khanacademy/wonder-blocks-breadcrumbs@3.2.21
+    - @khanacademy/wonder-blocks-layout@3.1.54
+    - @khanacademy/wonder-blocks-styles@0.2.47
+    - @khanacademy/wonder-blocks-typography@4.3.7
+    - @khanacademy/wonder-blocks-announcer@1.1.1
+
+## 8.7.3
+
+### Patch Changes
+
+- Updated dependencies [d69335d]
+- Updated dependencies [34d66ac]
+    - @khanacademy/wonder-blocks-icon-button@11.3.3
+    - @khanacademy/wonder-blocks-core@12.4.4
+    - @khanacademy/wonder-blocks-timing@7.1.0
+    - @khanacademy/wonder-blocks-announcer@1.1.1
+
+## 8.7.2
+
+### Patch Changes
+
+- Updated dependencies [a676ce6]
+    - @khanacademy/wonder-blocks-tokens@16.6.0
+    - @khanacademy/wonder-blocks-breadcrumbs@3.2.20
+    - @khanacademy/wonder-blocks-icon-button@11.3.2
+    - @khanacademy/wonder-blocks-layout@3.1.53
+    - @khanacademy/wonder-blocks-styles@0.2.46
+    - @khanacademy/wonder-blocks-typography@4.3.6
+
+## 8.7.1
+
+### Patch Changes
+
+- 40cb70f: Add `require-logical-properties-for-rtl` ESLint rule to `eslint-plugin-wonder-blocks` recommended config, and migrate all Wonder Blocks component source files to use CSS logical properties for improved RTL layout support.
+- 40cb70f: Enable RTL logical-properties ESLint rule in recommended config
+- Updated dependencies [40cb70f]
+- Updated dependencies [40cb70f]
+    - @khanacademy/wonder-blocks-core@12.4.4
+    - @khanacademy/wonder-blocks-announcer@1.1.1
+    - @khanacademy/wonder-blocks-breadcrumbs@3.2.19
+    - @khanacademy/wonder-blocks-icon-button@11.3.1
+    - @khanacademy/wonder-blocks-layout@3.1.52
+    - @khanacademy/wonder-blocks-typography@4.3.5
+
+## 8.7.0
+
+### Minor Changes
+
+- 27a211d: Add support for SYL Dark theme
+
+### Patch Changes
+
+- Updated dependencies [44bde5e]
+- Updated dependencies [27a211d]
+    - @khanacademy/wonder-blocks-tokens@16.5.0
+    - @khanacademy/wonder-blocks-icon-button@11.3.0
+    - @khanacademy/wonder-blocks-breadcrumbs@3.2.18
+    - @khanacademy/wonder-blocks-layout@3.1.51
+    - @khanacademy/wonder-blocks-styles@0.2.45
+    - @khanacademy/wonder-blocks-typography@4.3.4
+
+## 8.6.5
+
+### Patch Changes
+
+- Updated dependencies [f2b8006]
+- Updated dependencies [245229a]
+    - @khanacademy/wonder-blocks-timing@7.1.0
+    - @khanacademy/wonder-blocks-tokens@16.4.1
+    - @khanacademy/wonder-blocks-breadcrumbs@3.2.17
+    - @khanacademy/wonder-blocks-icon-button@11.2.4
+    - @khanacademy/wonder-blocks-layout@3.1.50
+    - @khanacademy/wonder-blocks-styles@0.2.44
+    - @khanacademy/wonder-blocks-typography@4.3.3
+
+## 8.6.4
+
+### Patch Changes
+
+- Updated dependencies [0fadf9f]
+- Updated dependencies [c1c74df]
+- Updated dependencies [72c5272]
+    - @khanacademy/wonder-blocks-breadcrumbs@3.2.16
+    - @khanacademy/wonder-blocks-layout@3.1.49
+    - @khanacademy/wonder-blocks-tokens@16.4.0
+    - @khanacademy/wonder-blocks-icon-button@11.2.3
+    - @khanacademy/wonder-blocks-styles@0.2.43
+    - @khanacademy/wonder-blocks-typography@4.3.2
+
+## 8.6.3
+
+### Patch Changes
+
+- Updated dependencies [40f217b]
+    - @khanacademy/wonder-blocks-tokens@16.3.0
+    - @khanacademy/wonder-blocks-breadcrumbs@3.2.15
+    - @khanacademy/wonder-blocks-icon-button@11.2.2
+    - @khanacademy/wonder-blocks-layout@3.1.48
+    - @khanacademy/wonder-blocks-styles@0.2.42
+    - @khanacademy/wonder-blocks-typography@4.3.1
+
+## 8.6.2
+
+### Patch Changes
+
+- Updated dependencies [488728a]
+- Updated dependencies [00e6dda]
+    - @khanacademy/wonder-blocks-tokens@16.2.0
+    - @khanacademy/wonder-blocks-typography@4.3.0
+    - @khanacademy/wonder-blocks-breadcrumbs@3.2.14
+    - @khanacademy/wonder-blocks-icon-button@11.2.1
+    - @khanacademy/wonder-blocks-layout@3.1.47
+    - @khanacademy/wonder-blocks-styles@0.2.41
+
+## 8.6.1
+
+### Patch Changes
+
+- Updated dependencies [d3d2580]
+    - @khanacademy/wonder-blocks-icon-button@11.2.0
+
+## 8.6.0
+
+### Minor Changes
+
+- cd3884c: Add support for Announcer in modal context
+
+### Patch Changes
+
+- Updated dependencies [cd3884c]
+    - @khanacademy/wonder-blocks-announcer@1.1.0
+
+## 8.5.17
+
+### Patch Changes
+
+- Updated dependencies [358eb9b]
+    - @khanacademy/wonder-blocks-tokens@16.1.0
+    - @khanacademy/wonder-blocks-breadcrumbs@3.2.13
+    - @khanacademy/wonder-blocks-icon-button@11.1.6
+    - @khanacademy/wonder-blocks-layout@3.1.46
+    - @khanacademy/wonder-blocks-styles@0.2.40
+    - @khanacademy/wonder-blocks-typography@4.2.31
+
+## 8.5.16
+
+### Patch Changes
+
+- Updated dependencies [c75abe9]
+- Updated dependencies [c75abe9]
+- Updated dependencies [530d692]
+    - @khanacademy/wonder-blocks-tokens@16.0.0
+    - @khanacademy/wonder-blocks-breadcrumbs@3.2.12
+    - @khanacademy/wonder-blocks-icon-button@11.1.5
+    - @khanacademy/wonder-blocks-layout@3.1.45
+    - @khanacademy/wonder-blocks-styles@0.2.39
+    - @khanacademy/wonder-blocks-typography@4.2.30
+
+## 8.5.15
+
+### Patch Changes
+
+- Updated dependencies [12e04c3]
+    - @khanacademy/wonder-blocks-icon-button@11.1.4
+
+## 8.5.14
+
+### Patch Changes
+
+- Updated dependencies [8bb7ada]
+    - @khanacademy/wonder-blocks-tokens@15.0.0
+    - @khanacademy/wonder-blocks-breadcrumbs@3.2.11
+    - @khanacademy/wonder-blocks-icon-button@11.1.3
+    - @khanacademy/wonder-blocks-layout@3.1.44
+    - @khanacademy/wonder-blocks-styles@0.2.38
+    - @khanacademy/wonder-blocks-typography@4.2.29
+
+## 8.5.13
+
+### Patch Changes
+
+- Updated dependencies [d6ae5fb]
+    - @khanacademy/wonder-blocks-core@12.4.3
+    - @khanacademy/wonder-blocks-breadcrumbs@3.2.10
+    - @khanacademy/wonder-blocks-icon-button@11.1.2
+    - @khanacademy/wonder-blocks-layout@3.1.43
+    - @khanacademy/wonder-blocks-styles@0.2.37
+    - @khanacademy/wonder-blocks-timing@7.0.4
+    - @khanacademy/wonder-blocks-tokens@14.1.3
+    - @khanacademy/wonder-blocks-typography@4.2.28
+
+## 8.5.12
+
+### Patch Changes
+
+- 673432c: Allows clicks to paddingLayer to pass through, re-enabling backdropDismissEnabled=true
+
 ## 8.5.11
 
 ### Patch Changes

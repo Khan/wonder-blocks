@@ -28,7 +28,7 @@ export type CellProps = {
     /**
      * The title / main content of the cell. You can either provide a string or
      * a Typography component. If a string is provided, typography defaults to
-     * LabelLarge.
+     * `BodyText` with a `medium` size.
      */
     title: TypographyText;
     /**
@@ -90,6 +90,9 @@ export type CellProps = {
     active?: boolean;
     /**
      * Whether the cell is disabled.
+     *
+     * Internally, the `aria-disabled` attribute will be set so that the
+     * element remains focusable and will be included in the tab order.
      */
     disabled?: boolean;
     /**

@@ -2,6 +2,7 @@ import * as React from "react";
 
 import type {ArgTypes} from "@storybook/react-vite";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
+import AriaArgTypes from "../wonder-blocks-core/aria.argtypes";
 import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
 
 const iconsMap: Record<string, React.ReactElement<typeof PhosphorIcon>> = {};
@@ -11,6 +12,7 @@ Object.entries(IconMappings).forEach(([iconLabel, iconValue]) => {
 });
 
 export default {
+    ...AriaArgTypes,
     children: {
         control: {type: "text"},
         description:

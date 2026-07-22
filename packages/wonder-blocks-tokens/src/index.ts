@@ -1,5 +1,6 @@
 // primitive tokens
-// This use is valid while we still have color token instances in consumers.
+// These re-exports are valid while we still have color and spacing token
+// instances in consumers.
 /* eslint-disable import/no-deprecated */
 import {color} from "./tokens/color";
 import {spacing} from "./tokens/spacing";
@@ -8,7 +9,7 @@ import {spacing} from "./tokens/spacing";
 import {breakpoint} from "./tokens/media-queries";
 
 // utils
-import {mix, fade, pxToRem, remToPx} from "./util";
+import {mix, fade, pxToRem, remToPx, tokenValue} from "./util";
 
 import {mapValuesToCssVars} from "./internal/map-values-to-css-vars";
 
@@ -48,4 +49,9 @@ export {
      * Allows converting regular JS tokens to CSS variables.
      */
     mapValuesToCssVars,
+    /**
+     * Resolves the raw value of a Wonder Blocks token at runtime by reading
+     * the computed value of its underlying CSS custom property.
+     */
+    tokenValue,
 };

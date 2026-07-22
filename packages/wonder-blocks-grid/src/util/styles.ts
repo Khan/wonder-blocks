@@ -12,7 +12,8 @@ const styles: StyleDeclaration = StyleSheet.create({
 
     rowMaxWidth: {
         [WIDE_SCREEN]: {
-            margin: "0 auto",
+            marginBlock: "0",
+            marginInline: "auto",
         },
     },
 

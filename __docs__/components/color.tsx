@@ -2,18 +2,13 @@ import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
 import {StyleType, View} from "@khanacademy/wonder-blocks-core";
-import {
-    Footnote,
-    LabelLarge,
-    LabelSmall,
-} from "@khanacademy/wonder-blocks-typography";
+import {BodyText} from "@khanacademy/wonder-blocks-typography";
 import {
     border,
     color,
     font,
     semanticColor,
     sizing,
-    spacing,
 } from "@khanacademy/wonder-blocks-tokens";
 import {getTokenName, maybeGetCssVariableInfo} from "./tokens-util";
 import {CopyButton} from "./copy-button";
@@ -80,14 +75,14 @@ function Color({name, value, variant, valuePrefix}: ColorProps) {
             const tokenName = name.toString().split(".");
             return (
                 <View style={styles.card}>
-                    <LabelLarge style={styles.capitalized}>
+                    <BodyText weight="bold" style={styles.capitalized}>
                         {tokenName.at(tokenName.length - 1)}
-                    </LabelLarge>
-                    <LabelSmall>{name}</LabelSmall>
+                    </BodyText>
+                    <BodyText size="small">{name}</BodyText>
 
-                    <Footnote>
+                    <BodyText size="xsmall">
                         <em>{getTokenName(color, rawValue) || rawValue}</em>
-                    </Footnote>
+                    </BodyText>
                 </View>
             );
         }
@@ -95,14 +90,17 @@ function Color({name, value, variant, valuePrefix}: ColorProps) {
         if (variant === "primitive") {
             return (
                 <>
-                    <LabelSmall
+                    <BodyText
+                        size="small"
                         style={{
                             fontWeight: font.weight.bold,
                         }}
                     >
                         {name}
-                    </LabelSmall>
-                    <Footnote style={styles.code}>{value}</Footnote>
+                    </BodyText>
+                    <BodyText size="xsmall" style={styles.code}>
+                        {value}
+                    </BodyText>
                 </>
             );
         }
@@ -116,16 +114,17 @@ function Color({name, value, variant, valuePrefix}: ColorProps) {
                     paddingInlineStart: sizing.size_040,
                 }}
             >
-                <LabelSmall
+                <BodyText
+                    size="small"
                     style={{
                         fontWeight: font.weight.bold,
                     }}
                 >
                     {name}
-                </LabelSmall>
-                <Footnote>
+                </BodyText>
+                <BodyText size="xsmall">
                     <em>{getTokenName(color, rawValue) || rawValue}</em>
-                </Footnote>
+                </BodyText>
             </View>
         );
     }
@@ -186,7 +185,9 @@ export function ActionColorGroup({
 }: ActionColorGroupProps) {
     return Object.entries(category).map(([state, colorGroup], index) => (
         <View style={styles.actionGroup} key={index}>
-            <LabelLarge style={styles.capitalized}>{state}</LabelLarge>
+            <BodyText weight="bold" style={styles.capitalized}>
+                {state}
+            </BodyText>
             {includeExample && <Example style={colorGroup} />}
             <ColorGroup
                 colors={colorGroup}
@@ -203,9 +204,9 @@ function Example({style}: {style?: any}) {
         <>
             <View
                 style={{
-                    marginBlock: spacing.xSmall_8,
-                    marginInline: spacing.medium_16,
-                    padding: spacing.medium_16,
+                    marginBlock: sizing.size_080,
+                    marginInline: sizing.size_160,
+                    padding: sizing.size_160,
                     backgroundColor: style.background,
                     color: style.foreground,
                     outline: `4px solid ${style.border}`,
@@ -226,21 +227,21 @@ const styles = StyleSheet.create({
     group: {
         flexDirection: "row",
         flexWrap: "wrap",
-        marginBlock: spacing.medium_16,
+        marginBlock: sizing.size_160,
     },
     actionGroup: {
-        margin: spacing.xxxSmall_4,
-        padding: spacing.xxxSmall_4,
-        gap: spacing.xxxSmall_4,
+        margin: sizing.size_040,
+        padding: sizing.size_040,
+        gap: sizing.size_040,
         border: `1px dashed ${semanticColor.core.border.neutral.subtle}`,
     },
     item: {
-        maxWidth: itemWidth,
+        maxInlineSize: itemWidth,
         overflowWrap: "break-word",
     },
     compactItem: {
-        marginBlockEnd: spacing.xSmall_8,
-        maxWidth: "100%",
+        marginBlockEnd: sizing.size_080,
+        maxInlineSize: "100%",
         width: "100%",
 
         backgroundColor: semanticColor.core.background.base.subtle,
@@ -249,7 +250,7 @@ const styles = StyleSheet.create({
     },
     pattern: {
         backgroundImage: `radial-gradient(${semanticColor.core.background.instructive.default} 0.5px, ${semanticColor.core.background.base.subtle} 0.5px)`,
-        backgroundSize: `${spacing.small_12}px ${spacing.small_12}px`,
+        backgroundSize: `${sizing.size_120} ${sizing.size_120}`,
         boxShadow: `0 0 1px 0 ${semanticColor.core.border.neutral.subtle}`,
     },
     thumbnail: {
@@ -258,18 +259,18 @@ const styles = StyleSheet.create({
     },
     primitiveThumbnail: {
         width: 160,
-        height: spacing.xxxLarge_64,
+        height: sizing.size_640,
     },
     compactThumbnail: {
         justifyContent: "space-between",
         width: "100%",
-        height: spacing.xxxLarge_64,
+        height: sizing.size_640,
     },
     info: {
-        paddingInlineEnd: spacing.medium_16,
+        paddingInlineEnd: sizing.size_160,
     },
     card: {
-        paddingInline: spacing.xSmall_8,
+        paddingInline: sizing.size_080,
     },
     code: {
         alignSelf: "flex-start",
@@ -277,7 +278,7 @@ const styles = StyleSheet.create({
         display: "inline-flex",
         backgroundColor: semanticColor.core.background.base.subtle,
         border: `1px solid ${semanticColor.core.border.neutral.subtle}`,
-        padding: spacing.xxxxSmall_2,
+        padding: sizing.size_020,
         borderRadius: border.radius.radius_040,
     },
     capitalized: {

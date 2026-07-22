@@ -74,13 +74,16 @@ const theme = {
         font: {
             size: {
                 // NOTE: This token is specific to this button size.
-                large: "1.8rem",
+                large: sizing.size_180,
             },
             lineHeight: {
-                small: font.lineHeight.xMedium,
-                default: font.lineHeight.large,
-                // NOTE: this token is specific to this button size.
-                large: "2.6rem",
+                // We use sizing tokens directly because we don't have these
+                // mappings for button text sizes in the font tokens. These can
+                // be considered as one-off values for the default theme. These
+                // should be removed once we get rid of this theme.
+                small: sizing.size_220,
+                default: sizing.size_240,
+                large: sizing.size_260,
             },
             weight: {
                 default: font.weight.bold,

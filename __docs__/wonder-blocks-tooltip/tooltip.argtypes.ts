@@ -1,6 +1,9 @@
 import {color} from "@khanacademy/wonder-blocks-tokens";
 
+import AriaArgTypes from "../wonder-blocks-core/aria.argtypes";
+
 export default {
+    ...AriaArgTypes,
     placement: {
         description:
             "Where the tooltip should appear in relation to the anchor element. Defaults to `top`.",
@@ -17,6 +20,24 @@ export default {
         table: {
             type: {
                 summary: "string",
+            },
+        },
+    },
+    variant: {
+        description:
+            "The visual style of the tooltip. `subtle` (default) is the " +
+            "standard tooltip styling. `strong` is a higher-emphasis, " +
+            "inverse/knockout variant whose colors adapt to the active theme.",
+        control: {
+            type: "select",
+        },
+        options: ["subtle", "strong"],
+        table: {
+            type: {
+                summary: '"subtle" | "strong"',
+            },
+            defaultValue: {
+                summary: '"subtle"',
             },
         },
     },
@@ -39,6 +60,18 @@ export default {
             type: "select",
         },
         options: Object.keys(color) as Array<string>,
+    },
+    forceAnchorFocusivity: {
+        description:
+            "If true, adds `tabindex=0` to the anchor element when it doesn't already have one, making it keyboard focusable. Set to false when the anchor is already focusable (e.g. a link or button). Defaults to `true`.",
+        control: {
+            type: "boolean",
+        },
+        table: {
+            type: {
+                summary: "boolean",
+            },
+        },
     },
     autoUpdate: {
         description:

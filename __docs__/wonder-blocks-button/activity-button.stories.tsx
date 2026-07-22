@@ -396,7 +396,7 @@ export const PressDurationTracking: Story = {
                         backgroundColor:
                             semanticColor.core.background.neutral.subtle,
                         borderRadius: sizing.size_080,
-                        minHeight: "120px",
+                        minBlockSize: "120px",
                     }}
                 >
                     <BodyText size="medium" weight="semi">

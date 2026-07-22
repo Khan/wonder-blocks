@@ -3,6 +3,7 @@ import {StyleSheet} from "aphrodite";
 import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {ActionColorGroup, ColorGroup} from "../components/color";
 import {PropsFor, View} from "@khanacademy/wonder-blocks-core";
+import {Heading} from "@khanacademy/wonder-blocks-typography";
 
 export default {
     title: "Packages/Tokens/Semantic Colors/Groups",
@@ -11,7 +12,7 @@ export default {
             disableSnapshot: true,
         },
     },
-    tags: ["!dev", "!autodocs"],
+    tags: ["!dev", "!autodocs", "!manifest"],
 };
 
 const valuePrefix = "semanticColor.";
@@ -56,6 +57,26 @@ export const CoreForeground = () => {
         <ColorGroupStory
             category={semanticColor.core.foreground}
             group="core.foreground"
+        />
+    );
+};
+
+export const CoreShadow = () => {
+    return (
+        <ColorGroupStory
+            category={{
+                transparent: {
+                    low: semanticColor.core.shadow.transparent.low,
+                    mid: semanticColor.core.shadow.transparent.mid,
+                    high: semanticColor.core.shadow.transparent.high,
+                },
+                "transparent.color":
+                    semanticColor.core.shadow.transparent.color,
+                "chonky.instructive":
+                    semanticColor.core.shadow.chonky.instructive,
+                "chonky.neutral": semanticColor.core.shadow.chonky.neutral,
+            }}
+            group="core.shadow"
         />
     );
 };
@@ -136,16 +157,22 @@ export const LearningMath = () => {
 
 export const LearningBorder = () => {
     return (
-        <ColorGroupStory
-            category={semanticColor.learning.border}
-            group="learning.border"
-        />
+        <View style={styles.groupOfColorGroupStory}>
+            <ColorGroupStory
+                category={{
+                    gems: semanticColor.learning.border.gems,
+                    streaks: semanticColor.learning.border.streaks,
+                    due: semanticColor.learning.border.due,
+                }}
+                group="learning.border"
+            />
+        </View>
     );
 };
 
 export const LearningBackground = () => {
     return (
-        <>
+        <View style={styles.groupOfColorGroupStory}>
             <ColorGroupStory
                 category={{
                     gems: semanticColor.learning.background.gems,
@@ -154,17 +181,18 @@ export const LearningBackground = () => {
                 }}
                 group="learning.background"
             />
+            <Heading size="medium">Progress</Heading>
             <ColorGroupStory
                 category={semanticColor.learning.background.progress}
                 group="learning.background.progress"
             />
-        </>
+        </View>
     );
 };
 
 export const LearningForeground = () => {
     return (
-        <>
+        <View style={styles.groupOfColorGroupStory}>
             <ColorGroupStory
                 category={{
                     gems: semanticColor.learning.foreground.gems,
@@ -173,11 +201,12 @@ export const LearningForeground = () => {
                 }}
                 group="learning.foreground"
             />
+            <Heading size="medium">Progress</Heading>
             <ColorGroupStory
                 category={semanticColor.learning.foreground.progress}
                 group="learning.foreground.progress"
             />
-        </>
+        </View>
     );
 };
 
@@ -210,7 +239,108 @@ export const Mastery = () => {
     );
 };
 
+export const GraphicsCharactersFlesh = () => {
+    return (
+        <View style={styles.groupOfColorGroupStory}>
+            {Object.entries(semanticColor.graphics.characters.flesh).map(
+                ([colorName, colorGroup]) => (
+                    <React.Fragment key={colorName}>
+                        <Heading
+                            size="medium"
+                            style={styles.capitalized}
+                            tag="h5"
+                        >
+                            Characters Flesh {colorName}
+                        </Heading>
+                        <ColorGroupStory
+                            category={colorGroup}
+                            group={`graphics.characters.flesh.${colorName}`}
+                        />
+                    </React.Fragment>
+                ),
+            )}
+        </View>
+    );
+};
+
+export const GraphicsGems = () => {
+    return (
+        <ColorGroupStory
+            category={semanticColor.graphics.gems}
+            group="graphics.gems"
+        />
+    );
+};
+
+export const GraphicsStreaks = () => {
+    return (
+        <ColorGroupStory
+            category={semanticColor.graphics.streaks}
+            group="graphics.streaks"
+        />
+    );
+};
+
+export const GraphicsProgress = () => {
+    return (
+        <View style={styles.groupOfColorGroupStory}>
+            {Object.entries(semanticColor.graphics.progress).map(
+                ([state, colorGroup]) => (
+                    <React.Fragment key={state}>
+                        <Heading size="medium" style={styles.capitalized}>
+                            {state}
+                        </Heading>
+                        <ColorGroupStory
+                            category={colorGroup}
+                            group={`graphics.progress.${state}`}
+                        />
+                    </React.Fragment>
+                ),
+            )}
+        </View>
+    );
+};
+
+export const GraphicsRole = () => {
+    return (
+        <ColorGroupStory
+            category={{
+                "all.current": semanticColor.graphics.role.all.current,
+                administrator: semanticColor.graphics.role.administrator,
+                learner: semanticColor.graphics.role.learner,
+                parent: semanticColor.graphics.role.parent,
+                teacher: semanticColor.graphics.role.teacher,
+            }}
+            group="graphics.role"
+        />
+    );
+};
+
+export const GraphicsNeutral = () => {
+    return (
+        <ColorGroupStory
+            category={semanticColor.graphics.neutral}
+            group="graphics.neutral"
+        />
+    );
+};
+
+export const GraphicsExternalBrands = () => {
+    return (
+        <ColorGroupStory
+            category={semanticColor.graphics.externalBrands}
+            group="graphics.externalBrands"
+        />
+    );
+};
+
 const styles = StyleSheet.create({
+    groupOfColorGroupStory: {
+        gap: sizing.size_080,
+    },
+    capitalized: {
+        textTransform: "capitalize",
+    },
     grid: {
         display: "grid",
         gridTemplateColumns: "repeat(2, minmax(100px, auto))",
@@ -221,10 +351,13 @@ const styles = StyleSheet.create({
     },
     gridCompact: {
         display: "grid",
-        gridTemplateColumns: "repeat(3, minmax(100px, auto))",
+        // Always lay out 3 equal-width columns so items stay the same size
+        // regardless of how many are in the group (e.g. a group with 2 items
+        // matches the size of a group with 3).
+        gridTemplateColumns: "repeat(3, minmax(0, 1fr))",
     },
 
     banner: {
-        marginBottom: sizing.size_320,
+        marginBlockEnd: sizing.size_320,
     },
 });

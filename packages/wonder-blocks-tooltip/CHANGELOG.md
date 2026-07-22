@@ -1,5 +1,250 @@
 # @khanacademy/wonder-blocks-tooltip
 
+## 4.2.0
+
+### Minor Changes
+
+- b2bf6d3: Add a `variant` prop to `Tooltip` to support a new `strong` variant. The `strong` variant renders the tooltip with an inverse/knockout ("black") background and light ("white") text. It defaults to `subtle`, which is the existing tooltip styling.
+
+## 4.1.85
+
+### Patch Changes
+
+- Updated dependencies [3e7925e]
+    - @khanacademy/wonder-blocks-tokens@17.2.0
+    - @khanacademy/wonder-blocks-layout@3.1.59
+    - @khanacademy/wonder-blocks-modal@8.7.10
+    - @khanacademy/wonder-blocks-typography@5.0.2
+
+## 4.1.84
+
+### Patch Changes
+
+- Updated dependencies [dfcf49b]
+    - @khanacademy/wonder-blocks-tokens@17.1.0
+    - @khanacademy/wonder-blocks-layout@3.1.58
+    - @khanacademy/wonder-blocks-modal@8.7.9
+    - @khanacademy/wonder-blocks-typography@5.0.1
+
+## 4.1.83
+
+### Patch Changes
+
+- Updated dependencies [9d8e5e3]
+- Updated dependencies [9d8e5e3]
+    - @khanacademy/wonder-blocks-tokens@17.0.0
+    - @khanacademy/wonder-blocks-typography@5.0.0
+    - @khanacademy/wonder-blocks-layout@3.1.57
+    - @khanacademy/wonder-blocks-modal@8.7.8
+
+## 4.1.82
+
+### Patch Changes
+
+- Updated dependencies [0735aef]
+    - @khanacademy/wonder-blocks-tokens@16.8.1
+    - @khanacademy/wonder-blocks-layout@3.1.56
+    - @khanacademy/wonder-blocks-modal@8.7.7
+    - @khanacademy/wonder-blocks-typography@4.3.9
+
+## 4.1.81
+
+### Patch Changes
+
+- @khanacademy/wonder-blocks-modal@8.7.6
+
+## 4.1.80
+
+### Patch Changes
+
+- Updated dependencies [f13552a]
+    - @khanacademy/wonder-blocks-tokens@16.8.0
+    - @khanacademy/wonder-blocks-layout@3.1.55
+    - @khanacademy/wonder-blocks-modal@8.7.5
+    - @khanacademy/wonder-blocks-typography@4.3.8
+
+## 4.1.79
+
+### Patch Changes
+
+- b1fff24: Tooltip: Use semantic color tokens for the tooltip tail when a background color is not passed in
+- Updated dependencies [c033245]
+- Updated dependencies [0907f64]
+- Updated dependencies [9773405]
+- Updated dependencies [9773405]
+- Updated dependencies [022e775]
+- Updated dependencies [e181c15]
+- Updated dependencies [29ae44b]
+- Updated dependencies [c033245]
+- Updated dependencies [a2bbc0a]
+    - @khanacademy/wonder-blocks-modal@8.7.4
+    - @khanacademy/wonder-blocks-tokens@16.7.0
+    - @khanacademy/wonder-blocks-layout@3.1.54
+    - @khanacademy/wonder-blocks-typography@4.3.7
+
+## 4.1.78
+
+### Patch Changes
+
+- @khanacademy/wonder-blocks-modal@8.7.3
+- @khanacademy/wonder-blocks-core@12.4.4
+
+## 4.1.77
+
+### Patch Changes
+
+- Updated dependencies [a676ce6]
+    - @khanacademy/wonder-blocks-tokens@16.6.0
+    - @khanacademy/wonder-blocks-layout@3.1.53
+    - @khanacademy/wonder-blocks-modal@8.7.2
+    - @khanacademy/wonder-blocks-typography@4.3.6
+
+## 4.1.76
+
+### Patch Changes
+
+- 40cb70f: Add `require-logical-properties-for-rtl` ESLint rule to `eslint-plugin-wonder-blocks` recommended config, and migrate all Wonder Blocks component source files to use CSS logical properties for improved RTL layout support.
+- 40cb70f: Enable RTL logical-properties ESLint rule in recommended config
+- Updated dependencies [40cb70f]
+- Updated dependencies [40cb70f]
+    - @khanacademy/wonder-blocks-core@12.4.4
+    - @khanacademy/wonder-blocks-modal@8.7.1
+    - @khanacademy/wonder-blocks-layout@3.1.52
+    - @khanacademy/wonder-blocks-typography@4.3.5
+
+## 4.1.75
+
+### Patch Changes
+
+- Updated dependencies [44bde5e]
+- Updated dependencies [27a211d]
+    - @khanacademy/wonder-blocks-tokens@16.5.0
+    - @khanacademy/wonder-blocks-modal@8.7.0
+    - @khanacademy/wonder-blocks-layout@3.1.51
+    - @khanacademy/wonder-blocks-typography@4.3.4
+
+## 4.1.74
+
+### Patch Changes
+
+- Updated dependencies [245229a]
+    - @khanacademy/wonder-blocks-tokens@16.4.1
+    - @khanacademy/wonder-blocks-modal@8.6.5
+    - @khanacademy/wonder-blocks-layout@3.1.50
+    - @khanacademy/wonder-blocks-typography@4.3.3
+
+## 4.1.73
+
+### Patch Changes
+
+- 0fadf9f: Migrate internal usage of the deprecated `spacing` primitive token to the
+  `sizing` token. No public API or visual changes — each `spacing.<name>`
+  value maps 1:1 to a `sizing.size_<n>` token with the same rendered value.
+  A handful of internal `Strut` usages are replaced with CSS `gap` /
+  `margin` (since `sizing.X` is a CSS variable string at runtime, not a
+  number). Layout-spec and SVG sites that genuinely need JS numbers use
+  hardcoded values that mirror the matching `sizing.size_*` tokens (with
+  comments). Prep for removal of the `spacing` export in a future major
+  release of `@khanacademy/wonder-blocks-tokens`.
+- Updated dependencies [0fadf9f]
+- Updated dependencies [c1c74df]
+- Updated dependencies [72c5272]
+    - @khanacademy/wonder-blocks-layout@3.1.49
+    - @khanacademy/wonder-blocks-tokens@16.4.0
+    - @khanacademy/wonder-blocks-modal@8.6.4
+    - @khanacademy/wonder-blocks-typography@4.3.2
+
+## 4.1.72
+
+### Patch Changes
+
+- Updated dependencies [40f217b]
+    - @khanacademy/wonder-blocks-tokens@16.3.0
+    - @khanacademy/wonder-blocks-layout@3.1.48
+    - @khanacademy/wonder-blocks-modal@8.6.3
+    - @khanacademy/wonder-blocks-typography@4.3.1
+
+## 4.1.71
+
+### Patch Changes
+
+- 00e6dda: Updates internal WB typography references to use the new system (Heading and BodyText)
+- Updated dependencies [488728a]
+- Updated dependencies [00e6dda]
+    - @khanacademy/wonder-blocks-tokens@16.2.0
+    - @khanacademy/wonder-blocks-typography@4.3.0
+    - @khanacademy/wonder-blocks-layout@3.1.47
+    - @khanacademy/wonder-blocks-modal@8.6.2
+
+## 4.1.70
+
+### Patch Changes
+
+- @khanacademy/wonder-blocks-modal@8.6.1
+
+## 4.1.69
+
+### Patch Changes
+
+- Updated dependencies [cd3884c]
+    - @khanacademy/wonder-blocks-modal@8.6.0
+
+## 4.1.68
+
+### Patch Changes
+
+- Updated dependencies [358eb9b]
+    - @khanacademy/wonder-blocks-tokens@16.1.0
+    - @khanacademy/wonder-blocks-layout@3.1.46
+    - @khanacademy/wonder-blocks-modal@8.5.17
+    - @khanacademy/wonder-blocks-typography@4.2.31
+
+## 4.1.67
+
+### Patch Changes
+
+- Updated dependencies [c75abe9]
+- Updated dependencies [c75abe9]
+- Updated dependencies [530d692]
+    - @khanacademy/wonder-blocks-tokens@16.0.0
+    - @khanacademy/wonder-blocks-layout@3.1.45
+    - @khanacademy/wonder-blocks-modal@8.5.16
+    - @khanacademy/wonder-blocks-typography@4.2.30
+
+## 4.1.66
+
+### Patch Changes
+
+- @khanacademy/wonder-blocks-modal@8.5.15
+
+## 4.1.65
+
+### Patch Changes
+
+- Updated dependencies [8bb7ada]
+    - @khanacademy/wonder-blocks-tokens@15.0.0
+    - @khanacademy/wonder-blocks-layout@3.1.44
+    - @khanacademy/wonder-blocks-modal@8.5.14
+    - @khanacademy/wonder-blocks-typography@4.2.29
+
+## 4.1.64
+
+### Patch Changes
+
+- Updated dependencies [d6ae5fb]
+    - @khanacademy/wonder-blocks-core@12.4.3
+    - @khanacademy/wonder-blocks-layout@3.1.43
+    - @khanacademy/wonder-blocks-modal@8.5.13
+    - @khanacademy/wonder-blocks-tokens@14.1.3
+    - @khanacademy/wonder-blocks-typography@4.2.28
+
+## 4.1.63
+
+### Patch Changes
+
+- Updated dependencies [673432c]
+    - @khanacademy/wonder-blocks-modal@8.5.12
+
 ## 4.1.62
 
 ### Patch Changes

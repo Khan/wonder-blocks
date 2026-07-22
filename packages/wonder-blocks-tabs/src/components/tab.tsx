@@ -1,4 +1,12 @@
-import {addStyle, AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
+/* eslint-disable @khanacademy/wonder-blocks/no-raw-button */
+// This file is the Wonder Blocks Tab implementation — it intentionally uses
+// addStyle("button") as the underlying DOM element for the tab button.
+import {
+    addStyle,
+    AriaProps,
+    StyleType,
+    View,
+} from "@khanacademy/wonder-blocks-core";
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
@@ -38,6 +46,10 @@ type Props = AriaProps & {
      * Custom styles for the `Tab` component.
      */
     style?: StyleType;
+    /**
+     * Optional icon to display before the tab label.
+     */
+    icon?: React.ReactElement;
 };
 
 const StyledButton = addStyle("button");
@@ -59,6 +71,7 @@ export const Tab = React.forwardRef(function Tab(
         onKeyDown,
         testId,
         style,
+        icon,
         // Should only include aria related props
         ...otherProps
     } = props;
@@ -66,6 +79,7 @@ export const Tab = React.forwardRef(function Tab(
         <StyledButton
             {...otherProps}
             type="button" // this prevents form submissions if the tab is inside a form
+            // eslint-disable-next-line @khanacademy/wonder-blocks/no-custom-tab-role -- This is the element with role="tab" in ResponsiveTabs
             role="tab"
             onClick={onClick}
             ref={ref}
@@ -78,12 +92,20 @@ export const Tab = React.forwardRef(function Tab(
             onKeyDown={onKeyDown}
             data-testid={testId}
             style={[
-                typographyStyles.Body,
+                typographyStyles.BodyTextMediumMediumWeight,
                 styles.tab,
                 selected && styles.selectedTab,
                 style,
             ]}
         >
+            {icon && (
+                <View>
+                    {React.cloneElement(icon, {
+                        // By default, use the medium size for icon components
+                        size: icon.props.size ?? "medium",
+                    })}
+                </View>
+            )}
             {children}
         </StyledButton>
     );
@@ -95,13 +117,14 @@ export const styles = StyleSheet.create({
         display: "flex",
         alignItems: "center",
         textWrap: "nowrap",
-        backgroundColor: "transparent",
+        backgroundColor: semanticColor.core.transparent,
         border: "none",
         margin: 0,
         padding: 0,
         cursor: "pointer",
         marginBlockStart: sizing.size_080,
         marginBlockEnd: bottomSpacing,
+        gap: sizing.size_080,
         position: "relative",
         color: semanticColor.core.foreground.neutral.subtle,
         ...focusStyles.focus,
@@ -110,28 +133,30 @@ export const styles = StyleSheet.create({
         ":after": {
             content: "''",
             position: "absolute",
-            left: 0,
-            right: 0,
-            bottom: `calc(${bottomSpacing} * -1)`,
+            insetInlineStart: 0,
+            insetInlineEnd: 0,
+            insetBlockEnd: `calc(${bottomSpacing} * -1)`,
         },
         // Only apply hover styles to tabs that are not selected
         [":hover:not([aria-selected='true'])" as any]: {
-            color: semanticColor.link.hover,
+            color: semanticColor.core.foreground.instructive.default,
             [":after" as any]: {
                 height: border.width.thin,
-                backgroundColor: semanticColor.link.hover,
+                backgroundColor:
+                    semanticColor.core.background.instructive.default,
             },
         },
         // Only apply active styles to tabs that are not selected
         [":active:not([aria-selected='true'])" as any]: {
-            color: semanticColor.link.press,
+            color: semanticColor.core.foreground.instructive.default,
             [":after" as any]: {
                 height: border.width.thick,
-                backgroundColor: semanticColor.link.press,
+                backgroundColor:
+                    semanticColor.core.background.instructive.default,
             },
         },
     },
     selectedTab: {
-        color: semanticColor.link.rest,
+        color: semanticColor.core.foreground.instructive.default,
     },
 });

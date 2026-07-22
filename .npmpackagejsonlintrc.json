@@ -16,5 +16,15 @@
                 }
             ]
         ]
-    }
+    },
+    "overrides": [
+        {
+            "patterns": ["packages/eslint-plugin-wonder-blocks/demo/package.json"],
+            "rules": {
+                "require-main": "off",
+                "require-module": "off",
+                "require-types": "off"
+            }
+        }
+    ]
 }

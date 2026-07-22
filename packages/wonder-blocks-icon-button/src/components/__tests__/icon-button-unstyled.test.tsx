@@ -20,7 +20,10 @@ describe("IconButtonUnstyled", () => {
     });
 
     afterAll(() => {
-        window.location = location;
+        // The DOM types treat `window.location` as non-reassignable, so cast
+        // the saved value to restore it (a targeted cast rather than an
+        // `@ts-expect-error` that would suppress the whole line).
+        window.location = location as any;
     });
 
     test("render a span containing the reference to the icon", async () => {
@@ -365,6 +368,82 @@ describe("IconButtonUnstyled", () => {
                 expect(onPressMock).toHaveBeenLastCalledWith(false);
             });
         });
+
+        describe("when disabled", () => {
+            describe.each([
+                {key: "Enter", label: "Enter"},
+                {key: " ", label: "Space"},
+            ])("$label key", ({key}) => {
+                it("should not trigger onClick", () => {
+                    // Arrange
+                    const onClickMock = jest.fn();
+
+                    render(
+                        <IconButtonUnstyled
+                            aria-label="search"
+                            onClick={onClickMock}
+                            disabled={true}
+                            testId="icon-button"
+                        >
+                            <PhosphorIcon icon={magnifyingGlassIcon} />
+                        </IconButtonUnstyled>,
+                    );
+
+                    // Act
+                    const button = screen.getByRole("button");
+                    // NOTE: we need to use fireEvent here because await userEvent doesn't
+                    // support keyUp/Down events and we use these handlers to override
+                    // the default behavior of the button.
+                    // eslint-disable-next-line testing-library/prefer-user-event
+                    fireEvent.keyDown(button, {
+                        key,
+                    });
+                    // eslint-disable-next-line testing-library/prefer-user-event
+                    fireEvent.keyUp(button, {
+                        key,
+                    });
+
+                    // Assert
+                    expect(onClickMock).not.toHaveBeenCalled();
+                });
+
+                it("should not enter the pressed state", () => {
+                    // Arrange
+                    const onPressMock = jest.fn();
+
+                    render(
+                        <IconButtonUnstyled
+                            aria-label="search"
+                            onPress={onPressMock}
+                            disabled={true}
+                            testId="icon-button"
+                        >
+                            <PhosphorIcon icon={magnifyingGlassIcon} />
+                        </IconButtonUnstyled>,
+                    );
+
+                    // Act
+                    const button = screen.getByRole("button");
+                    // NOTE: we need to use fireEvent here because await userEvent doesn't
+                    // support keyUp/Down events and we use these handlers to override
+                    // the default behavior of the button.
+                    // eslint-disable-next-line testing-library/prefer-user-event
+                    fireEvent.keyDown(button, {
+                        key,
+                    });
+                    // eslint-disable-next-line testing-library/prefer-user-event
+                    fireEvent.keyUp(button, {
+                        key,
+                    });
+
+                    // Assert
+                    // The button must never signal an active press while
+                    // disabled. `onPress(false)` may still fire on release as
+                    // a no-op cleanup, but `onPress(true)` must not.
+                    expect(onPressMock).not.toHaveBeenCalledWith(true);
+                });
+            });
+        });
     });
 
     describe("type", () => {
@@ -434,6 +513,71 @@ describe("IconButtonUnstyled", () => {
                 // Assert
                 await userEvent.click(await screen.findByRole("button"));
             }).not.toThrow();
+        });
+    });
+
+    describe("data-kind", () => {
+        it("should set data-kind on the underlying button", async () => {
+            // Arrange
+
+            // Act
+            render(
+                <IconButtonUnstyled
+                    aria-label="search"
+                    kind="primary"
+                    onClick={() => {}}
+                >
+                    <PhosphorIcon icon={magnifyingGlassIcon} />
+                </IconButtonUnstyled>,
+            );
+
+            // Assert
+            expect(await screen.findByRole("button")).toHaveAttribute(
+                "data-kind",
+                "primary",
+            );
+        });
+
+        it("should set data-kind on the underlying internal link", async () => {
+            // Arrange
+
+            // Act
+            render(
+                <IconButtonUnstyled
+                    aria-label="search"
+                    kind="secondary"
+                    href="/bar"
+                >
+                    <PhosphorIcon icon={magnifyingGlassIcon} />
+                </IconButtonUnstyled>,
+            );
+
+            // Assert
+            expect(await screen.findByRole("link")).toHaveAttribute(
+                "data-kind",
+                "secondary",
+            );
+        });
+
+        it("should set data-kind on the underlying external link", async () => {
+            // Arrange
+
+            // Act
+            render(
+                <IconButtonUnstyled
+                    aria-label="search"
+                    kind="secondary"
+                    href="https://example.com"
+                >
+                    <PhosphorIcon icon={magnifyingGlassIcon} />
+                </IconButtonUnstyled>,
+            );
+
+            // Assert
+            expect(await screen.findByRole("link")).toHaveAttribute(
+                "data-kind",
+                "secondary",
+            );
         });
     });
 

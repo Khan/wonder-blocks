@@ -4,9 +4,9 @@ import type {Meta, StoryObj} from "@storybook/react-vite";
 
 import {PropsFor, View} from "@khanacademy/wonder-blocks-core";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
-import {semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import Button from "@khanacademy/wonder-blocks-button";
-import {LabelLarge, Body} from "@khanacademy/wonder-blocks-typography";
+import {BodyText} from "@khanacademy/wonder-blocks-typography";
 
 import {TextField} from "@khanacademy/wonder-blocks-form";
 import {LabeledField} from "@khanacademy/wonder-blocks-labeled-field";
@@ -37,6 +37,10 @@ export default {
                 version={packageConfig.version}
             />
         ),
+        chromatic: {
+            // Disabling snapshots because this is covered by the testing snapshots
+            disableSnapshot: true,
+        },
     },
     argTypes: TextFieldArgTypes,
 } as Meta<typeof TextField>;
@@ -104,13 +108,6 @@ export const WithLabeledField: StoryComponentType = {
                 contextLabel="required"
             />
         );
-    },
-    parameters: {
-        chromatic: {
-            // Disabling because this is for documentation purposes and is
-            // covered by the LabeledField stories
-            disableSnapshot: true,
-        },
     },
 };
 
@@ -183,12 +180,6 @@ export const Required: StoryComponentType = {
         required: true,
     },
     render: ControlledTextField,
-    parameters: {
-        chromatic: {
-            // Disabling because this doesn't test anything visual.
-            disableSnapshot: true,
-        },
-    },
 };
 
 /**
@@ -226,11 +217,11 @@ export const Number: StoryComponentType = {
                     onChange={handleChange}
                     onKeyDown={handleKeyDown}
                 />
-                <Strut size={spacing.small_12} />
-                <Body>
+                <Strut size={12} />
+                <BodyText>
                     The following text field has a min of 0, a max of 15, and a
                     step of 3
-                </Body>
+                </BodyText>
                 <TextField
                     id="tf-3a"
                     type="number"
@@ -451,12 +442,6 @@ export const Error: ControlledStoryComponentType = {
         value: "khan",
         label: "Error state using error prop",
     },
-    parameters: {
-        chromatic: {
-            // Disabling because this doesn't test anything visual.
-            disableSnapshot: true,
-        },
-    },
 };
 
 /**
@@ -476,12 +461,6 @@ export const ErrorFromValidation: ControlledStoryComponentType = {
         label: "Error state from validation",
         validate: validateEmail,
         value: "khan",
-    },
-    parameters: {
-        chromatic: {
-            // Disabling because this doesn't test anything visual.
-            disableSnapshot: true,
-        },
     },
 };
 
@@ -521,7 +500,7 @@ export const ErrorFromPropAndValidation = (
     const errorMessage = validationErrorMessage || backendErrorMessage;
 
     return (
-        <View style={{gap: spacing.medium_16}}>
+        <View style={{gap: sizing.size_160}}>
             <LabeledField
                 label="Error state from prop and validation"
                 errorMessage={errorMessage}
@@ -553,13 +532,6 @@ export const ErrorFromPropAndValidation = (
     );
 };
 
-ErrorFromPropAndValidation.parameters = {
-    chromatic: {
-        // Disabling because this doesn't test anything visual.
-        disableSnapshot: true,
-    },
-};
-
 /**
  * The `instantValidation` prop controls when validation is triggered. Validation
  * is triggered if the `validate` or `required` props are set.
@@ -586,7 +558,7 @@ export const InstantValidation: StoryComponentType = {
     },
     render: (args) => {
         return (
-            <View style={{gap: spacing.small_12}}>
+            <View style={{gap: sizing.size_120}}>
                 <ControlledTextField
                     {...args}
                     label="Validation on mount if there is a value"
@@ -624,12 +596,6 @@ export const InstantValidation: StoryComponentType = {
                 />
             </View>
         );
-    },
-    parameters: {
-        chromatic: {
-            // Disabling because this doesn't test anything visual.
-            disableSnapshot: true,
-        },
     },
 };
 
@@ -730,19 +696,12 @@ export const Ref: StoryComponentType = {
                     onKeyDown={handleKeyDown}
                     ref={inputRef}
                 />
-                <Strut size={spacing.medium_16} />
+                <Strut size={16} />
                 <Button style={styles.button} onClick={handleSubmit}>
                     Focus Input
                 </Button>
             </View>
         );
-    },
-    parameters: {
-        chromatic: {
-            // Disabling snapshot because this is testing interaction,
-            // not visuals.
-            disableSnapshot: true,
-        },
     },
 };
 
@@ -778,13 +737,6 @@ export const ReadOnly: StoryComponentType = {
                 readOnly={true}
             />
         );
-    },
-    parameters: {
-        chromatic: {
-            // Disabling snapshot because this is testing interaction,
-            // not visuals.
-            disableSnapshot: true,
-        },
     },
 };
 
@@ -829,32 +781,28 @@ export const WithAutofocus: StoryComponentType = {
                     autoFocus={true}
                     onChange={handleChange}
                     onKeyDown={handleKeyDown}
-                    style={{flexGrow: 1, marginLeft: spacing.small_12}}
+                    style={{flexGrow: 1, marginInlineStart: sizing.size_120}}
                 />
             </View>
         );
 
         return (
             <View>
-                <LabelLarge style={{marginBottom: spacing.small_12}}>
+                <BodyText
+                    weight="bold"
+                    style={{marginBlockEnd: sizing.size_120}}
+                >
                     Press the button to view the text field with autofocus.
-                </LabelLarge>
+                </BodyText>
                 <Button
                     onClick={handleShowDemo}
-                    style={{width: 300, marginBottom: spacing.large_24}}
+                    style={{width: 300, marginBlockEnd: sizing.size_240}}
                 >
                     Toggle autoFocus demo
                 </Button>
                 {showDemo && <AutoFocusDemo />}
             </View>
         );
-    },
-    parameters: {
-        chromatic: {
-            // Disabling snapshot because this is testing interaction,
-            // not visuals.
-            disableSnapshot: true,
-        },
     },
 };
 
@@ -897,13 +845,6 @@ export const AutoComplete: StoryComponentType = {
             </form>
         );
     },
-    parameters: {
-        chromatic: {
-            // Disabling snapshot because this is testing interaction,
-            // not visuals.
-            disableSnapshot: true,
-        },
-    },
 };
 
 const styles = StyleSheet.create({
@@ -911,15 +852,15 @@ const styles = StyleSheet.create({
         backgroundColor: semanticColor.status.notice.background,
         color: semanticColor.status.notice.foreground,
         border: "none",
-        maxWidth: 250,
+        maxInlineSize: 250,
         "::placeholder": {
             color: semanticColor.core.foreground.neutral.default,
         },
     },
     button: {
-        maxWidth: 150,
+        maxInlineSize: 150,
     },
     fieldWithButton: {
-        marginBottom: spacing.medium_16,
+        marginBlockEnd: sizing.size_160,
     },
 });

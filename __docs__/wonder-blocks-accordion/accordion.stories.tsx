@@ -9,8 +9,8 @@ import {
 import Button from "@khanacademy/wonder-blocks-button";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
-import {semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
-import {LabelLarge} from "@khanacademy/wonder-blocks-typography";
+import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
+import {BodyText} from "@khanacademy/wonder-blocks-typography";
 import {
     MultiSelect,
     OptionItem,
@@ -100,13 +100,15 @@ export const Default: StoryComponentType = {
 export const AllowMultipleExpanded: StoryComponentType = {
     render: () => (
         <View>
-            <View style={{maxWidth: 500, marginBottom: spacing.large_24}}>
-                <LabelLarge>Allow multiple expanded (default)</LabelLarge>
+            <View style={{maxInlineSize: 500, marginBlockEnd: sizing.size_240}}>
+                <BodyText weight="bold">
+                    Allow multiple expanded (default)
+                </BodyText>
                 <Accordion allowMultipleExpanded>{exampleSections}</Accordion>
             </View>
             <View style={styles.sideBySide}>
                 <View style={[styles.fullWidth, styles.space]}>
-                    <LabelLarge>Allow only one expanded</LabelLarge>
+                    <BodyText weight="bold">Allow only one expanded</BodyText>
                     <Accordion
                         allowMultipleExpanded={false}
                         cornerKind="square"
@@ -115,7 +117,7 @@ export const AllowMultipleExpanded: StoryComponentType = {
                     </Accordion>
                 </View>
                 <View style={[styles.fullWidth, styles.space]}>
-                    <LabelLarge>Allow only one expanded</LabelLarge>
+                    <BodyText weight="bold">Allow only one expanded</BodyText>
                     <Accordion
                         allowMultipleExpanded={false}
                         cornerKind="rounded"
@@ -124,7 +126,7 @@ export const AllowMultipleExpanded: StoryComponentType = {
                     </Accordion>
                 </View>
                 <View style={[styles.fullWidth, styles.space]}>
-                    <LabelLarge>Allow only one expanded</LabelLarge>
+                    <BodyText weight="bold">Allow only one expanded</BodyText>
                     <Accordion
                         allowMultipleExpanded={false}
                         cornerKind="rounded-per-section"
@@ -161,33 +163,32 @@ export const CaretPositions: StoryComponentType = {
                 {/* Left-to-right */}
                 <View style={styles.sideBySide}>
                     <View style={styles.fullWidth}>
-                        <LabelLarge>
+                        <BodyText weight="bold">
                             Caret position: end, language direction: left to
                             right
-                        </LabelLarge>
+                        </BodyText>
                         <Accordion caretPosition="end">
                             {exampleSections}
                         </Accordion>
                     </View>
-                    <Strut size={spacing.xLarge_32} />
+                    <Strut size={32} />
                     <View style={styles.fullWidth}>
-                        <LabelLarge>
+                        <BodyText weight="bold">
                             Caret position: start, language direction: left to
                             right
-                        </LabelLarge>
+                        </BodyText>
                         <Accordion caretPosition="start">
                             {exampleSections}
                         </Accordion>
                     </View>
                 </View>
-
                 {/* Right-to-left */}
-                <View style={[styles.sideBySide, styles.rtl]}>
+                <View dir="rtl" style={styles.sideBySide}>
                     <View style={styles.fullWidth}>
-                        <LabelLarge>
+                        <BodyText weight="bold">
                             Caret position: end, language direction: right to
                             left
-                        </LabelLarge>
+                        </BodyText>
                         <Accordion caretPosition="end">
                             <AccordionSection header="پہلا سیکشن">
                                 یہ کچھ معلومات ہے۔
@@ -202,12 +203,12 @@ export const CaretPositions: StoryComponentType = {
                             </AccordionSection>
                         </Accordion>
                     </View>
-                    <Strut size={spacing.xLarge_32} />
+                    <Strut size={32} />
                     <View style={styles.fullWidth}>
-                        <LabelLarge>
+                        <BodyText weight="bold">
                             Caret position: start, language direction: right to
                             left
-                        </LabelLarge>
+                        </BodyText>
                         <Accordion caretPosition="start">
                             <AccordionSection header="پہلا سیکشن">
                                 یہ کچھ معلومات ہے۔
@@ -244,17 +245,19 @@ export const CornerKinds: StoryComponentType = {
         return (
             <View style={styles.sideBySide}>
                 <View style={[styles.fullWidth, styles.space]}>
-                    <LabelLarge>Corner kind: square</LabelLarge>
+                    <BodyText weight="bold">Corner kind: square</BodyText>
                     <Accordion cornerKind="square">{exampleSections}</Accordion>
                 </View>
                 <View style={[styles.fullWidth, styles.space]}>
-                    <LabelLarge>Corner kind: rounded</LabelLarge>
+                    <BodyText weight="bold">Corner kind: rounded</BodyText>
                     <Accordion cornerKind="rounded">
                         {exampleSections}
                     </Accordion>
                 </View>
                 <View style={[styles.fullWidth, styles.space]}>
-                    <LabelLarge>Corner kind: rounded-per-section</LabelLarge>
+                    <BodyText weight="bold">
+                        Corner kind: rounded-per-section
+                    </BodyText>
                     <Accordion cornerKind="rounded-per-section">
                         {exampleSections}
                     </Accordion>
@@ -305,19 +308,21 @@ export const WithAnimation: StoryComponentType = {
             <View>
                 <View style={styles.sideBySide}>
                     <View style={[styles.fullWidth, styles.space]}>
-                        <LabelLarge>cornerKind: square</LabelLarge>
+                        <BodyText weight="bold">cornerKind: square</BodyText>
                         <Accordion cornerKind="square" animated={true}>
                             {exampleSections}
                         </Accordion>
                     </View>
                     <View style={[styles.fullWidth, styles.space]}>
-                        <LabelLarge>cornerKind: rounded</LabelLarge>
+                        <BodyText weight="bold">cornerKind: rounded</BodyText>
                         <Accordion cornerKind="rounded" animated={true}>
                             {exampleSections}
                         </Accordion>
                     </View>
                     <View style={[styles.fullWidth, styles.space]}>
-                        <LabelLarge>cornerKind: rounded-per-section</LabelLarge>
+                        <BodyText weight="bold">
+                            cornerKind: rounded-per-section
+                        </BodyText>
                         <Accordion
                             cornerKind="rounded-per-section"
                             animated={true}
@@ -328,9 +333,9 @@ export const WithAnimation: StoryComponentType = {
                 </View>
                 <View style={styles.sideBySide}>
                     <View style={[styles.fullWidth, styles.space]}>
-                        <LabelLarge>
+                        <BodyText weight="bold">
                             cornerKind: square, allowMultipleExpanded: false
-                        </LabelLarge>
+                        </BodyText>
                         <Accordion
                             cornerKind="square"
                             animated={true}
@@ -340,9 +345,9 @@ export const WithAnimation: StoryComponentType = {
                         </Accordion>
                     </View>
                     <View style={[styles.fullWidth, styles.space]}>
-                        <LabelLarge>
+                        <BodyText weight="bold">
                             cornerKind: rounded, allowMultipleExpanded: false
-                        </LabelLarge>
+                        </BodyText>
                         <Accordion
                             cornerKind="rounded"
                             animated={true}
@@ -352,10 +357,10 @@ export const WithAnimation: StoryComponentType = {
                         </Accordion>
                     </View>
                     <View style={[styles.fullWidth, styles.space]}>
-                        <LabelLarge>
+                        <BodyText weight="bold">
                             cornerKind: rounded-per-section,
                             allowMultipleExpanded: false
-                        </LabelLarge>
+                        </BodyText>
                         <Accordion
                             cornerKind="rounded-per-section"
                             animated={true}
@@ -365,17 +370,17 @@ export const WithAnimation: StoryComponentType = {
                         </Accordion>
                     </View>
                 </View>
-                <View style={{maxWidth: 500}}>
-                    <LabelLarge>
+                <View style={{maxInlineSize: 500}}>
+                    <BodyText weight="bold">
                         With unevenly sided sections, allowMultipleExpanded:
                         false
-                    </LabelLarge>
+                    </BodyText>
                     <Accordion animated={true} allowMultipleExpanded={false}>
                         <AccordionSection header="First section">
                             <View
                                 style={{
                                     height: 500,
-                                    padding: spacing.large_24,
+                                    padding: sizing.size_240,
                                 }}
                             >
                                 This is the information present in the first
@@ -386,7 +391,7 @@ export const WithAnimation: StoryComponentType = {
                             <View
                                 style={{
                                     height: 100,
-                                    padding: spacing.large_24,
+                                    padding: sizing.size_240,
                                 }}
                             >
                                 This is the information present in the second
@@ -397,7 +402,7 @@ export const WithAnimation: StoryComponentType = {
                             <View
                                 style={{
                                     height: 300,
-                                    padding: spacing.large_24,
+                                    padding: sizing.size_240,
                                 }}
                             >
                                 This is the information present in the third
@@ -432,7 +437,7 @@ export const WithStyle: StoryComponentType = {
     render: () => {
         const customStyles = {
             border: `2px solid ${semanticColor.mastery.primary}`,
-            padding: spacing.xLarge_32,
+            padding: sizing.size_320,
         };
 
         return (
@@ -508,7 +513,7 @@ export const LongSections: StoryComponentType = {
                                         width="100%"
                                         alt="Wonder Blocks logo"
                                     />
-                                    <Strut size={spacing.xLarge_32} />
+                                    <Strut size={32} />
                                     <img
                                         src="logo.svg"
                                         width="100%"
@@ -642,9 +647,9 @@ export const BackgroundColorExample: StoryComponentType = {
         return (
             <>
                 <Accordion cornerKind="rounded">{sections}</Accordion>
-                <Strut size={spacing.large_24} />
+                <Strut size={24} />
                 <Accordion cornerKind="square">{sections}</Accordion>
-                <Strut size={spacing.large_24} />
+                <Strut size={24} />
                 <Accordion cornerKind="rounded-per-section">
                     {sections}
                 </Accordion>
@@ -672,14 +677,11 @@ const styles = StyleSheet.create({
     fullWidth: {
         width: "100%",
     },
-    rtl: {
-        direction: "rtl",
-    },
     space: {
-        margin: spacing.xSmall_8,
+        margin: sizing.size_080,
     },
     button: {
         width: "fit-content",
-        marginBottom: spacing.medium_16,
+        marginBlockEnd: sizing.size_160,
     },
 });

@@ -6,11 +6,7 @@ import packageConfig from "../../packages/wonder-blocks-styles/package.json";
 import IconButton from "@khanacademy/wonder-blocks-icon-button";
 import {actionStyles} from "@khanacademy/wonder-blocks-styles";
 import {addStyle, View} from "@khanacademy/wonder-blocks-core";
-import {
-    border,
-    semanticColor,
-    spacing,
-} from "@khanacademy/wonder-blocks-tokens";
+import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import Clickable from "@khanacademy/wonder-blocks-clickable";
 import Button from "@khanacademy/wonder-blocks-button";
 import Link from "@khanacademy/wonder-blocks-link";
@@ -28,11 +24,16 @@ import Link from "@khanacademy/wonder-blocks-link";
  * import {actionStyles} from "@khanacademy/wonder-blocks-styles";
  *
  * <StyledButton style={actionStyles.inverse}>
- *      Custom button
+ *     Custom button
  * </StyledButton>
  * ```
+ *
+ * **Note:** Using `actionStyles` with a raw HTML element via `addStyle`
+ * requires disabling the `@khanacademy/wonder-blocks/no-raw-button` lint rule.
+ * This should be rare — prefer WB components whenever possible.
  */
 export default {
+    tags: ["!manifest"],
     title: "Packages / Styles / Action Styles",
     parameters: {
         componentSubtitle: (
@@ -41,11 +42,16 @@ export default {
                 version={packageConfig.version}
             />
         ),
+        chromatic: {
+            // Disabling because this is already covered by the statesheet
+            disableSnapshot: true,
+        },
     },
 } as Meta<any>;
 
 type Story = StoryObj<any>;
 
+// eslint-disable-next-line @khanacademy/wonder-blocks/no-raw-button
 const StyledButton = addStyle("button");
 
 /**
@@ -91,6 +97,7 @@ export const InverseOutline: Story = {
                     {() => "Clickable component"}
                 </Clickable>
 
+                {/* eslint-disable-next-line @khanacademy/wonder-blocks/no-raw-button */}
                 <StyledButton
                     style={[
                         {
@@ -125,8 +132,8 @@ export const InverseOutline: Story = {
         (Story) => (
             <View
                 style={{
-                    gap: spacing.medium_16,
-                    padding: spacing.medium_16,
+                    gap: sizing.size_160,
+                    padding: sizing.size_160,
                     flexDirection: "row",
                     placeItems: "center",
                     display: "grid",
@@ -140,13 +147,6 @@ export const InverseOutline: Story = {
     globals: {
         backgrounds: {
             value: "neutralStrong",
-        },
-    },
-    parameters: {
-        chromatic: {
-            // Disabling because this is already covered by the All variants
-            // stories.
-            disableSnapshot: true,
         },
     },
 };

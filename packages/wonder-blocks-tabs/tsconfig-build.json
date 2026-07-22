@@ -11,5 +11,8 @@
       {"path": "../wonder-blocks-typography/tsconfig-build.json"},
       {"path": "../wonder-blocks-link/tsconfig-build.json"},
       {"path": "../wonder-blocks-styles/tsconfig-build.json"},
+      {"path": "../wonder-blocks-button/tsconfig-build.json"},
+      {"path": "../wonder-blocks-dropdown/tsconfig-build.json"},
+      {"path": "../wonder-blocks-icon/tsconfig-build.json"},
   ]
 }

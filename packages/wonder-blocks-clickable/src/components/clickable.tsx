@@ -1,3 +1,6 @@
+/* eslint-disable @khanacademy/wonder-blocks/no-raw-button */
+// This file IS the Wonder Blocks Clickable implementation — it intentionally
+// wraps addStyle("button") as its underlying DOM primitive.
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 import {Link, useInRouterContext} from "react-router-dom-v5-compat";
@@ -41,7 +44,10 @@ type CommonProps =
          */
         className?: string;
         /**
-         * Disables or enables the child; defaults to false
+         * Disables or enables the child; defaults to false.
+         *
+         * Internally, the `aria-disabled` attribute will be set so that the
+         * element remains focusable and will be included in the tab order.
          */
         disabled?: boolean;
         /**
@@ -338,7 +344,7 @@ const styles = StyleSheet.create({
         width: "auto",
         overflow: "visible",
 
-        background: "transparent",
+        background: semanticColor.core.transparent,
         textDecoration: "none",
 
         /* inherit font & color from ancestor */

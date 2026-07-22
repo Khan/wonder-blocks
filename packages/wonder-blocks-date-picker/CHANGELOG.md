@@ -1,0 +1,264 @@
+# @khanacademy/wonder-blocks-date-picker
+
+## 1.0.19
+
+### Patch Changes
+
+- Updated dependencies [3e7925e]
+    - @khanacademy/wonder-blocks-tokens@17.2.0
+    - @khanacademy/wonder-blocks-form@7.6.9
+    - @khanacademy/wonder-blocks-icon@5.3.22
+    - @khanacademy/wonder-blocks-modal@8.7.10
+    - @khanacademy/wonder-blocks-styles@0.2.52
+
+## 1.0.18
+
+### Patch Changes
+
+- Updated dependencies [dfcf49b]
+    - @khanacademy/wonder-blocks-tokens@17.1.0
+    - @khanacademy/wonder-blocks-form@7.6.8
+    - @khanacademy/wonder-blocks-icon@5.3.21
+    - @khanacademy/wonder-blocks-modal@8.7.9
+    - @khanacademy/wonder-blocks-styles@0.2.51
+
+## 1.0.17
+
+### Patch Changes
+
+- Updated dependencies [f1cd1ce]
+- Updated dependencies [9d8e5e3]
+    - @khanacademy/wonder-blocks-icon@5.3.20
+    - @khanacademy/wonder-blocks-tokens@17.0.0
+    - @khanacademy/wonder-blocks-form@7.6.7
+    - @khanacademy/wonder-blocks-modal@8.7.8
+    - @khanacademy/wonder-blocks-styles@0.2.50
+
+## 1.0.16
+
+### Patch Changes
+
+- Updated dependencies [0735aef]
+    - @khanacademy/wonder-blocks-tokens@16.8.1
+    - @khanacademy/wonder-blocks-form@7.6.6
+    - @khanacademy/wonder-blocks-icon@5.3.19
+    - @khanacademy/wonder-blocks-modal@8.7.7
+    - @khanacademy/wonder-blocks-styles@0.2.49
+
+## 1.0.15
+
+### Patch Changes
+
+- @khanacademy/wonder-blocks-modal@8.7.6
+
+## 1.0.14
+
+### Patch Changes
+
+- Updated dependencies [f13552a]
+    - @khanacademy/wonder-blocks-tokens@16.8.0
+    - @khanacademy/wonder-blocks-form@7.6.5
+    - @khanacademy/wonder-blocks-icon@5.3.18
+    - @khanacademy/wonder-blocks-modal@8.7.5
+    - @khanacademy/wonder-blocks-styles@0.2.48
+
+## 1.0.13
+
+### Patch Changes
+
+- Updated dependencies [c033245]
+- Updated dependencies [ddcaaeb]
+- Updated dependencies [0907f64]
+- Updated dependencies [9773405]
+- Updated dependencies [e6c705d]
+- Updated dependencies [9773405]
+- Updated dependencies [fcf3bb1]
+- Updated dependencies [022e775]
+- Updated dependencies [e181c15]
+- Updated dependencies [29ae44b]
+- Updated dependencies [c033245]
+- Updated dependencies [a2bbc0a]
+    - @khanacademy/wonder-blocks-modal@8.7.4
+    - @khanacademy/wonder-blocks-icon@5.3.17
+    - @khanacademy/wonder-blocks-tokens@16.7.0
+    - @khanacademy/wonder-blocks-form@7.6.4
+    - @khanacademy/wonder-blocks-styles@0.2.47
+
+## 1.0.12
+
+### Patch Changes
+
+- @khanacademy/wonder-blocks-modal@8.7.3
+- @khanacademy/wonder-blocks-form@7.6.3
+- @khanacademy/wonder-blocks-core@12.4.4
+
+## 1.0.11
+
+### Patch Changes
+
+- Updated dependencies [a676ce6]
+    - @khanacademy/wonder-blocks-tokens@16.6.0
+    - @khanacademy/wonder-blocks-form@7.6.2
+    - @khanacademy/wonder-blocks-icon@5.3.16
+    - @khanacademy/wonder-blocks-modal@8.7.2
+    - @khanacademy/wonder-blocks-styles@0.2.46
+
+## 1.0.10
+
+### Patch Changes
+
+- Updated dependencies [40cb70f]
+- Updated dependencies [40cb70f]
+    - @khanacademy/wonder-blocks-core@12.4.4
+    - @khanacademy/wonder-blocks-form@7.6.1
+    - @khanacademy/wonder-blocks-modal@8.7.1
+    - @khanacademy/wonder-blocks-icon@5.3.15
+
+## 1.0.9
+
+### Patch Changes
+
+- Updated dependencies [44bde5e]
+- Updated dependencies [27a211d]
+    - @khanacademy/wonder-blocks-tokens@16.5.0
+    - @khanacademy/wonder-blocks-modal@8.7.0
+    - @khanacademy/wonder-blocks-form@7.6.0
+    - @khanacademy/wonder-blocks-icon@5.3.14
+    - @khanacademy/wonder-blocks-styles@0.2.45
+
+## 1.0.8
+
+### Patch Changes
+
+- Updated dependencies [245229a]
+    - @khanacademy/wonder-blocks-tokens@16.4.1
+    - @khanacademy/wonder-blocks-modal@8.6.5
+    - @khanacademy/wonder-blocks-form@7.5.10
+    - @khanacademy/wonder-blocks-icon@5.3.13
+    - @khanacademy/wonder-blocks-styles@0.2.44
+
+## 1.0.7
+
+### Patch Changes
+
+- Updated dependencies [0fadf9f]
+- Updated dependencies [c1c74df]
+- Updated dependencies [72c5272]
+    - @khanacademy/wonder-blocks-form@7.5.9
+    - @khanacademy/wonder-blocks-tokens@16.4.0
+    - @khanacademy/wonder-blocks-modal@8.6.4
+    - @khanacademy/wonder-blocks-icon@5.3.12
+    - @khanacademy/wonder-blocks-styles@0.2.43
+
+## 1.0.6
+
+### Patch Changes
+
+- Updated dependencies [40f217b]
+    - @khanacademy/wonder-blocks-tokens@16.3.0
+    - @khanacademy/wonder-blocks-form@7.5.8
+    - @khanacademy/wonder-blocks-icon@5.3.11
+    - @khanacademy/wonder-blocks-modal@8.6.3
+    - @khanacademy/wonder-blocks-styles@0.2.42
+
+## 1.0.5
+
+### Patch Changes
+
+- Updated dependencies [488728a]
+- Updated dependencies [00e6dda]
+    - @khanacademy/wonder-blocks-tokens@16.2.0
+    - @khanacademy/wonder-blocks-form@7.5.7
+    - @khanacademy/wonder-blocks-icon@5.3.10
+    - @khanacademy/wonder-blocks-modal@8.6.2
+    - @khanacademy/wonder-blocks-styles@0.2.41
+
+## 1.0.4
+
+### Patch Changes
+
+- @khanacademy/wonder-blocks-modal@8.6.1
+
+## 1.0.3
+
+### Patch Changes
+
+- Updated dependencies [cd3884c]
+    - @khanacademy/wonder-blocks-modal@8.6.0
+
+## 1.0.2
+
+### Patch Changes
+
+- Updated dependencies [358eb9b]
+    - @khanacademy/wonder-blocks-tokens@16.1.0
+    - @khanacademy/wonder-blocks-form@7.5.6
+    - @khanacademy/wonder-blocks-icon@5.3.9
+    - @khanacademy/wonder-blocks-modal@8.5.17
+    - @khanacademy/wonder-blocks-styles@0.2.40
+
+## 1.0.1
+
+### Patch Changes
+
+- Updated dependencies [c75abe9]
+- Updated dependencies [c75abe9]
+- Updated dependencies [530d692]
+    - @khanacademy/wonder-blocks-tokens@16.0.0
+    - @khanacademy/wonder-blocks-form@7.5.5
+    - @khanacademy/wonder-blocks-icon@5.3.8
+    - @khanacademy/wonder-blocks-modal@8.5.16
+    - @khanacademy/wonder-blocks-styles@0.2.39
+
+## 1.0.0
+
+### Major Changes
+
+- 76f6e41: Date picker bugfixes: change dateFormat to string formats only, adjust inline padding, remove default width, fix key handling so Escape will only close date picker overlay and not a parent modal
+
+### Minor Changes
+
+- 9fd7228: Adjusts input validation for text-based date formats, improves focus management of next/previous month buttons
+
+## 0.1.3
+
+### Patch Changes
+
+- 12e04c3: Update component documentation for the `disabled` props to include details about `aria-disabled` being set internally to keep an element focusable while in a disabled state
+- Updated dependencies [12e04c3]
+    - @khanacademy/wonder-blocks-form@7.5.4
+    - @khanacademy/wonder-blocks-modal@8.5.15
+
+## 0.1.2
+
+### Patch Changes
+
+- 0cce8bf: Adds fixes for localized DatePicker inputs, which were hard-coded to English. Improves keyboard accessibility and validation for a variety of date formats.
+
+## 0.1.1
+
+### Patch Changes
+
+- Updated dependencies [8bb7ada]
+    - @khanacademy/wonder-blocks-tokens@15.0.0
+    - @khanacademy/wonder-blocks-form@7.5.3
+    - @khanacademy/wonder-blocks-icon@5.3.7
+    - @khanacademy/wonder-blocks-modal@8.5.14
+    - @khanacademy/wonder-blocks-styles@0.2.38
+
+## 0.1.0
+
+### Minor Changes
+
+- d6ae5fb: Add new Date Picker package and related dev settings
+
+### Patch Changes
+
+- 07c38ec: Finalizes support for DatePicker Locales
+- Updated dependencies [d6ae5fb]
+    - @khanacademy/wonder-blocks-core@12.4.3
+    - @khanacademy/wonder-blocks-form@7.5.2
+    - @khanacademy/wonder-blocks-icon@5.3.6
+    - @khanacademy/wonder-blocks-modal@8.5.13
+    - @khanacademy/wonder-blocks-styles@0.2.37
+    - @khanacademy/wonder-blocks-tokens@14.1.3

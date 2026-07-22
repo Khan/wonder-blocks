@@ -1,9 +1,11 @@
 import * as React from "react";
+import Plus from "@phosphor-icons/core/regular/plus.svg";
 import {MemoryRouter} from "react-router-dom";
 import {CompatRouter, Route, Routes} from "react-router-dom-v5-compat";
 import {render, screen, waitFor} from "@testing-library/react";
 import {userEvent} from "@testing-library/user-event";
 
+import {Icon, PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import Button from "../button";
 
 describe("Button", () => {
@@ -17,7 +19,10 @@ describe("Button", () => {
     });
 
     afterAll(() => {
-        window.location = location;
+        // The DOM types treat `window.location` as non-reassignable, so cast
+        // the saved value to restore it (a targeted cast rather than an
+        // `@ts-expect-error` that would suppress the whole line).
+        window.location = location as any;
     });
 
     describe("attributes", () => {
@@ -67,13 +72,17 @@ describe("Button", () => {
 
         test("allow other explicit roles", () => {
             // Arrange
-            render(<Button role="tab">Tab</Button>);
+            render(
+                <Button role="treeitem" aria-selected="false">
+                    Tree Item
+                </Button>,
+            );
 
             // Act
-            const tab = screen.getByRole("tab");
+            const treeItem = screen.getByRole("treeitem");
 
             // Assert
-            expect(tab).toHaveAttribute("role");
+            expect(treeItem).toHaveAttribute("role");
         });
     });
 
@@ -135,6 +144,21 @@ describe("Button", () => {
                 await userEvent.unhover(button);
             },
             description: "calls onMouseLeave handler when button is unhovered",
+        },
+        {
+            eventName: "onFocus",
+            userAction: async (button: HTMLElement) => {
+                await userEvent.click(button);
+            },
+            description: "calls onFocus handler when button receives focus",
+        },
+        {
+            eventName: "onBlur",
+            userAction: async (button: HTMLElement) => {
+                await userEvent.click(button);
+                await userEvent.tab();
+            },
+            description: "calls onBlur handler when button loses focus",
         },
     ])("$description", async ({eventName, userAction}) => {
         // Arrange
@@ -744,6 +768,125 @@ describe("Button", () => {
             });
             await waitFor(() => {
                 expect(window.location.assign).toHaveBeenCalledWith("/foo");
+            });
+        });
+    });
+
+    describe("Accessibility", () => {
+        describe("Icons", () => {
+            describe("With Icon components", () => {
+                it("should include the accessible name of the start and end icons in the accessible name of the button", () => {
+                    // Arrange
+                    // Act
+                    render(
+                        <Button
+                            startIcon={
+                                <Icon>
+                                    <img src="icon.svg" alt="Start icon" />
+                                </Icon>
+                            }
+                            endIcon={
+                                <Icon>
+                                    <img src="icon.svg" alt="End icon" />
+                                </Icon>
+                            }
+                        >
+                            Label
+                        </Button>,
+                    );
+
+                    // Assert
+                    expect(screen.getByRole("button")).toHaveAccessibleName(
+                        "Start icon Label End icon",
+                    );
+                });
+
+                it("should not include image roles in the button if the icons are marked as decorative only", () => {
+                    // Arrange
+                    // Act
+                    render(
+                        <Button
+                            startIcon={
+                                <Icon>
+                                    <img src="icon.svg" alt="" />
+                                </Icon>
+                            }
+                            endIcon={
+                                <Icon>
+                                    <img src="icon.svg" alt="" />
+                                </Icon>
+                            }
+                        >
+                            Label
+                        </Button>,
+                    );
+
+                    // Assert
+                    expect(screen.queryByRole("img")).not.toBeInTheDocument();
+                });
+            });
+
+            describe("With PhosphorIcon components", () => {
+                it("should include the accessible name of the start and end icons in the accessible name of the button", () => {
+                    // Arrange
+                    // Act
+                    render(
+                        <Button
+                            startIcon={
+                                <PhosphorIcon
+                                    icon={Plus}
+                                    aria-label="Start icon"
+                                    role="img"
+                                />
+                            }
+                            endIcon={
+                                <PhosphorIcon
+                                    icon={Plus}
+                                    aria-label="End icon"
+                                    role="img"
+                                />
+                            }
+                        >
+                            Label
+                        </Button>,
+                    );
+
+                    // Assert
+                    expect(screen.getByRole("button")).toHaveAccessibleName(
+                        "Start icon Label End icon",
+                    );
+                });
+
+                it("should not include image roles in the button if the icons are not marked with an accessible name", () => {
+                    // Arrange
+                    // Act
+                    render(
+                        <Button
+                            startIcon={<PhosphorIcon icon={Plus} />}
+                            endIcon={<PhosphorIcon icon={Plus} />}
+                        >
+                            Label
+                        </Button>,
+                    );
+
+                    // Assert
+                    expect(screen.queryByRole("img")).not.toBeInTheDocument();
+                });
+            });
+
+            describe("With phosphor icon asset", () => {
+                it("should not include image roles in the button if a phosphor icon asset is used directly", () => {
+                    // Arrange
+                    // Act
+                    render(
+                        <Button startIcon={Plus} endIcon={Plus}>
+                            Label
+                        </Button>,
+                    );
+
+                    // Assert
+                    expect(screen.queryByRole("img")).not.toBeInTheDocument();
+                });
             });
         });
     });

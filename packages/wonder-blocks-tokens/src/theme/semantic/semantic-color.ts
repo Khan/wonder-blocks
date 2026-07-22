@@ -1,10 +1,14 @@
+/* eslint-disable max-lines */
 // This import is valid as this is the only place in the codebase where we
 // should import/reference primitive colors.
 /* eslint-disable import/no-deprecated */
 import {color} from "../../tokens/color";
 // NOTE: This import is only to provide backwards compatibility with some
 // colors that don't exist in the OG primitives.
-import {color as thunderBlocksColor} from "./internal/primitive-color-thunderblocks";
+import {
+    graphicsPalette,
+    color as thunderBlocksColor,
+} from "./internal/primitive-color-thunderblocks";
 
 const transparent = "transparent";
 
@@ -51,7 +55,7 @@ const core = {
         base: {
             subtle: color.offWhite,
             default: color.white,
-            strong: color.fadedBlue16,
+            strong: color.darkBlue,
         },
         instructive: {
             subtle: color.fadedBlue8,
@@ -93,9 +97,9 @@ const core = {
      */
     foreground: {
         instructive: {
-            subtle: color.blue,
-            default: color.activeBlue,
-            strong: color.offBlack,
+            subtle: color.fadedBlue,
+            default: color.blue,
+            strong: color.activeBlue,
         },
         neutral: {
             subtle: color.fadedOffBlack64,
@@ -103,19 +107,19 @@ const core = {
             strong: color.offBlack,
         },
         critical: {
-            subtle: color.red,
-            default: color.activeRed,
-            strong: color.offBlack,
+            subtle: color.fadedRed,
+            default: color.red,
+            strong: color.activeRed,
         },
         success: {
-            subtle: color.green,
-            default: color.activeGreen,
-            strong: color.offBlack,
+            subtle: color.fadedGreen24,
+            default: color.green,
+            strong: color.activeGreen,
         },
         warning: {
-            subtle: color.gold,
-            default: color.activeGold,
-            strong: color.offBlack,
+            subtle: color.fadedGold24,
+            default: color.gold,
+            strong: color.activeGold,
         },
         disabled: {
             subtle: color.fadedOffBlack16,
@@ -131,6 +135,10 @@ const core = {
             low: transparentShadowColor,
             mid: transparentShadowColor,
             high: transparentShadowColor,
+            color: {
+                subtle: color.blue_alpha20,
+                strong: color.offBlack16,
+            },
         },
         chonky: {
             instructive: {
@@ -142,6 +150,10 @@ const core = {
                 default: color.fadedOffBlack50,
                 strong: color.offBlack,
             },
+            disabled: {
+                subtle: transparent,
+                default: color.fadedOffBlack32,
+            },
         },
     },
 };
@@ -152,6 +164,182 @@ const sharedFeedbackStrongTokens = {
     text: core.foreground.knockout.default,
 };
 
+/**
+ * Graphics tokens are used for illustrative and decorative elements such as
+ * character art, gems, streaks, progress indicators, role badges, and
+ * external brand colors.
+ */
+const graphics = {
+    characters: {
+        flesh: {
+            blue: {
+                background: {
+                    subtle: graphicsPalette.blue_40,
+                    default: graphicsPalette.blue_30,
+                    strong: graphicsPalette.blue_20,
+                },
+                border: {
+                    subtle: graphicsPalette.blue_40,
+                    default: graphicsPalette.blue_20,
+                    strong: graphicsPalette.blue_10,
+                },
+            },
+            cyan: {
+                background: {
+                    subtle: graphicsPalette.cyan_40,
+                    default: graphicsPalette.cyan_30,
+                    strong: graphicsPalette.cyan_20,
+                },
+                border: {
+                    subtle: graphicsPalette.cyan_40,
+                    default: graphicsPalette.cyan_20,
+                    strong: graphicsPalette.cyan_10,
+                },
+            },
+            green: {
+                background: {
+                    subtle: graphicsPalette.green_40,
+                    default: graphicsPalette.green_30,
+                    strong: graphicsPalette.green_20,
+                },
+                border: {
+                    subtle: graphicsPalette.green_40,
+                    default: graphicsPalette.green_20,
+                    strong: graphicsPalette.green_10,
+                },
+            },
+            magenta: {
+                background: {
+                    subtle: graphicsPalette.magenta_40,
+                    default: graphicsPalette.magenta_30,
+                    strong: graphicsPalette.magenta_20,
+                },
+                border: {
+                    subtle: graphicsPalette.magenta_40,
+                    default: graphicsPalette.magenta_20,
+                    strong: graphicsPalette.magenta_10,
+                },
+            },
+            orange: {
+                background: {
+                    subtle: graphicsPalette.orange_40,
+                    default: graphicsPalette.orange_30,
+                    strong: graphicsPalette.orange_20,
+                },
+                border: {
+                    subtle: graphicsPalette.orange_40,
+                    default: graphicsPalette.orange_20,
+                    strong: graphicsPalette.orange_10,
+                },
+            },
+        },
+    },
+    /**
+     * External brand colors are expected to be hardcoded since they are not part
+     * of the design system.
+     */
+    externalBrands: {
+        google: {
+            red: "#EA4335",
+            yellow: "#FBBC05",
+            green: "#34A853",
+            blue: "#4285F4",
+        },
+        facebook: {
+            blue: "#1877F2",
+            white: "#FFFFFF",
+        },
+        microsoft: {
+            red: "#F35325",
+            green: "#81BC06",
+            blue: "#05A6F0",
+            yellow: "#FFBA08",
+        },
+        apple: {
+            brand: "#000000",
+        },
+    },
+    gems: {
+        background: {
+            subtle: graphicsPalette.magenta_80,
+            default: graphicsPalette.magenta_70,
+        },
+        foreground: {
+            subtle: graphicsPalette.magenta_60,
+            default: graphicsPalette.magenta_30,
+            strong: graphicsPalette.magenta_20,
+        },
+    },
+    progress: {
+        attempted: {
+            background: {
+                subtle: graphicsPalette.yellow_90,
+                default: graphicsPalette.yellow_70,
+            },
+            foreground: {
+                subtle: graphicsPalette.yellow_50,
+                strong: graphicsPalette.yellow_10,
+            },
+        },
+        notStarted: {
+            foreground: {
+                subtle: graphicsPalette.gray_50,
+                strong: graphicsPalette.gray_10,
+            },
+        },
+        complete: {
+            background: {
+                subtle: graphicsPalette.green_90,
+                default: graphicsPalette.green_70,
+            },
+            foreground: {
+                strong: graphicsPalette.green_10,
+            },
+        },
+    },
+    role: {
+        all: {
+            current: {
+                background: graphicsPalette.blue_90,
+                foreground: graphicsPalette.blue_80,
+            },
+        },
+        administrator: {
+            background: graphicsPalette.cyan_70,
+            foreground: graphicsPalette.cyan_40,
+        },
+        learner: {
+            background: graphicsPalette.orange_60,
+            foreground: graphicsPalette.orange_30,
+        },
+        parent: {
+            background: graphicsPalette.green_70,
+            foreground: graphicsPalette.green_40,
+        },
+        teacher: {
+            background: graphicsPalette.yellow_50,
+            foreground: graphicsPalette.yellow_30,
+        },
+    },
+    streaks: {
+        background: {
+            subtle: graphicsPalette.orange_80,
+            default: graphicsPalette.orange_70,
+        },
+        foreground: {
+            subtle: graphicsPalette.orange_60,
+            default: graphicsPalette.orange_30,
+            strong: graphicsPalette.orange_20,
+        },
+    },
+    neutral: {
+        background: {
+            subtle: graphicsPalette.white_100,
+            default: graphicsPalette.blue_90,
+        },
+    },
+};
+
 export const semanticColor = {
     /**
      * Our core colors are used for the most common elements in our UI. They
@@ -159,6 +347,12 @@ export const semanticColor = {
      * consistently across all components.
      */
     core,
+    /**
+     * Graphics tokens are used for illustrative and decorative elements such
+     * as character art, gems, streaks, progress indicators, role badges, and
+     * external brand colors.
+     */
+    graphics,
     /**
      * Learning tokens are used for elements that are related to learning
      * experiences, such as practice and mastery, among others.
@@ -212,6 +406,37 @@ export const semanticColor = {
                     default: thunderBlocksColor.green_60,
                 },
             },
+            // TODO(WB-2380): Remove in favour of the flesh tokens as part of
+            // graphics tier
+            characters: {
+                flesh: {
+                    blue: {
+                        subtle: thunderBlocksColor.blue_40,
+                        default: thunderBlocksColor.blue_30,
+                        strong: thunderBlocksColor.blue_20,
+                    },
+                    cyan: {
+                        subtle: thunderBlocksColor.cyan_40,
+                        default: thunderBlocksColor.cyan_30,
+                        strong: thunderBlocksColor.cyan_20,
+                    },
+                    green: {
+                        subtle: thunderBlocksColor.green_40,
+                        default: thunderBlocksColor.green_30,
+                        strong: thunderBlocksColor.green_20,
+                    },
+                    magenta: {
+                        subtle: thunderBlocksColor.magenta_40,
+                        default: thunderBlocksColor.magenta_30,
+                        strong: thunderBlocksColor.magenta_20,
+                    },
+                    orange: {
+                        subtle: thunderBlocksColor.orange_40,
+                        default: thunderBlocksColor.orange_30,
+                        strong: thunderBlocksColor.orange_20,
+                    },
+                },
+            },
         },
         border: {
             gems: {
@@ -228,6 +453,37 @@ export const semanticColor = {
                 subtle: thunderBlocksColor.cyan_80,
                 default: thunderBlocksColor.cyan_60,
                 strong: thunderBlocksColor.cyan_30,
+            },
+            // TODO(WB-2380): Remove in favour of the flesh tokens as part of
+            // graphics tier
+            characters: {
+                flesh: {
+                    blue: {
+                        subtle: thunderBlocksColor.blue_40,
+                        default: thunderBlocksColor.blue_20,
+                        strong: thunderBlocksColor.blue_10,
+                    },
+                    cyan: {
+                        subtle: thunderBlocksColor.cyan_40,
+                        default: thunderBlocksColor.cyan_20,
+                        strong: thunderBlocksColor.cyan_10,
+                    },
+                    green: {
+                        subtle: thunderBlocksColor.green_40,
+                        default: thunderBlocksColor.green_20,
+                        strong: thunderBlocksColor.green_10,
+                    },
+                    magenta: {
+                        subtle: thunderBlocksColor.magenta_40,
+                        default: thunderBlocksColor.magenta_20,
+                        strong: thunderBlocksColor.magenta_10,
+                    },
+                    orange: {
+                        subtle: thunderBlocksColor.orange_40,
+                        default: thunderBlocksColor.orange_20,
+                        strong: thunderBlocksColor.orange_10,
+                    },
+                },
             },
         },
         foreground: {
@@ -270,6 +526,27 @@ export const semanticColor = {
                 },
                 complete: {
                     default: thunderBlocksColor.green_30,
+                },
+            },
+        },
+        // TODO(WB-2380): Remove in favour of the flesh tokens as part of
+        // graphics tier
+        characters: {
+            flesh: {
+                blue: {
+                    default: thunderBlocksColor.blue_30,
+                },
+                cyan: {
+                    default: thunderBlocksColor.cyan_30,
+                },
+                green: {
+                    default: thunderBlocksColor.green_30,
+                },
+                magenta: {
+                    default: thunderBlocksColor.magenta_30,
+                },
+                orange: {
+                    default: thunderBlocksColor.orange_30,
                 },
             },
         },
@@ -346,34 +623,34 @@ export const semanticColor = {
                 default: {
                     border: core.border.neutral.default,
                     background: core.transparent,
-                    foreground: core.foreground.instructive.subtle,
+                    foreground: core.foreground.instructive.default,
                 },
                 hover: {
                     border: core.border.instructive.default,
                     background: core.transparent,
-                    foreground: core.foreground.instructive.subtle,
+                    foreground: core.foreground.instructive.default,
                 },
                 press: {
                     border: core.border.instructive.strong,
                     background: core.background.instructive.subtle,
-                    foreground: core.foreground.instructive.default,
+                    foreground: core.foreground.instructive.strong,
                 },
             },
             destructive: {
                 default: {
                     border: core.border.neutral.default,
                     background: core.transparent,
-                    foreground: core.foreground.critical.subtle,
+                    foreground: core.foreground.critical.default,
                 },
                 hover: {
                     border: core.border.critical.default,
                     background: core.transparent,
-                    foreground: core.foreground.critical.subtle,
+                    foreground: core.foreground.critical.default,
                 },
                 press: {
                     border: core.border.critical.strong,
                     background: core.background.critical.subtle,
-                    foreground: core.foreground.critical.default,
+                    foreground: core.foreground.critical.strong,
                 },
             },
             neutral: {
@@ -406,17 +683,17 @@ export const semanticColor = {
                 default: {
                     border: core.transparent,
                     background: core.transparent,
-                    foreground: core.foreground.instructive.subtle,
+                    foreground: core.foreground.instructive.default,
                 },
                 hover: {
                     border: core.border.instructive.default,
                     background: core.transparent,
-                    foreground: core.foreground.instructive.subtle,
+                    foreground: core.foreground.instructive.default,
                 },
                 press: {
                     border: core.border.instructive.strong,
                     background: core.transparent,
-                    foreground: core.foreground.instructive.default,
+                    foreground: core.foreground.instructive.strong,
                 },
             },
 
@@ -424,17 +701,17 @@ export const semanticColor = {
                 default: {
                     border: core.transparent,
                     background: core.transparent,
-                    foreground: core.foreground.critical.subtle,
+                    foreground: core.foreground.critical.default,
                 },
                 hover: {
                     border: core.border.critical.default,
                     background: core.transparent,
-                    foreground: core.foreground.critical.subtle,
+                    foreground: core.foreground.critical.default,
                 },
                 press: {
                     border: core.border.critical.strong,
                     background: core.transparent,
-                    foreground: core.foreground.critical.default,
+                    foreground: core.foreground.critical.strong,
                 },
             },
             neutral: {
@@ -517,14 +794,14 @@ export const semanticColor = {
                 secondary: {
                     rest: core.foreground.instructive.default,
                     hover: core.foreground.instructive.default,
-                    press: core.foreground.instructive.default,
-                    selected: core.foreground.instructive.default,
+                    press: core.foreground.instructive.strong,
+                    selected: core.foreground.instructive.strong,
                 },
                 tertiary: {
                     rest: core.foreground.instructive.default,
                     hover: core.foreground.instructive.default,
-                    press: core.foreground.instructive.default,
-                    selected: core.foreground.instructive.default,
+                    press: core.foreground.instructive.strong,
+                    selected: core.foreground.instructive.strong,
                 },
             },
             shadow: {
@@ -647,9 +924,9 @@ export const semanticColor = {
                 tertiary: core.foreground.disabled.default,
             },
             shadow: {
-                primary: core.shadow.chonky.neutral.subtle,
-                secondary: core.shadow.chonky.neutral.subtle,
-                tertiary: core.transparent,
+                primary: core.shadow.chonky.disabled.default,
+                secondary: core.shadow.chonky.disabled.default,
+                tertiary: core.shadow.chonky.disabled.subtle,
             },
         },
     },
@@ -693,19 +970,19 @@ export const semanticColor = {
     status: {
         critical: {
             background: core.background.critical.subtle,
-            foreground: core.foreground.critical.subtle,
+            foreground: core.foreground.critical.default,
         },
         warning: {
             background: core.background.warning.subtle,
-            foreground: core.foreground.warning.subtle,
+            foreground: core.foreground.warning.default,
         },
         success: {
             background: core.background.success.subtle,
-            foreground: core.foreground.success.subtle,
+            foreground: core.foreground.success.default,
         },
         notice: {
             background: core.background.instructive.subtle,
-            foreground: core.foreground.instructive.subtle,
+            foreground: core.foreground.instructive.default,
         },
         neutral: {
             background: core.background.neutral.subtle,
@@ -719,9 +996,9 @@ export const semanticColor = {
     },
 
     link: {
-        rest: core.foreground.instructive.subtle,
-        hover: core.foreground.instructive.subtle,
-        press: core.foreground.instructive.default,
+        rest: core.foreground.instructive.default,
+        hover: core.foreground.instructive.default,
+        press: core.foreground.instructive.strong,
         disabled: core.foreground.disabled.default,
     },
     /**
@@ -747,35 +1024,35 @@ export const semanticColor = {
                 background: core.background.instructive.subtle,
                 border: core.border.instructive.subtle,
                 icon: core.foreground.instructive.default,
-                text: core.foreground.instructive.strong,
+                text: core.foreground.neutral.strong,
             },
             strong: {
                 ...sharedFeedbackStrongTokens,
-                icon: core.foreground.instructive.subtle,
+                icon: core.foreground.instructive.default,
             },
         },
         success: {
             subtle: {
                 background: core.background.success.subtle,
                 border: core.border.success.subtle,
-                icon: core.foreground.success.default,
-                text: core.foreground.success.strong,
+                icon: core.foreground.success.strong,
+                text: core.foreground.neutral.strong,
             },
             strong: {
                 ...sharedFeedbackStrongTokens,
-                icon: core.foreground.success.subtle,
+                icon: core.foreground.success.default,
             },
         },
         warning: {
             subtle: {
                 background: core.background.warning.subtle,
                 border: core.border.warning.default,
-                icon: core.foreground.warning.default,
-                text: core.foreground.warning.strong,
+                icon: core.foreground.warning.strong,
+                text: core.foreground.neutral.strong,
             },
             strong: {
                 ...sharedFeedbackStrongTokens,
-                icon: core.foreground.warning.subtle,
+                icon: core.foreground.warning.default,
             },
         },
         critical: {
@@ -783,11 +1060,11 @@ export const semanticColor = {
                 background: core.background.critical.subtle,
                 border: core.border.critical.subtle,
                 icon: core.foreground.critical.default,
-                text: core.foreground.critical.strong,
+                text: core.foreground.neutral.strong,
             },
             strong: {
                 ...sharedFeedbackStrongTokens,
-                icon: core.foreground.critical.subtle,
+                icon: core.foreground.critical.default,
             },
         },
         neutral: {

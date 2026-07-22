@@ -6,11 +6,12 @@ import * as React from "react";
 import {Popper} from "react-popper";
 import type {Modifier, PopperChildrenProps} from "react-popper";
 
+import {remToPx, sizing, tokenValue} from "@khanacademy/wonder-blocks-tokens";
 import {UnreachableCaseError} from "@khanacademy/wonder-stuff-core";
+
 import type {ModifierArguments, RootBoundary} from "@popperjs/core";
 import type {FlipModifier} from "@popperjs/core/lib/modifiers/flip";
 import type {PreventOverflowModifier} from "@popperjs/core/lib/modifiers/preventOverflow";
-import {spacing} from "@khanacademy/wonder-blocks-tokens";
 import type {
     Placement,
     PopperElementProps,
@@ -133,6 +134,8 @@ const smallViewportModifier: SmallViewportModifier = {
     fn: _modifyPosition,
 };
 
+const VIEWPORT_PADDING = parseInt(remToPx(tokenValue(sizing.size_120)));
+
 /**
  * A component that wraps react-popper's Popper component to provide a
  * consistent interface for positioning floating elements.
@@ -140,7 +143,7 @@ const smallViewportModifier: SmallViewportModifier = {
 export default class TooltipPopper extends React.Component<Props, State> {
     static defaultProps: DefaultProps = {
         rootBoundary: "viewport",
-        viewportPadding: spacing.small_12,
+        viewportPadding: VIEWPORT_PADDING,
     };
 
     constructor(props: Props) {

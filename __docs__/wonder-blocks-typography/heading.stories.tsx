@@ -7,17 +7,9 @@ import ComponentInfo from "../components/component-info";
 import TypographyArgTypes from "./typography.argtypes";
 
 import {View} from "@khanacademy/wonder-blocks-core";
-import {
-    Heading,
-    HeadingLarge,
-    HeadingMedium,
-    HeadingSmall,
-    HeadingXSmall,
-    Tagline,
-    Title,
-} from "@khanacademy/wonder-blocks-typography";
-import {font, spacing, sizing} from "@khanacademy/wonder-blocks-tokens";
-import {themeModes} from "../../.storybook/modes";
+import {Heading} from "@khanacademy/wonder-blocks-typography";
+import {allThemeModes} from "../../.storybook/modes";
+import {font, sizing} from "@khanacademy/wonder-blocks-tokens";
 
 /**
 New component for Thunderblocks headings.
@@ -119,7 +111,7 @@ export const Default: StoryObj<typeof Heading> = {
 export const SizesAndWeights = {
     parameters: {
         chromatic: {
-            modes: themeModes,
+            modes: allThemeModes,
         },
     },
     render: () => (
@@ -184,49 +176,6 @@ export const SizesAndWeights = {
 };
 
 /**
- * A table showing the conversion from Classic Typography components to Heading.
- */
-export const ClassicConversionGuide = {
-    parameters: {
-        chromatic: {
-            // Disabling because all typography components are covered together
-            // in the Typography stories
-            disableSnapshot: true,
-        },
-    },
-    render: () => (
-        <View style={[styles.grid, styles.conversionGuide]}>
-            <View style={styles.row}>
-                <HeadingXSmall>HeadingXSmall</HeadingXSmall>
-                <Heading size="small">Heading size=small</Heading>
-            </View>
-            <View style={styles.row}>
-                <HeadingSmall>HeadingSmall</HeadingSmall>
-                <Heading size="medium">Heading size=medium</Heading>
-            </View>
-            <View style={styles.row}>
-                <HeadingMedium>HeadingMedium</HeadingMedium>
-                <Heading size="large">Heading size=large</Heading>
-            </View>
-            <View style={styles.row}>
-                <Tagline>Tagline</Tagline>
-                <Heading size="large" weight="medium">
-                    Heading size=large, weight=medium
-                </Heading>
-            </View>
-            <View style={styles.row}>
-                <HeadingLarge>HeadingLarge</HeadingLarge>
-                <Heading size="xlarge">Heading size=xlarge</Heading>
-            </View>
-            <View style={styles.row}>
-                <Title>Title</Title>
-                <Heading size="xxlarge">Heading size=xxlarge</Heading>
-            </View>
-        </View>
-    ),
-};
-
-/**
  * An example of overriding `Heading` component's styling.
  */
 export const CustomStyling = {
@@ -249,12 +198,8 @@ const styles = StyleSheet.create({
     grid: {
         display: "grid",
         gridTemplateColumns: "max-content max-content max-content",
-        rowGap: spacing.medium_16,
-        columnGap: spacing.large_24,
-    },
-    conversionGuide: {
-        justifyContent: "flex-start",
-        gridTemplateColumns: "max-content max-content",
+        rowGap: sizing.size_160,
+        columnGap: sizing.size_240,
     },
     row: {
         display: "contents",
@@ -263,6 +208,6 @@ const styles = StyleSheet.create({
         fontSize: sizing.size_320,
         fontWeight: font.weight.semi,
         lineHeight: sizing.size_400,
-        marginTop: sizing.size_200,
+        marginBlockStart: sizing.size_200,
     },
 });

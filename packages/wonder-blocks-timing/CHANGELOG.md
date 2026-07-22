@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-timing
 
+## 7.1.0
+
+### Minor Changes
+
+- f2b8006: Add useAnimationFrame and useActionScheduler hooks to wonder-blocks-timing
+
 ## 7.0.4
 
 ### Patch Changes

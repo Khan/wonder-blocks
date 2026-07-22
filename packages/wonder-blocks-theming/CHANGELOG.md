@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-theming
 
+## 4.1.0
+
+### Minor Changes
+
+- 27a211d: Add support for SYL Dark theme
+
 ## 4.0.2
 
 ### Patch Changes

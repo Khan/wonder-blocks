@@ -1,12 +1,15 @@
-import {Meta, ColorPalette, ColorItem, Canvas} from "@storybook/addon-docs/blocks";
+import {
+    Meta,
+    ColorPalette,
+    ColorItem,
+    Canvas,
+} from "@storybook/addon-docs/blocks";
 import {StyleSheet} from "aphrodite";
 
 import Banner from "@khanacademy/wonder-blocks-banner";
 import {View} from "@khanacademy/wonder-blocks-core";
-import Link from "@khanacademy/wonder-blocks-link";
-import {semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
-import {LabelLarge} from "@khanacademy/wonder-blocks-typography";
-import * as SemanticColorGroups from "./wonder-blocks-tokens/semantic-color-groups.stories"
+import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
+import * as SemanticColorGroups from "./wonder-blocks-tokens/semantic-color-groups.stories";
 
 import {ColorGroup, ActionColorGroup} from "./components/color";
 
@@ -36,7 +39,7 @@ export const styles = StyleSheet.create({
     },
 
     banner: {
-        marginBottom: spacing.xLarge_32,
+        marginBottom: sizing.size_320,
     },
 
 });
@@ -64,7 +67,7 @@ how to use these colors depending on the context.
                 // link doesn't work correctly with iframes.
                 node: (
                     <a
-                        href="/?path=/docs/packages-tokens-semantic-color--docs"
+                        href="./?path=/docs/packages-tokens-semantic-color--docs"
                         target="_blank"
                     >
                         Semantic Color tokens
@@ -124,6 +127,15 @@ important for ensuring that the text and icons are legible and accessible.
 
 <Canvas of={SemanticColorGroups.CoreForeground} layout="fullscreen" />
 
+#### Shadow
+
+Shadow colors are used for box shadows and other shadow effects on elements.
+
+- `transparent` tokens provide elevation shadows at different intensities (`low`, `mid`, `high`) and tinted color variants (`color.strong`, `color.subtle`).
+- `chonky` tokens are used for bold, decorative shadow effects on interactive elements like buttons.
+
+<Canvas of={SemanticColorGroups.CoreShadow} layout="fullscreen" />
+
 ### Feedback
 
 For elements where color can add meaning to the state of the system or an item
@@ -147,7 +159,6 @@ and include an icon or label to provide more context and clarity."
         },
     ]}
 />
-
 
 #### Info
 
@@ -208,7 +219,6 @@ in the UI.
 
 <Canvas of={SemanticColorGroups.LearningBackground} layout="fullscreen" />
 
-
 #### Foreground
 
 <Canvas of={SemanticColorGroups.LearningForeground} layout="fullscreen" />
@@ -216,6 +226,48 @@ in the UI.
 #### Shadow
 
 <Canvas of={SemanticColorGroups.LearningShadow} layout="fullscreen" />
+
+
+### Graphics
+
+Graphics tokens are used for illustrative and decorative elements such as
+character art, gems, streaks, roles, and more.
+
+#### Characters
+
+<Canvas
+    of={SemanticColorGroups.GraphicsCharactersFlesh}
+    layout="fullscreen"
+/>
+
+#### Gems
+
+<Canvas of={SemanticColorGroups.GraphicsGems} layout="fullscreen" />
+
+#### Streaks
+
+<Canvas of={SemanticColorGroups.GraphicsStreaks} layout="fullscreen" />
+
+#### Progress
+
+<Canvas of={SemanticColorGroups.GraphicsProgress} layout="fullscreen" />
+
+#### Role
+
+<Canvas of={SemanticColorGroups.GraphicsRole} layout="fullscreen" />
+
+#### Neutral
+
+Neutral background colors used for illustrative surfaces.
+
+<Canvas of={SemanticColorGroups.GraphicsNeutral} layout="fullscreen" />
+
+#### External brands
+
+Colors that reflect external brand palettes, used exclusively when representing
+those brands (e.g. third-party sign-in buttons).
+
+<Canvas of={SemanticColorGroups.GraphicsExternalBrands} layout="fullscreen" />
 
 ### Khanmigo
 
@@ -229,6 +281,25 @@ it.
 Standalone colors used only for communicating mastery.
 
 <Canvas of={SemanticColorGroups.Mastery} layout="fullscreen" />
+
+## Getting raw token values
+
+Semantic colors are exported as CSS `var(--...)` references so the active theme
+can switch values through the CSS cascade. This is great for styling, but less
+useful when something expects a concrete hex value (e.g. a third-party library).
+Use the [tokenValue](./?path=/docs/packages-tokens-utilities-tokenvalue--docs)
+utility to resolve a token to its computed raw value at runtime.
+
+<Banner
+    kind="info"
+    text={
+        <>
+            Use <code>tokenValue</code> only for edge cases where a concrete raw
+            value is required. Favour using tokens directly wherever possible,
+            since resolving raw values can break theming if overused.
+        </>
+    }
+/>
 
 ## Accessibility
 

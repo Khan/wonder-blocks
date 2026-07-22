@@ -1,5 +1,7 @@
+// Raw <button> elements here are minimal test fixtures — using WB Button in
+// unit tests would add unnecessary component coupling and the tests assert
+// behavior, not design system compliance.
 /* eslint-disable testing-library/prefer-user-event */
-/* eslint-disable max-lines */
 import * as React from "react";
 import {render, screen, fireEvent, waitFor} from "@testing-library/react";
 import {MemoryRouter} from "react-router-dom";

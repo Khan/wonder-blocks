@@ -11,6 +11,7 @@ import {TabPanel} from "./tab-panel";
 import {Tab} from "./tab";
 import {Tablist} from "./tablist";
 import {useTabIndicator} from "../hooks/use-tab-indicator";
+import {AriaLabelOrAriaLabelledby} from "./types";
 
 export type TabRenderProps = Omit<PropsFor<typeof Tab>, "children">;
 
@@ -47,30 +48,13 @@ export type TabItem = AriaProps & {
      * - The associated tab panel will have a testId formatted as `${testId}-panel`
      */
     testId?: string;
+    /**
+     * Optional icon to display in the tab. Should be a PhosphorIcon or Icon component.
+     */
+    icon?: React.ReactElement;
 };
 
-/**
- * Type to help ensure aria-label or aria-labelledby is set.
- */
-type AriaLabelOrAriaLabelledby =
-    | {
-          /**
-           * If there is no visible label for the tabs, set aria-label to a
-           * label describing the tabs.
-           */
-          "aria-label": string;
-          "aria-labelledby"?: never;
-      }
-    | {
-          /**
-           * If the tabs have a visible label, set aria-labelledby to a value
-           * that refers to the labelling element.
-           */
-          "aria-labelledby": string;
-          "aria-label"?: never;
-      };
-
-type Props = {
+export type TabsProps = {
     /**
      * A unique id to use as the base of the ids for the elements within the
      * component. If the `id` prop is not provided, a base unique id will be
@@ -155,6 +139,11 @@ type Props = {
      * Defaults to `false`.
      */
     mountAllPanels?: boolean;
+    /**
+     * Optional ref to the scrollable wrapper element.
+     * This is useful for components that need to detect horizontal overflow.
+     */
+    scrollableElementRef?: React.RefObject<HTMLDivElement>;
 } & AriaLabelOrAriaLabelledby;
 
 /**
@@ -178,9 +167,12 @@ const StyledDiv = addStyle("div");
  * tabs have `role=”tab”` and keyboard users can change tabs using arrow keys.
  * For a tabbed interface where the tabs are links, see the NavigationTabs
  * component.
+ *
+ * For responsive cases where the tabs should switch to a dropdown when there is
+ * not enough horizontal space, use the `ResponsiveTabs` component.
  */
 export const Tabs = React.forwardRef(function Tabs(
-    props: Props,
+    props: TabsProps,
     ref: React.ForwardedRef<HTMLDivElement>,
 ) {
     const {
@@ -195,6 +187,7 @@ export const Tabs = React.forwardRef(function Tabs(
         animated = false,
         styles: stylesProp,
         mountAllPanels = false,
+        scrollableElementRef,
     } = props;
 
     /**
@@ -345,7 +338,7 @@ export const Tabs = React.forwardRef(function Tabs(
             style={[styles.tabs, stylesProp?.root]}
         >
             {/* Wrap the tablist so we can set relative positioning for the tab indicator */}
-            <StyledDiv style={styles.tablistWrapper}>
+            <StyledDiv ref={scrollableElementRef} style={styles.tablistWrapper}>
                 <Tablist
                     aria-label={ariaLabel}
                     aria-labelledby={ariaLabelledby}
@@ -361,6 +354,7 @@ export const Tabs = React.forwardRef(function Tabs(
                             label,
                             panel: _,
                             testId: tabTestId,
+                            icon,
                             ...otherProps // Should only include aria related props
                         } = tab;
 
@@ -370,6 +364,7 @@ export const Tabs = React.forwardRef(function Tabs(
                             id: getTabId(id),
                             testId: tabTestId && getTabId(tabTestId),
                             selected: id === selectedTabId,
+                            icon,
                             "aria-controls": getTabPanelId(id),
                             onClick: () => {
                                 onTabSelected(id);

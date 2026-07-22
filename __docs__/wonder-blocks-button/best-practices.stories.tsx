@@ -15,11 +15,11 @@ const styles = StyleSheet.create({
         height: 16,
     },
     button: {
-        marginRight: 10,
+        marginInlineEnd: 10,
     },
     buttonMinWidth: {
-        marginRight: 10,
-        minWidth: 144,
+        marginInlineEnd: 10,
+        minInlineSize: 144,
     },
 });
 

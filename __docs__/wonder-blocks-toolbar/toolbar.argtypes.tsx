@@ -8,20 +8,21 @@ import magnifyingGlassMinus from "@phosphor-icons/core/regular/magnifying-glass-
 
 import Button from "@khanacademy/wonder-blocks-button";
 import {View} from "@khanacademy/wonder-blocks-core";
+import AriaArgTypes from "../wonder-blocks-core/aria.argtypes";
 import IconButton from "@khanacademy/wonder-blocks-icon-button";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
 import Link from "@khanacademy/wonder-blocks-link";
-import {spacing} from "@khanacademy/wonder-blocks-tokens";
-import {LabelLarge} from "@khanacademy/wonder-blocks-typography";
+import {sizing} from "@khanacademy/wonder-blocks-tokens";
+import {BodyText} from "@khanacademy/wonder-blocks-typography";
 import {actionStyles} from "@khanacademy/wonder-blocks-styles";
 
 const mobile = "@media (max-width: 1023px)";
 
 const styles = StyleSheet.create({
     fillContent: {
-        marginLeft: spacing.small_12,
+        marginInlineStart: sizing.size_120,
         [mobile]: {
-            marginLeft: 0,
+            marginInlineStart: 0,
             width: "100%",
         },
     },
@@ -56,7 +57,7 @@ export const leftContentMappings: Mappings = {
                 icon={magnifyingGlassMinus}
                 kind="tertiary"
             />
-            <Strut size={spacing.medium_16} />
+            <Strut size={16} />
             <IconButton
                 aria-label="Zoom in"
                 icon={magnifyingGlassPlus}
@@ -68,7 +69,7 @@ export const leftContentMappings: Mappings = {
         <View
             style={{
                 flexDirection: "row",
-                gap: spacing.medium_16,
+                gap: sizing.size_160,
                 placeItems: "center",
             }}
         >
@@ -76,9 +77,9 @@ export const leftContentMappings: Mappings = {
                 Exit
             </Button>
             |
-            <LabelLarge>
+            <BodyText weight="bold">
                 Algebra Test<sup>BETA</sup>
-            </LabelLarge>
+            </BodyText>
         </View>
     ),
 };
@@ -97,17 +98,17 @@ export const rightContentMappings: Mappings = {
     ),
     link: (
         <Link href="#exercise">
-            <LabelLarge>Go to exercise</LabelLarge>
+            <BodyText weight="bold">Go to exercise</BodyText>
         </Link>
     ),
     multipleContent: (
         <>
-            <LabelLarge>7 questions</LabelLarge>
-            <Strut size={spacing.medium_16} />
+            <BodyText weight="bold">7 questions</BodyText>
+            <Strut size={16} />
             <Button style={buttonStyle} kind="secondary">
                 Try again
             </Button>
-            <Strut size={spacing.medium_16} />
+            <Strut size={16} />
             <Button style={buttonStyle}>Next exercise</Button>
         </>
     ),
@@ -122,6 +123,7 @@ export const rightContentMappings: Mappings = {
 };
 
 export default {
+    ...AriaArgTypes,
     leftContent: {
         control: {type: "select"},
         options: Object.keys(leftContentMappings) as Array<string>,

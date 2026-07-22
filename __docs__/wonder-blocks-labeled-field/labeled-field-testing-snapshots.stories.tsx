@@ -4,7 +4,7 @@ import {StyleSheet} from "aphrodite";
 import {LabeledField} from "@khanacademy/wonder-blocks-labeled-field";
 import packageConfig from "../../packages/wonder-blocks-labeled-field/package.json";
 import ComponentInfo from "../components/component-info";
-import {themeModes} from "../../.storybook/modes";
+import {allThemeModes} from "../../.storybook/modes";
 import {PropsFor, View} from "@khanacademy/wonder-blocks-core";
 import {ScenariosLayout} from "../components/scenarios-layout";
 import {border, semanticColor} from "@khanacademy/wonder-blocks-tokens";
@@ -16,7 +16,7 @@ import {
 
 export default {
     title: "Packages / LabeledField / Testing / Snapshots / LabeledField",
-    tags: ["!autodocs"],
+    tags: ["!autodocs", "!manifest"],
     parameters: {
         componentSubtitle: (
             <ComponentInfo
@@ -25,7 +25,7 @@ export default {
             />
         ),
         chromatic: {
-            modes: themeModes,
+            modes: allThemeModes,
         },
     },
 } as Meta<typeof LabeledField>;
@@ -343,7 +343,7 @@ const scenarios = [
 export const Scenarios = (args: PropsFor<typeof LabeledField>) => {
     const [textFieldValue, setTextFieldValue] = React.useState("");
     return (
-        <View style={{maxWidth: "475px"}}>
+        <View style={{maxInlineSize: "475px"}}>
             <ScenariosLayout
                 scenarios={scenarios}
                 styles={{root: {alignItems: "stretch"}}}

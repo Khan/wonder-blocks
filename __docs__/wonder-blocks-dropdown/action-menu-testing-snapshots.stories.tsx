@@ -2,7 +2,7 @@ import * as React from "react";
 import type {Meta, StoryObj} from "@storybook/react-vite";
 import {ActionItem, ActionMenu} from "@khanacademy/wonder-blocks-dropdown";
 import {ScenariosLayout} from "../components/scenarios-layout";
-import {themeModes} from "../../.storybook/modes";
+import {allThemeModes} from "../../.storybook/modes";
 import {
     longText,
     longTextWithNoWordBreak,
@@ -13,10 +13,15 @@ export default {
     title: "Packages / Dropdown / Testing / Snapshots / ActionMenu",
     parameters: {
         chromatic: {
-            modes: themeModes,
+            modes: allThemeModes,
         },
     },
-    tags: ["!autodocs"],
+    globals: {
+        backgrounds: {
+            value: "baseSubtle",
+        },
+    },
+    tags: ["!autodocs", "!manifest"],
 } satisfies Meta;
 
 type Story = StoryObj<typeof ActionMenu>;

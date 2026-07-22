@@ -9,7 +9,7 @@ import {Meta} from "@storybook/react-vite";
 import {View} from "@khanacademy/wonder-blocks-core";
 import TokenTable from "../components/token-table";
 import {semanticColor, font} from "@khanacademy/wonder-blocks-tokens";
-import {themeModes} from "../../.storybook/modes";
+import {allThemeModes} from "../../.storybook/modes";
 import ComponentInfo from "../components/component-info";
 import packageConfig from "../../packages/wonder-blocks-tokens/package.json";
 import {Code} from "../components/code";
@@ -20,7 +20,7 @@ import {Code} from "../components/code";
  * We recommend using the WB Typography components to ensure consistent
  * typography across your app. These tokens are provided for advanced use cases
  * and should be used with caution. See
- * [Typography components](../?path=/docs/packages-typography--docs) for more
+ * [Typography components](./?path=/docs/packages-typography--docs) for more
  * details.
  *
  * ## Usage
@@ -55,7 +55,7 @@ export default {
             ),
         },
         chromatic: {
-            modes: themeModes,
+            modes: allThemeModes,
         },
         componentSubtitle: (
             <ComponentInfo
@@ -64,7 +64,10 @@ export default {
             />
         ),
     },
-    tags: ["!dev"],
+    tags: [
+        "!dev",
+        "!manifest", // Remove from manifest in favour of static reference token docs
+    ],
 } as Meta;
 
 const sampleTextUpper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -128,9 +131,6 @@ export const FontFamily = {
  * `font.body.lineHeight.*` token for the line height. As an alternative, the
  * WB `BodyText` component can be used instead, which will apply all the needed
  * font properties by default.
- *
- * **Note:** the legacy font token API will be deprecated in the future (e.g. `font.size.small`) to support
- * both Classic and Thunderblocks with the same theme structure.
  */
 export const BodyFontSize = {
     name: "Font Size (Body)",

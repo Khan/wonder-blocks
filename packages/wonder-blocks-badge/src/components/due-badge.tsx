@@ -89,7 +89,7 @@ const styles = StyleSheet.create({
         backgroundColor: semanticColor.core.background.critical.subtle,
         // Border should be the same as the background
         borderColor: semanticColor.core.background.critical.subtle,
-        color: semanticColor.core.foreground.critical.strong,
+        color: semanticColor.feedback.critical.subtle.text,
     },
     overdueIcon: {
         color: semanticColor.core.foreground.critical.default,

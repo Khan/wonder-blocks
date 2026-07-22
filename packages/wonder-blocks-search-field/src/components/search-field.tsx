@@ -9,11 +9,7 @@ import {View, Id} from "@khanacademy/wonder-blocks-core";
 import IconButton from "@khanacademy/wonder-blocks-icon-button";
 import {TextField} from "@khanacademy/wonder-blocks-form";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
-import {
-    border,
-    semanticColor,
-    spacing,
-} from "@khanacademy/wonder-blocks-tokens";
+import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import type {StyleType, AriaProps} from "@khanacademy/wonder-blocks-core";
 
 import {defaultLabels} from "../util/constants";
@@ -49,6 +45,9 @@ type Props = AriaProps & {
     /**
      * Makes a read-only input field that cannot be focused.
      * Defaults to false.
+     *
+     * Internally, the `aria-disabled` attribute will be set so that the
+     * element remains focusable and will be included in the tab order.
      */
     disabled?: boolean;
     /**
@@ -207,8 +206,11 @@ const SearchField: React.ForwardRefExoticComponent<
                         size="small"
                         color={
                             disabled
-                                ? semanticColor.core.foreground.disabled.default
-                                : semanticColor.core.foreground.neutral.default
+                                ? semanticColor.core.foreground.disabled.strong
+                                : error
+                                  ? semanticColor.core.foreground.critical
+                                        .default
+                                  : semanticColor.core.foreground.neutral.subtle
                         }
                         style={styles.searchIcon}
                         aria-hidden="true"
@@ -238,7 +240,7 @@ const SearchField: React.ForwardRefExoticComponent<
                         value={value}
                         style={[
                             styles.inputStyleReset,
-                            typographyStyles.LabelMedium,
+                            typographyStyles.BodyTextMediumMediumWeight,
                         ]}
                         testId={testId}
                         {...otherProps}
@@ -259,21 +261,21 @@ const styles = StyleSheet.create({
         height: 40,
     },
     searchIcon: {
-        marginLeft: spacing.xSmall_8,
-        marginRight: spacing.xSmall_8,
+        marginInlineStart: sizing.size_080,
+        marginInlineEnd: sizing.size_080,
         position: "absolute",
     },
     dismissIcon: {
         margin: 0,
         position: "absolute",
-        right: spacing.xxxSmall_4,
+        insetInlineEnd: sizing.size_040,
     },
     inputStyleReset: {
         display: "flex",
         flex: 1,
         width: "100%",
-        paddingLeft: spacing.xLarge_32,
-        paddingRight: spacing.large_24 + spacing.medium_16,
+        paddingInlineStart: sizing.size_320,
+        paddingInlineEnd: sizing.size_400,
     },
 });
 

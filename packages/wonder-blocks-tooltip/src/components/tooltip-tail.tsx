@@ -2,21 +2,26 @@ import * as React from "react";
 import {css, StyleSheet} from "aphrodite";
 
 import {View} from "@khanacademy/wonder-blocks-core";
-import {color, spacing, semanticColor} from "@khanacademy/wonder-blocks-tokens";
-import {Strut} from "@khanacademy/wonder-blocks-layout";
+import {color, semanticColor} from "@khanacademy/wonder-blocks-tokens";
 
 import type {StyleType} from "@khanacademy/wonder-blocks-core";
-import type {getRefFn, Placement, Offset} from "../util/types";
+import type {getRefFn, Placement, Offset, TooltipVariant} from "../util/types";
 
 export type Props = {
     /**
-     * Whether we should use the default white background color or switch to a
+     * Whether we should use the default background color or switch to a
      * different bg color.
      *
      * NOTE: Added to support custom popovers
      * @ignore
      */
-    color: keyof typeof color;
+    color?: keyof typeof color;
+    /**
+     * The visual style of the tail. When `strong`, the tail matches the
+     * higher-emphasis inverse/knockout treatment of the strong tooltip bubble.
+     * Defaults to `subtle`.
+     */
+    variant?: TooltipVariant;
     /** The offset of the tail indicating where it should be positioned. */
     offset?: Offset;
     /** The placement of the tail with respect to the tooltip anchor. */
@@ -29,7 +34,6 @@ export type Props = {
 };
 
 type DefaultProps = {
-    color: Props["color"];
     show: Props["show"];
 };
 
@@ -52,7 +56,6 @@ let tempIdCounter = 0;
 
 export default class TooltipTail extends React.Component<Props> {
     static defaultProps: DefaultProps = {
-        color: "white",
         show: true,
     };
 
@@ -210,10 +213,7 @@ export default class TooltipTail extends React.Component<Props> {
                  * The stdDeviation is the spread of the blur. We don't want it
                  * too diffuse.
                  */}
-                <feGaussianBlur
-                    in="SourceAlpha"
-                    stdDeviation={spacing.xxSmall_6 / 2}
-                />
+                <feGaussianBlur in="SourceAlpha" stdDeviation={3} />
 
                 {/* Here we adjust the alpha (feFuncA) linearly so as to blend
                  * the shadow to match the rest of the tooltip bubble shadow.
@@ -350,12 +350,40 @@ export default class TooltipTail extends React.Component<Props> {
         const {trimlinePoints, points, height, width} =
             this._calculateDimensionsFromPlacement();
 
-        const {color: arrowColor, show} = this.props;
+        const {color: arrowColor, show, variant} = this.props;
+        const isStrong = variant === "strong";
+        // A primitive `color` override takes precedence (used to support custom
+        // popovers). Otherwise, the strong variant uses the inverse/knockout
+        // background, falling back to the same semantic background as the bubble
+        // so the tail follows the theme.
+        const tailFill =
+            arrowColor !== undefined && color[arrowColor]
+                ? color[arrowColor]
+                : isStrong
+                  ? semanticColor.feedback.neutral.strong.background
+                  : semanticColor.core.background.base.default;
+        // The strong variant uses a matching strong border so the tail outline
+        // stays flush with the bubble outline.
+        const tailBorder = isStrong
+            ? semanticColor.feedback.neutral.strong.border
+            : semanticColor.core.border.neutral.subtle;
 
         if (!show) {
             // If we aren't showing the tail, we still need to take up space
-            // so we render a strut instead.
-            return <Strut size={height} />;
+            // along the placement's stacking axis so Popper.js positions the
+            // tooltip correctly. Mirrors the previous Strut(size=height)
+            // behavior: width and flex-basis both set to `height`, never
+            // shrinks.
+            return (
+                <View
+                    aria-hidden
+                    style={{
+                        inlineSize: height,
+                        flexBasis: height,
+                        flexShrink: 0,
+                    }}
+                />
+            );
         }
 
         return (
@@ -370,12 +398,12 @@ export default class TooltipTail extends React.Component<Props> {
                 {/**
                  * Draw the actual background of the tooltip arrow.
                  *
-                 * We draw the outline in white too so that when we draw the
-                 * outline, it draws over white and not the dropshadow behind.
+                 * We draw the outline in the tailFill color too so that when we draw the
+                 * outline, it draws over the tailFill color and not the dropshadow behind.
                  */}
                 <polyline
-                    fill={color[arrowColor]}
-                    stroke={color[arrowColor]}
+                    fill={tailFill}
+                    stroke={tailFill}
                     points={points.join(" ")}
                 />
                 {/* Draw the tooltip outline around the tooltip arrow. */}
@@ -383,15 +411,12 @@ export default class TooltipTail extends React.Component<Props> {
                     // Redraw the stroke on top of the background color,
                     // so that the ends aren't extra dark where they meet
                     // the border of the tooltip.
-                    fill={color[arrowColor]}
+                    fill={tailFill}
                     points={points.join(" ")}
-                    stroke={semanticColor.core.shadow.transparent.mid}
+                    stroke={tailBorder}
                 />
                 {/* Draw a trimline to make the arrow appear flush */}
-                <polyline
-                    stroke={color[arrowColor]}
-                    points={trimlinePoints.join(" ")}
-                />
+                <polyline stroke={tailFill} points={trimlinePoints.join(" ")} />
             </svg>
         );
     }
@@ -420,12 +445,14 @@ export default class TooltipTail extends React.Component<Props> {
  * (i.e. placement="top"). When the tail points to the left or right instead,
  * the width/height are inverted.
  */
-const DISTANCE_FROM_ANCHOR = spacing.xSmall_8;
-
-const MIN_DISTANCE_FROM_CORNERS = spacing.xSmall_8;
-
-const ARROW_WIDTH = spacing.large_24;
-const ARROW_HEIGHT = spacing.small_12;
+// Layout constants for SVG arithmetic. Hardcoded because the polyline points
+// and the container's `width`/`height` styles need real JS numbers, not the
+// `var(--wb-sizing-*)` strings that the `sizing` token yields. Values mirror
+// the matching `sizing.size_*` tokens at the default 10px baseline.
+const DISTANCE_FROM_ANCHOR = 8; // sizing.size_080
+const MIN_DISTANCE_FROM_CORNERS = 8; // sizing.size_080
+const ARROW_WIDTH = 24; // sizing.size_240
+const ARROW_HEIGHT = 12; // sizing.size_120
 
 const styles = StyleSheet.create({
     /**

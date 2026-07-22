@@ -17,7 +17,6 @@ import type {ModalElement} from "../../packages/wonder-blocks-modal/src/util/typ
 import DrawerLauncherArgTypes from "./drawer-launcher.argtypes";
 
 import ComponentInfo from "../components/component-info";
-import {allModes} from "../../.storybook/modes";
 import TextField from "../../packages/wonder-blocks-form/src/components/text-field";
 import {reallyLongText} from "../components/text-for-testing";
 
@@ -101,11 +100,8 @@ import {BodyText} from "@khanacademy/wonder-blocks-typography";
             },
         },
         chromatic: {
-            modes: {
-                small: allModes.small,
-                large: allModes.large,
-                thunderblocks: allModes.themeThunderBlocks,
-            },
+            // All the examples for DrawerLauncher are behavior based, not visual.
+            disableSnapshot: true,
         },
     },
     argTypes: DrawerLauncherArgTypes,
@@ -126,13 +122,6 @@ export const Default: StoryComponentType = {
     ),
 };
 
-Default.parameters = {
-    chromatic: {
-        // All the examples for DrawerLauncher are behavior based, not visual.
-        disableSnapshot: true,
-    },
-};
-
 /**
  *
  * An inlineStart-aligned drawer. Uses the `alignment` prop to slide in from the
@@ -151,12 +140,6 @@ export const InlineStartAligned: StoryComponentType = {
     ),
 };
 
-InlineStartAligned.parameters = {
-    chromatic: {
-        // All the examples for DrawerLauncher are behavior based, not visual.
-        disableSnapshot: true,
-    },
-};
 /**
  *
  * An inlineEnd-aligned drawer. Uses the `alignment` prop to slide in from the
@@ -173,13 +156,6 @@ export const InlineEndAligned: StoryComponentType = {
             )}
         </DrawerLauncher>
     ),
-};
-
-InlineEndAligned.parameters = {
-    chromatic: {
-        // All the examples for DrawerLauncher are behavior based, not visual.
-        disableSnapshot: true,
-    },
 };
 
 /**
@@ -202,13 +178,6 @@ export const BlockEndAligned: StoryComponentType = {
     ),
 };
 
-BlockEndAligned.parameters = {
-    chromatic: {
-        // All the examples for DrawerLauncher are behavior based, not visual.
-        disableSnapshot: true,
-    },
-};
-
 /**
  *
  * A drawer with `animated` set to false for reducing motion
@@ -228,13 +197,6 @@ export const WithNoAnimation: StoryComponentType = {
             )}
         </DrawerLauncher>
     ),
-};
-
-WithNoAnimation.parameters = {
-    chromatic: {
-        // All the examples for DrawerLauncher are behavior based, not visual.
-        disableSnapshot: true,
-    },
 };
 
 /**
@@ -268,12 +230,6 @@ export const WithShortContent: StoryComponentType = {
     ),
 };
 
-WithShortContent.parameters = {
-    chromatic: {
-        // All the examples for DrawerLauncher are behavior based, not visual.
-        disableSnapshot: true,
-    },
-};
 /**
  *
  * A launcher with a really long DrawerDialog, for testing overflow styles.
@@ -315,13 +271,6 @@ export const WithReallyLongContent: StoryComponentType = {
                 )}
             </DrawerLauncher>
         );
-    },
-};
-
-WithReallyLongContent.parameters = {
-    chromatic: {
-        // All the examples for DrawerLauncher are behavior based, not visual.
-        disableSnapshot: true,
     },
 };
 
@@ -374,12 +323,6 @@ export const WithNestedDialogs: StoryComponentType = {
     },
 };
 
-WithNestedDialogs.parameters = {
-    chromatic: {
-        // All the examples for DrawerLauncher are behavior based, not visual.
-        disableSnapshot: true,
-    },
-};
 /**
  *
  * An drawer with customized dialog dimensions.
@@ -415,13 +358,6 @@ export const WithCustomDimensions: StoryComponentType = {
     ),
 };
 
-WithCustomDimensions.parameters = {
-    chromatic: {
-        // All the examples for DrawerLauncher are behavior based, not visual.
-        disableSnapshot: true,
-    },
-};
-
 /**
  *
  *  This is an example in which the modal _cannot_
@@ -444,13 +380,6 @@ export const WithBackdropDismissDisabled: StoryComponentType = {
             )}
         </DrawerLauncher>
     ),
-};
-
-WithBackdropDismissDisabled.parameters = {
-    chromatic: {
-        // All the examples for DrawerLauncher are behavior based, not visual.
-        disableSnapshot: true,
-    },
 };
 
 /**
@@ -506,13 +435,6 @@ export const TriggeringProgrammatically: StoryComponentType = {
                 />
             </View>
         );
-    },
-};
-
-TriggeringProgrammatically.parameters = {
-    chromatic: {
-        // All the examples for DrawerLauncher are behavior based, not visual.
-        disableSnapshot: true,
     },
 };
 
@@ -573,13 +495,6 @@ export const WithClosedFocusId: StoryComponentType = {
                 />
             </View>
         );
-    },
-};
-
-WithClosedFocusId.parameters = {
-    chromatic: {
-        // All the examples for DrawerLauncher are behavior based, not visual.
-        disableSnapshot: true,
     },
 };
 
@@ -654,13 +569,6 @@ export const WithInitialFocusId: StoryComponentType = {
                 )}
             </DrawerLauncher>
         );
-    },
-};
-
-WithInitialFocusId.parameters = {
-    chromatic: {
-        // All the examples for DrawerLauncher are behavior based, not visual.
-        disableSnapshot: true,
     },
 };
 
@@ -788,13 +696,6 @@ export const FocusTrap: StoryComponentType = {
 };
 
 FocusTrap.storyName = "Navigation with focus trap";
-
-FocusTrap.parameters = {
-    chromatic: {
-        // All the examples for DrawerLauncher are behavior based, not visual.
-        disableSnapshot: true,
-    },
-};
 
 const styles = StyleSheet.create({
     example: {

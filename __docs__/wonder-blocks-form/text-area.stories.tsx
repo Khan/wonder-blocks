@@ -6,9 +6,9 @@ import {TextArea} from "@khanacademy/wonder-blocks-form";
 import packageConfig from "../../packages/wonder-blocks-form/package.json";
 
 import ComponentInfo from "../components/component-info";
-import {semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import Button from "@khanacademy/wonder-blocks-button";
-import {LabelLarge} from "@khanacademy/wonder-blocks-typography";
+import {BodyText} from "@khanacademy/wonder-blocks-typography";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
 import {PropsFor, View} from "@khanacademy/wonder-blocks-core";
 import {LabeledField} from "@khanacademy/wonder-blocks-labeled-field";
@@ -54,6 +54,10 @@ export default {
                 ],
             },
         },
+        chromatic: {
+            // Disabling snapshots because this is covered by the testing snapshots
+            disableSnapshot: true,
+        },
     },
     argTypes: TextAreaArgTypes,
 } as Meta<typeof TextArea>;
@@ -66,7 +70,7 @@ const styles = StyleSheet.create({
         backgroundColor: semanticColor.status.notice.background,
         color: semanticColor.status.notice.foreground,
         border: "none",
-        maxWidth: 250,
+        maxInlineSize: 250,
         "::placeholder": {
             color: semanticColor.core.foreground.neutral.default,
         },
@@ -138,13 +142,6 @@ export const WithLabeledField: StoryComponentType = {
             />
         );
     },
-    parameters: {
-        chromatic: {
-            // Disabling because this is for documentation purposes and is
-            // covered by the LabeledField stories
-            disableSnapshot: true,
-        },
-    },
 };
 
 /**
@@ -155,12 +152,6 @@ export const Controlled: ControlledStoryComponentType = {
     render: ControlledTextArea,
     args: {
         label: "Controlled",
-    },
-    parameters: {
-        chromatic: {
-            // Disabling because this doesn't test anything visual.
-            disableSnapshot: true,
-        },
     },
 };
 
@@ -191,7 +182,7 @@ export const WithValue: ControlledStoryComponentType = {
 export const AutoResize: StoryComponentType = {
     render: (args) => {
         return (
-            <View style={{gap: spacing.large_24, maxWidth: "500px"}}>
+            <View style={{gap: sizing.size_240, maxInlineSize: "500px"}}>
                 <ControlledTextArea
                     {...args}
                     autoResize={false}
@@ -226,12 +217,6 @@ export const AutoResize: StoryComponentType = {
                 />
             </View>
         );
-    },
-    parameters: {
-        chromatic: {
-            // Disabling because it is covered by scenarios
-            disableSnapshot: true,
-        },
     },
 };
 
@@ -296,12 +281,6 @@ export const Error: ControlledStoryComponentType = {
         error: true,
         label: "Error using error prop",
     },
-    parameters: {
-        chromatic: {
-            // Disabling because this doesn't test anything visual.
-            disableSnapshot: true,
-        },
-    },
 };
 
 /**
@@ -322,12 +301,6 @@ export const ErrorFromValidation: ControlledStoryComponentType = {
         label: "Error from validation",
     },
     render: ControlledTextArea,
-    parameters: {
-        chromatic: {
-            // Disabling because this doesn't test anything visual.
-            disableSnapshot: true,
-        },
-    },
 };
 
 /**
@@ -364,7 +337,7 @@ export const ErrorFromPropAndValidation = (args: PropsFor<typeof TextArea>) => {
     const errorMessage = validationErrorMessage || backendErrorMessage;
 
     return (
-        <View style={{gap: spacing.small_12}}>
+        <View style={{gap: sizing.size_120}}>
             <LabeledField
                 label="Error from prop and validation"
                 field={
@@ -396,13 +369,6 @@ export const ErrorFromPropAndValidation = (args: PropsFor<typeof TextArea>) => {
     );
 };
 
-ErrorFromPropAndValidation.parameters = {
-    chromatic: {
-        // Disabling because this doesn't test anything visual.
-        disableSnapshot: true,
-    },
-};
-
 /**
  * The `instantValidation` prop controls when validation is triggered. Validation
  * is triggered if the `validate` or `required` props are set.
@@ -429,7 +395,7 @@ export const InstantValidation: StoryComponentType = {
     },
     render: (args) => {
         return (
-            <View style={{gap: spacing.small_12}}>
+            <View style={{gap: sizing.size_120}}>
                 <ControlledTextArea
                     {...args}
                     label="Validation on mount if there is a value"
@@ -447,7 +413,6 @@ export const InstantValidation: StoryComponentType = {
                     false)"
                     instantValidation={false}
                 />
-
                 <ControlledTextArea
                     {...args}
                     validate={undefined}
@@ -457,7 +422,6 @@ export const InstantValidation: StoryComponentType = {
                     instantValidation={true}
                     required="Required"
                 />
-
                 <ControlledTextArea
                     {...args}
                     label="Error shown on blur if it is empty (instantValidation:
@@ -468,12 +432,6 @@ export const InstantValidation: StoryComponentType = {
                 />
             </View>
         );
-    },
-    parameters: {
-        chromatic: {
-            // Disabling because this doesn't test anything visual.
-            disableSnapshot: true,
-        },
     },
 };
 
@@ -488,12 +446,6 @@ export const Required: StoryComponentType = {
         required: true,
     },
     render: ControlledTextArea,
-    parameters: {
-        chromatic: {
-            // Disabling because this doesn't test anything visual.
-            disableSnapshot: true,
-        },
-    },
 };
 
 /**
@@ -513,12 +465,6 @@ export const Rows: StoryComponentType = {
 export const AutoComplete: StoryComponentType = {
     args: {
         autoComplete: "on",
-    },
-    parameters: {
-        chromatic: {
-            // Disabling because this doesn't test anything visual.
-            disableSnapshot: true,
-        },
     },
 };
 
@@ -553,31 +499,25 @@ export const AutoFocus = () => {
                 autoFocus={true}
                 onChange={handleChange}
                 onKeyDown={handleKeyDown}
-                style={{flexGrow: 1, marginLeft: spacing.small_12}}
+                style={{flexGrow: 1, marginInlineStart: sizing.size_120}}
             />
         </View>
     );
 
     return (
         <View>
-            <LabelLarge style={{marginBottom: spacing.small_12}}>
+            <BodyText weight="bold" style={{marginBlockEnd: sizing.size_120}}>
                 Press the button to view the textarea with autofocus.
-            </LabelLarge>
+            </BodyText>
             <Button
                 onClick={handleShowDemo}
-                style={{width: 300, marginBottom: spacing.large_24}}
+                style={{width: 300, marginBlockEnd: sizing.size_240}}
             >
                 Toggle autoFocus demo
             </Button>
             {showDemo && <AutoFocusDemo />}
         </View>
     );
-};
-AutoFocus.parameters = {
-    chromatic: {
-        // Disabling because this doesn't test anything visual.
-        disableSnapshot: true,
-    },
 };
 
 /**
@@ -593,23 +533,11 @@ export const SpellCheckEnabled: StoryComponentType = {
         value: "This exampull will be checkd fur spellung when you try to edit it.",
     },
 };
-SpellCheckEnabled.parameters = {
-    chromatic: {
-        // Disabling because this doesn't test anything visual.
-        disableSnapshot: true,
-    },
-};
 
 export const SpellCheckDisabled: StoryComponentType = {
     args: {
         spellCheck: false,
         value: "This exampull will nut be checkd fur spellung when you try to edit it.",
-    },
-};
-SpellCheckDisabled.parameters = {
-    chromatic: {
-        // Disabling because this doesn't test anything visual.
-        disableSnapshot: true,
     },
 };
 
@@ -697,12 +625,6 @@ export const MinMaxLength: StoryComponentType = {
         maxLength: 4,
         value: "Text",
     },
-    parameters: {
-        chromatic: {
-            // Disabling because this doesn't test anything visual.
-            disableSnapshot: true,
-        },
-    },
 };
 
 /**
@@ -776,7 +698,7 @@ export const CustomStyle: StoryComponentType = {
 export const RootStyle: StoryComponentType = {
     render(args) {
         return (
-            <View style={{height: "500px", gap: spacing.large_24}}>
+            <View style={{height: "500px", gap: sizing.size_240}}>
                 <div>Example flex item child </div>
                 <TextArea
                     {...args}
@@ -802,14 +724,8 @@ export const WithRef = () => {
     return (
         <View style={{alignItems: "flex-start"}}>
             <TextArea value={value} onChange={setValue} ref={ref} />
-            <Strut size={spacing.large_24} />
+            <Strut size={24} />
             <Button onClick={handleClick}>Focus using ref</Button>
         </View>
     );
-};
-WithRef.parameters = {
-    chromatic: {
-        // Disabling because this doesn't test anything visual.
-        disableSnapshot: true,
-    },
 };

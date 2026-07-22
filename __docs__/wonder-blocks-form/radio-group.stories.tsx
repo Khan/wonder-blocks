@@ -3,7 +3,7 @@ import {StyleSheet} from "aphrodite";
 import type {Meta, StoryObj} from "@storybook/react-vite";
 
 import {View} from "@khanacademy/wonder-blocks-core";
-import {semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {BodyText} from "@khanacademy/wonder-blocks-typography";
 
 import {Choice, RadioGroup} from "@khanacademy/wonder-blocks-form";
@@ -245,7 +245,7 @@ export const CustomLabel: StoryComponentType = {
             <View
                 style={{
                     border: `1px dashed ${semanticColor.core.border.neutral.default}`,
-                    padding: spacing.medium_16,
+                    padding: sizing.size_160,
                     flexDirection: "row",
                     justifyContent: "space-between",
                 }}
@@ -263,13 +263,13 @@ const styles = StyleSheet.create({
     choice: {
         margin: 0,
         height: 48,
-        borderTop: "solid 1px #CCC",
+        borderBlockStart: `solid 1px ${semanticColor.core.border.neutral.subtle}`,
         justifyContent: "center",
     },
     lastChoice: {
-        borderBottom: "solid 1px #CCC",
+        borderBlockEnd: `solid 1px ${semanticColor.core.border.neutral.subtle}`,
     },
     prompt: {
-        marginBottom: 16,
+        marginBlockEnd: 16,
     },
 });

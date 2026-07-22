@@ -2,7 +2,7 @@ import type {Meta, StoryObj} from "@storybook/react-vite";
 import * as React from "react";
 
 import {Tabs} from "@khanacademy/wonder-blocks-tabs";
-import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
+import {Icon, PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
 import {addStyle, PropsFor, View} from "@khanacademy/wonder-blocks-core";
 import {
@@ -14,7 +14,7 @@ import {sizing} from "@khanacademy/wonder-blocks-tokens";
 import {ScenariosLayout} from "../components/scenarios-layout";
 import {ControlledTabs, generateTabs} from "./tabs-utils";
 import {defaultPseudoStates, StateSheet} from "../components/state-sheet";
-import {themeModes} from "../../.storybook/modes";
+import {allThemeModes} from "../../.storybook/modes";
 
 const StyledDiv = addStyle("div");
 
@@ -43,7 +43,7 @@ const generateRows = (rtl: boolean = false) => [
         },
     },
     {
-        name: "With Icons",
+        name: "Custom label element with icons",
         props: {
             tabs: [
                 {
@@ -102,7 +102,7 @@ const generateRows = (rtl: boolean = false) => [
         },
     },
     {
-        name: "Icon Only",
+        name: "Custom label element with icon only",
         props: {
             tabs: [
                 {
@@ -131,6 +131,36 @@ const generateRows = (rtl: boolean = false) => [
             selectedTabId: "tab-1",
         },
     },
+    {
+        name: "Tabs with icon prop",
+        props: {
+            tabs: [
+                {
+                    label: "Tab 1",
+                    id: "tab-1",
+                    panel: rtl ? rtlText : "Tab 1 Contents",
+                    icon: <PhosphorIcon icon={IconMappings.iceCream} />,
+                },
+                {
+                    label: "Tab 2",
+                    id: "tab-2",
+                    panel: rtl ? rtlText : "Tab 2 Contents",
+                    icon: <PhosphorIcon icon={IconMappings.cookie} />,
+                },
+                {
+                    label: "Tab 3",
+                    id: "tab-3",
+                    panel: rtl ? rtlText : "Tab 3 Contents",
+                    icon: (
+                        <Icon>
+                            <img src="logo.svg" alt="Wonder Blocks" />
+                        </Icon>
+                    ),
+                },
+            ],
+            selectedTabId: "tab-1",
+        },
+    },
 ];
 
 const rows = generateRows();
@@ -150,17 +180,18 @@ type Story = StoryObj<typeof Tabs>;
  * component. This is only used for visual testing in Chromatic.
  */
 const meta = {
-    title: "Packages / Tabs / Tabs / Testing / Tabs - Snapshots",
+    title: "Packages / Tabs / Testing / Tabs - Snapshots",
     component: Tabs,
     args: {
         tabs: [],
     },
     parameters: {
         chromatic: {
-            modes: themeModes,
+            modes: allThemeModes,
+            delay: 500, // Delay to allow focus to settle
         },
     },
-    tags: ["!autodocs"],
+    tags: ["!autodocs", "!manifest"],
 } satisfies Meta<typeof Tabs>;
 
 export default meta;

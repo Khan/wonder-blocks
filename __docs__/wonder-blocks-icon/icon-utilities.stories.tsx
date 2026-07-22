@@ -7,6 +7,7 @@ import {useImageRoleAttributes} from "@khanacademy/wonder-blocks-icon";
 import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 
 export default {
+    tags: ["!manifest"],
     title: "Packages / Icon / Icon Utilities",
     parameters: {
         componentSubtitle: (

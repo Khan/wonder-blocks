@@ -1,3 +1,4 @@
+/* eslint-disable max-lines */
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 import {action} from "storybook/actions";
@@ -17,11 +18,7 @@ import clock from "@phosphor-icons/core/regular/clock.svg";
 
 import {View} from "@khanacademy/wonder-blocks-core";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
-import {
-    semanticColor,
-    sizing,
-    spacing,
-} from "@khanacademy/wonder-blocks-tokens";
+import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {BodyText} from "@khanacademy/wonder-blocks-typography";
 
 import Button from "@khanacademy/wonder-blocks-button";
@@ -30,9 +27,9 @@ import ComponentInfo from "../components/component-info";
 
 import ButtonArgTypes from "./button.argtypes";
 import {LabeledField} from "@khanacademy/wonder-blocks-labeled-field";
-import {Icon} from "@khanacademy/wonder-blocks-icon";
-import {themeModes} from "../../.storybook/modes";
+import {Icon, PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {TextField} from "@khanacademy/wonder-blocks-form";
+import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
 
 export default {
     title: "Packages / Button / Button",
@@ -78,30 +75,30 @@ export const styles: StyleDeclaration = StyleSheet.create({
     row: {
         flexDirection: "row",
         alignItems: "center",
-        marginBottom: spacing.xSmall_8,
+        marginBlockEnd: sizing.size_080,
     },
     rowWithGap: {
         flexDirection: "row",
         alignItems: "center",
-        gap: spacing.medium_16,
+        gap: sizing.size_160,
     },
     button: {
-        marginRight: spacing.xSmall_8,
+        marginInlineEnd: sizing.size_080,
     },
     truncatedButton: {
-        maxWidth: 200,
-        marginBottom: spacing.medium_16,
+        maxInlineSize: 200,
+        marginBlockEnd: sizing.size_160,
     },
     fillSpace: {
-        minWidth: 140,
+        minInlineSize: 140,
     },
     example: {
         background: semanticColor.core.background.base.subtle,
-        padding: spacing.medium_16,
+        padding: sizing.size_160,
     },
     label: {
-        marginTop: spacing.large_24,
-        marginBottom: spacing.xSmall_8,
+        marginBlockStart: sizing.size_240,
+        marginBlockEnd: sizing.size_080,
     },
 });
 
@@ -111,7 +108,7 @@ export const styles: StyleDeclaration = StyleSheet.create({
  */
 export const Kinds: StoryComponentType = {
     render: () => (
-        <View style={{padding: spacing.medium_16, gap: spacing.medium_16}}>
+        <View style={{padding: sizing.size_160, gap: sizing.size_160}}>
             <View style={styles.rowWithGap}>
                 <Button onClick={() => {}}>Hello, world!</Button>
                 <Button onClick={() => {}} kind="secondary">
@@ -184,7 +181,7 @@ export const Kinds: StoryComponentType = {
 export const ActionType: StoryComponentType = {
     name: "ActionType",
     render: () => (
-        <View style={{gap: spacing.medium_16}}>
+        <View style={{gap: sizing.size_160}}>
             <View style={styles.row}>
                 <Button
                     style={styles.button}
@@ -423,9 +420,65 @@ const IconExample = () => (
 export const WithIcon: StoryComponentType = {
     name: "Icon",
     render: () => <IconExample />,
+};
+
+/**
+ * If the `startIcon` or `endIcon` provide meaning, you can provide an accessible
+ * name for the icons so that it is included in the accessible name of the button.
+ *
+ * For example, when using a `PhosphorIcon`, you can use the `aria-label` prop
+ * to provide an accessible name. When using a `Icon` component, you can provide
+ * the accessible name to the `children` element (ie the `alt` attribute on the
+ * `img` element).
+ */
+export const IconsWithAccessibleNames: StoryComponentType = {
+    render: () => {
+        return (
+            <View style={styles.row}>
+                <Button
+                    style={styles.button}
+                    startIcon={
+                        <PhosphorIcon
+                            icon={IconMappings.cookie}
+                            aria-label="Cookie"
+                        />
+                    }
+                    endIcon={
+                        <PhosphorIcon
+                            icon={IconMappings.iceCream}
+                            aria-label="Ice Cream"
+                        />
+                    }
+                >
+                    With PhosphorIcon aria-label
+                </Button>
+                <Button
+                    style={styles.button}
+                    startIcon={
+                        <Icon>
+                            <img
+                                src={"logo.svg"}
+                                alt="Wonder Blocks start icon"
+                            />
+                        </Icon>
+                    }
+                    endIcon={
+                        <Icon>
+                            <img
+                                src={"logo.svg"}
+                                alt="Wonder Blocks end icon"
+                            />
+                        </Icon>
+                    }
+                >
+                    With Icon and img alt
+                </Button>
+            </View>
+        );
+    },
     parameters: {
         chromatic: {
-            modes: themeModes,
+            disableSnapshot: true,
         },
     },
 };
@@ -562,7 +615,7 @@ export const TruncatingLabels: StoryComponentType = {
             <Button onClick={() => {}} style={styles.truncatedButton}>
                 label too long for the parent container
             </Button>
-            <Strut size={spacing.medium_16} />
+            <Strut size={16} />
             <Button
                 onClick={() => {}}
                 style={styles.truncatedButton}
@@ -570,7 +623,7 @@ export const TruncatingLabels: StoryComponentType = {
             >
                 label too long for the parent container
             </Button>
-            <Strut size={spacing.medium_16} />
+            <Strut size={16} />
             <Button
                 size="small"
                 onClick={() => {}}
@@ -578,7 +631,7 @@ export const TruncatingLabels: StoryComponentType = {
             >
                 label too long for the parent container
             </Button>
-            <Strut size={spacing.medium_16} />
+            <Strut size={16} />
             <Button
                 size="small"
                 onClick={() => {}}
@@ -625,14 +678,40 @@ export const CustomStyles = {
         },
     },
     render: (args: any) => (
-        <View style={{gap: spacing.medium_16}}>
-            <View style={{flexDirection: "row", gap: spacing.medium_16}}>
+        <View style={{gap: sizing.size_160}}>
+            <View style={{flexDirection: "row", gap: sizing.size_160}}>
                 <Button {...args} kind="primary" />
                 <Button {...args} kind="secondary" />
                 <Button {...args} kind="tertiary" />
             </View>
         </View>
     ),
+};
+
+/**
+ * The `styles` prop allows overriding styles for specific sub-elements
+ * within the Button. In this example, the start icon is rendered at 24x24
+ * instead of the default theme size.
+ *
+ * **Note:** Use this prop sparingly and only when the default theme styling
+ * does not meet your needs (e.g. a custom trigger button that requires a
+ * non-standard icon size).
+ */
+export const CustomIconSize: StoryComponentType = {
+    args: {
+        children: "Custom icon size",
+        startIcon: plus,
+        kind: "secondary",
+        styles: {
+            startIcon: {width: sizing.size_240, height: sizing.size_240},
+        },
+        onClick: action("clicked"),
+    },
+    parameters: {
+        chromatic: {
+            disableSnapshot: true,
+        },
+    },
 };
 
 export const SubmittingForms: StoryComponentType = {
@@ -886,20 +965,20 @@ export const PressDurationTracking: StoryComponentType = {
                 >
                     Track Press Duration
                 </Button>
-                <Strut size={spacing.medium_16} />
+                <Strut size={16} />
                 <View
                     style={{
-                        padding: spacing.medium_16,
+                        padding: sizing.size_160,
                         backgroundColor:
                             semanticColor.core.background.base.subtle,
                         borderRadius: 4,
-                        maxWidth: 400,
+                        maxInlineSize: 400,
                     }}
                 >
                     <BodyText size="medium" weight="bold">
                         Press Duration Tracker
                     </BodyText>
-                    <Strut size={spacing.xSmall_8} />
+                    <Strut size={8} />
                     <BodyText size="medium">
                         Last Event: <strong>{lastEvent}</strong>
                     </BodyText>
@@ -915,12 +994,12 @@ export const PressDurationTracking: StoryComponentType = {
                         Currently Pressing:{" "}
                         <strong>{pressStartTime ? "Yes" : "No"}</strong>
                     </BodyText>
-                    <Strut size={spacing.small_12} />
+                    <Strut size={12} />
                     <BodyText size="medium" weight="bold">
                         Interaction History:
                     </BodyText>
                     {interactionHistory.length > 0 ? (
-                        <View style={{marginTop: spacing.xSmall_8}}>
+                        <View style={{marginBlockStart: sizing.size_080}}>
                             {interactionHistory.map((entry, index) => (
                                 <BodyText
                                     key={index}

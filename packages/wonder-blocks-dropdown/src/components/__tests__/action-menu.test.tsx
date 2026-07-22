@@ -1,4 +1,3 @@
-/* eslint-disable max-lines */
 import * as React from "react";
 import magnifyingGlassIcon from "@phosphor-icons/core/regular/magnifying-glass.svg";
 import {render, screen} from "@testing-library/react";
@@ -1227,6 +1226,70 @@ describe("ActionMenu", () => {
 
             // Assert
             expect(opener).toHaveAttribute("aria-expanded", "true");
+        });
+    });
+
+    describe("a11y > aria-label", () => {
+        it("should set aria-label to the button when provided", () => {
+            // Arrange
+            render(
+                <ActionMenu
+                    menuText={"Action menu!"}
+                    aria-label="Action menu label"
+                >
+                    <ActionItem label="Create" />
+                </ActionMenu>,
+            );
+
+            // Act
+            const opener = screen.getByRole("button");
+
+            // Assert
+            expect(opener).toHaveAccessibleName("Action menu label");
+        });
+
+        it("should set aria-label to the button when provided on the custom opener", () => {
+            // Arrange
+            render(
+                <ActionMenu
+                    menuText={"Action menu!"}
+                    aria-label="Action menu label"
+                    opener={() => <button>Custom opener</button>}
+                >
+                    <ActionItem label="Create" />
+                </ActionMenu>,
+            );
+
+            // Act
+            const opener = screen.getByRole("button");
+
+            // Assert
+            expect(opener).toHaveAccessibleName("Action menu label");
+        });
+
+        it("should respect the aria-label on the custom opener when provided on the custom opener and the parent component", () => {
+            // Arrange
+            render(
+                <ActionMenu
+                    menuText={"Action menu!"}
+                    aria-label="Action menu label"
+                    opener={() => (
+                        <button aria-label="Custom opener label">
+                            Custom opener
+                        </button>
+                    )}
+                >
+                    <ActionItem label="Create" />
+                </ActionMenu>,
+            );
+
+            // Act
+            const opener = screen.getByRole("button");
+
+            // Assert
+            // The label from the custom opener should take precedence over the
+            // parent component
+            expect(opener).toHaveAccessibleName("Custom opener label");
         });
     });
 });

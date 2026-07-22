@@ -13,14 +13,4 @@ export default mergeTheme(defaultTheme, {
             width: sizing.size_440,
         },
     },
-    slider: {
-        transform: {
-            default: `translateX(${sizing.size_200})`,
-        },
-    },
-    icon: {
-        transform: {
-            default: `translateX(${sizing.size_200})`,
-        },
-    },
 });

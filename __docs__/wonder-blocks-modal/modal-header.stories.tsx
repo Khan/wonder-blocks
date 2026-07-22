@@ -19,6 +19,7 @@ import packageConfig from "../../packages/wonder-blocks-modal/package.json";
 
 import ComponentInfo from "../components/component-info";
 import ModalHeaderArgtypes from "./modal-header.argtypes";
+import {modalPositionerStyle} from "./modal-story-utils";
 
 const longBody = (
     <>
@@ -225,26 +226,10 @@ export const WithBreadcrumbs: StoryComponentType = {
 
 const styles = StyleSheet.create({
     dialog: {
-        maxWidth: 600,
-        maxHeight: 500,
+        maxInlineSize: 600,
+        maxBlockSize: 500,
     },
-    modalPositioner: {
-        // Checkerboard background
-        backgroundImage:
-            "linear-gradient(45deg, #ccc 25%, transparent 25%), linear-gradient(-45deg, #ccc 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #ccc 75%), linear-gradient(-45deg, transparent 75%, #ccc 75%)",
-        backgroundSize: "20px 20px",
-        backgroundPosition: "0 0, 0 10px, 10px -10px, -10px 0px",
-
-        flexDirection: "row",
-        alignItems: "center",
-        justifyContent: "center",
-
-        position: "absolute",
-        left: 0,
-        right: 0,
-        top: 0,
-        bottom: 0,
-    },
+    modalPositioner: modalPositionerStyle,
     previewSizer: {
         height: 600,
     },

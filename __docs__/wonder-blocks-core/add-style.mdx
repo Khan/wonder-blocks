@@ -63,7 +63,7 @@ component so we don't have to create a new instance on every render.
 
 ```js
 import {StyleSheet} from "aphrodite";
-import {border, color, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {border, color, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {addStyle} from "@khanacademy/wonder-blocks-core";
 
 const StyledInput = addStyle("input", styles.input);
@@ -74,8 +74,8 @@ const styles = StyleSheet.create({
         background: color.white,
         borderColor: color.offBlack16,
         borderRadius: border.radius.radius_040,
-        fontSize: spacing.medium_16,
-        padding: spacing.xSmall_8,
+        fontSize: sizing.size_160,
+        padding: sizing.size_080,
     },
     error: {
         background: fade(color.red, 0.16),

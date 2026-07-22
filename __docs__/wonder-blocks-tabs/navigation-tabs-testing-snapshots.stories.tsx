@@ -21,7 +21,7 @@ import IconButton from "@khanacademy/wonder-blocks-icon-button";
 import {generateChildren} from "./navigation-tabs-utils";
 import {ScenariosLayout} from "../components/scenarios-layout";
 import {defaultPseudoStates, StateSheet} from "../components/state-sheet";
-import {themeModes} from "../../.storybook/modes";
+import {allThemeModes} from "../../.storybook/modes";
 
 const StyledA = addStyle("a");
 const generateRows = (rtl: boolean = false) => [
@@ -182,14 +182,14 @@ type Story = StoryObj<typeof NavigationTabs>;
  * component. This is only used for visual testing in Chromatic.
  */
 const meta = {
-    title: "Packages / Tabs / NavigationTabs / Testing / NavigationTabs - Snapshots ",
+    title: "Packages / Tabs / Testing / NavigationTabs - Snapshots ",
     component: NavigationTabs,
     parameters: {
         chromatic: {
-            modes: themeModes,
+            modes: allThemeModes,
         },
     },
-    tags: ["!autodocs"],
+    tags: ["!autodocs", "!manifest"],
 } satisfies Meta<typeof NavigationTabs>;
 
 export default meta;
@@ -311,9 +311,24 @@ export const Scenarios: Story = {
                     ],
                 },
             },
+            {
+                name: "Show divider",
+                props: {
+                    children: generateChildren(4, "Navigation Tab Item"),
+                    showDivider: true,
+                },
+            },
         ];
         return (
-            <ScenariosLayout scenarios={scenarios}>
+            <ScenariosLayout
+                scenarios={scenarios}
+                styles={{
+                    root: {
+                        width: "100%",
+                        alignItems: "stretch",
+                    },
+                }}
+            >
                 {(props, name) => (
                     <NavigationTabs {...props} aria-label={name} />
                 )}

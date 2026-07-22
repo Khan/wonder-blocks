@@ -6,14 +6,15 @@ import {
     Stories,
 } from "@storybook/addon-docs/blocks";
 import {Meta} from "@storybook/react-vite";
-import {View} from "@khanacademy/wonder-blocks-core";
 import TokenTable from "../components/token-table";
-import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
-import {themeModes} from "../../.storybook/modes";
+import {semanticColor} from "@khanacademy/wonder-blocks-tokens";
+import {allThemeModes} from "../../.storybook/modes";
 import ComponentInfo from "../components/component-info";
 import packageConfig from "../../packages/wonder-blocks-tokens/package.json";
 import {flattenNestedTokens} from "../components/tokens-util";
 import {Code} from "../components/code";
+import {ColorSwatch} from "../components/color-swatch";
+import {PropsFor} from "@khanacademy/wonder-blocks-core";
 
 /**
  * The color palette containing all the semantic Wonder Blocks colors.
@@ -39,6 +40,16 @@ import {Code} from "../components/code";
  *     color: semanticColor.core.foreground.neutral.strong,
  * };
  * ```
+ *
+ * Semantic colors are exported as CSS `var(--...)` references so the active
+ * theme can switch values through the CSS cascade. If you need the computed raw
+ * value of a token at runtime (e.g. for a third-party library), use the
+ * [`tokenValue`](./?path=/docs/packages-tokens-utilities-tokenvalue--docs)
+ * utility.
+ *
+ * Use `tokenValue` only for edge cases where a concrete raw value is required.
+ * Favour using tokens directly wherever possible, since resolving raw values
+ * can break theming if overused.
  */
 export default {
     title: "Packages / Tokens / Semantic Color",
@@ -55,10 +66,10 @@ export default {
                     <Stories title="Tokens" />
                 </>
             ),
-            toc: false,
+            toc: true,
         },
         chromatic: {
-            modes: themeModes,
+            modes: allThemeModes,
         },
         componentSubtitle: (
             <ComponentInfo
@@ -67,12 +78,82 @@ export default {
             />
         ),
     },
-    tags: ["!dev"],
+    tags: [
+        "!dev",
+        "!manifest", // Remove from manifest in favour of static reference token docs
+    ],
 } as Meta;
 
 type Row = {label: string; css: string; value: string};
 
-export const SemanticColors = () => (
+const SemanticColorsTable = ({
+    tier,
+    tokens,
+}: {
+    tier: string;
+    tokens: PropsFor<typeof TokenTable<any>>["tokens"];
+}) => (
+    <TokenTable
+        columns={[
+            {
+                label: "Token",
+                cell: (row: Row) => (
+                    <Code>{`semanticColor.${tier}.${row.label}`}</Code>
+                ),
+            },
+            {
+                label: "CSS Variable",
+                cell: (row) => (
+                    <Code style={{minInlineSize: "200px"}}>{row.css}</Code>
+                ),
+            },
+            {
+                label: "Value",
+                cell: "value",
+            },
+            {
+                label: "Example",
+                cell: (row) => <ColorSwatch backgroundColor={row.value} />,
+            },
+        ]}
+        tokens={tokens}
+    />
+);
+
+export const Core = () => (
+    <SemanticColorsTable
+        tier="core"
+        tokens={flattenNestedTokens(semanticColor.core)}
+    />
+);
+
+export const Learning = () => (
+    <SemanticColorsTable
+        tier="learning"
+        tokens={flattenNestedTokens(semanticColor.learning)}
+    />
+);
+
+export const Graphics = () => (
+    <SemanticColorsTable
+        tier="graphics"
+        tokens={flattenNestedTokens(semanticColor.graphics)}
+    />
+);
+
+const remainingTokens = Object.fromEntries(
+    Object.entries(flattenNestedTokens(semanticColor)).filter(
+        ([key, _]) =>
+            !key.includes("core.") &&
+            !key.includes("learning.") &&
+            !key.includes("graphics.") &&
+            // Exclude tokens to be deprecated
+            !key.includes("status.") &&
+            !key.includes("action."),
+    ),
+);
+
+export const Other = () => (
     <TokenTable
         columns={[
             {
@@ -81,7 +162,9 @@ export const SemanticColors = () => (
             },
             {
                 label: "CSS Variable",
-                cell: (row) => <Code>{row.css}</Code>,
+                cell: (row) => (
+                    <Code style={{minInlineSize: "200px"}}>{row.css}</Code>
+                ),
             },
             {
                 label: "Value",
@@ -89,24 +172,9 @@ export const SemanticColors = () => (
             },
             {
                 label: "Example",
-                cell: (row) => (
-                    <View
-                        style={{
-                            padding: sizing.size_060,
-                        }}
-                    >
-                        <View
-                            style={{
-                                backgroundColor: row.value,
-                                boxShadow: "0 0 0 1px rgba(0, 0, 0, 0.1)",
-                            }}
-                        >
-                            &nbsp;
-                        </View>
-                    </View>
-                ),
+                cell: (row) => <ColorSwatch backgroundColor={row.value} />,
             },
         ]}
-        tokens={flattenNestedTokens(semanticColor)}
+        tokens={remainingTokens}
     />
 );

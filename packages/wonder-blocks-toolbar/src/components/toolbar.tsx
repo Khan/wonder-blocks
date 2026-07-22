@@ -5,12 +5,8 @@ import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
 import {View} from "@khanacademy/wonder-blocks-core";
-import {color, semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
-import {
-    HeadingSmall,
-    LabelLarge,
-    LabelSmall,
-} from "@khanacademy/wonder-blocks-typography";
+import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
+import {Heading, BodyText} from "@khanacademy/wonder-blocks-typography";
 import type {AriaProps} from "@khanacademy/wonder-blocks-core";
 
 type Props = AriaProps & {
@@ -75,8 +71,6 @@ export default function Toolbar({
     subtitle,
     title,
 }: Props): React.ReactElement {
-    const TitleComponent = subtitle ? LabelLarge : HeadingSmall;
-
     return (
         <View
             style={[
@@ -94,15 +88,27 @@ export default function Toolbar({
 
             {title && typeof title === "string" && (
                 <View style={sharedStyles.titles}>
-                    <TitleComponent id="wb-toolbar-title">
-                        {title}
-                    </TitleComponent>
+                    {subtitle ? (
+                        <BodyText
+                            weight="bold"
+                            tag="span"
+                            id="wb-toolbar-title"
+                        >
+                            {title}
+                        </BodyText>
+                    ) : (
+                        <Heading size="medium" id="wb-toolbar-title">
+                            {title}
+                        </Heading>
+                    )}
                     {subtitle && (
-                        <LabelSmall
+                        <BodyText
+                            size="small"
+                            tag="span"
                             style={color === "light" && sharedStyles.subtitle}
                         >
                             {subtitle}
-                        </LabelSmall>
+                        </BodyText>
                     )}
                 </View>
             )}
@@ -125,8 +131,8 @@ const sharedStyles = StyleSheet.create({
         flex: 1,
         display: "grid",
         alignItems: "center",
-        minHeight: 66,
-        paddingInline: spacing.medium_16,
+        minBlockSize: 66,
+        paddingInline: sizing.size_160,
         width: "100%",
     },
     containerWithTextTitle: {
@@ -140,12 +146,12 @@ const sharedStyles = StyleSheet.create({
         gridTemplateColumns: "auto auto 1fr",
     },
     small: {
-        minHeight: 50,
+        minBlockSize: 50,
     },
     // TODO(WB-1852): Remove light variant.
     dark: {
-        background: color.darkBlue,
-        boxShadow: `0 1px 0 0 ${color.white64}`,
+        background: semanticColor.core.background.base.strong,
+        boxShadow: `0 1px 0 0 ${semanticColor.core.foreground.knockout.default}`,
         color: semanticColor.core.foreground.knockout.default,
     },
     leftColumn: {
@@ -163,12 +169,12 @@ const sharedStyles = StyleSheet.create({
         color: semanticColor.core.foreground.neutral.default,
     },
     titles: {
-        padding: spacing.small_12,
+        padding: sizing.size_120,
         textAlign: "center",
         justifySelf: "center",
-        maxWidth: "100%",
+        maxInlineSize: "100%",
     },
     spacer: {
-        minWidth: spacing.small_12,
+        minInlineSize: sizing.size_120,
     },
 });

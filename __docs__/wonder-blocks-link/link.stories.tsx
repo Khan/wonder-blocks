@@ -15,18 +15,8 @@ import type {Meta, StoryObj} from "@storybook/react-vite";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
-import {
-    border,
-    semanticColor,
-    sizing,
-    spacing,
-} from "@khanacademy/wonder-blocks-tokens";
-import {
-    Body,
-    HeadingMedium,
-    HeadingSmall,
-    LabelLarge,
-} from "@khanacademy/wonder-blocks-typography";
+import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
+import {BodyText, Heading} from "@khanacademy/wonder-blocks-typography";
 import Link from "@khanacademy/wonder-blocks-link";
 import packageConfig from "../../packages/wonder-blocks-link/package.json";
 
@@ -100,7 +90,7 @@ export const StartAndEndIcons: StoryComponentType = {
     render: () => (
         <View>
             {/* Default (dark) */}
-            <View style={{padding: spacing.large_24}}>
+            <View style={{padding: sizing.size_240}}>
                 <Link
                     href="#link"
                     startIcon={
@@ -152,7 +142,7 @@ export const StartAndEndIcons: StoryComponentType = {
                 >
                     This is a multi-line link with start and end icons
                 </Link>
-                <Body>
+                <BodyText>
                     This is an inline{" "}
                     <Link
                         href="#link"
@@ -175,14 +165,14 @@ export const StartAndEndIcons: StoryComponentType = {
                         link with an end icon
                     </Link>
                     .
-                </Body>
+                </BodyText>
             </View>
             {/* Light */}
             <View
                 style={{
                     backgroundColor:
                         semanticColor.core.background.neutral.strong,
-                    padding: spacing.large_24,
+                    padding: sizing.size_240,
                 }}
             >
                 <Link
@@ -236,7 +226,7 @@ export const StartAndEndIcons: StoryComponentType = {
                 >
                     This is a multi-line link with start and end icons
                 </Link>
-                <Body
+                <BodyText
                     style={{
                         color: semanticColor.core.foreground.knockout.default,
                     }}
@@ -265,7 +255,7 @@ export const StartAndEndIcons: StoryComponentType = {
                         link with an end icon
                     </Link>
                     .
-                </Body>
+                </BodyText>
             </View>
         </View>
     ),
@@ -278,7 +268,7 @@ export const StartAndEndIcons: StoryComponentType = {
  */
 export const Inline: StoryComponentType = {
     render: () => (
-        <Body style={{width: 530}}>
+        <BodyText style={{width: 530}}>
             This is an inline{" "}
             <Link href="#link" inline={true}>
                 regular link
@@ -292,7 +282,7 @@ export const Inline: StoryComponentType = {
                 external link
             </Link>
             .
-        </Body>
+        </BodyText>
     ),
     parameters: {
         chromatic: {
@@ -311,11 +301,11 @@ export const Inline: StoryComponentType = {
  */
 export const WithTypography: StoryComponentType = {
     render: () => (
-        <HeadingSmall>
+        <Heading size="medium">
             <Link href="#nonexistent-link" id="typography-link">
                 Link inside a Heading element
             </Link>
-        </HeadingSmall>
+        </Heading>
     ),
     parameters: {
         chromatic: {
@@ -368,14 +358,18 @@ export const Navigation: StoryComponentType = {
                                 console.log("I'm still on the same page!");
                             }}
                         >
-                            <LabelLarge>Uses Client-side Nav</LabelLarge>
+                            <BodyText weight="bold">
+                                Uses Client-side Nav
+                            </BodyText>
                         </Link>
                         <Link
                             href="/iframe.html?id=link--default&viewMode=story"
                             style={styles.heading}
                             skipClientNav
                         >
-                            <LabelLarge>Avoids Client-side Nav</LabelLarge>
+                            <BodyText weight="bold">
+                                Avoids Client-side Nav
+                            </BodyText>
                         </Link>
                     </View>
                     <View style={styles.navigation}>
@@ -411,10 +405,10 @@ function Layout() {
         <View>
             <View style={styles.row}>
                 <Link href="/one" style={styles.heading} viewTransition>
-                    <LabelLarge>First Page</LabelLarge>
+                    <BodyText weight="bold">First Page</BodyText>
                 </Link>
                 <Link href="/two" style={styles.heading} viewTransition>
-                    <LabelLarge>Second Page</LabelLarge>
+                    <BodyText weight="bold">Second Page</BodyText>
                 </Link>
             </View>
             <View style={[styles.navigation]}>
@@ -466,7 +460,9 @@ export const ViewTransition: StoryComponentType = {
                             },
                         ]}
                     >
-                        <Body>The first link opens the second tab.</Body>
+                        <BodyText>
+                            The first link opens the second tab.
+                        </BodyText>
 
                         <Link
                             href={to}
@@ -512,7 +508,7 @@ export const ViewTransition: StoryComponentType = {
                             },
                         ]}
                     >
-                        <HeadingMedium>This is the Detail page</HeadingMedium>
+                        <Heading size="large">This is the Detail page</Heading>
                         <img
                             src="./km-ready.svg"
                             alt="detail screenshot"
@@ -571,11 +567,29 @@ export const ViewTransition: StoryComponentType = {
  */
 export const WithTitle: StoryComponentType = {
     render: () => (
-        <Body>
+        <BodyText>
             <Link href="#link" title="I am a title 😎">
                 This link has a title.
             </Link>
-        </Body>
+        </BodyText>
+    ),
+};
+
+/**
+ * Link can take a `state` prop that adds persistent client side routing state
+ * to the next location. See https://reactrouter.com/api/components/Link#state
+ */
+export const WithState: StoryComponentType = {
+    render: () => (
+        <MemoryRouter>
+            <CompatRouter>
+                <View>
+                    <Link href="/foo" state={{from: "wonder-blocks-link"}}>
+                        Link with state
+                    </Link>
+                </View>
+            </CompatRouter>
+        </MemoryRouter>
     ),
 };
 
@@ -585,8 +599,8 @@ export const WithTitle: StoryComponentType = {
  */
 export const RightToLeftWithIcons: StoryComponentType = {
     render: () => (
-        <View style={{padding: spacing.medium_16}}>
-            <View style={styles.rightToLeft}>
+        <View style={{padding: sizing.size_160}}>
+            <View dir="rtl">
                 <Link
                     href="/"
                     startIcon={
@@ -595,14 +609,14 @@ export const RightToLeftWithIcons: StoryComponentType = {
                 >
                     هذا الرابط مكتوب باللغة العربية
                 </Link>
-                <Strut size={spacing.medium_16} />
+                <Strut size={16} />
                 <Link
                     href="/"
                     endIcon={<PhosphorIcon icon={IconMappings.caretLeftBold} />}
                 >
                     هذا الرابط مكتوب باللغة العربية
                 </Link>
-                <Strut size={spacing.medium_16} />
+                <Strut size={16} />
                 <Link
                     href="/"
                     startIcon={
@@ -625,12 +639,12 @@ export const RightToLeftWithIcons: StoryComponentType = {
 
 const styles = StyleSheet.create({
     heading: {
-        marginRight: spacing.large_24,
+        marginInlineEnd: sizing.size_240,
     },
     navigation: {
         border: `1px dashed ${semanticColor.core.border.neutral.subtle}`,
-        marginTop: spacing.large_24,
-        padding: spacing.large_24,
+        marginBlockStart: sizing.size_240,
+        padding: sizing.size_240,
     },
     customLink: {
         color: semanticColor.status.critical.foreground,
@@ -644,16 +658,13 @@ const styles = StyleSheet.create({
         // instead of taking the full width of the parent
         // container.
         display: "inline-block",
-        marginBottom: spacing.xSmall_8,
+        marginBlockEnd: sizing.size_080,
     },
-    rightToLeft: {
-        width: "100%",
-        direction: "rtl",
-    },
+
     multiLine: {
         display: "inline-block",
-        marginBottom: spacing.xSmall_8,
-        maxWidth: "15%",
+        marginBlockEnd: sizing.size_080,
+        maxInlineSize: "15%",
     },
     card: {
         background: semanticColor.core.background.base.subtle,

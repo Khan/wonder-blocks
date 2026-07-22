@@ -18,6 +18,7 @@ export type {
     TestHarnessAdapters,
     TestHarnessConfig,
     TestHarnessConfigs,
+    RouterAdapterConfig,
 } from "@khanacademy/wonder-blocks-testing-core";
 export * as harnessAdapters from "./harness/adapters";
 export {

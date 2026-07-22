@@ -26,6 +26,11 @@ type PopoverContents =
 
 type Props = AriaProps & {
     /**
+     * Whether the popover should update its position when the anchor
+     * element changes size or position. Defaults to false.
+     */
+    autoUpdate?: boolean;
+    /**
      * The element that triggers the popover. This element will be used to
      * position the popover. It can be either a Node or a function using the
      * children-as-function pattern to pass an open function for use anywhere
@@ -161,6 +166,7 @@ type Props = AriaProps & {
  */
 function Popover(props: Props) {
     const {
+        autoUpdate,
         children,
         content,
         placement: placementProp = "top",
@@ -282,9 +288,20 @@ function Popover(props: Props) {
         const describedBy = ariaDescribedBy || `${uniqueId}-content`;
         const ariaLabelledBy = ariaLabel ? undefined : `${uniqueId}-title`;
 
+        // When autoUpdate is enabled, defer rendering TooltipPopper until the
+        // anchor element is available. Without this guard, controlled popovers
+        // (opened={true} initially) mount TooltipPopper before PopoverAnchor's
+        // componentDidMount has a chance to set anchorElement in state, causing
+        // TooltipPopper.componentDidMount to skip observer setup.
+        const shouldAnchorExist = autoUpdate ? anchorElement : true;
+        if (!shouldAnchorExist) {
+            return null;
+        }
+
         const popperContent = (
             <TooltipPopper
                 anchorElement={anchorElement}
+                autoUpdate={autoUpdate}
                 placement={placementProp}
                 rootBoundary={rootBoundary}
                 viewportPadding={viewportPadding}

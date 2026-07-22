@@ -10,7 +10,7 @@ import {
     longTextWithNoWordBreak,
 } from "../components/text-for-testing";
 import {ScenariosLayout} from "../components/scenarios-layout";
-import {themeModes} from "../../.storybook/modes";
+import {allThemeModes} from "../../.storybook/modes";
 
 const defaultProps = {
     title: "Title for article item",
@@ -28,15 +28,17 @@ export default {
     args: {
         title: defaultProps.title,
     },
-    parameters: {
+    globals: {
         backgrounds: {
             value: "baseSubtle",
         },
+    },
+    parameters: {
         chromatic: {
-            modes: themeModes,
+            modes: allThemeModes,
         },
     },
-    tags: ["!autodocs"],
+    tags: ["!autodocs", "!manifest"],
 } as Meta<typeof CompactCell>;
 
 type Story = StoryObj<typeof CompactCell>;

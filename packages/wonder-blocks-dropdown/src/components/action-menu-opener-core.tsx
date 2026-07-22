@@ -14,6 +14,9 @@ type Props = Partial<Omit<AriaProps, "aria-disabled">> &
         children: string;
         /**
          * Whether the opener is disabled. If disabled, disallows interaction.
+         *
+         * Internally, the `aria-disabled` attribute will be set so that the
+         * element remains focusable and will be included in the tab order.
          */
         disabled?: boolean;
         /**

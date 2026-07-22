@@ -68,6 +68,7 @@ const ActivityButtonCore: React.ForwardRefExoticComponent<
         <ButtonUnstyled
             {...restProps}
             disabled={disabled}
+            kind={kind}
             ref={ref}
             style={sharedStyles}
             type={type}
@@ -166,6 +167,8 @@ export const ActivityButton = React.forwardRef(function ActivityButton(
         onMouseUp,
         onMouseEnter,
         onMouseLeave,
+        onBlur,
+        onFocus,
         ...sharedButtonCoreProps
     } = props;
 
@@ -198,6 +201,8 @@ export const ActivityButton = React.forwardRef(function ActivityButton(
             onMouseUp={onMouseUp}
             onMouseEnter={onMouseEnter}
             onMouseLeave={onMouseLeave}
+            onBlur={onBlur}
+            onFocus={onFocus}
             {...extraClickableProps}
         >
             {(state: ClickableState, restChildProps: ChildrenProps) => {
@@ -395,7 +400,6 @@ const _generateStyles = (
                 transform: "none",
             },
             // Reset hover and active styles on the chonky element.
-            [":is(:hover) .chonky" as any]: disabledStatesStyles,
             [":is(:hover) .chonky" as any]: chonkyDisabled,
             [":is(:active) .chonky" as any]: chonkyDisabled,
         },

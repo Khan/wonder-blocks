@@ -1,21 +1,24 @@
 import * as React from "react";
 import type {Meta, StoryObj} from "@storybook/react-vite";
 import {StyleSheet} from "aphrodite";
+import AriaArgTypes from "../wonder-blocks-core/aria.argtypes";
 import ComponentInfo from "../components/component-info";
 import packageConfig from "../../packages/wonder-blocks-icon/package.json";
 import {GemIcon, Icon, StreakIcon} from "@khanacademy/wonder-blocks-icon";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {border, sizing} from "@khanacademy/wonder-blocks-tokens";
-import {LabelSmall} from "@khanacademy/wonder-blocks-typography";
+import {BodyText} from "@khanacademy/wonder-blocks-typography";
 import {
     multiColoredIcon,
     singleColoredIcon,
 } from "../components/icons-for-testing";
-import {themeModes} from "../../.storybook/modes";
 
 export default {
     title: "Packages / Icon / Icon",
     component: Icon,
+    argTypes: {
+        ...AriaArgTypes,
+    },
     parameters: {
         componentSubtitle: (
             <ComponentInfo
@@ -24,7 +27,8 @@ export default {
             />
         ),
         chromatic: {
-            modes: themeModes,
+            // Disable snapshots since they're covered by the testing snapshots
+            disableSnapshot: true,
         },
     },
 } as Meta<typeof Icon>;
@@ -52,7 +56,7 @@ export const Sizes: StoryComponentType = {
                 {(["small", "medium", "large", "xlarge"] as const).map(
                     (size) => (
                         <View style={styles.iconContainer} key={size}>
-                            <LabelSmall>{size}</LabelSmall>
+                            <BodyText size="small">{size}</BodyText>
                             <Icon size={size}>
                                 <img src="logo.svg" alt="Wonder Blocks" />
                             </Icon>
@@ -76,6 +80,12 @@ export const CustomStyles: StoryComponentType = {
             overflow: "hidden",
         },
     },
+    parameters: {
+        chromatic: {
+            // Enable snapshot for custom styles coverage
+            disableSnapshot: false,
+        },
+    },
 };
 
 /**
@@ -88,19 +98,19 @@ export const CompatibleElements: StoryComponentType = {
     render: (args) => {
         return (
             <View style={{gap: sizing.size_160}}>
-                <LabelSmall>Img element with .svg src</LabelSmall>
+                <BodyText size="small">Img element with .svg src</BodyText>
                 <Icon {...args}>
                     <img src="logo.svg" alt="Wonder Blocks" />
                 </Icon>
-                <LabelSmall>Img element with .png src</LabelSmall>
+                <BodyText size="small">Img element with .png src</BodyText>
                 <Icon {...args}>
                     <img src="avatar.png" alt="Example avatar" />
                 </Icon>
-                <LabelSmall>Inline single-colored svg</LabelSmall>
+                <BodyText size="small">Inline single-colored svg</BodyText>
                 <Icon {...args}>{singleColoredIcon}</Icon>
-                <LabelSmall>Inline multi-colored svg</LabelSmall>
+                <BodyText size="small">Inline multi-colored svg</BodyText>
                 <Icon {...args}>{multiColoredIcon}</Icon>
-                <LabelSmall>Custom Icon Components</LabelSmall>
+                <BodyText size="small">Custom Icon Components</BodyText>
                 <View style={{gap: sizing.size_080, flexDirection: "row"}}>
                     <Icon {...args}>
                         <GemIcon aria-label="Gem" />

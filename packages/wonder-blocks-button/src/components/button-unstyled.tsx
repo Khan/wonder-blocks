@@ -1,3 +1,6 @@
+/* eslint-disable @khanacademy/wonder-blocks/no-raw-button */
+// This file IS the Wonder Blocks button implementation — it intentionally
+// wraps addStyle("button") as its underlying DOM primitive.
 import * as React from "react";
 import {Link, useInRouterContext} from "react-router-dom-v5-compat";
 
@@ -29,6 +32,7 @@ const ButtonUnstyled: React.ForwardRefExoticComponent<
         disabled,
         href,
         id,
+        kind,
         skipClientNav,
         style,
         testId,
@@ -38,6 +42,7 @@ const ButtonUnstyled: React.ForwardRefExoticComponent<
 
     const commonProps = {
         "data-testid": testId,
+        "data-kind": kind,
         id: id,
         role: "button",
         style: [styles.reset, style],

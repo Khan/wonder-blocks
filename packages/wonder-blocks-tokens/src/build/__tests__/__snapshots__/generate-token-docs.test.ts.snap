@@ -1,0 +1,715 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renderMdx should render the expected content for the border group 1`] = `
+"{/*
+  THIS FILE IS AUTO-GENERATED. DO NOT EDIT BY HAND.
+  Regenerate with: pnpm --filter @khanacademy/wonder-blocks-tokens build:token-docs
+  Source: packages/wonder-blocks-tokens/src/build/generate-token-docs.ts
+*/}
+
+import {Meta} from "@storybook/addon-docs/blocks";
+
+<Meta title="References / Tokens Map / Border" summary="Border radius and width tokens. Prefer these over hard-coded pixel values." />
+
+{/*
+  Constrain wide token tables to the docs content width and let them scroll
+  horizontally on their own. Without this, the table overflows the page and
+  reveals the body background past the edge of the docs container.
+*/}
+<style>{\`
+  .sbdocs.sbdocs-content table {
+    display: block;
+    max-width: 100%;
+    overflow-x: auto;
+  }
+\`}</style>
+
+# Border tokens map
+
+Border radius and width tokens. Prefer these over hard-coded pixel values.
+
+\`\`\`ts
+import {border} from "@khanacademy/wonder-blocks-tokens";
+\`\`\`
+
+| Token | CSS Variable | Default | Thunderblocks | Syl Dark |
+| --- | --- | --- | --- | --- |
+| \`border.radius.radius_0\` | \`--wb-border-radius-radius_0\` | \`0px\` | \`0px\` | \`0px\` |
+| \`border.radius.radius_010\` | \`--wb-border-radius-radius_010\` | \`1px\` | \`1px\` | \`1px\` |
+| \`border.radius.radius_040\` | \`--wb-border-radius-radius_040\` | \`4px\` | \`4px\` | \`4px\` |
+| \`border.radius.radius_080\` | \`--wb-border-radius-radius_080\` | \`8px\` | \`8px\` | \`8px\` |
+| \`border.radius.radius_120\` | \`--wb-border-radius-radius_120\` | \`12px\` | \`12px\` | \`12px\` |
+| \`border.radius.radius_240\` | \`--wb-border-radius-radius_240\` | \`24px\` | \`24px\` | \`24px\` |
+| \`border.radius.radius_full\` | \`--wb-border-radius-radius_full\` | \`50%\` | \`50%\` | \`50%\` |
+| \`border.width.none\` | \`--wb-border-width-none\` | \`0px\` | \`0px\` | \`0px\` |
+| \`border.width.thin\` | \`--wb-border-width-thin\` | \`1px\` | \`1px\` | \`1px\` |
+| \`border.width.medium\` | \`--wb-border-width-medium\` | \`2px\` | \`2px\` | \`2px\` |
+| \`border.width.thick\` | \`--wb-border-width-thick\` | \`4px\` | \`4px\` | \`4px\` |
+"
+`;
+
+exports[`renderMdx should render the expected content for the box-shadow group 1`] = `
+"{/*
+  THIS FILE IS AUTO-GENERATED. DO NOT EDIT BY HAND.
+  Regenerate with: pnpm --filter @khanacademy/wonder-blocks-tokens build:token-docs
+  Source: packages/wonder-blocks-tokens/src/build/generate-token-docs.ts
+*/}
+
+import {Meta} from "@storybook/addon-docs/blocks";
+
+<Meta title="References / Tokens Map / Box Shadow" summary="Elevation values. Each level combines an offset, blur, and semantic shadow color." />
+
+{/*
+  Constrain wide token tables to the docs content width and let them scroll
+  horizontally on their own. Without this, the table overflows the page and
+  reveals the body background past the edge of the docs container.
+*/}
+<style>{\`
+  .sbdocs.sbdocs-content table {
+    display: block;
+    max-width: 100%;
+    overflow-x: auto;
+  }
+\`}</style>
+
+# Box shadow tokens map
+
+Elevation values. Each level combines an offset, blur, and semantic shadow color.
+
+\`\`\`ts
+import {boxShadow} from "@khanacademy/wonder-blocks-tokens";
+\`\`\`
+
+| Token | CSS Variable | Default | Thunderblocks | Syl Dark |
+| --- | --- | --- | --- | --- |
+| \`boxShadow.low\` | \`--wb-boxShadow-low\` | \`0 2px 2px 0 rgba(33,36,44,0.16)\` | \`0 2px 2px 0 color-mix(in srgb, #252368 20%, transparent)\` | \`0 2px 2px 0 rgba(21,21,33,0.60)\` |
+| \`boxShadow.mid\` | \`--wb-boxShadow-mid\` | \`0 4px 8px 0 rgba(33,36,44,0.16)\` | \`0 4px 8px 0 color-mix(in srgb, #252368 20%, transparent)\` | \`0 4px 8px 0 rgba(21,21,33,0.60)\` |
+| \`boxShadow.high\` | \`--wb-boxShadow-high\` | \`0 8px 16px 0 rgba(33,36,44,0.16)\` | \`0 8px 16px 0 color-mix(in srgb, #252368 20%, transparent)\` | \`0 8px 16px 0 rgba(21,21,33,0.60)\` |
+"
+`;
+
+exports[`renderMdx should render the expected content for the breakpoint group 1`] = `
+"{/*
+  THIS FILE IS AUTO-GENERATED. DO NOT EDIT BY HAND.
+  Regenerate with: pnpm --filter @khanacademy/wonder-blocks-tokens build:token-docs
+  Source: packages/wonder-blocks-tokens/src/build/generate-token-docs.ts
+*/}
+
+import {Meta} from "@storybook/addon-docs/blocks";
+
+<Meta title="References / Tokens Map / Media Query Breakpoints" summary="Responsive breakpoints. \`breakpoint.width\` returns pixel values; \`breakpoint.mediaQuery\` returns ready-to-use \`@media\` strings." />
+
+{/*
+  Constrain wide token tables to the docs content width and let them scroll
+  horizontally on their own. Without this, the table overflows the page and
+  reveals the body background past the edge of the docs container.
+*/}
+<style>{\`
+  .sbdocs.sbdocs-content table {
+    display: block;
+    max-width: 100%;
+    overflow-x: auto;
+  }
+\`}</style>
+
+# Media query breakpoints map
+
+Responsive breakpoints. \`breakpoint.width\` returns pixel values; \`breakpoint.mediaQuery\` returns ready-to-use \`@media\` strings.
+
+\`\`\`ts
+import {breakpoint} from "@khanacademy/wonder-blocks-tokens";
+\`\`\`
+
+| Token | Value |
+| --- | --- |
+| \`breakpoint.width.xsMax\` | \`567\` |
+| \`breakpoint.width.smMin\` | \`568\` |
+| \`breakpoint.width.smMax\` | \`681\` |
+| \`breakpoint.width.mdMin\` | \`682\` |
+| \`breakpoint.width.mdMax\` | \`1023\` |
+| \`breakpoint.width.lgMin\` | \`1024\` |
+| \`breakpoint.width.lgMax\` | \`1199\` |
+| \`breakpoint.width.xlMin\` | \`1200\` |
+| \`breakpoint.mediaQuery.xs\` | \`@media screen and (max-width: 567px) /* breakpoint.mediaQuery.xs */\` |
+| \`breakpoint.mediaQuery.sm\` | \`@media screen and (min-width: 568px) and (max-width: 681px) /* breakpoint.mediaQuery.sm */\` |
+| \`breakpoint.mediaQuery.md\` | \`@media screen and (min-width: 682px) and (max-width: 1023px) /* breakpoint.mediaQuery.md */\` |
+| \`breakpoint.mediaQuery.lg\` | \`@media screen and (min-width: 1024px) and (max-width: 1199px) /* breakpoint.mediaQuery.lg */\` |
+| \`breakpoint.mediaQuery.xl\` | \`@media screen and (min-width: 1200px) /* breakpoint.mediaQuery.xl */\` |
+| \`breakpoint.mediaQuery.xsOrSmaller\` | \`@media screen and (max-width: 567px) /* breakpoint.mediaQuery.xsOrSmaller */\` |
+| \`breakpoint.mediaQuery.smOrSmaller\` | \`@media screen and (max-width: 681px) /* breakpoint.mediaQuery.smOrSmaller */\` |
+| \`breakpoint.mediaQuery.mdOrSmaller\` | \`@media screen and (max-width: 1023px) /* breakpoint.mediaQuery.mdOrSmaller */\` |
+| \`breakpoint.mediaQuery.lgOrSmaller\` | \`@media screen and (max-width: 1199px) /* breakpoint.mediaQuery.lgOrSmaller */\` |
+| \`breakpoint.mediaQuery.smOrLarger\` | \`@media screen and (min-width: 568px) /* breakpoint.mediaQuery.smOrLarger */\` |
+| \`breakpoint.mediaQuery.mdOrLarger\` | \`@media screen and (min-width: 682px) /* breakpoint.mediaQuery.mdOrLarger */\` |
+| \`breakpoint.mediaQuery.lgOrLarger\` | \`@media screen and (min-width: 1024px) /* breakpoint.mediaQuery.lgOrLarger */\` |
+| \`breakpoint.mediaQuery.xlOrLarger\` | \`@media screen and (min-width: 1200px) /* breakpoint.mediaQuery.xlOrLarger */\` |
+"
+`;
+
+exports[`renderMdx should render the expected content for the font group 1`] = `
+"{/*
+  THIS FILE IS AUTO-GENERATED. DO NOT EDIT BY HAND.
+  Regenerate with: pnpm --filter @khanacademy/wonder-blocks-tokens build:token-docs
+  Source: packages/wonder-blocks-tokens/src/build/generate-token-docs.ts
+*/}
+
+import {Meta} from "@storybook/addon-docs/blocks";
+
+<Meta title="References / Tokens Map / Font" summary="Typography tokens: family, weight, body, heading, and text-decoration." />
+
+{/*
+  Constrain wide token tables to the docs content width and let them scroll
+  horizontally on their own. Without this, the table overflows the page and
+  reveals the body background past the edge of the docs container.
+*/}
+<style>{\`
+  .sbdocs.sbdocs-content table {
+    display: block;
+    max-width: 100%;
+    overflow-x: auto;
+  }
+\`}</style>
+
+# Font tokens map
+
+Typography tokens: family, weight, body, heading, and text-decoration.
+
+\`\`\`ts
+import {font} from "@khanacademy/wonder-blocks-tokens";
+\`\`\`
+
+| Token | CSS Variable | Default | Thunderblocks | Syl Dark |
+| --- | --- | --- | --- | --- |
+| \`font.family.sans\` | \`--wb-font-family-sans\` | \`"Lato", "Noto Sans", "Helvetica", "Corbel", sans-serif\` | \`Plus Jakarta Sans, "Noto Sans", sans-serif\` | \`Plus Jakarta Sans, "Noto Sans", sans-serif\` |
+| \`font.family.serif\` | \`--wb-font-family-serif\` | \`"Noto Serif", serif\` | \`"Noto Serif", serif\` | \`"Noto Serif", serif\` |
+| \`font.family.mono\` | \`--wb-font-family-mono\` | \`Inconsolata, monospace\` | \`Inconsolata, monospace\` | \`Inconsolata, monospace\` |
+| \`font.weight.light\` | \`--wb-font-weight-light\` | \`300\` | \`300\` | \`300\` |
+| \`font.weight.regular\` | \`--wb-font-weight-regular\` | \`400\` | \`400\` | \`400\` |
+| \`font.weight.medium\` | \`--wb-font-weight-medium\` | \`400\` | \`500\` | \`500\` |
+| \`font.weight.semi\` | \`--wb-font-weight-semi\` | \`400\` | \`600\` | \`600\` |
+| \`font.weight.bold\` | \`--wb-font-weight-bold\` | \`700\` | \`700\` | \`700\` |
+| \`font.weight.black\` | \`--wb-font-weight-black\` | \`900\` | \`900\` | \`900\` |
+| \`font.body.size.xsmall\` | \`--wb-font-body-size-xsmall\` | \`1.2rem\` | \`var(--wb-sizing-size_120)\` | \`var(--wb-sizing-size_120)\` |
+| \`font.body.size.small\` | \`--wb-font-body-size-small\` | \`1.4rem\` | \`var(--wb-sizing-size_140)\` | \`var(--wb-sizing-size_140)\` |
+| \`font.body.size.medium\` | \`--wb-font-body-size-medium\` | \`1.6rem\` | \`var(--wb-sizing-size_160)\` | \`var(--wb-sizing-size_160)\` |
+| \`font.body.lineHeight.xsmall\` | \`--wb-font-body-lineHeight-xsmall\` | \`1.6rem\` | \`var(--wb-sizing-size_160)\` | \`var(--wb-sizing-size_160)\` |
+| \`font.body.lineHeight.small\` | \`--wb-font-body-lineHeight-small\` | \`1.8rem\` | \`var(--wb-sizing-size_180)\` | \`var(--wb-sizing-size_180)\` |
+| \`font.body.lineHeight.medium\` | \`--wb-font-body-lineHeight-medium\` | \`2rem\` | \`var(--wb-sizing-size_240)\` | \`var(--wb-sizing-size_240)\` |
+| \`font.body.lineHeight.large\` | \`--wb-font-body-lineHeight-large\` | \`2.2rem\` | \`2.2rem\` | \`2.2rem\` |
+| \`font.heading.size.small\` | \`--wb-font-heading-size-small\` | \`1.2rem\` | \`var(--wb-sizing-size_160)\` | \`var(--wb-sizing-size_160)\` |
+| \`font.heading.size.medium\` | \`--wb-font-heading-size-medium\` | \`2rem\` | \`var(--wb-sizing-size_180)\` | \`var(--wb-sizing-size_180)\` |
+| \`font.heading.size.large\` | \`--wb-font-heading-size-large\` | \`2.4rem\` | \`var(--wb-sizing-size_200)\` | \`var(--wb-sizing-size_200)\` |
+| \`font.heading.size.xlarge\` | \`--wb-font-heading-size-xlarge\` | \`2.8rem\` | \`var(--wb-sizing-size_240)\` | \`var(--wb-sizing-size_240)\` |
+| \`font.heading.size.xxlarge\` | \`--wb-font-heading-size-xxlarge\` | \`3.6rem\` | \`var(--wb-sizing-size_320)\` | \`var(--wb-sizing-size_320)\` |
+| \`font.heading.lineHeight.small\` | \`--wb-font-heading-lineHeight-small\` | \`1.6rem\` | \`var(--wb-sizing-size_200)\` | \`var(--wb-sizing-size_200)\` |
+| \`font.heading.lineHeight.medium\` | \`--wb-font-heading-lineHeight-medium\` | \`2.4rem\` | \`var(--wb-sizing-size_240)\` | \`var(--wb-sizing-size_240)\` |
+| \`font.heading.lineHeight.large\` | \`--wb-font-heading-lineHeight-large\` | \`2.8rem\` | \`var(--wb-sizing-size_280)\` | \`var(--wb-sizing-size_280)\` |
+| \`font.heading.lineHeight.xlarge\` | \`--wb-font-heading-lineHeight-xlarge\` | \`3.2rem\` | \`var(--wb-sizing-size_320)\` | \`var(--wb-sizing-size_320)\` |
+| \`font.heading.lineHeight.xxlarge\` | \`--wb-font-heading-lineHeight-xxlarge\` | \`4rem\` | \`var(--wb-sizing-size_400)\` | \`var(--wb-sizing-size_400)\` |
+| \`font.textDecoration.underlineOffset\` | \`--wb-font-textDecoration-underlineOffset\` | \`0.2rem\` | \`0.2rem\` | \`0.2rem\` |
+| \`font.textDecoration.thickness\` | \`--wb-font-textDecoration-thickness\` | \`0.1rem\` | \`0.1rem\` | \`0.1rem\` |
+"
+`;
+
+exports[`renderMdx should render the expected content for the semantic-color group 1`] = `
+"{/*
+  THIS FILE IS AUTO-GENERATED. DO NOT EDIT BY HAND.
+  Regenerate with: pnpm --filter @khanacademy/wonder-blocks-tokens build:token-docs
+  Source: packages/wonder-blocks-tokens/src/build/generate-token-docs.ts
+*/}
+
+import {Meta} from "@storybook/addon-docs/blocks";
+
+<Meta title="References / Tokens Map / Semantic Color" summary="Semantic colors are the recommended way to color UI." />
+
+{/*
+  Constrain wide token tables to the docs content width and let them scroll
+  horizontally on their own. Without this, the table overflows the page and
+  reveals the body background past the edge of the docs container.
+*/}
+<style>{\`
+  .sbdocs.sbdocs-content table {
+    display: block;
+    max-width: 100%;
+    overflow-x: auto;
+  }
+\`}</style>
+
+# Semantic color tokens map
+
+Semantic colors are the recommended way to color UI.
+
+\`\`\`ts
+import {semanticColor} from "@khanacademy/wonder-blocks-tokens";
+\`\`\`
+
+| Token | CSS Variable | Default | Thunderblocks | Syl Dark |
+| --- | --- | --- | --- | --- |
+| \`semanticColor.core.transparent\` | \`--wb-semanticColor-core-transparent\` | \`transparent\` | \`transparent\` | \`transparent\` |
+| \`semanticColor.core.border.instructive.subtle\` | \`--wb-semanticColor-core-border-instructive-subtle\` | \`#b5cefb\` | \`#BFCAFF\` | \`#5753FA\` |
+| \`semanticColor.core.border.instructive.default\` | \`--wb-semanticColor-core-border-instructive-default\` | \`#1865f2\` | \`#6C82FF\` | \`#6C82FF\` |
+| \`semanticColor.core.border.instructive.strong\` | \`--wb-semanticColor-core-border-instructive-strong\` | \`#1b50b3\` | \`#363498\` | \`#8DA2FF\` |
+| \`semanticColor.core.border.neutral.subtle\` | \`--wb-semanticColor-core-border-neutral-subtle\` | \`#dbdcdd\` | \`#CBCBCD\` | \`#4A4C53\` |
+| \`semanticColor.core.border.neutral.default\` | \`--wb-semanticColor-core-border-neutral-default\` | \`#909296\` | \`#8A8B90\` | \`#8A8B90\` |
+| \`semanticColor.core.border.neutral.strong\` | \`--wb-semanticColor-core-border-neutral-strong\` | \`#5f6167\` | \`#4A4C53\` | \`#CBCBCD\` |
+| \`semanticColor.core.border.critical.subtle\` | \`--wb-semanticColor-core-border-critical-subtle\` | \`#f6ccc7\` | \`#FBB1B1\` | \`#BE2626\` |
+| \`semanticColor.core.border.critical.default\` | \`--wb-semanticColor-core-border-critical-default\` | \`#d92916\` | \`#E22D2D\` | \`#E22D2D\` |
+| \`semanticColor.core.border.critical.strong\` | \`--wb-semanticColor-core-border-critical-strong\` | \`#9e271d\` | \`#8E1C1C\` | \`#F97F7F\` |
+| \`semanticColor.core.border.success.subtle\` | \`--wb-semanticColor-core-border-success-subtle\` | \`#c2eac5\` | \`#BCEBBB\` | \`#579F6C\` |
+| \`semanticColor.core.border.success.default\` | \`--wb-semanticColor-core-border-success-default\` | \`#00a60e\` | \`#579F6C\` | \`#72BB82\` |
+| \`semanticColor.core.border.success.strong\` | \`--wb-semanticColor-core-border-success-strong\` | \`#0b7c18\` | \`#2C5037\` | \`#BCEBBB\` |
+| \`semanticColor.core.border.warning.subtle\` | \`--wb-semanticColor-core-border-warning-subtle\` | \`#ffecc2\` | \`#FEE7AD\` | \`#D69900\` |
+| \`semanticColor.core.border.warning.default\` | \`--wb-semanticColor-core-border-warning-default\` | \`#ffb100\` | \`#FCC539\` | \`#FCB706\` |
+| \`semanticColor.core.border.warning.strong\` | \`--wb-semanticColor-core-border-warning-strong\` | \`#b8840e\` | \`#966B00\` | \`#FDD673\` |
+| \`semanticColor.core.border.disabled.subtle\` | \`--wb-semanticColor-core-border-disabled-subtle\` | \`transparent\` | \`transparent\` | \`transparent\` |
+| \`semanticColor.core.border.disabled.default\` | \`--wb-semanticColor-core-border-disabled-default\` | \`#dbdcdd\` | \`#E0E0E1\` | \`#4A4C53\` |
+| \`semanticColor.core.border.disabled.strong\` | \`--wb-semanticColor-core-border-disabled-strong\` | \`#b8b9bb\` | \`#CBCBCD\` | \`#717279\` |
+| \`semanticColor.core.border.knockout.default\` | \`--wb-semanticColor-core-border-knockout-default\` | \`#ffffff\` | \`#FFFFFF\` | \`#151521\` |
+| \`semanticColor.core.background.base.subtle\` | \`--wb-semanticColor-core-background-base-subtle\` | \`#f7f8fa\` | \`#F8F9FB\` | \`#151521\` |
+| \`semanticColor.core.background.base.default\` | \`--wb-semanticColor-core-background-base-default\` | \`#ffffff\` | \`#FFFFFF\` | \`#252531\` |
+| \`semanticColor.core.background.base.strong\` | \`--wb-semanticColor-core-background-base-strong\` | \`#0b2149\` | \`#151521\` | \`#FFFFFF\` |
+| \`semanticColor.core.background.instructive.subtle\` | \`--wb-semanticColor-core-background-instructive-subtle\` | \`#edf3fe\` | \`#EBF1FD\` | \`#222149\` |
+| \`semanticColor.core.background.instructive.default\` | \`--wb-semanticColor-core-background-instructive-default\` | \`#1865f2\` | \`#5753FA\` | \`#5753FA\` |
+| \`semanticColor.core.background.instructive.strong\` | \`--wb-semanticColor-core-background-instructive-strong\` | \`#1b50b3\` | \`#363498\` | \`#8DA2FF\` |
+| \`semanticColor.core.background.neutral.subtle\` | \`--wb-semanticColor-core-background-neutral-subtle\` | \`#ededee\` | \`#EDEDEE\` | \`#4A4C53\` |
+| \`semanticColor.core.background.neutral.default\` | \`--wb-semanticColor-core-background-neutral-default\` | \`#5f6167\` | \`#717279\` | \`#8A8B90\` |
+| \`semanticColor.core.background.neutral.strong\` | \`--wb-semanticColor-core-background-neutral-strong\` | \`#21242c\` | \`#4A4C53\` | \`#EDEDEE\` |
+| \`semanticColor.core.background.critical.subtle\` | \`--wb-semanticColor-core-background-critical-subtle\` | \`#fceeec\` | \`#FFEBEB\` | \`#3B141A\` |
+| \`semanticColor.core.background.critical.default\` | \`--wb-semanticColor-core-background-critical-default\` | \`#d92916\` | \`#BE2626\` | \`#E22D2D\` |
+| \`semanticColor.core.background.critical.strong\` | \`--wb-semanticColor-core-background-critical-strong\` | \`#9e271d\` | \`#621414\` | \`#F97F7F\` |
+| \`semanticColor.core.background.success.subtle\` | \`--wb-semanticColor-core-background-success-subtle\` | \`#ebf8ec\` | \`#E3F7E3\` | \`#1A2924\` |
+| \`semanticColor.core.background.success.default\` | \`--wb-semanticColor-core-background-success-default\` | \`#00a60e\` | \`#579F6C\` | \`#579F6C\` |
+| \`semanticColor.core.background.success.strong\` | \`--wb-semanticColor-core-background-success-strong\` | \`#0b7c18\` | \`#3C6D4A\` | \`#97D39E\` |
+| \`semanticColor.core.background.warning.subtle\` | \`--wb-semanticColor-core-background-warning-subtle\` | \`#fff9eb\` | \`#FEF1D0\` | \`#312405\` |
+| \`semanticColor.core.background.warning.default\` | \`--wb-semanticColor-core-background-warning-default\` | \`#ffb100\` | \`#FEE7AD\` | \`#FCB706\` |
+| \`semanticColor.core.background.warning.strong\` | \`--wb-semanticColor-core-background-warning-strong\` | \`#b8840e\` | \`#966B00\` | \`#FDD673\` |
+| \`semanticColor.core.background.disabled.subtle\` | \`--wb-semanticColor-core-background-disabled-subtle\` | \`transparent\` | \`transparent\` | \`transparent\` |
+| \`semanticColor.core.background.disabled.default\` | \`--wb-semanticColor-core-background-disabled-default\` | \`#ededee\` | \`#EDEDEE\` | \`#4A4C53\` |
+| \`semanticColor.core.background.disabled.strong\` | \`--wb-semanticColor-core-background-disabled-strong\` | \`#dbdcdd\` | \`#E0E0E1\` | \`#4A4C53\` |
+| \`semanticColor.core.background.overlay.default\` | \`--wb-semanticColor-core-background-overlay-default\` | \`rgba(33,36,44,0.50)\` | \`rgba(21,21,33,0.60)\` | \`rgba(21,21,33,0.80)\` |
+| \`semanticColor.core.foreground.instructive.subtle\` | \`--wb-semanticColor-core-foreground-instructive-subtle\` | \`#b5cefb\` | \`#8DA2FF\` | \`#4340D0\` |
+| \`semanticColor.core.foreground.instructive.default\` | \`--wb-semanticColor-core-foreground-instructive-default\` | \`#1865f2\` | \`#5753FA\` | \`#6C82FF\` |
+| \`semanticColor.core.foreground.instructive.strong\` | \`--wb-semanticColor-core-foreground-instructive-strong\` | \`#1b50b3\` | \`#363498\` | \`#DFEAFF\` |
+| \`semanticColor.core.foreground.neutral.subtle\` | \`--wb-semanticColor-core-foreground-neutral-subtle\` | \`#717378\` | \`#717279\` | \`#A0A1A4\` |
+| \`semanticColor.core.foreground.neutral.default\` | \`--wb-semanticColor-core-foreground-neutral-default\` | \`#5f6167\` | \`#4A4C53\` | \`#CBCBCD\` |
+| \`semanticColor.core.foreground.neutral.strong\` | \`--wb-semanticColor-core-foreground-neutral-strong\` | \`#21242c\` | \`#151521\` | \`#EDEDEE\` |
+| \`semanticColor.core.foreground.critical.subtle\` | \`--wb-semanticColor-core-foreground-critical-subtle\` | \`#f3bbb4\` | \`#F97F7F\` | \`#E22D2D\` |
+| \`semanticColor.core.foreground.critical.default\` | \`--wb-semanticColor-core-foreground-critical-default\` | \`#d92916\` | \`#BE2626\` | \`#F97F7F\` |
+| \`semanticColor.core.foreground.critical.strong\` | \`--wb-semanticColor-core-foreground-critical-strong\` | \`#9e271d\` | \`#8E1C1C\` | \`#FBB1B1\` |
+| \`semanticColor.core.foreground.success.subtle\` | \`--wb-semanticColor-core-foreground-success-subtle\` | \`#c2eac5\` | \`#97D39E\` | \`#3C6D4A\` |
+| \`semanticColor.core.foreground.success.default\` | \`--wb-semanticColor-core-foreground-success-default\` | \`#00a60e\` | \`#3C6D4A\` | \`#72BB82\` |
+| \`semanticColor.core.foreground.success.strong\` | \`--wb-semanticColor-core-foreground-success-strong\` | \`#0b7c18\` | \`#24432D\` | \`#D5F3D5\` |
+| \`semanticColor.core.foreground.warning.subtle\` | \`--wb-semanticColor-core-foreground-warning-subtle\` | \`#ffecc2\` | \`#FDD673\` | \`#966B00\` |
+| \`semanticColor.core.foreground.warning.default\` | \`--wb-semanticColor-core-foreground-warning-default\` | \`#ffb100\` | \`#966B00\` | \`#FCB706\` |
+| \`semanticColor.core.foreground.warning.strong\` | \`--wb-semanticColor-core-foreground-warning-strong\` | \`#b8840e\` | \`#5F4500\` | \`#FEF1D0\` |
+| \`semanticColor.core.foreground.disabled.subtle\` | \`--wb-semanticColor-core-foreground-disabled-subtle\` | \`#dbdcdd\` | \`#CBCBCD\` | \`#4A4C53\` |
+| \`semanticColor.core.foreground.disabled.default\` | \`--wb-semanticColor-core-foreground-disabled-default\` | \`#b8b9bb\` | \`#B5B6B9\` | \`#717279\` |
+| \`semanticColor.core.foreground.disabled.strong\` | \`--wb-semanticColor-core-foreground-disabled-strong\` | \`#909296\` | \`#A0A1A4\` | \`#8A8B90\` |
+| \`semanticColor.core.foreground.knockout.default\` | \`--wb-semanticColor-core-foreground-knockout-default\` | \`#ffffff\` | \`#FFFFFF\` | \`#151521\` |
+| \`semanticColor.core.shadow.transparent.low\` | \`--wb-semanticColor-core-shadow-transparent-low\` | \`rgba(33,36,44,0.16)\` | \`color-mix(in srgb, #252368 20%, transparent)\` | \`rgba(21,21,33,0.60)\` |
+| \`semanticColor.core.shadow.transparent.mid\` | \`--wb-semanticColor-core-shadow-transparent-mid\` | \`rgba(33,36,44,0.16)\` | \`color-mix(in srgb, #252368 20%, transparent)\` | \`rgba(21,21,33,0.60)\` |
+| \`semanticColor.core.shadow.transparent.high\` | \`--wb-semanticColor-core-shadow-transparent-high\` | \`rgba(33,36,44,0.16)\` | \`color-mix(in srgb, #252368 20%, transparent)\` | \`rgba(21,21,33,0.60)\` |
+| \`semanticColor.core.shadow.transparent.color.subtle\` | \`--wb-semanticColor-core-shadow-transparent-color-subtle\` | \`#1865f233\` | \`#5753FA33\` | \`#5753FA33\` |
+| \`semanticColor.core.shadow.transparent.color.strong\` | \`--wb-semanticColor-core-shadow-transparent-color-strong\` | \`rgba(33,36,44,0.16)\` | \`#25236833\` | \`#25236833\` |
+| \`semanticColor.core.shadow.chonky.instructive.subtle\` | \`--wb-semanticColor-core-shadow-chonky-instructive-subtle\` | \`#b5cefb\` | \`#BFCAFF\` | \`#5753FA\` |
+| \`semanticColor.core.shadow.chonky.instructive.default\` | \`--wb-semanticColor-core-shadow-chonky-instructive-default\` | \`#1b50b3\` | \`#363498\` | \`#363498\` |
+| \`semanticColor.core.shadow.chonky.neutral.subtle\` | \`--wb-semanticColor-core-shadow-chonky-neutral-subtle\` | \`#b8b9bb\` | \`#CBCBCD\` | \`#4A4C53\` |
+| \`semanticColor.core.shadow.chonky.neutral.default\` | \`--wb-semanticColor-core-shadow-chonky-neutral-default\` | \`#909296\` | \`#8A8B90\` | \`#8A8B90\` |
+| \`semanticColor.core.shadow.chonky.neutral.strong\` | \`--wb-semanticColor-core-shadow-chonky-neutral-strong\` | \`#21242c\` | \`#4A4C53\` | \`#B5B6B9\` |
+| \`semanticColor.core.shadow.chonky.disabled.subtle\` | \`--wb-semanticColor-core-shadow-chonky-disabled-subtle\` | \`transparent\` | \`transparent\` | \`transparent\` |
+| \`semanticColor.core.shadow.chonky.disabled.default\` | \`--wb-semanticColor-core-shadow-chonky-disabled-default\` | \`#b8b9bb\` | \`#CBCBCD\` | \`#252531\` |
+| \`semanticColor.graphics.characters.flesh.blue.background.subtle\` | \`--wb-semanticColor-graphics-characters-flesh-blue-background-subtle\` | \`#6C82FF\` | \`#6C82FF\` | \`#4340D0\` |
+| \`semanticColor.graphics.characters.flesh.blue.background.default\` | \`--wb-semanticColor-graphics-characters-flesh-blue-background-default\` | \`#5753FA\` | \`#5753FA\` | \`#5753FA\` |
+| \`semanticColor.graphics.characters.flesh.blue.background.strong\` | \`--wb-semanticColor-graphics-characters-flesh-blue-background-strong\` | \`#4340D0\` | \`#4340D0\` | \`#6C82FF\` |
+| \`semanticColor.graphics.characters.flesh.blue.border.subtle\` | \`--wb-semanticColor-graphics-characters-flesh-blue-border-subtle\` | \`#6C82FF\` | \`#6C82FF\` | \`#363498\` |
+| \`semanticColor.graphics.characters.flesh.blue.border.default\` | \`--wb-semanticColor-graphics-characters-flesh-blue-border-default\` | \`#4340D0\` | \`#4340D0\` | \`#4340D0\` |
+| \`semanticColor.graphics.characters.flesh.blue.border.strong\` | \`--wb-semanticColor-graphics-characters-flesh-blue-border-strong\` | \`#363498\` | \`#363498\` | \`#6C82FF\` |
+| \`semanticColor.graphics.characters.flesh.cyan.background.subtle\` | \`--wb-semanticColor-graphics-characters-flesh-cyan-background-subtle\` | \`#57BAFD\` | \`#57BAFD\` | \`#2485C7\` |
+| \`semanticColor.graphics.characters.flesh.cyan.background.default\` | \`--wb-semanticColor-graphics-characters-flesh-cyan-background-default\` | \`#28A9FF\` | \`#28A9FF\` | \`#28A9FF\` |
+| \`semanticColor.graphics.characters.flesh.cyan.background.strong\` | \`--wb-semanticColor-graphics-characters-flesh-cyan-background-strong\` | \`#2485C7\` | \`#2485C7\` | \`#57BAFD\` |
+| \`semanticColor.graphics.characters.flesh.cyan.border.subtle\` | \`--wb-semanticColor-graphics-characters-flesh-cyan-border-subtle\` | \`#57BAFD\` | \`#57BAFD\` | \`#20628F\` |
+| \`semanticColor.graphics.characters.flesh.cyan.border.default\` | \`--wb-semanticColor-graphics-characters-flesh-cyan-border-default\` | \`#2485C7\` | \`#2485C7\` | \`#2485C7\` |
+| \`semanticColor.graphics.characters.flesh.cyan.border.strong\` | \`--wb-semanticColor-graphics-characters-flesh-cyan-border-strong\` | \`#20628F\` | \`#20628F\` | \`#57BAFD\` |
+| \`semanticColor.graphics.characters.flesh.green.background.subtle\` | \`--wb-semanticColor-graphics-characters-flesh-green-background-subtle\` | \`#72BB82\` | \`#72BB82\` | \`#3C6D4A\` |
+| \`semanticColor.graphics.characters.flesh.green.background.default\` | \`--wb-semanticColor-graphics-characters-flesh-green-background-default\` | \`#579F6C\` | \`#579F6C\` | \`#579F6C\` |
+| \`semanticColor.graphics.characters.flesh.green.background.strong\` | \`--wb-semanticColor-graphics-characters-flesh-green-background-strong\` | \`#3C6D4A\` | \`#3C6D4A\` | \`#72BB82\` |
+| \`semanticColor.graphics.characters.flesh.green.border.subtle\` | \`--wb-semanticColor-graphics-characters-flesh-green-border-subtle\` | \`#72BB82\` | \`#72BB82\` | \`#3C6D4A\` |
+| \`semanticColor.graphics.characters.flesh.green.border.default\` | \`--wb-semanticColor-graphics-characters-flesh-green-border-default\` | \`#3C6D4A\` | \`#3C6D4A\` | \`#579F6C\` |
+| \`semanticColor.graphics.characters.flesh.green.border.strong\` | \`--wb-semanticColor-graphics-characters-flesh-green-border-strong\` | \`#2C5037\` | \`#2C5037\` | \`#97D39E\` |
+| \`semanticColor.graphics.characters.flesh.magenta.background.subtle\` | \`--wb-semanticColor-graphics-characters-flesh-magenta-background-subtle\` | \`#F670C1\` | \`#F670C1\` | \`#BB3183\` |
+| \`semanticColor.graphics.characters.flesh.magenta.background.default\` | \`--wb-semanticColor-graphics-characters-flesh-magenta-background-default\` | \`#E83FA4\` | \`#E83FA4\` | \`#E83FA4\` |
+| \`semanticColor.graphics.characters.flesh.magenta.background.strong\` | \`--wb-semanticColor-graphics-characters-flesh-magenta-background-strong\` | \`#BB3183\` | \`#BB3183\` | \`#F670C1\` |
+| \`semanticColor.graphics.characters.flesh.magenta.border.subtle\` | \`--wb-semanticColor-graphics-characters-flesh-magenta-border-subtle\` | \`#F670C1\` | \`#F670C1\` | \`#84275E\` |
+| \`semanticColor.graphics.characters.flesh.magenta.border.default\` | \`--wb-semanticColor-graphics-characters-flesh-magenta-border-default\` | \`#BB3183\` | \`#BB3183\` | \`#BB3183\` |
+| \`semanticColor.graphics.characters.flesh.magenta.border.strong\` | \`--wb-semanticColor-graphics-characters-flesh-magenta-border-strong\` | \`#84275E\` | \`#84275E\` | \`#F670C1\` |
+| \`semanticColor.graphics.characters.flesh.orange.background.subtle\` | \`--wb-semanticColor-graphics-characters-flesh-orange-background-subtle\` | \`#F97B4F\` | \`#F97B4F\` | \`#C8481A\` |
+| \`semanticColor.graphics.characters.flesh.orange.background.default\` | \`--wb-semanticColor-graphics-characters-flesh-orange-background-default\` | \`#F8551A\` | \`#F8551A\` | \`#F8551A\` |
+| \`semanticColor.graphics.characters.flesh.orange.background.strong\` | \`--wb-semanticColor-graphics-characters-flesh-orange-background-strong\` | \`#C8481A\` | \`#C8481A\` | \`#F97B4F\` |
+| \`semanticColor.graphics.characters.flesh.orange.border.subtle\` | \`--wb-semanticColor-graphics-characters-flesh-orange-border-subtle\` | \`#F97B4F\` | \`#F97B4F\` | \`#983C1A\` |
+| \`semanticColor.graphics.characters.flesh.orange.border.default\` | \`--wb-semanticColor-graphics-characters-flesh-orange-border-default\` | \`#C8481A\` | \`#C8481A\` | \`#C8481A\` |
+| \`semanticColor.graphics.characters.flesh.orange.border.strong\` | \`--wb-semanticColor-graphics-characters-flesh-orange-border-strong\` | \`#983C1A\` | \`#983C1A\` | \`#F97B4F\` |
+| \`semanticColor.graphics.externalBrands.google.red\` | \`--wb-semanticColor-graphics-externalBrands-google-red\` | \`#EA4335\` | \`#EA4335\` | \`#EA4335\` |
+| \`semanticColor.graphics.externalBrands.google.yellow\` | \`--wb-semanticColor-graphics-externalBrands-google-yellow\` | \`#FBBC05\` | \`#FBBC05\` | \`#FBBC05\` |
+| \`semanticColor.graphics.externalBrands.google.green\` | \`--wb-semanticColor-graphics-externalBrands-google-green\` | \`#34A853\` | \`#34A853\` | \`#34A853\` |
+| \`semanticColor.graphics.externalBrands.google.blue\` | \`--wb-semanticColor-graphics-externalBrands-google-blue\` | \`#4285F4\` | \`#4285F4\` | \`#4285F4\` |
+| \`semanticColor.graphics.externalBrands.facebook.blue\` | \`--wb-semanticColor-graphics-externalBrands-facebook-blue\` | \`#1877F2\` | \`#1877F2\` | \`#1877F2\` |
+| \`semanticColor.graphics.externalBrands.facebook.white\` | \`--wb-semanticColor-graphics-externalBrands-facebook-white\` | \`#FFFFFF\` | \`#FFFFFF\` | \`#FFFFFF\` |
+| \`semanticColor.graphics.externalBrands.microsoft.red\` | \`--wb-semanticColor-graphics-externalBrands-microsoft-red\` | \`#F35325\` | \`#F35325\` | \`#F35325\` |
+| \`semanticColor.graphics.externalBrands.microsoft.green\` | \`--wb-semanticColor-graphics-externalBrands-microsoft-green\` | \`#81BC06\` | \`#81BC06\` | \`#81BC06\` |
+| \`semanticColor.graphics.externalBrands.microsoft.blue\` | \`--wb-semanticColor-graphics-externalBrands-microsoft-blue\` | \`#05A6F0\` | \`#05A6F0\` | \`#05A6F0\` |
+| \`semanticColor.graphics.externalBrands.microsoft.yellow\` | \`--wb-semanticColor-graphics-externalBrands-microsoft-yellow\` | \`#FFBA08\` | \`#FFBA08\` | \`#FFBA08\` |
+| \`semanticColor.graphics.externalBrands.apple.brand\` | \`--wb-semanticColor-graphics-externalBrands-apple-brand\` | \`#000000\` | \`#000000\` | \`#FFFFFF\` |
+| \`semanticColor.graphics.gems.background.subtle\` | \`--wb-semanticColor-graphics-gems-background-subtle\` | \`#FFE3F4\` | \`#FFE3F4\` | \`#33182E\` |
+| \`semanticColor.graphics.gems.background.default\` | \`--wb-semanticColor-graphics-gems-background-default\` | \`#FAD4EC\` | \`#FAD4EC\` | \`#521B3C\` |
+| \`semanticColor.graphics.gems.foreground.subtle\` | \`--wb-semanticColor-graphics-gems-foreground-subtle\` | \`#F9BBE1\` | \`#F9BBE1\` | \`#BB3183\` |
+| \`semanticColor.graphics.gems.foreground.default\` | \`--wb-semanticColor-graphics-gems-foreground-default\` | \`#E83FA4\` | \`#E83FA4\` | \`#E83FA4\` |
+| \`semanticColor.graphics.gems.foreground.strong\` | \`--wb-semanticColor-graphics-gems-foreground-strong\` | \`#BB3183\` | \`#BB3183\` | \`#FCEEF7\` |
+| \`semanticColor.graphics.progress.attempted.background.subtle\` | \`--wb-semanticColor-graphics-progress-attempted-background-subtle\` | \`#FEF8E7\` | \`#FEF8E7\` | \`#312405\` |
+| \`semanticColor.graphics.progress.attempted.background.default\` | \`--wb-semanticColor-graphics-progress-attempted-background-default\` | \`#FEEAB8\` | \`#FEEAB8\` | \`#5F4500\` |
+| \`semanticColor.graphics.progress.attempted.foreground.subtle\` | \`--wb-semanticColor-graphics-progress-attempted-foreground-subtle\` | \`#FDD673\` | \`#FDD673\` | \`#D69900\` |
+| \`semanticColor.graphics.progress.attempted.foreground.strong\` | \`--wb-semanticColor-graphics-progress-attempted-foreground-strong\` | \`#966B00\` | \`#966B00\` | \`#5F4500\` |
+| \`semanticColor.graphics.progress.notStarted.foreground.subtle\` | \`--wb-semanticColor-graphics-progress-notStarted-foreground-subtle\` | \`#B5B6B9\` | \`#B5B6B9\` | \`#B5B6B9\` |
+| \`semanticColor.graphics.progress.notStarted.foreground.strong\` | \`--wb-semanticColor-graphics-progress-notStarted-foreground-strong\` | \`#4A4C53\` | \`#4A4C53\` | \`#4A4C53\` |
+| \`semanticColor.graphics.progress.complete.background.subtle\` | \`--wb-semanticColor-graphics-progress-complete-background-subtle\` | \`#F1FBF1\` | \`#F1FBF1\` | \`#1A2924\` |
+| \`semanticColor.graphics.progress.complete.background.default\` | \`--wb-semanticColor-graphics-progress-complete-background-default\` | \`#D5F3D5\` | \`#D5F3D5\` | \`#24432D\` |
+| \`semanticColor.graphics.progress.complete.foreground.strong\` | \`--wb-semanticColor-graphics-progress-complete-foreground-strong\` | \`#2C5037\` | \`#2C5037\` | \`#2C5037\` |
+| \`semanticColor.graphics.role.all.current.background\` | \`--wb-semanticColor-graphics-role-all-current-background\` | \`#F8F9FB\` | \`#F8F9FB\` | \`#151521\` |
+| \`semanticColor.graphics.role.all.current.foreground\` | \`--wb-semanticColor-graphics-role-all-current-foreground\` | \`#EBF1FD\` | \`#EBF1FD\` | \`#222149\` |
+| \`semanticColor.graphics.role.administrator.background\` | \`--wb-semanticColor-graphics-role-administrator-background\` | \`#CCE9FE\` | \`#CCE9FE\` | \`#1D3F58\` |
+| \`semanticColor.graphics.role.administrator.foreground\` | \`--wb-semanticColor-graphics-role-administrator-foreground\` | \`#57BAFD\` | \`#57BAFD\` | \`#20628F\` |
+| \`semanticColor.graphics.role.learner.background\` | \`--wb-semanticColor-graphics-role-learner-background\` | \`#FEBFB1\` | \`#FEBFB1\` | \`#672912\` |
+| \`semanticColor.graphics.role.learner.foreground\` | \`--wb-semanticColor-graphics-role-learner-foreground\` | \`#F8551A\` | \`#F8551A\` | \`#983C1A\` |
+| \`semanticColor.graphics.role.parent.background\` | \`--wb-semanticColor-graphics-role-parent-background\` | \`#D5F3D5\` | \`#D5F3D5\` | \`#24432D\` |
+| \`semanticColor.graphics.role.parent.foreground\` | \`--wb-semanticColor-graphics-role-parent-foreground\` | \`#72BB82\` | \`#72BB82\` | \`#2C5037\` |
+| \`semanticColor.graphics.role.teacher.background\` | \`--wb-semanticColor-graphics-role-teacher-background\` | \`#FDD673\` | \`#FDD673\` | \`#5F4500\` |
+| \`semanticColor.graphics.role.teacher.foreground\` | \`--wb-semanticColor-graphics-role-teacher-foreground\` | \`#FCB706\` | \`#FCB706\` | \`#966B00\` |
+| \`semanticColor.graphics.streaks.background.subtle\` | \`--wb-semanticColor-graphics-streaks-background-subtle\` | \`#FEE9E5\` | \`#FEE9E5\` | \`#3E1F19\` |
+| \`semanticColor.graphics.streaks.background.default\` | \`--wb-semanticColor-graphics-streaks-background-default\` | \`#FEDFD8\` | \`#FEDFD8\` | \`#672912\` |
+| \`semanticColor.graphics.streaks.foreground.subtle\` | \`--wb-semanticColor-graphics-streaks-foreground-subtle\` | \`#FEBFB1\` | \`#FEBFB1\` | \`#C8481A\` |
+| \`semanticColor.graphics.streaks.foreground.default\` | \`--wb-semanticColor-graphics-streaks-foreground-default\` | \`#F8551A\` | \`#F8551A\` | \`#F8551A\` |
+| \`semanticColor.graphics.streaks.foreground.strong\` | \`--wb-semanticColor-graphics-streaks-foreground-strong\` | \`#C8481A\` | \`#C8481A\` | \`#FEF4F2\` |
+| \`semanticColor.graphics.neutral.background.subtle\` | \`--wb-semanticColor-graphics-neutral-background-subtle\` | \`#FFFFFF\` | \`#FFFFFF\` | \`#252531\` |
+| \`semanticColor.graphics.neutral.background.default\` | \`--wb-semanticColor-graphics-neutral-background-default\` | \`#F8F9FB\` | \`#F8F9FB\` | \`#151521\` |
+| \`semanticColor.learning.math.foreground.blue\` | \`--wb-semanticColor-learning-math-foreground-blue\` | \`#3D7586\` | \`#20628F\` | \`#87CBFC\` |
+| \`semanticColor.learning.math.foreground.gold\` | \`--wb-semanticColor-learning-math-foreground-gold\` | \`#946700\` | \`#966B00\` | \`#FCC539\` |
+| \`semanticColor.learning.math.foreground.green\` | \`--wb-semanticColor-learning-math-foreground-green\` | \`#447A53\` | \`#3C6D4A\` | \`#97D39E\` |
+| \`semanticColor.learning.math.foreground.gray\` | \`--wb-semanticColor-learning-math-foreground-gray\` | \`#5D5F66\` | \`#4A4C53\` | \`#CBCBCD\` |
+| \`semanticColor.learning.math.foreground.grayH\` | \`--wb-semanticColor-learning-math-foreground-grayH\` | \`#3B3D45\` | \`#252531\` | \`#E0E0E1\` |
+| \`semanticColor.learning.math.foreground.grayI\` | \`--wb-semanticColor-learning-math-foreground-grayI\` | \`#21242C\` | \`#151521\` | \`#EDEDEE\` |
+| \`semanticColor.learning.math.foreground.purple\` | \`--wb-semanticColor-learning-math-foreground-purple\` | \`#594094\` | \`#252368\` | \`#BFCAFF\` |
+| \`semanticColor.learning.math.foreground.purpleD\` | \`--wb-semanticColor-learning-math-foreground-purpleD\` | \`#8351E8\` | \`#363498\` | \`#8DA2FF\` |
+| \`semanticColor.learning.math.foreground.pink\` | \`--wb-semanticColor-learning-math-foreground-pink\` | \`#B25071\` | \`#84275E\` | \`#F8A2D6\` |
+| \`semanticColor.learning.math.foreground.red\` | \`--wb-semanticColor-learning-math-foreground-red\` | \`#D92916\` | \`#BE2626\` | \`#FBB1B1\` |
+| \`semanticColor.learning.background.gems.subtle\` | \`--wb-semanticColor-learning-background-gems-subtle\` | \`#FCEEF7\` | \`#FCEEF7\` | \`#84275E\` |
+| \`semanticColor.learning.background.gems.default\` | \`--wb-semanticColor-learning-background-gems-default\` | \`#FFE3F4\` | \`#FFE3F4\` | \`#33182E\` |
+| \`semanticColor.learning.background.gems.strong\` | \`--wb-semanticColor-learning-background-gems-strong\` | \`#84275E\` | \`#84275E\` | \`#BB3183\` |
+| \`semanticColor.learning.background.due.subtle\` | \`--wb-semanticColor-learning-background-due-subtle\` | \`#DDF0FE\` | \`#DDF0FE\` | \`#1D3F58\` |
+| \`semanticColor.learning.background.due.default\` | \`--wb-semanticColor-learning-background-due-default\` | \`#A9DAFD\` | \`#A9DAFD\` | \`#20628F\` |
+| \`semanticColor.learning.background.due.strong\` | \`--wb-semanticColor-learning-background-due-strong\` | \`#20628F\` | \`#20628F\` | \`#2485C7\` |
+| \`semanticColor.learning.background.streaks.subtle\` | \`--wb-semanticColor-learning-background-streaks-subtle\` | \`#FEE9E5\` | \`#FEE9E5\` | \`#672912\` |
+| \`semanticColor.learning.background.streaks.default\` | \`--wb-semanticColor-learning-background-streaks-default\` | \`#FEBFB1\` | \`#FEBFB1\` | \`#983C1A\` |
+| \`semanticColor.learning.background.streaks.strong\` | \`--wb-semanticColor-learning-background-streaks-strong\` | \`#983C1A\` | \`#983C1A\` | \`#C8481A\` |
+| \`semanticColor.learning.background.progress.notStarted.default\` | \`--wb-semanticColor-learning-background-progress-notStarted-default\` | \`#CBCBCD\` | \`#CBCBCD\` | \`#B5B6B9\` |
+| \`semanticColor.learning.background.progress.attempted.default\` | \`--wb-semanticColor-learning-background-progress-attempted-default\` | \`#FEE7AD\` | \`#FEE7AD\` | \`#FCC539\` |
+| \`semanticColor.learning.background.progress.complete.default\` | \`--wb-semanticColor-learning-background-progress-complete-default\` | \`#BCEBBB\` | \`#BCEBBB\` | \`#72BB82\` |
+| \`semanticColor.learning.background.characters.flesh.blue.subtle\` | \`--wb-semanticColor-learning-background-characters-flesh-blue-subtle\` | \`#6C82FF\` | \`#6C82FF\` | \`#4340D0\` |
+| \`semanticColor.learning.background.characters.flesh.blue.default\` | \`--wb-semanticColor-learning-background-characters-flesh-blue-default\` | \`#5753FA\` | \`#5753FA\` | \`#5753FA\` |
+| \`semanticColor.learning.background.characters.flesh.blue.strong\` | \`--wb-semanticColor-learning-background-characters-flesh-blue-strong\` | \`#4340D0\` | \`#4340D0\` | \`#6C82FF\` |
+| \`semanticColor.learning.background.characters.flesh.cyan.subtle\` | \`--wb-semanticColor-learning-background-characters-flesh-cyan-subtle\` | \`#57BAFD\` | \`#57BAFD\` | \`#2485C7\` |
+| \`semanticColor.learning.background.characters.flesh.cyan.default\` | \`--wb-semanticColor-learning-background-characters-flesh-cyan-default\` | \`#28A9FF\` | \`#28A9FF\` | \`#28A9FF\` |
+| \`semanticColor.learning.background.characters.flesh.cyan.strong\` | \`--wb-semanticColor-learning-background-characters-flesh-cyan-strong\` | \`#2485C7\` | \`#2485C7\` | \`#57BAFD\` |
+| \`semanticColor.learning.background.characters.flesh.green.subtle\` | \`--wb-semanticColor-learning-background-characters-flesh-green-subtle\` | \`#72BB82\` | \`#72BB82\` | \`#3C6D4A\` |
+| \`semanticColor.learning.background.characters.flesh.green.default\` | \`--wb-semanticColor-learning-background-characters-flesh-green-default\` | \`#579F6C\` | \`#579F6C\` | \`#579F6C\` |
+| \`semanticColor.learning.background.characters.flesh.green.strong\` | \`--wb-semanticColor-learning-background-characters-flesh-green-strong\` | \`#3C6D4A\` | \`#3C6D4A\` | \`#72BB82\` |
+| \`semanticColor.learning.background.characters.flesh.magenta.subtle\` | \`--wb-semanticColor-learning-background-characters-flesh-magenta-subtle\` | \`#F670C1\` | \`#F670C1\` | \`#BB3183\` |
+| \`semanticColor.learning.background.characters.flesh.magenta.default\` | \`--wb-semanticColor-learning-background-characters-flesh-magenta-default\` | \`#E83FA4\` | \`#E83FA4\` | \`#E83FA4\` |
+| \`semanticColor.learning.background.characters.flesh.magenta.strong\` | \`--wb-semanticColor-learning-background-characters-flesh-magenta-strong\` | \`#BB3183\` | \`#BB3183\` | \`#F670C1\` |
+| \`semanticColor.learning.background.characters.flesh.orange.subtle\` | \`--wb-semanticColor-learning-background-characters-flesh-orange-subtle\` | \`#F97B4F\` | \`#F97B4F\` | \`#C8481A\` |
+| \`semanticColor.learning.background.characters.flesh.orange.default\` | \`--wb-semanticColor-learning-background-characters-flesh-orange-default\` | \`#F8551A\` | \`#F8551A\` | \`#F8551A\` |
+| \`semanticColor.learning.background.characters.flesh.orange.strong\` | \`--wb-semanticColor-learning-background-characters-flesh-orange-strong\` | \`#C8481A\` | \`#C8481A\` | \`#F97B4F\` |
+| \`semanticColor.learning.border.gems.subtle\` | \`--wb-semanticColor-learning-border-gems-subtle\` | \`#FFE3F4\` | \`#FFE3F4\` | \`#84275E\` |
+| \`semanticColor.learning.border.gems.default\` | \`--wb-semanticColor-learning-border-gems-default\` | \`#F9BBE1\` | \`#F9BBE1\` | \`#BB3183\` |
+| \`semanticColor.learning.border.gems.strong\` | \`--wb-semanticColor-learning-border-gems-strong\` | \`#E83FA4\` | \`#E83FA4\` | \`#E83FA4\` |
+| \`semanticColor.learning.border.streaks.subtle\` | \`--wb-semanticColor-learning-border-streaks-subtle\` | \`#FEE9E5\` | \`#FEE9E5\` | \`#983C1A\` |
+| \`semanticColor.learning.border.streaks.default\` | \`--wb-semanticColor-learning-border-streaks-default\` | \`#FEBFB1\` | \`#FEBFB1\` | \`#C8481A\` |
+| \`semanticColor.learning.border.streaks.strong\` | \`--wb-semanticColor-learning-border-streaks-strong\` | \`#F8551A\` | \`#F8551A\` | \`#F8551A\` |
+| \`semanticColor.learning.border.due.subtle\` | \`--wb-semanticColor-learning-border-due-subtle\` | \`#DDF0FE\` | \`#DDF0FE\` | \`#2485C7\` |
+| \`semanticColor.learning.border.due.default\` | \`--wb-semanticColor-learning-border-due-default\` | \`#A9DAFD\` | \`#A9DAFD\` | \`#57BAFD\` |
+| \`semanticColor.learning.border.due.strong\` | \`--wb-semanticColor-learning-border-due-strong\` | \`#28A9FF\` | \`#28A9FF\` | \`#A9DAFD\` |
+| \`semanticColor.learning.border.characters.flesh.blue.subtle\` | \`--wb-semanticColor-learning-border-characters-flesh-blue-subtle\` | \`#6C82FF\` | \`#6C82FF\` | \`#363498\` |
+| \`semanticColor.learning.border.characters.flesh.blue.default\` | \`--wb-semanticColor-learning-border-characters-flesh-blue-default\` | \`#4340D0\` | \`#4340D0\` | \`#4340D0\` |
+| \`semanticColor.learning.border.characters.flesh.blue.strong\` | \`--wb-semanticColor-learning-border-characters-flesh-blue-strong\` | \`#363498\` | \`#363498\` | \`#6C82FF\` |
+| \`semanticColor.learning.border.characters.flesh.cyan.subtle\` | \`--wb-semanticColor-learning-border-characters-flesh-cyan-subtle\` | \`#57BAFD\` | \`#57BAFD\` | \`#20628F\` |
+| \`semanticColor.learning.border.characters.flesh.cyan.default\` | \`--wb-semanticColor-learning-border-characters-flesh-cyan-default\` | \`#2485C7\` | \`#2485C7\` | \`#2485C7\` |
+| \`semanticColor.learning.border.characters.flesh.cyan.strong\` | \`--wb-semanticColor-learning-border-characters-flesh-cyan-strong\` | \`#20628F\` | \`#20628F\` | \`#57BAFD\` |
+| \`semanticColor.learning.border.characters.flesh.green.subtle\` | \`--wb-semanticColor-learning-border-characters-flesh-green-subtle\` | \`#72BB82\` | \`#72BB82\` | \`#3C6D4A\` |
+| \`semanticColor.learning.border.characters.flesh.green.default\` | \`--wb-semanticColor-learning-border-characters-flesh-green-default\` | \`#3C6D4A\` | \`#3C6D4A\` | \`#579F6C\` |
+| \`semanticColor.learning.border.characters.flesh.green.strong\` | \`--wb-semanticColor-learning-border-characters-flesh-green-strong\` | \`#2C5037\` | \`#2C5037\` | \`#97D39E\` |
+| \`semanticColor.learning.border.characters.flesh.magenta.subtle\` | \`--wb-semanticColor-learning-border-characters-flesh-magenta-subtle\` | \`#F670C1\` | \`#F670C1\` | \`#84275E\` |
+| \`semanticColor.learning.border.characters.flesh.magenta.default\` | \`--wb-semanticColor-learning-border-characters-flesh-magenta-default\` | \`#BB3183\` | \`#BB3183\` | \`#BB3183\` |
+| \`semanticColor.learning.border.characters.flesh.magenta.strong\` | \`--wb-semanticColor-learning-border-characters-flesh-magenta-strong\` | \`#84275E\` | \`#84275E\` | \`#F670C1\` |
+| \`semanticColor.learning.border.characters.flesh.orange.subtle\` | \`--wb-semanticColor-learning-border-characters-flesh-orange-subtle\` | \`#F97B4F\` | \`#F97B4F\` | \`#983C1A\` |
+| \`semanticColor.learning.border.characters.flesh.orange.default\` | \`--wb-semanticColor-learning-border-characters-flesh-orange-default\` | \`#C8481A\` | \`#C8481A\` | \`#C8481A\` |
+| \`semanticColor.learning.border.characters.flesh.orange.strong\` | \`--wb-semanticColor-learning-border-characters-flesh-orange-strong\` | \`#983C1A\` | \`#983C1A\` | \`#F97B4F\` |
+| \`semanticColor.learning.foreground.gems.subtle\` | \`--wb-semanticColor-learning-foreground-gems-subtle\` | \`#F9BBE1\` | \`#F9BBE1\` | \`#BB3183\` |
+| \`semanticColor.learning.foreground.gems.default\` | \`--wb-semanticColor-learning-foreground-gems-default\` | \`#E83FA4\` | \`#E83FA4\` | \`#E83FA4\` |
+| \`semanticColor.learning.foreground.gems.strong\` | \`--wb-semanticColor-learning-foreground-gems-strong\` | \`#84275E\` | \`#84275E\` | \`#FCEEF7\` |
+| \`semanticColor.learning.foreground.streaks.subtle\` | \`--wb-semanticColor-learning-foreground-streaks-subtle\` | \`#FEBFB1\` | \`#FEBFB1\` | \`#C8481A\` |
+| \`semanticColor.learning.foreground.streaks.default\` | \`--wb-semanticColor-learning-foreground-streaks-default\` | \`#F8551A\` | \`#F8551A\` | \`#F8551A\` |
+| \`semanticColor.learning.foreground.streaks.strong\` | \`--wb-semanticColor-learning-foreground-streaks-strong\` | \`#983C1A\` | \`#983C1A\` | \`#FEF4F2\` |
+| \`semanticColor.learning.foreground.due.subtle\` | \`--wb-semanticColor-learning-foreground-due-subtle\` | \`#A9DAFD\` | \`#A9DAFD\` | \`#2485C7\` |
+| \`semanticColor.learning.foreground.due.default\` | \`--wb-semanticColor-learning-foreground-due-default\` | \`#2485C7\` | \`#2485C7\` | \`#28A9FF\` |
+| \`semanticColor.learning.foreground.due.strong\` | \`--wb-semanticColor-learning-foreground-due-strong\` | \`#20628F\` | \`#20628F\` | \`#57BAFD\` |
+| \`semanticColor.learning.foreground.progress.notStarted.subtle\` | \`--wb-semanticColor-learning-foreground-progress-notStarted-subtle\` | \`#B5B6B9\` | \`#B5B6B9\` | \`#B5B6B9\` |
+| \`semanticColor.learning.foreground.progress.notStarted.strong\` | \`--wb-semanticColor-learning-foreground-progress-notStarted-strong\` | \`#4A4C53\` | \`#4A4C53\` | \`#4A4C53\` |
+| \`semanticColor.learning.foreground.progress.attempted.subtle\` | \`--wb-semanticColor-learning-foreground-progress-attempted-subtle\` | \`#FDD673\` | \`#FDD673\` | \`#D69900\` |
+| \`semanticColor.learning.foreground.progress.attempted.strong\` | \`--wb-semanticColor-learning-foreground-progress-attempted-strong\` | \`#966B00\` | \`#966B00\` | \`#5F4500\` |
+| \`semanticColor.learning.foreground.progress.complete.strong\` | \`--wb-semanticColor-learning-foreground-progress-complete-strong\` | \`#97D39E\` | \`#2C5037\` | \`#2C5037\` |
+| \`semanticColor.learning.shadow.progress.notStarted.default\` | \`--wb-semanticColor-learning-shadow-progress-notStarted-default\` | \`#717279\` | \`#717279\` | \`#4A4C53\` |
+| \`semanticColor.learning.shadow.progress.attempted.default\` | \`--wb-semanticColor-learning-shadow-progress-attempted-default\` | \`#FCB706\` | \`#FCB706\` | \`#D69900\` |
+| \`semanticColor.learning.shadow.progress.complete.default\` | \`--wb-semanticColor-learning-shadow-progress-complete-default\` | \`#579F6C\` | \`#579F6C\` | \`#3C6D4A\` |
+| \`semanticColor.learning.characters.flesh.blue.default\` | \`--wb-semanticColor-learning-characters-flesh-blue-default\` | \`#5753FA\` | \`#5753FA\` | \`#5753FA\` |
+| \`semanticColor.learning.characters.flesh.cyan.default\` | \`--wb-semanticColor-learning-characters-flesh-cyan-default\` | \`#28A9FF\` | \`#28A9FF\` | \`#28A9FF\` |
+| \`semanticColor.learning.characters.flesh.green.default\` | \`--wb-semanticColor-learning-characters-flesh-green-default\` | \`#579F6C\` | \`#579F6C\` | \`#579F6C\` |
+| \`semanticColor.learning.characters.flesh.magenta.default\` | \`--wb-semanticColor-learning-characters-flesh-magenta-default\` | \`#E83FA4\` | \`#E83FA4\` | \`#E83FA4\` |
+| \`semanticColor.learning.characters.flesh.orange.default\` | \`--wb-semanticColor-learning-characters-flesh-orange-default\` | \`#F8551A\` | \`#F8551A\` | \`#F8551A\` |
+| \`semanticColor.chonky.progressive.background.primary.rest\` | \`--wb-semanticColor-chonky-progressive-background-primary-rest\` | \`#1865f2\` | \`#5753FA\` | \`#5753FA\` |
+| \`semanticColor.chonky.progressive.background.primary.hover\` | \`--wb-semanticColor-chonky-progressive-background-primary-hover\` | \`#1865f2\` | \`#5753FA\` | \`#5753FA\` |
+| \`semanticColor.chonky.progressive.background.primary.press\` | \`--wb-semanticColor-chonky-progressive-background-primary-press\` | \`#1865f2\` | \`#5753FA\` | \`#5753FA\` |
+| \`semanticColor.chonky.progressive.background.primary.selected\` | \`--wb-semanticColor-chonky-progressive-background-primary-selected\` | \`#1865f2\` | \`#5753FA\` | \`#5753FA\` |
+| \`semanticColor.chonky.progressive.background.secondary.rest\` | \`--wb-semanticColor-chonky-progressive-background-secondary-rest\` | \`#edf3fe\` | \`#EBF1FD\` | \`#222149\` |
+| \`semanticColor.chonky.progressive.background.secondary.hover\` | \`--wb-semanticColor-chonky-progressive-background-secondary-hover\` | \`#edf3fe\` | \`#EBF1FD\` | \`#222149\` |
+| \`semanticColor.chonky.progressive.background.secondary.press\` | \`--wb-semanticColor-chonky-progressive-background-secondary-press\` | \`#edf3fe\` | \`#EBF1FD\` | \`#222149\` |
+| \`semanticColor.chonky.progressive.background.secondary.selected\` | \`--wb-semanticColor-chonky-progressive-background-secondary-selected\` | \`#edf3fe\` | \`#EBF1FD\` | \`#222149\` |
+| \`semanticColor.chonky.progressive.background.tertiary.rest\` | \`--wb-semanticColor-chonky-progressive-background-tertiary-rest\` | \`transparent\` | \`transparent\` | \`transparent\` |
+| \`semanticColor.chonky.progressive.background.tertiary.hover\` | \`--wb-semanticColor-chonky-progressive-background-tertiary-hover\` | \`transparent\` | \`transparent\` | \`transparent\` |
+| \`semanticColor.chonky.progressive.background.tertiary.press\` | \`--wb-semanticColor-chonky-progressive-background-tertiary-press\` | \`transparent\` | \`transparent\` | \`transparent\` |
+| \`semanticColor.chonky.progressive.background.tertiary.selected\` | \`--wb-semanticColor-chonky-progressive-background-tertiary-selected\` | \`transparent\` | \`transparent\` | \`transparent\` |
+| \`semanticColor.chonky.progressive.border.primary.rest\` | \`--wb-semanticColor-chonky-progressive-border-primary-rest\` | \`transparent\` | \`transparent\` | \`transparent\` |
+| \`semanticColor.chonky.progressive.border.primary.hover\` | \`--wb-semanticColor-chonky-progressive-border-primary-hover\` | \`transparent\` | \`transparent\` | \`transparent\` |
+| \`semanticColor.chonky.progressive.border.primary.press\` | \`--wb-semanticColor-chonky-progressive-border-primary-press\` | \`transparent\` | \`transparent\` | \`transparent\` |
+| \`semanticColor.chonky.progressive.border.primary.selected\` | \`--wb-semanticColor-chonky-progressive-border-primary-selected\` | \`transparent\` | \`transparent\` | \`transparent\` |
+| \`semanticColor.chonky.progressive.border.secondary.rest\` | \`--wb-semanticColor-chonky-progressive-border-secondary-rest\` | \`#b5cefb\` | \`#BFCAFF\` | \`#5753FA\` |
+| \`semanticColor.chonky.progressive.border.secondary.hover\` | \`--wb-semanticColor-chonky-progressive-border-secondary-hover\` | \`#b5cefb\` | \`#BFCAFF\` | \`#5753FA\` |
+| \`semanticColor.chonky.progressive.border.secondary.press\` | \`--wb-semanticColor-chonky-progressive-border-secondary-press\` | \`#b5cefb\` | \`#BFCAFF\` | \`#5753FA\` |
+| \`semanticColor.chonky.progressive.border.secondary.selected\` | \`--wb-semanticColor-chonky-progressive-border-secondary-selected\` | \`#b5cefb\` | \`#BFCAFF\` | \`#5753FA\` |
+| \`semanticColor.chonky.progressive.border.tertiary.rest\` | \`--wb-semanticColor-chonky-progressive-border-tertiary-rest\` | \`transparent\` | \`transparent\` | \`transparent\` |
+| \`semanticColor.chonky.progressive.border.tertiary.hover\` | \`--wb-semanticColor-chonky-progressive-border-tertiary-hover\` | \`#dbdcdd\` | \`#CBCBCD\` | \`#4A4C53\` |
+| \`semanticColor.chonky.progressive.border.tertiary.press\` | \`--wb-semanticColor-chonky-progressive-border-tertiary-press\` | \`#dbdcdd\` | \`#CBCBCD\` | \`#4A4C53\` |
+| \`semanticColor.chonky.progressive.border.tertiary.selected\` | \`--wb-semanticColor-chonky-progressive-border-tertiary-selected\` | \`#b5cefb\` | \`#BFCAFF\` | \`#5753FA\` |
+| \`semanticColor.chonky.progressive.foreground.primary.rest\` | \`--wb-semanticColor-chonky-progressive-foreground-primary-rest\` | \`#ffffff\` | \`#FFFFFF\` | \`#FFFFFF\` |
+| \`semanticColor.chonky.progressive.foreground.primary.hover\` | \`--wb-semanticColor-chonky-progressive-foreground-primary-hover\` | \`#ffffff\` | \`#FFFFFF\` | \`#FFFFFF\` |
+| \`semanticColor.chonky.progressive.foreground.primary.press\` | \`--wb-semanticColor-chonky-progressive-foreground-primary-press\` | \`#ffffff\` | \`#FFFFFF\` | \`#FFFFFF\` |
+| \`semanticColor.chonky.progressive.foreground.primary.selected\` | \`--wb-semanticColor-chonky-progressive-foreground-primary-selected\` | \`#ffffff\` | \`#FFFFFF\` | \`#FFFFFF\` |
+| \`semanticColor.chonky.progressive.foreground.secondary.rest\` | \`--wb-semanticColor-chonky-progressive-foreground-secondary-rest\` | \`#1865f2\` | \`#5753FA\` | \`#6C82FF\` |
+| \`semanticColor.chonky.progressive.foreground.secondary.hover\` | \`--wb-semanticColor-chonky-progressive-foreground-secondary-hover\` | \`#1865f2\` | \`#5753FA\` | \`#6C82FF\` |
+| \`semanticColor.chonky.progressive.foreground.secondary.press\` | \`--wb-semanticColor-chonky-progressive-foreground-secondary-press\` | \`#1b50b3\` | \`#5753FA\` | \`#6C82FF\` |
+| \`semanticColor.chonky.progressive.foreground.secondary.selected\` | \`--wb-semanticColor-chonky-progressive-foreground-secondary-selected\` | \`#1b50b3\` | \`#5753FA\` | \`#6C82FF\` |
+| \`semanticColor.chonky.progressive.foreground.tertiary.rest\` | \`--wb-semanticColor-chonky-progressive-foreground-tertiary-rest\` | \`#1865f2\` | \`#5753FA\` | \`#6C82FF\` |
+| \`semanticColor.chonky.progressive.foreground.tertiary.hover\` | \`--wb-semanticColor-chonky-progressive-foreground-tertiary-hover\` | \`#1865f2\` | \`#5753FA\` | \`#6C82FF\` |
+| \`semanticColor.chonky.progressive.foreground.tertiary.press\` | \`--wb-semanticColor-chonky-progressive-foreground-tertiary-press\` | \`#1b50b3\` | \`#5753FA\` | \`#6C82FF\` |
+| \`semanticColor.chonky.progressive.foreground.tertiary.selected\` | \`--wb-semanticColor-chonky-progressive-foreground-tertiary-selected\` | \`#1b50b3\` | \`#5753FA\` | \`#6C82FF\` |
+| \`semanticColor.chonky.progressive.shadow.primary.rest\` | \`--wb-semanticColor-chonky-progressive-shadow-primary-rest\` | \`#1b50b3\` | \`#363498\` | \`#363498\` |
+| \`semanticColor.chonky.progressive.shadow.primary.hover\` | \`--wb-semanticColor-chonky-progressive-shadow-primary-hover\` | \`#1b50b3\` | \`#363498\` | \`#363498\` |
+| \`semanticColor.chonky.progressive.shadow.primary.press\` | \`--wb-semanticColor-chonky-progressive-shadow-primary-press\` | \`#1b50b3\` | \`#363498\` | \`#363498\` |
+| \`semanticColor.chonky.progressive.shadow.primary.selected\` | \`--wb-semanticColor-chonky-progressive-shadow-primary-selected\` | \`#1b50b3\` | \`#363498\` | \`#363498\` |
+| \`semanticColor.chonky.progressive.shadow.secondary.rest\` | \`--wb-semanticColor-chonky-progressive-shadow-secondary-rest\` | \`#b5cefb\` | \`#BFCAFF\` | \`#5753FA\` |
+| \`semanticColor.chonky.progressive.shadow.secondary.hover\` | \`--wb-semanticColor-chonky-progressive-shadow-secondary-hover\` | \`#b5cefb\` | \`#BFCAFF\` | \`#5753FA\` |
+| \`semanticColor.chonky.progressive.shadow.secondary.press\` | \`--wb-semanticColor-chonky-progressive-shadow-secondary-press\` | \`#b5cefb\` | \`#BFCAFF\` | \`transparent\` |
+| \`semanticColor.chonky.progressive.shadow.secondary.selected\` | \`--wb-semanticColor-chonky-progressive-shadow-secondary-selected\` | \`#b5cefb\` | \`#BFCAFF\` | \`#5753FA\` |
+| \`semanticColor.chonky.progressive.shadow.tertiary.rest\` | \`--wb-semanticColor-chonky-progressive-shadow-tertiary-rest\` | \`transparent\` | \`transparent\` | \`transparent\` |
+| \`semanticColor.chonky.progressive.shadow.tertiary.hover\` | \`--wb-semanticColor-chonky-progressive-shadow-tertiary-hover\` | \`#b8b9bb\` | \`#CBCBCD\` | \`#4A4C53\` |
+| \`semanticColor.chonky.progressive.shadow.tertiary.press\` | \`--wb-semanticColor-chonky-progressive-shadow-tertiary-press\` | \`#b8b9bb\` | \`#CBCBCD\` | \`transparent\` |
+| \`semanticColor.chonky.progressive.shadow.tertiary.selected\` | \`--wb-semanticColor-chonky-progressive-shadow-tertiary-selected\` | \`#b5cefb\` | \`#BFCAFF\` | \`#5753FA\` |
+| \`semanticColor.chonky.neutral.background.primary.rest\` | \`--wb-semanticColor-chonky-neutral-background-primary-rest\` | \`#5f6167\` | \`#717279\` | \`#717279\` |
+| \`semanticColor.chonky.neutral.background.primary.hover\` | \`--wb-semanticColor-chonky-neutral-background-primary-hover\` | \`#5f6167\` | \`#717279\` | \`#717279\` |
+| \`semanticColor.chonky.neutral.background.primary.press\` | \`--wb-semanticColor-chonky-neutral-background-primary-press\` | \`#5f6167\` | \`#717279\` | \`#717279\` |
+| \`semanticColor.chonky.neutral.background.primary.selected\` | \`--wb-semanticColor-chonky-neutral-background-primary-selected\` | \`#5f6167\` | \`#717279\` | \`#717279\` |
+| \`semanticColor.chonky.neutral.background.secondary.rest\` | \`--wb-semanticColor-chonky-neutral-background-secondary-rest\` | \`transparent\` | \`#FFFFFF\` | \`#252531\` |
+| \`semanticColor.chonky.neutral.background.secondary.hover\` | \`--wb-semanticColor-chonky-neutral-background-secondary-hover\` | \`transparent\` | \`#FFFFFF\` | \`#252531\` |
+| \`semanticColor.chonky.neutral.background.secondary.press\` | \`--wb-semanticColor-chonky-neutral-background-secondary-press\` | \`transparent\` | \`#FFFFFF\` | \`#252531\` |
+| \`semanticColor.chonky.neutral.background.secondary.selected\` | \`--wb-semanticColor-chonky-neutral-background-secondary-selected\` | \`#ededee\` | \`#FFFFFF\` | \`#252531\` |
+| \`semanticColor.chonky.neutral.background.tertiary.rest\` | \`--wb-semanticColor-chonky-neutral-background-tertiary-rest\` | \`transparent\` | \`transparent\` | \`transparent\` |
+| \`semanticColor.chonky.neutral.background.tertiary.hover\` | \`--wb-semanticColor-chonky-neutral-background-tertiary-hover\` | \`transparent\` | \`transparent\` | \`transparent\` |
+| \`semanticColor.chonky.neutral.background.tertiary.press\` | \`--wb-semanticColor-chonky-neutral-background-tertiary-press\` | \`transparent\` | \`transparent\` | \`transparent\` |
+| \`semanticColor.chonky.neutral.background.tertiary.selected\` | \`--wb-semanticColor-chonky-neutral-background-tertiary-selected\` | \`transparent\` | \`transparent\` | \`transparent\` |
+| \`semanticColor.chonky.neutral.border.primary.rest\` | \`--wb-semanticColor-chonky-neutral-border-primary-rest\` | \`transparent\` | \`transparent\` | \`transparent\` |
+| \`semanticColor.chonky.neutral.border.primary.hover\` | \`--wb-semanticColor-chonky-neutral-border-primary-hover\` | \`transparent\` | \`transparent\` | \`transparent\` |
+| \`semanticColor.chonky.neutral.border.primary.press\` | \`--wb-semanticColor-chonky-neutral-border-primary-press\` | \`transparent\` | \`transparent\` | \`transparent\` |
+| \`semanticColor.chonky.neutral.border.primary.selected\` | \`--wb-semanticColor-chonky-neutral-border-primary-selected\` | \`transparent\` | \`transparent\` | \`transparent\` |
+| \`semanticColor.chonky.neutral.border.secondary.rest\` | \`--wb-semanticColor-chonky-neutral-border-secondary-rest\` | \`#dbdcdd\` | \`#CBCBCD\` | \`#4A4C53\` |
+| \`semanticColor.chonky.neutral.border.secondary.hover\` | \`--wb-semanticColor-chonky-neutral-border-secondary-hover\` | \`#dbdcdd\` | \`#CBCBCD\` | \`#4A4C53\` |
+| \`semanticColor.chonky.neutral.border.secondary.press\` | \`--wb-semanticColor-chonky-neutral-border-secondary-press\` | \`#dbdcdd\` | \`#CBCBCD\` | \`#4A4C53\` |
+| \`semanticColor.chonky.neutral.border.secondary.selected\` | \`--wb-semanticColor-chonky-neutral-border-secondary-selected\` | \`#dbdcdd\` | \`#CBCBCD\` | \`#5753FA\` |
+| \`semanticColor.chonky.neutral.border.tertiary.rest\` | \`--wb-semanticColor-chonky-neutral-border-tertiary-rest\` | \`transparent\` | \`transparent\` | \`transparent\` |
+| \`semanticColor.chonky.neutral.border.tertiary.hover\` | \`--wb-semanticColor-chonky-neutral-border-tertiary-hover\` | \`#dbdcdd\` | \`#CBCBCD\` | \`#4A4C53\` |
+| \`semanticColor.chonky.neutral.border.tertiary.press\` | \`--wb-semanticColor-chonky-neutral-border-tertiary-press\` | \`#dbdcdd\` | \`#CBCBCD\` | \`#4A4C53\` |
+| \`semanticColor.chonky.neutral.border.tertiary.selected\` | \`--wb-semanticColor-chonky-neutral-border-tertiary-selected\` | \`transparent\` | \`transparent\` | \`#5753FA\` |
+| \`semanticColor.chonky.neutral.foreground.primary.rest\` | \`--wb-semanticColor-chonky-neutral-foreground-primary-rest\` | \`#ffffff\` | \`#FFFFFF\` | \`#FFFFFF\` |
+| \`semanticColor.chonky.neutral.foreground.primary.hover\` | \`--wb-semanticColor-chonky-neutral-foreground-primary-hover\` | \`#ffffff\` | \`#FFFFFF\` | \`#FFFFFF\` |
+| \`semanticColor.chonky.neutral.foreground.primary.press\` | \`--wb-semanticColor-chonky-neutral-foreground-primary-press\` | \`#ffffff\` | \`#FFFFFF\` | \`#FFFFFF\` |
+| \`semanticColor.chonky.neutral.foreground.primary.selected\` | \`--wb-semanticColor-chonky-neutral-foreground-primary-selected\` | \`#ffffff\` | \`#FFFFFF\` | \`#FFFFFF\` |
+| \`semanticColor.chonky.neutral.foreground.secondary.rest\` | \`--wb-semanticColor-chonky-neutral-foreground-secondary-rest\` | \`#717378\` | \`#717279\` | \`#CBCBCD\` |
+| \`semanticColor.chonky.neutral.foreground.secondary.hover\` | \`--wb-semanticColor-chonky-neutral-foreground-secondary-hover\` | \`#717378\` | \`#717279\` | \`#CBCBCD\` |
+| \`semanticColor.chonky.neutral.foreground.secondary.press\` | \`--wb-semanticColor-chonky-neutral-foreground-secondary-press\` | \`#717378\` | \`#717279\` | \`#CBCBCD\` |
+| \`semanticColor.chonky.neutral.foreground.secondary.selected\` | \`--wb-semanticColor-chonky-neutral-foreground-secondary-selected\` | \`#717378\` | \`#717279\` | \`#CBCBCD\` |
+| \`semanticColor.chonky.neutral.foreground.tertiary.rest\` | \`--wb-semanticColor-chonky-neutral-foreground-tertiary-rest\` | \`#5f6167\` | \`#4A4C53\` | \`#CBCBCD\` |
+| \`semanticColor.chonky.neutral.foreground.tertiary.hover\` | \`--wb-semanticColor-chonky-neutral-foreground-tertiary-hover\` | \`#5f6167\` | \`#4A4C53\` | \`#CBCBCD\` |
+| \`semanticColor.chonky.neutral.foreground.tertiary.press\` | \`--wb-semanticColor-chonky-neutral-foreground-tertiary-press\` | \`#5f6167\` | \`#4A4C53\` | \`#CBCBCD\` |
+| \`semanticColor.chonky.neutral.foreground.tertiary.selected\` | \`--wb-semanticColor-chonky-neutral-foreground-tertiary-selected\` | \`#5f6167\` | \`#4A4C53\` | \`#CBCBCD\` |
+| \`semanticColor.chonky.neutral.shadow.primary.rest\` | \`--wb-semanticColor-chonky-neutral-shadow-primary-rest\` | \`#21242c\` | \`#4A4C53\` | \`#4A4C53\` |
+| \`semanticColor.chonky.neutral.shadow.primary.hover\` | \`--wb-semanticColor-chonky-neutral-shadow-primary-hover\` | \`#21242c\` | \`#4A4C53\` | \`#4A4C53\` |
+| \`semanticColor.chonky.neutral.shadow.primary.press\` | \`--wb-semanticColor-chonky-neutral-shadow-primary-press\` | \`transparent\` | \`#4A4C53\` | \`#4A4C53\` |
+| \`semanticColor.chonky.neutral.shadow.primary.selected\` | \`--wb-semanticColor-chonky-neutral-shadow-primary-selected\` | \`#21242c\` | \`#4A4C53\` | \`#4A4C53\` |
+| \`semanticColor.chonky.neutral.shadow.secondary.rest\` | \`--wb-semanticColor-chonky-neutral-shadow-secondary-rest\` | \`#b8b9bb\` | \`#CBCBCD\` | \`#4A4C53\` |
+| \`semanticColor.chonky.neutral.shadow.secondary.hover\` | \`--wb-semanticColor-chonky-neutral-shadow-secondary-hover\` | \`#b8b9bb\` | \`#CBCBCD\` | \`#4A4C53\` |
+| \`semanticColor.chonky.neutral.shadow.secondary.press\` | \`--wb-semanticColor-chonky-neutral-shadow-secondary-press\` | \`#21242c\` | \`#CBCBCD\` | \`#B5B6B9\` |
+| \`semanticColor.chonky.neutral.shadow.secondary.selected\` | \`--wb-semanticColor-chonky-neutral-shadow-secondary-selected\` | \`#b8b9bb\` | \`#CBCBCD\` | \`#5753FA\` |
+| \`semanticColor.chonky.neutral.shadow.tertiary.rest\` | \`--wb-semanticColor-chonky-neutral-shadow-tertiary-rest\` | \`transparent\` | \`transparent\` | \`transparent\` |
+| \`semanticColor.chonky.neutral.shadow.tertiary.hover\` | \`--wb-semanticColor-chonky-neutral-shadow-tertiary-hover\` | \`#b8b9bb\` | \`#CBCBCD\` | \`#4A4C53\` |
+| \`semanticColor.chonky.neutral.shadow.tertiary.press\` | \`--wb-semanticColor-chonky-neutral-shadow-tertiary-press\` | \`#b8b9bb\` | \`#CBCBCD\` | \`#4A4C53\` |
+| \`semanticColor.chonky.neutral.shadow.tertiary.selected\` | \`--wb-semanticColor-chonky-neutral-shadow-tertiary-selected\` | \`#b5cefb\` | \`#BFCAFF\` | \`#5753FA\` |
+| \`semanticColor.chonky.disabled.background.primary\` | \`--wb-semanticColor-chonky-disabled-background-primary\` | \`#ededee\` | \`#EDEDEE\` | \`#4A4C53\` |
+| \`semanticColor.chonky.disabled.background.secondary\` | \`--wb-semanticColor-chonky-disabled-background-secondary\` | \`#ededee\` | \`#EDEDEE\` | \`#4A4C53\` |
+| \`semanticColor.chonky.disabled.background.tertiary\` | \`--wb-semanticColor-chonky-disabled-background-tertiary\` | \`transparent\` | \`transparent\` | \`transparent\` |
+| \`semanticColor.chonky.disabled.border.primary\` | \`--wb-semanticColor-chonky-disabled-border-primary\` | \`#dbdcdd\` | \`transparent\` | \`transparent\` |
+| \`semanticColor.chonky.disabled.border.secondary\` | \`--wb-semanticColor-chonky-disabled-border-secondary\` | \`#dbdcdd\` | \`#CBCBCD\` | \`#4A4C53\` |
+| \`semanticColor.chonky.disabled.border.tertiary\` | \`--wb-semanticColor-chonky-disabled-border-tertiary\` | \`transparent\` | \`transparent\` | \`transparent\` |
+| \`semanticColor.chonky.disabled.foreground.primary\` | \`--wb-semanticColor-chonky-disabled-foreground-primary\` | \`#b8b9bb\` | \`#B5B6B9\` | \`#717279\` |
+| \`semanticColor.chonky.disabled.foreground.secondary\` | \`--wb-semanticColor-chonky-disabled-foreground-secondary\` | \`#b8b9bb\` | \`#B5B6B9\` | \`#717279\` |
+| \`semanticColor.chonky.disabled.foreground.tertiary\` | \`--wb-semanticColor-chonky-disabled-foreground-tertiary\` | \`#b8b9bb\` | \`#B5B6B9\` | \`#4A4C53\` |
+| \`semanticColor.chonky.disabled.shadow.primary\` | \`--wb-semanticColor-chonky-disabled-shadow-primary\` | \`#b8b9bb\` | \`#CBCBCD\` | \`#252531\` |
+| \`semanticColor.chonky.disabled.shadow.secondary\` | \`--wb-semanticColor-chonky-disabled-shadow-secondary\` | \`#b8b9bb\` | \`#CBCBCD\` | \`#252531\` |
+| \`semanticColor.chonky.disabled.shadow.tertiary\` | \`--wb-semanticColor-chonky-disabled-shadow-tertiary\` | \`transparent\` | \`transparent\` | \`transparent\` |
+| \`semanticColor.input.default.border\` | \`--wb-semanticColor-input-default-border\` | \`#909296\` | \`#8A8B90\` | \`#8A8B90\` |
+| \`semanticColor.input.default.background\` | \`--wb-semanticColor-input-default-background\` | \`#ffffff\` | \`#FFFFFF\` | \`#252531\` |
+| \`semanticColor.input.default.foreground\` | \`--wb-semanticColor-input-default-foreground\` | \`#21242c\` | \`#151521\` | \`#EDEDEE\` |
+| \`semanticColor.input.default.placeholder\` | \`--wb-semanticColor-input-default-placeholder\` | \`#5f6167\` | \`#717279\` | \`#A0A1A4\` |
+| \`semanticColor.input.checked.border\` | \`--wb-semanticColor-input-checked-border\` | \`#1865f2\` | \`#6C82FF\` | \`#6C82FF\` |
+| \`semanticColor.input.checked.background\` | \`--wb-semanticColor-input-checked-background\` | \`#1865f2\` | \`#5753FA\` | \`#5753FA\` |
+| \`semanticColor.input.checked.foreground\` | \`--wb-semanticColor-input-checked-foreground\` | \`#ffffff\` | \`#FFFFFF\` | \`#FFFFFF\` |
+| \`semanticColor.input.disabled.border\` | \`--wb-semanticColor-input-disabled-border\` | \`#dbdcdd\` | \`#E0E0E1\` | \`#717279\` |
+| \`semanticColor.input.disabled.background\` | \`--wb-semanticColor-input-disabled-background\` | \`#f7f8fa\` | \`#FFFFFF\` | \`#252531\` |
+| \`semanticColor.input.disabled.foreground\` | \`--wb-semanticColor-input-disabled-foreground\` | \`#5f6167\` | \`#B5B6B9\` | \`#8A8B90\` |
+| \`semanticColor.input.disabled.placeholder\` | \`--wb-semanticColor-input-disabled-placeholder\` | \`#5f6167\` | \`#CBCBCD\` | \`#4A4C53\` |
+| \`semanticColor.input.error.border\` | \`--wb-semanticColor-input-error-border\` | \`#d92916\` | \`#E22D2D\` | \`#E22D2D\` |
+| \`semanticColor.input.error.background\` | \`--wb-semanticColor-input-error-background\` | \`#fceeec\` | \`#FFFFFF\` | \`#252531\` |
+| \`semanticColor.input.error.foreground\` | \`--wb-semanticColor-input-error-foreground\` | \`#21242c\` | \`#151521\` | \`#EDEDEE\` |
+| \`semanticColor.input.readOnly.background\` | \`--wb-semanticColor-input-readOnly-background\` | \`#ffffff\` | \`#EDEDEE\` | \`#4A4C53\` |
+| \`semanticColor.input.readOnly.text\` | \`--wb-semanticColor-input-readOnly-text\` | \`#21242c\` | \`#4A4C53\` | \`#EDEDEE\` |
+| \`semanticColor.input.readOnly.icon\` | \`--wb-semanticColor-input-readOnly-icon\` | \`transparent\` | \`#717279\` | \`#A0A1A4\` |
+| \`semanticColor.focus.outer\` | \`--wb-semanticColor-focus-outer\` | \`#1865f2\` | \`#5753FA\` | \`#5753FA\` |
+| \`semanticColor.focus.inner\` | \`--wb-semanticColor-focus-inner\` | \`#ffffff\` | \`#FFFFFF\` | \`#FFFFFF\` |
+| \`semanticColor.link.rest\` | \`--wb-semanticColor-link-rest\` | \`#1865f2\` | \`#5753FA\` | \`#6C82FF\` |
+| \`semanticColor.link.hover\` | \`--wb-semanticColor-link-hover\` | \`#1865f2\` | \`#363498\` | \`#DFEAFF\` |
+| \`semanticColor.link.press\` | \`--wb-semanticColor-link-press\` | \`#1b50b3\` | \`#363498\` | \`#DFEAFF\` |
+| \`semanticColor.link.disabled\` | \`--wb-semanticColor-link-disabled\` | \`#b8b9bb\` | \`#CBCBCD\` | \`#717279\` |
+| \`semanticColor.khanmigo.primary\` | \`--wb-semanticColor-khanmigo-primary\` | \`#5f1e5c\` | \`#5f1e5c\` | \`#5f1e5c\` |
+| \`semanticColor.khanmigo.secondary\` | \`--wb-semanticColor-khanmigo-secondary\` | \`#f2edf2\` | \`#f2edf2\` | \`#f2edf2\` |
+| \`semanticColor.mastery.primary\` | \`--wb-semanticColor-mastery-primary\` | \`#9059ff\` | \`#9059ff\` | \`#9059ff\` |
+| \`semanticColor.feedback.info.subtle.background\` | \`--wb-semanticColor-feedback-info-subtle-background\` | \`#edf3fe\` | \`#EBF1FD\` | \`#222149\` |
+| \`semanticColor.feedback.info.subtle.border\` | \`--wb-semanticColor-feedback-info-subtle-border\` | \`#b5cefb\` | \`#BFCAFF\` | \`#5753FA\` |
+| \`semanticColor.feedback.info.subtle.icon\` | \`--wb-semanticColor-feedback-info-subtle-icon\` | \`#1865f2\` | \`#5753FA\` | \`#6C82FF\` |
+| \`semanticColor.feedback.info.subtle.text\` | \`--wb-semanticColor-feedback-info-subtle-text\` | \`#21242c\` | \`#363498\` | \`#DFEAFF\` |
+| \`semanticColor.feedback.info.strong.background\` | \`--wb-semanticColor-feedback-info-strong-background\` | \`#21242c\` | \`#151521\` | \`#FFFFFF\` |
+| \`semanticColor.feedback.info.strong.border\` | \`--wb-semanticColor-feedback-info-strong-border\` | \`#5f6167\` | \`#4A4C53\` | \`#CBCBCD\` |
+| \`semanticColor.feedback.info.strong.text\` | \`--wb-semanticColor-feedback-info-strong-text\` | \`#ffffff\` | \`#FFFFFF\` | \`#151521\` |
+| \`semanticColor.feedback.info.strong.icon\` | \`--wb-semanticColor-feedback-info-strong-icon\` | \`#1865f2\` | \`#8DA2FF\` | \`#4340D0\` |
+| \`semanticColor.feedback.success.subtle.background\` | \`--wb-semanticColor-feedback-success-subtle-background\` | \`#ebf8ec\` | \`#E3F7E3\` | \`#1A2924\` |
+| \`semanticColor.feedback.success.subtle.border\` | \`--wb-semanticColor-feedback-success-subtle-border\` | \`#c2eac5\` | \`#BCEBBB\` | \`#579F6C\` |
+| \`semanticColor.feedback.success.subtle.icon\` | \`--wb-semanticColor-feedback-success-subtle-icon\` | \`#0b7c18\` | \`#3C6D4A\` | \`#72BB82\` |
+| \`semanticColor.feedback.success.subtle.text\` | \`--wb-semanticColor-feedback-success-subtle-text\` | \`#21242c\` | \`#24432D\` | \`#D5F3D5\` |
+| \`semanticColor.feedback.success.strong.background\` | \`--wb-semanticColor-feedback-success-strong-background\` | \`#21242c\` | \`#151521\` | \`#FFFFFF\` |
+| \`semanticColor.feedback.success.strong.border\` | \`--wb-semanticColor-feedback-success-strong-border\` | \`#5f6167\` | \`#4A4C53\` | \`#CBCBCD\` |
+| \`semanticColor.feedback.success.strong.text\` | \`--wb-semanticColor-feedback-success-strong-text\` | \`#ffffff\` | \`#FFFFFF\` | \`#151521\` |
+| \`semanticColor.feedback.success.strong.icon\` | \`--wb-semanticColor-feedback-success-strong-icon\` | \`#00a60e\` | \`#97D39E\` | \`#3C6D4A\` |
+| \`semanticColor.feedback.warning.subtle.background\` | \`--wb-semanticColor-feedback-warning-subtle-background\` | \`#fff9eb\` | \`#FEF1D0\` | \`#312405\` |
+| \`semanticColor.feedback.warning.subtle.border\` | \`--wb-semanticColor-feedback-warning-subtle-border\` | \`#ffb100\` | \`#FCC539\` | \`#FCB706\` |
+| \`semanticColor.feedback.warning.subtle.icon\` | \`--wb-semanticColor-feedback-warning-subtle-icon\` | \`#b8840e\` | \`#966B00\` | \`#FCB706\` |
+| \`semanticColor.feedback.warning.subtle.text\` | \`--wb-semanticColor-feedback-warning-subtle-text\` | \`#21242c\` | \`#5F4500\` | \`#FEF1D0\` |
+| \`semanticColor.feedback.warning.strong.background\` | \`--wb-semanticColor-feedback-warning-strong-background\` | \`#21242c\` | \`#151521\` | \`#FFFFFF\` |
+| \`semanticColor.feedback.warning.strong.border\` | \`--wb-semanticColor-feedback-warning-strong-border\` | \`#5f6167\` | \`#4A4C53\` | \`#CBCBCD\` |
+| \`semanticColor.feedback.warning.strong.text\` | \`--wb-semanticColor-feedback-warning-strong-text\` | \`#ffffff\` | \`#FFFFFF\` | \`#151521\` |
+| \`semanticColor.feedback.warning.strong.icon\` | \`--wb-semanticColor-feedback-warning-strong-icon\` | \`#ffb100\` | \`#FDD673\` | \`#966B00\` |
+| \`semanticColor.feedback.critical.subtle.background\` | \`--wb-semanticColor-feedback-critical-subtle-background\` | \`#fceeec\` | \`#FFEBEB\` | \`#3B141A\` |
+| \`semanticColor.feedback.critical.subtle.border\` | \`--wb-semanticColor-feedback-critical-subtle-border\` | \`#f6ccc7\` | \`#FBB1B1\` | \`#BE2626\` |
+| \`semanticColor.feedback.critical.subtle.icon\` | \`--wb-semanticColor-feedback-critical-subtle-icon\` | \`#d92916\` | \`#BE2626\` | \`#F97F7F\` |
+| \`semanticColor.feedback.critical.subtle.text\` | \`--wb-semanticColor-feedback-critical-subtle-text\` | \`#21242c\` | \`#8E1C1C\` | \`#FBB1B1\` |
+| \`semanticColor.feedback.critical.strong.background\` | \`--wb-semanticColor-feedback-critical-strong-background\` | \`#21242c\` | \`#151521\` | \`#FFFFFF\` |
+| \`semanticColor.feedback.critical.strong.border\` | \`--wb-semanticColor-feedback-critical-strong-border\` | \`#5f6167\` | \`#4A4C53\` | \`#CBCBCD\` |
+| \`semanticColor.feedback.critical.strong.text\` | \`--wb-semanticColor-feedback-critical-strong-text\` | \`#ffffff\` | \`#FFFFFF\` | \`#151521\` |
+| \`semanticColor.feedback.critical.strong.icon\` | \`--wb-semanticColor-feedback-critical-strong-icon\` | \`#d92916\` | \`#F97F7F\` | \`#E22D2D\` |
+| \`semanticColor.feedback.neutral.subtle.background\` | \`--wb-semanticColor-feedback-neutral-subtle-background\` | \`#ededee\` | \`#EDEDEE\` | \`#4A4C53\` |
+| \`semanticColor.feedback.neutral.subtle.border\` | \`--wb-semanticColor-feedback-neutral-subtle-border\` | \`#dbdcdd\` | \`#CBCBCD\` | \`#4A4C53\` |
+| \`semanticColor.feedback.neutral.subtle.icon\` | \`--wb-semanticColor-feedback-neutral-subtle-icon\` | \`#5f6167\` | \`#717279\` | \`#CBCBCD\` |
+| \`semanticColor.feedback.neutral.subtle.text\` | \`--wb-semanticColor-feedback-neutral-subtle-text\` | \`#21242c\` | \`#4A4C53\` | \`#EDEDEE\` |
+| \`semanticColor.feedback.neutral.strong.background\` | \`--wb-semanticColor-feedback-neutral-strong-background\` | \`#21242c\` | \`#151521\` | \`#FFFFFF\` |
+| \`semanticColor.feedback.neutral.strong.border\` | \`--wb-semanticColor-feedback-neutral-strong-border\` | \`#5f6167\` | \`#4A4C53\` | \`#CBCBCD\` |
+| \`semanticColor.feedback.neutral.strong.text\` | \`--wb-semanticColor-feedback-neutral-strong-text\` | \`#ffffff\` | \`#FFFFFF\` | \`#151521\` |
+| \`semanticColor.feedback.neutral.strong.icon\` | \`--wb-semanticColor-feedback-neutral-strong-icon\` | \`#717378\` | \`#717279\` | \`#A0A1A4\` |
+"
+`;
+
+exports[`renderMdx should render the expected content for the sizing group 1`] = `
+"{/*
+  THIS FILE IS AUTO-GENERATED. DO NOT EDIT BY HAND.
+  Regenerate with: pnpm --filter @khanacademy/wonder-blocks-tokens build:token-docs
+  Source: packages/wonder-blocks-tokens/src/build/generate-token-docs.ts
+*/}
+
+import {Meta} from "@storybook/addon-docs/blocks";
+
+<Meta title="References / Tokens Map / Sizing" summary="Sizing tokens, expressed in \`rem\`. Use for padding, margin, width, height, etc." />
+
+{/*
+  Constrain wide token tables to the docs content width and let them scroll
+  horizontally on their own. Without this, the table overflows the page and
+  reveals the body background past the edge of the docs container.
+*/}
+<style>{\`
+  .sbdocs.sbdocs-content table {
+    display: block;
+    max-width: 100%;
+    overflow-x: auto;
+  }
+\`}</style>
+
+# Sizing tokens map
+
+Sizing tokens, expressed in \`rem\`. Use for padding, margin, width, height, etc.
+
+\`\`\`ts
+import {sizing} from "@khanacademy/wonder-blocks-tokens";
+\`\`\`
+
+| Token | CSS Variable | Default | Thunderblocks | Syl Dark |
+| --- | --- | --- | --- | --- |
+| \`sizing.size_0\` | \`--wb-sizing-size_0\` | \`0rem\` | \`0rem\` | \`0rem\` |
+| \`sizing.size_010\` | \`--wb-sizing-size_010\` | \`0.1rem\` | \`0.1rem\` | \`0.1rem\` |
+| \`sizing.size_020\` | \`--wb-sizing-size_020\` | \`0.2rem\` | \`0.2rem\` | \`0.2rem\` |
+| \`sizing.size_040\` | \`--wb-sizing-size_040\` | \`0.4rem\` | \`0.4rem\` | \`0.4rem\` |
+| \`sizing.size_060\` | \`--wb-sizing-size_060\` | \`0.6rem\` | \`0.6rem\` | \`0.6rem\` |
+| \`sizing.size_080\` | \`--wb-sizing-size_080\` | \`0.8rem\` | \`0.8rem\` | \`0.8rem\` |
+| \`sizing.size_100\` | \`--wb-sizing-size_100\` | \`1rem\` | \`1rem\` | \`1rem\` |
+| \`sizing.size_120\` | \`--wb-sizing-size_120\` | \`1.2rem\` | \`1.2rem\` | \`1.2rem\` |
+| \`sizing.size_140\` | \`--wb-sizing-size_140\` | \`1.4rem\` | \`1.4rem\` | \`1.4rem\` |
+| \`sizing.size_160\` | \`--wb-sizing-size_160\` | \`1.6rem\` | \`1.6rem\` | \`1.6rem\` |
+| \`sizing.size_180\` | \`--wb-sizing-size_180\` | \`1.8rem\` | \`1.8rem\` | \`1.8rem\` |
+| \`sizing.size_200\` | \`--wb-sizing-size_200\` | \`2rem\` | \`2rem\` | \`2rem\` |
+| \`sizing.size_220\` | \`--wb-sizing-size_220\` | \`2.2rem\` | \`2.2rem\` | \`2.2rem\` |
+| \`sizing.size_240\` | \`--wb-sizing-size_240\` | \`2.4rem\` | \`2.4rem\` | \`2.4rem\` |
+| \`sizing.size_260\` | \`--wb-sizing-size_260\` | \`2.6rem\` | \`2.6rem\` | \`2.6rem\` |
+| \`sizing.size_280\` | \`--wb-sizing-size_280\` | \`2.8rem\` | \`2.8rem\` | \`2.8rem\` |
+| \`sizing.size_320\` | \`--wb-sizing-size_320\` | \`3.2rem\` | \`3.2rem\` | \`3.2rem\` |
+| \`sizing.size_360\` | \`--wb-sizing-size_360\` | \`3.6rem\` | \`3.6rem\` | \`3.6rem\` |
+| \`sizing.size_400\` | \`--wb-sizing-size_400\` | \`4rem\` | \`4rem\` | \`4rem\` |
+| \`sizing.size_440\` | \`--wb-sizing-size_440\` | \`4.4rem\` | \`4.4rem\` | \`4.4rem\` |
+| \`sizing.size_480\` | \`--wb-sizing-size_480\` | \`4.8rem\` | \`4.8rem\` | \`4.8rem\` |
+| \`sizing.size_560\` | \`--wb-sizing-size_560\` | \`5.6rem\` | \`5.6rem\` | \`5.6rem\` |
+| \`sizing.size_640\` | \`--wb-sizing-size_640\` | \`6.4rem\` | \`6.4rem\` | \`6.4rem\` |
+| \`sizing.size_720\` | \`--wb-sizing-size_720\` | \`7.2rem\` | \`7.2rem\` | \`7.2rem\` |
+| \`sizing.size_800\` | \`--wb-sizing-size_800\` | \`8rem\` | \`8rem\` | \`8rem\` |
+| \`sizing.size_880\` | \`--wb-sizing-size_880\` | \`8.8rem\` | \`8.8rem\` | \`8.8rem\` |
+| \`sizing.size_960\` | \`--wb-sizing-size_960\` | \`9.6rem\` | \`9.6rem\` | \`9.6rem\` |
+"
+`;

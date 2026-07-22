@@ -12,6 +12,7 @@ import packageConfig from "../../packages/wonder-blocks-modal/package.json";
 
 import ComponentInfo from "../components/component-info";
 import FlexibleDialogArgTypes from "./flexible-dialog.argtypes";
+import {modalPositionerStyle} from "./modal-story-utils";
 import {allModes} from "../../.storybook/modes";
 
 import celebrationBg from "../../static/celebration_bg.svg";
@@ -107,7 +108,7 @@ export const WithBackgroundImage: StoryComponentType = {
                         <View style={styles.centered}>
                             <img
                                 src={celebrationChest}
-                                style={{maxWidth: "240px"}}
+                                style={{maxInlineSize: "240px"}}
                                 alt=""
                             />
                             {title}
@@ -390,7 +391,7 @@ export const WithFullScreenStyling: StoryComponentType = () => {
                 <Heading
                     size="xxlarge"
                     style={{
-                        marginBottom: sizing.size_320,
+                        marginBlockEnd: sizing.size_320,
                     }}
                 >
                     Full-Screen Dialog
@@ -403,7 +404,7 @@ export const WithFullScreenStyling: StoryComponentType = () => {
                     maxWidth: "none",
                     maxHeight: "none",
                     height: "100%",
-                    minHeight: "100vh",
+                    minBlockSize: "100vh",
                     margin: 0,
                 },
             }}
@@ -414,7 +415,7 @@ export const WithFullScreenStyling: StoryComponentType = () => {
                         style={{
                             color: semanticColor.core.foreground.neutral
                                 .default,
-                            marginBottom: sizing.size_480,
+                            marginBlockEnd: sizing.size_480,
                         }}
                     >
                         This FlexibleDialog demonstrates full-screen
@@ -509,23 +510,7 @@ const styles = StyleSheet.create({
         alignItems: "center",
         justifyContent: "center",
     },
-    modalPositioner: {
-        // Checkerboard background
-        backgroundImage:
-            "linear-gradient(45deg, #ccc 25%, transparent 25%), linear-gradient(-45deg, #ccc 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #ccc 75%), linear-gradient(-45deg, transparent 75%, #ccc 75%)",
-        backgroundSize: "20px 20px",
-        backgroundPosition: "0 0, 0 10px, 10px -10px, -10px 0px",
-
-        flexDirection: "row",
-        alignItems: "center",
-        justifyContent: "center",
-
-        position: "absolute",
-        left: 0,
-        right: 0,
-        top: 0,
-        bottom: 0,
-    },
+    modalPositioner: modalPositionerStyle,
     centered: {
         alignItems: "center",
         justifyContent: "center",
@@ -533,7 +518,7 @@ const styles = StyleSheet.create({
         textAlign: "center",
     },
     previewSizer: {
-        minHeight: "calc(100vh - 1.6rem)",
+        minBlockSize: "calc(100vh - 1.6rem)",
         width: "100%",
     },
     row: {
@@ -548,7 +533,7 @@ const styles = StyleSheet.create({
         width: "100%",
     },
     launcherButton: {
-        marginTop: "auto",
+        marginBlockStart: "auto",
     },
     fullScreenContent: {
         display: "flex",
@@ -557,8 +542,8 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         height: "100%",
         textAlign: "center",
-        minHeight: "100vh",
-        minWidth: "unset",
+        minBlockSize: "100vh",
+        minInlineSize: "unset",
     },
     fullScreenActions: {
         display: "flex",

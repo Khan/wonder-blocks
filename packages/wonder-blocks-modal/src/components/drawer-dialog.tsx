@@ -247,24 +247,24 @@ const getComponentStyles = ({
 
             // Override FlexibleDialog defaults for drawer usage
             height: "100%",
-            minHeight: "100vh",
+            minBlockSize: "100vh",
 
             // Use common widths for mininum/maximum
-            minWidth: breakpoint.width.xsMax,
-            maxWidth: breakpoint.width.smMax,
+            minInlineSize: breakpoint.width.xsMax,
+            maxInlineSize: breakpoint.width.smMax,
             width: "100%",
 
             // Unset minimums on smaller screens
             [breakpoint.mediaQuery.smOrSmaller]: {
-                minWidth: "unset",
-                maxWidth: "unset",
+                minInlineSize: "unset",
+                maxInlineSize: "unset",
             },
         },
         dialog: {
-            // Override the minHeight and minWidth on View
+            // Override the minBlockSize and minInlineSize on View
             // And allow BlockEnd content to provide its own height
-            minHeight: alignment === "blockEnd" ? "unset" : "100vh",
-            minWidth: "unset",
+            minBlockSize: alignment === "blockEnd" ? "unset" : "100vh",
+            minInlineSize: "unset",
         },
         inlineStart: {
             // @ts-expect-error [FEI-5019] - `animationName` expects a string not an object
@@ -302,8 +302,8 @@ const getComponentStyles = ({
             animationTimingFunction: "linear",
             animationFillMode: "forwards",
             height: "auto",
-            minHeight: "unset",
-            maxWidth: "unset",
+            minBlockSize: "unset",
+            maxInlineSize: "unset",
 
             [breakpoint.mediaQuery.smOrSmaller]: {
                 height: "auto",

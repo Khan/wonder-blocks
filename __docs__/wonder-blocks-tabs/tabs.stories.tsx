@@ -17,9 +17,11 @@ import {TextField} from "@khanacademy/wonder-blocks-form";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {Placeholder} from "../components/placeholder";
 import {generateTabs, ControlledTabs} from "./tabs-utils";
-import {sizing} from "@khanacademy/wonder-blocks-tokens";
+import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import Tooltip from "@khanacademy/wonder-blocks-tooltip";
 import {Popover, PopoverContent} from "@khanacademy/wonder-blocks-popover";
+import {Icon, PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
+import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
 
 const tabs: TabItem[] = [
     {
@@ -40,7 +42,7 @@ const tabs: TabItem[] = [
 ];
 
 export default {
-    title: "Packages / Tabs / Tabs",
+    title: "Packages / Tabs / ResponsiveTabs / Subcomponents / Tabs",
     component: Tabs,
     subcomponents: {Tab},
     parameters: {
@@ -100,11 +102,36 @@ export const AutomaticActivation: StoryComponentType = {
 };
 
 /**
- * The tab label can be customized to include icons.
+ * Tab items support an `icon` prop to display in the tab. This should use a
+ * `PhosphorIcon` or `Icon` component. Prefer using the `icon`
+ * prop over providing a custom element in the `label` prop.
  */
 export const WithIcons: StoryComponentType = {
     args: {
-        tabs: generateTabs(3, "Tab", true),
+        tabs: [
+            {
+                label: "Tab 1",
+                id: "tab-1",
+                panel: <Placeholder>Tab contents 1</Placeholder>,
+                icon: <PhosphorIcon icon={IconMappings.cookie} />,
+            },
+            {
+                label: "Tab 2",
+                id: "tab-2",
+                panel: <Placeholder>Tab contents 2</Placeholder>,
+                icon: <PhosphorIcon icon={IconMappings.iceCream} />,
+            },
+            {
+                label: "Tab 3",
+                id: "tab-3",
+                panel: <Placeholder>Tab contents 3</Placeholder>,
+                icon: (
+                    <Icon>
+                        <img src="logo.svg" alt="Wonder Blocks" />
+                    </Icon>
+                ),
+            },
+        ],
         selectedTabId: "tab-1",
     },
     parameters: {
@@ -215,6 +242,7 @@ export const WithFocusableContent: StoryComponentType = {
                 panel: (
                     <div>
                         Tab contents with button{" "}
+                        {/* eslint-disable-next-line @khanacademy/wonder-blocks/no-raw-button -- raw <button> is intentional here to verify focus management works with native HTML elements, not just WB components */}
                         <button>Focusable Button</button>
                     </div>
                 ),
@@ -424,10 +452,19 @@ export const CustomStyles: StoryComponentType = {
         // visual regression tests to ensure that the custom styles are applied
         // correctly.
         styles: {
-            root: {border: "2px solid lightpink"},
-            tablist: {backgroundColor: "lavender"},
-            tabPanel: {backgroundColor: "lavenderblush"},
-            tab: {backgroundColor: "lightcyan"},
+            root: {
+                border: `2px solid ${semanticColor.learning.border.gems.default}`,
+            },
+            tablist: {
+                backgroundColor:
+                    semanticColor.core.background.instructive.subtle,
+            },
+            tabPanel: {
+                backgroundColor: semanticColor.core.background.success.subtle,
+            },
+            tab: {
+                backgroundColor: semanticColor.core.background.base.default,
+            },
         },
         tabs: [
             {
@@ -444,7 +481,10 @@ export const CustomStyles: StoryComponentType = {
                 label: (
                     <View
                         style={{
-                            backgroundColor: "honeydew",
+                            backgroundColor:
+                                semanticColor.core.background.base.strong,
+                            color: semanticColor.core.foreground.knockout
+                                .default,
                             fontStyle: "italic",
                         }}
                     >
@@ -455,7 +495,8 @@ export const CustomStyles: StoryComponentType = {
                 panel: (
                     <View
                         style={{
-                            backgroundColor: "honeydew",
+                            backgroundColor:
+                                semanticColor.core.background.neutral.subtle,
                             fontStyle: "italic",
                         }}
                     >
@@ -531,6 +572,12 @@ export const TabLabelRenderFunction: StoryComponentType = {
                 },
                 id: "tab-1",
                 panel: <Placeholder>Tab contents 1</Placeholder>,
+                icon: (
+                    <PhosphorIcon
+                        icon={IconMappings.cookie}
+                        aria-label="Cookie"
+                    />
+                ),
             },
             {
                 label(tabProps: TabRenderProps) {
