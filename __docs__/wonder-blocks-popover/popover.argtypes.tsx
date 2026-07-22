@@ -1,8 +1,8 @@
 import * as React from "react";
+import {ArgTypes} from "@storybook/react-vite";
 
 import AriaArgTypes from "../wonder-blocks-core/aria.argtypes";
 // Reusable stories
-import {ArgTypes} from "@storybook/react-vite";
 import {Default, WithIcon, WithIllustration} from "./popover-content.stories";
 import {
     WithIcon as CoreWithIcon,

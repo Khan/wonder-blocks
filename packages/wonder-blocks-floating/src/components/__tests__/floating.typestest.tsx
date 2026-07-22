@@ -1,16 +1,17 @@
 import * as React from "react";
+import Button from "@khanacademy/wonder-blocks-button";
 import Floating from "../floating";
 
 /**
  * Basic Floating usage
  */
 <Floating content="Floating content" open={true}>
-    <button>Trigger</button>
+    <Button>Trigger</Button>
 </Floating>;
 
 // @ts-expect-error - open is required
 <Floating content="Floating content">
-    <button>Trigger</button>
+    <Button>Trigger</Button>
 </Floating>;
 
 /**
@@ -23,7 +24,7 @@ import Floating from "../floating";
     open={true}
     initialFocusRef={React.createRef<HTMLElement>()}
 >
-    <button>Trigger</button>
+    <Button>Trigger</Button>
 </Floating>;
 
 // @ts-expect-error - focusManagerEnabled=true is required when initialFocusRef
@@ -34,5 +35,5 @@ import Floating from "../floating";
     focusManagerEnabled={false}
     initialFocusRef={React.createRef<HTMLElement>()}
 >
-    <button>Trigger</button>
+    <Button>Trigger</Button>
 </Floating>;
