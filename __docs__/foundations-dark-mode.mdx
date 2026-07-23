@@ -1,0 +1,272 @@
+import {Meta} from "@storybook/addon-docs/blocks";
+
+<Meta
+    title="Foundations / Dark mode"
+    parameters={{
+        docs: {
+            toc: {
+                headingSelector: "h2, h3",
+            },
+        },
+    }}
+/>
+
+# Dark mode
+
+Dark mode is delivered as a Wonder Blocks theme named **`syl-dark`**. The light
+themes are `default` and `thunderblocks`. Because a single component can render
+under any of these themes, "supporting dark mode" almost never means writing
+dark-specific code — it means **never hardcoding a color or a colored asset**,
+and letting semantic tokens do the theming for you.
+
+> **The golden rule:** if a value or an asset carries a color, it must come from
+> a Wonder Blocks semantic token — not a hex string, and not a pre-colored
+> image.
+
+Get this right and your component is dark-mode-correct automatically, with no
+`if (isDark)` branches anywhere.
+
+## How theming works
+
+The active theme is written to the nearest themed element as a `data-wb-theme`
+attribute (one of `"default"`, `"thunderblocks"`, `"syl-dark"`). Tokens from
+`@khanacademy/wonder-blocks-tokens` are exposed as CSS custom properties scoped
+to that attribute, so the _same_ token resolves to a different value depending
+on the theme. This is what `ThemeSwitcher` sets up:
+
+```tsx
+import {ThemeSwitcher} from "@khanacademy/wonder-blocks-theming";
+
+<ThemeSwitcher theme="syl-dark">
+    <YourComponent />
+</ThemeSwitcher>;
+```
+
+See **Packages / Theming** for the theming APIs, and
+`@khanacademy/wonder-blocks-tokens/styles.css` for the generated CSS variables.
+
+Consuming applications decide _when_ `syl-dark` is applied (from a user setting,
+the OS `prefers-color-scheme`, etc.) and set the theme accordingly. Your job as
+a component author is simply to make the component render correctly under
+whichever theme is active.
+
+## Colors: use semantic tokens
+
+Never hardcode a hex/rgb color. Use the closest **semantic** token from
+`@khanacademy/wonder-blocks-tokens`. Semantic tokens (not the raw palette
+`color.*`) are the ones that flip between light and dark — see
+**Foundations / Using color** for the full set.
+
+| Purpose                                | Token                                          |
+| -------------------------------------- | ---------------------------------------------- |
+| Body / strong text, single-color logos | `semanticColor.core.foreground.neutral.strong` |
+| Secondary text                         | `semanticColor.core.foreground.neutral.default`|
+| Page background                        | `semanticColor.core.background.base.subtle`    |
+| Card / surface background              | `semanticColor.core.background.base.default`   |
+| Knockout text/icon on color            | `semanticColor.core.border.knockout.default`   |
+| Illustration / decorative color        | `semanticColor.graphics.*` (see below)         |
+
+```tsx
+import {StyleSheet} from "aphrodite";
+import {semanticColor} from "@khanacademy/wonder-blocks-tokens";
+
+const styles = StyleSheet.create({
+    label: {
+        color: semanticColor.core.foreground.neutral.default,
+        backgroundColor: semanticColor.core.background.base.default,
+    },
+});
+```
+
+In plain CSS/Less, use the variable form directly:
+`var(--wb-semanticColor-core-foreground-neutral-strong)`.
+
+**Watch for contrast.** A token that looks fine in light mode can fail contrast
+in dark mode. Choose the token whose _role_ matches the element, then verify it
+in dark mode — don't pick a token by how it happens to look in one theme.
+
+**Prefer a Wonder Blocks component over hand-colored UI.** If WB already ships a
+themed component for what you're drawing, use it instead of styling your own —
+it is dark-mode-correct for free (e.g. `GemBadge` / `StreakBadge` for gem and
+streak visuals, `PhosphorIcon` with a `color` token for icons).
+
+## Illustrations & graphics
+
+This is where dark mode most often breaks, because **a raster image or an SVG
+with baked-in colors cannot adapt to the theme** — a dark illustration stays
+dark on a dark background. Pick the technique that matches the asset.
+
+### Decision guide
+
+| Asset                                    | Technique                                             |
+| ---------------------------------------- | ----------------------------------------------------- |
+| Single-color logo or icon                | **CSS mask** tinted with one token — (A)              |
+| Single-color background pattern / texture| **Masked overlay layer** tinted with a token — (B)    |
+| Multi-color illustration / badge         | **Inline SVG** with per-`fill` tokens — (C)           |
+| Anything WB already provides             | **Use the WB component** — (D)                        |
+
+The `semanticColor.graphics.*` family exists precisely for decorative art, e.g.
+`semanticColor.graphics.gems.background.{subtle,default}` and
+`semanticColor.graphics.role.{administrator,learner,parent,teacher}.{background,foreground}`.
+
+### (A) Single-color logo / icon — CSS mask
+
+Don't render a colored logo with `<img src={logo}>` or `background-image` — the
+color is baked into the file and can't change with the theme. Instead render the
+SVG as a **mask** and tint it with a semantic token so it flips with the theme.
+
+`PhosphorIcon` does exactly this when handed an SVG asset and a `color` token:
+
+```tsx
+import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
+import {semanticColor} from "@khanacademy/wonder-blocks-tokens";
+import logo from "./assets/logo.svg";
+
+<PhosphorIcon
+    icon={logo}
+    aria-label="Khan Academy"
+    color={semanticColor.core.foreground.neutral.strong}
+/>;
+```
+
+If you need the mask by hand (e.g. a nav logo at a custom size), the equivalent
+Aphrodite style is:
+
+```ts
+{
+    backgroundColor: semanticColor.core.foreground.neutral.strong,
+    maskImage: `url(${logo})`,
+    maskSize: "contain",
+    maskRepeat: "no-repeat",
+    maskPosition: "center",
+}
+```
+
+Handle RTL if the asset is directional (swap `maskImage` under `:dir(rtl)`).
+
+### (B) Background pattern — masked overlay layer
+
+For a decorative texture behind content, prepare the SVG so it can be masked,
+then paint it with a token on a separate, absolutely-positioned layer.
+
+**Asset requirements:**
+
+- an SVG with **no** background color and **no** background `<rect>`;
+- the elements in the SVG should **not** have hardcoded colors — use
+  `currentColor`. The `currentColor` elements are what the tint fills.
+
+Drive the pattern with two semantic values — the fill color and the base color
+painted behind it:
+
+```tsx
+import {View} from "@khanacademy/wonder-blocks-core";
+import {semanticColor} from "@khanacademy/wonder-blocks-tokens";
+import scribblePattern from "./assets/scribble-pattern.svg";
+
+const patternColor = semanticColor.graphics.gems.background.subtle;
+const baseBackgroundColor = semanticColor.graphics.gems.background.default;
+
+// The container sets `backgroundColor: baseBackgroundColor` and
+// `position: relative`. The pattern is a decorative, aria-hidden overlay:
+<View
+    tag="span"
+    aria-hidden={true}
+    style={[
+        styles.backgroundPattern,
+        {maskImage: `url(${scribblePattern})`, backgroundColor: patternColor},
+    ]}
+/>;
+```
+
+```ts
+const styles = StyleSheet.create({
+    backgroundPattern: {
+        maskRepeat: "no-repeat",
+        maskSize: "cover",
+        maskPosition: "center",
+        inlineSize: "100%",
+        blockSize: "100%",
+        position: "absolute",
+        insetBlockStart: 0,
+        insetBlockEnd: 0,
+        insetInlineStart: 0,
+        insetInlineEnd: 0,
+        zIndex: -1,
+        borderRadius: "inherit",
+    },
+});
+```
+
+### (C) Multi-color illustration — inline SVG with token fills
+
+A mask only tints with a single color, so it can't express a multi-color
+illustration. For those, **author the SVG as an inline React component** where
+each `fill` references a semantic token, rather than importing a `.svg` file:
+
+```tsx
+import {semanticColor} from "@khanacademy/wonder-blocks-tokens";
+
+const {role} = semanticColor.graphics;
+
+export const AdministratorRoleIcon = () => (
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden={true}>
+        <path d="M2 6C2 3.79 …" fill={role.administrator.background} />
+        <path d="M1.39 1.39L12 12 …" fill={role.administrator.foreground} />
+        {/* … */}
+    </svg>
+);
+```
+
+When a component takes an icon like this, type the prop as a
+`React.ComponentType` (an inline component) instead of a URL/asset, and render
+`<Icon />` rather than `<img src={icon} />`.
+
+### (D) Prefer an existing WB component
+
+Before hand-rolling any of the above, check whether Wonder Blocks already
+provides the graphic (badges, icons, illustrations). Using the WB component is
+the least code and is guaranteed theme-correct.
+
+## Native browser UI
+
+Native controls (scrollbars, `<input type="time">` pickers, other form widgets)
+are themed by the CSS `color-scheme` property, not by tokens. An app shell
+should declare it for every dark theme so these elements follow the theme:
+
+```css
+:root:has([data-wb-theme$="-dark"]) {
+    /* Matches syl-dark and any future *-dark theme */
+    color-scheme: dark;
+}
+```
+
+The `$="-dark"` suffix match means any theme whose name ends in `-dark` gets
+correct native styling automatically.
+
+## Testing dark mode
+
+- Use the **Theme** toolbar in Storybook to switch a story (or this doc page)
+  between `default`, `thunderblocks`, and `syl-dark`. MDX docs and stories both
+  re-render under the selected theme.
+- Add a dark-relevant story when a component ships themed visuals, so
+  regressions are caught in review.
+- **Always review both themes.** Contrast and baked-in-color regressions only
+  show up in one theme; a change that looks right in light mode can be
+  unreadable in dark mode.
+
+## Checklist
+
+Before shipping a component, confirm:
+
+- [ ] No hardcoded hex/rgb colors — every color is a `semanticColor.*` token
+      (TS) or `var(--wb-semanticColor-*)` (CSS).
+- [ ] No `<img>` or `background-image` for a **colored** logo/icon/illustration
+      that should adapt to the theme — use a mask, an inline SVG, or a WB
+      component.
+- [ ] Background patterns use `currentColor` SVGs with no background rect, tinted
+      via a `graphics.*` token over a base `graphics.*` background.
+- [ ] Multi-color art is an inline SVG with per-`fill` tokens.
+- [ ] A WB component is used wherever one exists (`GemBadge`, `PhosphorIcon`, …).
+- [ ] Contrast verified in **both** light and dark modes.
+- [ ] Decorative graphics are `aria-hidden`; meaningful ones have an
+      `aria-label`.
