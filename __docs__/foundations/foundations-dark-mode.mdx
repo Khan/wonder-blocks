@@ -1,0 +1,241 @@
+import {Meta} from "@storybook/addon-docs/blocks";
+import Banner from "@khanacademy/wonder-blocks-banner";
+import CheckIcon from "@phosphor-icons/core/bold/check-bold.svg";
+
+<Meta
+    title="Foundations / Dark Mode"
+/>
+
+# Dark Mode
+
+Dark mode is delivered as a Wonder Blocks theme named **Shape Your Learning -
+Dark** (`syl-dark`), which is the dark version of the **Shape Your Learning**
+(`thunderblocks`) theme.
+
+All Wonder Blocks semantic color tokens and components are supported in the
+`syl-dark` theme. When features are implemented using the design system, the UI
+should support dark mode by default, assuming tokens and components are used
+correctly. Continue reading to learn more about tips on how to best support dark
+themes.
+
+## How theming works
+
+The active theme is written to the nearest themed element as a `data-wb-theme`
+attribute (one of `"default"`, `"thunderblocks"`, `"syl-dark"`). Tokens from
+`@khanacademy/wonder-blocks-tokens` are exposed as CSS variables scoped
+to that attribute, so the _same_ token resolves to a different value depending
+on the theme.
+
+Note: Consuming applications should set the `data-wb-theme` attribute on the
+`body` element, to ensure the theme is properly set on portaled components like
+modals, drawers, tooltips, and popovers.
+
+## Tips
+
+## Components
+
+<Banner
+  text="Use Wonder Blocks components, which support dark mode out of the box."
+  kind="success"
+  icon={CheckIcon}
+/>
+
+Components in Wonder Blocks have been implemented and tested to work across themes,
+ensuring accessibility color contrast requirements are met.
+
+By using Wonder Blocks components with minimal overriding styles, dark mode should
+work automatically! This includes the different variants and states of a component.
+
+Reach out to the Wonder Blocks team if you come across any issues with Wonder Blocks
+components!
+
+## Colors: use semantic tokens
+
+<Banner
+  text="Use semantic color tokens, which will adapt based on the theme."
+  kind="success"
+  icon={CheckIcon}
+  actions={[{ type: "link", href: "?path=/docs/foundations-using-color--docs", title: "Using color" }]}
+/>
+
+
+For custom components and styling, use the `semanticColor` tokens from
+`@khanacademy/wonder-blocks-tokens`, which will adapt based on the theme.
+
+**Avoid using hardcoded hex or rgb colors**. They are not guaranteed to work
+across light and dark themes.
+
+**Watch for contrast.** A token that looks fine in light mode can fail contrast
+in dark mode. Choose the token whose _role_ matches the element, then verify it
+in dark mode. Don't pick a token by how it happens to look in one theme.
+
+**Prefer a Wonder Blocks component over hand-colored UI.** If WB already ships a
+component for what you're implementing, use it instead of styling your own. It
+will support dark mode automatically.
+
+
+If there is no `semanticColor` token that suits your use case, please reach out
+to the Wonder Blocks team!
+
+## Focus styles
+
+<Banner
+  text="Use WB focus styles for custom interactive elements"
+  kind="success"
+  icon={CheckIcon}
+  actions={[{ type: "link", href: "?path=/docs/packages-styles-focus-styles--docs", title: "Focus Styles" }]}
+/>
+
+If you are implementing a custom component that is interactive, use the Wonder
+Blocks `focusStyles`. These focus styles are intended to work in both light and
+dark themes.
+
+## Graphics: background images, icons, and illustrations
+
+<Banner
+  text="Consider how graphics will look across themes, especially if text is placed
+  on top of a background image."
+  kind="success"
+  icon={CheckIcon}
+/>
+
+When adding graphics, consider how it will look across themes. There are some cases
+where graphics will also need to adapt based on the theme.
+
+## Background images
+
+For background images with text on top, there's a chance that the text won't be
+ledgible in dark mode, because the base font color will become inverted and the
+background image will stay the same color.
+
+To account for this, use semantic color tokens for backgrounds where
+possible. Some examples:
+
+### Background patterns
+
+### Background color with shapes
+
+## Icons
+
+### Single-colored icons
+
+For single colored icons, use semantic color tokens with the
+<a href="?path=/docs/packages-icon-phosphoricon--docs">PhosphorIcon</a> component.
+The `PhosphorIcon` component can be used with icons from `@phosphor-icons` or
+custom svg icons, assuming they are to be filled with one color.
+
+### Multi-colored icons
+
+Check to see if there is a Wonder Blocks component
+
+ey've already
+been componentized in Wonder Blocks or the `frontend` repo.
+
+For multi-colored icons,
+
+## Illustrations
+
+Stay tuned for new graphic palette tokens!
+
+
+
+
+
+
+
+
+
+---
+
+> **The golden rule:** if a value or an asset carries a color, it must come from
+> a Wonder Blocks semantic token — not a hex string, and not a pre-colored
+> image.
+
+
+
+
+
+### (B) Background pattern — masked overlay layer
+
+For a decorative texture behind content, prepare the SVG so it can be masked,
+then paint it with a token on a separate, absolutely-positioned layer.
+
+**Asset requirements:**
+
+- an SVG with **no** background color and **no** background `<rect>`;
+- the elements in the SVG should **not** have hardcoded colors — use
+  `currentColor`. The `currentColor` elements are what the tint fills.
+
+Drive the pattern with two semantic values — the fill color and the base color
+painted behind it:
+
+```tsx
+import {View} from "@khanacademy/wonder-blocks-core";
+import {semanticColor} from "@khanacademy/wonder-blocks-tokens";
+import scribblePattern from "./assets/scribble-pattern.svg";
+
+const patternColor = semanticColor.graphics.gems.background.subtle;
+const baseBackgroundColor = semanticColor.graphics.gems.background.default;
+
+// The container sets `backgroundColor: baseBackgroundColor` and
+// `position: relative`. The pattern is a decorative, aria-hidden overlay:
+<View
+    tag="span"
+    aria-hidden={true}
+    style={[
+        styles.backgroundPattern,
+        {maskImage: `url(${scribblePattern})`, backgroundColor: patternColor},
+    ]}
+/>;
+```
+
+```ts
+const styles = StyleSheet.create({
+    backgroundPattern: {
+        maskRepeat: "no-repeat",
+        maskSize: "cover",
+        maskPosition: "center",
+        inlineSize: "100%",
+        blockSize: "100%",
+        position: "absolute",
+        insetBlockStart: 0,
+        insetBlockEnd: 0,
+        insetInlineStart: 0,
+        insetInlineEnd: 0,
+        zIndex: -1,
+        borderRadius: "inherit",
+    },
+});
+```
+
+### (C) Multi-color illustration — inline SVG with token fills
+
+A mask only tints with a single color, so it can't express a multi-color
+illustration. For those, **author the SVG as an inline React component** where
+each `fill` references a semantic token, rather than importing a `.svg` file:
+
+```tsx
+import {semanticColor} from "@khanacademy/wonder-blocks-tokens";
+
+const {role} = semanticColor.graphics;
+
+export const AdministratorRoleIcon = () => (
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden={true}>
+        <path d="M2 6C2 3.79 …" fill={role.administrator.background} />
+        <path d="M1.39 1.39L12 12 …" fill={role.administrator.foreground} />
+        {/* … */}
+    </svg>
+);
+```
+
+When a component takes an icon like this, type the prop as a
+`React.ComponentType` (an inline component) instead of a URL/asset, and render
+`<Icon />` rather than `<img src={icon} />`.
+
+
+## Testing dark mode
+
+- Use the **Theme** toolbar in Storybook to switch the theme for a story
+- **Always review features using light and dark themes.** Contrast and
+  baked-in-color regressions only show up in one theme; a change that looks
+  right in light mode can be unreadable in dark mode
