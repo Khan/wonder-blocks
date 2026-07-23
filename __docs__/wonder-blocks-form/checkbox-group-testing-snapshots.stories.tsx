@@ -77,9 +77,9 @@ export const Scenarios: Story = {
                     description: longText,
                     errorMessage: longText,
                     children: [
-                        <Choice label={longText} value="1" />,
-                        <Choice label={longText} value="2" />,
-                        <Choice label={longText} value="3" />,
+                        <Choice key="1" label={longText} value="1" />,
+                        <Choice key="2" label={longText} value="2" />,
+                        <Choice key="3" label={longText} value="3" />,
                     ],
                 },
             },
@@ -90,9 +90,21 @@ export const Scenarios: Story = {
                     description: longTextWithNoWordBreak,
                     errorMessage: longTextWithNoWordBreak,
                     children: [
-                        <Choice label={longTextWithNoWordBreak} value="1" />,
-                        <Choice label={longTextWithNoWordBreak} value="2" />,
-                        <Choice label={longTextWithNoWordBreak} value="3" />,
+                        <Choice
+                            key="1"
+                            label={longTextWithNoWordBreak}
+                            value="1"
+                        />,
+                        <Choice
+                            key="2"
+                            label={longTextWithNoWordBreak}
+                            value="2"
+                        />,
+                        <Choice
+                            key="3"
+                            label={longTextWithNoWordBreak}
+                            value="3"
+                        />,
                     ],
                 },
             },

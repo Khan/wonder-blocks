@@ -82,19 +82,6 @@ jobs:
             - name: Install & cache node_modules
               uses: ./.github/actions/shared-node-cache
               timeout-minutes: 5
-              with:
-                  node-version: 24.x
-
-            - name: ⬆️ Upgrade npm for OIDC support
-              shell: bash
-              run: |
-                  # npm trusted publishing requires npm CLI v11.5.1+, but NOT
-                  # the new v12, which is broken when detecting which packages
-                  # need to be published!
-                  #
-                  # Node.js 22 ships with npm 10.x, so we need to upgrade
-                  npm install -g npm@11
-                  echo "✅ npm upgraded to $(npm --version)"
 
             - name: Create Release Pull Request or Publish to npm
               id: changesets
@@ -180,10 +167,6 @@ jobs:
             id-token: write # required for publishing to npm with provenance
             issues: write # required because we write a comment on the PR
             pull-requests: write # required because we create a comment on the PR
-        strategy:
-            matrix:
-                os: [ubuntu-latest]
-                node-version: [24.x]
         steps:
             # We need to checkout all history, so that the changeset tool can diff it
             - name: Checkout current commit
@@ -229,22 +212,9 @@ jobs:
                     echo "No releases in progress."
                   fi
 
-            - name: Use Node.js 24.x & Install & cache node_modules
+            - name: Install & cache node_modules
               uses: ./.github/actions/shared-node-cache
               timeout-minutes: 5
-              with:
-                  node-version: 24.x
-
-            - name: ⬆️ Upgrade npm for OIDC support
-              shell: bash
-              run: |
-                  # npm trusted publishing requires npm CLI v11.5.1+, but NOT
-                  # the new v12, which is broken when detecting which packages
-                  # need to be published!
-                  #
-                  # Node.js 22 ships with npm 10.x, so we need to upgrade
-                  npm install -g npm@11
-                  echo "✅ npm upgraded to $(npm --version)"
 
             - name: Publish snapshot release to npm
               id: publish-snapshot
