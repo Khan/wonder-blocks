@@ -9,11 +9,11 @@ import {addStyle, View} from "@khanacademy/wonder-blocks-core";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {BodyText} from "@khanacademy/wonder-blocks-typography";
-import backgroundImageExample from "./background-image-example.svg";
-import backgroundPattern from "./background-pattern.svg";
-import heroPolygon from "./hero-polygon.svg";
-import heroAsterisk from "./hero-asterisk.svg";
-import hero from "./hero.svg";
+import backgroundImageExample from "./assets/background-image-example.svg";
+import backgroundPattern from "./assets/background-pattern.svg";
+import heroPolygon from "./assets/hero-polygon.svg";
+import heroAsterisk from "./assets/hero-asterisk.svg";
+import hero from "./assets/hero.svg";
 
 /**
  * These stories are illustrative examples embedded in the `Foundations / Dark
