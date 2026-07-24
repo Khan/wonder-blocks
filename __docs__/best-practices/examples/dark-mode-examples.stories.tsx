@@ -24,7 +24,7 @@ import multiColoredIcon from "./assets/multi-colored-icon.svg";
  * support that MDX page.
  */
 export default {
-    title: "Foundations / Dark Mode / Examples",
+    title: "Best Practices / Dark Mode / Examples",
     tags: ["!dev", "!autodocs", "!manifest"],
     parameters: {
         // These are documentation illustrations rather than component states,
