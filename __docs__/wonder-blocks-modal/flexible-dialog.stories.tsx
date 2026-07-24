@@ -15,7 +15,7 @@ import FlexibleDialogArgTypes from "./flexible-dialog.argtypes";
 import {modalPositionerStyle} from "./modal-story-utils";
 import {allModes} from "../../.storybook/modes";
 
-import celebrationBg from "../../static/celebration_bg.svg";
+import celebrationPattern from "../../static/celebration_bg-pattern.svg";
 import celebrationChest from "../../static/celebration-chest.svg";
 import {longText, reallyLongText} from "../components/text-for-testing";
 
@@ -77,13 +77,21 @@ export const Default: StoryComponentType = {
 };
 
 /**
- * A FlexibleDialog with full-bleed background image and custom contents.
+ * A FlexibleDialog with a full-bleed background pattern and custom contents.
+ *
+ * Avoid a CSS background image behind text: in dark mode the image stays the
+ * same while the text color inverts, which can make the text illegible.
+ * Instead, paint the panel with a semantic background color and layer the
+ * background pattern on top with a CSS `mask-image` filled with a semantic
+ * color token, so both the background color and the pattern adapt across
+ * themes. See the
+ * [Dark Mode best practices](./?path=/docs/best-practices-dark-mode--docs) for
+ * more details.
  */
 const modalBgStyle = {
-    backgroundColor: semanticColor.core.background.critical.subtle, // fallback color
-    backgroundImage: `url(${celebrationBg})`,
-    backgroundRepeat: "no-repeat",
-    backgroundSize: "cover",
+    position: "relative",
+    overflow: "hidden",
+    backgroundColor: semanticColor.graphics.gems.background.subtle,
 } as const;
 
 export const WithBackgroundImage: StoryComponentType = {
@@ -105,37 +113,44 @@ export const WithBackgroundImage: StoryComponentType = {
                         panel: modalBgStyle,
                     }}
                     content={({title}) => (
-                        <View style={styles.centered}>
-                            <img
-                                src={celebrationChest}
-                                style={{maxInlineSize: "240px"}}
-                                alt=""
+                        <>
+                            <View
+                                style={styles.celebrationPattern}
+                                tag="span"
+                                aria-hidden={true}
                             />
-                            {title}
-                            <Heading
-                                size="large"
-                                weight="bold"
-                                style={{
-                                    marginBlock: sizing.size_240,
-                                    textAlign: "center",
-                                }}
-                            >
-                                Your class, Advanced Calculus, reached 1500 of
-                                1500 gems
-                            </Heading>
-                            <ActivityButton
-                                kind="primary"
-                                styles={{
-                                    root: {
-                                        marginBlockStart: 20,
-                                        alignSelf: "center",
-                                    },
-                                }}
-                                onClick={() => {}}
-                            >
-                                Continue
-                            </ActivityButton>
-                        </View>
+                            <View style={styles.centered}>
+                                <img
+                                    src={celebrationChest}
+                                    style={{maxInlineSize: "240px"}}
+                                    alt=""
+                                />
+                                {title}
+                                <Heading
+                                    size="large"
+                                    weight="bold"
+                                    style={{
+                                        marginBlock: sizing.size_240,
+                                        textAlign: "center",
+                                    }}
+                                >
+                                    Your class, Advanced Calculus, reached 1500
+                                    of 1500 gems
+                                </Heading>
+                                <ActivityButton
+                                    kind="primary"
+                                    styles={{
+                                        root: {
+                                            marginBlockStart: 20,
+                                            alignSelf: "center",
+                                        },
+                                    }}
+                                    onClick={() => {}}
+                                >
+                                    Continue
+                                </ActivityButton>
+                            </View>
+                        </>
                     )}
                 />
             </View>
@@ -516,6 +531,19 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         padding: 0,
         textAlign: "center",
+    },
+    celebrationPattern: {
+        position: "absolute",
+        insetBlockStart: 0,
+        insetBlockEnd: 0,
+        insetInlineStart: 0,
+        insetInlineEnd: 0,
+        backgroundColor: semanticColor.graphics.gems.background.default,
+        maskImage: `url(${celebrationPattern})`,
+        maskPosition: "center",
+        maskRepeat: "no-repeat",
+        maskSize: "cover",
+        zIndex: -1,
     },
     previewSizer: {
         minBlockSize: "calc(100vh - 1.6rem)",

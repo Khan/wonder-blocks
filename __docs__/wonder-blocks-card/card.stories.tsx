@@ -3,7 +3,7 @@ import {StyleSheet} from "aphrodite";
 import type {Meta, StoryObj} from "@storybook/react-vite";
 
 import infoIcon from "@phosphor-icons/core/bold/info-bold.svg";
-import {View} from "@khanacademy/wonder-blocks-core";
+import {addStyle, View} from "@khanacademy/wonder-blocks-core";
 import Button from "@khanacademy/wonder-blocks-button";
 import {font, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {GemIcon, Icon, PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
@@ -16,11 +16,13 @@ import ComponentInfo from "../components/component-info";
 import CardArgTypes from "./card.argtypes";
 import {GemBadge} from "@khanacademy/wonder-blocks-badge";
 import Link from "@khanacademy/wonder-blocks-link";
-import eotBackground from "../../static/EOT-Background.svg";
+import eotBackgroundPattern from "../../static/EOT-Background-pattern.svg";
 import eotIcon from "../../static/EOT-Icon.svg";
-import blooketBg from "../../static/Blooket.svg";
+import blooketShapes from "../../static/Blooket-shapes.svg";
 
 type StoryComponentType = StoryObj<typeof Card>;
+
+const StyledImg = addStyle("img");
 
 export default {
     title: "Packages / Card",
@@ -193,9 +195,22 @@ export const WithTag: StoryComponentType = {
     ),
 };
 
+/**
+ * Avoid using a CSS background image with text placed on top. In dark mode the
+ * image stays the same while the text color inverts, which can make the text
+ * illegible.
+ *
+ * Instead, paint the card with a semantic background color and layer the
+ * background pattern on top with a CSS `mask-image` filled with a semantic
+ * color token. This way both the background color and the pattern adapt across
+ * themes, keeping the text legible. See the
+ * [Dark Mode best practices](./?path=/docs/best-practices-dark-mode--docs) for
+ * more details.
+ */
 export const WithBackgroundImage: StoryComponentType = {
     render: () => (
-        <Card background={eotBackground} styles={{root: styles.card}}>
+        <Card styles={{root: [styles.card, styles.eotCard]}}>
+            <View style={styles.eotPattern} tag="span" aria-hidden={true} />
             <View
                 style={{
                     alignItems: "center",
@@ -225,16 +240,29 @@ export const WithBackgroundImage: StoryComponentType = {
     ),
 };
 
+/**
+ * When a card has a decorative header illustration, avoid painting it with a
+ * CSS background image: it stays the same in dark mode while the rest of the
+ * card adapts, so the header can look out of place.
+ *
+ * Instead, paint the header with a semantic background color and place the
+ * illustration on top as a decorative (`aria-hidden`) graphic. The illustration
+ * has its baked-in background removed so the semantic color shows through and
+ * adapts across themes. See the
+ * [Dark Mode best practices](./?path=/docs/best-practices-dark-mode--docs) for
+ * more details.
+ */
 export const WithSplitBackgroundImage: StoryComponentType = {
     render: () => (
         <Card paddingSize="none" styles={{root: styles.card}}>
-            <View
-                style={{
-                    backgroundImage: `url(${blooketBg})`,
-                    backgroundSize: "cover",
-                    height: 156,
-                }}
-            />
+            <View style={styles.blooketStrip}>
+                <StyledImg
+                    src={blooketShapes}
+                    alt=""
+                    aria-hidden={true}
+                    style={styles.blooketShapes}
+                />
+            </View>
             <View
                 style={{
                     padding: sizing.size_160,
@@ -389,5 +417,41 @@ const styles = StyleSheet.create({
     eotCardText: {
         marginBlockStart: sizing.size_160,
         marginBlockEnd: sizing.size_160,
+    },
+    eotCard: {
+        position: "relative",
+        overflow: "hidden",
+        backgroundColor:
+            semanticColor.graphics.progress.complete.background.subtle,
+    },
+    eotPattern: {
+        position: "absolute",
+        insetBlockStart: 0,
+        insetBlockEnd: 0,
+        insetInlineStart: 0,
+        insetInlineEnd: 0,
+        backgroundColor:
+            semanticColor.graphics.progress.complete.background.default,
+        maskImage: `url(${eotBackgroundPattern})`,
+        maskPosition: "center",
+        maskRepeat: "no-repeat",
+        maskSize: "cover",
+        zIndex: -1,
+    },
+    blooketStrip: {
+        position: "relative",
+        overflow: "hidden",
+        blockSize: 156,
+        backgroundColor: semanticColor.core.background.base.subtle,
+    },
+    blooketShapes: {
+        position: "absolute",
+        insetBlockStart: 0,
+        insetBlockEnd: 0,
+        insetInlineStart: 0,
+        insetInlineEnd: 0,
+        inlineSize: "100%",
+        blockSize: "100%",
+        objectFit: "cover",
     },
 });
