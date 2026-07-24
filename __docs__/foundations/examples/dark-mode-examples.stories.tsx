@@ -5,6 +5,7 @@ import plusIcon from "@phosphor-icons/core/bold/plus-bold.svg";
 import equalsIcon from "@phosphor-icons/core/bold/equals-bold.svg";
 import checkIcon from "@phosphor-icons/core/bold/check-bold.svg";
 import avoidIcon from "@phosphor-icons/core/bold/x-bold.svg";
+import cookieIcon from "@phosphor-icons/core/bold/cookie-bold.svg";
 import {addStyle, View} from "@khanacademy/wonder-blocks-core";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
@@ -14,7 +15,7 @@ import backgroundPattern from "./assets/background-pattern.svg";
 import heroPolygon from "./assets/hero-polygon.svg";
 import heroAsterisk from "./assets/hero-asterisk.svg";
 import hero from "./assets/hero.svg";
-
+import logoIcon from "./assets/logo-icon.svg";
 /**
  * These stories are illustrative examples embedded in the `Foundations / Dark
  * Mode` documentation via `<Canvas of={...} />`. They are hidden from the
@@ -110,6 +111,10 @@ const styles = StyleSheet.create({
     },
     text: {
         padding: sizing.size_080,
+    },
+    iconExamples: {
+        flexDirection: "row",
+        gap: sizing.size_160,
     },
 });
 
@@ -354,6 +359,61 @@ export const BackgroundWithShapesBreakdown: StoryComponentType = {
                         {text}
                     </View>
                 }
+            />
+        );
+    },
+};
+
+export const SingleColoredIcons: StoryComponentType = {
+    render: function Render() {
+        return (
+            <Example
+                badExample={{
+                    label: "Icon using img src",
+                    content: (
+                        <View style={styles.iconExamples}>
+                            <img
+                                src={cookieIcon}
+                                alt="Cookie"
+                                style={{
+                                    width: sizing.size_480,
+                                    height: sizing.size_480,
+                                }}
+                            />
+                            <img
+                                src={logoIcon}
+                                alt="Khan Academy Logo"
+                                style={{
+                                    width: sizing.size_480,
+                                    height: sizing.size_480,
+                                }}
+                            />
+                        </View>
+                    ),
+                }}
+                goodExample={{
+                    label: "Icon using PhosphorIcon",
+                    content: (
+                        <View style={styles.iconExamples}>
+                            <PhosphorIcon
+                                icon={cookieIcon}
+                                size="large"
+                                color={
+                                    semanticColor.core.foreground.neutral.strong
+                                }
+                                aria-label="Cookie"
+                            />
+                            <PhosphorIcon
+                                icon={logoIcon}
+                                size="large"
+                                color={
+                                    semanticColor.core.foreground.neutral.strong
+                                }
+                                aria-label="Khan Academy Logo"
+                            />
+                        </View>
+                    ),
+                }}
             />
         );
     },
