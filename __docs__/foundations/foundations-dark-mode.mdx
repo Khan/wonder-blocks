@@ -3,6 +3,7 @@ import Banner from "@khanacademy/wonder-blocks-banner";
 import checkIcon from "@phosphor-icons/core/bold/check-bold.svg";
 import avoidIcon from "@phosphor-icons/core/bold/x-bold.svg";
 import * as DarkModeExamples from "./examples/dark-mode-examples.stories";
+import * as CustomIconStories from "../wonder-blocks-icon/custom-icon-components.stories";
 import { sizing } from "@khanacademy/wonder-blocks-tokens";
 
 <Meta
@@ -18,8 +19,10 @@ Dark** (`syl-dark`), which is the dark version of the **Shape Your Learning**
 All Wonder Blocks semantic color tokens and components are supported in the
 `syl-dark` theme. When features are implemented using the design system, the UI
 should support dark mode by default, assuming tokens and components are used
-correctly. Continue reading to learn more about tips on how to best support dark
-themes.
+correctly.
+
+Continue reading to learn more about tips on how to best support dark
+themes. Toggle the theme on this page to see how the examples adapt to dark mode.
 
 ## How theming works
 
@@ -43,8 +46,8 @@ modals, drawers, tooltips, and popovers.
   icon={checkIcon}
 />
 
-Components in Wonder Blocks have been implemented and tested to work across themes,
-ensuring accessibility color contrast requirements are met.
+Components in Wonder Blocks have been implemented and tested to work across themes
+while meeting accessibility color contrast requirements.
 
 By using Wonder Blocks components with minimal overriding styles, dark mode should
 work automatically! This includes the different variants and states of a component.
@@ -80,7 +83,6 @@ components!
   icon={avoidIcon}
   styles={{ root: { marginBlockStart: sizing.size_120 }}}
 />
-
 
 
 For custom components and styling, use the `semanticColor` tokens from
@@ -159,7 +161,8 @@ where graphics will also need to adapt based on the theme. Use the
 
 For background images with text on top, there's a chance that the text won't be
 legible in dark mode, because the base font color will become inverted and the
-background image will stay the same color.
+background image will stay the same. This applies to things like Cards,
+Modals, etc.
 
 To account for this, use semantic color tokens for background colors where
 possible. Some examples:
@@ -196,7 +199,7 @@ applied to the pattern
 
 ##### Background with shapes
 
-Another alternative to using the CSS background-image property is to use a
+Another alternative to using the CSS `background-image` property is to use a
 semantic color token for the background, and then place graphics on top of it.
 
 <Canvas of={DarkModeExamples.BackgroundWithShapes} layout="fullscreen" />
@@ -231,25 +234,40 @@ custom svg icons (like logos), assuming they are to be filled with one color.
 
 ##### Multi-colored icons
 
-Check to see if there is a
-<a href="./?path=/docs/packages-icon-custom-icon-components--docs">custom icon component</a>
-for this already in Wonder Blocks, or in the project you're working on.
+Use <a href="./?path=/docs/packages-icon-custom-icon-components--docs">custom icon components</a>
+from Wonder Blocks, which are implemented to work across all themes:
 
-If one does not exist yet, create a React component returning the `<svg>` element
-so that the svg is rendered inline and individual parts of it can use semantic
-color tokens.
+<Canvas of={CustomIconStories.AllCustomIcons} layout="fullscreen" />
 
-Use the <a href="./?path=/docs/packages-icon-icon--docs">WB Icon</a> component to provide sizing.
+If the icon you need is not in Wonder Blocks, check if it exists in your project
+or other shared libraries as an inline svg.
+
+If one does not exist yet, create a React component returning the `<svg>`
+element so that the svg is rendered inline. Replace any hardcoded colors for
+properties like (`fill`, `stroke`, etc) and use semantic color graphics tokens.
+
+Use the custom icon component with the
+<a href="./?path=/docs/packages-icon-icon--docs">WB Icon</a> component
+to provide sizing. Make sure the svg markup doesn't have hardcoded width or height
+properties.
+
+<Canvas of={DarkModeExamples.MultiColoredIcons} layout="fullscreen" />
 
 #### Illustrations
 
-Stay tuned for graphic palette tokens!
+There are some graphics that do not need to change colors based on the theme
+(for example, Khanmigo accessories). For these cases, graphics should still use
+colors from the design system.
 
+Stay tuned for graphic palette token updates!
+
+### Third Party libraries
+
+Use semantic color tokens for third party libraries that may assume a light theme.
+Examples include: charting libraries, custom UI components, etc.
 
 ## Testing
 
 - Use the **Theme** toolbar in Storybook to switch the theme for a story
-- **Always review features using light and dark themes.** Contrast and
-  baked-in-color regressions only show up in one theme; a change that looks
+- **Always review features using light and dark themes.** A change that looks
   right in light mode can be unreadable in dark mode
-- Make sure content is legible in dark mode

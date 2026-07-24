@@ -7,8 +7,8 @@ import checkIcon from "@phosphor-icons/core/bold/check-bold.svg";
 import avoidIcon from "@phosphor-icons/core/bold/x-bold.svg";
 import cookieIcon from "@phosphor-icons/core/bold/cookie-bold.svg";
 import {addStyle, View} from "@khanacademy/wonder-blocks-core";
-import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
-import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
+import {Icon, PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
+import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {BodyText} from "@khanacademy/wonder-blocks-typography";
 import backgroundImageExample from "./assets/background-image-example.svg";
 import backgroundPattern from "./assets/background-pattern.svg";
@@ -16,6 +16,7 @@ import heroPolygon from "./assets/hero-polygon.svg";
 import heroAsterisk from "./assets/hero-asterisk.svg";
 import hero from "./assets/hero.svg";
 import logoIcon from "./assets/logo-icon.svg";
+import multiColoredIcon from "./assets/multi-colored-icon.svg";
 /**
  * These stories are illustrative examples embedded in the `Foundations / Dark
  * Mode` documentation via `<Canvas of={...} />`. They are hidden from the
@@ -87,6 +88,7 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         textAlign: "center",
         overflow: "hidden",
+        border: `${border.width.thin} solid ${semanticColor.core.border.neutral.subtle}`,
     },
     polygon: {
         position: "absolute",
@@ -412,6 +414,68 @@ export const SingleColoredIcons: StoryComponentType = {
                                 aria-label="Khan Academy Logo"
                             />
                         </View>
+                    ),
+                }}
+            />
+        );
+    },
+};
+
+const MultiColoredIcon = () => {
+    return (
+        <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            aria-hidden="true"
+        >
+            <g clip-path="url(#clip0_15325_2095)">
+                <path
+                    d="M2 6C2 3.79086 3.79086 2 6 2H18C20.2091 2 22 3.79086 22 6V18C22 20.2091 20.2091 22 18 22H6C3.79086 22 2 20.2091 2 18V6Z"
+                    fill={semanticColor.graphics.role.administrator.background}
+                />
+                <path
+                    d="M1.3934 1.3934L12 12L1.3934 22.6066V1.3934Z"
+                    fill={semanticColor.graphics.role.administrator.foreground}
+                />
+                <path
+                    d="M22.6066 1.3934L12 12L22.6066 22.6066V1.3934Z"
+                    fill={semanticColor.graphics.role.administrator.foreground}
+                />
+            </g>
+            <defs>
+                <clipPath id="clip0_15325_2095">
+                    <path
+                        d="M2 6C2 3.79086 3.79086 2 6 2H18C20.2091 2 22 3.79086 22 6V18C22 20.2091 20.2091 22 18 22H6C3.79086 22 2 20.2091 2 18V6Z"
+                        fill="white"
+                    />
+                </clipPath>
+            </defs>
+        </svg>
+    );
+};
+
+export const MultiColoredIcons: StoryComponentType = {
+    render: function Render() {
+        return (
+            <Example
+                badExample={{
+                    label: "Icon using img src",
+                    content: (
+                        <Icon size="large">
+                            <img
+                                src={multiColoredIcon}
+                                alt="Multi-colored Icon"
+                            />
+                        </Icon>
+                    ),
+                }}
+                goodExample={{
+                    label: "Icon using inline svg with semantic colors",
+                    content: (
+                        <Icon size="large">
+                            <MultiColoredIcon />
+                        </Icon>
                     ),
                 }}
             />
