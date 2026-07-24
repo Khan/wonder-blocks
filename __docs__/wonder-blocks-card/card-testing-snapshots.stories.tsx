@@ -4,9 +4,10 @@ import {StyleSheet} from "aphrodite";
 import {allThemeModes} from "../../.storybook/modes";
 import {Card} from "@khanacademy/wonder-blocks-card";
 import {View} from "@khanacademy/wonder-blocks-core";
-import {sizing} from "@khanacademy/wonder-blocks-tokens";
+import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {AllVariants} from "../components/all-variants";
 import eotBackground from "../../static/EOT-Background.svg";
+import eotBackgroundPattern from "../../static/EOT-Background-pattern.svg";
 
 /**
  * The following stories are used to generate all possible prop combinations
@@ -30,6 +31,41 @@ const backgrounds = [
     {name: "Default", props: {background: "base-default"}},
     {name: "Subtle", props: {background: "base-subtle"}},
     {name: "Image", props: {background: eotBackground}},
+    {
+        name: "Custom background pattern",
+        props: {
+            styles: {
+                root: {
+                    backgroundColor:
+                        semanticColor.graphics.progress.complete.background
+                            .default,
+                },
+            },
+            children: (
+                <View
+                    tag="span"
+                    aria-hidden={true}
+                    style={{
+                        maskImage: `url(${eotBackgroundPattern})`,
+                        maskSize: "cover",
+                        maskRepeat: "no-repeat",
+                        backgroundColor:
+                            semanticColor.graphics.progress.complete.background
+                                .subtle,
+                        position: "absolute",
+                        insetInlineStart: 0,
+                        insetInlineEnd: 0,
+                        insetBlockStart: 0,
+                        insetBlockEnd: 0,
+                        zIndex: -1,
+                        width: "100%",
+                        height: "100%",
+                        borderRadius: "inherit",
+                    }}
+                />
+            ),
+        },
+    },
 ];
 
 const borderRadii = [
@@ -85,7 +121,14 @@ export const StateSheet: StoryComponentType = {
             >
                 {({props}) => (
                     <View style={styles.cardContainer}>
-                        <Card {...props} styles={{root: styles.card}}>
+                        <Card
+                            {...props}
+                            styles={{
+                                ...props.styles,
+                                root: [props.styles?.root, styles.card],
+                            }}
+                        >
+                            {props.children}
                             {props.background === "base-default"
                                 ? "base-default"
                                 : props.background === "base-subtle"
@@ -127,7 +170,14 @@ export const StateSheet: StoryComponentType = {
             >
                 {({props}) => (
                     <View style={styles.cardContainer}>
-                        <Card {...props} styles={{root: styles.card}}>
+                        <Card
+                            {...props}
+                            styles={{
+                                ...props.styles,
+                                root: [props.styles?.root, styles.card],
+                            }}
+                        >
+                            {props.children}
                             {props.background === "base-default"
                                 ? "base-default"
                                 : props.background === "base-subtle"
