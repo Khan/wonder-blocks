@@ -1,7 +1,7 @@
 import {Meta, Canvas} from "@storybook/addon-docs/blocks";
 import Banner from "@khanacademy/wonder-blocks-banner";
-import CheckIcon from "@phosphor-icons/core/bold/check-bold.svg";
-import AvoidIcon from "@phosphor-icons/core/bold/x-bold.svg";
+import checkIcon from "@phosphor-icons/core/bold/check-bold.svg";
+import avoidIcon from "@phosphor-icons/core/bold/x-bold.svg";
 import * as DarkModeExamples from "./examples/dark-mode-examples.stories";
 import { sizing } from "@khanacademy/wonder-blocks-tokens";
 
@@ -40,7 +40,7 @@ modals, drawers, tooltips, and popovers.
 <Banner
   text="Use Wonder Blocks components, which support dark mode out of the box."
   kind="success"
-  icon={CheckIcon}
+  icon={checkIcon}
 />
 
 Components in Wonder Blocks have been implemented and tested to work across themes,
@@ -57,13 +57,27 @@ components!
 <Banner
   text="Use semantic color tokens, which will adapt based on the theme."
   kind="success"
-  icon={CheckIcon}
-  actions={[{ type: "link", href: "?path=/docs/foundations-using-color--docs", title: "Using color" }]}
+  icon={checkIcon}
+  actions={[
+    {
+      type: "custom",
+      // NOTE: This is a hack to bypass a Storybook bug where the
+      // link doesn't work correctly with iframes.
+      node: (
+        <a
+          href="./?path=/docs/foundations-using-color--docs"
+          target="_blank"
+        >
+          Using color
+        </a>
+      ),
+    },
+  ]}
 />
 <Banner
   text="Avoid using hardcoded colors"
   kind="critical"
-  icon={AvoidIcon}
+  icon={avoidIcon}
   styles={{ root: { marginBlockStart: sizing.size_120 }}}
 />
 
@@ -92,8 +106,22 @@ to the Wonder Blocks team!
 <Banner
   text="Use WB focus styles for custom interactive elements"
   kind="success"
-  icon={CheckIcon}
-  actions={[{ type: "link", href: "?path=/docs/packages-styles-focus-styles--docs", title: "Focus Styles" }]}
+  icon={checkIcon}
+  actions={[
+    {
+      type: "custom",
+      // NOTE: This is a hack to bypass a Storybook bug where the
+      // link doesn't work correctly with iframes.
+      node: (
+        <a
+          href="./?path=/docs/packages-styles-focus-styles--docs"
+          target="_blank"
+        >
+          Focus Styles
+        </a>
+      ),
+    },
+  ]}
 />
 
 If you are implementing a custom component that is interactive, use the Wonder
@@ -105,8 +133,22 @@ dark themes.
 <Banner
   text="Consider how background images, icons, and illustrations will look across themes, especially if text is placed on top of a graphic. Apply semantic color graphic tokens where it makes sense."
   kind="success"
-  icon={CheckIcon}
-  actions={[{ type: "link", href: "?path=/docs/foundations-using-color--docs#graphics", title: "Semantic Color Graphics Tokens" }]}
+  icon={checkIcon}
+  actions={[
+    {
+      type: "custom",
+      // NOTE: This is a hack to bypass a Storybook bug where the
+      // link doesn't work correctly with iframes.
+      node: (
+        <a
+          href="./?path=/docs/foundations-using-color--docs#graphics"
+          target="_blank"
+        >
+          Semantic Color Graphics Tokens
+        </a>
+      ),
+    },
+  ]}
 />
 
 When adding graphics, consider how it will look across themes. There are some cases
@@ -181,25 +223,25 @@ to use semantic color tokens
 ##### Single-colored icons
 
 For single colored icons, use semantic color tokens with the
-<a href="?path=/docs/packages-icon-phosphoricon--docs">PhosphorIcon</a> component.
+<a href="./?path=/docs/packages-icon-phosphoricon--docs">PhosphorIcon</a> component.
 The `PhosphorIcon` component can be used with icons from `@phosphor-icons` or
 custom svg icons (like logos), assuming they are to be filled with one color.
 
 ##### Multi-colored icons
 
 Check to see if there is a
-[custom icon component](?path=/docs/packages-icon-custom-icon-components--docs)
+<a href="./?path=/docs/packages-icon-custom-icon-components--docs">custom icon component</a>
 for this already in Wonder Blocks, or in the project you're working on.
 
 If one does not exist yet, create a React component returning the `<svg>` element
 so that the svg is rendered inline and individual parts of it can use semantic
 color tokens.
 
-Use the [WB Icon](?path=/docs/packages-icon-icon--docs) component to provide sizing.
+Use the <a href="./?path=/docs/packages-icon-icon--docs">WB Icon</a> component to provide sizing.
 
 #### Illustrations
 
-Stay tuned for new graphic palette tokens!
+Stay tuned for graphic palette tokens!
 
 
 ## Testing

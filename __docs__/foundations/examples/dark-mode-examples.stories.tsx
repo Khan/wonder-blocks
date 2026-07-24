@@ -3,6 +3,8 @@ import {StyleSheet} from "aphrodite";
 import type {Meta, StoryObj} from "@storybook/react-vite";
 import plusIcon from "@phosphor-icons/core/bold/plus-bold.svg";
 import equalsIcon from "@phosphor-icons/core/bold/equals-bold.svg";
+import checkIcon from "@phosphor-icons/core/bold/check-bold.svg";
+import avoidIcon from "@phosphor-icons/core/bold/x-bold.svg";
 import {addStyle, View} from "@khanacademy/wonder-blocks-core";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
@@ -133,18 +135,26 @@ const Example = (props: ExampleProps) => {
                 <View style={styles.example}>
                     {badExample.content}
                     <BodyText>
-                        <span role="img" aria-label="Don't use">
-                            ❌
-                        </span>{" "}
+                        <PhosphorIcon
+                            icon={avoidIcon}
+                            aria-label="Don't use"
+                            color={
+                                semanticColor.core.foreground.critical.default
+                            }
+                        />{" "}
                         {badExample.label}
                     </BodyText>
                 </View>
                 <View style={styles.example}>
                     {goodExample.content}
                     <BodyText>
-                        <span role="img" aria-label="Use">
-                            ✅
-                        </span>{" "}
+                        <PhosphorIcon
+                            icon={checkIcon}
+                            aria-label="Use"
+                            color={
+                                semanticColor.core.foreground.success.default
+                            }
+                        />{" "}
                         {goodExample.label}
                     </BodyText>
                 </View>
