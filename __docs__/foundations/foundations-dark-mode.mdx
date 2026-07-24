@@ -1,6 +1,7 @@
-import {Meta} from "@storybook/addon-docs/blocks";
+import {Meta, Canvas} from "@storybook/addon-docs/blocks";
 import Banner from "@khanacademy/wonder-blocks-banner";
 import CheckIcon from "@phosphor-icons/core/bold/check-bold.svg";
+import * as DarkModeExamples from "./examples/dark-mode-examples.stories";
 
 <Meta
     title="Foundations / Dark Mode"
@@ -108,12 +109,23 @@ For background images with text on top, there's a chance that the text won't be
 ledgible in dark mode, because the base font color will become inverted and the
 background image will stay the same color.
 
-To account for this, use semantic color tokens for backgrounds where
+To account for this, use semantic color tokens for background colors where
 possible. Some examples:
 
 ### Background patterns
 
+<Canvas of={DarkModeExamples.BackgroundPattern} layout="fullscreen" />
+
+Breakdown of the background pattern:
+
+<Canvas of={DarkModeExamples.BackgroundPatternBreakdown} layout="fullscreen" />
+
 ### Background color with shapes
+
+<Canvas of={DarkModeExamples.BackgroundWithShapes} layout="fullscreen" />
+
+Breakdown of the background with shapes:
+<Canvas of={DarkModeExamples.BackgroundWithShapesBreakdown} layout="fullscreen" />
 
 ## Icons
 
@@ -122,7 +134,7 @@ possible. Some examples:
 For single colored icons, use semantic color tokens with the
 <a href="?path=/docs/packages-icon-phosphoricon--docs">PhosphorIcon</a> component.
 The `PhosphorIcon` component can be used with icons from `@phosphor-icons` or
-custom svg icons, assuming they are to be filled with one color.
+custom svg icons (like logos), assuming they are to be filled with one color.
 
 ### Multi-colored icons
 
