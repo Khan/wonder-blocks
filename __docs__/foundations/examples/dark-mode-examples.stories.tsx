@@ -93,7 +93,11 @@ export const BackgroundPattern = () => {
                 label: "Semantic colors for background + CSS mask-image",
                 content: (
                     <View style={[styles.block, styles.backgroundPatternBase]}>
-                        <View style={styles.backgroundPattern} />
+                        <View
+                            style={styles.backgroundPattern}
+                            tag="span"
+                            aria-hidden={true}
+                        />
                         {text}
                     </View>
                 ),
@@ -116,12 +120,20 @@ export const BackgroundPatternBreakdown = () => {
             breakdown={[
                 <View style={[styles.block, styles.backgroundPatternBase]} />,
                 <View style={styles.block}>
-                    <View style={styles.backgroundPattern} />
+                    <View
+                        style={styles.backgroundPattern}
+                        tag="span"
+                        aria-hidden={true}
+                    />
                 </View>,
             ]}
             final={
                 <View style={[styles.block, styles.backgroundPatternBase]}>
-                    <View style={styles.backgroundPattern} />
+                    <View
+                        style={styles.backgroundPattern}
+                        tag="span"
+                        aria-hidden={true}
+                    />
                     {text}
                 </View>
             }
