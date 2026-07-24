@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
     },
     example: {
         gap: sizing.size_080,
-        width: 200,
+        inlineSize: 200,
     },
     backgroundImage: {
         backgroundImage: `url(${backgroundImageExample})`,
@@ -66,10 +66,10 @@ const styles = StyleSheet.create({
     },
     backgroundPattern: {
         position: "absolute",
-        top: 0,
-        right: 0,
-        bottom: 0,
-        left: 0,
+        insetInlineStart: 0,
+        insetBlockStart: 0,
+        insetBlockEnd: 0,
+        insetInlineEnd: 0,
         backgroundColor: semanticColor.graphics.gems.background.subtle,
         maskImage: `url(${backgroundPattern})`,
         maskPosition: "center",
@@ -92,17 +92,17 @@ const styles = StyleSheet.create({
     },
     polygon: {
         position: "absolute",
-        left: "-50%",
-        top: "-130px",
-        width: "100%",
-        height: "100%",
+        insetInlineStart: "-50%",
+        insetBlockStart: "-65%",
+        inlineSize: "100%",
+        blockSize: "100%",
         zIndex: -1,
     },
     asterisk: {
         position: "absolute",
-        top: "125px",
-        right: "0",
-        height: "100%",
+        insetBlockStart: "62.5%",
+        insetInlineEnd: "0",
+        blockSize: "100%",
         zIndex: -1,
     },
     heroImage: {
