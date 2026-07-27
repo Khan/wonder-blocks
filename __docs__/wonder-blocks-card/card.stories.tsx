@@ -422,7 +422,7 @@ const styles = StyleSheet.create({
         position: "relative",
         overflow: "hidden",
         backgroundColor:
-            semanticColor.graphics.progress.complete.background.subtle,
+            semanticColor.graphics.progress.complete.background.default,
     },
     eotPattern: {
         position: "absolute",
@@ -431,9 +431,8 @@ const styles = StyleSheet.create({
         insetInlineStart: 0,
         insetInlineEnd: 0,
         backgroundColor:
-            semanticColor.graphics.progress.complete.background.default,
+            semanticColor.graphics.progress.complete.background.subtle,
         maskImage: `url(${eotBackgroundPattern})`,
-        maskPosition: "center",
         maskRepeat: "no-repeat",
         maskSize: "cover",
         zIndex: -1,
