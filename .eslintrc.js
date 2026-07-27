@@ -217,6 +217,8 @@ module.exports = {
                 matchers: ["toHaveNoA11yViolations"],
             },
         ],
+        "@khanacademy/wonder-blocks/require-logical-properties-for-rtl":
+            "error",
 
         /**
          * TypeScript rules
