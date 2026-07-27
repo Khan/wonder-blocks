@@ -37,9 +37,12 @@ attribute (one of `"default"`, `"thunderblocks"`, `"syl-dark"`). Tokens from
 to that attribute, so the _same_ token resolves to a different value depending
 on the theme.
 
-Note: Consuming applications should set the `data-wb-theme` attribute on the
-`body` element, to ensure the theme is properly set on portaled components like
-modals, drawers, tooltips, and popovers.
+Note: Consuming applications should have the `data-wb-theme` attribute set on the
+`body` element to ensure the theme is properly set on portaled components like
+modals, drawers, tooltips, and popovers. The `WonderBlocksThemeProvider` in
+`frontend` will handle setting this attribute based on things like feature flags,
+user settings, etc. Teams typically do not need to configure this since the
+infrastructure is in place already for the apps that support dark mode.
 
 ## Best Practices
 
