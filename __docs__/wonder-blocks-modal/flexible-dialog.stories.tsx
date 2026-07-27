@@ -91,7 +91,7 @@ export const Default: StoryComponentType = {
 const modalBgStyle = {
     position: "relative",
     overflow: "hidden",
-    backgroundColor: semanticColor.graphics.gems.background.subtle,
+    backgroundColor: semanticColor.graphics.gems.background.default,
 } as const;
 
 export const WithBackgroundImage: StoryComponentType = {
@@ -538,7 +538,7 @@ const styles = StyleSheet.create({
         insetBlockEnd: 0,
         insetInlineStart: 0,
         insetInlineEnd: 0,
-        backgroundColor: semanticColor.graphics.gems.background.default,
+        backgroundColor: semanticColor.graphics.gems.background.subtle,
         maskImage: `url(${celebrationPattern})`,
         maskPosition: "center",
         maskRepeat: "no-repeat",
