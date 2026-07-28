@@ -71,7 +71,7 @@ import {
     Heading,
 } from "@khanacademy/wonder-blocks-typography";
 import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
-import customBackgroundImage from "../../static/celebration_bg.svg";
+import backgroundPattern from "../../static/celebration_bg-pattern.svg";
 
 export type VariantProp<T> = {
     [K in keyof T & string]: {
@@ -933,6 +933,30 @@ export const navigationAndMenuComponents = [
     }),
 ];
 
+// Dark-mode-friendly Card background treatments (see card.stories.tsx and the
+// Dark Mode best practices). These use a semantic background color with the
+// graphic layered on top so they adapt across themes, instead of a fixed CSS
+// background image.
+const cardPatternBaseStyle = {
+    position: "relative",
+    overflow: "hidden",
+    minBlockSize: sizing.size_320,
+    backgroundColor: semanticColor.graphics.gems.background.default,
+} as const;
+const cardPatternOverlayStyle = {
+    position: "absolute",
+    insetBlockStart: 0,
+    insetBlockEnd: 0,
+    insetInlineStart: 0,
+    insetInlineEnd: 0,
+    backgroundColor: semanticColor.graphics.gems.background.subtle,
+    maskImage: `url(${backgroundPattern})`,
+    maskPosition: "center",
+    maskRepeat: "no-repeat",
+    maskSize: "cover",
+    zIndex: -1,
+} as const;
+
 /**
  * Layout blocks (Accordion, Card, CompactCell, DetailCell, PopoverContent)
  */
@@ -977,7 +1001,7 @@ export const layoutBlocksComponents = [
             },
             {
                 propName: "background",
-                options: ["base-subtle", "base-default", customBackgroundImage],
+                options: ["base-subtle", "base-default"],
             },
             {
                 propName: "elevation",
@@ -997,7 +1021,26 @@ export const layoutBlocksComponents = [
             ),
             styles: {root: {gap: sizing.size_040}},
         },
-        states: [{name: "Dismissible", props: {onDismiss: () => {}}}],
+        states: [
+            {name: "Dismissible", props: {onDismiss: () => {}}},
+            {
+                name: "Background pattern",
+                props: {
+                    styles: {root: cardPatternBaseStyle},
+                    children: (
+                        <>
+                            <View
+                                style={cardPatternOverlayStyle}
+                                tag="span"
+                                aria-hidden={true}
+                            />
+                            <Heading>Card Component</Heading>
+                            <BodyText>This is a card component</BodyText>
+                        </>
+                    ),
+                },
+            },
+        ],
         package: "wonder-blocks-card",
     }),
     createComponentConfig({
