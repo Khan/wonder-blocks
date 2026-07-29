@@ -82,11 +82,11 @@ and thin adapters format for each target:
   opinion: *that* it fades, *how far* it slides, *how much* it scales.
 - **The component supplies only** which element it binds to and the direction via an `origin` option
   (`top`/`bottom`/`left`/`right`). The token's `offset` is **axis-neutral**, so one
-  `overlay.enter` serves a drawer entering from any edge with no token explosion.
+  `docked.enter` serves a drawer entering from any edge with no token explosion.
 
 Not every archetype needs states. Timing-only archetypes (`control.press`, `disclosure.*`,
-`fade.*`, `indicator.move`, `loop.spin`) are just a clock; the overlay archetypes are full
-presets.
+`fade.*`, `indicator.move`, `loop.spin`) are just a clock; the `floating` and `docked` archetypes
+are full presets.
 
 ### 3. *Time* must not scale with font size; *displacement* deliberately does
 
@@ -151,11 +151,11 @@ Two exported trees, plus adapter helpers:
 | key | ms | maps to today |
 |---|---|---|
 | `none` | 0 | disabled / reduced |
-| `xShort` | 100 | button/icon micro-feedback |
+| `xShort` | 100 | button/icon micro-feedback (`control.press`) |
 | `short` | 150 | switch thumb, tab fade (absorbs stray 120) |
-| `medium` | 200 | general default (common in `frontend`); overlay exit |
+| `medium` | 200 | general default (common in `frontend`); `floating`/`docked` exit |
 | `long` | 300 | accordion expand, tab indicator |
-| `xLong` | 400 | drawer/modal overlay entrance |
+| `xLong` | 400 | `floating`/`docked` (modal/drawer) entrance |
 | `xxLong` | 1100 | spinner loop |
 
 **Primitive `easing` (bézier arrays)**
@@ -170,44 +170,55 @@ Two exported trees, plus adapter helpers:
 | `emphasizedAccelerate` | `[0.3, 0, 0.8, 0.15]` | pronounced exit |
 
 **Preset states** are composed from existing tokens, not a new primitive scale: `offset`
-references `sizing` (e.g. `size_960` = 9.6rem), `scale` is a unitless factor, `opacity` is 0–1.
+references `sizing` (e.g. `size_160` = 1.6rem, `size_960` = 9.6rem), `scale` is a unitless factor,
+`opacity` is 0–1.
+
+**Easing conventions.** Anything that *moves position on screen* uses the weighted ease-in-out
+`standard` (short ease-in, long/gradual ease-out). Exits use `decelerate` (ease-out) — **never
+`linear`**. Fades use `linear`. Continuous loops (spinner) use `linear`.
 
 **Semantic archetypes**
 
 *Timing-only clocks* (`{duration, easing, delay}`):
-- `control.press` → micro-feedback for buttons, icon buttons, switches
+- `control.press` → `xShort` (100ms) · `standard`. Micro-feedback for buttons & icon buttons
+  (kept snappy at 100ms to match today's controls).
 - `disclosure.expand` / `disclosure.collapse` → accordions
 - `indicator.move` → tab underline
-- `fade.in` / `fade.out` → generic opacity
+- `fade.in` / `fade.out` → generic opacity (`linear`)
 - `loop.spin` → spinner (component owns `iteration: infinite`)
 
-*Full gestures* (clock + `from`/`to`):
-- `overlay.enter` → `xLong` (400ms) · `emphasizedDecelerate` · fade `0→1` · slide `9.6rem→0`
-  · settle `scale 0.99→1`. A pronounced "suggestion" slide that hints at a full travel.
-- `overlay.exit` → `medium` (200ms) · `linear` · fade `1→0` · drift `0→3.2rem` · `scale 1→0.99`.
-  Quicker and smaller than the entrance — exits get out of the way rather than performing.
+*Full gestures* (clock + `from`/`to`) — split by **character**, not just size:
+- `floating.enter` → `xLong` (400ms) · `standard` · fade `0→1` · rise `1.6rem→0` · settle
+  `scale 0.99→1`. For **in-place** surfaces (modal/dialog, popover, menu) that appear where they are.
+- `floating.exit` → `medium` (200ms) · `decelerate` · fade `1→0` · drift `0→0.8rem` · `scale 1→0.99`.
+- `docked.enter` → `xLong` (400ms) · `standard` · fade `0→1` · slide `9.6rem→0`, **no scale**. For
+  **edge-docked** surfaces (drawer / side & bottom sheets) that travel in from an edge (larger,
+  directional, still a bounded "suggestion").
+- `docked.exit` → `medium` (200ms) · `decelerate` · fade `1→0` · drift `0→3.2rem`, no scale.
 
-Enter-pronounced / exit-quick is a deliberate asymmetry baked into the archetype so every overlay
-inherits it for free.
+Enter-longer / exit-quicker is a deliberate asymmetry baked into each archetype. `floating` scales
+and stays small; `docked` slides farther and doesn't scale (scaling a sliding sheet looks wrong).
 
 ### How each consumer uses it
 
 ```ts
-// Aphrodite / CSS — full preset; component supplies only the docked edge
+// Aphrodite / CSS — full preset; component supplies only the docked edge.
+// Pass `fillMode: "forwards"` on exits so the element holds its hidden state.
 import {animationValue, cssPreset} from "@khanacademy/wonder-blocks-tokens";
-StyleSheet.create({drawer: cssPreset(animationValue.overlay.enter, {origin: "right"})});
-// A timing-only archetype still works the CSS-var way:
-expandRow: {
-  transition: `grid-template-rows ${animation.disclosure.expand.duration} ${animation.disclosure.expand.easing}`,
-}
+StyleSheet.create({
+  drawerEnter: cssPreset(animationValue.docked.enter, {origin: "right"}),
+  drawerExit: cssPreset(animationValue.docked.exit, {origin: "right", fillMode: "forwards"}),
+});
+// A timing-only archetype via the `cssTransition` helper (or CSS-var refs):
+expandRow: cssTransition("grid-template-rows", animationValue.disclosure.expand),
 ```
 ```tsx
 // motion library — full preset as initial/animate/transition
-<motion.div {...motionPreset(animationValue.overlay.enter, {origin: "bottom"})} />
+<motion.div {...motionPreset(animationValue.floating.enter, {origin: "bottom"})} />
 ```
 ```ts
 // WAAPI — [keyframes, options] tuple
-el.animate(...waapiPreset(animationValue.overlay.enter, {origin: "bottom"}));
+el.animate(...waapiPreset(animationValue.floating.enter, {origin: "bottom"}));
 ```
 
 ---
@@ -232,5 +243,35 @@ el.animate(...waapiPreset(animationValue.overlay.enter, {origin: "bottom"}));
 - **Adapters, not automatic** — consumers call `cssPreset` / `motionPreset` / `waapiPreset` rather
   than spreading a token directly. Deliberate: it's what keeps the canonical form neutral.
 - **Layout-relative travel is out of scope** — a preset's `offset` is a bounded, sizing-based
-  magnitude. A surface that must travel a runtime-measured distance (e.g. 100% of its own width)
-  still does that itself; the token supplies a bounded "suggestion," not a measured slide.
+  magnitude. Even `docked` (the larger, drawer-oriented archetype) supplies a bounded 9.6rem
+  "suggestion," not a full measured slide of the surface's own width. A surface that genuinely must
+  travel a runtime-measured distance still does that itself.
+
+---
+
+## Followups & flags to review
+
+Raised by applying the tokens to real components; deliberately **not** resolved in the token layer:
+
+1. **`animated`-prop pattern for new surfaces.** Turning on entrance/exit motion for surfaces that
+   don't animate today (standard modal, popover, tooltip, dropdown) needs a gating decision. A new
+   `animated` prop defaulting **`true`** breaks existing patterns (synchronous close becomes async;
+   everything animates where it didn't); defaulting **`false`** is safe but still causes broad
+   `frontend` churn to opt in everywhere. This is a **cross-repo decision** — the first application
+   pass prototypes the motion without changing any shipped public API/default.
+2. **Popover & tooltip are a fast-follow.** They're class components with a permanently-mounted
+   opacity toggle owned by their parent controllers, so adding motion needs class→function
+   conversion + parent coordination — larger than a straight tokenization.
+3. **Reduced motion.** WB has no `prefers-reduced-motion` handling today; motion is gated only by
+   the `animated` prop where it exists. `switch` animates a *movement* unconditionally (no prop, no
+   media-query fallback). Whether to centralize reduced-motion in WB is a team decision; until then,
+   `switch` specifically warrants an explicit a11y sign-off (WCAG 2.3.3).
+4. **Entrance easing.** Entrances use `standard` (weighted ease-in-out) per the "movement =
+   ease-in-out" convention; an earlier draft used `emphasizedDecelerate`. `emphasized*` curves
+   remain available as primitives if a more pronounced entrance is wanted — tune by eye.
+5. **`docked` slide magnitude.** 9.6rem is a *suggestion*, so a full-width drawer no longer slides
+   entirely from the edge (it rises/drifts + fades). This is a visible change to the highest-traffic
+   existing animation — confirm with design.
+6. **No dedicated backdrop-fade preset.** Backdrops currently reuse the panel's `floating`/`docked`
+   duration (fade only); `fade.*` (150ms) is too quick to match a 400ms panel. A future
+   backdrop-specific preset could formalize this.
