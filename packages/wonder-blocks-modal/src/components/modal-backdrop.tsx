@@ -4,10 +4,16 @@ import * as ReactDOM from "react-dom";
 import {View} from "@khanacademy/wonder-blocks-core";
 
 import {StyleSheet} from "aphrodite";
-import {semanticColor} from "@khanacademy/wonder-blocks-tokens";
+import {
+    semanticColor,
+    animationValue,
+    cssDuration,
+    cssEasing,
+} from "@khanacademy/wonder-blocks-tokens";
 import {ModalLauncherPortalAttributeName} from "../util/constants";
 import {findFocusableNodes} from "../util/find-focusable-nodes";
 import type {ModalElement} from "../util/types";
+import ModalContext from "./modal-context";
 
 type Props = {
     children: ModalElement;
@@ -91,6 +97,14 @@ const ModalBackdrop = ({
     const backdropRef = React.useRef<HTMLElement | null>(null);
     const [mousePressedOutside, setMousePressedOutside] = React.useState(false);
 
+    // Animation state comes from ModalLauncher via context (undefined → no
+    // animation), and drives both the scrim fade and the focus timing.
+    const {animated, isExiting} = React.useContext(ModalContext);
+
+    // When animated, defer initial focus until the enter animation finishes so
+    // focus lands on a settled dialog; otherwise focus on the next tick.
+    const focusDelay = animated ? animationValue.floating.enter.duration : 0;
+
     React.useEffect(() => {
         // eslint-disable-next-line import/no-deprecated
         const node = ReactDOM.findDOMNode(backdropRef.current) as HTMLElement;
@@ -106,11 +120,14 @@ const ModalBackdrop = ({
             // 3. get the dialog itself
             getDialogElement(node);
 
-        // wait for styles to applied
-        setTimeout(() => {
+        // wait for styles (and any enter animation) to be applied. Clear the
+        // timer on unmount so we never focus a detached node if the modal
+        // closes mid-enter.
+        const timeoutId = setTimeout(() => {
             firstFocusableElement?.focus();
-        }, 0);
-    }, [initialFocusId]);
+        }, focusDelay);
+        return () => clearTimeout(timeoutId);
+    }, [initialFocusId, focusDelay]);
 
     /**
      * When the user clicks on the gray backdrop area (i.e., the click came
@@ -154,7 +171,10 @@ const ModalBackdrop = ({
     return (
         <View
             ref={backdropRef}
-            style={styles.modalPositioner}
+            style={[
+                styles.modalPositioner,
+                animated && (isExiting ? styles.fadeOut : styles.fadeIn),
+            ]}
             onMouseDown={handleMouseDown}
             onMouseUp={handleMouseUp}
             testId={testId}
@@ -166,6 +186,17 @@ const ModalBackdrop = ({
 };
 
 export default ModalBackdrop;
+
+const fadeKeyframes = {
+    fadeIn: {
+        "0%": {opacity: 0},
+        "100%": {opacity: 1},
+    },
+    fadeOut: {
+        "0%": {opacity: 1},
+        "100%": {opacity: 0},
+    },
+} as const;
 
 const styles = StyleSheet.create({
     modalPositioner: {
@@ -185,5 +216,22 @@ const styles = StyleSheet.create({
         overflow: "auto",
 
         background: semanticColor.core.background.overlay.default,
+    },
+    // The backdrop only fades, but shares the dialog's `floating` *clock* so the
+    // two finish together — enter on the floating enter duration, exit on the
+    // (shorter) floating exit duration. A fade uses a linear curve.
+    fadeIn: {
+        // @ts-expect-error [FEI-5019]: aphrodite types `animationName` as a string.
+        animationName: fadeKeyframes.fadeIn,
+        animationDuration: cssDuration(animationValue.floating.enter.duration),
+        animationTimingFunction: cssEasing(animationValue.easing.linear),
+        animationFillMode: "forwards",
+    },
+    fadeOut: {
+        // @ts-expect-error [FEI-5019]: aphrodite types `animationName` as a string.
+        animationName: fadeKeyframes.fadeOut,
+        animationDuration: cssDuration(animationValue.floating.exit.duration),
+        animationTimingFunction: cssEasing(animationValue.easing.linear),
+        animationFillMode: "forwards",
     },
 });

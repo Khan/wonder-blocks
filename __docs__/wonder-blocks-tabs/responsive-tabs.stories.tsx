@@ -291,6 +291,26 @@ export const TabIcons: Story = {
 };
 
 /**
+ * The current tab underline indicator can be animated to slide between tabs by
+ * setting `animated: true` in `tabsProps`. It defaults to `false`. This should
+ * be `false` when the user has `prefers-reduced-motion` enabled.
+ */
+export const Animated: Story = {
+    render: ControlledResponsiveTabs,
+    args: {
+        selectedTabId: "tab-1",
+        tabs: [
+            {label: "Tab 1", id: "tab-1", panel: <div>Tab contents 1</div>},
+            {label: "Tab 2", id: "tab-2", panel: <div>Tab contents 2</div>},
+            {label: "Tab 3", id: "tab-3", panel: <div>Tab contents 3</div>},
+        ],
+        tabsProps: {
+            animated: true,
+        },
+    },
+};
+
+/**
  * Use the `tabsProps` and `dropdownProps` props to customize the tabs and
  * dropdown. For example, you can enable animation or change the activation mode
  * for the tabs layout.

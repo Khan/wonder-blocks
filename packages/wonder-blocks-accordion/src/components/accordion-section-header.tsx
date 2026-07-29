@@ -6,7 +6,12 @@ import Clickable from "@khanacademy/wonder-blocks-clickable";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {Heading} from "@khanacademy/wonder-blocks-typography";
-import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
+import {
+    semanticColor,
+    sizing,
+    animationValue,
+    cssTransition,
+} from "@khanacademy/wonder-blocks-tokens";
 import type {StyleType} from "@khanacademy/wonder-blocks-core";
 
 import type {AccordionCornerKindType} from "./accordion";
@@ -154,7 +159,6 @@ const AccordionSectionHeader = React.forwardRef(function AccordionSectionHeader(
 // a 1px gap between the border and the outline. To fix this, we
 // subtract 1 from the border radius.
 const INNER_BORDER_RADIUS = `calc(${sizing.size_120} - 1px)`;
-const ANIMATION_LENGTH = "300ms";
 
 const styles = StyleSheet.create({
     heading: {
@@ -191,7 +195,8 @@ const styles = StyleSheet.create({
         },
     },
     headerWrapperWithAnimation: {
-        transition: `border-radius ${ANIMATION_LENGTH}`,
+        // Header corners round as the section expands: `disclosure.expand`.
+        ...cssTransition("border-radius", animationValue.disclosure.expand),
     },
     headerWrapperCaretStart: {
         flexDirection: "row-reverse",
@@ -225,7 +230,8 @@ const styles = StyleSheet.create({
         paddingInlineStart: sizing.size_120,
     },
     iconWithAnimation: {
-        transition: `transform ${ANIMATION_LENGTH}`,
+        // Caret rotates as the section expands/collapses: `disclosure.expand`.
+        ...cssTransition("transform", animationValue.disclosure.expand),
     },
     iconExpanded: {
         // Turn the caret upside down

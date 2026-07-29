@@ -1,7 +1,12 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 import {View, addStyle} from "@khanacademy/wonder-blocks-core";
-import {semanticColor} from "@khanacademy/wonder-blocks-tokens";
+import {
+    semanticColor,
+    animationValue,
+    cssDuration,
+    cssEasing,
+} from "@khanacademy/wonder-blocks-tokens";
 
 import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
 
@@ -111,8 +116,14 @@ const styles = StyleSheet.create({
         transformOrigin: "50% 50%",
         // @ts-expect-error [FEI-5019]: `animationName` expects a string not an object.
         animationName: rotateKeyFrames,
-        animationDuration: "1.1s",
+        // The spinner loop: `loop.spin` (1100ms · linear). The component owns the
+        // rotate keyframes and the infinite iteration count.
+        //
+        // Format the raw token values into literal CSS strings ("1100ms",
+        // "cubic-bezier(…)") so they don't depend on the `--wb-animation-*` CSS
+        // variables being registered on the page.
+        animationDuration: cssDuration(animationValue.loop.spin.duration),
         animationIterationCount: "infinite",
-        animationTimingFunction: "linear",
+        animationTimingFunction: cssEasing(animationValue.loop.spin.easing),
     },
 });

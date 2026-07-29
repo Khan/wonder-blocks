@@ -922,4 +922,102 @@ describe("ModalLauncher", () => {
             await waitFor(() => expect(masteryButton2).toHaveFocus());
         });
     });
+
+    describe("Animations", () => {
+        test("defers onClose until the exit animation finishes when animated=true", async () => {
+            // Arrange
+            const onCloseMock = jest.fn();
+            render(
+                <ModalLauncher
+                    modal={exampleModal}
+                    animated={true}
+                    opened={true}
+                    onClose={onCloseMock}
+                />,
+            );
+            await screen.findByRole("dialog");
+
+            // Act
+            await userEvent.keyboard("{Escape}");
+
+            // Assert
+            expect(onCloseMock).not.toHaveBeenCalled();
+        });
+
+        test("calls onClose once the exit animation has finished when animated=true", async () => {
+            // Arrange
+            const onCloseMock = jest.fn();
+            render(
+                <ModalLauncher
+                    modal={exampleModal}
+                    animated={true}
+                    opened={true}
+                    onClose={onCloseMock}
+                />,
+            );
+            await screen.findByRole("dialog");
+
+            // Act
+            await userEvent.keyboard("{Escape}");
+
+            // Assert
+            await waitFor(() => expect(onCloseMock).toHaveBeenCalled());
+        });
+
+        test("calls onClose immediately when animated=false", async () => {
+            // Arrange
+            const onCloseMock = jest.fn();
+            render(
+                <ModalLauncher
+                    modal={exampleModal}
+                    animated={false}
+                    opened={true}
+                    onClose={onCloseMock}
+                />,
+            );
+            await screen.findByRole("dialog");
+
+            // Act
+            await userEvent.keyboard("{Escape}");
+
+            // Assert
+            expect(onCloseMock).toHaveBeenCalled();
+        });
+
+        test("keeps the dialog mounted while the exit animation plays when animated=true", async () => {
+            // Arrange
+            render(
+                <ModalLauncher modal={exampleModal} animated={true}>
+                    {({openModal}: any) => <button onClick={openModal} />}
+                </ModalLauncher>,
+            );
+            await userEvent.click(await screen.findByRole("button"));
+            await screen.findByRole("dialog");
+
+            // Act
+            await userEvent.keyboard("{Escape}");
+
+            // Assert
+            expect(screen.getByRole("dialog")).toBeInTheDocument();
+        });
+
+        test("unmounts the dialog after the exit animation finishes when animated=true", async () => {
+            // Arrange
+            render(
+                <ModalLauncher modal={exampleModal} animated={true}>
+                    {({openModal}: any) => <button onClick={openModal} />}
+                </ModalLauncher>,
+            );
+            await userEvent.click(await screen.findByRole("button"));
+            await screen.findByRole("dialog");
+
+            // Act
+            await userEvent.keyboard("{Escape}");
+
+            // Assert
+            await waitFor(() =>
+                expect(screen.queryByRole("dialog")).toBeNull(),
+            );
+        });
+    });
 });

@@ -3,7 +3,12 @@ import * as React from "react";
 import {View} from "@khanacademy/wonder-blocks-core";
 
 import {StyleSheet} from "aphrodite";
-import {semanticColor} from "@khanacademy/wonder-blocks-tokens";
+import {
+    semanticColor,
+    animationValue,
+    cssDuration,
+    cssEasing,
+} from "@khanacademy/wonder-blocks-tokens";
 import {ModalLauncherPortalAttributeName} from "../util/constants";
 import {findFocusableNodes} from "../util/find-focusable-nodes";
 import type {ModalElement} from "../util/types";
@@ -216,18 +221,21 @@ const styles = StyleSheet.create({
         alignItems: "center",
         justifyContent: "flex-end",
     },
+    // The backdrop only fades, but shares the docked panel's *clock* so the two
+    // finish together — enter on the docked enter duration, exit on the (shorter)
+    // docked exit duration. A fade uses a linear curve.
     fadeIn: {
         // @ts-expect-error [FEI-5019] - `animationName` expects a string not an object
         animationName: keyframes.fadeIn,
-        animationDuration: "400ms",
-        animationTimingFunction: "linear",
+        animationDuration: cssDuration(animationValue.docked.enter.duration),
+        animationTimingFunction: cssEasing(animationValue.easing.linear),
         animationFillMode: "forwards",
     },
     fadeOut: {
         // @ts-expect-error [FEI-5019] - `animationName` expects a string not an object
         animationName: keyframes.fadeOut,
-        animationDuration: "400ms",
-        animationTimingFunction: "linear",
+        animationDuration: cssDuration(animationValue.docked.exit.duration),
+        animationTimingFunction: cssEasing(animationValue.easing.linear),
         animationFillMode: "forwards",
     },
 });

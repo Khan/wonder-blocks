@@ -8,6 +8,7 @@ import {
     SchedulePolicy,
     ClearPolicy,
 } from "@khanacademy/wonder-blocks-timing";
+import {animationValue} from "@khanacademy/wonder-blocks-tokens";
 
 import FocusTrap from "./focus-trap";
 import ModalBackdrop from "./modal-backdrop";
@@ -80,6 +81,22 @@ type Props = Readonly<{
      * controlled component.
      */
     children?: (arg1: {openModal: () => unknown}) => React.ReactNode;
+
+    /**
+     * Whether to play enter/exit animations when the modal opens and closes,
+     * using the `floating` motion tokens (the backdrop fades; the dialog rises,
+     * scales, and fades).
+     *
+     * Defaults to `false` so existing usages are unchanged. When `true`, closing
+     * becomes **asynchronous**: the dialog stays mounted for the exit animation's
+     * duration, so `onClose` and focus-return fire *after* the animation finishes.
+     *
+     * Note: only modal content built from `ModalDialog`-based dialogs (e.g.
+     * `OnePaneDialog`, `ModalPanel`) animates its float; the backdrop always
+     * fades. Custom `modal` content that doesn't render through `ModalDialog`
+     * still fades the backdrop but won't float.
+     */
+    animated?: boolean;
 }> &
     WithActionSchedulerProps;
 
@@ -101,6 +118,7 @@ type Props = Readonly<{
  */
 const ModalLauncher = (props: Props): React.ReactElement | null => {
     const {
+        animated = false,
         backdropDismissEnabled = true,
         children,
         closedFocusId,
@@ -117,6 +135,8 @@ const ModalLauncher = (props: Props): React.ReactElement | null => {
     );
 
     const [opened, setOpened] = React.useState(false);
+    // Tracks the exit animation so the modal stays mounted while it plays.
+    const [isExiting, setIsExiting] = React.useState(false);
     const isOpened =
         typeof controlledOpened === "boolean" ? controlledOpened : opened;
 
@@ -181,10 +201,25 @@ const ModalLauncher = (props: Props): React.ReactElement | null => {
     }, [closedFocusId, schedule]);
 
     const handleCloseModal = React.useCallback(() => {
-        setOpened(false);
-        onClose?.();
-        returnFocus();
-    }, [onClose, returnFocus]);
+        if (animated) {
+            // Play the exit animation, then tear down once it finishes. Using
+            // the injected scheduler means the timeout auto-clears if the
+            // component unmounts before it fires.
+            setIsExiting(true);
+            schedule.timeout(() => {
+                setIsExiting(false);
+                // `setOpened(false)` is a no-op in controlled mode, matching
+                // the non-animated path below.
+                setOpened(false);
+                onClose?.();
+                returnFocus();
+            }, animationValue.floating.exit.duration);
+        } else {
+            setOpened(false);
+            onClose?.();
+            returnFocus();
+        }
+    }, [animated, onClose, returnFocus, schedule]);
 
     const renderModal = React.useCallback((): ModalElement => {
         if (typeof modal === "function") {
@@ -202,15 +237,23 @@ const ModalLauncher = (props: Props): React.ReactElement | null => {
           })
         : null;
 
+    const contextValue = React.useMemo(
+        () => ({closeModal: handleCloseModal, animated, isExiting}),
+        [handleCloseModal, animated, isExiting],
+    );
+
     const {body} = document;
     if (!body) {
         return null;
     }
 
     return (
-        <ModalContext.Provider value={{closeModal: handleCloseModal}}>
+        <ModalContext.Provider value={contextValue}>
             {renderedChildren}
+            {/* Keep the modal mounted through its exit animation so it can
+                play before unmounting. */}
             {isOpened &&
+                (!isExiting || animated) &&
                 ReactDOM.createPortal(
                     /* We need the container View that FocusTrap creates to be at the
                        correct z-index so that it'll be above the global nav in webapp. */
@@ -229,10 +272,12 @@ const ModalLauncher = (props: Props): React.ReactElement | null => {
                     </FocusTrap>,
                     body,
                 )}
-            {isOpened && (
+            {/* Escape-to-close and scroll-lock detach as soon as the exit
+                animation begins. */}
+            {isOpened && !isExiting && (
                 <ModalLauncherKeypressListener onClose={handleCloseModal} />
             )}
-            {isOpened && <ScrollDisabler />}
+            {isOpened && !isExiting && <ScrollDisabler />}
         </ModalContext.Provider>
     );
 };
