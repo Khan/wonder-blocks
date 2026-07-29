@@ -70,8 +70,8 @@ export type MotionLibraryTransition = {
  * duration in **seconds** and easing as a mutable 4-number array.
  *
  * @example
- * <motion.div transition={motionTransition(animationValue.overlay.enter)} />
- * // transition = {duration: 0.4, ease: [0.05, 0.7, 0.1, 1], delay: 0}
+ * <motion.div transition={motionTransition(animationValue.floating.enter)} />
+ * // transition = {duration: 0.4, ease: [0.4, 0, 0.2, 1], delay: 0}
  */
 export function motionTransition(
     token: AnimationToken,
@@ -128,6 +128,9 @@ export type AnimationPreset = AnimationToken & {
 /** The edge a preset's displacement originates from. */
 export type AnimationOrigin = "top" | "bottom" | "left" | "right";
 
+/** The CSS `animation-fill-mode` values a preset adapter can emit. */
+export type AnimationFillMode = "backwards" | "forwards" | "both" | "none";
+
 /** Options shared by every preset adapter. */
 export type AnimationPresetOptions = {
     /**
@@ -135,6 +138,15 @@ export type AnimationPresetOptions = {
      * element starts below its resting place and rises up).
      */
     origin?: AnimationOrigin;
+    /**
+     * The `animation-fill-mode` to emit (CSS / WAAPI adapters only; ignored by
+     * `motionPreset`). Defaults to `"backwards"`, which holds the `from` state
+     * before the animation starts — correct for an **entrance** that mounts and
+     * plays in. An **exit** should pass `"forwards"` so the element holds its
+     * `to` state (e.g. `opacity: 0`) after the keyframe finishes, instead of
+     * snapping back to its resting style and flashing visible before unmount.
+     */
+    fillMode?: AnimationFillMode;
 };
 
 /** Append a minus sign to a length (number or CSS string), leaving zero alone. */
@@ -229,7 +241,7 @@ export type CssPreset = {
     animationDuration: string;
     animationTimingFunction: string;
     animationDelay: string;
-    animationFillMode: "backwards";
+    animationFillMode: AnimationFillMode;
 };
 
 /**
@@ -237,12 +249,19 @@ export type CssPreset = {
  * an object `animationName` keyframe (`from`/`to`) and the timing from the
  * token. Spread it straight into `StyleSheet.create`.
  *
+ * Pass `fillMode: "forwards"` for **exit** animations so the element holds its
+ * `to` state after the keyframe finishes rather than snapping back to its
+ * resting style (see {@link AnimationPresetOptions.fillMode}).
+ *
  * @example
- * StyleSheet.create({drawer: cssPreset(animationValue.overlay.enter, {origin: "bottom"})});
+ * StyleSheet.create({
+ *   drawerEnter: cssPreset(animationValue.docked.enter, {origin: "left"}),
+ *   drawerExit: cssPreset(animationValue.docked.exit, {origin: "left", fillMode: "forwards"}),
+ * });
  */
 export function cssPreset(
     preset: AnimationPreset,
-    {origin = "bottom"}: AnimationPresetOptions = {},
+    {origin = "bottom", fillMode = "backwards"}: AnimationPresetOptions = {},
 ): CssPreset {
     return {
         animationName: {
@@ -252,7 +271,48 @@ export function cssPreset(
         animationDuration: cssDuration(preset.duration),
         animationTimingFunction: cssEasing(preset.easing),
         animationDelay: cssDuration(preset.delay),
-        animationFillMode: "backwards",
+        animationFillMode: fillMode,
+    };
+}
+
+/**
+ * An Aphrodite-ready style object for a CSS `transition`: the timing from a
+ * token spread across the long-hand `transition-*` properties.
+ */
+export type CssTransition = {
+    transitionProperty: string;
+    transitionDuration: string;
+    transitionTimingFunction: string;
+    transitionDelay: string;
+};
+
+/**
+ * Adapt a timing-only {@link AnimationToken} for a CSS `transition`: returns the
+ * long-hand `transition-*` properties for the given property (or properties).
+ * The counterpart to {@link cssPreset} for state-change transitions (hover,
+ * expand/collapse, a moving indicator) rather than mount/unmount keyframes.
+ *
+ * Spread it straight into `StyleSheet.create`. Any `from`/`to` states on a
+ * preset are ignored — a transition animates the element's own style changes,
+ * not a baked-in keyframe.
+ *
+ * @example
+ * StyleSheet.create({
+ *   caret: cssTransition("transform", animationValue.disclosure.expand),
+ *   indicator: cssTransition(["transform", "width"], animationValue.indicator.move),
+ * });
+ */
+export function cssTransition(
+    property: string | ReadonlyArray<string>,
+    token: AnimationToken,
+): CssTransition {
+    return {
+        transitionProperty: Array.isArray(property)
+            ? property.join(", ")
+            : (property as string),
+        transitionDuration: cssDuration(token.duration),
+        transitionTimingFunction: cssEasing(token.easing),
+        transitionDelay: cssDuration(token.delay),
     };
 }
 
@@ -269,7 +329,7 @@ export type MotionLibraryPreset = {
  * form (`x`/`y`/`scale`/`opacity`) and seconds-based transition.
  *
  * @example
- * <motion.div {...motionPreset(animationValue.overlay.enter, {origin: "bottom"})} />
+ * <motion.div {...motionPreset(animationValue.floating.enter, {origin: "bottom"})} />
  */
 export function motionPreset(
     preset: AnimationPreset,
@@ -301,11 +361,11 @@ export type WaapiOptions = {
  * `[keyframes, options]` tuple for `element.animate(...)`.
  *
  * @example
- * el.animate(...waapiPreset(animationValue.overlay.enter, {origin: "bottom"}));
+ * el.animate(...waapiPreset(animationValue.floating.enter, {origin: "bottom"}));
  */
 export function waapiPreset(
     preset: AnimationPreset,
-    {origin = "bottom"}: AnimationPresetOptions = {},
+    {origin = "bottom", fillMode = "backwards"}: AnimationPresetOptions = {},
 ): [Array<WaapiKeyframe>, WaapiOptions] {
     return [
         [stateToCss(preset.from, origin), stateToCss(preset.to, origin)],
@@ -313,7 +373,7 @@ export function waapiPreset(
             duration: preset.duration,
             easing: cssEasing(preset.easing),
             delay: preset.delay,
-            fill: "backwards",
+            fill: fillMode,
         },
     ];
 }

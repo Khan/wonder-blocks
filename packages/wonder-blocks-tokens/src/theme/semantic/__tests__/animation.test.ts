@@ -42,10 +42,10 @@ describe("animation tokens", () => {
 
     it("exports semantic presets as per-field CSS variable references", () => {
         // Arrange, Act, Assert
-        expect(animation.overlay.enter).toEqual({
-            duration: "var(--wb-animation-overlay-enter-duration)",
-            easing: "var(--wb-animation-overlay-enter-easing)",
-            delay: "var(--wb-animation-overlay-enter-delay)",
+        expect(animation.floating.enter).toEqual({
+            duration: "var(--wb-animation-floating-enter-duration)",
+            easing: "var(--wb-animation-floating-enter-easing)",
+            delay: "var(--wb-animation-floating-enter-delay)",
         });
     });
 
@@ -58,20 +58,38 @@ describe("animation tokens", () => {
     it("exports timing-only raw archetypes as {duration, easing, delay}", () => {
         // Arrange, Act, Assert
         expect(animationValue.control.press).toEqual({
-            duration: 150,
+            duration: 100,
             easing: [0.4, 0, 0.2, 1],
             delay: 0,
         });
     });
 
-    it("exports enriched raw archetypes with from/to preset states", () => {
+    it("exports the floating archetype with from/to preset states (rise + fade)", () => {
         // Arrange, Act, Assert
-        expect(animationValue.overlay.enter).toEqual({
-            duration: 400,
+        expect(animationValue.floating.enter).toEqual({
+            duration: 200,
             easing: [0.05, 0.7, 0.1, 1],
             delay: 0,
-            from: {opacity: 0, offset: "9.6rem", scale: 0.99},
-            to: {opacity: 1, offset: 0, scale: 1},
+            from: {opacity: 0, offset: "1.2rem"},
+            to: {opacity: 1, offset: 0},
+        });
+    });
+
+    it("exports the docked archetype with a larger slide and no scale", () => {
+        // Arrange, Act, Assert
+        expect(animationValue.docked.enter).toEqual({
+            duration: 300,
+            easing: [0.05, 0.7, 0.1, 1],
+            delay: 0,
+            from: {opacity: 0, offset: "9.6rem"},
+            to: {opacity: 1, offset: 0},
+        });
+        expect(animationValue.docked.exit).toEqual({
+            duration: 150,
+            easing: [0.3, 0, 0.8, 0.15],
+            delay: 0,
+            from: {opacity: 1, offset: 0},
+            to: {opacity: 0, offset: "3.2rem"},
         });
     });
 });

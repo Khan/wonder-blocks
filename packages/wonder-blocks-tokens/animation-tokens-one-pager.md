@@ -51,8 +51,8 @@ Ultimately we want a taxonomy that:
 2. **Is named by reusable pattern**, not by component, so the same token applies wherever the
    same *kind* of motion happens.
 3. **Bakes in the whole opinion** — best-practice motion (fade-while-sliding, exit-quicker-than-enter,
-   settle-from-scale) is encoded in the token, so an engineer or designer with no motion background
-   gets a good result by applying it.
+   emphasized decisive-then-settle easing) is encoded in the token, so an engineer or designer with
+   no motion background gets a good result by applying it.
 4. **Aligns with industry + independent-body standards** so it ages well and interoperates with
    design and AI tooling (Figma variables, Style Dictionary, etc.).
 5. **Ships additively** — a minor version bump, no consumer is forced to change anything.
@@ -122,7 +122,7 @@ As a bonus, the adapters that target the `react-motion` library keep the `motion
 
 ```
 primitive/animation.ts + semantic/animation.ts          ← SINGLE SOURCE OF TRUTH (raw)
-   duration.long = 300   easing.standard = [0.4,0,0.2,1]   overlay.enter.from = {opacity:0, offset, scale}
+   duration.long = 300   easing.standard = [0.4,0,0.2,1]   floating.enter.from = {opacity:0, offset}
         │
         ├── exported as-is ─────────────────────────►  animationValue  (raw ms + arrays + from/to, for JS)
         │
@@ -152,10 +152,10 @@ Two exported trees, plus adapter helpers:
 |---|---|---|
 | `none` | 0 | disabled / reduced |
 | `xShort` | 100 | button/icon micro-feedback (`control.press`) |
-| `short` | 150 | switch thumb, tab fade (absorbs stray 120) |
-| `medium` | 200 | general default (common in `frontend`); `floating`/`docked` exit |
-| `long` | 300 | accordion expand, tab indicator |
-| `xLong` | 400 | `floating`/`docked` (modal/drawer) entrance |
+| `short` | 150 | switch thumb, tab fade; `floating`/`docked` exit (absorbs stray 120) |
+| `medium` | 200 | general default (common in `frontend`); accordion expand/collapse, `floating` entrance |
+| `long` | 300 | tab indicator; `docked` entrance |
+| `xLong` | 400 | large-surface entrance headroom (not currently bound to a preset) |
 | `xxLong` | 1100 | spinner loop |
 
 **Primitive `easing` (bézier arrays)**
@@ -170,12 +170,13 @@ Two exported trees, plus adapter helpers:
 | `emphasizedAccelerate` | `[0.3, 0, 0.8, 0.15]` | pronounced exit |
 
 **Preset states** are composed from existing tokens, not a new primitive scale: `offset`
-references `sizing` (e.g. `size_160` = 1.6rem, `size_960` = 9.6rem), `scale` is a unitless factor,
-`opacity` is 0–1.
+references `sizing` (e.g. `size_120` = 1.2rem, `size_960` = 9.6rem), `opacity` is 0–1. `scale`
+(a unitless factor) is also supported by the state shape, though no current preset uses it.
 
-**Easing conventions.** Anything that *moves position on screen* uses the weighted ease-in-out
-`standard` (short ease-in, long/gradual ease-out). Exits use `decelerate` (ease-out) — **never
-`linear`**. Fades use `linear`. Continuous loops (spinner) use `linear`.
+**Easing conventions.** Surfaces that *travel on screen* use an ease-in-out family: the tab
+indicator uses `standard`; `floating`/`docked` entrances use `emphasizedDecelerate` (decisive
+arrival, gentle settle) and exits use `emphasizedAccelerate` — **never `linear`**. Fades use
+`linear`. Continuous loops (spinner) use `linear`.
 
 **Semantic archetypes**
 
@@ -188,16 +189,17 @@ references `sizing` (e.g. `size_160` = 1.6rem, `size_960` = 9.6rem), `scale` is 
 - `loop.spin` → spinner (component owns `iteration: infinite`)
 
 *Full gestures* (clock + `from`/`to`) — split by **character**, not just size:
-- `floating.enter` → `xLong` (400ms) · `standard` · fade `0→1` · rise `1.6rem→0` · settle
-  `scale 0.99→1`. For **in-place** surfaces (modal/dialog, popover, menu) that appear where they are.
-- `floating.exit` → `medium` (200ms) · `decelerate` · fade `1→0` · drift `0→0.8rem` · `scale 1→0.99`.
-- `docked.enter` → `xLong` (400ms) · `standard` · fade `0→1` · slide `9.6rem→0`, **no scale**. For
-  **edge-docked** surfaces (drawer / side & bottom sheets) that travel in from an edge (larger,
-  directional, still a bounded "suggestion").
-- `docked.exit` → `medium` (200ms) · `decelerate` · fade `1→0` · drift `0→3.2rem`, no scale.
+- `floating.enter` → `medium` (200ms) · `emphasizedDecelerate` · fade `0→1` · rise `1.2rem→0`. For
+  **in-place** surfaces (modal/dialog, popover, menu) that appear where they are.
+- `floating.exit` → `short` (150ms) · `emphasizedAccelerate` · fade `1→0` · drift `0→1.2rem`.
+- `docked.enter` → `long` (300ms) · `emphasizedDecelerate` · fade `0→1` · slide `9.6rem→0`, **no
+  scale**. For **edge-docked** surfaces (drawer / side & bottom sheets) that travel in from an edge
+  (larger, directional, still a bounded "suggestion").
+- `docked.exit` → `short` (150ms) · `emphasizedAccelerate` · fade `1→0` · drift `0→3.2rem`, no scale.
 
-Enter-longer / exit-quicker is a deliberate asymmetry baked into each archetype. `floating` scales
-and stays small; `docked` slides farther and doesn't scale (scaling a sliding sheet looks wrong).
+Enter-longer / exit-quicker is a deliberate asymmetry baked into each archetype. `floating` stays
+small (a short rise, no scale); `docked` slides farther from its edge and doesn't scale (scaling a
+sliding sheet looks wrong).
 
 ### How each consumer uses it
 
@@ -228,7 +230,8 @@ el.animate(...waapiPreset(animationValue.floating.enter, {origin: "bottom"}));
 **Pros**
 - One source of truth; zero duplication of timing *or* magnitude across CSS and JS.
 - Best-practice motion is baked in — consumers get fade-while-sliding, exit-quicker-than-enter, and
-  scale-settle without knowing motion design; they pick only element + direction.
+  emphasized decisive-then-settle easing without knowing motion design; they pick only element +
+  direction.
 - Works today in all three animation surfaces we actually use — no runtime lock-in.
 - Standards-aligned (DTCG timing), interoperates with Figma variables / Style Dictionary, ages well.
 - Archetype naming + `origin` option keep the token set small; avoids per-component/per-direction explosion.
@@ -266,12 +269,13 @@ Raised by applying the tokens to real components; deliberately **not** resolved 
    the `animated` prop where it exists. `switch` animates a *movement* unconditionally (no prop, no
    media-query fallback). Whether to centralize reduced-motion in WB is a team decision; until then,
    `switch` specifically warrants an explicit a11y sign-off (WCAG 2.3.3).
-4. **Entrance easing.** Entrances use `standard` (weighted ease-in-out) per the "movement =
-   ease-in-out" convention; an earlier draft used `emphasizedDecelerate`. `emphasized*` curves
-   remain available as primitives if a more pronounced entrance is wanted — tune by eye.
+4. **Entrance easing.** After seeing the presets in action, `floating`/`docked` entrances use
+   `emphasizedDecelerate` (decisive arrival, gentle settle) and exits use `emphasizedAccelerate`,
+   rather than the plain `standard` curve an earlier draft used. `standard` remains the curve for
+   subtle position moves (the tab indicator) — tune by eye.
 5. **`docked` slide magnitude.** 9.6rem is a *suggestion*, so a full-width drawer no longer slides
    entirely from the edge (it rises/drifts + fades). This is a visible change to the highest-traffic
    existing animation — confirm with design.
 6. **No dedicated backdrop-fade preset.** Backdrops currently reuse the panel's `floating`/`docked`
-   duration (fade only); `fade.*` (150ms) is too quick to match a 400ms panel. A future
-   backdrop-specific preset could formalize this.
+   duration (fade only); `fade.*` (150ms) is quicker than the 200–300ms panel it accompanies. A
+   future backdrop-specific preset could formalize this.

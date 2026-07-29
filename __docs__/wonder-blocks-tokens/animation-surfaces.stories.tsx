@@ -25,7 +25,7 @@ const StyledCode = addStyle("code");
  *
  * The point of the enriched tokens: the component author never hand-authors
  * *how far* something slides or *whether* it fades. That opinion lives in the
- * token. `cssPreset(animation.overlay.enter, {origin})` returns the whole
+ * token. `cssPreset(animation.docked.enter, {origin})` returns the whole
  * keyframe; the component supplies only the docked edge.
  */
 export default {
@@ -97,9 +97,9 @@ type Phase = "closed" | "entering" | "open" | "exiting";
 
 /**
  * A drawer surface. `variant` picks the animation source:
- * - `"token"` — the panel uses `cssPreset(animation.overlay.enter/exit)`; the
- *   backdrop shares the same *clock* (`animation.overlay.*` duration + easing) but
- *   only fades. The slide is a bounded "suggestion", plus a subtle scale-settle.
+ * - `"token"` — the panel uses `cssPreset(animation.docked.enter/exit)`; the
+ *   backdrop shares the same *clock* (`animation.docked.*` duration + easing) but
+ *   only fades. The slide is a bounded "suggestion" (docked has no scale).
  * - `"current"` — reproduces today's hand-rolled animation: a full 100% slide at
  *   `400ms linear`, no scale.
  */
@@ -125,12 +125,13 @@ function DrawerStage({
         // (which carries the from/to states); `animation.*` is only the CSS-var
         // timing refs.
         // @ts-expect-error [FEI-5019]: aphrodite types `animationName` as a string.
-        tokenEnter: cssPreset(animationValue.overlay.enter, {origin}),
+        tokenEnter: cssPreset(animationValue.docked.enter, {origin}),
         // @ts-expect-error [FEI-5019]: aphrodite types `animationName` as a string.
         tokenExit: {
-            ...cssPreset(animationValue.overlay.exit, {origin}),
-            // Hold the exited (hidden) state until we unmount.
-            animationFillMode: "forwards",
+            ...cssPreset(animationValue.docked.exit, {
+                origin,
+                fillMode: "forwards",
+            }),
         },
         currentEnter: {
             // @ts-expect-error [FEI-5019]: aphrodite types `animationName` as a string.
@@ -152,20 +153,20 @@ function DrawerStage({
             animationTimingFunction: "linear",
             animationFillMode: "forwards",
         },
-        // Backdrop shares the overlay clock but only fades — the component
+        // Backdrop shares the docked clock but only fades — the component
         // picks the property. Uses the CSS-var timing directly.
         backdropEnter: {
             // @ts-expect-error [FEI-5019]: aphrodite types `animationName` as a string.
             animationName: {from: {opacity: 0}, to: {opacity: 1}},
-            animationDuration: animation.overlay.enter.duration,
-            animationTimingFunction: animation.overlay.enter.easing,
+            animationDuration: animation.docked.enter.duration,
+            animationTimingFunction: animation.docked.enter.easing,
             animationFillMode: "backwards",
         },
         backdropExit: {
             // @ts-expect-error [FEI-5019]: aphrodite types `animationName` as a string.
             animationName: {from: {opacity: 1}, to: {opacity: 0}},
-            animationDuration: animation.overlay.exit.duration,
-            animationTimingFunction: animation.overlay.exit.easing,
+            animationDuration: animation.docked.exit.duration,
+            animationTimingFunction: animation.docked.exit.easing,
             animationFillMode: "forwards",
         },
     });
@@ -219,7 +220,7 @@ function DrawerStage({
 
 /**
  * The Drawer, side by side: the current hand-rolled 100% slide vs. the same
- * surface driven by `animation.overlay.enter`/`.exit`. Switch the docked edge and
+ * surface driven by `animation.docked.enter`/`.exit`. Switch the docked edge and
  * the token's `origin` follows it. Open/Close plays the real enter/exit
  * lifecycle (the exiting panel stays mounted for the token's exit duration).
  */
@@ -246,7 +247,7 @@ export const Drawer = {
             timers.current.push(
                 setTimeout(
                     () => setPhase("open"),
-                    animationValue.overlay.enter.duration,
+                    animationValue.docked.enter.duration,
                 ),
             );
         };
@@ -256,7 +257,7 @@ export const Drawer = {
             timers.current.push(
                 setTimeout(
                     () => setPhase("closed"),
-                    animationValue.overlay.exit.duration,
+                    animationValue.docked.exit.duration,
                 ),
             );
         };
@@ -316,11 +317,10 @@ export const Drawer = {
                     linear). Right is driven entirely by{" "}
                     <StyledCode
                         style={styles.inlineCode}
-                    >{`cssPreset(animation.overlay.enter, {origin: "${edge}"})`}</StyledCode>{" "}
+                    >{`cssPreset(animation.docked.enter, {origin: "${edge}"})`}</StyledCode>{" "}
                     — a bounded slide that <em>suggests</em> the full travel,
-                    with an emphasized-decelerate curve and a subtle
-                    scale-settle. The backdrop shares the same clock but only
-                    fades.
+                    with a weighted ease-in-out (standard) curve. The backdrop
+                    shares the same clock but only fades.
                 </BodyText>
             </View>
         );
@@ -329,8 +329,8 @@ export const Drawer = {
 
 /**
  * The Modal has **no entrance or exit animation today** — it just appears and
- * vanishes. Here `overlay.enter` gives it a gentle rise + fade + scale-settle on
- * open, and `overlay.exit` reverses it on close (the dialog stays mounted for
+ * vanishes. Here `floating.enter` gives it a gentle rise + fade + scale-settle on
+ * open, and `floating.exit` reverses it on close (the dialog stays mounted for
  * the token's exit duration so the animation can play). This shows the token
  * *adding* both directions of animation where a component hand-rolls none.
  */
@@ -353,7 +353,7 @@ export const Modal = {
             timers.current.push(
                 setTimeout(
                     () => setPhase("open"),
-                    animationValue.overlay.enter.duration,
+                    animationValue.floating.enter.duration,
                 ),
             );
         };
@@ -363,7 +363,7 @@ export const Modal = {
             timers.current.push(
                 setTimeout(
                     () => setPhase("closed"),
-                    animationValue.overlay.exit.duration,
+                    animationValue.floating.exit.duration,
                 ),
             );
         };
@@ -371,26 +371,28 @@ export const Modal = {
         const isExiting = phase === "exiting";
         const anim = StyleSheet.create({
             // @ts-expect-error [FEI-5019]: aphrodite types `animationName` as a string.
-            dialogEnter: cssPreset(animationValue.overlay.enter, {
+            dialogEnter: cssPreset(animationValue.floating.enter, {
                 origin: "bottom",
             }),
             // @ts-expect-error [FEI-5019]: aphrodite types `animationName` as a string.
             dialogExit: {
-                ...cssPreset(animationValue.overlay.exit, {origin: "bottom"}),
-                animationFillMode: "forwards",
+                ...cssPreset(animationValue.floating.exit, {
+                    origin: "bottom",
+                    fillMode: "forwards",
+                }),
             },
             backdropEnter: {
                 // @ts-expect-error [FEI-5019]: aphrodite types `animationName` as a string.
                 animationName: {from: {opacity: 0}, to: {opacity: 1}},
-                animationDuration: animation.overlay.enter.duration,
-                animationTimingFunction: animation.overlay.enter.easing,
+                animationDuration: animation.floating.enter.duration,
+                animationTimingFunction: animation.floating.enter.easing,
                 animationFillMode: "backwards",
             },
             backdropExit: {
                 // @ts-expect-error [FEI-5019]: aphrodite types `animationName` as a string.
                 animationName: {from: {opacity: 1}, to: {opacity: 0}},
-                animationDuration: animation.overlay.exit.duration,
-                animationTimingFunction: animation.overlay.exit.easing,
+                animationDuration: animation.floating.exit.duration,
+                animationTimingFunction: animation.floating.exit.easing,
                 animationFillMode: "forwards",
             },
         });
@@ -429,11 +431,11 @@ export const Modal = {
                                 <BodyText size="small">
                                     Enter via{" "}
                                     <StyledCode style={styles.inlineCode}>
-                                        animation.overlay.enter
+                                        animation.floating.enter
                                     </StyledCode>
                                     , exit via{" "}
                                     <StyledCode style={styles.inlineCode}>
-                                        animation.overlay.exit
+                                        animation.floating.exit
                                     </StyledCode>
                                     .
                                 </BodyText>

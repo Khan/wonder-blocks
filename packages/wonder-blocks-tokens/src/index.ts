@@ -16,6 +16,7 @@ import {
     cssEasing,
     motionTransition,
     cssPreset,
+    cssTransition,
     motionPreset,
     waapiPreset,
     pxToRem,
@@ -59,7 +60,7 @@ export {
     /**
      * Animation tokens as CSS variable references (`var(--wb-animation-…)`), for
      * use in CSS / Aphrodite. Includes primitive scales (`animation.duration.*`,
-     * `animation.easing.*`) and semantic presets (e.g. `animation.overlay.enter`).
+     * `animation.easing.*`) and semantic presets (e.g. `animation.floating.enter`).
      *
      * The `animation` namespace intentionally avoids colliding with the `motion`
      * React library, so a file can `import {motion} from "motion/react"` and
@@ -86,12 +87,17 @@ export {
      * - `cssPreset` / `motionPreset` / `waapiPreset` adapt a full
      *   {@link AnimationPreset} (timing + `from`/`to` states) for CSS/Aphrodite,
      *   the `motion` React library, and WAAPI respectively. Pass `{origin}` to
-     *   choose the edge a displacement comes from.
+     *   choose the edge a displacement comes from, and `{fillMode: "forwards"}`
+     *   on `cssPreset`/`waapiPreset` for exit animations.
+     * - `cssTransition` adapts a timing-only token for a CSS `transition`
+     *   (state changes like hover/expand/indicator), the counterpart to
+     *   `cssPreset`'s mount/unmount keyframe.
      */
     cssDuration,
     cssEasing,
     motionTransition,
     cssPreset,
+    cssTransition,
     motionPreset,
     waapiPreset,
     /**
@@ -113,6 +119,8 @@ export type {
     AnimationPreset,
     AnimationOrigin,
     AnimationPresetOptions,
+    AnimationFillMode,
     CssPreset,
+    CssTransition,
     MotionLibraryPreset,
 } from "./util/animation-utils";

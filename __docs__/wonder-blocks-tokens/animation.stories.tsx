@@ -37,7 +37,7 @@ import {Code} from "../components/code";
  * - **Primitives** — `animation.duration.*` (fixed `ms` values) and
  *   `animation.easing.*` (cubic-bézier curves). The raw ingredients.
  * - **Semantic presets** — named by reusable interaction pattern and change,
- *   e.g. `animation.overlay.enter`, `animation.disclosure.expand`,
+ *   e.g. `animation.floating.enter`, `animation.disclosure.expand`,
  *   `animation.control.press`. Each is a `{duration, easing, delay}` "clock" and,
  *   where it matters, the `from`/`to` states that give it character. The preset
  *   owns the opinion; the component picks the element and direction.
@@ -53,7 +53,7 @@ import {Code} from "../components/code";
  * ```ts
  * // CSS / Aphrodite — apply a full preset; the component supplies only the edge.
  * import {animationValue, cssPreset} from "@khanacademy/wonder-blocks-tokens";
- * StyleSheet.create({drawer: cssPreset(animationValue.overlay.enter, {origin: "right"})});
+ * StyleSheet.create({drawer: cssPreset(animationValue.docked.enter, {origin: "right"})});
  * // A timing-only preset can still be used via CSS-var refs:
  * import {animation} from "@khanacademy/wonder-blocks-tokens";
  * const styles = {
@@ -64,11 +64,11 @@ import {Code} from "../components/code";
  *
  * // motion (framer-motion) — full preset as initial/animate/transition.
  * import {animationValue, motionPreset} from "@khanacademy/wonder-blocks-tokens";
- * <motion.div {...motionPreset(animationValue.overlay.enter, {origin: "bottom"})} />
+ * <motion.div {...motionPreset(animationValue.floating.enter, {origin: "bottom"})} />
  *
  * // WAAPI — [keyframes, options] tuple.
  * import {animationValue, waapiPreset} from "@khanacademy/wonder-blocks-tokens";
- * el.animate(...waapiPreset(animationValue.overlay.enter, {origin: "bottom"}));
+ * el.animate(...waapiPreset(animationValue.floating.enter, {origin: "bottom"}));
  * ```
  *
  * NOTE: The `animation` namespace intentionally avoids colliding with the
@@ -229,7 +229,8 @@ const StyledTd = addStyle("td");
 const archetypeGroups = [
     "control",
     "disclosure",
-    "overlay",
+    "floating",
+    "docked",
     "indicator",
     "fade",
     "loop",
@@ -237,7 +238,7 @@ const archetypeGroups = [
 
 /**
  * The semantic archetypes. Each token is a single `{duration, easing, delay}`
- * clock, named by pattern (`overlay`, `disclosure`, …) and change (`enter`,
+ * clock, named by pattern (`floating`, `disclosure`, …) and change (`enter`,
  * `expand`, …). The last column shows the value produced by `motionTransition`,
  * ready to spread into the `motion` library's `transition` prop.
  */
@@ -325,7 +326,7 @@ export const LiveDemo = {
                         flexWrap: "wrap",
                     }}
                 >
-                    <Demo label="overlay.enter" style={styles.overlayEnter} />
+                    <Demo label="floating.enter" style={styles.floatingEnter} />
                     <Demo
                         label="disclosure.expand"
                         style={styles.disclosureExpand}
@@ -344,11 +345,11 @@ export const LiveDemo = {
 };
 
 /**
- * A single enriched gesture token (`animation.overlay.enter`) drives all three
+ * A single enriched gesture token (`animation.floating.enter`) drives all three
  * targets — CSS/Aphrodite, the `motion` React library, and WAAPI — from one
- * source. The token bakes in the *whole opinion* (fade + bounded slide + a
- * settle-from-scale); the component supplies only the `origin` (which edge the
- * slide comes from). Change the origin and every output updates together.
+ * source. The token bakes in the *whole opinion* (fade + a bounded rise); the
+ * component supplies only the `origin` (which edge the motion comes from).
+ * Change the origin and every output updates together.
  */
 export const GestureFromOneToken = {
     render: function Render() {
@@ -364,7 +365,7 @@ export const GestureFromOneToken = {
         // Built from the token at render time so the chosen origin flows through.
         const dynamic = StyleSheet.create({
             // @ts-expect-error [FEI-5019]: aphrodite types `animationName` as a string, but object keyframes work at runtime.
-            box: cssPreset(animationValue.overlay.enter, {origin}),
+            box: cssPreset(animationValue.floating.enter, {origin}),
         });
 
         const replay = () => setRunId((id) => id + 1);
@@ -400,18 +401,18 @@ export const GestureFromOneToken = {
                 </View>
 
                 <View style={{gap: sizing.size_080}}>
-                    <Code>{`cssPreset(animation.overlay.enter, {origin: "${origin}"})\n${JSON.stringify(
-                        cssPreset(animationValue.overlay.enter, {origin}),
+                    <Code>{`cssPreset(animation.floating.enter, {origin: "${origin}"})\n${JSON.stringify(
+                        cssPreset(animationValue.floating.enter, {origin}),
                         null,
                         2,
                     )}`}</Code>
-                    <Code>{`motionPreset(animation.overlay.enter, {origin: "${origin}"})\n${JSON.stringify(
-                        motionPreset(animationValue.overlay.enter, {origin}),
+                    <Code>{`motionPreset(animation.floating.enter, {origin: "${origin}"})\n${JSON.stringify(
+                        motionPreset(animationValue.floating.enter, {origin}),
                         null,
                         2,
                     )}`}</Code>
-                    <Code>{`waapiPreset(animation.overlay.enter, {origin: "${origin}"})\n${JSON.stringify(
-                        waapiPreset(animationValue.overlay.enter, {origin}),
+                    <Code>{`waapiPreset(animation.floating.enter, {origin: "${origin}"})\n${JSON.stringify(
+                        waapiPreset(animationValue.floating.enter, {origin}),
                         null,
                         2,
                     )}`}</Code>
@@ -464,11 +465,11 @@ const styles = StyleSheet.create({
         backgroundColor: semanticColor.core.background.instructive.default,
         borderRadius: border.radius.radius_080,
     },
-    // The entire overlay entrance — fade + bounded slide + settle-from-scale —
-    // now comes from the token via `cssPreset`. The consumer no longer hand-
-    // authors the 16px offset or the 0.95 scale; the opinion lives in the token.
+    // The entire floating entrance — fade + a bounded rise — now comes from the
+    // token via `cssPreset`. The consumer no longer hand-authors the offset;
+    // the opinion lives in the token.
     // @ts-expect-error [FEI-5019]: aphrodite types `animationName` as a string, but object keyframes work at runtime.
-    overlayEnter: cssPreset(animationValue.overlay.enter, {origin: "bottom"}),
+    floatingEnter: cssPreset(animationValue.floating.enter, {origin: "bottom"}),
     disclosureExpand: {
         // @ts-expect-error [FEI-5019]: `animationName` expects a string not an object.
         animationName: {

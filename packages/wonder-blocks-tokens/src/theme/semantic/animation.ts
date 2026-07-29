@@ -6,7 +6,7 @@ import {sizing} from "../primitive/sizing";
  * Semantic animation presets.
  *
  * These are named by **archetype** (a reusable interaction pattern like
- * `overlay` or `disclosure`) and **change** (`enter`/`exit`, `expand`/`collapse`,
+ * `floating` or `disclosure`) and **change** (`enter`/`exit`, `expand`/`collapse`,
  * …) rather than by specific component, so a preset can be reused wherever the
  * same kind of animation applies.
  *
@@ -15,7 +15,7 @@ import {sizing} from "../primitive/sizing";
  * and, where it matters, the `from`/`to` visual states that give the animation
  * its character (how far it slides, whether it fades, how much it scales). Some
  * presets are timing-only clocks (`control.press`, `disclosure.*`, `fade.*`, …);
- * the `overlay` presets additionally carry states. Either way the preset owns
+ * the `floating`/`docked` presets additionally carry states. Either way the preset owns
  * the opinion; the component decides only which element it binds to and — via the
  * `origin` option — the direction. This keeps presets implementation-agnostic:
  * the same one drives an Aphrodite `transition`, a `motion` React animation, or a
@@ -25,10 +25,14 @@ import {sizing} from "../primitive/sizing";
  * JS-friendly tree in `src/index.ts`.
  */
 
-/** Micro-feedback for interactive controls (buttons, icon buttons, switches). */
+/**
+ * Micro-feedback for interactive controls (buttons, icon buttons). Uses
+ * `xShort` (100ms) to match the snappy press feedback controls already use;
+ * a slower press reads as laggy on the most-used components.
+ */
 const control = {
     press: {
-        duration: duration.short,
+        duration: duration.xShort,
         easing: easing.standard,
         delay: duration.none,
     },
@@ -37,46 +41,74 @@ const control = {
 /** Expanding/collapsing disclosure regions (e.g. accordions). */
 const disclosure = {
     expand: {
-        duration: duration.long,
+        duration: duration.medium,
         easing: easing.standard,
         delay: duration.none,
     },
     collapse: {
-        duration: duration.long,
+        duration: duration.medium,
         easing: easing.standard,
         delay: duration.none,
     },
 } satisfies Record<string, AnimationPreset>;
 
 /**
- * Overlays entering/leaving the screen (drawers, modals, backdrops). Entrances
- * decelerate and run a touch longer; exits accelerate and are shorter.
+ * In-place surfaces that float over the page (modals/dialogs, popovers, menus).
+ * They *appear where they are* — a subtle rise + fade, with only a small
+ * displacement (they do not travel in from an edge).
  *
- * These carry `from`/`to` states so the *whole animation* is baked in — an
- * overlay fades while sliding a bounded distance (it *suggests* a full slide
- * rather than travelling its entire width) and settles from a hair under full
- * size. A consumer never has to know an overlay should fade-with-slide; applying
- * the preset does it. The `offset` is direction-neutral (a `sizing` magnitude);
- * the component chooses the edge via the `origin` option on the preset adapters.
+ * These carry `from`/`to` states so the *whole animation* is baked in: a
+ * consumer never hand-authors how far it rises or that it fades — applying the
+ * preset does it. The `offset` is direction-neutral (a `sizing` magnitude); the
+ * component chooses the edge via the `origin` option (defaults to `"bottom"`,
+ * so the surface rises into place).
+ *
+ * Entrances run a touch longer; exits are quicker. Entrances ease-out with the
+ * `emphasizedDecelerate` curve (decisive arrival, gentle settle); exits ease-in
+ * with `emphasizedAccelerate` — never `linear`.
  */
-const overlay = {
+const floating = {
     enter: {
-        duration: duration.xLong,
+        duration: duration.medium,
         easing: easing.emphasizedDecelerate,
         delay: duration.none,
-        from: {opacity: 0, offset: sizing.size_960, scale: 0.99},
-        to: {opacity: 1, offset: 0, scale: 1},
+        from: {opacity: 0, offset: sizing.size_120},
+        to: {opacity: 1, offset: 0},
     },
     exit: {
-        // Exits are quicker and travel less than entrances: the overlay is on
-        // its way out, so it mostly fades with just a small drift rather than a
-        // full "suggestion" slide. A linear curve keeps the fade-out calm rather
-        // than snapping away like an accelerated curve.
-        duration: duration.medium,
-        easing: easing.linear,
+        duration: duration.short,
+        easing: easing.emphasizedAccelerate,
         delay: duration.none,
-        from: {opacity: 1, offset: 0, scale: 1},
-        to: {opacity: 0, offset: sizing.size_320, scale: 0.99},
+        from: {opacity: 1, offset: 0},
+        to: {opacity: 0, offset: sizing.size_120},
+    },
+} satisfies Record<string, AnimationPreset>;
+
+/**
+ * Edge-docked surfaces that travel in from an edge (drawers, side & bottom
+ * sheets). Unlike {@link floating}, a docked surface *slides* a larger
+ * (still bounded, "suggested") distance and does **not** scale — scaling a
+ * sheet that slides looks wrong. The `offset` is direction-neutral; the
+ * component picks the edge via the `origin` option.
+ *
+ * Entrances run a touch longer; exits are quicker and travel less. Entrances
+ * ease-out with `emphasizedDecelerate`; exits ease-in with
+ * `emphasizedAccelerate`.
+ */
+const docked = {
+    enter: {
+        duration: duration.long,
+        easing: easing.emphasizedDecelerate,
+        delay: duration.none,
+        from: {opacity: 0, offset: sizing.size_960},
+        to: {opacity: 1, offset: 0},
+    },
+    exit: {
+        duration: duration.short,
+        easing: easing.emphasizedAccelerate,
+        delay: duration.none,
+        from: {opacity: 1, offset: 0},
+        to: {opacity: 0, offset: sizing.size_320},
     },
 } satisfies Record<string, AnimationPreset>;
 
@@ -122,7 +154,8 @@ export const animation = {
     easing,
     control,
     disclosure,
-    overlay,
+    floating,
+    docked,
     indicator,
     fade,
     loop,
