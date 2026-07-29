@@ -348,7 +348,7 @@ export const ShowDivider: Story = {
  * setting `animated: true` in `tabsProps`. It defaults to `false`. This should
  * be `false` when the user has `prefers-reduced-motion` enabled.
  */
-export const Animated: Story = {
+export const WithAnimation: Story = {
     render: ControlledResponsiveNavigationTabs,
     args: {
         selectedTabId: "tab-1",

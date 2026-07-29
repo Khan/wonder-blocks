@@ -295,7 +295,7 @@ export const TabIcons: Story = {
  * setting `animated: true` in `tabsProps`. It defaults to `false`. This should
  * be `false` when the user has `prefers-reduced-motion` enabled.
  */
-export const Animated: Story = {
+export const WithAnimation: Story = {
     render: ControlledResponsiveTabs,
     args: {
         selectedTabId: "tab-1",
