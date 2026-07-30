@@ -76,30 +76,14 @@ const VALUE_WARN_KEYS = new Set<string>([
     "float",
     "clear",
     "backgroundPosition",
-    "backgroundPositionX",
-    "backgroundPositionY",
     "background",
-    "backgroundImage",
-    "transform",
-    "transformOrigin",
-    "boxShadow",
-    "textShadow",
-    "cursor",
     "direction",
+    "transform",
     "padding",
     "margin",
 ]);
 
-type RuleOptions = {
-    warnDirectionalTransforms?: boolean;
-    warnBackgroundPosition?: boolean;
-    warnShadows?: boolean;
-    warnGradients?: boolean;
-    warnCursorDirections?: boolean;
-    warnBackgroundPositionXY?: boolean;
-};
-
-type Options = [RuleOptions];
+type Options = [];
 
 type MessageIds =
     | "useLogicalProperty"
@@ -107,13 +91,8 @@ type MessageIds =
     | "useLogicalFloat"
     | "useLogicalClear"
     | "avoidBackgroundDirectional"
-    | "avoidBackgroundPositionXYDirectional"
-    | "avoidGradientDirection"
-    | "avoidTranslateXDirectional"
-    | "avoidTransformOriginDirectional"
-    | "avoidShadowDirectional"
-    | "avoidDirectionalCursor"
     | "avoidForceDirection"
+    | "avoidDirectionalTranslateX"
     | "preferLogicalPaddingShorthand"
     | "preferLogicalMarginShorthand";
 
@@ -166,6 +145,34 @@ function replacePropertyKeyFix(
     return null;
 }
 
+// Expand a physical `padding`/`margin` shorthand value into its logical
+// equivalents. Returns null for values we can't safely split (a single value
+// has no directionality, and values containing functions like calc()/var()
+// can't be split on whitespace). The 4-value form is the one that genuinely
+// breaks in RTL: its left/right (4th/2nd) differ and don't auto-mirror.
+//   2 values "A B"     -> Block: A,      Inline: B
+//   3 values "A B C"   -> BlockStart: A, Inline: B,      BlockEnd: C
+//   4 values "A B C D" -> BlockStart: A, InlineEnd: B,   BlockEnd: C, InlineStart: D
+function expandLogicalShorthand(
+    prefix: "padding" | "margin",
+    strVal: string,
+): string | null {
+    if (strVal.includes("(")) {
+        return null;
+    }
+    const values = strVal.trim().split(/\s+/);
+    switch (values.length) {
+        case 2:
+            return `${prefix}Block: "${values[0]}", ${prefix}Inline: "${values[1]}"`;
+        case 3:
+            return `${prefix}BlockStart: "${values[0]}", ${prefix}Inline: "${values[1]}", ${prefix}BlockEnd: "${values[2]}"`;
+        case 4:
+            return `${prefix}BlockStart: "${values[0]}", ${prefix}InlineEnd: "${values[1]}", ${prefix}BlockEnd: "${values[2]}", ${prefix}InlineStart: "${values[3]}"`;
+        default:
+            return null;
+    }
+}
+
 export default createRule<Options, MessageIds>({
     name: "require-logical-properties-for-rtl",
     meta: {
@@ -187,53 +194,19 @@ export default createRule<Options, MessageIds>({
                 "Use clear: '{{logical}}' instead of '{{physical}}' for RTL compatibility.",
             avoidBackgroundDirectional:
                 "Avoid 'left/right' in background-position; prefer 0%/100% or conditional assets (no logical axis exists).",
-            avoidBackgroundPositionXYDirectional:
-                "No logical 'background-position-inline/block' exists; prefer percentages or conditional logic.",
-            avoidGradientDirection:
-                "Gradient directions are physical (no logical inline-start/end). If mirroring is needed, swap color stops, change direction conditionally, or flip the element (e.g., scaleX(-1)).",
-            avoidTranslateXDirectional:
-                "translateX is directional; verify in RTL or gate by `dir`. Consider translateY() or conditional logic: isRTL ? 'translateX(10px)' : 'translateX(-10px)'.",
-            avoidTransformOriginDirectional:
-                "Use percentages for transformOrigin instead of left/right (e.g. '0% 50%' instead of 'left center').",
-            avoidShadowDirectional:
-                "Shadow X-offset is directional; verify in RTL or use conditional logic to flip the X-offset sign.",
-            avoidDirectionalCursor:
-                "Cursor is directional; consider 'ew-resize' or conditional swap based on `dir`.",
             avoidForceDirection:
                 "Avoid forcing 'direction' in component styles; rely on container `dir` instead.",
+            avoidDirectionalTranslateX:
+                "translateX with a px or non-±50% offset is directional and won't mirror in RTL; gate it by `dir` or use conditional logic. The ±50% centering idiom is allowed.",
             preferLogicalPaddingShorthand:
-                "Prefer logical shorthands: 'paddingBlock'/'paddingInline' instead of two-value 'padding'.",
+                "Prefer logical padding shorthands (e.g. paddingBlock/paddingInline/paddingInlineStart) instead of the physical 'padding' shorthand.",
             preferLogicalMarginShorthand:
-                "Prefer logical shorthands: 'marginBlock'/'marginInline' instead of two-value 'margin'.",
+                "Prefer logical margin shorthands (e.g. marginBlock/marginInline/marginInlineStart) instead of the physical 'margin' shorthand.",
         },
-        schema: [
-            {
-                type: "object",
-                properties: {
-                    warnDirectionalTransforms: {type: "boolean"},
-                    warnBackgroundPosition: {type: "boolean"},
-                    warnShadows: {type: "boolean"},
-                    warnGradients: {type: "boolean"},
-                    warnCursorDirections: {type: "boolean"},
-                    warnBackgroundPositionXY: {type: "boolean"},
-                },
-                additionalProperties: false,
-            },
-        ],
+        schema: [],
     },
-    defaultOptions: [
-        {
-            warnDirectionalTransforms: false,
-            warnBackgroundPosition: true,
-            warnShadows: false,
-            warnGradients: false,
-            warnCursorDirections: false,
-            warnBackgroundPositionXY: false,
-        },
-    ],
+    defaultOptions: [],
     create(context) {
-        const options: RuleOptions = context.options[0] ?? {};
-
         function reportInvalidProperty(
             property: TSESTree.Property,
             keyName: string,
@@ -288,15 +261,17 @@ export default createRule<Options, MessageIds>({
             switch (keyName) {
                 case "float": {
                     if (strVal === "left" || strVal === "right") {
+                        const logical =
+                            strVal === "left" ? "inline-start" : "inline-end";
                         context.report({
                             node: property.value,
                             messageId: "useLogicalFloat",
-                            data: {
-                                logical:
-                                    strVal === "left"
-                                        ? "inline-start"
-                                        : "inline-end",
-                                physical: strVal,
+                            data: {logical, physical: strVal},
+                            fix(fixer) {
+                                return fixer.replaceText(
+                                    property.value,
+                                    JSON.stringify(logical),
+                                );
                             },
                         });
                     }
@@ -304,122 +279,32 @@ export default createRule<Options, MessageIds>({
                 }
                 case "clear": {
                     if (strVal === "left" || strVal === "right") {
+                        const logical =
+                            strVal === "left" ? "inline-start" : "inline-end";
                         context.report({
                             node: property.value,
                             messageId: "useLogicalClear",
-                            data: {
-                                logical:
-                                    strVal === "left"
-                                        ? "inline-start"
-                                        : "inline-end",
-                                physical: strVal,
+                            data: {logical, physical: strVal},
+                            fix(fixer) {
+                                return fixer.replaceText(
+                                    property.value,
+                                    JSON.stringify(logical),
+                                );
                             },
                         });
                     }
                     break;
                 }
                 case "backgroundPosition":
-                case "background":
-                case "backgroundImage": {
+                case "background": {
                     if (
-                        (keyName === "backgroundPosition" ||
-                            keyName === "background") &&
                         /\b(left|right)\b/.test(
                             strVal.replace(/url\([^)]*\)/g, ""),
-                        ) &&
-                        (options.warnBackgroundPosition ?? true)
+                        )
                     ) {
                         context.report({
                             node: property.value,
                             messageId: "avoidBackgroundDirectional",
-                        });
-                    }
-                    if (
-                        (keyName === "background" ||
-                            keyName === "backgroundImage") &&
-                        /linear-gradient\(\s*to\s+(left|right|top|bottom)/.test(
-                            strVal,
-                        ) &&
-                        (options.warnGradients ?? false)
-                    ) {
-                        context.report({
-                            node: property.value,
-                            messageId: "avoidGradientDirection",
-                        });
-                    }
-                    break;
-                }
-                case "backgroundPositionX": {
-                    if (
-                        (options.warnBackgroundPositionXY ?? false) &&
-                        /\b(left|right)\b/.test(strVal)
-                    ) {
-                        context.report({
-                            node: property.value,
-                            messageId: "avoidBackgroundPositionXYDirectional",
-                        });
-                    }
-                    break;
-                }
-                case "backgroundPositionY": {
-                    if (
-                        (options.warnBackgroundPositionXY ?? false) &&
-                        /\b(top|bottom)\b/.test(strVal)
-                    ) {
-                        context.report({
-                            node: property.value,
-                            messageId: "avoidBackgroundPositionXYDirectional",
-                        });
-                    }
-                    break;
-                }
-                case "transform": {
-                    if (
-                        /translateX\(/.test(strVal) &&
-                        (options.warnDirectionalTransforms ?? false)
-                    ) {
-                        context.report({
-                            node: property.value,
-                            messageId: "avoidTranslateXDirectional",
-                        });
-                    }
-                    break;
-                }
-                case "transformOrigin": {
-                    if (
-                        /\b(left|right)\b/.test(strVal) &&
-                        (options.warnDirectionalTransforms ?? false)
-                    ) {
-                        context.report({
-                            node: property.value,
-                            messageId: "avoidTransformOriginDirectional",
-                        });
-                    }
-                    break;
-                }
-                case "boxShadow":
-                case "textShadow": {
-                    if (
-                        /^(?:inset\s+)?(?!0(?:\s|$|[a-zA-Z%]))(?:-?(?:\d*\.\d+|\d+)|calc\(|var\()/.test(
-                            strVal,
-                        ) &&
-                        (options.warnShadows ?? false)
-                    ) {
-                        context.report({
-                            node: property.value,
-                            messageId: "avoidShadowDirectional",
-                        });
-                    }
-                    break;
-                }
-                case "cursor": {
-                    if (
-                        /\b(?:e|w)-resize\b/.test(strVal) &&
-                        (options.warnCursorDirections ?? false)
-                    ) {
-                        context.report({
-                            node: property.value,
-                            messageId: "avoidDirectionalCursor",
                         });
                     }
                     break;
@@ -433,22 +318,45 @@ export default createRule<Options, MessageIds>({
                     }
                     break;
                 }
+                case "transform": {
+                    // translateX is the one horizontally-directional transform:
+                    // a px or non-±50% offset shifts the same physical direction
+                    // in RTL when it should mirror. The ±50% self-centering idiom
+                    // (paired with a 50% inset) is symmetric and RTL-safe, so it's
+                    // exempt. There is no logical replacement, so this is
+                    // report-only. A value wrapped in a function (calc()/var()/…)
+                    // can't be analyzed, so it's skipped.
+                    const translateX = /translateX\(\s*([^)]*?)\s*\)/.exec(
+                        strVal,
+                    );
+                    if (translateX) {
+                        const arg = translateX[1];
+                        const isCentering = arg === "-50%" || arg === "50%";
+                        const hasFunction = arg.includes("(");
+                        if (!isCentering && !hasFunction) {
+                            context.report({
+                                node: property.value,
+                                messageId: "avoidDirectionalTranslateX",
+                            });
+                        }
+                    }
+                    break;
+                }
                 case "padding": {
-                    if (/^\S+\s+\S+$/.test(strVal)) {
+                    const replacement = expandLogicalShorthand(
+                        "padding",
+                        strVal,
+                    );
+                    if (replacement) {
                         context.report({
                             node: property.value,
                             messageId: "preferLogicalPaddingShorthand",
                             fix(fixer) {
-                                const values = strVal.trim().split(/\s+/);
-                                if (values.length !== 2) {
-                                    return null;
-                                }
-                                const [block, inline] = values;
                                 return [
                                     fixer.remove(property),
                                     fixer.insertTextAfter(
                                         property,
-                                        `paddingBlock: "${block}", paddingInline: "${inline}"`,
+                                        replacement,
                                     ),
                                 ];
                             },
@@ -457,21 +365,20 @@ export default createRule<Options, MessageIds>({
                     break;
                 }
                 case "margin": {
-                    if (/^\S+\s+\S+$/.test(strVal)) {
+                    const replacement = expandLogicalShorthand(
+                        "margin",
+                        strVal,
+                    );
+                    if (replacement) {
                         context.report({
                             node: property.value,
                             messageId: "preferLogicalMarginShorthand",
                             fix(fixer) {
-                                const values = strVal.trim().split(/\s+/);
-                                if (values.length !== 2) {
-                                    return null;
-                                }
-                                const [block, inline] = values;
                                 return [
                                     fixer.remove(property),
                                     fixer.insertTextAfter(
                                         property,
-                                        `marginBlock: "${block}", marginInline: "${inline}"`,
+                                        replacement,
                                     ),
                                 ];
                             },
