@@ -846,10 +846,41 @@ describe("#useCachedEffect", () => {
                 });
 
                 // Assert
-                expect(firstCallback).not.toHaveBeenCalled();
                 expect(latestCallback).toHaveBeenCalledWith(
                     Status.success("DATA"),
                 );
+            },
+        );
+
+        it.each([FetchPolicy.CacheAndNetwork, FetchPolicy.NetworkOnly])(
+            "should not invoke a replaced onResultChanged for FetchPolicy.%s",
+            async (fetchPolicy: any) => {
+                // Arrange
+                let resolveResponse: (value: string) => void;
+                const response: any = new Promise((resolve) => {
+                    resolveResponse = resolve;
+                });
+                const fakeHandler = jest.fn().mockReturnValue(response);
+                const firstCallback = jest.fn();
+                const latestCallback = jest.fn();
+                const {rerender} = clientRenderHook(
+                    ({onResultChanged}: any) =>
+                        useCachedEffect("ID", fakeHandler, {
+                            onResultChanged,
+                            fetchPolicy,
+                        }),
+                    {initialProps: {onResultChanged: firstCallback}},
+                );
+
+                // Act
+                rerender({onResultChanged: latestCallback});
+                await act(async () => {
+                    resolveResponse("DATA");
+                    await response;
+                });
+
+                // Assert
+                expect(firstCallback).not.toHaveBeenCalled();
             },
         );
     });
