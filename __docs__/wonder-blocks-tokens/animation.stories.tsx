@@ -8,19 +8,13 @@ import {
 } from "@storybook/addon-docs/blocks";
 import {Meta} from "@storybook/react-vite";
 import {addStyle, View} from "@khanacademy/wonder-blocks-core";
-import Button from "@khanacademy/wonder-blocks-button";
 import {
     animation,
     animationValue,
-    motionTransition,
-    cssPreset,
-    motionPreset,
-    waapiPreset,
     semanticColor,
     sizing,
     border,
     type CubicBezier,
-    type AnimationOrigin,
 } from "@khanacademy/wonder-blocks-tokens";
 import TokenTable from "../components/token-table";
 import ComponentInfo from "../components/component-info";
@@ -172,7 +166,8 @@ export const DurationPrimitive = {
                                         (ms / animationValue.duration.xxLong) *
                                         100
                                     }%`,
-                                    minWidth: ms === 0 ? 0 : sizing.size_020,
+                                    minInlineSize:
+                                        ms === 0 ? 0 : sizing.size_020,
                                     backgroundColor:
                                         semanticColor.core.background
                                             .instructive.default,
@@ -280,7 +275,9 @@ export const SemanticTokens = {
                         <StyledTh style={styles.cell}>Token</StyledTh>
                         <StyledTh style={styles.cell}>Duration</StyledTh>
                         <StyledTh style={styles.cell}>Delay</StyledTh>
-                        <StyledTh style={styles.cell}>Easing Primitive</StyledTh>
+                        <StyledTh style={styles.cell}>
+                            Easing Primitive
+                        </StyledTh>
                         <StyledTh style={styles.cell}>Curve</StyledTh>
                     </tr>
                 </thead>
@@ -316,23 +313,6 @@ export const SemanticTokens = {
     },
 };
 
-
-
-function Demo({
-    label,
-    style,
-}: {
-    label: string;
-    style: React.ComponentProps<typeof View>["style"];
-}): React.ReactElement {
-    return (
-        <View style={{gap: sizing.size_080, alignItems: "center"}}>
-            <View style={[styles.demoBox, style]} />
-            <Code>{label}</Code>
-        </View>
-    );
-}
-
 const styles = StyleSheet.create({
     table: {
         borderCollapse: "collapse",
@@ -352,38 +332,5 @@ const styles = StyleSheet.create({
         justifyContent: "end",
         alignItems: "center",
         gap: sizing.size_160,
-    },
-    // The entire floating entrance — fade + a bounded rise — now comes from the
-    // token via `cssPreset`. The consumer no longer hand-authors the offset;
-    // the opinion lives in the token.
-    // @ts-expect-error [FEI-5019]: aphrodite types `animationName` as a string, but object keyframes work at runtime.
-    floatingEnter: cssPreset(animationValue.floating.enter, {origin: "bottom"}),
-    disclosureExpand: {
-        // @ts-expect-error [FEI-5019]: `animationName` expects a string not an object.
-        animationName: {
-            from: {transform: "scaleY(0)"},
-            to: {transform: "scaleY(1)"},
-        },
-        transformOrigin: "top",
-        animationDuration: animation.disclosure.expand.duration,
-        animationTimingFunction: animation.disclosure.expand.easing,
-        animationFillMode: "backwards",
-    },
-    fadeIn: {
-        // @ts-expect-error [FEI-5019]: `animationName` expects a string not an object.
-        animationName: {from: {opacity: 0}, to: {opacity: 1}},
-        animationDuration: animation.fade.in.duration,
-        animationTimingFunction: animation.fade.in.easing,
-        animationFillMode: "backwards",
-    },
-    loopSpin: {
-        // @ts-expect-error [FEI-5019]: `animationName` expects a string not an object.
-        animationName: {
-            from: {transform: "rotate(0deg)"},
-            to: {transform: "rotate(360deg)"},
-        },
-        animationDuration: animation.loop.spin.duration,
-        animationTimingFunction: animation.loop.spin.easing,
-        animationIterationCount: "infinite",
     },
 });

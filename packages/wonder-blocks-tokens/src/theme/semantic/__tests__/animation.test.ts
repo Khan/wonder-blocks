@@ -81,7 +81,7 @@ describe("animation tokens", () => {
             duration: 300,
             easing: [0.05, 0.7, 0.1, 1],
             delay: 0,
-            from: {opacity: 0, offset: "9.6rem"},
+            from: {opacity: 0, offset: "19.2rem"},
             to: {opacity: 1, offset: 0},
         });
         expect(animationValue.docked.exit).toEqual({
