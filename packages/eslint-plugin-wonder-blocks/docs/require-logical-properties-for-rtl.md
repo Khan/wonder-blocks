@@ -83,10 +83,6 @@ The `translateX` check exempts the `translateX(-50%)` / `translateX(50%)` self-c
 
 Directional `transformOrigin`, `boxShadow`/`textShadow`, `linear-gradient` directions, `cursor` resize directions, and `backgroundPositionX/Y` are intentionally **not** checked. They have no logical-property fix, and the heuristics produced almost entirely false positives on RTL-safe code (symmetric gradients, X-offset shadows already paired for RTL, block-axis `backgroundPositionY`), forcing `eslint-disable` suppressions on correct code.
 
-## Options
-
-The rule takes no options. Every check above either auto-fixes or always reports. To allow a genuinely intentional physical value, disable it per-line (see below) — the same escape hatch used for `direction` and `backgroundPosition`.
-
 ## When not to use
 
 This rule is enabled in the recommended config. Disable per-line with `// eslint-disable-next-line @khanacademy/wonder-blocks/require-logical-properties-for-rtl` when a physical property is genuinely intentional (rare).
