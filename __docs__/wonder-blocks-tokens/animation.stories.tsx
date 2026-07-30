@@ -26,6 +26,7 @@ import TokenTable from "../components/token-table";
 import ComponentInfo from "../components/component-info";
 import packageConfig from "../../packages/wonder-blocks-tokens/package.json";
 import {Code} from "../components/code";
+import {EasingCurve} from "../components/easing-curve";
 
 /**
  * The `animation` tokens standardize animation and are meant to be
@@ -137,69 +138,6 @@ export default {
 type Row = {label: string; css: string; value: string};
 
 /**
- * A small SVG that plots a cubic-bézier easing curve from its raw control
- * points, so the shape of each easing token is visible at a glance.
- */
-function EasingCurve({easing}: {easing: CubicBezier}): React.ReactElement {
-    const size = 64;
-    const gridSize = size / 5;
-    // Unique per instance so the 11 curves' pattern <defs> don't collide.
-    const gridId = React.useId();
-    const yOffset = 1; // keeps the path from being cut off by the svg bounds
-    const [x1, y1, x2, y2] = easing;
-    // SVG y grows downward, so flip the y coordinates (0 → bottom, 1 → top).
-    const path = `M0,${size-yOffset} C${x1 * size},${size - y1 * size} ${
-        x2 * size
-    },${size - y2 * size} ${size}, ${yOffset}`;
-    return (
-        <View
-            style={{
-                background: semanticColor.core.background.base.subtle,
-                borderRadius: border.radius.radius_080,
-                overflow: "hidden",
-                border: `${border.width.thin} solid ${semanticColor.core.border.neutral.subtle}`,
-                width: size,
-                // `View` resets `min-inline-size` to 0, so as a flex child its
-                // `width` is only a preferred size and it would otherwise shrink
-                // in the narrower docs table. Pin it so the curve keeps its size.
-                flexShrink: 0,
-            }}
-        >
-            <svg
-                width={size}
-                height={size}
-                viewBox={`0 0 ${size} ${size}`}
-                aria-hidden={true}
-            >
-                <defs>
-                    <pattern
-                        id={gridId}
-                        width={gridSize}
-                        height={gridSize}
-                        patternUnits="userSpaceOnUse"
-                    >
-                        <path
-                            d={`M${gridSize} 0 H0 V${gridSize}`}
-                            fill="none"
-                            stroke={semanticColor.core.border.neutral.subtle}
-                            strokeDasharray={"3,2"}
-                            strokeWidth={1}
-                        />
-                    </pattern>
-                </defs>
-                <rect width={size} height={size} fill={`url(#${gridId})`} />
-                <path
-                    d={path}
-                    fill="none"
-                    stroke={semanticColor.core.foreground.instructive.default}
-                    strokeWidth={border.width.medium}
-                />
-            </svg>
-        </View>
-    );
-}
-
-/**
  * The `duration` primitives, in milliseconds. Durations use fixed `ms` values
  * (not `rem`) so timing is consistent across root font sizes. The bar length is
  * proportional to the duration.
@@ -238,7 +176,7 @@ export const DurationPrimitive = {
                                     backgroundColor:
                                         semanticColor.core.background
                                             .instructive.default,
-                                    borderRadius: border.radius.radius_040,
+                                    borderRadius: border.radius.radius_080,
                                 }}
                             />
                         );
@@ -342,7 +280,7 @@ export const SemanticTokens = {
                             </StyledTd>
                             <StyledTd style={styles.cell}>
                                 <View style={styles.easingCell}>
-                                    <EasingCurve easing={token.easing} />
+                                    <EasingCurve easing={token.easing} size={120} />
                                     <Code>{`[${token.easing.join(", ")}]`}</Code>
                                 </View>
                             </StyledTd>
@@ -393,7 +331,7 @@ const styles = StyleSheet.create({
     },
     easingCell: {
         flexDirection: "row",
-        gap: sizing.size_160,
+        gap: sizing.size_080,
     },
     // The entire floating entrance — fade + a bounded rise — now comes from the
     // token via `cssPreset`. The consumer no longer hand-authors the offset;
