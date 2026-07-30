@@ -78,6 +78,7 @@ const VALUE_WARN_KEYS = new Set<string>([
     "backgroundPosition",
     "background",
     "direction",
+    "transform",
     "padding",
     "margin",
 ]);
@@ -91,6 +92,7 @@ type MessageIds =
     | "useLogicalClear"
     | "avoidBackgroundDirectional"
     | "avoidForceDirection"
+    | "avoidDirectionalTranslateX"
     | "preferLogicalPaddingShorthand"
     | "preferLogicalMarginShorthand";
 
@@ -194,6 +196,8 @@ export default createRule<Options, MessageIds>({
                 "Avoid 'left/right' in background-position; prefer 0%/100% or conditional assets (no logical axis exists).",
             avoidForceDirection:
                 "Avoid forcing 'direction' in component styles; rely on container `dir` instead.",
+            avoidDirectionalTranslateX:
+                "translateX with a px or non-±50% offset is directional and won't mirror in RTL; gate it by `dir` or use conditional logic. The ±50% centering idiom is allowed.",
             preferLogicalPaddingShorthand:
                 "Prefer logical padding shorthands (e.g. paddingBlock/paddingInline/paddingInlineStart) instead of the physical 'padding' shorthand.",
             preferLogicalMarginShorthand:
@@ -311,6 +315,30 @@ export default createRule<Options, MessageIds>({
                             node: property.value,
                             messageId: "avoidForceDirection",
                         });
+                    }
+                    break;
+                }
+                case "transform": {
+                    // translateX is the one horizontally-directional transform:
+                    // a px or non-±50% offset shifts the same physical direction
+                    // in RTL when it should mirror. The ±50% self-centering idiom
+                    // (paired with a 50% inset) is symmetric and RTL-safe, so it's
+                    // exempt. There is no logical replacement, so this is
+                    // report-only. A value wrapped in a function (calc()/var()/…)
+                    // can't be analyzed, so it's skipped.
+                    const translateX = /translateX\(\s*([^)]*?)\s*\)/.exec(
+                        strVal,
+                    );
+                    if (translateX) {
+                        const arg = translateX[1];
+                        const isCentering = arg === "-50%" || arg === "50%";
+                        const hasFunction = arg.includes("(");
+                        if (!isCentering && !hasFunction) {
+                            context.report({
+                                node: property.value,
+                                messageId: "avoidDirectionalTranslateX",
+                            });
+                        }
                     }
                     break;
                 }

@@ -51,17 +51,25 @@ ruleTester.run(ruleName, rule, {
             code: 'StyleSheet.create({foo: {marginInlineStart: "10px"}});',
         },
 
-        // Transforms, shadows, gradients, cursors, and backgroundPositionX/Y are
-        // not checked: there is no logical-property fix for them and the
-        // heuristics produced almost entirely false positives on RTL-safe code
-        // (e.g. translateX(-50%) centering, symmetric gradients).
+        // Shadows, gradients, cursors, and backgroundPositionX/Y are not
+        // checked: there is no logical-property fix for them and the heuristics
+        // produced almost entirely false positives on RTL-safe code (symmetric
+        // gradients, X-offset shadows already paired for RTL).
         {code: '<div style={{boxShadow: "4px 0 4px rgba(0,0,0,.2)"}} />'},
         {
             code: '<div style={{background: "linear-gradient(to bottom, red, blue)"}} />',
         },
-        {code: '<div style={{transform: "translateX(10px)"}} />'},
         {code: '<div style={{cursor: "e-resize"}} />'},
         {code: '<div style={{backgroundPositionX: "left"}} />'},
+
+        // translateX: the ±50% self-centering idiom is symmetric and RTL-safe,
+        // so it's allowed. A value wrapped in a function can't be analyzed.
+        {code: '<div style={{transform: "translateX(-50%)"}} />'},
+        {code: '<div style={{transform: "translateX(50%)"}} />'},
+        {
+            code: '<div style={{transform: "translateX(-50%) translateY(4px)"}} />',
+        },
+        {code: '<div style={{transform: "translateX(calc(50% - 8px))"}} />'},
 
         // Single-value padding/margin has no directionality, so it's not flagged.
         {code: '<div style={{padding: "10px"}} />'},
@@ -207,6 +215,22 @@ ruleTester.run(ruleName, rule, {
         {
             code: '<div style={{background: "url(x.png) no-repeat right center"}} />',
             errors: [{messageId: "avoidBackgroundDirectional"}],
+        },
+
+        // --- translateX directional offset (no fix; ±50% centering exempt) ---
+        // A px offset shifts the same way in RTL when it should mirror.
+        {
+            code: '<div style={{transform: "translateX(10px)"}} />',
+            errors: [{messageId: "avoidDirectionalTranslateX"}],
+        },
+        // A non-±50% percentage is directional too.
+        {
+            code: '<div style={{transform: "translateX(30%)"}} />',
+            errors: [{messageId: "avoidDirectionalTranslateX"}],
+        },
+        {
+            code: '<div style={{transform: "translateX(-20px)"}} />',
+            errors: [{messageId: "avoidDirectionalTranslateX"}],
         },
 
         // --- padding / margin shorthand auto-fix -----------------------------

@@ -77,8 +77,11 @@ Some CSS values are directional but have no logical replacement, so the rule rep
 | --- | --- | --- |
 | `direction: "ltr"` / `"rtl"` | Don't force direction in styles; rely on container `dir` | always on |
 | `backgroundPosition` / `background` containing `left`/`right` | Use percentages or conditional assets | always on |
+| `transform: translateX(...)` with a px or non-±50% percentage | Directional; gate by `dir` or use conditional logic | always on |
 
-Directional `transform`/`transformOrigin`, `boxShadow`/`textShadow`, `linear-gradient` directions, `cursor` resize directions, and `backgroundPositionX/Y` are intentionally **not** checked. They have no logical-property fix, and the heuristics produced almost entirely false positives on RTL-safe code (`translateX(-50%)` centering, symmetric gradients, X-offset shadows, block-axis `backgroundPositionY`), forcing `eslint-disable` suppressions on correct code.
+The `translateX` check exempts the `translateX(-50%)` / `translateX(50%)` self-centering idiom (symmetric, RTL-safe) and skips values wrapped in a function (`calc()`, `var()`, …) that it can't analyze. A px or other-percentage offset is flagged because it shifts the same physical direction in RTL when it should mirror.
+
+Directional `transformOrigin`, `boxShadow`/`textShadow`, `linear-gradient` directions, `cursor` resize directions, and `backgroundPositionX/Y` are intentionally **not** checked. They have no logical-property fix, and the heuristics produced almost entirely false positives on RTL-safe code (symmetric gradients, X-offset shadows already paired for RTL, block-axis `backgroundPositionY`), forcing `eslint-disable` suppressions on correct code.
 
 ## Options
 
