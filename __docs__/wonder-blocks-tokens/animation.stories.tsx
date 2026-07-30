@@ -230,6 +230,17 @@ const StyledTable = addStyle("table");
 const StyledTh = addStyle("th");
 const StyledTd = addStyle("td");
 
+// Reverse-lookup from a preset's easing value back to the primitive easing
+// token it references (e.g. [0.4, 0, 0.2, 1] → "standard"), so the table can
+// name the primitive instead of showing raw control points. Every primitive
+// easing value is distinct, so the mapping is unambiguous.
+const easingTokenByValue = new Map(
+    Object.entries(animationValue.easing).map(([name, value]) => [
+        value.join(","),
+        name,
+    ]),
+);
+
 // The semantic archetype groups, in display order.
 const archetypeGroups = [
     "control",
@@ -267,9 +278,10 @@ export const SemanticTokens = {
                 <thead>
                     <tr>
                         <StyledTh style={styles.cell}>Token</StyledTh>
-                        <StyledTh style={styles.cell}>Easing</StyledTh>
                         <StyledTh style={styles.cell}>Duration</StyledTh>
                         <StyledTh style={styles.cell}>Delay</StyledTh>
+                        <StyledTh style={styles.cell}>Easing Primitive</StyledTh>
+                        <StyledTh style={styles.cell}>Curve</StyledTh>
                     </tr>
                 </thead>
                 <tbody>
@@ -279,16 +291,22 @@ export const SemanticTokens = {
                                 <Code>{`animation.${group}.${change}`}</Code>
                             </StyledTd>
                             <StyledTd style={styles.cell}>
-                                <View style={styles.easingCell}>
-                                    <EasingCurve easing={token.easing} size={120} />
-                                    <Code>{`[${token.easing.join(", ")}]`}</Code>
-                                </View>
-                            </StyledTd>
-                            <StyledTd style={styles.cell}>
                                 {token.duration}ms
                             </StyledTd>
                             <StyledTd style={styles.cell}>
                                 {token.delay}ms
+                            </StyledTd>
+                            <StyledTd style={styles.cell}>
+                                {`animation.easing.${easingTokenByValue.get(
+                                    token.easing.join(","),
+                                )}`}
+                            </StyledTd>
+                            <StyledTd style={styles.cell}>
+                                <EasingCurve
+                                    easing={token.easing}
+                                    size={120}
+                                    duration={token.duration}
+                                />
                             </StyledTd>
                         </tr>
                     ))}
@@ -331,7 +349,9 @@ const styles = StyleSheet.create({
     },
     easingCell: {
         flexDirection: "row",
-        gap: sizing.size_080,
+        justifyContent: "end",
+        alignItems: "center",
+        gap: sizing.size_160,
     },
     // The entire floating entrance — fade + a bounded rise — now comes from the
     // token via `cssPreset`. The consumer no longer hand-authors the offset;

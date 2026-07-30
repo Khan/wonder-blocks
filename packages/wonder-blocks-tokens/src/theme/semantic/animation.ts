@@ -100,7 +100,7 @@ const docked = {
         duration: duration.long,
         easing: easing.emphasizedDecelerate,
         delay: duration.none,
-        from: {opacity: 0, offset: sizing.size_960},
+        from: {opacity: 0, offset: "20rem"},
         to: {opacity: 1, offset: 0},
     },
     exit: {

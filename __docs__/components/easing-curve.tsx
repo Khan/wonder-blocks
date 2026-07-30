@@ -12,14 +12,15 @@ import {
 } from "@khanacademy/wonder-blocks-tokens";
 
 // Timing for the looping meter: a short delay, the eased rise, then a pause
-// at the end before it snaps back and repeats. Composed from the `duration`
-// primitives so the demo dogfoods the tokens. Uses `animationValue` (raw ms
-// numbers) rather than `animation` (CSS var strings) so we can do the maths.
+// at the end before it snaps back and repeats. The delay and end pause are
+// composed from the `duration` primitives so the demo dogfoods the tokens.
+// Uses `animationValue` (raw ms numbers) rather than `animation` (CSS var
+// strings) so we can do the maths.
 const LOOP_START_DELAY_MS = animationValue.duration.long; // 300ms
-const LOOP_MOVE_MS = animationValue.duration.xxLong; // 1100ms
 const LOOP_END_PAUSE_MS =
     animationValue.duration.long + animationValue.duration.xLong; // 700ms
-const LOOP_TOTAL_MS = LOOP_START_DELAY_MS + LOOP_MOVE_MS + LOOP_END_PAUSE_MS;
+// The default duration of the eased rise, used when no `duration` is given.
+const DEFAULT_MOVE_MS = animationValue.duration.xxLong; // 1100ms
 
 /**
  * A small SVG that plots a cubic-bézier easing curve from its raw control
@@ -30,6 +31,7 @@ const LOOP_TOTAL_MS = LOOP_START_DELAY_MS + LOOP_MOVE_MS + LOOP_END_PAUSE_MS;
 export function EasingCurve({
     easing,
     size = 120,
+    duration = DEFAULT_MOVE_MS,
 }: {
     easing: CubicBezier;
     /**
@@ -38,7 +40,18 @@ export function EasingCurve({
      * Defaults to 120.
      */
     size?: number;
+    /**
+     * The duration, in milliseconds, of the eased rise in the looping meter.
+     * Presets in the semantic tokens carry their own duration, so the meter
+     * can animate at the preset's real speed. Defaults to 1100ms (the
+     * `duration.xxLong` primitive) for the easing primitives, which have no
+     * duration of their own.
+     */
+    duration?: number;
 }): React.ReactElement {
+    // A short delay, the eased rise (`duration`), then a pause before it snaps
+    // back and repeats.
+    const loopTotalMs = LOOP_START_DELAY_MS + duration + LOOP_END_PAUSE_MS;
     const gridSize = size / 5;
     // Unique per instance so the 11 curves' pattern <defs> don't collide.
     const gridId = React.useId();
@@ -69,14 +82,14 @@ export function EasingCurve({
     const [x1, y1, x2, y2] = easing;
     // Fractions of the total loop where the eased move starts/ends, so the bar
     // holds still during the start delay and the end pause.
-    const moveStart = LOOP_START_DELAY_MS / LOOP_TOTAL_MS;
-    const moveEnd = (LOOP_START_DELAY_MS + LOOP_MOVE_MS) / LOOP_TOTAL_MS;
+    const moveStart = LOOP_START_DELAY_MS / loopTotalMs;
+    const moveEnd = (LOOP_START_DELAY_MS + duration) / loopTotalMs;
     // SVG y grows downward, so flip the y coordinates (0 → bottom, 1 → top).
     const path = `M0,${size - yOffset} C${x1 * size},${
         size - y1 * size
     } ${x2 * size},${size - y2 * size} ${size}, ${yOffset}`;
     // Shared SMIL timing for the meter: hold, ease up, hold — repeating.
-    const dur = `${LOOP_TOTAL_MS}ms`;
+    const dur = `${loopTotalMs}ms`;
     const keyTimes = `0;${moveStart};${moveEnd};1`;
     const keySplines = `0 0 1 1;${x1} ${y1} ${x2} ${y2};0 0 1 1`;
     return (
