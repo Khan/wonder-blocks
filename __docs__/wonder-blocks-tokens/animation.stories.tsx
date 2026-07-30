@@ -141,25 +141,58 @@ type Row = {label: string; css: string; value: string};
  * points, so the shape of each easing token is visible at a glance.
  */
 function EasingCurve({easing}: {easing: CubicBezier}): React.ReactElement {
-    const size = 48;
+    const size = 64;
+    const gridSize = size / 5;
+    // Unique per instance so the 11 curves' pattern <defs> don't collide.
+    const gridId = React.useId();
+    const yOffset = 1; // keeps the path from being cut off by the svg bounds
     const [x1, y1, x2, y2] = easing;
     // SVG y grows downward, so flip the y coordinates (0 → bottom, 1 → top).
-    const path = `M0,${size} C${x1 * size},${size - y1 * size} ${
+    const path = `M0,${size-yOffset} C${x1 * size},${size - y1 * size} ${
         x2 * size
-    },${size - y2 * size} ${size},0`;
+    },${size - y2 * size} ${size}, ${yOffset}`;
     return (
-        <View style={{background: semanticColor.core.background.base.subtle, borderRadius: border.radius.radius_040, width: size }}>
+        <View
+            style={{
+                background: semanticColor.core.background.base.subtle,
+                borderRadius: border.radius.radius_080,
+                overflow: "hidden",
+                border: `${border.width.thin} solid ${semanticColor.core.border.neutral.subtle}`,
+                width: size,
+                // `View` resets `min-inline-size` to 0, so as a flex child its
+                // `width` is only a preferred size and it would otherwise shrink
+                // in the narrower docs table. Pin it so the curve keeps its size.
+                flexShrink: 0,
+            }}
+        >
             <svg
                 width={size}
                 height={size}
                 viewBox={`0 0 ${size} ${size}`}
                 aria-hidden={true}
             >
+                <defs>
+                    <pattern
+                        id={gridId}
+                        width={gridSize}
+                        height={gridSize}
+                        patternUnits="userSpaceOnUse"
+                    >
+                        <path
+                            d={`M${gridSize} 0 H0 V${gridSize}`}
+                            fill="none"
+                            stroke={semanticColor.core.border.neutral.subtle}
+                            strokeDasharray={"3,2"}
+                            strokeWidth={1}
+                        />
+                    </pattern>
+                </defs>
+                <rect width={size} height={size} fill={`url(#${gridId})`} />
                 <path
                     d={path}
                     fill="none"
                     stroke={semanticColor.core.foreground.instructive.default}
-                    strokeWidth={2}
+                    strokeWidth={border.width.medium}
                 />
             </svg>
         </View>
@@ -360,14 +393,7 @@ const styles = StyleSheet.create({
     },
     easingCell: {
         flexDirection: "row",
-        alignItems: "center",
-        gap: sizing.size_080,
-    },
-    demoBox: {
-        width: sizing.size_640,
-        height: sizing.size_640,
-        backgroundColor: semanticColor.core.background.instructive.default,
-        borderRadius: border.radius.radius_080,
+        gap: sizing.size_160,
     },
     // The entire floating entrance — fade + a bounded rise — now comes from the
     // token via `cssPreset`. The consumer no longer hand-authors the offset;
