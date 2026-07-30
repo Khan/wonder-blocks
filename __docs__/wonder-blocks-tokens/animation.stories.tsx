@@ -26,54 +26,87 @@ import TokenTable from "../components/token-table";
 import ComponentInfo from "../components/component-info";
 import packageConfig from "../../packages/wonder-blocks-tokens/package.json";
 import {Code} from "../components/code";
+import {EasingCurve} from "../components/easing-curve";
 
 /**
- * The `animation` tokens standardize animation timing across Wonder Blocks. They
- * are implementation-agnostic: the exact same token can drive an Aphrodite/CSS
+ * The `animation` tokens standardize animation and are meant to be
+ * implementation-agnostic: the exact same token can drive an Aphrodite/CSS
  * `transition`, the `motion` (framer-motion) React library, or the Web
- * Animations API.
+ * Animations API using helper functions.
  *
- * There are two tiers:
- * - **Primitives** — `animation.duration.*` (fixed `ms` values) and
- *   `animation.easing.*` (cubic-bézier curves). The raw ingredients.
- * - **Semantic presets** — named by reusable interaction pattern and change,
- *   e.g. `animation.floating.enter`, `animation.disclosure.expand`,
- *   `animation.control.press`. Each is a `{duration, easing, delay}` "clock" and,
- *   where it matters, the `from`/`to` states that give it character. The preset
- *   owns the opinion; the component picks the element and direction.
+ * There are two tiers of tokens:
+ *
+ * ## Primitives — the raw ingredients
+ *
+ *   - `animation.duration.*` (fixed `ms` values)
+ *   - `animation.easing.*` (cubic-bézier curves)
+ *
+ * ## Semantic presets — named by reusable interaction pattern
+ *
+ *   - `animation.floating.enter` (floating surfaces like the Modal and Popover `enter` and `exit`)
+ *   - `animation.disclosure.expand` (Disclosure regions like the Accordion `expand` and `collapse`)
+ *   - `animation.control.press` (e.g. Button)
+ *
+ * Each preset has a `{duration, easing, delay}` "clock" and, where it matters, the `from`/`to`
+ * states that give it character (e.g. we never scale 0-100% or slide the full width). The preset
+ * owns the opinion; the component applies it to the element, and chooses a direction in translation
+ * is part of the preset.
+ *
+ * ## So many ways to animate!
+ *
+ * Animation is implemented across `wonder-blocks` and `frontend` in multiple ways depending on the
+ * complexity needed as well as when the animation was implemented. The three main implementations are:
+ *
+ * - `Aphrodite` transitions (`wonder-blocks` and `frontend`)
+ * - The `motion` React library (`frontend`)
+ * - The Web Animations API (WAAPI) (more recent and thus the least common)
  *
  * The package exports the tokens in two shapes:
  * - `animation` — CSS variable references (`var(--wb-animation-…)`), for CSS/Aphrodite.
- * - `animationValue` — raw values (millisecond numbers + bézier arrays, plus
- *   `from`/`to` states on presets that carry them), for JS animation libraries. A
- *   superset of `animation`.
+ * - `animationValue` — raw values that are shaped by helpers for `motion` and WAAPI.
  *
  * ## Usage
  *
+ * Depending on the animation implementation, we provide different ways to consume the tokens
+ * with helpers that shape the tokens into the necessary formats:
+ *
+ * ### CSS / Aphrodite presets *(recommended)*
+ *
  * ```ts
- * // CSS / Aphrodite — apply a full preset; the component supplies only the edge.
  * import {animationValue, cssPreset} from "@khanacademy/wonder-blocks-tokens";
  * StyleSheet.create({drawer: cssPreset(animationValue.docked.enter, {origin: "right"})});
- * // A timing-only preset can still be used via CSS-var refs:
+ * ```
+ *
+ * ### CSS / Aphrodite — timing only
+ *
+ * (not recommended by available) a timing-only preset when needed.
+ *
+ * ```ts
  * import {animation} from "@khanacademy/wonder-blocks-tokens";
  * const styles = {
  *     row: {
  *         transition: `grid-template-rows ${animation.disclosure.expand.duration} ${animation.disclosure.expand.easing}`,
  *     },
  * };
+ * ```
  *
- * // motion (framer-motion) — full preset as initial/animate/transition.
+ * ### Motion (Framer Motion) presets
+ *
+ * full preset as initial/animate/transition.
+ *
+ * ```ts
  * import {animationValue, motionPreset} from "@khanacademy/wonder-blocks-tokens";
  * <motion.div {...motionPreset(animationValue.floating.enter, {origin: "bottom"})} />
+ * ```
  *
- * // WAAPI — [keyframes, options] tuple.
+ * ###  WAAPI
+ *
+ * ```ts
  * import {animationValue, waapiPreset} from "@khanacademy/wonder-blocks-tokens";
  * el.animate(...waapiPreset(animationValue.floating.enter, {origin: "bottom"}));
  * ```
+ * ---
  *
- * NOTE: The `animation` namespace intentionally avoids colliding with the
- * `motion` React library, so a file can `import {motion} from "motion/react"`
- * and these tokens side by side without aliasing.
  */
 export default {
     title: "Packages / Tokens / Animation",
@@ -105,39 +138,11 @@ export default {
 type Row = {label: string; css: string; value: string};
 
 /**
- * A small SVG that plots a cubic-bézier easing curve from its raw control
- * points, so the shape of each easing token is visible at a glance.
- */
-function EasingCurve({easing}: {easing: CubicBezier}): React.ReactElement {
-    const size = 48;
-    const [x1, y1, x2, y2] = easing;
-    // SVG y grows downward, so flip the y coordinates (0 → bottom, 1 → top).
-    const path = `M0,${size} C${x1 * size},${size - y1 * size} ${
-        x2 * size
-    },${size - y2 * size} ${size},0`;
-    return (
-        <svg
-            width={size}
-            height={size}
-            viewBox={`0 0 ${size} ${size}`}
-            aria-hidden={true}
-        >
-            <path
-                d={path}
-                fill="none"
-                stroke={semanticColor.core.foreground.instructive.default}
-                strokeWidth={2}
-            />
-        </svg>
-    );
-}
-
-/**
  * The `duration` primitives, in milliseconds. Durations use fixed `ms` values
  * (not `rem`) so timing is consistent across root font sizes. The bar length is
  * proportional to the duration.
  */
-export const Duration = {
+export const DurationPrimitive = {
     render: () => (
         <TokenTable
             columns={[
@@ -171,7 +176,7 @@ export const Duration = {
                                     backgroundColor:
                                         semanticColor.core.background
                                             .instructive.default,
-                                    borderRadius: border.radius.radius_040,
+                                    borderRadius: border.radius.radius_080,
                                 }}
                             />
                         );
@@ -188,7 +193,7 @@ export const Duration = {
  * raw control points (rather than a `cubic-bezier(…)` string) lets one token
  * drive CSS, the `motion` library, and WAAPI without a runtime parser.
  */
-export const Easing = {
+export const EasingPrimitive = {
     render: () => (
         <TokenTable
             columns={[
@@ -262,12 +267,9 @@ export const SemanticTokens = {
                 <thead>
                     <tr>
                         <StyledTh style={styles.cell}>Token</StyledTh>
-                        <StyledTh style={styles.cell}>Duration</StyledTh>
                         <StyledTh style={styles.cell}>Easing</StyledTh>
+                        <StyledTh style={styles.cell}>Duration</StyledTh>
                         <StyledTh style={styles.cell}>Delay</StyledTh>
-                        <StyledTh style={styles.cell}>
-                            motionTransition()
-                        </StyledTh>
                     </tr>
                 </thead>
                 <tbody>
@@ -277,21 +279,16 @@ export const SemanticTokens = {
                                 <Code>{`animation.${group}.${change}`}</Code>
                             </StyledTd>
                             <StyledTd style={styles.cell}>
-                                {token.duration}ms
-                            </StyledTd>
-                            <StyledTd style={styles.cell}>
                                 <View style={styles.easingCell}>
-                                    <EasingCurve easing={token.easing} />
+                                    <EasingCurve easing={token.easing} size={120} />
                                     <Code>{`[${token.easing.join(", ")}]`}</Code>
                                 </View>
                             </StyledTd>
                             <StyledTd style={styles.cell}>
-                                {token.delay}ms
+                                {token.duration}ms
                             </StyledTd>
                             <StyledTd style={styles.cell}>
-                                <Code>
-                                    {JSON.stringify(motionTransition(token))}
-                                </Code>
+                                {token.delay}ms
                             </StyledTd>
                         </tr>
                     ))}
@@ -301,129 +298,7 @@ export const SemanticTokens = {
     },
 };
 
-/**
- * A live demonstration of the semantic archetypes driving real CSS animations.
- * Press **Replay** to re-run them. Each box animates on the token's clock; the
- * box chooses which properties move (opacity, transform), the token supplies
- * the duration and easing.
- */
-export const LiveDemo = {
-    render: function Render() {
-        // Remounting via a changing key re-triggers the CSS animations.
-        const [runId, setRunId] = React.useState(0);
-        return (
-            <View style={{gap: sizing.size_160}}>
-                <View style={{alignItems: "flex-start"}}>
-                    <Button onClick={() => setRunId((id) => id + 1)}>
-                        Replay
-                    </Button>
-                </View>
-                <View
-                    key={runId}
-                    style={{
-                        flexDirection: "row",
-                        gap: sizing.size_240,
-                        flexWrap: "wrap",
-                    }}
-                >
-                    <Demo label="floating.enter" style={styles.floatingEnter} />
-                    <Demo
-                        label="disclosure.expand"
-                        style={styles.disclosureExpand}
-                    />
-                    <Demo label="fade.in" style={styles.fadeIn} />
-                    <Demo label="loop.spin" style={styles.loopSpin} />
-                </View>
-            </View>
-        );
-    },
-    parameters: {
-        // Animations make visual-regression snapshots flaky, and this story is
-        // for manual demonstration only.
-        chromatic: {disableSnapshot: true},
-    },
-};
 
-/**
- * A single enriched gesture token (`animation.floating.enter`) drives all three
- * targets — CSS/Aphrodite, the `motion` React library, and WAAPI — from one
- * source. The token bakes in the *whole opinion* (fade + a bounded rise); the
- * component supplies only the `origin` (which edge the motion comes from).
- * Change the origin and every output updates together.
- */
-export const GestureFromOneToken = {
-    render: function Render() {
-        const origins: Array<AnimationOrigin> = [
-            "bottom",
-            "top",
-            "left",
-            "right",
-        ];
-        const [origin, setOrigin] = React.useState<AnimationOrigin>("bottom");
-        const [runId, setRunId] = React.useState(0);
-
-        // Built from the token at render time so the chosen origin flows through.
-        const dynamic = StyleSheet.create({
-            // @ts-expect-error [FEI-5019]: aphrodite types `animationName` as a string, but object keyframes work at runtime.
-            box: cssPreset(animationValue.floating.enter, {origin}),
-        });
-
-        const replay = () => setRunId((id) => id + 1);
-
-        return (
-            <View style={{gap: sizing.size_160}}>
-                <View
-                    style={{
-                        flexDirection: "row",
-                        gap: sizing.size_080,
-                        flexWrap: "wrap",
-                    }}
-                >
-                    {origins.map((o) => (
-                        <Button
-                            key={o}
-                            kind={o === origin ? "primary" : "secondary"}
-                            onClick={() => {
-                                setOrigin(o);
-                                replay();
-                            }}
-                        >
-                            {o}
-                        </Button>
-                    ))}
-                    <Button kind="tertiary" onClick={replay}>
-                        Replay
-                    </Button>
-                </View>
-
-                <View key={`${origin}-${runId}`} style={{alignItems: "center"}}>
-                    <View style={[styles.demoBox, dynamic.box]} />
-                </View>
-
-                <View style={{gap: sizing.size_080}}>
-                    <Code>{`cssPreset(animation.floating.enter, {origin: "${origin}"})\n${JSON.stringify(
-                        cssPreset(animationValue.floating.enter, {origin}),
-                        null,
-                        2,
-                    )}`}</Code>
-                    <Code>{`motionPreset(animation.floating.enter, {origin: "${origin}"})\n${JSON.stringify(
-                        motionPreset(animationValue.floating.enter, {origin}),
-                        null,
-                        2,
-                    )}`}</Code>
-                    <Code>{`waapiPreset(animation.floating.enter, {origin: "${origin}"})\n${JSON.stringify(
-                        waapiPreset(animationValue.floating.enter, {origin}),
-                        null,
-                        2,
-                    )}`}</Code>
-                </View>
-            </View>
-        );
-    },
-    parameters: {
-        chromatic: {disableSnapshot: true},
-    },
-};
 
 function Demo({
     label,
@@ -456,14 +331,7 @@ const styles = StyleSheet.create({
     },
     easingCell: {
         flexDirection: "row",
-        alignItems: "center",
         gap: sizing.size_080,
-    },
-    demoBox: {
-        width: sizing.size_640,
-        height: sizing.size_640,
-        backgroundColor: semanticColor.core.background.instructive.default,
-        borderRadius: border.radius.radius_080,
     },
     // The entire floating entrance — fade + a bounded rise — now comes from the
     // token via `cssPreset`. The consumer no longer hand-authors the offset;
