@@ -784,5 +784,104 @@ describe("#useCachedEffect", () => {
                 expect(onResultChanged).toHaveBeenCalledTimes(1);
             },
         );
+
+        it.each([FetchPolicy.CacheAndNetwork, FetchPolicy.NetworkOnly])(
+            "should not restart the inflight fetch when onResultChanged identity changes for FetchPolicy.%s",
+            async (fetchPolicy: any) => {
+                // Arrange
+                let resolveResponse: (value: string) => void;
+                const response: any = new Promise((resolve) => {
+                    resolveResponse = resolve;
+                });
+                const fakeHandler = jest.fn().mockReturnValue(response);
+                const {rerender} = clientRenderHook(
+                    () =>
+                        useCachedEffect("ID", fakeHandler, {
+                            // A fresh callback identity on every render, as
+                            // an unmemoized consumer would pass.
+                            onResultChanged: () => {},
+                            fetchPolicy,
+                        }),
+                    {initialProps: {}},
+                );
+
+                // Act
+                rerender({});
+                rerender({});
+                await act(async () => {
+                    resolveResponse("DATA");
+                    await response;
+                });
+
+                // Assert
+                expect(fakeHandler).toHaveBeenCalledTimes(1);
+            },
+        );
+
+        it.each([FetchPolicy.CacheAndNetwork, FetchPolicy.NetworkOnly])(
+            "should invoke the most recently supplied onResultChanged for FetchPolicy.%s",
+            async (fetchPolicy: any) => {
+                // Arrange
+                let resolveResponse: (value: string) => void;
+                const response: any = new Promise((resolve) => {
+                    resolveResponse = resolve;
+                });
+                const fakeHandler = jest.fn().mockReturnValue(response);
+                const firstCallback = jest.fn();
+                const latestCallback = jest.fn();
+                const {rerender} = clientRenderHook(
+                    ({onResultChanged}: any) =>
+                        useCachedEffect("ID", fakeHandler, {
+                            onResultChanged,
+                            fetchPolicy,
+                        }),
+                    {initialProps: {onResultChanged: firstCallback}},
+                );
+
+                // Act
+                rerender({onResultChanged: latestCallback});
+                await act(async () => {
+                    resolveResponse("DATA");
+                    await response;
+                });
+
+                // Assert
+                expect(latestCallback).toHaveBeenCalledWith(
+                    Status.success("DATA"),
+                );
+            },
+        );
+
+        it.each([FetchPolicy.CacheAndNetwork, FetchPolicy.NetworkOnly])(
+            "should not invoke a replaced onResultChanged for FetchPolicy.%s",
+            async (fetchPolicy: any) => {
+                // Arrange
+                let resolveResponse: (value: string) => void;
+                const response: any = new Promise((resolve) => {
+                    resolveResponse = resolve;
+                });
+                const fakeHandler = jest.fn().mockReturnValue(response);
+                const firstCallback = jest.fn();
+                const latestCallback = jest.fn();
+                const {rerender} = clientRenderHook(
+                    ({onResultChanged}: any) =>
+                        useCachedEffect("ID", fakeHandler, {
+                            onResultChanged,
+                            fetchPolicy,
+                        }),
+                    {initialProps: {onResultChanged: firstCallback}},
+                );
+
+                // Act
+                rerender({onResultChanged: latestCallback});
+                await act(async () => {
+                    resolveResponse("DATA");
+                    await response;
+                });
+
+                // Assert
+                expect(firstCallback).not.toHaveBeenCalled();
+            },
+        );
     });
 });
