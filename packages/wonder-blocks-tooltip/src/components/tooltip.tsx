@@ -30,7 +30,7 @@ import TooltipAnchor from "./tooltip-anchor";
 import TooltipBubble from "./tooltip-bubble";
 import TooltipContent from "./tooltip-content";
 import TooltipPopper from "./tooltip-popper";
-import type {ContentStyle, Placement} from "../util/types";
+import type {ContentStyle, Placement, TooltipVariant} from "../util/types";
 
 type Props = AriaProps &
     Readonly<{
@@ -106,6 +106,18 @@ type Props = AriaProps &
          */
         testId?: string;
         /**
+         * The visual style of the tooltip.
+         *
+         * - `subtle` (default): the standard tooltip styling, used for most
+         *   cases.
+         * - `strong`: a higher-emphasis tooltip that uses an inverse/knockout
+         *   treatment. Its colors are defined with semantic tokens, so they
+         *   adapt to the active theme.
+         *
+         * Defaults to `subtle`.
+         */
+        variant?: TooltipVariant;
+        /**
          * Optional custom styles for the tooltip content which are a subset of valid CSS styles.
          */
         contentStyle?: ContentStyle;
@@ -139,6 +151,7 @@ type State = Readonly<{
 type DefaultProps = {
     forceAnchorFocusivity: Props["forceAnchorFocusivity"];
     placement: Props["placement"];
+    variant: Props["variant"];
 };
 
 /**
@@ -169,6 +182,7 @@ export default class Tooltip extends React.Component<Props, State> {
     static defaultProps: DefaultProps = {
         forceAnchorFocusivity: true,
         placement: "top",
+        variant: "subtle",
     };
 
     /**
@@ -218,7 +232,7 @@ export default class Tooltip extends React.Component<Props, State> {
     }
 
     _renderPopper(ariaContentId: string): React.ReactNode {
-        const {backgroundColor, placement} = this.props;
+        const {backgroundColor, placement, variant} = this.props;
         return (
             <TooltipPopper
                 anchorElement={this.state.anchorElement}
@@ -231,6 +245,7 @@ export default class Tooltip extends React.Component<Props, State> {
                         id={ariaContentId}
                         style={props.style}
                         backgroundColor={backgroundColor}
+                        variant={variant}
                         tailOffset={props.tailOffset}
                         isReferenceHidden={props.isReferenceHidden}
                         placement={props.placement}

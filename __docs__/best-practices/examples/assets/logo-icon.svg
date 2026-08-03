@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   width="32"
+   height="32"
+   viewBox="0 0 30 32"
+   fill="none"
+   version="1.1"
+   id="svg8"
+   sodipodi:docname="logo_clipped.svg"
+   inkscape:version="1.1.1 (3bf5ae0d25, 2021-09-20)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs12">
+    <inkscape:path-effect
+       effect="powerclip"
+       id="path-effect1257"
+       is_visible="true"
+       lpeversion="1"
+       inverse="true"
+       flatten="false"
+       hide_clip="false"
+       message="Use fill-rule evenodd on &lt;b&gt;fill and stroke&lt;/b&gt; dialog if no flatten result after convert clip to paths." />
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath1249">
+      <g
+         id="g1255"
+         style="display:none">
+        <path
+           fill-rule="evenodd"
+           clip-rule="evenodd"
+           d="m 26.2735,13.5498 c -6.0934,0.028 -10.6534,4.8667 -10.6534,10.8335 v 0.2506 h -1.22 v -0.2506 c 0,-5.9668 -4.56673,-10.8055 -10.6708,-10.8335 -0.03866,0.3747 -0.06133,0.7547 -0.06133,1.14 0,4.6654 3.02136,8.6428 7.25473,10.1681 1.2174,0.4467 2.696,0.692 4.0707,0.692 1.3734,0 2.8814,-0.2453 4.0974,-0.692 4.228,-1.5253 7.2441,-5.5027 7.2441,-10.1681 0,-0.3853 -0.0214,-0.7653 -0.0614,-1.14 z"
+           fill="#ffffff"
+           id="path1251" />
+        <path
+           fill-rule="evenodd"
+           clip-rule="evenodd"
+           d="m 14.9997,14.2162 c 2.0267,0 3.6667,-1.6413 3.6667,-3.6667 0,-2.02667 -1.64,-3.66669 -3.6667,-3.66669 -2.0253,0 -3.6667,1.64002 -3.6667,3.66669 0,2.0254 1.6414,3.6667 3.6667,3.6667 z"
+           fill="#ffffff"
+           id="path1253" />
+      </g>
+      <path
+         id="lpe_path-effect1257"
+         class="powerclip"
+         d="M -4.666992,-5 H 34.6666 V 37.000025 H -4.666992 Z M 26.2735,13.5498 c -6.0934,0.028 -10.6534,4.8667 -10.6534,10.8335 v 0.2506 h -1.22 v -0.2506 c 0,-5.9668 -4.56673,-10.8055 -10.6708,-10.8335 -0.03866,0.3747 -0.06133,0.7547 -0.06133,1.14 0,4.6654 3.02136,8.6428 7.25473,10.1681 1.2174,0.4467 2.696,0.692 4.0707,0.692 1.3734,0 2.8814,-0.2453 4.0974,-0.692 4.228,-1.5253 7.2441,-5.5027 7.2441,-10.1681 0,-0.3853 -0.0214,-0.7653 -0.0614,-1.14 z m -11.2738,0.6664 c 2.0267,0 3.6667,-1.6413 3.6667,-3.6667 0,-2.02667 -1.64,-3.66669 -3.6667,-3.66669 -2.0253,0 -3.6667,1.64002 -3.6667,3.66669 0,2.0254 1.6414,3.6667 3.6667,3.6667 z" />
+    </clipPath>
+  </defs>
+  <sodipodi:namedview
+     id="namedview10"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="true"
+     showgrid="false"
+     inkscape:zoom="13.640625"
+     inkscape:cx="20.343643"
+     inkscape:cy="10.153494"
+     inkscape:window-width="1271"
+     inkscape:window-height="1081"
+     inkscape:window-x="2596"
+     inkscape:window-y="194"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="svg8" />
+  <path
+     fill-rule="evenodd"
+     clip-rule="evenodd"
+     d="M 2.19969,6.63207 C 1.17168,7.21341 0.333008,8.65076 0.333008,9.82677 V 22.1736 c 0,1.1746 0.838672,2.612 1.866682,3.1947 L 13.1331,31.563 c 1.0267,0.5827 2.7054,0.5827 3.7334,0 L 27.8,25.3683 c 1.0266,-0.5827 1.8666,-2.0201 1.8666,-3.1947 V 9.82677 c 0,-1.17601 -0.84,-2.61336 -1.8666,-3.1947 L 16.8665,0.436005 c -1.028,-0.58134 -2.7067,-0.58134 -3.7334,0 z"
+     fill="currentColor"
+     id="path2"
+     clip-path="url(#clipPath1249)"
+     inkscape:path-effect="#path-effect1257"
+     inkscape:original-d="M2.19969 6.63207C1.17168 7.21341 0.333008 8.65076 0.333008 9.82677V22.1736C0.333008 23.3482 1.17168 24.7856 2.19969 25.3683L13.1331 31.563C14.1598 32.1457 15.8385 32.1457 16.8665 31.563L27.8 25.3683C28.8266 24.7856 29.6666 23.3482 29.6666 22.1736V9.82677C29.6666 8.65076 28.8266 7.21341 27.8 6.63207L16.8665 0.436005C15.8385 -0.145335 14.1598 -0.145335 13.1331 0.436005L2.19969 6.63207Z" />
+</svg>

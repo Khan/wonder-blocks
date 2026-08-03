@@ -1,5 +1,5 @@
 import * as React from "react";
-import {useForceUpdate} from "@khanacademy/wonder-blocks-core";
+import {useForceUpdate, useLatestRef} from "@khanacademy/wonder-blocks-core";
 import {DataError, DataErrors} from "../util/data-error";
 
 import {RequestFulfillment} from "../util/request-fulfillment";
@@ -136,6 +136,13 @@ export const useCachedEffect = <TData extends ValidCacheData>(
         scope,
     );
     const forceUpdate = useForceUpdate();
+    // We keep the latest onResultChanged callback in a ref so that the
+    // fetch function below can invoke the most recently supplied callback
+    // without the callback's identity invalidating the memoized fetch
+    // function (which would cancel inflight requests and, for network-based
+    // fetch policies, trigger an endless refetch loop when callers pass an
+    // unmemoized callback).
+    const onResultChangedRef = useLatestRef(onResultChanged);
     // For the NetworkOnly fetch policy, we ignore the cached value.
     // So we need somewhere else to store the network value.
     const networkResultRef = React.useRef<Result<TData> | null>();
@@ -208,6 +215,7 @@ export const useCachedEffect = <TData extends ValidCacheData>(
                 setMostRecentResult(result);
                 networkResultRef.current = result;
 
+                const onResultChanged = onResultChangedRef.current;
                 if (onResultChanged != null) {
                     // If we have a callback, call it to let our caller know we
                     // got a result.
@@ -239,13 +247,7 @@ export const useCachedEffect = <TData extends ValidCacheData>(
         // really make sense - the same requestId should be handled the same as
         // each other.
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [
-        requestId,
-        onResultChanged,
-        forceUpdate,
-        setMostRecentResult,
-        fetchPolicy,
-    ]);
+    }, [requestId, forceUpdate, setMostRecentResult, fetchPolicy]);
 
     // Calculate if we want to fetch the result or not.
     // If this is true, we will do a new fetch, cancelling the previous fetch

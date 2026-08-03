@@ -1,2 +1,34 @@
 docs/* linguist-generated
-package-lock.json linguist-generated
+
+# BEGIN: agent-settings managed files
+
+.agent-settings-mcp-servers.json linguist-generated
+.claude/hooks/echo-banner-filter.mjs linguist-generated
+.claude/hooks/gh-filter.mjs linguist-generated
+.claude/hooks/gh-install.mjs linguist-generated
+.claude/hooks/git-filter.mjs linguist-generated
+.claude/hooks/git-token-init.mjs linguist-generated
+.claude/hooks/pnpm-install.mjs linguist-generated
+.claude/settings.json linguist-generated
+.claude/setup-git-token.mjs linguist-generated
+.codex/config.toml linguist-generated
+.codex/hooks.json linguist-generated
+.codex/hooks/gh-filter.mjs linguist-generated
+.codex/hooks/gh-install.mjs linguist-generated
+.codex/hooks/git-filter.mjs linguist-generated
+.codex/hooks/git-token-init.mjs linguist-generated
+.codex/hooks/pnpm-install.mjs linguist-generated
+.cursor/hooks.json linguist-generated
+.cursor/hooks/gh-filter.mjs linguist-generated
+.cursor/hooks/gh-install.mjs linguist-generated
+.cursor/hooks/git-filter.mjs linguist-generated
+.cursor/hooks/git-token-init.mjs linguist-generated
+.cursor/hooks/inject-shell-env.mjs linguist-generated
+.cursor/hooks/pnpm-install.mjs linguist-generated
+.cursor/sandbox.json linguist-generated
+.github/workflows/validate-workflows.yml linguist-generated
+.pi/sandbox.json linguist-generated
+.pi/settings.json linguist-generated
+
+# END: agent-settings managed files
+
