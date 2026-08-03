@@ -1345,30 +1345,24 @@ importers:
       '@khanacademy/wonder-blocks-core':
         specifier: workspace:*
         version: link:../wonder-blocks-core
+      '@khanacademy/wonder-blocks-floating':
+        specifier: workspace:*
+        version: link:../wonder-blocks-floating
       '@khanacademy/wonder-blocks-icon-button':
         specifier: workspace:*
         version: link:../wonder-blocks-icon-button
-      '@khanacademy/wonder-blocks-modal':
-        specifier: workspace:*
-        version: link:../wonder-blocks-modal
       '@khanacademy/wonder-blocks-styles':
         specifier: workspace:*
         version: link:../wonder-blocks-styles
       '@khanacademy/wonder-blocks-tokens':
         specifier: workspace:*
         version: link:../wonder-blocks-tokens
-      '@khanacademy/wonder-blocks-tooltip':
-        specifier: workspace:*
-        version: link:../wonder-blocks-tooltip
       '@khanacademy/wonder-blocks-typography':
         specifier: workspace:*
         version: link:../wonder-blocks-typography
       '@phosphor-icons/core':
         specifier: 'catalog:'
         version: 2.1.1
-      '@popperjs/core':
-        specifier: 'catalog:'
-        version: 2.11.8
       aphrodite:
         specifier: 'catalog:'
         version: 1.2.5
@@ -1378,9 +1372,6 @@ importers:
       react-dom:
         specifier: 'catalog:'
         version: 18.2.0(react@18.2.0)
-      react-popper:
-        specifier: 'catalog:'
-        version: 2.3.0(@popperjs/core@2.11.8)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
     devDependencies:
       '@khanacademy/wb-dev-build-settings':
         specifier: workspace:*

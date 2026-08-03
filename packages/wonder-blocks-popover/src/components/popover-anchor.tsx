@@ -1,11 +1,16 @@
 import * as React from "react";
 
+import {FloatingReferenceAttributeName} from "@khanacademy/wonder-blocks-floating";
+
 import type {AriaProps} from "@khanacademy/wonder-blocks-core";
 
-// Allow merging multiple refs (forwarded + user-supplied)
-// Internal helper to merge refs
-// TODO(WB-2119.2): This will be replaced with floating-ui's useMergeRefs
-// @see https://floating-ui.com/docs/react-utils#usemergerefs
+// Allow merging multiple refs (forwarded + user-supplied). The forwarded ref
+// comes from the Floating component (its reference setter), while the
+// user-supplied ref comes from the trigger element the consumer passes in.
+//
+// NOTE: We keep a small hand-rolled helper here (rather than floating-ui's
+// `useMergeRefs`) so the Popover package doesn't need to depend on
+// `@floating-ui/react` directly; it only depends on `wonder-blocks-floating`.
 function mergeRefs<T = any>(
     ...refs: Array<React.Ref<T> | undefined>
 ): React.RefCallback<T> {
@@ -30,8 +35,7 @@ type Props = AriaProps & {
      * position the popover. It can be either a Node or a function using the
      * children-as-function pattern to pass an open function for use anywhere
      * within children. The latter provides a lot of flexibility in terms of
-     * what actions may trigger the `Popover` to launch the
-     * [PopoverDialog](#PopoverDialog).
+     * what actions may trigger the `Popover` to launch the popover dialog.
      */
     children:
         | React.ReactElement<any>
@@ -44,6 +48,12 @@ type Props = AriaProps & {
      * Called when the anchor is clicked
      */
     onClick: () => void;
+    /**
+     * Injected by `Floating` to identify the trigger's element in the DOM. It is
+     * passed along to the trigger so that `Floating` can find that element and
+     * use it as the reference (anchor) element.
+     */
+    [FloatingReferenceAttributeName]?: string;
 };
 
 /**
@@ -58,6 +68,7 @@ const PopoverAnchor = React.forwardRef<HTMLElement, Props>(
             onClick,
             "aria-controls": ariaControls,
             "aria-expanded": ariaExpanded,
+            [FloatingReferenceAttributeName]: floatingReferenceId,
         } = props;
 
         // props that will be injected to both children versions
@@ -65,6 +76,10 @@ const PopoverAnchor = React.forwardRef<HTMLElement, Props>(
             id: id,
             "aria-controls": ariaControls,
             "aria-expanded": ariaExpanded,
+            // Passed along so that the `Floating` component this anchor is
+            // rendered in can find the trigger's element in the DOM and position
+            // the popover against it.
+            [FloatingReferenceAttributeName]: floatingReferenceId,
         } as const;
 
         if (typeof children === "function") {
