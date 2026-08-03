@@ -656,6 +656,26 @@ export const TabLabelRenderFunction: StoryComponentType = {
             />
         );
     },
+    parameters: {
+        a11y: {
+            config: {
+                rules: [
+                    {
+                        // The "Tab with an opened Popover" example anchors a
+                        // Popover to a tab inside the tablist. When open, the
+                        // Popover (via wonder-blocks-floating / floating-ui)
+                        // inserts tab-order and focus-guard scaffolding (e.g.
+                        // `span[aria-owns]`) as siblings of the anchor, which
+                        // trips `aria-required-children` on the tablist. This
+                        // scaffolding is accessible-by-design; the rule is being
+                        // strict about the tablist's allowed DOM children.
+                        id: "aria-required-children",
+                        enabled: false,
+                    },
+                ],
+            },
+        },
+    },
 };
 
 /**
