@@ -367,15 +367,21 @@
 }
 
 /**
- * Secondary buttons keep their inset border `box-shadow` while focused, so the
- * focus ring is composited with the hover / press border shadow (the plain
- * focus rule above would otherwise replace the inset border with just the
- * ring). These are higher specificity than that rule so they win for every
+ * Secondary and tertiary buttons keep their inset border `box-shadow` while
+ * focused, so the focus ring is composited with the hover / press border shadow
+ * (the plain focus rule above would otherwise replace the inset border with just
+ * the ring). These are higher specificity than that rule so they win for every
  * focus + state combination, including the programmatic `.focused` / `.pressed`
  * classes.
+ *
+ * Tertiary only has a visible inset border in the thunderblocks theme (where its
+ * hover / press border-width is non-zero); in the default theme the inset is
+ * 0-width, so the composite collapses to the plain focus ring.
  */
 .button[data-kind="secondary"]:focus-visible:hover,
-.button[data-kind="secondary"].focused:hover {
+.button[data-kind="secondary"].focused:hover,
+.button[data-kind="tertiary"]:focus-visible:hover,
+.button[data-kind="tertiary"].focused:hover {
     @apply --wb-focus-visible;
 
     box-shadow:
@@ -386,7 +392,11 @@
 .button[data-kind="secondary"]:focus-visible:active,
 .button[data-kind="secondary"]:focus-visible.pressed,
 .button[data-kind="secondary"].focused:active,
-.button[data-kind="secondary"].focused.pressed {
+.button[data-kind="secondary"].focused.pressed,
+.button[data-kind="tertiary"]:focus-visible:active,
+.button[data-kind="tertiary"]:focus-visible.pressed,
+.button[data-kind="tertiary"].focused:active,
+.button[data-kind="tertiary"].focused.pressed {
     @apply --wb-focus-visible;
 
     box-shadow:
