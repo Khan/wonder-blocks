@@ -352,17 +352,30 @@
 /**
  * Focus. `:focus-visible` provides keyboard-only focus styling; the `.focused`
  * class enables programmatic focus (set by `ClickableBehavior`).
+ *
+ * The `[data-kind]` attribute is included so this rule matches the specificity
+ * of the kind-specific hover / active rules above (which are all qualified by
+ * `[data-kind]`). At equal specificity the later rule wins, and this focus rule
+ * is emitted after hover / active — so the focus ring keeps priority when a
+ * button is focused *and* hovered or pressed (otherwise the primary `outline`
+ * and secondary/tertiary inset `box-shadow` would paint over the ring). This
+ * mirrors the original Aphrodite ordering (hover, active, then focus).
  */
-.button:focus-visible,
-.button.focused {
+.button[data-kind]:focus-visible,
+.button[data-kind].focused {
     @apply --wb-focus-visible;
 }
 
 /**
  * Secondary buttons keep their inset border `box-shadow` while focused, so the
- * focus ring is composited with the hover / press border shadow.
+ * focus ring is composited with the hover / press border shadow (the plain
+ * focus rule above would otherwise replace the inset border with just the
+ * ring). These are higher specificity than that rule so they win for every
+ * focus + state combination, including the programmatic `.focused` / `.pressed`
+ * classes.
  */
-.button[data-kind="secondary"]:focus-visible:hover {
+.button[data-kind="secondary"]:focus-visible:hover,
+.button[data-kind="secondary"].focused:hover {
     @apply --wb-focus-visible;
 
     box-shadow:
@@ -370,7 +383,10 @@
         0 0 0 var(--wb-border-width-medium) var(--wb-semanticColor-focus-inner);
 }
 
-.button[data-kind="secondary"]:focus-visible:active {
+.button[data-kind="secondary"]:focus-visible:active,
+.button[data-kind="secondary"]:focus-visible.pressed,
+.button[data-kind="secondary"].focused:active,
+.button[data-kind="secondary"].focused.pressed {
     @apply --wb-focus-visible;
 
     box-shadow:
