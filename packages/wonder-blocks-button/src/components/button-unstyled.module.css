@@ -3,15 +3,11 @@
  * `Button` (CSS Modules migration — WB-2328).
  *
  * Cascade note: this reset and the per-component styles (`button.module.css`)
- * all live in `@layer shared`, so ordering matters. The reset deliberately does
- * NOT zero `border` — `button.module.css` fully specifies the border for every
- * kind, so zeroing it here (at the same specificity as the component rules)
- * would risk wiping the component border depending on emission order.
- * `outline` / `text-decoration` are safe to reset here because the component
- * re-applies them at higher specificity (`:focus-visible`, the tertiary
- * `:hover`/`:active` underline). Keeping the reset in `@layer shared` (instead
- * of Aphrodite, which injects *unlayered* styles that beat everything in
- * `@layer shared`) is what lets those win.
+ * all live in `@layer shared`. `outline` / `text-decoration` are safe to reset
+ * here because the component re-applies them at higher specificity
+ * (`:focus-visible`, the tertiary `:hover`/`:active` underline). Keeping the
+ * reset in `@layer shared` (instead of Aphrodite, which injects *unlayered*
+ * styles that beat everything in `@layer shared`) is what lets those win.
  */
 
 .reset {
@@ -21,6 +17,7 @@
     justify-content: center;
     margin: 0;
     padding: 0;
+    border: none;
     cursor: pointer;
     outline: none;
     text-decoration: none;

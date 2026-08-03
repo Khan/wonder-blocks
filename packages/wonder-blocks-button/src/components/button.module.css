@@ -267,6 +267,24 @@
 }
 
 /**
+ * Re-assert the rest-state border for the kinds that show one (secondary /
+ * tertiary). `button-unstyled`'s `.reset` sets `border: none` in the same
+ * `@layer shared` at equal specificity but later source order, which would
+ * otherwise clear the base `.button` border. The `[data-kind]` attribute bumps
+ * this to a higher specificity so the visible border wins regardless of
+ * emission order. `border-style` is re-declared too because `border: none`
+ * resets it to `none`. Hover / press (higher specificity) and disabled (later
+ * source order, equal specificity) still override as intended. Primary is
+ * intentionally excluded — it has a zero-width border and uses `outline`.
+ */
+.button[data-kind="secondary"],
+.button[data-kind="tertiary"] {
+    border-style: solid;
+    border-width: var(--button-border-width-default);
+    border-color: var(--button-border-default);
+}
+
+/**
  * Hover. Allowed on non-touch devices only so the hover state isn't "sticky"
  * on touch devices.
  */
