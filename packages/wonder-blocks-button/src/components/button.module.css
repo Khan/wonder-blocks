@@ -334,9 +334,16 @@
 /**
  * Focus. `:focus-visible` provides keyboard-only focus styling; the `.focused`
  * class enables programmatic focus (set by `ClickableBehavior`).
+ *
+ * The `[data-kind]` attribute is included so this rule matches the specificity
+ * of the kind-specific hover / active rules above (which are all qualified by
+ * `[data-kind]`). At equal specificity the later rule wins, and this focus rule
+ * is emitted after hover / active — so the focus ring keeps priority when a
+ * button is focused *and* hovered or pressed (otherwise the primary `outline`
+ * and secondary/tertiary inset `box-shadow` would paint over the ring).
  */
-.button:focus-visible,
-.button.focused {
+.button[data-kind]:focus-visible,
+.button[data-kind].focused {
     @apply --wb-focus-visible;
 }
 
@@ -373,8 +380,10 @@
 }
 
 /**
- * Reset hover / active styling on disabled buttons. NOTE: focus is intentionally
- * specified after hover so it can reset hover styling back to the rest state.
+ * Reset hover / active styling on disabled buttons.
+ *
+ * NOTE: focus is intentionally specified after hover so it can reset hover
+ * styling back to the rest state.
  */
 .button[aria-disabled="true"]:hover,
 .button[aria-disabled="true"]:active {
