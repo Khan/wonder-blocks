@@ -51,14 +51,16 @@ const ButtonCore: React.ForwardRefExoticComponent<
 
     const disabled = spinner || disabledProp;
 
-    // The `kind` and `actionType` axes of the variant matrix are selected in
-    // CSS via the `[data-kind]` attribute (set by `ButtonUnstyled`) combined
-    // with the `actionType` class below. `disabled` is selected via the
-    // `[aria-disabled="true"]` attribute (also set by `ButtonUnstyled`), which
-    // keeps the element focusable. Class-name strings are composed through the
-    // `style` prop — `processStyleList` routes them to `className`.
+    // One class per variant axis. Each of these only assigns the
+    // `--wb-c-button--*` component tokens that its axis owns; `styles.button`
+    // and the state rules in the module read those tokens. `disabled` is
+    // selected in CSS via the `[aria-disabled="true"]` attribute (set by
+    // `ButtonUnstyled`), which keeps the element focusable. Class-name strings
+    // are composed through the `style` prop — `processStyleList` routes them
+    // to `className`.
     const defaultStyle = [
         styles.button,
+        styles[kind],
         actionType && styles[actionType],
         size === "small" && styles.small,
         size === "large" && styles.large,
