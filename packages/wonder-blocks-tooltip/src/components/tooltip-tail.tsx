@@ -272,14 +272,28 @@ export default class TooltipTail extends React.Component<Props> {
          * NOTE: The widths and heights refer to the downward-pointing tail
          * (i.e. placement="top"). When the tail points to the left or right
          * instead, the width/height are inverted.
+         *
+         * These insets are intentionally physical rather than logical.
+         * Popper.js reports the tail's offset as a physical distance from the
+         * bubble's left/top edge, so the tail has to resolve against that same
+         * physical origin in both writing directions. Using logical properties
+         * here would flip the origin under `dir="rtl"` while Popper's offset
+         * stayed physical, placing the tail outside the bubble entirely. The
+         * tail is a pure shape with no text, so it has no directional reading
+         * order of its own. `placement` is likewise physical: a tail for
+         * placement="right" faces the anchor on the bubble's left side
+         * regardless of direction.
          */
         const fullTailWidth = this._getFullTailWidth();
         const fullTailHeight = this._getFullTailHeight();
 
         switch (placement) {
             case "top":
+                // The tail sits at the bubble's bottom edge, nudged 1px up so
+                // its outline overlaps the content's border.
                 return {
-                    top: -1,
+                    left: 0,
+                    bottom: 1,
                     width: fullTailWidth,
                     height: fullTailHeight,
                 };
@@ -287,12 +301,14 @@ export default class TooltipTail extends React.Component<Props> {
             case "right":
                 return {
                     left: 1,
+                    top: 0,
                     width: fullTailHeight,
                     height: fullTailWidth,
                 };
 
             case "bottom":
                 return {
+                    left: 0,
                     top: 1,
                     width: fullTailWidth,
                     height: fullTailHeight,
@@ -300,7 +316,8 @@ export default class TooltipTail extends React.Component<Props> {
 
             case "left":
                 return {
-                    left: -1,
+                    right: 1,
+                    top: 0,
                     width: fullTailHeight,
                     height: fullTailWidth,
                 };
@@ -308,6 +325,31 @@ export default class TooltipTail extends React.Component<Props> {
             default:
                 throw new Error(`Unknown placement: ${placement}`);
         }
+    }
+
+    /**
+     * The space the tail occupies in the bubble's flex layout.
+     *
+     * The tail itself is absolutely positioned (see `_getContainerStyle`), so
+     * it no longer contributes to the bubble's layout. This spacer reserves the
+     * same room the tail used to take along the bubble's stacking axis, keeping
+     * the gap between the bubble content and the anchor.
+     */
+    _renderLayoutSpacer(): React.ReactNode {
+        const {placement} = this.props;
+        const isHorizontal = placement === "left" || placement === "right";
+        const fullTailHeight = this._getFullTailHeight();
+
+        return (
+            <View
+                aria-hidden
+                style={
+                    isHorizontal
+                        ? {inlineSize: fullTailHeight, flexShrink: 0}
+                        : {blockSize: fullTailHeight, flexShrink: 0}
+                }
+            />
+        );
     }
 
     _getArrowStyle(): React.CSSProperties {
@@ -424,17 +466,20 @@ export default class TooltipTail extends React.Component<Props> {
     render(): React.ReactNode {
         const {offset, placement, updateRef} = this.props;
         return (
-            <View
-                style={[
-                    styles.tailContainer,
-                    {...offset},
-                    this._getContainerStyle(),
-                ]}
-                data-placement={placement}
-                ref={updateRef}
-            >
-                {this._renderArrow()}
-            </View>
+            <React.Fragment>
+                {this._renderLayoutSpacer()}
+                <View
+                    style={[
+                        styles.tailContainer,
+                        {...offset},
+                        this._getContainerStyle(),
+                    ]}
+                    data-placement={placement}
+                    ref={updateRef}
+                >
+                    {this._renderArrow()}
+                </View>
+            </React.Fragment>
         );
     }
 }
@@ -459,7 +504,7 @@ const styles = StyleSheet.create({
      * Container
      */
     tailContainer: {
-        position: "relative",
+        position: "absolute",
         pointerEvents: "none",
     },
 

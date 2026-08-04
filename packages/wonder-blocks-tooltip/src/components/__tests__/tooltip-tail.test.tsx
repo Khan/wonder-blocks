@@ -48,9 +48,14 @@ describe("TooltipTail", () => {
             expect(container).toMatchInlineSnapshot(`
 <div>
   <div
+    aria-hidden="true"
+    class=""
+    style="align-items: stretch; border-width: 0px; border-style: solid; box-sizing: border-box; display: flex; flex-direction: column; margin: 0px; padding: 0px; position: relative; z-index: 0; min-block-size: 0; min-inline-size: 0; block-size: 20px; flex-shrink: 0;"
+  />
+  <div
     class=""
     data-placement="top"
-    style="align-items: stretch; border-width: 0px; border-style: solid; box-sizing: border-box; display: flex; flex-direction: column; margin: 0px; padding: 0px; position: relative; z-index: 0; min-block-size: 0; min-inline-size: 0; pointer-events: none; top: -1px; width: 40px; height: 20px;"
+    style="align-items: stretch; border-width: 0px; border-style: solid; box-sizing: border-box; display: flex; flex-direction: column; margin: 0px; padding: 0px; position: absolute; z-index: 0; min-block-size: 0; min-inline-size: 0; pointer-events: none; left: 0px; bottom: 1px; width: 40px; height: 20px;"
   >
     <svg
       aria-hidden="true"
@@ -118,9 +123,14 @@ describe("TooltipTail", () => {
             expect(container).toMatchInlineSnapshot(`
                 <div>
                   <div
+                    aria-hidden="true"
+                    class=""
+                    style="align-items: stretch; border-width: 0px; border-style: solid; box-sizing: border-box; display: flex; flex-direction: column; margin: 0px; padding: 0px; position: relative; z-index: 0; min-block-size: 0; min-inline-size: 0; block-size: 20px; flex-shrink: 0;"
+                  />
+                  <div
                     class=""
                     data-placement="top"
-                    style="align-items: stretch; border-width: 0px; border-style: solid; box-sizing: border-box; display: flex; flex-direction: column; margin: 0px; padding: 0px; position: relative; z-index: 0; min-block-size: 0; min-inline-size: 0; pointer-events: none; top: -1px; width: 40px; height: 20px;"
+                    style="align-items: stretch; border-width: 0px; border-style: solid; box-sizing: border-box; display: flex; flex-direction: column; margin: 0px; padding: 0px; position: absolute; z-index: 0; min-block-size: 0; min-inline-size: 0; pointer-events: none; left: 0px; bottom: 1px; width: 40px; height: 20px;"
                   >
                     <div
                       aria-hidden="true"
