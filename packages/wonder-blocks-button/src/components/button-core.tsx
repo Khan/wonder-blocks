@@ -22,7 +22,7 @@ const ButtonCore: React.ForwardRefExoticComponent<
     const {
         children,
         skipClientNav,
-        actionType,
+        actionType = "progressive",
         disabled: disabledProp,
         // eslint-disable-next-line @typescript-eslint/no-unused-vars -- make sure it is not included in restProps
         focused,
@@ -61,7 +61,7 @@ const ButtonCore: React.ForwardRefExoticComponent<
     const defaultStyle = [
         styles.button,
         styles[kind],
-        actionType && styles[actionType],
+        styles[actionType],
         size === "small" && styles.small,
         size === "large" && styles.large,
         // Enable the press / focus states for programmatic (keyboard)
