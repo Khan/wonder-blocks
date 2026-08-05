@@ -2,6 +2,7 @@ import * as React from "react";
 import {
     addStyle,
     AriaProps,
+    isRtl as isRtlForElement,
     keys,
     PropsFor,
     StyleType,
@@ -278,7 +279,7 @@ export const Tabs = React.forwardRef(function Tabs(
                 (tab) => tab.id === focusedTabId.current,
             );
             const element = event.currentTarget;
-            const isRtl = !!element.closest("[dir=rtl]");
+            const isRtl = isRtlForElement(element);
 
             switch (event.key) {
                 case isRtl && keys.right:
