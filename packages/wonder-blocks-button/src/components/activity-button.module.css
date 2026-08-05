@@ -1,12 +1,10 @@
 /**
- * ActivityButton styles (CSS Modules migration — WB-2328 / CSS Modules Phase 4).
+ * ActivityButton styles
  *
  * Component-token surface
  * -----------------------
  * Every value a variant axis can change is funnelled through a
- * `--wb-c-activity-button--*` custom property ("component token"), following
- * the convention `NodeIconButton` established with `--wb-c-node-icon-button--`
- * and `Button` with `--wb-c-button--`.
+ * `--wb-c-activity-button--*` custom property ("component token").
  *
  *   --wb-c-activity-button--box-border-width      structural (all variants)
  *   --wb-c-activity-button--box-shadow-y-rest
@@ -48,13 +46,6 @@
  * Collapsing them would mean interpolating token names, which only JS can do.
  * Disabled colours are keyed by `kind` alone, so they live on the kind classes.
  *
- * The token values themselves are *not* codegen'd per theme (unlike
- * `--wb-c-button-root-*`): every theme reuses the same structural values, so
- * they're written literally here, matching the note on the `theme` object the
- * Aphrodite version carried. Colour tokens still resolve against the per-theme
- * `[data-wb-theme]` blocks shipped in `@khanacademy/wonder-blocks-tokens`, so
- * theming (default / thunderblocks / syl-dark) keeps working unchanged.
- *
  * Specificity: the box state rules all sit at (0,3,0) — `.button` plus a
  * pseudo-class/attribute plus `.box` — so source order alone decides
  * precedence. They are declared hover → active → disabled → focus, which is
@@ -94,8 +85,6 @@
     block-size: auto;
     flex-direction: column;
     gap: var(--wb-sizing-size_020);
-
-    /* `align-self: flex-start` + `justify-self: center`. */
     place-self: flex-start center;
 }
 

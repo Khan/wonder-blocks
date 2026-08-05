@@ -71,12 +71,7 @@ const ActivityButtonCore: React.ForwardRefExoticComponent<
             type={type}
         >
             <>
-                {/* NOTE: The descendant selectors for the hover and press
-                    states now live in `activity-button.module.css` and target
-                    the hashed `styles.box` class. The plain `chonky` className
-                    is kept as a consumer/test hook, it just no longer drives
-                    styling. */}
-                <View style={chonkyStyles} className="chonky">
+                <View style={chonkyStyles}>
                     {/* If startIcon is a string, we use the `PhosphorIcon` component to render it. Otherwise, we render the element directly */}
                     {startIcon &&
                         (typeof startIcon === "string" ? (
