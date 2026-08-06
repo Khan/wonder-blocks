@@ -18,9 +18,11 @@ styling refactor.
 - `data-kind` is still set on the rendered element and remains available as a
   consumer/test hook, but it no longer drives any styling.
 - The shared element reset (`button-unstyled`) also moves to a CSS Module
-  (`button-unstyled.module.css`) so the reset lives in `@layer shared` alongside
-  the component styles rather than as unlayered Aphrodite (which would otherwise
-  override the layered focus ring / border / underline).
+  (`button-unstyled.module.css`) rather than staying as unlayered Aphrodite
+  (which would otherwise override the layered focus ring / border / underline).
+  It is emitted into the nested layer `shared.reset`, so the component styles —
+  which sit directly in `shared` — always outrank it regardless of the order the
+  bundler emits the two stylesheets in.
 - The package now ships its bundled stylesheet at `dist/index.css` (imported
   automatically as a side-effect of the JS entry) and exposes it explicitly via
   the new `@khanacademy/wonder-blocks-button/css` subpath. `sideEffects` is set
