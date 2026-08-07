@@ -400,6 +400,8 @@ import {semanticColor} from "@khanacademy/wonder-blocks-tokens";
 | \`semanticColor.learning.math.foreground.purpleD\` | \`--wb-semanticColor-learning-math-foreground-purpleD\` | \`#8351E8\` | \`#363498\` | \`#8DA2FF\` |
 | \`semanticColor.learning.math.foreground.pink\` | \`--wb-semanticColor-learning-math-foreground-pink\` | \`#B25071\` | \`#84275E\` | \`#F8A2D6\` |
 | \`semanticColor.learning.math.foreground.red\` | \`--wb-semanticColor-learning-math-foreground-red\` | \`#D92916\` | \`#BE2626\` | \`#FBB1B1\` |
+| \`semanticColor.learning.embeddedContent.background.default\` | \`--wb-semanticColor-learning-embeddedContent-background-default\` | \`#151521\` | \`#151521\` | \`#151521\` |
+| \`semanticColor.learning.embeddedContent.foreground.default\` | \`--wb-semanticColor-learning-embeddedContent-foreground-default\` | \`#F6F6F6\` | \`#F6F6F6\` | \`#F6F6F6\` |
 | \`semanticColor.learning.background.gems.subtle\` | \`--wb-semanticColor-learning-background-gems-subtle\` | \`#FCEEF7\` | \`#FCEEF7\` | \`#84275E\` |
 | \`semanticColor.learning.background.gems.default\` | \`--wb-semanticColor-learning-background-gems-default\` | \`#FFE3F4\` | \`#FFE3F4\` | \`#33182E\` |
 | \`semanticColor.learning.background.gems.strong\` | \`--wb-semanticColor-learning-background-gems-strong\` | \`#84275E\` | \`#84275E\` | \`#BB3183\` |

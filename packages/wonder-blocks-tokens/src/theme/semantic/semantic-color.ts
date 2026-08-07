@@ -379,6 +379,19 @@ export const semanticColor = {
                 red: "#D92916",
             },
         },
+        /**
+         * These colors are used for embedded content (e.g. interactive
+         * widgets, simulations) that is rendered within a learning
+         * experience. They remain consistent across all themes.
+         */
+        embeddedContent: {
+            background: {
+                default: thunderBlocksColor.black_100,
+            },
+            foreground: {
+                default: thunderBlocksColor.gray_90,
+            },
+        },
         background: {
             gems: {
                 subtle: thunderBlocksColor.magenta_90,
