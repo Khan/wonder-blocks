@@ -265,17 +265,17 @@ export const semanticColor = mergeTheme(thunderblocksSemanticColor, {
             neutral: {
                 default: {
                     border: core.border.neutral.default,
-                    background: core.transparent,
+                    background: core.background.base.default,
                     foreground: core.foreground.neutral.default,
                 },
                 hover: {
                     border: core.border.neutral.strong,
-                    background: core.transparent,
+                    background: core.background.base.default,
                     foreground: core.foreground.neutral.strong,
                 },
                 press: {
                     border: core.border.neutral.strong,
-                    background: core.transparent,
+                    background: core.background.base.default,
                     foreground: core.foreground.neutral.strong,
                 },
             },
