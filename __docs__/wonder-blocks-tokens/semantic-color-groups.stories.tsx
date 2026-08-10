@@ -219,6 +219,15 @@ export const LearningShadow = () => {
     );
 };
 
+export const LearningEmbeddedContent = () => {
+    return (
+        <ColorGroupStory
+            category={semanticColor.learning.embeddedContent}
+            group="learning.embeddedContent"
+        />
+    );
+};
+
 export const Khanmigo = () => {
     return (
         <ColorGroup

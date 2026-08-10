@@ -379,6 +379,14 @@ export const semanticColor = {
                 red: "#D92916",
             },
         },
+        embeddedContent: {
+            background: {
+                default: thunderBlocksColor.black_100,
+            },
+            foreground: {
+                default: thunderBlocksColor.gray_90,
+            },
+        },
         background: {
             gems: {
                 subtle: thunderBlocksColor.magenta_90,
