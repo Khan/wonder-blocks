@@ -91,7 +91,7 @@ type Props = Pick<AriaProps, "aria-hidden" | "aria-label" | "role"> & {
  * Directional glyphs (arrows, carets, and similar) are mirrored automatically
  * in RTL via a central whitelist. Pass the LTR-facing icon and let mirroring
  * handle direction — do not swap icons based on `isRtl`. To change which icons
- * flip, update `util/directional-icons.ts`. See the PhosphorIcon RTL Mirroring
+ * flip, update `util/mirrored-icon-names.ts`. See the PhosphorIcon RTL Mirroring
  * docs for the full list.
  */
 export const PhosphorIcon = React.forwardRef(function PhosphorIcon(
