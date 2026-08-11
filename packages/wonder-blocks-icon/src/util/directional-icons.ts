@@ -58,14 +58,10 @@ export function getPhosphorIconName(icon: string): string | undefined {
  * - rspack `asset/resource`: `[hash]-[name][ext]` (hash prefix)
  * - Vite production builds: `[name]-[hash][ext]` (hash suffix)
  *
- * Rather than matching the whole basename, we test every `-`-delimited
- * prefix and suffix of the name against the known set. That recovers
- * `arrow-right` from both `a1b2c3d4-arrow-right` and `arrow-right-a1b2c3d4`.
- * Each lookup is O(1) and the name has only a handful of segments.
- *
- * Returns `false` when the icon cannot be identified, so an unrecognised or
- * inlined asset keeps its current, unmirrored rendering rather than flipping
- * unexpectedly.
+ * We match every `-`-delimited prefix and suffix of the basename against the
+ * whitelist so both forms resolve (e.g. `arrow-right` from
+ * `a1b2c3d4-arrow-right` or `arrow-right-a1b2c3d4`). Returns `false` when the
+ * icon cannot be identified.
  */
 export function shouldMirrorIconInRtl(icon: string): boolean {
     const name = getPhosphorIconName(icon);
@@ -76,14 +72,12 @@ export function shouldMirrorIconInRtl(icon: string): boolean {
 
     const segments = name.split("-");
 
-    // Hash-prefix form: `[hash]-arrow-right` → try `arrow-right`, `right`, …
     for (let i = 0; i < segments.length; i++) {
         if (MIRRORED_ICON_NAMES.has(segments.slice(i).join("-"))) {
             return true;
         }
     }
 
-    // Hash-suffix form (Vite): `arrow-right-[hash]` → try `arrow`, `arrow-right`
     for (let end = 1; end < segments.length; end++) {
         if (MIRRORED_ICON_NAMES.has(segments.slice(0, end).join("-"))) {
             return true;

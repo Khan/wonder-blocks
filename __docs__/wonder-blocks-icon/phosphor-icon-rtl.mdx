@@ -67,11 +67,12 @@ places it at the inline end.
 
 ### Notes
 
-- Uses `:dir(rtl)` + `transform` (Chrome 120+, Safari 16.4+, Firefox). Prefer
-  this over detecting direction in JS so icons in portals stay correct.
+- Uses `:dir(rtl)` + `transform` (Chrome 120+, Safari 16.4+, Firefox) so icons
+  in portals stay correct without JS direction detection.
 - Requires a bundler that preserves the SVG filename; `data:` URIs are not
   mirrored.
-- A custom `transform` in `style` overrides RTL mirroring (consumer styles win).
+- A consumer `style.transform` does not compose with mirroring: `:dir(rtl)` is
+  more specific, so the mirror transform wins in RTL.
 
 ### References
 

@@ -89,10 +89,8 @@ type Props = Pick<AriaProps, "aria-hidden" | "aria-label" | "role"> & {
  * ## Right-to-left
  *
  * Directional glyphs (arrows, carets, and similar) are mirrored automatically
- * in RTL via a central whitelist. Pass the LTR-facing icon and let mirroring
- * handle direction — do not swap icons based on `isRtl`. To change which icons
- * flip, update `util/mirrored-icon-names.ts`. See the PhosphorIcon RTL Mirroring
- * docs for the full list.
+ * in RTL via a central whitelist. Pass the LTR-facing icon — do not swap icons
+ * based on `isRtl`. See the PhosphorIcon RTL Mirroring docs for the list.
  */
 export const PhosphorIcon = React.forwardRef(function PhosphorIcon(
     props: Props,
@@ -163,12 +161,8 @@ const styles = StyleSheet.create({
         maskPosition: "center",
     },
     /**
-     * Mirrors the glyph when it is rendered inside right-to-left content.
-     *
-     * `:dir()` is used rather than detecting direction in JavaScript (e.g.
-     * `useIsRtl`) so this costs no render work and stays correct for icons
-     * rendered into portals, where the nearest `dir` ancestor is not the
-     * React parent. Aphrodite's types don't include `:dir()`, hence the cast.
+     * Mirrors the glyph in RTL. Uses `:dir()` (not JS) so portal-rendered icons
+     * stay correct. Aphrodite's types omit `:dir()`, hence the cast.
      */
     mirroredInRtl: {
         [":dir(rtl)" as string]: {

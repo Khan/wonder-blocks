@@ -1,36 +1,8 @@
 /**
- * Phosphor icon names whose glyph encodes a reading direction, and which
- * therefore need to be mirrored horizontally when rendered inside
- * right-to-left content.
- *
- * This list is the single source of truth for RTL icon mirroring in
- * `PhosphorIcon`. To change which icons flip, update this set in a Wonder
- * Blocks PR — there is no per-call-site override on `PhosphorIcon`.
- *
- * Deliberately excluded, because their meaning is independent of reading
- * direction and mirroring them would be a regression:
- * - Media affordances (`play`, `fast-forward`, `rewind`, `skip-forward`,
- *   `skip-back`). By long-standing convention these keep pointing the same
- *   way in RTL because they refer to the timeline, not the text.
- * - Rotation (`arrow-clockwise`, `arrow-counter-clockwise`,
- *   `arrows-clockwise`, `arrows-counter-clockwise`). These describe a real
- *   physical direction of travel.
- * - Chart and trend glyphs (`trend-up`, `trend-down`). These sit on a time
- *   axis that is conventionally left-to-right in every locale.
- * - Vertical or symmetric glyphs (`arrows-down-up`, `arrows-left-right`,
- *   `arrows-in`, `arrows-out`, `text-align-center`, `text-align-justify`).
- *   Mirroring is either meaningless or a visual no-op.
- * - Physical text alignment (`text-align-left`, `text-align-right`). These
- *   mean flush against a physical edge (Word/Docs style), not start/end of
- *   line. Indentation (`text-indent`, `text-outdent`) is included because it
- *   follows reading direction.
- * - Launch / pop-out idioms (`arrow-square-out`, `arrow-up-right`,
- *   `arrow-square-up-right`). Treated as a fixed "opens elsewhere" cue
- *   (Carbon and similar systems leave launch glyphs unmirrored). KA uses
- *   `arrow-square-out` for external links and `arrow-up-right` as a popout.
- *   Related left diagonals (`arrow-up-left`, `arrow-square-up-left`) stay on
- *   the whitelist because they are not used as that idiom.
- * - `magnifying-glass`. Retained unmirrored to match platform conventions.
+ * Icon names mirrored in RTL by `PhosphorIcon`. Single source of truth —
+ * update this set in a Wonder Blocks PR (no call-site override). See the
+ * PhosphorIcon RTL docs for deliberate exclusions (media, launch, trends,
+ * physical text-align, etc.).
  */
 export const MIRRORED_ICON_NAMES: ReadonlySet<string> = new Set([
     "arrow-arc-left",
