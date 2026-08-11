@@ -77,3 +77,4 @@ The following shows what rules are enabled in each config:
 | [`no-invalid-bodytext-parent`](docs/no-invalid-bodytext-parent.md)| |✅|
 | [`require-logical-properties-for-rtl`](docs/require-logical-properties-for-rtl.md)| opt-in | opt-in |
 | [`no-raw-button`](docs/no-raw-button.md)| |✅|
+| [`no-rtl-icon-swap`](docs/no-rtl-icon-swap.md)|✅|✅|

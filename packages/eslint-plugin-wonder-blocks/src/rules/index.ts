@@ -6,6 +6,7 @@ import noHardcodedColor from "./no-hardcoded-color";
 import noInvalidBodyTextChildren from "./no-invalid-bodytext-children";
 import noInvalidBodyTextParent from "./no-invalid-bodytext-parent";
 import noRawButton from "./no-raw-button";
+import noRtlIconSwap from "./no-rtl-icon-swap";
 import requireLogicalPropertiesForRtl from "./require-logical-properties-for-rtl";
 
 const rules: Record<string, TSESLint.RuleModule<string, readonly unknown[]>> = {
@@ -15,6 +16,7 @@ const rules: Record<string, TSESLint.RuleModule<string, readonly unknown[]>> = {
     "no-invalid-bodytext-children": noInvalidBodyTextChildren,
     "no-invalid-bodytext-parent": noInvalidBodyTextParent,
     "no-raw-button": noRawButton,
+    "no-rtl-icon-swap": noRtlIconSwap,
     "require-logical-properties-for-rtl": requireLogicalPropertiesForRtl,
 };
 
