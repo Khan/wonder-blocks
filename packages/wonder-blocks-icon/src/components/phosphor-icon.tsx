@@ -4,6 +4,7 @@ import {addStyle, AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
 import {sizing} from "@khanacademy/wonder-blocks-tokens";
 
 import {IconSize, PhosphorIconAsset} from "../types";
+import {shouldMirrorIconInRtl} from "../util/directional-icons";
 
 // We use a span instead of an img because we want to use the mask-image CSS
 // property.
@@ -84,6 +85,14 @@ type Props = Pick<AriaProps, "aria-hidden" | "aria-label" | "role"> & {
  * - medium: 2.4rem (24px)
  * - large: 4.8rem (48px)
  * - xlarge: 9.6rem (96px)
+ *
+ * ## Right-to-left
+ *
+ * Directional glyphs (arrows, carets, and similar) are mirrored automatically
+ * in RTL via a central whitelist. Pass the LTR-facing icon and let mirroring
+ * handle direction — do not swap icons based on `isRtl`. To change which icons
+ * flip, update `util/directional-icons.ts`. See the PhosphorIcon RTL Mirroring
+ * docs for the full list.
  */
 export const PhosphorIcon = React.forwardRef(function PhosphorIcon(
     props: Props,
@@ -102,6 +111,7 @@ export const PhosphorIcon = React.forwardRef(function PhosphorIcon(
 
     const sizeStyles = getSize(size);
     const classNames = `${className ?? ""}`;
+    const shouldMirror = shouldMirrorIconInRtl(icon);
 
     return (
         <StyledSpan
@@ -114,6 +124,7 @@ export const PhosphorIcon = React.forwardRef(function PhosphorIcon(
                     backgroundColor: color,
                     maskImage: `url(${icon})`,
                 },
+                shouldMirror && styles.mirroredInRtl,
                 style,
             ]}
             data-testid={testId}
@@ -150,6 +161,19 @@ const styles = StyleSheet.create({
         maskSize: "100%",
         maskRepeat: "no-repeat",
         maskPosition: "center",
+    },
+    /**
+     * Mirrors the glyph when it is rendered inside right-to-left content.
+     *
+     * `:dir()` is used rather than detecting direction in JavaScript (e.g.
+     * `useIsRtl`) so this costs no render work and stays correct for icons
+     * rendered into portals, where the nearest `dir` ancestor is not the
+     * React parent. Aphrodite's types don't include `:dir()`, hence the cast.
+     */
+    mirroredInRtl: {
+        [":dir(rtl)" as string]: {
+            transform: "scaleX(-1)",
+        },
     },
     small: {
         width: sizing.size_160,

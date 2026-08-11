@@ -1,0 +1,79 @@
+import {Canvas, Meta} from "@storybook/addon-docs/blocks";
+
+import * as PhosphorIconRtlStories from "./phosphor-icon-rtl.stories";
+
+<Meta of={PhosphorIconRtlStories} />
+
+# PhosphorIcon
+
+## Directional icons in RTL
+
+`PhosphorIcon` automatically mirrors icons whose glyph encodes a **reading**
+direction when rendered in right-to-left content. Layout position already
+mirrors via logical CSS; this flips the glyph itself.
+
+Which icons mirror is decided by the whitelist in
+`packages/wonder-blocks-icon/src/util/directional-icons.ts`. To add or remove
+an icon, open a Wonder Blocks PR against that list — do not handle RTL
+mirroring at the call site.
+
+### Mirrored by default
+
+- Navigational arrows and carets (`arrow-left`/`arrow-right`,
+  `caret-left`/`caret-right`, and most `bend`, `elbow`, `circle`, `square`,
+  `line`, `fat`, and `u` variants)
+- `paper-plane`, `sign-in`, `sign-out`
+- `text-indent`, `text-outdent`
+
+Launch / pop-out diagonals (`arrow-up-right`, `arrow-square-up-right`) are
+excluded even though related left diagonals (`arrow-up-left`,
+`arrow-square-up-left`) remain — those left variants are not used as the
+"opens elsewhere" idiom at KA.
+
+<Canvas of={PhosphorIconRtlStories.ExpectedToMirror} />
+
+### Not mirrored
+
+- Media controls (`play`, `fast-forward`, `rewind`, `skip-forward`, `skip-back`)
+- Rotation (`arrow-clockwise`, `arrow-counter-clockwise`)
+- Charts / trends (`trend-up`, `trend-down`)
+- Vertical or symmetric glyphs (`arrows-down-up`, `arrows-left-right`,
+  `text-align-center`, `text-align-justify`)
+- Physical text alignment (`text-align-left`, `text-align-right`)
+- Launch / pop-out (`arrow-square-out`, `arrow-up-right`,
+  `arrow-square-up-right`)
+- `magnifying-glass`
+
+<Canvas of={PhosphorIconRtlStories.ExpectedNotToMirror} />
+
+### Examples
+
+<Canvas of={PhosphorIconRtlStories.CommonPatterns} />
+
+### Do not swap icons by direction
+
+Manual RTL icon swaps double-flip with auto-mirroring:
+
+```tsx
+// Don't
+<PhosphorIcon icon={isRtl ? caretLeftIcon : caretRightIcon} />
+
+// Do — pass the LTR-facing icon and let mirroring handle it
+<PhosphorIcon icon={caretRightIcon} />
+```
+
+The same applies to icon slots: keep `endIcon` as `endIcon` — `Button` already
+places it at the inline end.
+
+### Notes
+
+- Uses `:dir(rtl)` + `transform` (Chrome 120+, Safari 16.4+, Firefox). Prefer
+  this over detecting direction in JS so icons in portals stay correct.
+- Requires a bundler that preserves the SVG filename; `data:` URIs are not
+  mirrored.
+- A custom `transform` in `style` overrides RTL mirroring (consumer styles win).
+
+### References
+
+- [Material 3 — bidirectionality](https://m3.material.io/foundations/layout/understanding-layout/bidirectionality-rtl)
+- [Pinterest Gestalt — RTL iconography](https://gestalt.pinterest.systems/foundations/international_design/rtl_guidelines/iconography)
