@@ -18,7 +18,8 @@ const WEIGHT_SUFFIXES = [
  * The `icon` prop is whatever the bundler produced for the SVG import, so the
  * shape varies by environment:
  * - Vite dev server: `/node_modules/.../assets/regular/arrow-right.svg`
- * - rspack `asset/resource`: `/images/a1b2c3d4-arrow-right.svg`
+ * - Vite production / Storybook build: `/assets/arrow-right-[hash].svg`
+ * - rspack `asset/resource`: `/images/[hash]-arrow-right.svg`
  * - Jest transform: `arrow-right.svg`
  *
  * All of these end in `<name>[-weight].svg`, optionally behind a content hash
@@ -53,10 +54,14 @@ export function getPhosphorIconName(icon: string): string | undefined {
 /**
  * Whether the given icon asset should be mirrored in right-to-left content.
  *
- * Bundlers may prefix the file name with a content hash (`asset/resource`
- * emits `[hash]-[name][ext]`), so rather than matching the whole name we test
- * successively shorter `-`-delimited suffixes against the known set. Each
- * lookup is O(1) and the name has only a handful of segments.
+ * Bundlers insert a content hash next to the icon name:
+ * - rspack `asset/resource`: `[hash]-[name][ext]` (hash prefix)
+ * - Vite production builds: `[name]-[hash][ext]` (hash suffix)
+ *
+ * Rather than matching the whole basename, we test every `-`-delimited
+ * prefix and suffix of the name against the known set. That recovers
+ * `arrow-right` from both `a1b2c3d4-arrow-right` and `arrow-right-a1b2c3d4`.
+ * Each lookup is O(1) and the name has only a handful of segments.
  *
  * Returns `false` when the icon cannot be identified, so an unrecognised or
  * inlined asset keeps its current, unmirrored rendering rather than flipping
@@ -71,8 +76,16 @@ export function shouldMirrorIconInRtl(icon: string): boolean {
 
     const segments = name.split("-");
 
+    // Hash-prefix form: `[hash]-arrow-right` → try `arrow-right`, `right`, …
     for (let i = 0; i < segments.length; i++) {
         if (MIRRORED_ICON_NAMES.has(segments.slice(i).join("-"))) {
+            return true;
+        }
+    }
+
+    // Hash-suffix form (Vite): `arrow-right-[hash]` → try `arrow`, `arrow-right`
+    for (let end = 1; end < segments.length; end++) {
+        if (MIRRORED_ICON_NAMES.has(segments.slice(0, end).join("-"))) {
             return true;
         }
     }
