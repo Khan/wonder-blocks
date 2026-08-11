@@ -53,8 +53,14 @@ describe("shouldMirrorIconInRtl", () => {
         ["/node_modules/.../assets/regular/text-indent.svg"],
         ["/node_modules/.../assets/regular/text-outdent.svg"],
         // Bundler-hashed and weighted variants resolve to the same decision.
+        // rspack `asset/resource`: hash prefix.
         ["/images/a1b2c3d4-arrow-right.svg"],
         ["/images/a1b2c3d4-arrow-right-bold.svg"],
+        // Vite production / Storybook / Chromatic: `[name]-[hash].svg`.
+        ["/assets/arrow-right-a1b2c3d4.svg"],
+        ["/assets/caret-right-deadbeef.svg"],
+        ["/assets/sign-out-01234567.svg"],
+        ["/assets/arrow-right-bold-a1b2c3d4.svg"],
         ["caret-right-fill.svg"],
     ])("mirrors %s", (icon) => {
         expect(shouldMirrorIconInRtl(icon)).toBe(true);
@@ -91,6 +97,8 @@ describe("shouldMirrorIconInRtl", () => {
         ["/node_modules/.../assets/regular/funnel.svg"],
         // A hashed non-directional icon must not match on its hash.
         ["/images/deadbeef-play.svg"],
+        ["/assets/play-a1b2c3d4.svg"],
+        ["/assets/arrow-up-right-a1b2c3d4.svg"],
         // An arbitrary non-Phosphor SVG.
         ["/images/my-custom-illustration.svg"],
     ])("does not mirror %s", (icon) => {
