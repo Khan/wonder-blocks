@@ -65,16 +65,13 @@ Manual RTL icon swaps double-flip with auto-mirroring:
 The same applies to icon slots: keep `endIcon` as `endIcon` — `Button` already
 places it at the inline end.
 
-### Notes
+### Custom icons
 
-- Uses `:dir(rtl)` + `transform` (Chrome 120+, Safari 16.4+, Firefox) so icons
-  in portals stay correct without JS direction detection.
-- Requires a bundler that preserves the SVG filename; `data:` URIs are not
-  mirrored.
-- A consumer `style.transform` does not compose with mirroring: `:dir(rtl)` is
-  more specific, so the mirror transform wins in RTL.
+Custom (non-Phosphor) SVGs are not on the whitelist. Pass `mirrorInRtl` to opt
+in when the glyph is directional — still pass the LTR-facing asset (no ternary):
 
-### References
+```tsx
+<PhosphorIcon icon={myCustomForward} mirrorInRtl />
+```
 
-- [Material 3 — bidirectionality](https://m3.material.io/foundations/layout/understanding-layout/bidirectionality-rtl)
-- [Pinterest Gestalt — RTL iconography](https://gestalt.pinterest.systems/foundations/international_design/rtl_guidelines/iconography)
+<Canvas of={PhosphorIconRtlStories.CustomIconMirrorInRtl} />

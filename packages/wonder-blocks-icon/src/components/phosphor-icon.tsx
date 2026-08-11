@@ -56,6 +56,13 @@ type Props = Pick<AriaProps, "aria-hidden" | "aria-label" | "role"> & {
      * - `string`: an import referencing an arbitrary SVG file.
      */
     icon: PhosphorIconAsset | string;
+
+    /**
+     * When true, mirror this icon in RTL even if it is not on the directional
+     * whitelist (e.g. a custom directional SVG). Defaults to whitelist
+     * behavior when omitted. Does not disable mirroring for whitelisted icons.
+     */
+    mirrorInRtl?: boolean;
 };
 
 /**
@@ -90,7 +97,8 @@ type Props = Pick<AriaProps, "aria-hidden" | "aria-label" | "role"> & {
  *
  * Directional glyphs (arrows, carets, and similar) are mirrored automatically
  * in RTL via a central whitelist. Pass the LTR-facing icon — do not swap icons
- * based on `isRtl`. See the PhosphorIcon RTL Mirroring docs for the list.
+ * based on `isRtl`. For custom directional SVGs, pass `mirrorInRtl`. See the
+ * PhosphorIcon RTL Mirroring docs for the list.
  */
 export const PhosphorIcon = React.forwardRef(function PhosphorIcon(
     props: Props,
@@ -104,12 +112,14 @@ export const PhosphorIcon = React.forwardRef(function PhosphorIcon(
         testId,
         className,
         role,
+        mirrorInRtl,
         ...sharedProps
     } = props;
 
     const sizeStyles = getSize(size);
     const classNames = `${className ?? ""}`;
-    const shouldMirror = shouldMirrorIconInRtl(icon);
+    // Opt-in for custom directional icons; whitelist still applies otherwise.
+    const shouldMirror = mirrorInRtl === true || shouldMirrorIconInRtl(icon);
 
     return (
         <StyledSpan

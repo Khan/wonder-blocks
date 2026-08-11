@@ -25,6 +25,10 @@ import textAlignLeftIcon from "@phosphor-icons/core/regular/text-align-left.svg"
 import arrowUpRightIcon from "@phosphor-icons/core/regular/arrow-up-right.svg";
 import arrowSquareOutIcon from "@phosphor-icons/core/regular/arrow-square-out.svg";
 
+// Custom SVG (not on the Phosphor whitelist). Filename must not end with a
+// whitelisted name like `arrow-right`, or matching would pick it up anyway.
+import customForwardIcon from "./icons/custom-forward.svg";
+
 import {View} from "@khanacademy/wonder-blocks-core";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {BodyText, Heading} from "@khanacademy/wonder-blocks-typography";
@@ -196,6 +200,51 @@ export const CommonPatterns: StoryComponentType = {
                 <ListRows />
             </View>
         </Comparison>
+    ),
+};
+
+/**
+ * Custom (non-Phosphor) SVGs are not mirrored unless `mirrorInRtl` is set.
+ * Uses a demo-only badge+arrow asset (not a real product icon) so it is
+ * obvious this is a custom SVG path, not a Phosphor caret.
+ * Without the prop the glyph stays LTR-facing in both panels; with it, the
+ * RTL panel flips.
+ */
+export const CustomIconMirrorInRtl: StoryComponentType = {
+    name: "CustomIconMirrorInRtl",
+    render: () => (
+        <View style={styles.stack}>
+            <BodyText size="small" style={styles.caption}>
+                Demo custom asset (circle + arrow) — not from Phosphor
+            </BodyText>
+            <View style={styles.stack}>
+                <BodyText size="small">Without mirrorInRtl</BodyText>
+                <Comparison>
+                    <View style={styles.inlineGroup}>
+                        <BodyText size="small">Continue</BodyText>
+                        <PhosphorIcon
+                            icon={customForwardIcon}
+                            size="medium"
+                            aria-label="Continue"
+                        />
+                    </View>
+                </Comparison>
+            </View>
+            <View style={styles.stack}>
+                <BodyText size="small">With mirrorInRtl</BodyText>
+                <Comparison>
+                    <View style={styles.inlineGroup}>
+                        <BodyText size="small">Continue</BodyText>
+                        <PhosphorIcon
+                            icon={customForwardIcon}
+                            mirrorInRtl={true}
+                            size="medium"
+                            aria-label="Continue"
+                        />
+                    </View>
+                </Comparison>
+            </View>
+        </View>
     ),
 };
 

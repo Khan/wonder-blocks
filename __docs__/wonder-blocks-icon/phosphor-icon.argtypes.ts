@@ -227,4 +227,16 @@ export default {
             },
         },
     },
+    mirrorInRtl: {
+        description:
+            "When true, mirror in RTL even if the icon is not on the directional whitelist (e.g. custom directional SVGs).",
+        control: {
+            type: "boolean",
+        },
+        table: {
+            type: {
+                summary: "boolean",
+            },
+        },
+    },
 } satisfies ArgTypes;
