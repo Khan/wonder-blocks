@@ -2,13 +2,19 @@ import * as React from "react";
 import {StyleSheet} from "aphrodite";
 import type {StyleType} from "@khanacademy/wonder-blocks-core";
 import {breakpoint, semanticColor} from "@khanacademy/wonder-blocks-tokens";
-import type {DrawerAlignment} from "../util/types";
+import type {DrawerAlignment, DrawerEasing} from "../util/types";
 import {
     useDrawerContext,
     DEFAULT_DRAWER_ANIMATED,
     DEFAULT_DRAWER_IS_EXITING,
-    DEFAULT_DRAWER_TIMING_DURATION_MS,
 } from "../util/drawer-context";
+import {
+    DRAWER_ENTER_DURATION_MS,
+    DRAWER_ENTER_EASING,
+    DRAWER_EXIT_DURATION_MS,
+    DRAWER_EXIT_EASING,
+    DRAWER_SLIDE_OFFSET,
+} from "../util/drawer-animation";
 import FlexibleDialog from "./flexible-dialog";
 import theme from "../theme";
 import {useDirectionDetection} from "../hooks/use-direction-detection";
@@ -133,8 +139,8 @@ const DrawerDialog = React.forwardRef(function DrawerDialog(
     const alignment = contextProps.alignment;
     const animated = contextProps.animated ?? DEFAULT_DRAWER_ANIMATED;
     const isExiting = contextProps.isExiting ?? DEFAULT_DRAWER_IS_EXITING;
-    const timingDuration =
-        contextProps.timingDuration ?? DEFAULT_DRAWER_TIMING_DURATION_MS;
+    const timingDuration = contextProps.timingDuration;
+    const easing = contextProps.easing;
 
     const {styles} = props;
 
@@ -148,6 +154,7 @@ const DrawerDialog = React.forwardRef(function DrawerDialog(
         animated,
         isExiting,
         timingDuration,
+        easing,
     });
 
     const alignmentStyles =
@@ -174,67 +181,122 @@ const DrawerDialog = React.forwardRef(function DrawerDialog(
     );
 });
 
+/** The resting transform, shared by all alignments. */
+const REST_TRANSFORM = "translate3d(0, 0, 0)";
+
+/**
+ * The transform that displaces the panel from its resting position by `offset`,
+ * a CSS length or percentage, along the axis its alignment docks to.
+ */
 const getTransformValue = (
     isRtl: boolean,
     alignment: DrawerAlignment,
-    percentage: number,
+    offset: string,
 ): string => {
     if (alignment === "blockEnd") {
-        return `translate3d(0, ${percentage}%, 0)`;
+        // Positive Y is downward, off the bottom edge.
+        return `translate3d(0, ${offset}, 0)`;
     }
 
-    // For inlineEnd, we need to reverse the direction compared to inlineStart
-    const directionMultiplier = isRtl
+    const isNegative = isRtl
         ? alignment === "inlineEnd"
-            ? -1
-            : 1
-        : alignment === "inlineEnd"
-          ? 1
-          : -1;
+        : alignment === "inlineStart";
 
-    return `translate3d(${directionMultiplier * percentage}%, 0, 0)`;
+    // calc() rather than a "-" prefix, since `offset` is a string.
+    const signedOffset = isNegative ? `calc(-1 * ${offset})` : offset;
+
+    return `translate3d(${signedOffset}, 0, 0)`;
 };
 
+/** The panel slides only; opacity is left alone. */
 const createKeyframes = (isRtl: boolean, alignment: DrawerAlignment) => ({
     slideIn: {
         "0%": {
-            transform: getTransformValue(isRtl, alignment, 100),
-            opacity: 0,
+            transform: getTransformValue(isRtl, alignment, DRAWER_SLIDE_OFFSET),
         },
         "100%": {
-            transform: getTransformValue(isRtl, alignment, 0),
-            opacity: 1,
+            transform: REST_TRANSFORM,
         },
     },
     slideOut: {
         "0%": {
-            transform: getTransformValue(isRtl, alignment, 0),
-            opacity: 1,
+            transform: REST_TRANSFORM,
         },
         "100%": {
-            transform: getTransformValue(isRtl, alignment, 100),
-            opacity: 0,
+            transform: getTransformValue(isRtl, alignment, DRAWER_SLIDE_OFFSET),
         },
     },
 });
+
+/**
+ * The animation properties shared by every alignment. `timingDuration` overrides
+ * the duration of both phases; `easing` overrides either phase's curve.
+ */
+const getAnimationStyles = ({
+    animated,
+    isExiting,
+    timingDuration,
+    easing,
+    alignmentKeyframes,
+}: {
+    animated: boolean;
+    isExiting: boolean;
+    timingDuration: number | undefined;
+    easing: DrawerEasing | undefined;
+    alignmentKeyframes: ReturnType<typeof createKeyframes> | null;
+}) => {
+    const phaseDuration = isExiting
+        ? DRAWER_EXIT_DURATION_MS
+        : DRAWER_ENTER_DURATION_MS;
+    const phaseEasing = isExiting
+        ? (easing?.exit ?? DRAWER_EXIT_EASING)
+        : (easing?.enter ?? DRAWER_ENTER_EASING);
+
+    // Aphrodite accepts a keyframes object for `animationName`, but the
+    // CSSProperties type only permits a string. [FEI-5019]
+    const animationName = (animated && alignmentKeyframes
+        ? isExiting
+            ? alignmentKeyframes.slideOut
+            : alignmentKeyframes.slideIn
+        : undefined) as unknown as React.CSSProperties["animationName"];
+
+    return {
+        animationName,
+        animationDuration: `${timingDuration ?? phaseDuration}ms`,
+        animationTimingFunction: phaseEasing,
+        // `backwards` holds the off-screen `from` before the entrance starts;
+        // `forwards` holds the off-screen `to` after the exit completes.
+        animationFillMode: isExiting ? "forwards" : "backwards",
+    };
+};
 
 const getComponentStyles = ({
     alignment,
     isRtl,
     animated,
-    isExiting,
+    isExiting = false,
     timingDuration,
+    easing,
 }: {
     alignment: DrawerAlignment | undefined;
     isRtl: boolean;
     animated: boolean;
-    timingDuration: number;
+    timingDuration: number | undefined;
+    easing: DrawerEasing | undefined;
     isExiting?: boolean;
 }) => {
     // Generate keyframes for the current alignment and RTL state
     const alignmentKeyframes = alignment
         ? createKeyframes(isRtl, alignment)
         : null;
+
+    const animationStyles = getAnimationStyles({
+        animated,
+        isExiting,
+        timingDuration,
+        easing,
+        alignmentKeyframes,
+    });
 
     return StyleSheet.create({
         root: {
@@ -243,7 +305,7 @@ const getComponentStyles = ({
             color: semanticColor.core.foreground.neutral.strong,
             overflow: "auto", // Prevent dialog from scrolling with background
             position: "relative",
-            willChange: "transform, opacity",
+            willChange: "transform",
 
             // Override FlexibleDialog defaults for drawer usage
             height: "100%",
@@ -267,40 +329,13 @@ const getComponentStyles = ({
             minInlineSize: "unset",
         },
         inlineStart: {
-            // @ts-expect-error [FEI-5019] - `animationName` expects a string not an object
-            animationName:
-                animated &&
-                alignmentKeyframes &&
-                (isExiting
-                    ? alignmentKeyframes.slideOut
-                    : alignmentKeyframes.slideIn),
-            animationDuration: `${timingDuration}ms`,
-            animationTimingFunction: "linear",
-            animationFillMode: "forwards",
+            ...animationStyles,
         },
         inlineEnd: {
-            // @ts-expect-error [FEI-5019] - `animationName` expects a string not an object
-            animationName:
-                animated &&
-                alignmentKeyframes &&
-                (isExiting
-                    ? alignmentKeyframes.slideOut
-                    : alignmentKeyframes.slideIn),
-            animationDuration: `${timingDuration}ms`,
-            animationTimingFunction: "linear",
-            animationFillMode: "forwards",
+            ...animationStyles,
         },
         blockEnd: {
-            // @ts-expect-error [FEI-5019] - `animationName` expects a string not an object
-            animationName:
-                animated &&
-                alignmentKeyframes &&
-                (isExiting
-                    ? alignmentKeyframes.slideOut
-                    : alignmentKeyframes.slideIn),
-            animationDuration: `${timingDuration}ms`,
-            animationTimingFunction: "linear",
-            animationFillMode: "forwards",
+            ...animationStyles,
             height: "auto",
             minBlockSize: "unset",
             maxInlineSize: "unset",

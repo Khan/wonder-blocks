@@ -55,7 +55,7 @@ export default {
 It can align a dialog on the \`inlineStart\` (left),  \`inlineEnd\` (right), or \`blockEnd\` (bottom).
 
 - Slide animations can be turned off with the \`animated\` prop.
-- Timing of animations can be fine-tuned with the \`timingDuration\` prop, used on enter and exit animations. It is also used to coordinate timing of focus management on open and close.
+- The drawer slides in over 300ms easing out, and leaves over 150ms easing in. Override the durations with \`timingDuration\` and the curves with \`easing\` — see the \`WithCustomAnimation\` example.
 
 **IMPORTANT**: This component should only be used with \`DrawerDialog\`. Using it with other
 dialog components may result in incorrect animations, positioning, and styling.
@@ -161,13 +161,11 @@ export const InlineEndAligned: StoryComponentType = {
 /**
  *
  * An blockEnd-aligned drawer. Uses the `alignment` prop to slide in from the
- * bottom in all writing modes, and a `timingDuration` of 400 milliseconds to
- * allow more time for animating-in vertically.
+ * bottom in all writing modes.
  */
 export const BlockEndAligned: StoryComponentType = {
     args: {
         alignment: "blockEnd",
-        timingDuration: 400,
     },
     render: (args) => (
         <DrawerLauncher modal={DefaultModal} alignment={args.alignment}>
@@ -192,6 +190,79 @@ export const WithNoAnimation: StoryComponentType = {
             animated={false}
             alignment={args.alignment}
         >
+            {({openModal}) => (
+                <Button onClick={openModal}>Click me to open the modal</Button>
+            )}
+        </DrawerLauncher>
+    ),
+};
+
+/**
+ * The drawer slides in over 300ms easing out and leaves over 150ms easing in. The
+ * panel slides without fading; the backdrop fades on the same durations, so the
+ * two finish together.
+ *
+ * Two props tune this independently:
+ *
+ * - `timingDuration` overrides the duration of both phases. Since the same value
+ *   coordinates focus management, a longer duration also delays the drawer's
+ *   initial focus and the return of focus to the trigger.
+ * - `easing` overrides the curves per phase, and applies to the panel only — the
+ *   backdrop's fade stays linear.
+ *
+ * This example exaggerates both: it slows the drawer down, overshoots past the
+ * resting position on the way in, and accelerates away on the way out. Set
+ * `animated` to false to skip the animation for reduced-motion preferences.
+ */
+export const WithCustomAnimation: StoryComponentType = {
+    args: {
+        alignment: "inlineEnd",
+        timingDuration: 700,
+        easing: {
+            enter: "cubic-bezier(0.34, 1.56, 0.64, 1)",
+            exit: "cubic-bezier(0.5, 0, 0.75, 0)",
+        },
+    },
+    render: (args) => (
+        <DrawerLauncher {...args} modal={DefaultModal}>
+            {({openModal}) => (
+                <Button onClick={openModal}>Click me to open the modal</Button>
+            )}
+        </DrawerLauncher>
+    ),
+};
+
+/**
+ * `styles.backdrop` restyles the backdrop — the fixed overlay between the page and
+ * the drawer — and is applied after the backdrop's own styles, so it wins over any
+ * of them. It is also the only way to reach the backdrop's animation, whose sole
+ * property is opacity.
+ *
+ * This example overrides `animationTimingFunction` with a sharply ease-in curve,
+ * so the overlay holds light and darkens late instead of dimming evenly. It uses
+ * `timingDuration` to slow things enough to see the curve, which keeps the panel
+ * and backdrop in sync.
+ *
+ * Two animation properties to leave alone:
+ *
+ * - `animationDuration` desyncs the backdrop from the panel. Use `timingDuration`,
+ *   which drives both.
+ * - `animationName: "none"` drops the opacity animation in both directions, so the
+ *   overlay appears and disappears in a single frame each way, leaving the drawer
+ *   to slide away over solid grey that then snaps off.
+ */
+export const WithCustomBackdropStyles: StoryComponentType = {
+    args: {
+        alignment: "inlineEnd",
+        timingDuration: 600,
+        styles: {
+            backdrop: {
+                animationTimingFunction: "cubic-bezier(0.9, 0, 1, 1)",
+            },
+        },
+    },
+    render: (args) => (
+        <DrawerLauncher {...args} modal={DefaultModal}>
             {({openModal}) => (
                 <Button onClick={openModal}>Click me to open the modal</Button>
             )}
