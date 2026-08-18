@@ -208,22 +208,29 @@ const getTransformValue = (
     return `translate3d(${signedOffset}, 0, 0)`;
 };
 
-/** The panel slides only; opacity is left alone. */
+/**
+ * The panel fades as it slides. The slide covers only part of the panel's size,
+ * so the fade is what carries it the rest of the way in and out.
+ */
 const createKeyframes = (isRtl: boolean, alignment: DrawerAlignment) => ({
     slideIn: {
         "0%": {
             transform: getTransformValue(isRtl, alignment, DRAWER_SLIDE_OFFSET),
+            opacity: 0,
         },
         "100%": {
             transform: REST_TRANSFORM,
+            opacity: 1,
         },
     },
     slideOut: {
         "0%": {
             transform: REST_TRANSFORM,
+            opacity: 1,
         },
         "100%": {
             transform: getTransformValue(isRtl, alignment, DRAWER_SLIDE_OFFSET),
+            opacity: 0,
         },
     },
 });
@@ -305,7 +312,7 @@ const getComponentStyles = ({
             color: semanticColor.core.foreground.neutral.strong,
             overflow: "auto", // Prevent dialog from scrolling with background
             position: "relative",
-            willChange: "transform",
+            willChange: "transform, opacity",
 
             // Override FlexibleDialog defaults for drawer usage
             height: "100%",

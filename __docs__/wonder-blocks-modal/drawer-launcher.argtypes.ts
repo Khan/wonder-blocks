@@ -27,7 +27,7 @@ export default {
             type: {summary: "{container?: StyleType; backdrop?: StyleType}"},
         },
         description:
-            "Optional styles for the launcher's container and its backdrop overlay. `backdrop` is applied last, so it overrides the backdrop's own styles, including its opacity animation.",
+            "Optional styles for the launcher's container and its backdrop overlay. `backdrop` is applied last, so it overrides the backdrop's own styles, including its opacity animation. Use `timingDuration` rather than setting `animationDuration` there, which desyncs the backdrop from the panel; `animationName: \"none\"` removes the fade in both directions.",
     },
 
     timingDuration: {

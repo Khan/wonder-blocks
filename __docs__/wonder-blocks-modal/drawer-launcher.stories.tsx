@@ -7,7 +7,7 @@ import {View} from "@khanacademy/wonder-blocks-core";
 import {ActionMenu, ActionItem} from "@khanacademy/wonder-blocks-dropdown";
 import {RadioGroup, Choice} from "@khanacademy/wonder-blocks-form";
 import {LabeledField} from "@khanacademy/wonder-blocks-labeled-field";
-import {sizing} from "@khanacademy/wonder-blocks-tokens";
+import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {BodyText} from "@khanacademy/wonder-blocks-typography";
 
 import {DrawerDialog, DrawerLauncher} from "@khanacademy/wonder-blocks-modal";
@@ -198,29 +198,16 @@ export const WithNoAnimation: StoryComponentType = {
 };
 
 /**
- * The drawer slides in over 300ms easing out and leaves over 150ms easing in. The
- * panel slides without fading; the backdrop fades on the same durations, so the
- * two finish together.
- *
- * Two props tune this independently:
- *
- * - `timingDuration` overrides the duration of both phases. Since the same value
- *   coordinates focus management, a longer duration also delays the drawer's
- *   initial focus and the return of focus to the trigger.
- * - `easing` overrides the curves per phase, and applies to the panel only — the
- *   backdrop's fade stays linear.
- *
- * This example exaggerates both: it slows the drawer down, overshoots past the
- * resting position on the way in, and accelerates away on the way out. Set
- * `animated` to false to skip the animation for reduced-motion preferences.
+ * A drawer with a slower animation and custom curves. `timingDuration` sets the
+ * duration of both phases; `easing` sets the curve per phase, on the panel only.
  */
 export const WithCustomAnimation: StoryComponentType = {
     args: {
         alignment: "inlineEnd",
         timingDuration: 700,
         easing: {
-            enter: "cubic-bezier(0.34, 1.56, 0.64, 1)",
-            exit: "cubic-bezier(0.5, 0, 0.75, 0)",
+            enter: "ease-out",
+            exit: "ease-in",
         },
     },
     render: (args) => (
@@ -233,31 +220,16 @@ export const WithCustomAnimation: StoryComponentType = {
 };
 
 /**
- * `styles.backdrop` restyles the backdrop — the fixed overlay between the page and
- * the drawer — and is applied after the backdrop's own styles, so it wins over any
- * of them. It is also the only way to reach the backdrop's animation, whose sole
- * property is opacity.
- *
- * This example overrides `animationTimingFunction` with a sharply ease-in curve,
- * so the overlay holds light and darkens late instead of dimming evenly. It uses
- * `timingDuration` to slow things enough to see the curve, which keeps the panel
- * and backdrop in sync.
- *
- * Two animation properties to leave alone:
- *
- * - `animationDuration` desyncs the backdrop from the panel. Use `timingDuration`,
- *   which drives both.
- * - `animationName: "none"` drops the opacity animation in both directions, so the
- *   overlay appears and disappears in a single frame each way, leaving the drawer
- *   to slide away over solid grey that then snaps off.
+ * A drawer whose backdrop uses a solid color instead of the semi-transparent
+ * scrim, so it covers the page rather than dimming it. `styles.backdrop` is applied
+ * after the backdrop's own styles.
  */
 export const WithCustomBackdropStyles: StoryComponentType = {
     args: {
         alignment: "inlineEnd",
-        timingDuration: 600,
         styles: {
             backdrop: {
-                animationTimingFunction: "cubic-bezier(0.9, 0, 1, 1)",
+                background: semanticColor.core.background.neutral.default,
             },
         },
     },
