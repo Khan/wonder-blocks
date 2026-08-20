@@ -1,4 +1,8 @@
-import {getPhosphorIconName, shouldMirrorIconInRtl} from "./directional-icons";
+import {
+    getPhosphorIconName,
+    resolveMirrorInRtl,
+    shouldMirrorIconInRtl,
+} from "./directional-icons";
 
 describe("getPhosphorIconName", () => {
     test.each([
@@ -24,7 +28,14 @@ describe("getPhosphorIconName", () => {
         // Uppercase extensions still resolve.
         ["arrow-right.SVG", "arrow-right"],
     ])("extracts the icon name from %s", (icon, expected) => {
-        expect(getPhosphorIconName(icon)).toBe(expected);
+        // Arrange
+        // (inputs come from test.each)
+
+        // Act
+        const result = getPhosphorIconName(icon);
+
+        // Assert
+        expect(result).toBe(expected);
     });
 
     test.each([
@@ -35,7 +46,14 @@ describe("getPhosphorIconName", () => {
         // Nothing to extract.
         [""],
     ])("returns undefined for %s", (icon) => {
-        expect(getPhosphorIconName(icon)).toBeUndefined();
+        // Arrange
+        // (inputs come from test.each)
+
+        // Act
+        const result = getPhosphorIconName(icon);
+
+        // Assert
+        expect(result).toBeUndefined();
     });
 });
 
@@ -63,7 +81,14 @@ describe("shouldMirrorIconInRtl", () => {
         ["/assets/arrow-right-bold-a1b2c3d4.svg"],
         ["caret-right-fill.svg"],
     ])("mirrors %s", (icon) => {
-        expect(shouldMirrorIconInRtl(icon)).toBe(true);
+        // Arrange
+        // (inputs come from test.each)
+
+        // Act
+        const result = shouldMirrorIconInRtl(icon);
+
+        // Assert
+        expect(result).toBe(true);
     });
 
     test.each([
@@ -102,18 +127,85 @@ describe("shouldMirrorIconInRtl", () => {
         // An arbitrary non-Phosphor SVG.
         ["/images/my-custom-illustration.svg"],
     ])("does not mirror %s", (icon) => {
-        expect(shouldMirrorIconInRtl(icon)).toBe(false);
+        // Arrange
+        // (inputs come from test.each)
+
+        // Act
+        const result = shouldMirrorIconInRtl(icon);
+
+        // Assert
+        expect(result).toBe(false);
     });
 
     it("does not mirror an inlined data URI, since it cannot be identified", () => {
-        expect(
-            shouldMirrorIconInRtl("data:image/svg+xml;base64,PHN2Zz48L3N2Zz4="),
-        ).toBe(false);
+        // Arrange
+        const dataUri = "data:image/svg+xml;base64,PHN2Zz48L3N2Zz4=";
+
+        // Act
+        const result = shouldMirrorIconInRtl(dataUri);
+
+        // Assert
+        expect(result).toBe(false);
     });
 
     it("does not mirror when a directional word is only a partial segment", () => {
+        // Arrange
         // "arrows-left-right" contains both "left" and "right" but is a
         // symmetric glyph, and must not match "arrow-left" or "arrow-right".
-        expect(shouldMirrorIconInRtl("arrows-left-right.svg")).toBe(false);
+        const symmetricGlyph = "arrows-left-right.svg";
+
+        // Act
+        const result = shouldMirrorIconInRtl(symmetricGlyph);
+
+        // Assert
+        expect(result).toBe(false);
+    });
+});
+
+describe("resolveMirrorInRtl", () => {
+    it("mirrors an allowlisted icon when mirrorInRtl is omitted", () => {
+        // Arrange
+        const caretRight = "caret-right.svg";
+
+        // Act
+        const result = resolveMirrorInRtl(caretRight);
+
+        // Assert
+        expect(result).toBe(true);
+    });
+
+    it("does not mirror a custom icon when mirrorInRtl is omitted", () => {
+        // Arrange
+        const customIcon = "my-custom-illustration.svg";
+
+        // Act
+        const result = resolveMirrorInRtl(customIcon);
+
+        // Assert
+        expect(result).toBe(false);
+    });
+
+    it("mirrors a custom icon when mirrorInRtl is true", () => {
+        // Arrange
+        const customIcon = "my-custom-illustration.svg";
+
+        // Act
+        const result = resolveMirrorInRtl(customIcon, true);
+
+        // Assert
+        expect(result).toBe(true);
+    });
+
+    it("does not mirror an allowlisted icon when mirrorInRtl is false", () => {
+        // Arrange
+        // Consumers still doing their own RTL icon swap need this escape hatch
+        // to avoid double-flipping.
+        const caretRight = "caret-right.svg";
+
+        // Act
+        const result = resolveMirrorInRtl(caretRight, false);
+
+        // Assert
+        expect(result).toBe(false);
     });
 });

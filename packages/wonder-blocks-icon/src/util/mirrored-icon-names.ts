@@ -1,8 +1,8 @@
 /**
  * Icon names mirrored in RTL by `PhosphorIcon`. Single source of truth —
- * update this set in a Wonder Blocks PR (no call-site override). See the
- * PhosphorIcon RTL docs for deliberate exclusions (media, launch, trends,
- * physical text-align, etc.).
+ * add or remove names in a Wonder Blocks PR rather than special-casing a call
+ * site. `mirrorInRtl` exists for the exceptions. See the PhosphorIcon RTL docs
+ * for deliberate exclusions (media, launch, trends, physical text-align, etc.).
  */
 export const MIRRORED_ICON_NAMES: ReadonlySet<string> = new Set([
     "arrow-arc-left",

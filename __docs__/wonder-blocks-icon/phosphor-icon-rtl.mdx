@@ -12,10 +12,11 @@ import * as PhosphorIconRtlStories from "./phosphor-icon-rtl.stories";
 direction when rendered in right-to-left content. Layout position already
 mirrors via logical CSS; this flips the glyph itself.
 
-Which icons mirror is decided by the whitelist in
+Which icons mirror is decided by the allowlist in
 `packages/wonder-blocks-icon/src/util/mirrored-icon-names.ts`. To add or remove
-an icon, open a Wonder Blocks PR against that list — do not handle RTL
-mirroring at the call site.
+an icon, open a Wonder Blocks PR against that list rather than handling RTL
+mirroring at the call site. For genuine one-offs, `mirrorInRtl` overrides the
+allowlist in either direction.
 
 ### Mirrored by default
 
@@ -67,11 +68,21 @@ places it at the inline end.
 
 ### Custom icons
 
-Custom (non-Phosphor) SVGs are not on the whitelist. Pass `mirrorInRtl` to opt
+Custom (non-Phosphor) SVGs are not on the allowlist. Pass `mirrorInRtl` to opt
 in when the glyph is directional — still pass the LTR-facing asset (no ternary):
 
 ```tsx
 <PhosphorIcon icon={myCustomForward} mirrorInRtl />
+```
+
+### Opting out
+
+`mirrorInRtl={false}` suppresses mirroring for an allowlisted icon. This is an
+escape hatch for call sites that still do their own RTL icon swap and would
+otherwise double-flip — prefer removing the swap instead.
+
+```tsx
+<PhosphorIcon icon={caretRightIcon} mirrorInRtl={false} />
 ```
 
 <Canvas of={PhosphorIconRtlStories.CustomIconMirrorInRtl} />

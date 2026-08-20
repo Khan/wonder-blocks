@@ -4,7 +4,7 @@ import {addStyle, AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
 import {sizing} from "@khanacademy/wonder-blocks-tokens";
 
 import {IconSize, PhosphorIconAsset} from "../types";
-import {shouldMirrorIconInRtl} from "../util/directional-icons";
+import {resolveMirrorInRtl} from "../util/directional-icons";
 
 // We use a span instead of an img because we want to use the mask-image CSS
 // property.
@@ -58,9 +58,13 @@ type Props = Pick<AriaProps, "aria-hidden" | "aria-label" | "role"> & {
     icon: PhosphorIconAsset | string;
 
     /**
-     * When true, mirror this icon in RTL even if it is not on the directional
-     * whitelist (e.g. a custom directional SVG). Defaults to whitelist
-     * behavior when omitted. Does not disable mirroring for whitelisted icons.
+     * Whether to mirror this icon's glyph in right-to-left content, overriding
+     * the directional allowlist.
+     *
+     * - `true`: mirror even if the icon is not allowlisted (e.g. a custom
+     *   directional SVG).
+     * - `false`: do not mirror even if the icon is allowlisted.
+     * - omitted: use the allowlist.
      */
     mirrorInRtl?: boolean;
 };
@@ -96,9 +100,9 @@ type Props = Pick<AriaProps, "aria-hidden" | "aria-label" | "role"> & {
  * ## Right-to-left
  *
  * Directional glyphs (arrows, carets, and similar) are mirrored automatically
- * in RTL via a central whitelist. Pass the LTR-facing icon — do not swap icons
- * based on `isRtl`. For custom directional SVGs, pass `mirrorInRtl`. See the
- * PhosphorIcon RTL Mirroring docs for the list.
+ * in RTL via a central allowlist. Pass the LTR-facing icon — do not swap icons
+ * based on `isRtl`. Use `mirrorInRtl` to override the allowlist per call site.
+ * See the PhosphorIcon RTL Mirroring docs for the list.
  */
 export const PhosphorIcon = React.forwardRef(function PhosphorIcon(
     props: Props,
@@ -118,8 +122,7 @@ export const PhosphorIcon = React.forwardRef(function PhosphorIcon(
 
     const sizeStyles = getSize(size);
     const classNames = `${className ?? ""}`;
-    // Opt-in for custom directional icons; whitelist still applies otherwise.
-    const shouldMirror = mirrorInRtl === true || shouldMirrorIconInRtl(icon);
+    const shouldMirror = resolveMirrorInRtl(icon, mirrorInRtl);
 
     return (
         <StyledSpan

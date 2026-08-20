@@ -25,8 +25,8 @@ import textAlignLeftIcon from "@phosphor-icons/core/regular/text-align-left.svg"
 import arrowUpRightIcon from "@phosphor-icons/core/regular/arrow-up-right.svg";
 import arrowSquareOutIcon from "@phosphor-icons/core/regular/arrow-square-out.svg";
 
-// Custom SVG (not on the Phosphor whitelist). Filename must not end with a
-// whitelisted name like `arrow-right`, or matching would pick it up anyway.
+// Custom SVG (not on the Phosphor allowlist). Filename must not end with an
+// allowlisted name like `arrow-right`, or matching would pick it up anyway.
 import customForwardIcon from "./icons/custom-forward.svg";
 
 import {View} from "@khanacademy/wonder-blocks-core";
@@ -159,9 +159,6 @@ export default {
                 version={packageConfig.version}
             />
         ),
-        chromatic: {
-            disableSnapshot: false,
-        },
     },
 } as Meta<typeof PhosphorIcon>;
 
@@ -201,6 +198,13 @@ export const CommonPatterns: StoryComponentType = {
             </View>
         </Comparison>
     ),
+    // Illustrative example only — the icons here are already covered by the
+    // ExpectedToMirror / ExpectedNotToMirror snapshots.
+    parameters: {
+        chromatic: {
+            disableSnapshot: true,
+        },
+    },
 };
 
 /**

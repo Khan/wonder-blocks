@@ -59,7 +59,7 @@ export function getPhosphorIconName(icon: string): string | undefined {
  * - Vite production builds: `[name]-[hash][ext]` (hash suffix)
  *
  * We match every `-`-delimited prefix and suffix of the basename against the
- * whitelist so both forms resolve (e.g. `arrow-right` from
+ * allowlist so both forms resolve (e.g. `arrow-right` from
  * `a1b2c3d4-arrow-right` or `arrow-right-a1b2c3d4`). Returns `false` when the
  * icon cannot be identified.
  */
@@ -85,4 +85,19 @@ export function shouldMirrorIconInRtl(icon: string): boolean {
     }
 
     return false;
+}
+
+/**
+ * Resolves whether an icon is mirrored in RTL, honoring the `mirrorInRtl`
+ * override.
+ *
+ * `mirrorInRtl` wins in both directions when set: `true` opts a custom
+ * directional SVG in, `false` opts an allowlisted icon out. Omitting it falls
+ * back to the allowlist.
+ */
+export function resolveMirrorInRtl(
+    icon: string,
+    mirrorInRtl?: boolean,
+): boolean {
+    return mirrorInRtl ?? shouldMirrorIconInRtl(icon);
 }
