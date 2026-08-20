@@ -53,7 +53,6 @@ export const MIRRORED_ICON_NAMES: ReadonlySet<string> = new Set([
     "arrow-square-down-right",
     "arrow-square-left",
     "arrow-square-right",
-    "arrow-square-up-left",
     "arrow-u-down-left",
     "arrow-u-down-right",
     "arrow-u-left-down",

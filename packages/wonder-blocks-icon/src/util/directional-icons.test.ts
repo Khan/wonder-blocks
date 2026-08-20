@@ -111,10 +111,13 @@ describe("shouldMirrorIconInRtl", () => {
         // Physical flush-left/right alignment, not start/end of line.
         ["/node_modules/.../assets/regular/text-align-left.svg"],
         ["/node_modules/.../assets/regular/text-align-right.svg"],
-        // Launch / pop-out idioms stay fixed (Carbon-style).
+        // Box-and-arrow diagonals are action symbols ("opens elsewhere"), not
+        // direction. Mirroring one reads as import, inverting its meaning.
         ["/node_modules/.../assets/regular/arrow-square-out.svg"],
-        ["/node_modules/.../assets/regular/arrow-up-right.svg"],
+        ["/node_modules/.../assets/regular/arrow-square-up-left.svg"],
         ["/node_modules/.../assets/regular/arrow-square-up-right.svg"],
+        // Used for pop-outs and chart trends at KA, never navigation.
+        ["/node_modules/.../assets/regular/arrow-up-right.svg"],
         // Platform convention keeps search unmirrored.
         ["/node_modules/.../assets/regular/magnifying-glass.svg"],
         // Non-directional icons.

@@ -26,10 +26,13 @@ allowlist in either direction.
 - `paper-plane`, `sign-in`, `sign-out`
 - `text-indent`, `text-outdent`
 
-Launch / pop-out diagonals (`arrow-up-right`, `arrow-square-up-right`) are
-excluded even though related left diagonals (`arrow-up-left`,
-`arrow-square-up-left`) remain — those left variants are not used as the
-"opens elsewhere" idiom at KA.
+The box-and-arrow diagonals (`arrow-square-out`, `arrow-square-up-left`,
+`arrow-square-up-right`) are excluded: they read as action symbols
+("opens elsewhere" / export) rather than direction, so the diagonal is
+decorative. Mirroring one can also invert its meaning, since an arrow pointing
+*into* a box reads as import. `arrow-up-right` is excluded for the same reason
+— it is used for pop-outs and chart trends, not navigation. `arrow-up-left`
+stays mirrored as a plain directional glyph.
 
 <Canvas of={PhosphorIconRtlStories.ExpectedToMirror} />
 
@@ -42,7 +45,7 @@ excluded even though related left diagonals (`arrow-up-left`,
   `text-align-center`, `text-align-justify`)
 - Physical text alignment (`text-align-left`, `text-align-right`)
 - Launch / pop-out (`arrow-square-out`, `arrow-up-right`,
-  `arrow-square-up-right`)
+  `arrow-square-up-left`, `arrow-square-up-right`)
 - `magnifying-glass`
 
 <Canvas of={PhosphorIconRtlStories.ExpectedNotToMirror} />
