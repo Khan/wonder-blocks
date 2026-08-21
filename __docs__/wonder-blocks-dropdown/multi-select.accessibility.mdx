@@ -45,6 +45,25 @@ that would need to be omitted from the visible label.
 
 <Canvas of={MultiSelectAccessibilityStories.UsingOpenerAriaLabel} />
 
+## Naming the listbox
+
+The listbox that contains the options is rendered in a portal, so it is
+disconnected in the DOM from the opener that labels it. To give the options
+context when a screen reader user navigates into the listbox, `MultiSelect`
+labels the listbox with the same name as the opener, using whichever of these
+labels the opener has:
+
+1. The `<label>` element associated with the opener, such as the one rendered by
+`LabeledField`. The listbox refers to the same label element, which is the
+labelling recommended for the
+[combobox pattern](https://www.w3.org/WAI/ARIA/apg/patterns/combobox/).
+2. The element referenced by `aria-labelledby` on the `MultiSelect`.
+3. The `aria-label` on the `MultiSelect`.
+
+So, a `MultiSelect` labelled "Students" has a listbox named "Students". If the
+`MultiSelect` has no label at all, neither does its listbox, which is another
+reason to always give it one.
+
 ## Automatic screen reader announcements in `MultiSelect`
 
 `MultiSelect` uses the [Wonder Blocks Announcer](/?path=/docs/packages-announcer--docs)
