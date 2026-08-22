@@ -50,7 +50,13 @@ const styles = StyleSheet.create({
 </ThemeSwitcher>
 ```
 
-### 3. Where the truth lives
+### 3. Scale — a 10px root font-size
+Wonder Blocks' typography and spacing tokens are rem-based against a **10px root** (`html { font-size: 62.5% }`).
+The shipped `styles.css` sets this for you (via `base.css`), so as long as you link `styles.css`, type and spacing
+render at the intended size. Don't override `html { font-size }`, and prefer the tokens/components over hardcoded
+px so everything stays on the WB scale.
+
+### 4. Where the truth lives
 Before styling, read the bound token/style files — `_ds/<folder>/styles.css` and its `@import`s
 (`tokens/index.css`, `tokens/vars.css`) hold every token name and value. Each component's `.d.ts` is its exact
 prop contract and its `.prompt.md` shows intended usage — consult them rather than guessing prop names.

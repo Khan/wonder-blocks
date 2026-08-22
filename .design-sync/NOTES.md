@@ -48,6 +48,20 @@ single-package DS. Storybook shape. These notes capture what makes the sync work
 - Applying the theme also fixes tokens that are only defined under a `[data-wb-theme]` scope (e.g. some checked-state
   backgrounds were missing before a theme was applied).
 
+## Base reset / root font-size — post-build fix (CRITICAL, run every build)
+- **[GENERAL]** WB typography + spacing tokens are **rem-based against a 10px root** (`html { font-size: 62.5% }`
+  → 1rem = 10px). WB's Storybook applies this via `static/sb-styles/preview.css`, but the converter only scrapes
+  component CSS, so the shipped `styles.css` closure was MISSING it → in claude.ai/design (html defaults to 16px)
+  **all type rendered 1.6× too large** (16/10), and px-based radii looked too small next to the inflated text.
+- Fix: **`node .design-sync/inject-base-css.mjs ds-bundle .design-sync/base-reset.css`** — copies
+  `.design-sync/base-reset.css` → `ds-bundle/base.css` and prepends `@import "./base.css";` to `styles.css`
+  (first, so the root font-size applies before tokens/components), then refreshes the anchor's `styleSha`.
+  `base-reset.css` = `html{font-size:62.5%}` + `body{font-size:1.6rem}` + `[data-wb-theme]{color: var(--wb-semanticColor-core-foreground-neutral-strong)}` + dark `color-scheme`.
+  **RUN IT AFTER EVERY build (with fix-bundle-svgs), before validate/upload.** Verified: html computes to 10px,
+  Button ~13.3px / radius 8px, and typography previews now match the Storybook scale exactly.
+- The conventions header tells the design agent the DS assumes a 10px root; the shipped `base.css` enforces it so
+  designs don't need to.
+
 ## Baked-in icons — post-build fix (CRITICAL, run every build)
 - **[GENERAL]** Two icon classes were broken as solid squares:
   1. Story-imported SVGs (PhosphorIcon custom-icon stories, Button startIcon) — fixed by the `svgBase64` plugin in
