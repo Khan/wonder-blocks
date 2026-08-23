@@ -14,7 +14,6 @@ export {default as Button} from "@khanacademy/wonder-blocks-button";
 export {default as Clickable} from "@khanacademy/wonder-blocks-clickable";
 export {default as IconButton} from "@khanacademy/wonder-blocks-icon-button";
 export {default as Link} from "@khanacademy/wonder-blocks-link";
-export {default as Pill} from "@khanacademy/wonder-blocks-pill";
 export {default as SearchField} from "@khanacademy/wonder-blocks-search-field";
 export {default as Switch} from "@khanacademy/wonder-blocks-switch";
 export {default as Toolbar} from "@khanacademy/wonder-blocks-toolbar";

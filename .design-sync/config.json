@@ -83,7 +83,6 @@
     "@khanacademy/wonder-blocks-layout",
     "@khanacademy/wonder-blocks-link",
     "@khanacademy/wonder-blocks-modal",
-    "@khanacademy/wonder-blocks-pill",
     "@khanacademy/wonder-blocks-popover",
     "@khanacademy/wonder-blocks-progress-spinner",
     "@khanacademy/wonder-blocks-search-field",

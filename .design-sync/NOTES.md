@@ -10,6 +10,17 @@ single-package DS. Storybook shape. These notes capture what makes the sync work
   so the committed `dist/` matched source; re-syncs should rebuild if source changed.
 - Reference storybook: `npx storybook build -c .storybook -o .design-sync/sb-reference`.
 
+## Deprecated components
+- WB's `deprecated`/non-`manifest` components are excluded from the synced component set (no card/.d.ts/.prompt.md):
+  Pill, Layout (Strut/Spring/MediaLayout/FlexItem), and the old Typography variants (Body, Caption, LabelLarge,
+  HeadingLarge, …). Typography 5.x no longer exports the deprecated variants, so they're absent from the bundle too.
+- **`wonder-blocks-pill` is intentionally NOT in `extraEntries`** — nothing uses it, so it stays off the global.
+- **`wonder-blocks-layout` IS kept in `extraEntries`**: WB's own stories use `Strut`/`Spring` for layout spacing in
+  ~11 components' previews (Accordion, Button, Checkbox, Link, Toolbar, TextField/TextArea, CompactCell,
+  AccordionSection, Popover, PopoverContent). They render inside those previews (faithful to WB) and are reachable on
+  the global, but are NOT surfaced as components, and the conventions header steers the design agent to `View` for
+  layout. Removing layout would break those previews, so it's kept deliberately.
+
 ## Multi-package bundling
 - **[GENERAL] Barrel entry** `.design-sync/bundle-entry.mjs` re-exports each package's DEFAULT export under its
   component name — `export *` (the converter's extraEntries mechanism) drops default exports, and most WB main
