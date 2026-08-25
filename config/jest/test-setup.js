@@ -16,6 +16,14 @@ const {TextEncoder, TextDecoder} = require("util");
 // implementation Node's own fetch globals come from, so these shims match
 // native behavior exactly.
 //
+// Requiring undici *inside* the sandbox matters: copying Node's native
+// classes in from outside (e.g. via a custom test environment) hands the
+// tests objects from another realm, and cross-realm objects fail brand
+// checks and prototype comparisons — Node's `Request` rejects jsdom's
+// `AbortSignal`, and `toStrictEqual` sees a foreign `Object.prototype` on
+// anything `response.json()` returns. Instantiated in-sandbox, the classes
+// share the jsdom realm's intrinsics with everything else the tests touch.
+//
 // undici expects a number of other web platform globals to exist when it
 // loads (text codecs, streams, Blob/File, MessagePort), so those shims have
 // to be in place before it is required. They all come from Node built-in
