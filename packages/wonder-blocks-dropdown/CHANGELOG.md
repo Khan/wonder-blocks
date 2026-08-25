@@ -1,5 +1,15 @@
 # @khanacademy/wonder-blocks-dropdown
 
+## 10.12.0
+
+### Minor Changes
+
+- ded1be1: Allow more aria attributes on combobox & consume "style" prop that was ignored
+
+### Patch Changes
+
+- b67be5c: SingleSelect / MultiSelect: label the listbox with the same name as the opener so the options have context in a screen reader. The name comes from the opener's associated `<label>` element (e.g. from `LabeledField`), the select's `aria-labelledby`, or its `aria-label`.
+
 ## 10.11.8
 
 ### Patch Changes
