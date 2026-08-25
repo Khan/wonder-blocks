@@ -12,12 +12,35 @@ const {TextEncoder, TextDecoder} = require("util");
 // object is the jsdom window, and that window doesn't implement the Fetch
 // API. Node's native globals aren't reachable from inside that sandbox either
 // (`global`, `globalThis`, and the realm global are all cut off from them), so
-// the only way to get a `Request` here is to polyfill one. node-fetch provides
-// spec-compatible implementations and is already a dependency.
-const nodeFetch = require("node-fetch");
+// the only way to get a `Request` here is to polyfill one. undici is the
+// implementation Node's own fetch globals come from, so these shims match
+// native behavior exactly.
+//
+// undici expects a number of other web platform globals to exist when it
+// loads (text codecs, streams, Blob/File, MessagePort), so those shims have
+// to be in place before it is required. They all come from Node built-in
+// modules, which the sandbox can still require.
+const {ReadableStream, WritableStream, TransformStream} = require("stream/web");
+const {Blob, File} = require("buffer");
+const {MessagePort, MessageChannel} = require("worker_threads");
+for (const [name, impl] of Object.entries({
+    TextEncoder,
+    TextDecoder,
+    ReadableStream,
+    WritableStream,
+    TransformStream,
+    Blob,
+    File,
+    MessagePort,
+    MessageChannel,
+})) {
+    if (!globalThis[name]) {
+        globalThis[name] = impl;
+    }
+}
+const undici = require("undici");
 
 StyleSheetTestUtils.suppressStyleInjection();
-
 
 const attachShims = (targetWindow) => {
     if (!targetWindow.TextEncoder) {
@@ -27,13 +50,13 @@ const attachShims = (targetWindow) => {
         targetWindow.TextDecoder = TextDecoder;
     }
     if (!targetWindow.Request) {
-        targetWindow.Request = nodeFetch.Request;
+        targetWindow.Request = undici.Request;
     }
     if (!targetWindow.Response) {
-        targetWindow.Response = nodeFetch.Response;
+        targetWindow.Response = undici.Response;
     }
     if (!targetWindow.Headers) {
-        targetWindow.Headers = nodeFetch.Headers;
+        targetWindow.Headers = undici.Headers;
     }
 };
 

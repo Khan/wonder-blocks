@@ -31,7 +31,6 @@
   "peerDependencies": {
     "@khanacademy/wonder-stuff-core": "catalog:",
     "aphrodite": "catalog:",
-    "node-fetch": "catalog:",
     "react": "catalog:",
     "react-dom": "catalog:",
     "react-router-dom": "catalog:",
