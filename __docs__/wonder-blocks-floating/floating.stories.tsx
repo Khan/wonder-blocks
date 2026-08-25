@@ -4,7 +4,10 @@ import * as React from "react";
 
 import Button from "@khanacademy/wonder-blocks-button";
 import {PropsFor, View} from "@khanacademy/wonder-blocks-core";
-import {Floating} from "@khanacademy/wonder-blocks-floating";
+import {
+    Floating,
+    useFloatingReference,
+} from "@khanacademy/wonder-blocks-floating";
 import Switch from "@khanacademy/wonder-blocks-switch";
 import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {BodyText, Heading} from "@khanacademy/wonder-blocks-typography";
@@ -74,6 +77,92 @@ export const Default: StoryComponentType = {
                 >
                     {buttonLabel}
                 </Button>
+            </Floating>
+        );
+    },
+};
+
+/**
+ * A custom trigger that registers itself as the reference element.
+ *
+ * This is a plain function component, so it can't receive the reference `ref`
+ * from `Floating`. Instead, it uses the `useFloatingReference` hook to register
+ * the DOM element it renders as the reference (anchor) element. Note that it
+ * also spreads the rest of its props onto that same element, so the props that
+ * `Floating` injects into the trigger (e.g. the ones needed for dismissal) are
+ * applied to it as well.
+ */
+function CustomTrigger({
+    label,
+    onClick,
+    ...otherProps
+}: {
+    label: string;
+    onClick: () => void;
+}) {
+    const setFloatingReference = useFloatingReference();
+
+    return (
+        <View
+            {...otherProps}
+            tag="button"
+            ref={setFloatingReference}
+            onClick={onClick}
+            style={styles.customTrigger}
+        >
+            <PhosphorIcon icon={IconMappings.cookie} />
+            <BodyText>{label}</BodyText>
+        </View>
+    );
+}
+
+/**
+ * Any custom component can be used as the trigger (and therefore as the
+ * reference element that the floating element is positioned against). `Floating`
+ * doesn't render a wrapper element around the trigger, so the DOM stays exactly
+ * as you wrote it.
+ *
+ * There are two ways for a custom component to expose its DOM element:
+ *
+ * - **Using the `useFloatingReference` hook** (used by `CustomTrigger` below).
+ *   The component attaches the ref callback returned by the hook to the element
+ *   that the floating element should be anchored to. This works for plain
+ *   function components, which can't receive a `ref`.
+ * - **Forwarding its ref**. Components created with `React.forwardRef` (and
+ *   Wonder Blocks components such as `Button` or `IconButton`) receive the
+ *   reference `ref` directly, so they work as triggers without any extra work.
+ *
+ * In both cases, remember to spread the remaining props onto the same element,
+ * as `Floating` injects props into the trigger (e.g. to support dismissal).
+ */
+export const CustomTriggerComponent: StoryComponentType = {
+    args: {
+        focusManagerEnabled: true,
+        dismissEnabled: true,
+    },
+    render: function Render(args) {
+        const [open, setOpen] = React.useState(args.open ?? false);
+
+        return (
+            <Floating
+                {...args}
+                open={open}
+                onOpenChange={setOpen}
+                content={
+                    <View style={styles.contentContainer}>
+                        <Heading size="small">Custom trigger</Heading>
+                        <BodyText>
+                            This floating element is anchored to a custom
+                            component that registers itself with the
+                            `useFloatingReference` hook.
+                        </BodyText>
+                    </View>
+                }
+            >
+                <CustomTrigger
+                    label={open ? "Close" : "Open"}
+                    onClick={() => setOpen(!open)}
+                />
             </Floating>
         );
     },
@@ -584,7 +673,7 @@ export const Placements: StoryComponentType = {
 
 const styles = StyleSheet.create({
     storyCanvas: {
-        minHeight: 200,
+        minBlockSize: 200,
         padding: sizing.size_640,
         justifyContent: "center",
         alignItems: "center",
@@ -628,6 +717,18 @@ const styles = StyleSheet.create({
     contentContainer: {
         padding: sizing.size_160,
         gap: sizing.size_160,
+    },
+    customTrigger: {
+        flexDirection: "row",
+        alignItems: "center",
+        gap: sizing.size_080,
+        background: semanticColor.core.background.instructive.default,
+        color: semanticColor.core.foreground.knockout.default,
+        border: "none",
+        borderRadius: border.radius.radius_040,
+        paddingBlock: sizing.size_080,
+        paddingInline: sizing.size_160,
+        cursor: "pointer",
     },
     placementsContainer: {
         display: "grid",

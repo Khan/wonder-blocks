@@ -23,6 +23,8 @@ import {ARROW_SIZE_INLINE} from "../util/constants";
 import {Arrow, type ArrowStyles} from "./floating-arrow";
 import {Portal} from "./floating-portal";
 import {rtlMirror} from "../util/rtl-mirror-middleware";
+import {acceptsRef} from "../util/accepts-ref";
+import {FloatingReferenceContext} from "../util/floating-reference-context";
 
 const StyledDiv = addStyle("div");
 
@@ -30,6 +32,16 @@ type FloatingProps = {
     /**
      * The reference (or anchored) element that is used to calculate the
      * position of the floating element.
+     *
+     * No wrapper element is rendered around the trigger, so the DOM hierarchy
+     * stays exactly as the consumer wrote it. The reference element is resolved
+     * in one of two ways:
+     *
+     * - Elements that can receive a ref (host elements such as `<button>`,
+     *   `React.forwardRef` components and class components) get the reference
+     *   ref injected directly.
+     * - Plain function components register the trigger's DOM element with the
+     *   `useFloatingReference` hook, so they don't have to forward refs.
      */
     children: React.ReactElement;
     /**
@@ -110,6 +122,25 @@ type FloatingProps = {
     shift?: boolean;
 
     /**
+     * The padding (in pixels) between the floating element and the boundary
+     * when it is shifted to stay in view.
+     * @default 12
+     */
+    shiftPadding?: number;
+
+    /**
+     * The boundary that the floating element should be kept within by the
+     * `flip` and `shift` middleware.
+     *
+     * - `"viewport"`: keep the element within the user's viewport.
+     * - `"document"`: keep the element within the document body.
+     *
+     * @default "viewport"
+     * @see https://floating-ui.com/docs/detectOverflow#rootboundary
+     */
+    rootBoundary?: "viewport" | "document";
+
+    /**
      * Whether to show the arrow on the floating element.
      * @default true
      */
@@ -133,6 +164,36 @@ type FloatingProps = {
      * @default false
      */
     dismissEnabled?: boolean;
+
+    /**
+     * Called with the resolved placement of the floating element whenever it
+     * changes. Unlike the `placement` prop (the requested placement), this
+     * reports the placement actually used after middleware such as `flip` has
+     * run.
+     *
+     * This is useful for consumers that need to adapt their content based on
+     * the final placement (e.g. repositioning an illustration).
+     */
+    onPlacementChange?: (placement: Placement) => void;
+
+    /**
+     * Whether focus should be returned to the reference element once the
+     * floating element closes/unmounts. Can also be set to a ref to explicitly
+     * control which element receives focus on close (e.g. when focus should
+     * move somewhere other than the trigger).
+     *
+     * Only relevant when `focusManagerEnabled` is `true`.
+     * @default true
+     */
+    returnFocus?: boolean | React.MutableRefObject<HTMLElement | null>;
+
+    /**
+     * Whether the floating element should close when focus moves outside of it
+     * (e.g. the user tabs past the last focusable element). Only relevant for
+     * non-modal focus management (i.e. when `focusManagerEnabled` is `true`).
+     * @default false
+     */
+    closeOnFocusOut?: boolean;
 };
 
 type FocusManagerProps =
@@ -209,12 +270,17 @@ export default function Floating({
     // focus management
     focusManagerEnabled = true,
     initialFocusRef,
+    returnFocus = true,
+    closeOnFocusOut = false,
     dismissEnabled = false,
+    onPlacementChange,
     // middleware specific
     hide: hideProp = true,
     offset: offsetProp = 20,
     flip: flipProp = true,
     shift: shiftProp = true,
+    shiftPadding = SHIFT_PADDING,
+    rootBoundary = "viewport",
     showArrow = true,
     styles: stylesProp,
 }: Props) {
@@ -222,32 +288,39 @@ export default function Floating({
     const prevOpenRef = React.useRef(open ?? false);
 
     // Calculate the floating styles and context
-    const {elements, refs, floatingStyles, context, middlewareData} =
-        useFloating({
-            open,
-            onOpenChange,
-            placement,
-            strategy,
-            // Ensure the floating element stays in sync with the reference element
-            whileElementsMounted: autoUpdate,
-            middleware: [
-                // Add offset from the reference element
-                offset({mainAxis: offsetProp}),
-                // Flip to the opposite side if there's not enough space
-                flipProp ? flip() : undefined,
-                // Shift along the axis to keep it in view
-                shiftProp
-                    ? shift({
-                          padding: SHIFT_PADDING,
-                          crossAxis: true,
-                      })
-                    : undefined,
-                showArrow ? arrow({element: arrowRef}) : undefined,
-                hideProp ? hide() : undefined,
-                // Mirror the floating element in RTL when placement is left/right
-                rtlMirror(),
-            ],
-        });
+    const {
+        elements,
+        refs,
+        floatingStyles,
+        context,
+        middlewareData,
+        placement: resolvedPlacement,
+    } = useFloating({
+        open,
+        onOpenChange,
+        placement,
+        strategy,
+        // Ensure the floating element stays in sync with the reference element
+        whileElementsMounted: autoUpdate,
+        middleware: [
+            // Add offset from the reference element
+            offset({mainAxis: offsetProp}),
+            // Flip to the opposite side if there's not enough space
+            flipProp ? flip({rootBoundary}) : undefined,
+            // Shift along the axis to keep it in view
+            shiftProp
+                ? shift({
+                      padding: shiftPadding,
+                      crossAxis: true,
+                      rootBoundary,
+                  })
+                : undefined,
+            showArrow ? arrow({element: arrowRef}) : undefined,
+            hideProp ? hide() : undefined,
+            // Mirror the floating element in RTL when placement is left/right
+            rtlMirror(),
+        ],
+    });
 
     // Closes the floating element when a dismissal is requested.
     const dismiss = useDismiss(context, {
@@ -266,18 +339,37 @@ export default function Floating({
         }
     }, [onOpenChange, open]);
 
-    // Clone the child element and add the ref
+    // Notify consumers of the resolved placement (after middleware such as
+    // `flip` has run) so they can adapt their content accordingly.
+    React.useEffect(() => {
+        onPlacementChange?.(resolvedPlacement);
+    }, [onPlacementChange, resolvedPlacement]);
 
+    const {setReference} = refs;
+
+    // Clone the trigger to inject the interaction props and, when it can
+    // receive one, the reference ref. Triggers that can't receive a ref (plain
+    // function components) register their DOM element through
+    // `FloatingReferenceContext` instead, which means they don't need to forward
+    // refs and we don't need to render a wrapper element around them.
     const trigger = React.useMemo(() => {
         return React.cloneElement(children, {
-            ref: refs.setReference,
+            ...(acceptsRef(children) ? {ref: setReference} : undefined),
             ...getReferenceProps(),
         });
-    }, [children, refs.setReference, getReferenceProps]);
+    }, [children, setReference, getReferenceProps]);
 
     return (
         <>
-            {trigger}
+            {/*
+             * Only the trigger is wrapped with the context so that a trigger
+             * rendered inside another floating element registers with its own
+             * `Floating` instance instead of the outer one. This keeps
+             * multiple open (or nested) floating elements independent.
+             */}
+            <FloatingReferenceContext.Provider value={setReference}>
+                {trigger}
+            </FloatingReferenceContext.Provider>
             {open && elements.reference && (
                 <Portal
                     portal={portal}
@@ -288,9 +380,8 @@ export default function Floating({
                         context={context}
                         modal={false}
                         initialFocus={initialFocusRef}
-                        // TODO(WB-1987): Determine if we want to close the
-                        // floating element when the user focuses outside of it.
-                        closeOnFocusOut={false}
+                        returnFocus={returnFocus}
+                        closeOnFocusOut={closeOnFocusOut}
                         visuallyHiddenDismiss={dismissEnabled}
                     >
                         <StyledDiv

@@ -3,6 +3,24 @@ import {render, screen, waitFor} from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
 import Floating from "../floating";
+import {useFloatingReference} from "../../util/floating-reference-context";
+
+/**
+ * A trigger that can't receive a ref (a plain function component), so it
+ * registers its DOM element as the reference element through context instead.
+ */
+const HookTrigger = (props: {
+    children: React.ReactNode;
+    onClick?: () => void;
+}) => {
+    const setFloatingReference = useFloatingReference();
+
+    return (
+        <button ref={setFloatingReference} onClick={props.onClick}>
+            {props.children}
+        </button>
+    );
+};
 
 describe("Floating", () => {
     describe("rendering", () => {
@@ -49,6 +67,147 @@ describe("Floating", () => {
 
             // Assert
             expect(content).toBeInTheDocument();
+        });
+
+        it("should not render a wrapper element around the trigger", () => {
+            // Arrange
+            render(
+                <div data-testid="trigger-parent">
+                    <Floating content="Floating content" open={false}>
+                        <button>Trigger</button>
+                    </Floating>
+                </div>,
+            );
+
+            // Act
+            const parent = screen.getByTestId("trigger-parent");
+
+            // Assert
+            // eslint-disable-next-line testing-library/no-node-access -- explicitly check that no wrapper element is rendered around the trigger
+            expect(parent.firstElementChild).toBe(
+                screen.getByRole("button", {name: "Trigger"}),
+            );
+        });
+    });
+
+    describe("reference element", () => {
+        it("should use the trigger registered with useFloatingReference when the trigger can't receive a ref", () => {
+            // Arrange
+            render(
+                <Floating content="Floating content" open={true}>
+                    <HookTrigger>Trigger</HookTrigger>
+                </Floating>,
+            );
+
+            // Act
+            // The floating content is only rendered once the reference element
+            // has been resolved.
+            const content = screen.getByText("Floating content");
+
+            // Assert
+            expect(content).toBeInTheDocument();
+        });
+
+        it("should keep the reference element of each instance independent when multiple are open", async () => {
+            // Arrange
+            const MultipleFloating = () => {
+                const [firstMounted, setFirstMounted] = React.useState(true);
+
+                return (
+                    <div>
+                        {firstMounted && (
+                            <Floating content="First content" open={true}>
+                                <HookTrigger>First trigger</HookTrigger>
+                            </Floating>
+                        )}
+                        <Floating content="Second content" open={true}>
+                            <HookTrigger>Second trigger</HookTrigger>
+                        </Floating>
+                        <button onClick={() => setFirstMounted(false)}>
+                            Unmount first
+                        </button>
+                    </div>
+                );
+            };
+
+            render(<MultipleFloating />);
+
+            // Both instances resolved their own reference element, so both are
+            // rendered at the same time.
+            expect(screen.getByText("First content")).toBeInTheDocument();
+            expect(screen.getByText("Second content")).toBeInTheDocument();
+
+            // Act
+            // Removing the first trigger clears the reference element of the
+            // first instance only.
+            await userEvent.click(
+                screen.getByRole("button", {name: "Unmount first"}),
+            );
+
+            // Assert
+            expect(screen.queryByText("First content")).not.toBeInTheDocument();
+            expect(screen.getByText("Second content")).toBeInTheDocument();
+        });
+
+        it("should not expose its reference setter to the floating content", () => {
+            // Arrange
+            // Only the trigger subtree can register a reference element, so
+            // components rendered in the floating content (e.g. the trigger of a
+            // nested floating element) can't take over this instance's
+            // reference element.
+            let triggerSetter: unknown;
+            let contentSetter: unknown;
+
+            const TriggerProbe = () => {
+                triggerSetter = useFloatingReference();
+                return <button ref={triggerSetter as any}>Trigger</button>;
+            };
+            const ContentProbe = () => {
+                contentSetter = useFloatingReference();
+                return <span>Floating content</span>;
+            };
+
+            // Act
+            render(
+                <Floating content={<ContentProbe />} open={true}>
+                    <TriggerProbe />
+                </Floating>,
+            );
+
+            // Assert
+            expect(screen.getByText("Floating content")).toBeInTheDocument();
+            expect(contentSetter).not.toBe(triggerSetter);
+        });
+
+        it("should render nested floating elements, each anchored to its own trigger", async () => {
+            // Arrange
+            // The inner trigger is rendered in the outer floating content, so
+            // the inner instance is the one that must resolve it.
+            const NestedFloating = () => (
+                <Floating
+                    content={
+                        <Floating content="Inner content" open={true}>
+                            <HookTrigger>Inner trigger</HookTrigger>
+                        </Floating>
+                    }
+                    open={true}
+                >
+                    <HookTrigger>Outer trigger</HookTrigger>
+                </Floating>
+            );
+
+            render(<NestedFloating />);
+
+            // Act
+            const innerContent = await screen.findByText("Inner content");
+
+            // Assert
+            // The inner content is only rendered once the inner instance has
+            // resolved the inner trigger as its reference element. Queried by
+            // text because the outer floating element is hidden in jsdom (the
+            // `hide` middleware can't measure the reference element).
+            expect(innerContent).toBeInTheDocument();
+            expect(screen.getByText("Inner trigger")).toBeInTheDocument();
         });
     });
 
@@ -469,6 +628,76 @@ describe("Floating", () => {
                 // Assert
                 await waitFor(() => {
                     expect(onOpenChangeMock).not.toHaveBeenCalled();
+                });
+            });
+        });
+
+        describe("onPlacementChange", () => {
+            it("should call onPlacementChange with the resolved placement", async () => {
+                // Arrange
+                const onPlacementChange = jest.fn();
+
+                // Act
+                render(
+                    <Floating
+                        content="Floating content"
+                        open={true}
+                        placement="bottom"
+                        onPlacementChange={onPlacementChange}
+                    >
+                        <button>Trigger</button>
+                    </Floating>,
+                );
+
+                // Assert
+                await waitFor(() => {
+                    expect(onPlacementChange).toHaveBeenCalledWith("bottom");
+                });
+            });
+        });
+
+        describe("closeOnFocusOut", () => {
+            // NOTE: The positive case (closing when focus moves out) relies on
+            // portal focus guards and `focusout` events that jsdom does not
+            // reproduce reliably. That behavior is covered end-to-end by the
+            // Popover test suite, which consumes this prop.
+            it("should not close the floating element when focus leaves it and closeOnFocusOut is false", async () => {
+                // Arrange
+                const onOpenChangeMock = jest.fn();
+                const ControlledFloating = () => {
+                    const [open, setOpen] = React.useState(true);
+                    return (
+                        <div>
+                            <Floating
+                                content={
+                                    <div>
+                                        <button>Inside</button>
+                                    </div>
+                                }
+                                open={open}
+                                portal={true}
+                                focusManagerEnabled={true}
+                                closeOnFocusOut={false}
+                                onOpenChange={(open) => {
+                                    setOpen(open);
+                                    onOpenChangeMock(open);
+                                }}
+                            >
+                                <button>Trigger</button>
+                            </Floating>
+                            <button>Outside</button>
+                        </div>
+                    );
+                };
+
+                render(<ControlledFloating />);
+
+                // Act
+                await userEvent.tab();
+
+                // Assert
+                await waitFor(() => {
+                    expect(onOpenChangeMock).not.toHaveBeenCalledWith(false);
                 });
             });
         });
