@@ -26,7 +26,11 @@ import type {
     OptionItemComponent,
     OptionItemComponentArray,
 } from "../util/types";
-import {getLabel, getSelectOpenerLabel} from "../util/helpers";
+import {
+    getLabel,
+    getListboxLabelProps,
+    getSelectOpenerLabel,
+} from "../util/helpers";
 import {useSelectValidation} from "../hooks/use-select-validation";
 
 export type LabelsValues = {
@@ -262,6 +266,7 @@ const MultiSelect = (props: Props) => {
         style,
         className,
         "aria-label": ariaLabel,
+        "aria-labelledby": ariaLabelledBy,
         "aria-invalid": ariaInvalid,
         "aria-required": ariaRequired,
         disabled = false,
@@ -681,6 +686,7 @@ const MultiSelect = (props: Props) => {
                             disabled={isDisabled}
                             id={uniqueOpenerId}
                             aria-label={ariaLabel}
+                            aria-labelledby={ariaLabelledBy}
                             aria-controls={dropdownId}
                             aria-required={computedRequired}
                             isPlaceholder={openerContent === noneSelected}
@@ -702,6 +708,13 @@ const MultiSelect = (props: Props) => {
     };
 
     const {clearSearch, filter, noResults, someSelected} = labels;
+
+    // Label the listbox with the same name as the opener.
+    const listboxLabelProps = getListboxLabelProps({
+        ariaLabel,
+        ariaLabelledBy,
+        openerElement,
+    });
 
     // Use refs so the effects below only re-fire when their relevant values
     // change, not on every render caused by label prop object identity churn.
@@ -764,6 +777,7 @@ const MultiSelect = (props: Props) => {
                         noResults,
                         someResults: someSelected,
                     }}
+                    {...listboxLabelProps}
                     aria-invalid={ariaInvalid}
                     aria-required={computedRequired}
                     // If readOnly is true, DropdownCore should be disabled to

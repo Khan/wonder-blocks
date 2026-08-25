@@ -104,7 +104,7 @@ type DropdownAriaRole = "listbox" | "menu";
 type ItemAriaRole = "option" | "menuitem";
 type DropdownAriaProps = Pick<
     AriaProps,
-    "aria-invalid" | "aria-required" | "aria-labelledby"
+    "aria-invalid" | "aria-required" | "aria-label" | "aria-labelledby"
 >;
 
 type ExportProps = Readonly<{
@@ -981,6 +981,7 @@ class DropdownCore extends React.Component<Props, State> {
     ): React.ReactNode {
         const {
             "aria-invalid": ariaInvalid,
+            "aria-label": ariaLabel,
             "aria-labelledby": ariaLabelledby,
             "aria-required": ariaRequired,
             dropdownStyle,
@@ -1014,6 +1015,7 @@ class DropdownCore extends React.Component<Props, State> {
                 <View
                     id={id}
                     role={role}
+                    aria-label={ariaLabel}
                     aria-labelledby={ariaLabelledby}
                     style={[
                         styles.listboxOrMenu,
