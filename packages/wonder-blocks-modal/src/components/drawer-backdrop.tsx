@@ -63,7 +63,13 @@ const DrawerBackdrop = ({
         ? (timingDuration ?? DRAWER_ENTER_DURATION_MS)
         : 0;
 
-    const fadeStyles = getFadeStyles(isExiting ?? false, timingDuration);
+    const fadeStyle = isExiting ? styles.fadeOut : styles.fadeIn;
+    // Only computed when the consumer overrides the default duration, so the
+    // common case needs no per-render style object at all.
+    const fadeDurationOverride =
+        timingDuration != null
+            ? {animationDuration: `${timingDuration}ms`}
+            : undefined;
 
     /**
      * Returns an element specified by the user
@@ -178,7 +184,8 @@ const DrawerBackdrop = ({
             style={[
                 styles.drawerPositioner,
                 alignment && styles[alignment],
-                animated && fadeStyles.fade,
+                animated && fadeStyle,
+                animated && fadeDurationOverride,
                 // Last, so it overrides the styles above.
                 style,
             ].filter(Boolean)}
@@ -234,27 +241,23 @@ const styles = StyleSheet.create({
         alignItems: "center",
         justifyContent: "flex-end",
     },
+    // The backdrop's fade. Shares the panel's durations by default, so the two
+    // finish together; `timingDuration` overrides that via a plain style object
+    // appended in the component.
+    fadeIn: {
+        // @ts-expect-error [FEI-5019] - `animationName` expects a string not an object
+        animationName: keyframes.fadeIn,
+        animationDuration: `${DRAWER_ENTER_DURATION_MS}ms`,
+        animationTimingFunction: "linear",
+        animationFillMode: "forwards",
+    },
+    fadeOut: {
+        // @ts-expect-error [FEI-5019] - `animationName` expects a string not an object
+        animationName: keyframes.fadeOut,
+        animationDuration: `${DRAWER_EXIT_DURATION_MS}ms`,
+        animationTimingFunction: "linear",
+        animationFillMode: "forwards",
+    },
 });
-
-/**
- * The backdrop's fade. It shares the panel's durations so the two finish
- * together, and stays linear.
- */
-const getFadeStyles = (
-    isExiting: boolean,
-    timingDuration: number | undefined,
-) =>
-    StyleSheet.create({
-        fade: {
-            // @ts-expect-error [FEI-5019] - `animationName` expects a string not an object
-            animationName: isExiting ? keyframes.fadeOut : keyframes.fadeIn,
-            animationDuration: `${
-                timingDuration ??
-                (isExiting ? DRAWER_EXIT_DURATION_MS : DRAWER_ENTER_DURATION_MS)
-            }ms`,
-            animationTimingFunction: "linear",
-            animationFillMode: "forwards",
-        },
-    });
 
 export default DrawerBackdrop;
