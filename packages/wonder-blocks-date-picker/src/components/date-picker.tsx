@@ -5,7 +5,7 @@ import {DayPicker} from "react-day-picker";
 import {enUS, type Locale} from "react-day-picker/locale";
 
 import {View, type StyleType} from "@khanacademy/wonder-blocks-core";
-import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
+import {font, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {useCloseOnOutsideClick} from "../hooks/use-close-on-outside-click";
 import {useDatePickerModifiers} from "../hooks/use-date-picker-modifiers";
 import {useDisplayMonth} from "../hooks/use-display-month";
@@ -131,9 +131,10 @@ type RootWithEscProps = React.HTMLAttributes<Element> & {
     onKeyDown?: React.KeyboardEventHandler<HTMLDivElement>;
 };
 
-// Override the React Day Picker accent color.
+// Override the React Day Picker colors.
 const customRootStyle = {
     "--rdp-accent-color": semanticColor.core.border.instructive.default,
+    "--rdp-today-color": semanticColor.core.foreground.instructive.default,
 } as React.CSSProperties & Record<string, string>;
 
 /**
@@ -452,6 +453,17 @@ const DatePicker = (props: Props) => {
         [],
     );
 
+    // `styles` only reads the `day` key per-day; modifier styles like
+    // `selected` must go through `modifiersStyles` instead, since
+    // react-day-picker merges them from a separate prop.
+    const dayPickerModifiersStyles = React.useMemo(
+        () => ({
+            selected: {fontWeight: font.weight.medium},
+            today: {fontWeight: font.weight.bold},
+        }),
+        [],
+    );
+
     // inputDriven: the displayed month in what the user is typing
     const inputDrivenMonth = inputDrivenMonthRef.current;
     const isInputDriven = inputDrivenMonth != null;
@@ -525,6 +537,7 @@ const DatePicker = (props: Props) => {
                             locale={computedLocale}
                             dir={dir}
                             styles={dayPickerStyles}
+                            modifiersStyles={dayPickerModifiersStyles}
                         />
                         {maybeRenderFooter()}
                     </View>
