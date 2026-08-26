@@ -19,12 +19,13 @@ import {
     semanticColor,
 } from "@khanacademy/wonder-blocks-tokens";
 import {addStyle, StyleType} from "@khanacademy/wonder-blocks-core";
-import {ARROW_SIZE_INLINE} from "../util/constants";
+import {
+    ARROW_SIZE_INLINE,
+    FloatingReferenceAttributeName,
+} from "../util/constants";
 import {Arrow, type ArrowStyles} from "./floating-arrow";
 import {Portal} from "./floating-portal";
 import {rtlMirror} from "../util/rtl-mirror-middleware";
-import {acceptsRef} from "../util/accepts-ref";
-import {FloatingReferenceContext} from "../util/floating-reference-context";
 
 const StyledDiv = addStyle("div");
 
@@ -34,14 +35,16 @@ type FloatingProps = {
      * position of the floating element.
      *
      * No wrapper element is rendered around the trigger, so the DOM hierarchy
-     * stays exactly as the consumer wrote it. The reference element is resolved
-     * in one of two ways:
+     * stays exactly as the consumer wrote it.
      *
-     * - Elements that can receive a ref (host elements such as `<button>`,
-     *   `React.forwardRef` components and class components) get the reference
-     *   ref injected directly.
-     * - Plain function components register the trigger's DOM element with the
-     *   `useFloatingReference` hook, so they don't have to forward refs.
+     * The trigger never has to accept, forward or attach a ref, and its type
+     * doesn't matter (host element, `React.forwardRef` component, class
+     * component or plain function component). It only has to spread the props
+     * it is given (which it needs to do anyway for the interaction and ARIA
+     * props) onto the element the floating element should be anchored to, and
+     * `Floating` finds that element in the DOM. A trigger that renders several
+     * elements therefore chooses the one to anchor to by spreading the props
+     * onto it.
      */
     children: React.ReactElement;
     /**
@@ -347,29 +350,54 @@ export default function Floating({
 
     const {setReference} = refs;
 
-    // Clone the trigger to inject the interaction props and, when it can
-    // receive one, the reference ref. Triggers that can't receive a ref (plain
-    // function components) register their DOM element through
-    // `FloatingReferenceContext` instead, which means they don't need to forward
-    // refs and we don't need to render a wrapper element around them.
+    // Identifies this instance's trigger in the DOM, so that we can look up its
+    // element (see the effect below). `React.useId` values are unique for every
+    // component instance, so instances never resolve each other's trigger.
+    const referenceId = React.useId();
+
+    // Clone the trigger to inject the interaction props and the attribute that
+    // identifies its DOM element. We never inject a ref: that would make the
+    // trigger's type part of the contract (plain function components can't
+    // receive one), and it would mean either wrapping the trigger in an extra
+    // element or asking consumers to forward refs.
     const trigger = React.useMemo(() => {
         return React.cloneElement(children, {
-            ...(acceptsRef(children) ? {ref: setReference} : undefined),
+            [FloatingReferenceAttributeName]: referenceId,
             ...getReferenceProps(),
         });
-    }, [children, setReference, getReferenceProps]);
+    }, [children, getReferenceProps, referenceId]);
+
+    // Resolve the reference element from the DOM. The trigger only has to spread
+    // the props it is given (which it needs to do anyway for the interaction and
+    // ARIA props) onto the element the floating element is anchored to, and we
+    // find that element by the attribute injected above.
+    //
+    // NOTE: This runs after every render (no dependency array) so that the
+    // reference element stays in sync if the trigger renders a different DOM
+    // element. Setting the same element again is a no-op in floating-ui.
+    React.useLayoutEffect(() => {
+        const node = document.querySelector(
+            `[${FloatingReferenceAttributeName}="${referenceId}"]`,
+        );
+
+        if (node !== elements.reference) {
+            setReference(node);
+        }
+
+        if (process.env.NODE_ENV !== "production" && open && !node) {
+            // eslint-disable-next-line no-console
+            console.warn(
+                "Floating: could not find the trigger's element in the DOM, " +
+                    "so the floating element can't be positioned. Make sure " +
+                    "the trigger spreads the props it is given onto the " +
+                    "element the floating element should be anchored to.",
+            );
+        }
+    });
 
     return (
         <>
-            {/*
-             * Only the trigger is wrapped with the context so that a trigger
-             * rendered inside another floating element registers with its own
-             * `Floating` instance instead of the outer one. This keeps
-             * multiple open (or nested) floating elements independent.
-             */}
-            <FloatingReferenceContext.Provider value={setReference}>
-                {trigger}
-            </FloatingReferenceContext.Provider>
+            {trigger}
             {open && elements.reference && (
                 <Portal
                     portal={portal}
