@@ -4,10 +4,7 @@ import * as React from "react";
 
 import Button from "@khanacademy/wonder-blocks-button";
 import {PropsFor, View} from "@khanacademy/wonder-blocks-core";
-import {
-    Floating,
-    useFloatingReference,
-} from "@khanacademy/wonder-blocks-floating";
+import {Floating} from "@khanacademy/wonder-blocks-floating";
 import Switch from "@khanacademy/wonder-blocks-switch";
 import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {BodyText, Heading} from "@khanacademy/wonder-blocks-typography";
@@ -83,14 +80,12 @@ export const Default: StoryComponentType = {
 };
 
 /**
- * A custom trigger that registers itself as the reference element.
+ * A custom trigger implemented as a plain function component.
  *
- * This is a plain function component, so it can't receive the reference `ref`
- * from `Floating`. Instead, it uses the `useFloatingReference` hook to register
- * the DOM element it renders as the reference (anchor) element. Note that it
- * also spreads the rest of its props onto that same element, so the props that
- * `Floating` injects into the trigger (e.g. the ones needed for dismissal) are
- * applied to it as well.
+ * It doesn't need to accept or forward a ref: it only spreads the props it is
+ * given onto the element it renders, which it needs to do anyway for the props
+ * `Floating` injects into the trigger (e.g. the ones needed for dismissal).
+ * `Floating` then uses that element as the reference (anchor) element.
  */
 function CustomTrigger({
     label,
@@ -100,13 +95,10 @@ function CustomTrigger({
     label: string;
     onClick: () => void;
 }) {
-    const setFloatingReference = useFloatingReference();
-
     return (
         <View
             {...otherProps}
             tag="button"
-            ref={setFloatingReference}
             onClick={onClick}
             style={styles.customTrigger}
         >
@@ -122,18 +114,16 @@ function CustomTrigger({
  * doesn't render a wrapper element around the trigger, so the DOM stays exactly
  * as you wrote it.
  *
- * There are two ways for a custom component to expose its DOM element:
+ * The trigger doesn't have to accept, forward or attach a ref, and its type
+ * doesn't matter: host elements, `React.forwardRef` components (such as `Button`
+ * or `IconButton`) and plain function components all work the same way. It only
+ * has to spread the props it receives onto the element the floating element
+ * should be anchored to, which it needs to do anyway (`Floating` injects props
+ * into the trigger, e.g. to support dismissal). `CustomTrigger` below is a plain
+ * function component that does exactly that.
  *
- * - **Using the `useFloatingReference` hook** (used by `CustomTrigger` below).
- *   The component attaches the ref callback returned by the hook to the element
- *   that the floating element should be anchored to. This works for plain
- *   function components, which can't receive a `ref`.
- * - **Forwarding its ref**. Components created with `React.forwardRef` (and
- *   Wonder Blocks components such as `Button` or `IconButton`) receive the
- *   reference `ref` directly, so they work as triggers without any extra work.
- *
- * In both cases, remember to spread the remaining props onto the same element,
- * as `Floating` injects props into the trigger (e.g. to support dismissal).
+ * A trigger that renders several elements picks the one to anchor to by
+ * spreading the props onto it.
  */
 export const CustomTriggerComponent: StoryComponentType = {
     args: {
@@ -153,8 +143,8 @@ export const CustomTriggerComponent: StoryComponentType = {
                         <Heading size="small">Custom trigger</Heading>
                         <BodyText>
                             This floating element is anchored to a custom
-                            component that registers itself with the
-                            `useFloatingReference` hook.
+                            trigger component that only spreads the props it is
+                            given onto the element it renders.
                         </BodyText>
                     </View>
                 }
