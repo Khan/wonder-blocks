@@ -4,7 +4,11 @@ import * as React from "react";
 import caretDownIcon from "@phosphor-icons/core/regular/caret-down.svg";
 import xIcon from "@phosphor-icons/core/regular/x.svg";
 
-import {StyleType, View} from "@khanacademy/wonder-blocks-core";
+import {
+    type AriaAttributes,
+    type StyleType,
+    View,
+} from "@khanacademy/wonder-blocks-core";
 import {TextField} from "@khanacademy/wonder-blocks-form";
 import IconButton from "@khanacademy/wonder-blocks-icon-button";
 import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
@@ -131,11 +135,6 @@ type Props = {
     startIcon?: React.ReactElement<
         React.ComponentProps<typeof PhosphorIcon>
     > | null;
-
-    /**
-     * An optional aria-label to display on the combobox.
-     */
-    "aria-label"?: string;
 };
 
 /**
@@ -165,8 +164,10 @@ export default function Combobox({
     startIcon,
     testId,
     value = "",
-    "aria-label": ariaLabel,
-}: Props) {
+    loading,
+    style,
+    ...ariaAttrs
+}: Props & AriaAttributes) {
     // eslint-disable-next-line import/no-deprecated
     const generatedUniqueId = useId();
     const uniqueId = id ?? generatedUniqueId;
@@ -586,10 +587,9 @@ export default function Combobox({
                 {maybeRenderStartIcon()}
 
                 <TextField
-                    aria-label={ariaLabel}
                     id={textFieldId}
                     testId={testId}
-                    style={styles.combobox}
+                    style={[styles.combobox, style]}
                     value={inputValue}
                     onChange={handleTextFieldChange}
                     disabled={disabled}
@@ -613,6 +613,7 @@ export default function Combobox({
                     // the combobox is already providing suggestions.
                     autoComplete="off"
                     role="combobox"
+                    {...ariaAttrs}
                 />
 
                 {inputValue && !disabled && (

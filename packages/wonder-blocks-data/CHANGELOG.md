@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-data
 
+## 15.0.3
+
+### Patch Changes
+
+- 0d4e856: Fix `useCachedEffect` refetching forever when an unmemoized `onResultChanged` callback is passed with the `CacheAndNetwork` or `NetworkOnly` fetch policies. The callback is now tracked via a latest-value ref so its identity no longer invalidates the memoized fetch function (which cancelled the inflight request and restarted the fetch); the most recently supplied callback is still the one invoked when a result arrives.
+
 ## 15.0.2
 
 ### Patch Changes

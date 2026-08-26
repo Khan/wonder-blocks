@@ -1,5 +1,15 @@
 # @khanacademy/wonder-blocks-tokens
 
+## 17.3.0
+
+### Minor Changes
+
+- 357a19c: Add `semanticColor.learning.embeddedContent.background.default` and `semanticColor.learning.embeddedContent.foreground.default` tokens. These use the Thunderblocks `black_100` and `gray_90` primitives respectively and remain consistent across all themes.
+
+### Patch Changes
+
+- 6e4158c: Update the SYL Dark `action.secondary.neutral` background tokens (default, hover, and press states) to use `core.background.base.default`
+
 ## 17.2.0
 
 ### Minor Changes

@@ -1032,6 +1032,9 @@ importers:
       '@khanacademy/wb-dev-build-settings':
         specifier: workspace:*
         version: link:../../build-settings
+      '@khanacademy/wonder-blocks-labeled-field':
+        specifier: workspace:*
+        version: link:../wonder-blocks-labeled-field
 
   packages/wonder-blocks-floating:
     dependencies:

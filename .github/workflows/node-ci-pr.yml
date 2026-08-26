@@ -54,9 +54,6 @@ jobs:
     check_builds:
         name: Check build sizes
         runs-on: ${{ vars.USE_GITHUB_RUNNERS == 'true' && 'ubuntu-latest' || 'ephemeral-runner' }}
-        strategy:
-            matrix:
-                node-version: [24.x]
         steps:
             - uses: actions/checkout@v5
             - name: Secure Network
@@ -65,16 +62,10 @@ jobs:
               with:
                   # registry.npmjs.org: npm package registry for pnpm install
                   extra-domains: registry.npmjs.org
-            - name: Use Node.js 24.x
-              uses: actions/setup-node@v6
-              with:
-                  node-version: 24.x
 
             - name: Install & cache node_modules
               uses: ./.github/actions/shared-node-cache
               timeout-minutes: 5
-              with:
-                  node-version: 24.x
 
             # Make sure our packages aren't growing unexpectedly
             - name: Check Builds
