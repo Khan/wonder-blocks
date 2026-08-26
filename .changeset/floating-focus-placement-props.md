@@ -13,3 +13,5 @@ Add new props to the `Floating` component to support more consumers (e.g. `Popov
 Also export a new `useFloatingReference` hook (and the `FloatingReferenceContext` it reads). A trigger that can't receive a ref (a plain function component) can use it to register its own DOM element as the reference (anchor) element of the `Floating` it is rendered in, so it doesn't have to forward refs. `Floating` still renders no wrapper element around the trigger, and each instance only shares its reference setter with its own trigger, so multiple open or nested floating elements stay independent.
 
 Additionally, re-export `useMergeRefs` (from `@floating-ui/react`) so consumers can merge the reference setter with their own refs without depending on `@floating-ui/react` directly.
+
+The floating element no longer sets a `max-inline-size` (previously `472px`, carried over from `Tooltip`). It now sizes to its content, so consumers that need a width cap should set one on their own content (or via the `styles.floating` prop).
