@@ -3,24 +3,36 @@ import {render, screen, waitFor} from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
 import Floating from "../floating";
-import {useFloatingReference} from "../../util/floating-reference-context";
 
 /**
- * A trigger that can't receive a ref (a plain function component), so it
- * registers its DOM element as the reference element through context instead.
+ * A plain function component trigger: it can't receive a ref and only spreads
+ * the props it is given onto the element it renders.
  */
-const HookTrigger = (props: {
+const SpreadTrigger = (props: {
     children: React.ReactNode;
     onClick?: () => void;
 }) => {
-    const setFloatingReference = useFloatingReference();
+    const {children, ...otherProps} = props;
+
+    return <button {...otherProps}>{children}</button>;
+};
+
+/**
+ * A trigger that could receive a ref, to verify it is resolved the same way as
+ * the trigger types that can't.
+ */
+const ForwardRefTrigger = React.forwardRef<
+    HTMLButtonElement,
+    {children: React.ReactNode}
+>((props, ref) => {
+    const {children, ...otherProps} = props;
 
     return (
-        <button ref={setFloatingReference} onClick={props.onClick}>
-            {props.children}
+        <button {...otherProps} ref={ref}>
+            {children}
         </button>
     );
-};
+});
 
 describe("Floating", () => {
     describe("rendering", () => {
@@ -91,11 +103,104 @@ describe("Floating", () => {
     });
 
     describe("reference element", () => {
-        it("should use the trigger registered with useFloatingReference when the trigger can't receive a ref", () => {
+        it.each`
+            triggerType             | Trigger
+            ${"host element"}       | ${(props: any) => <button {...props} />}
+            ${"function component"} | ${SpreadTrigger}
+            ${"forwardRef"}         | ${ForwardRefTrigger}
+        `(
+            "should use the element the props are spread onto as the reference element ($triggerType)",
+            ({Trigger}: any) => {
+                // Arrange
+                render(
+                    <Floating content="Floating content" open={true}>
+                        <Trigger>Trigger</Trigger>
+                    </Floating>,
+                );
+
+                // Act
+                // The floating content is only rendered once the reference
+                // element has been resolved.
+                const content = screen.getByText("Floating content");
+
+                // Assert
+                expect(content).toBeInTheDocument();
+            },
+        );
+
+        it("should keep the reference element of each instance independent when several triggers only spread their props", () => {
             // Arrange
             render(
+                <div>
+                    <Floating content="First content" open={true}>
+                        <SpreadTrigger>First trigger</SpreadTrigger>
+                    </Floating>
+                    <Floating content="Second content" open={true}>
+                        <SpreadTrigger>Second trigger</SpreadTrigger>
+                    </Floating>
+                </div>,
+            );
+
+            // Act
+            // Each instance identifies its own trigger, so both resolved a
+            // reference element and both are rendered.
+            const firstContent = screen.getByText("First content");
+            const secondContent = screen.getByText("Second content");
+
+            // Assert
+            expect(firstContent).toBeInTheDocument();
+            expect(secondContent).toBeInTheDocument();
+        });
+
+        it("should warn and not render the floating content when the trigger doesn't spread the props it is given", () => {
+            // Arrange
+            const consoleWarnSpy = jest
+                .spyOn(console, "warn")
+                .mockImplementation(() => {});
+            // Without the injected props there is no way to find the trigger's
+            // DOM element, so there is no reference element to anchor to.
+            const NoSpreadTrigger = (props: {children: React.ReactNode}) => (
+                <button>{props.children}</button>
+            );
+
+            render(
                 <Floating content="Floating content" open={true}>
-                    <HookTrigger>Trigger</HookTrigger>
+                    <NoSpreadTrigger>Trigger</NoSpreadTrigger>
+                </Floating>,
+            );
+
+            // Act
+            const content = screen.queryByText("Floating content");
+
+            // Assert
+            expect(content).not.toBeInTheDocument();
+            expect(consoleWarnSpy).toHaveBeenCalledWith(
+                expect.stringContaining(
+                    "could not find the trigger's element in the DOM",
+                ),
+            );
+        });
+
+        it("should anchor to the element the props are spread onto when the trigger renders several elements", () => {
+            // Arrange
+            // The trigger chooses which of its elements the floating element is
+            // anchored to by spreading the props onto it.
+            const MultiElementTrigger = (props: {
+                children: React.ReactNode;
+            }) => {
+                const {children, ...otherProps} = props;
+
+                return (
+                    <div>
+                        <span>Not the anchor</span>
+                        <button {...otherProps}>{children}</button>
+                    </div>
+                );
+            };
+
+            render(
+                <Floating content="Floating content" open={true}>
+                    <MultiElementTrigger>Trigger</MultiElementTrigger>
                 </Floating>,
             );
 
@@ -106,6 +211,9 @@ describe("Floating", () => {
 
             // Assert
             expect(content).toBeInTheDocument();
+            expect(
+                screen.getByRole("button", {name: "Trigger"}),
+            ).toHaveAttribute("data-wb-floating-reference");
         });
 
         it("should keep the reference element of each instance independent when multiple are open", async () => {
@@ -117,11 +225,11 @@ describe("Floating", () => {
                     <div>
                         {firstMounted && (
                             <Floating content="First content" open={true}>
-                                <HookTrigger>First trigger</HookTrigger>
+                                <SpreadTrigger>First trigger</SpreadTrigger>
                             </Floating>
                         )}
                         <Floating content="Second content" open={true}>
-                            <HookTrigger>Second trigger</HookTrigger>
+                            <SpreadTrigger>Second trigger</SpreadTrigger>
                         </Floating>
                         <button onClick={() => setFirstMounted(false)}>
                             Unmount first
@@ -149,36 +257,6 @@ describe("Floating", () => {
             expect(screen.getByText("Second content")).toBeInTheDocument();
         });
 
-        it("should not expose its reference setter to the floating content", () => {
-            // Arrange
-            // Only the trigger subtree can register a reference element, so
-            // components rendered in the floating content (e.g. the trigger of a
-            // nested floating element) can't take over this instance's
-            // reference element.
-            let triggerSetter: unknown;
-            let contentSetter: unknown;
-
-            const TriggerProbe = () => {
-                triggerSetter = useFloatingReference();
-                return <button ref={triggerSetter as any}>Trigger</button>;
-            };
-            const ContentProbe = () => {
-                contentSetter = useFloatingReference();
-                return <span>Floating content</span>;
-            };
-
-            // Act
-            render(
-                <Floating content={<ContentProbe />} open={true}>
-                    <TriggerProbe />
-                </Floating>,
-            );
-
-            // Assert
-            expect(screen.getByText("Floating content")).toBeInTheDocument();
-            expect(contentSetter).not.toBe(triggerSetter);
-        });
-
         it("should render nested floating elements, each anchored to its own trigger", async () => {
             // Arrange
             // The inner trigger is rendered in the outer floating content, so
@@ -187,12 +265,12 @@ describe("Floating", () => {
                 <Floating
                     content={
                         <Floating content="Inner content" open={true}>
-                            <HookTrigger>Inner trigger</HookTrigger>
+                            <SpreadTrigger>Inner trigger</SpreadTrigger>
                         </Floating>
                     }
                     open={true}
                 >
-                    <HookTrigger>Outer trigger</HookTrigger>
+                    <SpreadTrigger>Outer trigger</SpreadTrigger>
                 </Floating>
             );
 
