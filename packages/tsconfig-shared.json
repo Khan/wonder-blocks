@@ -25,7 +25,6 @@
             "jest-axe",
             "jscodeshift",
             "node",
-            "node-fetch",
             "react",
             "react-dom",
             "react-router",

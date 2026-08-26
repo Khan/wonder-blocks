@@ -1,5 +1,5 @@
 import {SettleSignal} from "./settle-signal";
-import {ResponseImpl} from "./response-impl";
+
 import type {GraphQLJson} from "./types";
 
 /**
@@ -212,6 +212,11 @@ const callOnSettled = (
 };
 
 /**
+ * Status codes for which a Response is not allowed to carry a body.
+ */
+const NULL_BODY_STATUSES = [204, 205, 304];
+
+/**
  * Turns a MockResponse value to an actual Response that represents the mock.
  */
 const makeMockResponse = (
@@ -227,9 +232,15 @@ const makeMockResponse = (
                         typeof response.text === "function"
                             ? response.text()
                             : response.text;
-                    resolve(
-                        new ResponseImpl(text, {status: response.statusCode}),
-                    );
+                    // The Fetch spec forbids constructing a Response
+                    // with a body for null-body status codes, so drop the
+                    // body for those rather than throwing.
+                    const body = NULL_BODY_STATUSES.includes(
+                        response.statusCode,
+                    )
+                        ? null
+                        : text;
+                    resolve(new Response(body, {status: response.statusCode}));
                 });
             });
 
