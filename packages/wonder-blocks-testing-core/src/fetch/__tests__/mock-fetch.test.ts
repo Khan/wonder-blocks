@@ -1,4 +1,3 @@
-import {Request} from "node-fetch";
 import {RespondWith} from "../../respond-with";
 import {mockFetch} from "../mock-fetch";
 
