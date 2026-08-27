@@ -80,6 +80,12 @@ export default {
             category: "Accessibility",
         },
     },
+    calendarButtonAriaLabel: {
+        control: {type: "text"},
+        table: {
+            category: "Accessibility",
+        },
+    },
     style: {
         control: {type: "object"},
         table: {
