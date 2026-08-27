@@ -898,9 +898,9 @@ importers:
       '@khanacademy/wonder-blocks-form':
         specifier: workspace:*
         version: link:../wonder-blocks-form
-      '@khanacademy/wonder-blocks-icon':
+      '@khanacademy/wonder-blocks-icon-button':
         specifier: workspace:*
-        version: link:../wonder-blocks-icon
+        version: link:../wonder-blocks-icon-button
       '@khanacademy/wonder-blocks-modal':
         specifier: workspace:*
         version: link:../wonder-blocks-modal

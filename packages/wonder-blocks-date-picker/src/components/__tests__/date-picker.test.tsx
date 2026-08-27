@@ -27,6 +27,14 @@ function expectOverlayHidden() {
     expect(screen.queryByTestId("focus-sentinel-prev")).not.toBeInTheDocument();
 }
 
+// Opens the calendar overlay via the explicit toggle mechanism: focus the
+// input (matching real usage), then click the calendar toggle button. Plain
+// focus/click on the input no longer opens the overlay.
+async function openOverlay() {
+    await userEvent.tab();
+    await userEvent.click(screen.getByRole("button", {name: "Show calendar"}));
+}
+
 describe("DatePicker", () => {
     beforeEach(() => {
         // Mock getBoundingClientRect to provide realistic dimensions
@@ -51,10 +59,10 @@ describe("DatePicker", () => {
         expectOverlayHidden();
     });
 
-    it("shows the date picker overlay if the input is clicked", async () => {
+    it("does not show the date picker overlay if the input is clicked", async () => {
         render(<DatePicker updateDate={() => {}} />);
         await userEvent.click(screen.getByRole("textbox"));
-        expectOverlayVisible();
+        expectOverlayHidden();
     });
 
     it("does not show the date picker overlay if disabled", async () => {
@@ -63,16 +71,51 @@ describe("DatePicker", () => {
         expectOverlayHidden();
     });
 
-    it("shows the date picker overlay if the input is focused", async () => {
+    it("does not show the date picker overlay if the input is focused", async () => {
         render(<DatePicker updateDate={() => {}} />);
         await userEvent.tab();
+        expectOverlayHidden();
+    });
+
+    it("shows the date picker overlay when the calendar button is clicked", async () => {
+        render(<DatePicker updateDate={() => {}} />);
+        await openOverlay();
         expectOverlayVisible();
     });
 
-    it("shows the calendar grid when input is focused", async () => {
+    it("shows the calendar grid when the calendar button is clicked", async () => {
         render(<DatePicker updateDate={() => {}} />);
-        await userEvent.tab();
+        await openOverlay();
         await expect(screen.getByRole("grid")).toBeVisible();
+    });
+
+    it("closes the date picker overlay when the calendar button is clicked again", async () => {
+        render(<DatePicker updateDate={() => {}} />);
+        await openOverlay();
+        expectOverlayVisible();
+        await userEvent.click(
+            screen.getByRole("button", {name: "Show calendar"}),
+        );
+        expectOverlayHidden();
+    });
+
+    it("reflects aria-expanded on the calendar button as the overlay opens and closes", async () => {
+        render(<DatePicker updateDate={() => {}} />);
+        const button = screen.getByRole("button", {name: "Show calendar"});
+        expect(button).toHaveAttribute("aria-expanded", "false");
+        await openOverlay();
+        expect(button).toHaveAttribute("aria-expanded", "true");
+        await userEvent.click(button);
+        expect(button).toHaveAttribute("aria-expanded", "false");
+    });
+
+    it("does not open the overlay when the calendar button is clicked if disabled", async () => {
+        render(<DatePicker disabled updateDate={() => {}} />);
+        await userEvent.tab();
+        await userEvent.click(
+            screen.getByRole("button", {name: "Show calendar"}),
+        );
+        expectOverlayHidden();
     });
 
     it("includes a footer if set", async () => {
@@ -84,7 +127,7 @@ describe("DatePicker", () => {
                 )}
             />,
         );
-        await userEvent.tab();
+        await openOverlay();
         expect(
             screen.getByRole("button", {name: /footer button/i}),
         ).toBeInTheDocument();
@@ -99,7 +142,7 @@ describe("DatePicker", () => {
                 )}
             />,
         );
-        await userEvent.tab();
+        await openOverlay();
         await userEvent.click(
             screen.getByRole("button", {name: /footer button/i}),
         );
@@ -110,35 +153,51 @@ describe("DatePicker", () => {
 
     it("closes the date picker if ESC is pressed", async () => {
         render(<DatePicker updateDate={() => {}} />);
-        await userEvent.tab();
+        await openOverlay();
         await userEvent.type(screen.getByRole("textbox"), "{Esc}");
         expectOverlayHidden();
     });
 
-    it("returns focus to input after closing overlay with Escape", async () => {
+    it("keeps focus on the calendar button when it's clicked to open the overlay", async () => {
         render(<DatePicker updateDate={() => {}} />);
-        const input = screen.getByRole("textbox");
-        await userEvent.tab();
+        const calendarButton = screen.getByRole("button", {
+            name: "Show calendar",
+        });
+        await userEvent.click(calendarButton);
+        expect(calendarButton).toHaveFocus();
+    });
+
+    it("closes the overlay and returns focus to the calendar button when Escape is pressed", async () => {
+        render(<DatePicker updateDate={() => {}} />);
+        const calendarButton = screen.getByRole("button", {
+            name: "Show calendar",
+        });
+        await openOverlay();
+        expect(calendarButton).toHaveFocus();
         await userEvent.keyboard("{Escape}");
-        await waitFor(() => expect(input).toHaveFocus());
+        await waitFor(() => expectOverlayHidden());
+        expect(calendarButton).toHaveFocus();
     });
 
     it("does not reopen overlay when pressing Escape while closed", async () => {
         render(<DatePicker updateDate={() => {}} />);
-        await userEvent.tab();
+        await openOverlay();
         await userEvent.keyboard("{Escape}");
         await waitFor(() => expectOverlayHidden());
         await userEvent.keyboard("{Escape}");
         expectOverlayHidden();
     });
 
-    it("allows reopening overlay with ArrowDown after Escape", async () => {
+    it("does not reopen the overlay with ArrowDown when the calendar button is focused", async () => {
         render(<DatePicker updateDate={() => {}} />);
-        await userEvent.tab();
+        await openOverlay();
         await userEvent.keyboard("{Escape}");
         await waitFor(() => expectOverlayHidden());
+        expect(
+            screen.getByRole("button", {name: "Show calendar"}),
+        ).toHaveFocus();
         await userEvent.keyboard("{ArrowDown}");
-        expectOverlayVisible();
+        expectOverlayHidden();
     });
 
     it("opens the date picker if Enter is pressed when closed", async () => {
@@ -151,7 +210,7 @@ describe("DatePicker", () => {
 
     it("closes the date picker if Enter is pressed when open", async () => {
         render(<DatePicker updateDate={() => {}} />);
-        await userEvent.tab();
+        await openOverlay();
         await userEvent.keyboard("{Enter}");
         expectOverlayHidden();
     });
@@ -164,9 +223,41 @@ describe("DatePicker", () => {
         expectOverlayVisible();
     });
 
+    it("moves focus into the calendar grid when ArrowDown is pressed on the calendar button while the overlay is already open", async () => {
+        render(<DatePicker updateDate={() => {}} />);
+        await openOverlay();
+        expect(
+            screen.getByRole("button", {name: "Show calendar"}),
+        ).toHaveFocus();
+        await userEvent.keyboard("{ArrowDown}");
+        await waitFor(() => {
+            const grid = screen.getByRole("grid");
+            const focusedElement = document.activeElement; // eslint-disable-line testing-library/no-node-access -- no Testing Library helper exposes "the currently focused element"
+            expect(within(grid).getAllByRole("button")).toContain(
+                focusedElement,
+            );
+        });
+    });
+
+    it("moves focus into the calendar grid when ArrowDown is pressed on the input while the overlay is already open", async () => {
+        render(<DatePicker updateDate={() => {}} />);
+        const input = screen.getByRole("textbox");
+        await userEvent.tab();
+        await userEvent.keyboard("{ArrowDown}"); // opens; focus stays on input
+        expect(input).toHaveFocus();
+        await userEvent.keyboard("{ArrowDown}"); // overlay already open
+        await waitFor(() => {
+            const grid = screen.getByRole("grid");
+            const focusedElement = document.activeElement; // eslint-disable-line testing-library/no-node-access -- no Testing Library helper exposes "the currently focused element"
+            expect(within(grid).getAllByRole("button")).toContain(
+                focusedElement,
+            );
+        });
+    });
+
     it("does not close overlay on Enter if closeOnSelect is false", async () => {
         render(<DatePicker updateDate={() => {}} closeOnSelect={false} />);
-        await userEvent.tab();
+        await openOverlay();
         await userEvent.type(screen.getByRole("textbox"), "{Enter}");
         expectOverlayVisible();
     });
@@ -178,6 +269,10 @@ describe("DatePicker", () => {
             updateDate: updateDateMock,
             dateFormat: "YYYY-MM-DD",
         });
+        await openOverlay();
+        // Tab order inside the overlay: calendar toggle button, then the
+        // previous/next month nav buttons, then into the day grid (only the
+        // selected day is tabbable via roving tabindex).
         await userEvent.tab();
         await userEvent.tab();
         await userEvent.tab();
@@ -188,14 +283,14 @@ describe("DatePicker", () => {
 
     it("closes the date picker if the input is blurred", async () => {
         render(<DatePicker updateDate={() => {}} />);
-        await userEvent.click(screen.getByRole("textbox"));
+        await openOverlay();
         await userEvent.click(document.body);
         expectOverlayHidden();
     });
 
     it("closes the date picker if we click outside the container", async () => {
         render(<DatePicker updateDate={() => {}} />);
-        await userEvent.tab();
+        await openOverlay();
         await userEvent.click(document.body);
         await waitFor(() => expectOverlayHidden());
     });
@@ -208,7 +303,7 @@ describe("DatePicker", () => {
                 updateDate={jest.fn()}
             />,
         );
-        await userEvent.tab();
+        await openOverlay();
         await userEvent.click(screen.getByText("15"));
         await waitFor(() =>
             expect(screen.queryByRole("grid")).not.toBeInTheDocument(),
@@ -225,7 +320,7 @@ describe("DatePicker", () => {
                 updateDate={jest.fn()}
             />,
         );
-        await userEvent.tab();
+        await openOverlay();
         await userEvent.click(screen.getByText("15"));
         await expect(screen.getByRole("grid")).toBeInTheDocument();
     });
@@ -235,7 +330,7 @@ describe("DatePicker", () => {
             updateDate: jest.fn(),
             dateFormat: "YYYY-MM-DD",
         });
-        await userEvent.tab();
+        await openOverlay();
         await userEvent.click(screen.getByText("15"));
         await waitFor(() => {
             expect(within(container).getByRole("textbox")).toHaveValue(
@@ -251,7 +346,7 @@ describe("DatePicker", () => {
             minDate: Temporal.PlainDate.from("2021-05-05"),
             maxDate: Temporal.PlainDate.from("2021-05-12"),
         });
-        await userEvent.tab();
+        await openOverlay();
         const input = screen.getByRole("textbox");
         await userEvent.clear(input);
         await userEvent.type(input, "2021-05-10");
@@ -473,7 +568,9 @@ describe("DatePicker", () => {
             const input = screen.getByRole("textbox");
             await userEvent.clear(input);
             await userEvent.type(input, "asdf");
-            await userEvent.click(input);
+            await userEvent.click(
+                screen.getByRole("button", {name: "Show calendar"}),
+            );
             await userEvent.click(await screen.findByText("20"));
             await waitFor(() => {
                 expect(input).toHaveValue("1/20/2026");
@@ -487,7 +584,7 @@ describe("DatePicker", () => {
             minDate: Temporal.PlainDate.from("2021-05-05"),
             maxDate: Temporal.PlainDate.from("2021-05-12"),
         });
-        await userEvent.tab();
+        await openOverlay();
         await userEvent.clear(screen.getByRole("textbox"));
         await userEvent.type(screen.getByRole("textbox"), "2021-55-55");
         const gridcell = screen.getByRole("gridcell", {selected: true});
@@ -529,7 +626,7 @@ describe("DatePicker", () => {
                 <DatePicker updateDate={() => {}} />
             </div>,
         );
-        await userEvent.click(screen.getByRole("textbox"));
+        await openOverlay();
         const wrapper = screen.getByTestId("date-picker-overlay");
         expect(
             within(wrapper)
@@ -540,14 +637,14 @@ describe("DatePicker", () => {
 
     it("navigates to next month when next button is clicked", async () => {
         renderPicker();
-        await userEvent.click(screen.getByRole("textbox"));
+        await openOverlay();
         await userEvent.click(screen.getByLabelText(/next month/i));
         await screen.findByText("June 2021");
     });
 
     it("navigates to previous month when previous button is clicked", async () => {
         renderPicker();
-        await userEvent.click(screen.getByRole("textbox"));
+        await openOverlay();
         await userEvent.click(screen.getByLabelText(/previous month/i));
         await screen.findByText("April 2021");
     });
@@ -557,7 +654,7 @@ describe("DatePicker", () => {
             renderPicker({
                 selectedDate: Temporal.PlainDate.from("2021-03-15"),
             });
-            await userEvent.click(screen.getByRole("textbox"));
+            await openOverlay();
             expect(screen.getByText("March 2021")).toBeInTheDocument();
         });
         it.each([
@@ -567,10 +664,10 @@ describe("DatePicker", () => {
             "reopening after %s month and close shows selected date month",
             async (_, label) => {
                 renderPicker();
-                await userEvent.click(screen.getByRole("textbox"));
+                await openOverlay();
                 await userEvent.click(screen.getByLabelText(label));
                 await userEvent.keyboard("{Escape}");
-                await userEvent.click(screen.getByRole("textbox"));
+                await openOverlay();
                 expect(screen.getByText("May 2021")).toBeInTheDocument();
             },
         );
@@ -579,7 +676,7 @@ describe("DatePicker", () => {
     describe("Typing vs next/previous focus", () => {
         it("typing a month name updates the overlay to that month", async () => {
             renderPicker();
-            await userEvent.click(screen.getByRole("textbox"));
+            await openOverlay();
             await userEvent.clear(screen.getByRole("textbox"));
             await userEvent.type(screen.getByRole("textbox"), "March 15, 2021");
             await screen.findByText("March 2021");
@@ -595,7 +692,7 @@ describe("DatePicker", () => {
 
         it("clicking next month keeps focus on the next button", async () => {
             renderPicker();
-            await userEvent.click(screen.getByRole("textbox"));
+            await openOverlay();
             await userEvent.click(screen.getByLabelText(/next month/i));
             await waitFor(() =>
                 expect(screen.getByLabelText(/next month/i)).toHaveFocus(),
@@ -604,7 +701,7 @@ describe("DatePicker", () => {
 
         it("clicking previous month keeps focus on the previous button", async () => {
             renderPicker();
-            await userEvent.click(screen.getByRole("textbox"));
+            await openOverlay();
             await userEvent.click(screen.getByLabelText(/previous month/i));
             await waitFor(() =>
                 expect(screen.getByLabelText(/previous month/i)).toHaveFocus(),
@@ -613,7 +710,7 @@ describe("DatePicker", () => {
 
         it("second click on next month keeps focus on next button", async () => {
             renderPicker();
-            await userEvent.click(screen.getByRole("textbox"));
+            await openOverlay();
             await userEvent.click(screen.getByLabelText(/next month/i));
             await userEvent.click(screen.getByLabelText(/next month/i));
             await waitFor(() =>
@@ -623,7 +720,7 @@ describe("DatePicker", () => {
 
         it("after typing then clicking next, overlay shows next month", async () => {
             renderPicker();
-            await userEvent.click(screen.getByRole("textbox"));
+            await openOverlay();
             await userEvent.clear(screen.getByRole("textbox"));
             await userEvent.type(screen.getByRole("textbox"), "March 15, 2021");
             await userEvent.click(screen.getByLabelText(/next month/i));
@@ -632,7 +729,7 @@ describe("DatePicker", () => {
 
         it("after clicking next then typing in input, focus stays in input", async () => {
             renderPicker();
-            await userEvent.click(screen.getByRole("textbox"));
+            await openOverlay();
             await userEvent.click(screen.getByLabelText(/next month/i));
             const input = screen.getByRole("textbox");
             await userEvent.click(input);
@@ -642,7 +739,7 @@ describe("DatePicker", () => {
 
         it("after typing full date, next button still navigates months", async () => {
             renderPicker();
-            await userEvent.click(screen.getByRole("textbox"));
+            await openOverlay();
             await userEvent.clear(screen.getByRole("textbox"));
             await userEvent.type(screen.getByRole("textbox"), "March 15, 2021");
             await screen.findByText("March 2021");
@@ -653,7 +750,7 @@ describe("DatePicker", () => {
 
         it("after clicking a day, next button still navigates months", async () => {
             renderPicker({closeOnSelect: false});
-            await userEvent.click(screen.getByRole("textbox"));
+            await openOverlay();
             await userEvent.click(screen.getByText("15"));
             await userEvent.click(screen.getByLabelText(/next month/i));
             expect(await screen.findByText("June 2021")).toBeInTheDocument();
@@ -667,11 +764,11 @@ describe("DatePicker", () => {
             dateFormat: "MMMM D, YYYY",
         };
         describe("locale prop accepts Locale object directly", () => {
-            it("displays calendar when input is clicked", async () => {
+            it("displays calendar when the calendar button is clicked", async () => {
                 render(
                     <DatePicker {...localeProps} selectedDate={undefined} />,
                 );
-                await userEvent.click(screen.getByRole("textbox"));
+                await openOverlay();
                 expect(await screen.findByRole("grid")).toBeInTheDocument();
             });
 
@@ -679,7 +776,7 @@ describe("DatePicker", () => {
                 render(
                     <DatePicker {...localeProps} selectedDate={undefined} />,
                 );
-                await userEvent.click(screen.getByRole("textbox"));
+                await openOverlay();
                 await userEvent.type(
                     screen.getByRole("textbox"),
                     "January 15, 2021",
@@ -694,9 +791,7 @@ describe("DatePicker", () => {
                         selectedDate={Temporal.PlainDate.from("2026-01-15")}
                     />,
                 );
-                await userEvent.click(
-                    screen.getByDisplayValue("January 15, 2026"),
-                );
+                await openOverlay();
                 rerender(
                     <DatePicker
                         {...localeProps}
@@ -713,9 +808,7 @@ describe("DatePicker", () => {
                         selectedDate={Temporal.PlainDate.from("2021-12-25")}
                     />,
                 );
-                await userEvent.click(
-                    screen.getByDisplayValue("December 25, 2021"),
-                );
+                await openOverlay();
                 expect(
                     await screen.findByText("December 2021"),
                 ).toBeInTheDocument();
@@ -796,7 +889,7 @@ describe("DatePicker", () => {
                     locale: es,
                 });
                 const input = screen.getByRole("textbox");
-                await userEvent.click(input);
+                await openOverlay();
                 await userEvent.click(screen.getByText("15"));
                 await waitFor(() =>
                     expect(input).toHaveValue("enero 15, 2026"),
@@ -826,7 +919,7 @@ describe("DatePicker", () => {
                         locale={es}
                     />,
                 );
-                await userEvent.tab();
+                await openOverlay();
                 await userEvent.click(screen.getByText("15"));
                 expect(
                     screen.getByDisplayValue("01/15/2026"),

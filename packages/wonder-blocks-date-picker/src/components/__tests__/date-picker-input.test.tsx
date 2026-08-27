@@ -12,7 +12,13 @@ describe("DatePickerInput", () => {
         const validDate = "2021-05-13";
 
         // Act
-        render(<DatePickerInput value={validDate} />);
+        render(
+            <DatePickerInput
+                value={validDate}
+                expanded={false}
+                onToggleOverlay={() => {}}
+            />,
+        );
 
         // Assert
         expect(await screen.findByRole("textbox")).toHaveValue(validDate);
@@ -31,6 +37,8 @@ describe("DatePickerInput", () => {
                 value={validDate}
                 parseDate={TemporalLocaleUtils.parseDateToJsDate}
                 onChange={onChangeSpy}
+                expanded={false}
+                onToggleOverlay={() => {}}
                 modifiers={{
                     selected: TemporalLocaleUtils.temporalDateToJsDate(
                         Temporal.PlainDate.from(validDate),
@@ -74,6 +82,8 @@ describe("DatePickerInput", () => {
                 value=""
                 parseDate={TemporalLocaleUtils.parseDateToJsDate}
                 onChange={onChangeSpy}
+                expanded={false}
+                onToggleOverlay={() => {}}
                 modifiers={{
                     // We want to disable past dates and dates after 10 days from now
                     disabled: (date) => {
@@ -111,6 +121,8 @@ describe("DatePickerInput", () => {
                 value={invalidDate}
                 parseDate={TemporalLocaleUtils.parseDateToJsDate}
                 onChange={onChangeSpy}
+                expanded={false}
+                onToggleOverlay={() => {}}
                 modifiers={{
                     // We want to disable past dates and dates after 10 days from now
                     disabled: (date) => {
@@ -149,6 +161,8 @@ describe("DatePickerInput", () => {
                 parseDate={TemporalLocaleUtils.parseDateToJsDate}
                 getModifiersForDay={TemporalLocaleUtils.getModifiersForDay}
                 onChange={onChangeSpy}
+                expanded={false}
+                onToggleOverlay={() => {}}
                 modifiers={{
                     // We want to disable past dates and dates after 10 days from now
                     disabled: (date) => {
@@ -184,6 +198,8 @@ describe("DatePickerInput", () => {
                 value={initialDate}
                 parseDate={TemporalLocaleUtils.parseDateToJsDate}
                 onChange={onChangeSpy}
+                expanded={false}
+                onToggleOverlay={() => {}}
                 modifiers={{
                     selected: TemporalLocaleUtils.temporalDateToJsDate(
                         Temporal.PlainDate.from(initialDate),
@@ -230,6 +246,8 @@ describe("DatePickerInput", () => {
                 value=""
                 parseDate={TemporalLocaleUtils.parseDateToJsDate}
                 onChange={onChangeSpy}
+                expanded={false}
+                onToggleOverlay={() => {}}
                 testId="date-picker-input"
             />,
         );
@@ -249,42 +267,64 @@ describe("DatePickerInput", () => {
         );
     });
 
-    it("should allow clicking the input by default", async () => {
-        // Arrange
-        const onClickSpy = jest.fn();
+    it("calls onToggleOverlay when the calendar button is clicked", async () => {
+        const onToggleOverlaySpy = jest.fn();
         render(
             <DatePickerInput
                 value="2021-05-12"
                 disabled={false}
-                onClick={onClickSpy}
+                expanded={false}
+                onToggleOverlay={onToggleOverlaySpy}
                 testId="date-picker-input"
             />,
         );
-
-        // Act
-        await userEvent.click(screen.getByTestId("date-picker-input"));
-
-        // Assert
-        expect(onClickSpy).toHaveBeenCalled();
+        await userEvent.click(
+            screen.getByRole("button", {name: "Show calendar"}),
+        );
+        expect(onToggleOverlaySpy).toHaveBeenCalled();
     });
 
-    it("should not allow clicking the input if it's disabled", async () => {
-        // Arrange
-        const onClickSpy = jest.fn();
+    it("does not call onToggleOverlay when the calendar button is clicked if disabled", async () => {
+        const onToggleOverlaySpy = jest.fn();
         render(
             <DatePickerInput
                 value="2021-05-12"
                 disabled={true}
-                onClick={onClickSpy}
+                expanded={false}
+                onToggleOverlay={onToggleOverlaySpy}
                 testId="date-picker-input"
             />,
         );
+        await userEvent.click(
+            screen.getByRole("button", {name: "Show calendar"}),
+        );
+        expect(onToggleOverlaySpy).not.toHaveBeenCalled();
+    });
 
-        // Act
-        await userEvent.click(screen.getByTestId("date-picker-input"));
+    it("reflects the expanded prop on the calendar button's aria-expanded", () => {
+        const {rerender} = render(
+            <DatePickerInput
+                value="2021-05-12"
+                expanded={false}
+                onToggleOverlay={() => {}}
+                testId="date-picker-input"
+            />,
+        );
+        expect(
+            screen.getByRole("button", {name: "Show calendar"}),
+        ).toHaveAttribute("aria-expanded", "false");
 
-        // Assert
-        expect(onClickSpy).not.toHaveBeenCalled();
+        rerender(
+            <DatePickerInput
+                value="2021-05-12"
+                expanded={true}
+                onToggleOverlay={() => {}}
+                testId="date-picker-input"
+            />,
+        );
+        expect(
+            screen.getByRole("button", {name: "Show calendar"}),
+        ).toHaveAttribute("aria-expanded", "true");
     });
 
     it("onBlur: reverts back to the latest valid input if the current one is invalid", async () => {
@@ -301,6 +341,8 @@ describe("DatePickerInput", () => {
                 value={validDate}
                 parseDate={TemporalLocaleUtils.parseDateToJsDate}
                 onChange={onChangeSpy}
+                expanded={false}
+                onToggleOverlay={() => {}}
                 modifiers={{
                     // We want to disable past dates and dates after 10 days from now
                     disabled: (date) => {
@@ -339,6 +381,8 @@ describe("DatePickerInput", () => {
                 value=""
                 parseDate={TemporalLocaleUtils.parseDateToJsDate}
                 onChange={onChangeSpy}
+                expanded={false}
+                onToggleOverlay={() => {}}
                 testId="date-picker-input"
             />,
         );
@@ -360,6 +404,8 @@ describe("DatePickerInput", () => {
                 dateFormat="YYYY-MM-DD"
                 value="2021-05-15"
                 parseDate={TemporalLocaleUtils.parseDateToJsDate}
+                expanded={false}
+                onToggleOverlay={() => {}}
                 testId="date-picker-input"
             />,
         );
@@ -375,6 +421,8 @@ describe("DatePickerInput", () => {
                 dateFormat="YYYY-MM-DD"
                 value="2021-05-15"
                 parseDate={TemporalLocaleUtils.parseDateToJsDate}
+                expanded={false}
+                onToggleOverlay={() => {}}
                 testId="date-picker-input"
             />,
         );
@@ -392,6 +440,8 @@ describe("DatePickerInput", () => {
                 onChange={handleChange}
                 dateFormat="M/D/YYYY"
                 parseDate={TemporalLocaleUtils.parseDateToJsDate}
+                expanded={false}
+                onToggleOverlay={() => {}}
                 testId="date-input"
             />,
         );
@@ -415,6 +465,8 @@ describe("DatePickerInput", () => {
                 onChange={jest.fn()}
                 dateFormat="M/D/YYYY"
                 parseDate={TemporalLocaleUtils.parseDateToJsDate}
+                expanded={false}
+                onToggleOverlay={() => {}}
                 testId="date-input"
             />,
         );
@@ -442,6 +494,8 @@ describe("DatePickerInput", () => {
                     value="1/1/2026"
                     parseDate={TemporalLocaleUtils.parseDateToJsDate}
                     onChange={onChangeSpy}
+                    expanded={false}
+                    onToggleOverlay={() => {}}
                     testId="date-picker-input"
                 />
                 <button>After</button>
@@ -476,6 +530,8 @@ describe("DatePickerInput", () => {
                 value="1/1/2026"
                 parseDate={TemporalLocaleUtils.parseDateToJsDate}
                 onChange={onChangeSpy}
+                expanded={false}
+                onToggleOverlay={() => {}}
                 testId="date-picker-input"
             />,
         );
@@ -506,6 +562,8 @@ describe("DatePickerInput", () => {
                 value=""
                 parseDate={TemporalLocaleUtils.parseDateToJsDate}
                 onChange={onChangeSpy}
+                expanded={false}
+                onToggleOverlay={() => {}}
                 testId="date-picker-input"
             />,
         );
@@ -530,6 +588,8 @@ describe("DatePickerInput", () => {
                 value=""
                 parseDate={TemporalLocaleUtils.parseDateToJsDate}
                 onChange={onChangeSpy}
+                expanded={false}
+                onToggleOverlay={() => {}}
                 testId="date-picker-input"
             />,
         );

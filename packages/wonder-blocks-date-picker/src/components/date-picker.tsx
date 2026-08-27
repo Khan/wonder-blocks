@@ -1,11 +1,16 @@
-import {StyleSheet} from "aphrodite";
+import {css, StyleSheet} from "aphrodite";
 import {Temporal} from "temporal-polyfill";
 import * as React from "react";
-import {DayPicker} from "react-day-picker";
+import {DayPicker, getDefaultClassNames, UI} from "react-day-picker";
 import {enUS, type Locale} from "react-day-picker/locale";
 
-import {View, type StyleType} from "@khanacademy/wonder-blocks-core";
+import {
+    findFocusableNodes,
+    View,
+    type StyleType,
+} from "@khanacademy/wonder-blocks-core";
 import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
+import {focusStyles} from "@khanacademy/wonder-blocks-styles";
 import {useCloseOnOutsideClick} from "../hooks/use-close-on-outside-click";
 import {useDatePickerModifiers} from "../hooks/use-date-picker-modifiers";
 import {useDisplayMonth} from "../hooks/use-display-month";
@@ -88,6 +93,11 @@ interface Props {
      */
     inputAriaLabel?: string;
     /**
+     * The aria-label for the calendar toggle button that opens/closes the
+     * calendar overlay. Defaults to "Show calendar".
+     */
+    calendarButtonAriaLabel?: string;
+    /**
      * The placeholder assigned to the date field
      */
     placeholder?: string;
@@ -136,6 +146,18 @@ const customRootStyle = {
     "--rdp-accent-color": semanticColor.core.border.instructive.default,
 } as React.CSSProperties & Record<string, string>;
 
+// React Day Picker's own day buttons don't use the Wonder Blocks focus
+// style, so we add it as an extra class alongside the default one (classNames
+// entries replace, rather than merge with, the default per UI element).
+const dayButtonFocusStyles = StyleSheet.create({
+    focus: focusStyles.focus,
+});
+const dayPickerClassNames = {
+    [UI.DayButton]: `${getDefaultClassNames()[UI.DayButton]} ${css(
+        dayButtonFocusStyles.focus,
+    )}`,
+};
+
 /**
  * A UI component that allows the user to pick a date by using an input element
  * or the calendar popup exposed by `react-day-picker`.
@@ -150,6 +172,7 @@ const DatePicker = (props: Props) => {
         maxDate,
         minDate,
         inputAriaLabel,
+        calendarButtonAriaLabel,
         placeholder,
         selectedDate,
         style,
@@ -167,6 +190,12 @@ const DatePicker = (props: Props) => {
     const datePickerRef = React.useRef<HTMLElement | null>(null);
     const refWrapper = React.useRef<HTMLDivElement>(null);
     const skipNextOpenRef = React.useRef(false);
+    // True right before we programmatically move focus into the overlay
+    // (ArrowDown). A blur fired by that focus move may not reliably report
+    // `relatedTarget` (the destination), so isLeavingDropdown can't always
+    // detect that focus stayed within the widget; this flag lets
+    // handleInputBlur skip the close in that one case.
+    const movingFocusIntoOverlayRef = React.useRef(false);
 
     const {handleEscapeKeyDown} = useEscapeKeyupCapture();
     const {
@@ -239,6 +268,55 @@ const DatePicker = (props: Props) => {
         datePickerInputRef,
     ]);
 
+    // Toggle handler for the calendar button: opens/closes the overlay on
+    // explicit activation (click, or Enter/Space via keyboard), matching
+    // native date/time inputs which never open their picker on plain focus.
+    const handleToggleOverlay = React.useCallback(() => {
+        if (disabled) {
+            return;
+        }
+        if (showOverlay) {
+            close();
+        } else {
+            skipNextOpenRef.current = false; // user explicitly opening
+            open();
+        }
+    }, [disabled, showOverlay, close, open, skipNextOpenRef]);
+
+    // Moves focus back to the calendar toggle button, e.g. after Escape
+    // closes the overlay.
+    const focusCalendarButton = React.useCallback(() => {
+        (
+            datePickerInputRef.current as HTMLInputElement & {
+                focusCalendarButton?: () => void;
+            }
+        )?.focusCalendarButton?.();
+    }, [datePickerInputRef]);
+
+    // Moves focus into the calendar grid (to the selected/today day cell,
+    // via DayPicker's roving tabindex) when the overlay is already open.
+    // Prefers the grid itself over nav buttons so ArrowDown always lands on
+    // a day, not the prev/next month controls.
+    const focusIntoOverlay = React.useCallback(() => {
+        const overlayRoot = datePickerRef.current;
+        if (!overlayRoot) {
+            return;
+        }
+        const grid = overlayRoot.querySelector<HTMLElement>('[role="grid"]');
+        // DayPicker uses a roving tabindex: exactly one day (the
+        // selected/today cell) has tabindex="0" and is guaranteed enabled.
+        // findFocusableNodes would otherwise return every day button
+        // (including tabindex="-1" and disabled out-of-range ones) in DOM
+        // order, which could be a disabled day at the start of the grid.
+        const rovingTarget = grid?.querySelector<HTMLElement>('[tabindex="0"]');
+        const target =
+            rovingTarget ?? findFocusableNodes(grid ?? overlayRoot)[0];
+        if (target) {
+            movingFocusIntoOverlayRef.current = true;
+            target.focus();
+        }
+    }, [datePickerRef]);
+
     useCloseOnOutsideClick({
         refWrapper,
         datePickerRef,
@@ -294,29 +372,37 @@ const DatePicker = (props: Props) => {
     };
 
     const handleInputBlur = (e: React.FocusEvent) => {
+        if (movingFocusIntoOverlayRef.current) {
+            movingFocusIntoOverlayRef.current = false;
+            return;
+        }
         if (isLeavingDropdown(e)) {
             close();
         }
     };
 
-    // What to do when Escape closes the overlay: prevent reopen on focus, close, return focus to input.
+    // What to do when Escape closes the overlay: prevent reopen on focus, close, return focus to the calendar button.
     const onEscapeCloseOverlay = React.useCallback(() => {
-        skipNextOpenRef.current = true; // focus restored to input; don't reopen on focus
+        skipNextOpenRef.current = true; // focus restored to the button; don't reopen on focus
         close();
-        datePickerInputRef.current?.focus();
-    }, [close, skipNextOpenRef, datePickerInputRef]);
+        focusCalendarButton();
+    }, [close, skipNextOpenRef, focusCalendarButton]);
 
-    // Input keyboard: Escape closes overlay (via hook's handleEscapeKeyDown); ArrowDown opens overlay; Enter toggles overlay.
+    // Input keyboard: Escape closes overlay (via hook's handleEscapeKeyDown); ArrowDown opens overlay (or moves focus into it if already open); Enter toggles overlay.
     const handleKeyDown = (e: React.KeyboardEvent) => {
         if (e.key === "Escape") {
             if (showOverlay) {
                 handleEscapeKeyDown(e, onEscapeCloseOverlay);
             }
         }
-        if (e.key === "ArrowDown" && !showOverlay) {
+        if (e.key === "ArrowDown") {
             e.preventDefault();
-            skipNextOpenRef.current = false; // user explicitly opening
-            open();
+            if (showOverlay) {
+                focusIntoOverlay();
+            } else {
+                skipNextOpenRef.current = false; // user explicitly opening
+                open();
+            }
         }
         if (e.key === "Enter") {
             e.preventDefault();
@@ -331,6 +417,27 @@ const DatePicker = (props: Props) => {
             }
         }
     };
+
+    // Calendar button keyboard: only a click toggles the overlay open; from
+    // the button, ArrowDown never opens it. ArrowDown only moves focus into
+    // the overlay once it's already open (via a click); Escape closes it
+    // (focus already on the button).
+    const handleCalendarButtonKeyDown = React.useCallback(
+        (e: KeyboardEvent) => {
+            if (e.key === "ArrowDown" && showOverlay) {
+                e.preventDefault();
+                focusIntoOverlay();
+            } else if (e.key === "Escape" && showOverlay) {
+                handleEscapeKeyDown(e, onEscapeCloseOverlay);
+            }
+        },
+        [
+            showOverlay,
+            focusIntoOverlay,
+            handleEscapeKeyDown,
+            onEscapeCloseOverlay,
+        ],
+    );
 
     // Wrapper for DayPicker's root so we can handle Escape when focus is inside the calendar (e.g. on nav buttons). Same Escape handler as the input.
     const RootWithEsc = React.useCallback(
@@ -391,8 +498,6 @@ const DatePicker = (props: Props) => {
         return (
             <DatePickerInput
                 onBlur={handleInputBlur}
-                onFocus={open}
-                onClick={open}
                 onChange={handleInputChange}
                 onKeyDown={handleKeyDown}
                 aria-label={inputAriaLabel}
@@ -408,6 +513,10 @@ const DatePicker = (props: Props) => {
                 modifiers={inputModifiers}
                 resetInvalidValueOnBlur={resetInvalidValueOnBlur}
                 testId={id && `${id}-input`}
+                expanded={showOverlay}
+                onToggleOverlay={handleToggleOverlay}
+                onCalendarButtonKeyDown={handleCalendarButtonKeyDown}
+                calendarButtonAriaLabel={calendarButtonAriaLabel}
             />
         );
     };
@@ -525,6 +634,7 @@ const DatePicker = (props: Props) => {
                             locale={computedLocale}
                             dir={dir}
                             styles={dayPickerStyles}
+                            classNames={dayPickerClassNames}
                         />
                         {maybeRenderFooter()}
                     </View>
