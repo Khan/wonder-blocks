@@ -14,6 +14,8 @@ import {
 
 import FocusManager from "./focus-manager";
 
+const DEFAULT_CALENDAR_GRID_REGION_ARIA_LABEL = "Date picker calendar";
+
 // Custom styles to display the calendar popup correctly.
 const DEFAULT_STYLE = {
     background: semanticColor.core.background.base.default,
@@ -55,6 +57,10 @@ interface Props {
      * Styles that will be applied to the children.
      */
     style?: StyleType;
+    /**
+     * The aria-label for the calendar grid region. Defaults to "Date picker calendar".
+     */
+    calendarGridRegionAriaLabel?: string;
 }
 
 /**
@@ -71,6 +77,7 @@ const DatePickerOverlay = ({
     onClose,
     dir = "ltr",
     style = DEFAULT_STYLE,
+    calendarGridRegionAriaLabel = DEFAULT_CALENDAR_GRID_REGION_ARIA_LABEL,
 }: Props): React.ReactElement | null => {
     if (!referenceElement) {
         return null;
@@ -137,7 +144,9 @@ const DatePickerOverlay = ({
 
                     return (
                         <div
+                            aria-label={calendarGridRegionAriaLabel}
                             ref={ref}
+                            role="region"
                             style={combinedStyles}
                             data-placement={placement}
                         >

@@ -12,7 +12,7 @@ import {
 } from "../util/temporal-locale-utils";
 import type {CustomModifiers} from "../util/types";
 
-const DEFAULT_CALENDAR_BUTTON_ARIA_LABEL = "Show calendar";
+const DEFAULT_CALENDAR_BUTTON_ARIA_LABEL = "Toggle calendar";
 
 interface Props {
     /**
