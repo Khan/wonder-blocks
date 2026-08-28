@@ -830,6 +830,116 @@ describe("DatePicker", () => {
         ).toBeInTheDocument();
     });
 
+    it("increments the day segment when ArrowUp is pressed in the input", async () => {
+        // Arrange
+        renderPicker({
+            selectedDate: Temporal.PlainDate.from("2021-05-07"),
+            dateFormat: "YYYY-MM-DD",
+        });
+        const input = screen.getByRole("textbox") as HTMLInputElement;
+        await userEvent.click(input);
+        input.setSelectionRange(8, 8);
+
+        // Act
+        await userEvent.keyboard("{ArrowUp}");
+
+        // Assert
+        expect(input).toHaveValue("2021-05-08");
+    });
+
+    it("decrements the month segment when ArrowDown is pressed in the input", async () => {
+        // Arrange
+        renderPicker({
+            selectedDate: Temporal.PlainDate.from("2021-05-07"),
+            dateFormat: "YYYY-MM-DD",
+        });
+        const input = screen.getByRole("textbox") as HTMLInputElement;
+        await userEvent.click(input);
+        input.setSelectionRange(5, 5);
+
+        // Act
+        await userEvent.keyboard("{ArrowDown}");
+
+        // Assert
+        expect(input).toHaveValue("2021-04-07");
+    });
+
+    it("does not change the value when ArrowDown is pressed with a text dateFormat", async () => {
+        // Arrange
+        renderPicker();
+        const input = screen.getByRole("textbox") as HTMLInputElement;
+        await userEvent.click(input);
+
+        // Act
+        await userEvent.keyboard("{ArrowDown}");
+
+        // Assert
+        expect(input).toHaveValue("May 15, 2021");
+    });
+
+    it("does not open the overlay when ArrowDown is pressed with a text dateFormat", async () => {
+        // Arrange
+        renderPicker();
+        const input = screen.getByRole("textbox") as HTMLInputElement;
+        await userEvent.click(input);
+
+        // Act
+        await userEvent.keyboard("{ArrowDown}");
+
+        // Assert
+        expect(
+            screen.queryByTestId("focus-sentinel-prev"),
+        ).not.toBeInTheDocument();
+    });
+
+    it("does not change the input value on ArrowDown when the overlay is already open", async () => {
+        // Arrange
+        renderPicker({
+            selectedDate: Temporal.PlainDate.from("2021-05-07"),
+            dateFormat: "YYYY-MM-DD",
+        });
+        const input = screen.getByRole("textbox") as HTMLInputElement;
+        await userEvent.tab();
+        await userEvent.click(
+            screen.getByRole("button", {name: "Toggle calendar"}),
+        );
+        await userEvent.click(input);
+        input.setSelectionRange(8, 8);
+
+        // Act
+        await userEvent.keyboard("{ArrowDown}");
+
+        // Assert
+        expect(input).toHaveValue("2021-05-07");
+    });
+
+    it("still moves focus into the calendar grid on ArrowDown when the overlay is already open", async () => {
+        // Arrange
+        renderPicker({
+            selectedDate: Temporal.PlainDate.from("2021-05-07"),
+            dateFormat: "YYYY-MM-DD",
+        });
+        const input = screen.getByRole("textbox") as HTMLInputElement;
+        await userEvent.tab();
+        await userEvent.click(
+            screen.getByRole("button", {name: "Toggle calendar"}),
+        );
+        await userEvent.click(input);
+        input.setSelectionRange(8, 8);
+
+        // Act
+        await userEvent.keyboard("{ArrowDown}");
+
+        // Assert
+        await waitFor(() => {
+            const grid = screen.getByRole("grid");
+            const focusedElement = document.activeElement; // eslint-disable-line testing-library/no-node-access -- no Testing Library helper exposes "the currently focused element"
+            expect(within(grid).getAllByRole("button")).toContain(
+                focusedElement,
+            );
+        });
+    });
+
     it("receives an accessible name from an outside label", () => {
         render(
             <label htmlFor="label-example">
