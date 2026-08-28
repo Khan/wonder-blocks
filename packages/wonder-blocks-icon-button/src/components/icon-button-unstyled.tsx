@@ -26,16 +26,6 @@ type Props = Omit<IconButtonProps, "icon"> & {
      */
     href?: string;
     /**
-     * Listens for keydown events on the button. This is useful for preventing
-     * default behavior when the user presses the spacebar or enter key.
-     */
-    onKeyDown?: (e: React.KeyboardEvent) => unknown;
-    /**
-     * Listens for keyup events on the button. This is useful for triggering
-     * actions when the user presses the spacebar or enter key.
-     */
-    onKeyUp?: (e: React.KeyboardEvent) => unknown;
-    /**
      * When the button is in a pressing state. This is useful for keyboard
      * interactions, so we can provide visual feedback to the user.
      */
@@ -53,6 +43,8 @@ export const IconButtonUnstyled: React.ForwardRefExoticComponent<
         disabled,
         href,
         kind,
+        onKeyDown: onKeyDownProp,
+        onKeyUp: onKeyUpProp,
         onPress,
         skipClientNav,
         style,
@@ -74,8 +66,9 @@ export const IconButtonUnstyled: React.ForwardRefExoticComponent<
                     onPress?.(true);
                 }
             }
+            onKeyDownProp?.(e);
         },
-        [disabled, href, onPress],
+        [disabled, href, onPress, onKeyDownProp],
     );
 
     const handleKeyUp = React.useCallback(
@@ -87,8 +80,9 @@ export const IconButtonUnstyled: React.ForwardRefExoticComponent<
                 }
                 onPress?.(false);
             }
+            onKeyUpProp?.(e);
         },
-        [disabled, href, onPress, restProps],
+        [disabled, href, onPress, restProps, onKeyUpProp],
     );
 
     const commonProps = {
