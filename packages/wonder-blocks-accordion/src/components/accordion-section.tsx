@@ -312,6 +312,7 @@ const styles = StyleSheet.create({
         // injects its rule lazily, so swapping classes points the first expand
         // at a rule that doesn't exist yet: `grid-template-rows` computes to
         // `none`, which can't interpolate, and the first open snaps.
+        // Note: while collapsed this outranks a consumer `style` override.
         [':not([data-expanded="true"])' as any]: {
             gridTemplateRows: "min-content 0fr",
         },
