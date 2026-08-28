@@ -476,7 +476,7 @@ export const InsideModal: Story = {
         const textboxes = await within(dialog).findAllByRole("textbox");
         const dateInput = textboxes[0];
         const calendarButtons = await within(dialog).findAllByRole("button", {
-            name: "Show calendar",
+            name: "Toggle calendar",
         });
         await userEvent.click(calendarButtons[0]);
 

@@ -94,9 +94,13 @@ interface Props {
     inputAriaLabel?: string;
     /**
      * The aria-label for the calendar toggle button that opens/closes the
-     * calendar overlay. Defaults to "Show calendar".
+     * calendar overlay. Defaults to "Toggle calendar".
      */
     calendarButtonAriaLabel?: string;
+    /**
+     * The aria-label for the calendar grid region. Defaults to "Date picker calendar".
+     */
+    calendarGridRegionAriaLabel?: string;
     /**
      * The placeholder assigned to the date field
      */
@@ -174,6 +178,7 @@ const DatePicker = (props: Props) => {
         minDate,
         inputAriaLabel,
         calendarButtonAriaLabel,
+        calendarGridRegionAriaLabel,
         placeholder,
         selectedDate,
         style,
@@ -631,6 +636,7 @@ const DatePicker = (props: Props) => {
                     referenceElement={datePickerInputRef.current}
                     onClose={close}
                     dir={dir === "rtl" ? "rtl" : "ltr"}
+                    calendarGridRegionAriaLabel={calendarGridRegionAriaLabel}
                 >
                     <View ref={datePickerRef}>
                         <DayPicker
