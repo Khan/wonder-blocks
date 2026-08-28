@@ -1,0 +1,22 @@
+/* Wonder Blocks base reset — REQUIRED global styles for correct rendering.
+ *
+ * WB typography (and spacing) tokens are rem-based against a 10px root
+ * (`html { font-size: 62.5% }`, i.e. 1rem = 10px). WB's Storybook applies this
+ * via static/sb-styles/preview.css, but the converter only scrapes component
+ * CSS, so the shipped styles.css closure was missing it — making all type render
+ * 1.6x too large (16px root vs the expected 10px). This file restores it.
+ * See .design-sync/NOTES.md. */
+html {
+    font-size: 62.5%;
+}
+body {
+    font-size: 1.6rem;
+}
+/* Default inherited text color for anything under a theme wrapper. */
+[data-wb-theme] {
+    color: var(--wb-semanticColor-core-foreground-neutral-strong);
+}
+/* Match browser-rendered UI (form controls, scrollbars) to a dark theme. */
+:root:has(body[data-wb-theme$="-dark"]) {
+    color-scheme: dark;
+}
