@@ -86,6 +86,12 @@ export default {
             category: "Accessibility",
         },
     },
+    calendarGridRegionAriaLabel: {
+        control: {type: "text"},
+        table: {
+            category: "Accessibility",
+        },
+    },
     style: {
         control: {type: "object"},
         table: {
