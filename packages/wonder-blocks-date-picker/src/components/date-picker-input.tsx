@@ -54,7 +54,7 @@ interface Props {
      * move focus into the calendar overlay on ArrowDown when it's already
      * open, and to close it on Escape.
      */
-    onCalendarButtonKeyDown?: (e: KeyboardEvent) => unknown;
+    onCalendarButtonKeyDown?: (e: React.KeyboardEvent) => unknown;
     /**
      * The aria-label for the calendar toggle button.
      */
@@ -401,19 +401,6 @@ const DatePickerInput = React.forwardRef<HTMLInputElement, Props>(
         const innerRef = React.useRef<HTMLInputElement>(null);
         const buttonRef = React.useRef<HTMLButtonElement>(null);
 
-        // IconButton doesn't expose an onKeyDown prop, so we listen directly
-        // on the underlying button element.
-        React.useEffect(() => {
-            const button = buttonRef.current;
-            if (!button || !onCalendarButtonKeyDown) {
-                return;
-            }
-            button.addEventListener("keydown", onCalendarButtonKeyDown);
-            return () => {
-                button.removeEventListener("keydown", onCalendarButtonKeyDown);
-            };
-        }, [onCalendarButtonKeyDown]);
-
         const handleChange = (newValue: string) => {
             setValue(newValue);
 
@@ -498,6 +485,7 @@ const DatePickerInput = React.forwardRef<HTMLInputElement, Props>(
                     aria-expanded={expanded}
                     aria-haspopup="grid"
                     onClick={() => onToggleOverlay()}
+                    onKeyDown={onCalendarButtonKeyDown}
                     style={styles.icon}
                 />
             </View>
