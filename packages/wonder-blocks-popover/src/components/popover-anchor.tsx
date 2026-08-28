@@ -4,31 +4,6 @@ import {FloatingReferenceAttributeName} from "@khanacademy/wonder-blocks-floatin
 
 import type {AriaProps} from "@khanacademy/wonder-blocks-core";
 
-// Allow merging multiple refs (forwarded + user-supplied). The forwarded ref
-// comes from the Floating component (its reference setter), while the
-// user-supplied ref comes from the trigger element the consumer passes in.
-//
-// NOTE: We keep a small hand-rolled helper here (rather than floating-ui's
-// `useMergeRefs`) so the Popover package doesn't need to depend on
-// `@floating-ui/react` directly; it only depends on `wonder-blocks-floating`.
-function mergeRefs<T = any>(
-    ...refs: Array<React.Ref<T> | undefined>
-): React.RefCallback<T> {
-    return (value: T) => {
-        refs.forEach((ref) => {
-            if (!ref) {
-                return;
-            }
-            if (typeof ref === "function") {
-                ref(value);
-            } else if (typeof ref === "object" && ref !== null) {
-                // @ts-expect-error: TS doesn't recognize the shape, but it's safe
-                ref.current = value;
-            }
-        });
-    };
-}
-
 type Props = AriaProps & {
     /**
      * The element that triggers the popover. This element will be used to
@@ -60,64 +35,54 @@ type Props = AriaProps & {
  * The element that triggers the popover dialog. This is also used as reference
  * to position the dialog itself.
  */
-const PopoverAnchor = React.forwardRef<HTMLElement, Props>(
-    function PopoverAnchor(props: Props, ref) {
-        const {
-            children,
-            id,
-            onClick,
-            "aria-controls": ariaControls,
-            "aria-expanded": ariaExpanded,
-            [FloatingReferenceAttributeName]: floatingReferenceId,
-        } = props;
+export default function PopoverAnchor(props: Props) {
+    const {
+        children,
+        id,
+        onClick,
+        "aria-controls": ariaControls,
+        "aria-expanded": ariaExpanded,
+        [FloatingReferenceAttributeName]: floatingReferenceId,
+    } = props;
 
-        // props that will be injected to both children versions
-        const sharedProps = {
-            id: id,
-            "aria-controls": ariaControls,
-            "aria-expanded": ariaExpanded,
-            // Passed along so that the `Floating` component this anchor is
-            // rendered in can find the trigger's element in the DOM and position
-            // the popover against it.
-            [FloatingReferenceAttributeName]: floatingReferenceId,
-        } as const;
+    // props that will be injected to both children versions
+    const sharedProps = {
+        id: id,
+        "aria-controls": ariaControls,
+        "aria-expanded": ariaExpanded,
+        // Passed along so that the `Floating` component this anchor is rendered
+        // in can find the trigger's element in the DOM and position the popover
+        // against it. This is why the trigger has to spread the props it is
+        // given, and it means it never has to accept or forward a ref.
+        [FloatingReferenceAttributeName]: floatingReferenceId,
+    } as const;
 
-        if (typeof children === "function") {
-            const renderedChildren = children({
-                open: onClick,
-            });
+    // Resolve the trigger element for both the function-as-children and the
+    // element-children patterns.
+    const isFunctionChildren = typeof children === "function";
+    const renderedChildren = isFunctionChildren
+        ? children({open: onClick})
+        : children;
 
-            const {ref: childrenRef} = renderedChildren as any;
+    if (isFunctionChildren) {
+        // we clone it to allow injecting the sharedProps defined before
+        return React.cloneElement(renderedChildren, sharedProps);
+    }
 
-            // we clone it to allow injecting the sharedProps defined before
-            return React.cloneElement(renderedChildren, {
-                ...sharedProps,
-                ref: childrenRef ? mergeRefs(ref, childrenRef) : ref,
-            });
-        } else {
-            const childrenRef = (children as any).ref;
+    // add onClick handler to automatically open the dialog after
+    // clicking on this anchor element
+    return React.cloneElement(renderedChildren, {
+        ...renderedChildren.props,
+        ...sharedProps,
 
-            // add onClick handler to automatically open the dialog after
-            // clicking on this anchor element
-            return React.cloneElement(children, {
-                ...children.props,
-                ...sharedProps,
-                ref: childrenRef ? mergeRefs(ref, childrenRef) : ref,
-
-                onClick: children.props.onClick
-                    ? (e: React.SyntheticEvent) => {
-                          e.stopPropagation();
-                          // This is done to avoid overriding a custom onClick
-                          // handler inside the children node
-                          children.props.onClick();
-                          onClick();
-                      }
-                    : onClick,
-            });
-        }
-    },
-);
-
-PopoverAnchor.displayName = "PopoverAnchor";
-
-export default PopoverAnchor;
+        onClick: renderedChildren.props.onClick
+            ? (e: React.SyntheticEvent) => {
+                  e.stopPropagation();
+                  // This is done to avoid overriding a custom onClick
+                  // handler inside the children node
+                  renderedChildren.props.onClick();
+                  onClick();
+              }
+            : onClick,
+    });
+}

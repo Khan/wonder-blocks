@@ -92,6 +92,34 @@ describe("Popover", () => {
         });
     });
 
+    it("should open the popover with a function component as the anchor", async () => {
+        // Arrange
+        // A plain function component that can't receive a ref. It only spreads
+        // the props Popover injects (including the click handler that opens the
+        // popover) onto the element it renders.
+        function CustomTrigger(props: {label: string}) {
+            const {label, ...otherProps} = props;
+            return <button {...otherProps}>{label}</button>;
+        }
+
+        render(
+            <Popover
+                placement="top"
+                content={<PopoverContent title="Title" content="content" />}
+            >
+                <CustomTrigger label="Open popover" />
+            </Popover>,
+        );
+
+        // Act
+        await userEvent.click(
+            await screen.findByRole("button", {name: "Open popover"}),
+        );
+
+        // Assert
+        expect(await screen.findByRole("dialog")).toBeInTheDocument();
+    });
+
     it("should render popover content when autoUpdate is enabled", async () => {
         // Arrange
         render(
