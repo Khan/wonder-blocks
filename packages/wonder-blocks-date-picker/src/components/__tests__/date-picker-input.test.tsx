@@ -279,7 +279,7 @@ describe("DatePickerInput", () => {
             />,
         );
         await userEvent.click(
-            screen.getByRole("button", {name: "Show calendar"}),
+            screen.getByRole("button", {name: "Toggle calendar"}),
         );
         expect(onToggleOverlaySpy).toHaveBeenCalled();
     });
@@ -296,7 +296,7 @@ describe("DatePickerInput", () => {
             />,
         );
         await userEvent.click(
-            screen.getByRole("button", {name: "Show calendar"}),
+            screen.getByRole("button", {name: "Toggle calendar"}),
         );
         expect(onToggleOverlaySpy).not.toHaveBeenCalled();
     });
@@ -311,7 +311,7 @@ describe("DatePickerInput", () => {
             />,
         );
         expect(
-            screen.getByRole("button", {name: "Show calendar"}),
+            screen.getByRole("button", {name: "Toggle calendar"}),
         ).toHaveAttribute("aria-expanded", "false");
 
         rerender(
@@ -323,7 +323,7 @@ describe("DatePickerInput", () => {
             />,
         );
         expect(
-            screen.getByRole("button", {name: "Show calendar"}),
+            screen.getByRole("button", {name: "Toggle calendar"}),
         ).toHaveAttribute("aria-expanded", "true");
     });
 

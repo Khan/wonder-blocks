@@ -32,7 +32,9 @@ function expectOverlayHidden() {
 // focus/click on the input no longer opens the overlay.
 async function openOverlay() {
     await userEvent.tab();
-    await userEvent.click(screen.getByRole("button", {name: "Show calendar"}));
+    await userEvent.click(
+        screen.getByRole("button", {name: "Toggle calendar"}),
+    );
 }
 
 describe("DatePicker", () => {
@@ -94,14 +96,14 @@ describe("DatePicker", () => {
         await openOverlay();
         expectOverlayVisible();
         await userEvent.click(
-            screen.getByRole("button", {name: "Show calendar"}),
+            screen.getByRole("button", {name: "Toggle calendar"}),
         );
         expectOverlayHidden();
     });
 
     it("reflects aria-expanded on the calendar button as the overlay opens and closes", async () => {
         render(<DatePicker updateDate={() => {}} />);
-        const button = screen.getByRole("button", {name: "Show calendar"});
+        const button = screen.getByRole("button", {name: "Toggle calendar"});
         expect(button).toHaveAttribute("aria-expanded", "false");
         await openOverlay();
         expect(button).toHaveAttribute("aria-expanded", "true");
@@ -113,7 +115,7 @@ describe("DatePicker", () => {
         render(<DatePicker disabled updateDate={() => {}} />);
         await userEvent.tab();
         await userEvent.click(
-            screen.getByRole("button", {name: "Show calendar"}),
+            screen.getByRole("button", {name: "Toggle calendar"}),
         );
         expectOverlayHidden();
     });
@@ -161,7 +163,7 @@ describe("DatePicker", () => {
     it("keeps focus on the calendar button when it's clicked to open the overlay", async () => {
         render(<DatePicker updateDate={() => {}} />);
         const calendarButton = screen.getByRole("button", {
-            name: "Show calendar",
+            name: "Toggle calendar",
         });
         await userEvent.click(calendarButton);
         expect(calendarButton).toHaveFocus();
@@ -170,7 +172,7 @@ describe("DatePicker", () => {
     it("closes the overlay and returns focus to the calendar button when Escape is pressed", async () => {
         render(<DatePicker updateDate={() => {}} />);
         const calendarButton = screen.getByRole("button", {
-            name: "Show calendar",
+            name: "Toggle calendar",
         });
         await openOverlay();
         expect(calendarButton).toHaveFocus();
@@ -194,18 +196,17 @@ describe("DatePicker", () => {
         await userEvent.keyboard("{Escape}");
         await waitFor(() => expectOverlayHidden());
         expect(
-            screen.getByRole("button", {name: "Show calendar"}),
+            screen.getByRole("button", {name: "Toggle calendar"}),
         ).toHaveFocus();
         await userEvent.keyboard("{ArrowDown}");
         expectOverlayHidden();
     });
 
-    it("opens the date picker if Enter is pressed when closed", async () => {
+    it("does not open the overlay when Enter is pressed on the input while closed", async () => {
         render(<DatePicker updateDate={() => {}} />);
         await userEvent.tab();
-        await userEvent.keyboard("{Escape}");
         await userEvent.keyboard("{Enter}");
-        expectOverlayVisible();
+        expectOverlayHidden();
     });
 
     it("closes the date picker if Enter is pressed when open", async () => {
@@ -215,19 +216,21 @@ describe("DatePicker", () => {
         expectOverlayHidden();
     });
 
-    it("opens the date picker if down arrow is pressed when closed", async () => {
+    it("does not open the overlay when ArrowDown is pressed on the input while closed", async () => {
+        // The calendar button is the only way to open the overlay --
+        // ArrowDown on the input matches native date/time inputs, where
+        // arrow keys adjust the focused value segment instead.
         render(<DatePicker updateDate={() => {}} />);
         await userEvent.tab();
-        await userEvent.keyboard("{Escape}");
         await userEvent.keyboard("{ArrowDown}");
-        expectOverlayVisible();
+        expectOverlayHidden();
     });
 
     it("moves focus into the calendar grid when ArrowDown is pressed on the calendar button while the overlay is already open", async () => {
         render(<DatePicker updateDate={() => {}} />);
         await openOverlay();
         expect(
-            screen.getByRole("button", {name: "Show calendar"}),
+            screen.getByRole("button", {name: "Toggle calendar"}),
         ).toHaveFocus();
         await userEvent.keyboard("{ArrowDown}");
         await waitFor(() => {
@@ -242,8 +245,8 @@ describe("DatePicker", () => {
     it("moves focus into the calendar grid when ArrowDown is pressed on the input while the overlay is already open", async () => {
         render(<DatePicker updateDate={() => {}} />);
         const input = screen.getByRole("textbox");
-        await userEvent.tab();
-        await userEvent.keyboard("{ArrowDown}"); // opens; focus stays on input
+        await openOverlay(); // opens via the calendar button
+        await userEvent.click(input);
         expect(input).toHaveFocus();
         await userEvent.keyboard("{ArrowDown}"); // overlay already open
         await waitFor(() => {
@@ -569,7 +572,7 @@ describe("DatePicker", () => {
             await userEvent.clear(input);
             await userEvent.type(input, "asdf");
             await userEvent.click(
-                screen.getByRole("button", {name: "Show calendar"}),
+                screen.getByRole("button", {name: "Toggle calendar"}),
             );
             await userEvent.click(await screen.findByText("20"));
             await waitFor(() => {
@@ -647,6 +650,26 @@ describe("DatePicker", () => {
         await openOverlay();
         await userEvent.click(screen.getByLabelText(/previous month/i));
         await screen.findByText("April 2021");
+    });
+
+    it("returns focus to the calendar button when Shift+Tab is pressed from the month navigation buttons", async () => {
+        render(<DatePicker updateDate={() => {}} />);
+        const calendarButton = screen.getByRole("button", {
+            name: "Toggle calendar",
+        });
+        await openOverlay();
+        expect(calendarButton).toHaveFocus();
+
+        // Tab from the button enters the overlay, landing on the first
+        // focusable element (the previous-month nav button), not the day
+        // grid.
+        await userEvent.tab();
+        expect(screen.getByLabelText(/previous month/i)).toHaveFocus();
+
+        // Shift+Tab back out should return focus to the calendar button --
+        // not the text input.
+        await userEvent.tab({shift: true});
+        expect(calendarButton).toHaveFocus();
     });
 
     describe("Month navigation (uncontrolled overlay)", () => {

@@ -473,18 +473,18 @@ export const InsideModal: Story = {
         const dialog = await canvas.findByRole("dialog", {
             name: "Date Picker in Modal",
         });
-        const textboxes = await within(dialog).findAllByRole("textbox");
-        const dateInput = textboxes[0];
         const calendarButtons = await within(dialog).findAllByRole("button", {
             name: "Toggle calendar",
         });
         await userEvent.click(calendarButtons[0]);
 
         await canvas.findByRole("grid");
-        expect(dateInput).toHaveFocus();
+        // Clicking the toggle button opens the overlay without moving focus
+        // off the button (matching native date/time inputs).
+        expect(calendarButtons[0]).toHaveFocus();
 
         // fire keydown to trigger handledEscapeRef in DatePicker
-        dateInput.dispatchEvent(
+        calendarButtons[0].dispatchEvent(
             new KeyboardEvent("keydown", {
                 key: "Escape",
                 bubbles: true,
@@ -492,7 +492,7 @@ export const InsideModal: Story = {
         );
 
         // fire keyup to stop propagation to modal based on handledEscapeRef
-        dateInput.dispatchEvent(
+        calendarButtons[0].dispatchEvent(
             new KeyboardEvent("keyup", {
                 key: "Escape",
                 bubbles: true,

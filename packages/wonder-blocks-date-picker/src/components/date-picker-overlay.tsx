@@ -49,6 +49,17 @@ interface Props {
      */
     referenceElement: HTMLElement | null | undefined;
     /**
+     * The element used as the focus-trap's anchor: Tab from this element
+     * enters the overlay, and Shift+Tab out of the overlay's first element
+     * returns focus to it. Defaults to `referenceElement` if not given.
+     *
+     * This is separate from `referenceElement` because the popper should
+     * stay positioned relative to the input field, even when a different
+     * element (e.g. a toggle button) is what keyboard focus should treat as
+     * the overlay's anchor.
+     */
+    focusReferenceElement?: HTMLElement | null | undefined;
+    /**
      * Text direction: when "rtl", the overlay is positioned at the end (e.g. bottom-end)
      * so it aligns with the input in RTL layout. Defaults to "ltr" (bottom-start).
      */
@@ -74,6 +85,7 @@ interface Props {
 const DatePickerOverlay = ({
     children,
     referenceElement,
+    focusReferenceElement,
     onClose,
     dir = "ltr",
     style = DEFAULT_STYLE,
@@ -100,7 +112,7 @@ const DatePickerOverlay = ({
     //    referenceElement and applies the required styles to the child element.
     return createPortal(
         <FocusManager
-            referenceElement={referenceElement}
+            referenceElement={focusReferenceElement ?? referenceElement}
             onEndFocused={onClose}
         >
             <Popper

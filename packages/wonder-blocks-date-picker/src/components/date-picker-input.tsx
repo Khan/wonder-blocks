@@ -453,6 +453,12 @@ const DatePickerInput = React.forwardRef<HTMLInputElement, Props>(
             (inputElement as any).focusCalendarButton = () => {
                 buttonRef.current?.focus();
             };
+            // Lets the parent (DatePicker) use the calendar toggle button --
+            // not the input -- as the overlay's focus-trap anchor, so
+            // Shift+Tab out of the overlay's first element (a nav button)
+            // returns focus to the button that opened it.
+            (inputElement as any).getCalendarButtonElement = () =>
+                buttonRef.current;
             return inputElement;
         });
 
