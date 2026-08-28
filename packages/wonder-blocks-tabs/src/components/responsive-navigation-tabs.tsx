@@ -2,6 +2,7 @@ import * as React from "react";
 import {StyleSheet} from "aphrodite";
 import {StyleType, View} from "@khanacademy/wonder-blocks-core";
 import Link from "@khanacademy/wonder-blocks-link";
+import {animation} from "@khanacademy/wonder-blocks-tokens";
 import {
     NavigationTabsDropdown,
     type NavigationTabsDropdownProps,
@@ -280,8 +281,9 @@ const styles = StyleSheet.create({
     fadeIn: {
         // @ts-expect-error [FEI-5019]: `animationName` expects a string not an object.
         animationName: fadeInKeyframes,
-        animationDuration: "150ms",
-        animationTimingFunction: "ease-in-out",
+        // Generic opacity fade: `fade.in` (150ms · linear).
+        animationDuration: animation.fade.in.duration,
+        animationTimingFunction: animation.fade.in.easing,
     },
     container: {
         width: "100%",

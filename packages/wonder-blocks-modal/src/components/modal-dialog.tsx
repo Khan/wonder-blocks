@@ -2,11 +2,16 @@ import * as React from "react";
 import {View} from "@khanacademy/wonder-blocks-core";
 import type {StyleType} from "@khanacademy/wonder-blocks-core";
 import {StyleSheet} from "aphrodite";
-import {semanticColor} from "@khanacademy/wonder-blocks-tokens";
+import {
+    semanticColor,
+    animationValue,
+    cssPreset,
+} from "@khanacademy/wonder-blocks-tokens";
 // TODO [WB-2137]: standardize media query breakpoint tokens
 import {useModalAnnouncer} from "../hooks/use-modal-announcer";
 import {modalMediaQuery} from "../util/constants";
 import theme from "../theme";
+import ModalContext from "./modal-context";
 
 type Props = {
     /**
@@ -83,10 +88,24 @@ const ModalDialog = React.forwardRef(function ModalDialog(
 
     const {ariaModalRef} = useModalAnnouncer(ref);
 
+    // When rendered inside an animated ModalLauncher, the dialog card floats
+    // in/out using the `floating` motion tokens. `animated`/`isExiting` come
+    // from ModalContext; they're undefined (no animation) otherwise.
+    const {animated, isExiting} = React.useContext(ModalContext);
+
     return (
         <View style={componentStyles.paddingLayer} data-modal-padding-layer>
             {/* WB-2197: We add a data attribute for identifying this layer on backdrop clicks */}
-            <View style={[componentStyles.wrapper, style]}>
+            <View
+                style={[
+                    componentStyles.wrapper,
+                    style,
+                    animated &&
+                        (isExiting
+                            ? animationStyles.dialogExit
+                            : animationStyles.dialogEnter),
+                ]}
+            >
                 {below && <View style={componentStyles.below}>{below}</View>}
                 <View
                     role={role}
@@ -166,6 +185,26 @@ const componentStyles = StyleSheet.create({
         insetBlockEnd: 0,
         insetInlineEnd: 0,
         zIndex: -1,
+    },
+});
+
+// Enter/exit float using the `floating` motion tokens: a subtle rise + scale
+// settle + fade on enter (origin "bottom" → rises up into place), reversed and
+// quicker on exit. `fillMode: "forwards"` holds the hidden end state so the
+// dialog doesn't flash back to visible before ModalLauncher unmounts it.
+const animationStyles = StyleSheet.create({
+    // @ts-expect-error [FEI-5019]: aphrodite types `animationName` as a string.
+    dialogEnter: {
+        ...cssPreset(animationValue.floating.enter, {origin: "bottom"}),
+        willChange: "transform, opacity",
+    },
+    // @ts-expect-error [FEI-5019]: aphrodite types `animationName` as a string.
+    dialogExit: {
+        ...cssPreset(animationValue.floating.exit, {
+            origin: "bottom",
+            fillMode: "forwards",
+        }),
+        willChange: "transform, opacity",
     },
 });
 

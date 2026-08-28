@@ -18,6 +18,17 @@ export default {
         },
     },
 
+    animated: {
+        control: {type: "boolean"},
+        defaultValue: false,
+        description:
+            "Whether to play enter/exit animations when the modal opens and closes, using the `floating` motion tokens (the backdrop fades; the dialog rises, scales, and fades). Defaults to `false`. When `true`, closing becomes asynchronous so the exit animation can play before the modal unmounts. Only content built from `ModalDialog`-based dialogs (e.g. `OnePaneDialog`, `ModalPanel`) animates its float.",
+        table: {
+            defaultValue: {summary: "false"},
+            type: {summary: "boolean"},
+        },
+    },
+
     backdropDismissEnabled: {
         control: {type: "boolean"},
         defaultValue: "true",

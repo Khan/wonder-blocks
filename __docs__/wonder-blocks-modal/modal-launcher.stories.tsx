@@ -140,6 +140,22 @@ Simple.parameters = {
     },
 };
 
+export const WithAnimation: StoryComponentType = () => (
+    <ModalLauncher modal={DefaultModal} animated={true}>
+        {({openModal}) => (
+            <Button onClick={openModal}>Click me to open the modal</Button>
+        )}
+    </ModalLauncher>
+);
+
+WithAnimation.parameters = {
+    docs: {
+        description: {
+            story: "Setting the `animated` prop to `true` plays enter/exit animations using the `floating` motion tokens: the backdrop fades and the dialog rises, scales, and fades in on open, then reverses (a quicker drift + fade) on close. Closing becomes asynchronous — the dialog stays mounted for the exit animation before it unmounts. `animated` defaults to `false`, so existing modals are unchanged unless they opt in.",
+        },
+    },
+};
+
 export const WithLongContentsAndFooter: StoryComponentType = () => {
     const LongModal = () => (
         <OnePaneDialog

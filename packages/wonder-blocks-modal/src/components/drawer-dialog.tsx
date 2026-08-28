@@ -1,13 +1,18 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 import type {StyleType} from "@khanacademy/wonder-blocks-core";
-import {breakpoint, semanticColor} from "@khanacademy/wonder-blocks-tokens";
+import {
+    animationValue,
+    breakpoint,
+    cssDuration,
+    cssEasing,
+    semanticColor,
+} from "@khanacademy/wonder-blocks-tokens";
 import type {DrawerAlignment} from "../util/types";
 import {
     useDrawerContext,
     DEFAULT_DRAWER_ANIMATED,
     DEFAULT_DRAWER_IS_EXITING,
-    DEFAULT_DRAWER_TIMING_DURATION_MS,
 } from "../util/drawer-context";
 import FlexibleDialog from "./flexible-dialog";
 import theme from "../theme";
@@ -133,8 +138,6 @@ const DrawerDialog = React.forwardRef(function DrawerDialog(
     const alignment = contextProps.alignment;
     const animated = contextProps.animated ?? DEFAULT_DRAWER_ANIMATED;
     const isExiting = contextProps.isExiting ?? DEFAULT_DRAWER_IS_EXITING;
-    const timingDuration =
-        contextProps.timingDuration ?? DEFAULT_DRAWER_TIMING_DURATION_MS;
 
     const {styles} = props;
 
@@ -147,7 +150,6 @@ const DrawerDialog = React.forwardRef(function DrawerDialog(
         isRtl,
         animated,
         isExiting,
-        timingDuration,
     });
 
     const alignmentStyles =
@@ -174,45 +176,67 @@ const DrawerDialog = React.forwardRef(function DrawerDialog(
     );
 });
 
+// The resting (fully on-screen) transform, shared by all alignments.
+const REST_TRANSFORM = "translate3d(0, 0, 0)";
+
+/**
+ * The off-screen transform for a drawer at a given alignment, offset by a
+ * semantic slide distance (a CSS length string like "9.6rem", or a px number).
+ */
 const getTransformValue = (
     isRtl: boolean,
     alignment: DrawerAlignment,
-    percentage: number,
+    offset: number | string,
 ): string => {
+    // Normalize a bare px number into a CSS length; string offsets pass through.
+    const length = typeof offset === "number" ? `${offset}px` : offset;
+
     if (alignment === "blockEnd") {
-        return `translate3d(0, ${percentage}%, 0)`;
+        // Slides up from the bottom edge (positive Y is downward/off-screen).
+        return `translate3d(0, ${length}, 0)`;
     }
 
-    // For inlineEnd, we need to reverse the direction compared to inlineStart
-    const directionMultiplier = isRtl
+    // inlineStart sits off the start edge, inlineEnd off the end edge; RTL
+    // mirrors both. Same sign logic as before, expressed as a signed length.
+    const isNegative = isRtl
         ? alignment === "inlineEnd"
-            ? -1
-            : 1
-        : alignment === "inlineEnd"
-          ? 1
-          : -1;
+        : alignment === "inlineStart";
 
-    return `translate3d(${directionMultiplier * percentage}%, 0, 0)`;
+    // Negate via calc() rather than a bare "-" prefix: the offset is a length
+    // string, and calc(-1 * <len>) is the safe way to flip its sign.
+    const signedLength = isNegative ? `calc(-1 * ${length})` : length;
+
+    return `translate3d(${signedLength}, 0, 0)`;
 };
 
 const createKeyframes = (isRtl: boolean, alignment: DrawerAlignment) => ({
     slideIn: {
         "0%": {
-            transform: getTransformValue(isRtl, alignment, 100),
+            // Enter slides in from the docked enter offset (9.6rem).
+            transform: getTransformValue(
+                isRtl,
+                alignment,
+                animationValue.docked.enter.from.offset,
+            ),
             opacity: 0,
         },
         "100%": {
-            transform: getTransformValue(isRtl, alignment, 0),
+            transform: REST_TRANSFORM,
             opacity: 1,
         },
     },
     slideOut: {
         "0%": {
-            transform: getTransformValue(isRtl, alignment, 0),
+            transform: REST_TRANSFORM,
             opacity: 1,
         },
         "100%": {
-            transform: getTransformValue(isRtl, alignment, 100),
+            // Exit slides out to the (shorter) docked exit offset (3.2rem).
+            transform: getTransformValue(
+                isRtl,
+                alignment,
+                animationValue.docked.exit.to.offset,
+            ),
             opacity: 0,
         },
     },
@@ -223,12 +247,10 @@ const getComponentStyles = ({
     isRtl,
     animated,
     isExiting,
-    timingDuration,
 }: {
     alignment: DrawerAlignment | undefined;
     isRtl: boolean;
     animated: boolean;
-    timingDuration: number;
     isExiting?: boolean;
 }) => {
     // Generate keyframes for the current alignment and RTL state
@@ -274,9 +296,24 @@ const getComponentStyles = ({
                 (isExiting
                     ? alignmentKeyframes.slideOut
                     : alignmentKeyframes.slideIn),
-            animationDuration: `${timingDuration}ms`,
-            animationTimingFunction: "linear",
-            animationFillMode: "forwards",
+            // Enter/exit run on the docked preset's asymmetric clock: enter is
+            // longer and eases `standard`, exit is quicker and eases `decelerate`.
+            // Format the raw token values into literal CSS strings ("400ms",
+            // "cubic-bezier(…)") so they don't depend on the `--wb-animation-*`
+            // CSS variables being registered on the page.
+            animationDuration: cssDuration(
+                isExiting
+                    ? animationValue.docked.exit.duration
+                    : animationValue.docked.enter.duration,
+            ),
+            animationTimingFunction: cssEasing(
+                isExiting
+                    ? animationValue.docked.exit.easing
+                    : animationValue.docked.enter.easing,
+            ),
+            // `backwards` holds the off-screen `from` before enter starts;
+            // `forwards` holds the hidden `to` after exit completes.
+            animationFillMode: isExiting ? "forwards" : "backwards",
         },
         inlineEnd: {
             // @ts-expect-error [FEI-5019] - `animationName` expects a string not an object
@@ -286,9 +323,24 @@ const getComponentStyles = ({
                 (isExiting
                     ? alignmentKeyframes.slideOut
                     : alignmentKeyframes.slideIn),
-            animationDuration: `${timingDuration}ms`,
-            animationTimingFunction: "linear",
-            animationFillMode: "forwards",
+            // Enter/exit run on the docked preset's asymmetric clock: enter is
+            // longer and eases `standard`, exit is quicker and eases `decelerate`.
+            // Format the raw token values into literal CSS strings ("400ms",
+            // "cubic-bezier(…)") so they don't depend on the `--wb-animation-*`
+            // CSS variables being registered on the page.
+            animationDuration: cssDuration(
+                isExiting
+                    ? animationValue.docked.exit.duration
+                    : animationValue.docked.enter.duration,
+            ),
+            animationTimingFunction: cssEasing(
+                isExiting
+                    ? animationValue.docked.exit.easing
+                    : animationValue.docked.enter.easing,
+            ),
+            // `backwards` holds the off-screen `from` before enter starts;
+            // `forwards` holds the hidden `to` after exit completes.
+            animationFillMode: isExiting ? "forwards" : "backwards",
         },
         blockEnd: {
             // @ts-expect-error [FEI-5019] - `animationName` expects a string not an object
@@ -298,9 +350,24 @@ const getComponentStyles = ({
                 (isExiting
                     ? alignmentKeyframes.slideOut
                     : alignmentKeyframes.slideIn),
-            animationDuration: `${timingDuration}ms`,
-            animationTimingFunction: "linear",
-            animationFillMode: "forwards",
+            // Enter/exit run on the docked preset's asymmetric clock: enter is
+            // longer and eases `standard`, exit is quicker and eases `decelerate`.
+            // Format the raw token values into literal CSS strings ("400ms",
+            // "cubic-bezier(…)") so they don't depend on the `--wb-animation-*`
+            // CSS variables being registered on the page.
+            animationDuration: cssDuration(
+                isExiting
+                    ? animationValue.docked.exit.duration
+                    : animationValue.docked.enter.duration,
+            ),
+            animationTimingFunction: cssEasing(
+                isExiting
+                    ? animationValue.docked.exit.easing
+                    : animationValue.docked.enter.easing,
+            ),
+            // `backwards` holds the off-screen `from` before enter starts;
+            // `forwards` holds the hidden `to` after exit completes.
+            animationFillMode: isExiting ? "forwards" : "backwards",
             height: "auto",
             minBlockSize: "unset",
             maxInlineSize: "unset",

@@ -256,15 +256,18 @@ describe("AccordionSection", () => {
 
         // Act
         const wrapper = screen.getByTestId("accordion-section");
-        const header = screen.getByTestId("accordion-section-header");
+        // The grid (which carries the grid-template-rows transition) is a plain
+        // <div> nested inside the section wrapper. The transition is applied as
+        // an inline style, so we read it from `element.style` — jsdom's
+        // getComputedStyle does not resolve the transition long-hands.
+        // eslint-disable-next-line testing-library/no-node-access -- the grid is an internal structural element with no role/label, so we read it directly.
+        const grid = wrapper.firstElementChild as HTMLElement;
 
         // Assert
-        expect(wrapper).toHaveStyle({
-            transition: "grid-template-rows 300ms",
-        });
-        expect(header).toHaveStyle({
-            transition: "border-radius 300ms",
-        });
+        // Expand/collapse timing comes from the `disclosure.expand` token,
+        // applied as long-hand transition properties.
+        expect(grid.style.transitionProperty).toBe("grid-template-rows");
+        expect(grid.style.transitionDuration).toBeTruthy();
     });
 
     test("does not include transition when animated is false", () => {
@@ -282,14 +285,10 @@ describe("AccordionSection", () => {
 
         // Act
         const wrapper = screen.getByTestId("accordion-section");
-        const header = screen.getByTestId("accordion-section-header");
+        // eslint-disable-next-line testing-library/no-node-access -- the grid is an internal structural element with no role/label, so we read it directly.
+        const grid = wrapper.firstElementChild as HTMLElement;
 
         // Assert
-        expect(wrapper).not.toHaveStyle({
-            transition: "grid-template-rows 300ms",
-        });
-        expect(header).not.toHaveStyle({
-            transition: "border-radius 300ms",
-        });
+        expect(grid.style.transitionProperty).toBe("");
     });
 });

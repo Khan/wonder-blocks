@@ -1,5 +1,9 @@
 import {AriaRole, useOnMountEffect} from "@khanacademy/wonder-blocks-core";
-import {border, semanticColor} from "@khanacademy/wonder-blocks-tokens";
+import {
+    border,
+    semanticColor,
+    animation,
+} from "@khanacademy/wonder-blocks-tokens";
 import * as React from "react";
 
 type IndicatorProps = {
@@ -172,6 +176,9 @@ const styles = {
         backgroundColor: semanticColor.core.background.instructive.default,
     },
     underlineTransition: {
-        transition: "transform 0.3s ease, width 0.3s ease",
+        // The sliding/resizing indicator: `indicator.move` (300ms · standard).
+        // Kept as an inline string (not `cssTransition`) so Aphrodite doesn't
+        // generate a new class each time the tabs resize.
+        transition: `transform ${animation.indicator.move.duration} ${animation.indicator.move.easing}, width ${animation.indicator.move.duration} ${animation.indicator.move.easing}`,
     },
 };

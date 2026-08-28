@@ -122,9 +122,12 @@ describe("AccordionSectionHeader", () => {
         const header = screen.getByRole("button");
 
         // Assert
-        expect(header).toHaveStyle({
-            transition: "border-radius 300ms",
-        });
+        // The header corner-rounding transition comes from the
+        // `disclosure.expand` token, applied as long-hand properties. It's an
+        // inline style, so read it from `element.style` — jsdom's
+        // getComputedStyle does not resolve the transition long-hands.
+        expect(header.style.transitionProperty).toBe("border-radius");
+        expect(header.style.transitionDuration).toBeTruthy();
     });
 
     test("does not include transition styles when animated is false", () => {
@@ -148,9 +151,7 @@ describe("AccordionSectionHeader", () => {
         const header = screen.getByRole("button");
 
         // Assert
-        expect(header).not.toHaveStyle({
-            transition: "border-radius 300ms",
-        });
+        expect(header.style.transitionProperty).toBe("");
     });
 
     test("shows icon when collapsible is true", () => {

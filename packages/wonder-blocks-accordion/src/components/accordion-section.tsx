@@ -3,7 +3,13 @@ import {StyleSheet} from "aphrodite";
 import type {StyleDeclaration} from "aphrodite";
 
 import {View} from "@khanacademy/wonder-blocks-core";
-import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
+import {
+    border,
+    semanticColor,
+    sizing,
+    animationValue,
+    cssTransition,
+} from "@khanacademy/wonder-blocks-tokens";
 import {BodyText} from "@khanacademy/wonder-blocks-typography";
 import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
 
@@ -249,64 +255,92 @@ const AccordionSection = React.forwardRef(function AccordionSection(
     return (
         <View
             id={sectionId}
-            style={[
-                styles.wrapper,
-                animated && styles.wrapperWithAnimation,
-                sectionStyles.wrapper,
-                expandedState
-                    ? styles.wrapperExpanded
-                    : styles.wrapperCollapsed,
-                style,
-            ]}
+            style={[styles.wrapper, sectionStyles.wrapper, style]}
             testId={testId}
             {...ariaProps}
         >
-            <AccordionSectionHeader
-                id={headerId}
-                header={header}
-                caretPosition={caretPosition}
-                cornerKind={cornerKind}
-                collapsible={collapsible}
-                expanded={expandedState}
-                animated={animated}
-                onClick={handleClick}
-                sectionContentUniqueId={sectionContentUniqueId}
-                headerStyle={headerStyle}
-                tag={tag}
-                testId={testId}
-                isFirstSection={isFirstSection}
-                isLastSection={isLastSection}
-                ref={ref}
-            />
-            <View
-                id={sectionContentUniqueId}
-                role={isRegion ? "region" : undefined}
-                aria-labelledby={headerId}
-                style={[
-                    styles.contentWrapper,
-                    expandedState
-                        ? styles.contentWrapperExpanded
-                        : styles.conentWrapperCollapsed,
-                    sectionStyles.contentWrapper,
-                ]}
-                testId={testId ? `${testId}-content-panel` : undefined}
+            {/*
+              The grid lives on a plain <div> with its styles applied inline
+              (React `style`) rather than through Aphrodite.
+
+              This solves a problem with the first expand not animating and
+              only subsequent toggles animating. The grid-template-rows transition
+              is applied as an inline style.
+
+              Deets: Aphrodite injects a style's rule into the <style> tag lazily
+              — the first time that style is rendered — and buffers the injection
+              asynchronously. If the expanded `grid-template-rows: min-content
+              1fr` lived in an Aphrodite class, its rule would be injected in the
+              same commit as the first open. A rule that appears at the same
+              moment the element starts matching it does not produce a
+              transition, so the very first expand snapped open instead of
+              animating (every later toggle animated, because by then both rules
+              existed). It's messy, but applying it inline means the property is
+              present on first render, only changing its value, so the
+              transition runs.
+            */}
+            <div
+                style={{
+                    // Use grid layout for clean animations.
+                    display: "grid",
+                    boxSizing: "border-box",
+                    gridTemplateRows: expandedState
+                        ? "min-content 1fr"
+                        : "min-content 0fr",
+                    // Expand/collapse the content region: `disclosure.expand`.
+                    ...(animated
+                        ? cssTransition(
+                              "grid-template-rows",
+                              animationValue.disclosure.expand,
+                          )
+                        : {}),
+                }}
             >
-                {typeof children === "string" ? (
-                    <BodyText tag="span" style={styles.stringContent}>
-                        {children}
-                    </BodyText>
-                ) : (
-                    children
-                )}
-            </View>
+                <AccordionSectionHeader
+                    id={headerId}
+                    header={header}
+                    caretPosition={caretPosition}
+                    cornerKind={cornerKind}
+                    collapsible={collapsible}
+                    expanded={expandedState}
+                    animated={animated}
+                    onClick={handleClick}
+                    sectionContentUniqueId={sectionContentUniqueId}
+                    headerStyle={headerStyle}
+                    tag={tag}
+                    testId={testId}
+                    isFirstSection={isFirstSection}
+                    isLastSection={isLastSection}
+                    ref={ref}
+                />
+                <View
+                    id={sectionContentUniqueId}
+                    role={isRegion ? "region" : undefined}
+                    aria-labelledby={headerId}
+                    style={[
+                        styles.contentWrapper,
+                        expandedState
+                            ? styles.contentWrapperExpanded
+                            : styles.conentWrapperCollapsed,
+                        sectionStyles.contentWrapper,
+                    ]}
+                    testId={testId ? `${testId}-content-panel` : undefined}
+                >
+                    {typeof children === "string" ? (
+                        <BodyText tag="span" style={styles.stringContent}>
+                            {children}
+                        </BodyText>
+                    ) : (
+                        children
+                    )}
+                </View>
+            </div>
         </View>
     );
 });
 
 const styles = StyleSheet.create({
     wrapper: {
-        // Use grid layout for clean animations.
-        display: "grid",
         // Remove the View's default relative position because it creates
         // overlap issues with the outline. In this case, it's safe to
         // remove the stacking context beacuse accordion sections are always
@@ -314,15 +348,6 @@ const styles = StyleSheet.create({
         position: "static",
         boxSizing: "border-box",
         backgroundColor: semanticColor.core.background.base.default,
-    },
-    wrapperWithAnimation: {
-        transition: "grid-template-rows 300ms",
-    },
-    wrapperCollapsed: {
-        gridTemplateRows: "min-content 0fr",
-    },
-    wrapperExpanded: {
-        gridTemplateRows: "min-content 1fr",
     },
     contentWrapper: {
         overflow: "hidden",
