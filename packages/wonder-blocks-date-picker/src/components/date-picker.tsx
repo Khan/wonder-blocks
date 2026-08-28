@@ -423,7 +423,7 @@ const DatePicker = (props: Props) => {
     // the overlay once it's already open (via a click); Escape closes it
     // (focus already on the button).
     const handleCalendarButtonKeyDown = React.useCallback(
-        (e: KeyboardEvent) => {
+        (e: React.KeyboardEvent) => {
             if (e.key === "ArrowDown" && showOverlay) {
                 e.preventDefault();
                 focusIntoOverlay();
