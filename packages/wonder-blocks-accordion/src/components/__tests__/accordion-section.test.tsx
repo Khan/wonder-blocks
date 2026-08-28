@@ -292,4 +292,48 @@ describe("AccordionSection", () => {
             transition: "border-radius 300ms",
         });
     });
+
+    describe("data-expanded", () => {
+        // The expanded/collapsed row sizing is selected off this attribute
+        // rather than by swapping classes, so it has to track the state.
+        test("reflects the expanded state when it changes", async () => {
+            // Arrange
+            render(
+                <AccordionSection header="Title" testId="accordion-section">
+                    Section content
+                </AccordionSection>,
+                {wrapper: RenderStateRoot},
+            );
+            const wrapper = screen.getByTestId("accordion-section");
+            expect(wrapper).toHaveAttribute("data-expanded", "false");
+
+            // Act
+            await userEvent.click(screen.getByRole("button"));
+
+            // Assert
+            expect(wrapper).toHaveAttribute("data-expanded", "true");
+        });
+
+        test("is true when the section is not collapsible", () => {
+            // Arrange
+
+            // Act
+            render(
+                <AccordionSection
+                    header="Title"
+                    collapsible={false}
+                    testId="accordion-section"
+                >
+                    Section content
+                </AccordionSection>,
+                {wrapper: RenderStateRoot},
+            );
+
+            // Assert
+            expect(screen.getByTestId("accordion-section")).toHaveAttribute(
+                "data-expanded",
+                "true",
+            );
+        });
+    });
 });
