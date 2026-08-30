@@ -1,6 +1,6 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
-import type {StyleType} from "@khanacademy/wonder-blocks-core";
+import {useIsRtl, type StyleType} from "@khanacademy/wonder-blocks-core";
 import {breakpoint, semanticColor} from "@khanacademy/wonder-blocks-tokens";
 import type {DrawerAlignment} from "../util/types";
 import {
@@ -11,7 +11,6 @@ import {
 } from "../util/drawer-context";
 import FlexibleDialog from "./flexible-dialog";
 import theme from "../theme";
-import {useDirectionDetection} from "../hooks/use-direction-detection";
 
 // One of these three props is required for labeling the dialog:
 // `title`, `aria-label`, or `aria-labelledby`.
@@ -139,8 +138,7 @@ const DrawerDialog = React.forwardRef(function DrawerDialog(
     const {styles} = props;
 
     // Detect text direction from DOM
-    const direction = useDirectionDetection();
-    const isRtl = direction === "rtl";
+    const isRtl = useIsRtl();
 
     const componentStyles = getComponentStyles({
         alignment,

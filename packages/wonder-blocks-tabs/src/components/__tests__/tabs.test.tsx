@@ -1766,6 +1766,13 @@ describe("Tabs", () => {
             });
 
             describe("RTL", () => {
+                afterEach(() => {
+                    // Some tests here set the direction on the document
+                    // itself. Reset it so a failing assertion can't leak the
+                    // direction into later tests in this file.
+                    document.documentElement.removeAttribute("dir");
+                });
+
                 it("should focus on the previous tab when the right arrow key is pressed and it is in RTL mode", async () => {
                     // Arrange
                     render(
@@ -1911,6 +1918,42 @@ describe("Tabs", () => {
                     // Assert
                     expect(
                         screen.getByRole("tab", {name: "Tab 3"}),
+                    ).toHaveFocus();
+                });
+
+                it("should focus on the previous tab when the right arrow key is pressed and direction comes from document.documentElement", async () => {
+                    // Arrange
+                    document.documentElement.setAttribute("dir", "rtl");
+                    render(
+                        <ControlledTabs
+                            tabs={[
+                                {
+                                    id: "tab-1",
+                                    label: "Tab 1",
+                                    panel: <div>Contents of tab 1</div>,
+                                },
+                                {
+                                    id: "tab-2",
+                                    label: "Tab 2",
+                                    panel: <div>Contents of tab 2</div>,
+                                },
+                                {
+                                    id: "tab-3",
+                                    label: "Tab 3",
+                                    panel: <div>Contents of tab 3</div>,
+                                },
+                            ]}
+                            selectedTabId={"tab-2"}
+                        />,
+                    );
+                    await userEvent.tab();
+
+                    // Act
+                    await userEvent.keyboard("{ArrowRight}");
+
+                    // Assert
+                    expect(
+                        screen.getByRole("tab", {name: "Tab 1"}),
                     ).toHaveFocus();
                 });
             });

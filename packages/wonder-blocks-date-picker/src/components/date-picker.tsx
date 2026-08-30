@@ -4,7 +4,11 @@ import * as React from "react";
 import {DayPicker} from "react-day-picker";
 import {enUS, type Locale} from "react-day-picker/locale";
 
-import {View, type StyleType} from "@khanacademy/wonder-blocks-core";
+import {
+    useDirection,
+    View,
+    type StyleType,
+} from "@khanacademy/wonder-blocks-core";
 import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {useCloseOnOutsideClick} from "../hooks/use-close-on-outside-click";
 import {useDatePickerModifiers} from "../hooks/use-date-picker-modifiers";
@@ -270,8 +274,7 @@ const DatePicker = (props: Props) => {
         locale: computedLocale,
     });
 
-    const dir =
-        refWrapper.current?.closest("[dir]")?.getAttribute("dir") || "ltr";
+    const dir = useDirection(refWrapper);
 
     const handleMonthChange = React.useCallback(
         (newMonth: Date) => {
@@ -509,7 +512,7 @@ const DatePicker = (props: Props) => {
                 <DatePickerOverlay
                     referenceElement={datePickerInputRef.current}
                     onClose={close}
-                    dir={dir === "rtl" ? "rtl" : "ltr"}
+                    dir={dir}
                 >
                     <View ref={datePickerRef}>
                         <DayPicker
