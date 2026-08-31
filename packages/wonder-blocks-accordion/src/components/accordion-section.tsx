@@ -249,13 +249,12 @@ const AccordionSection = React.forwardRef(function AccordionSection(
     return (
         <View
             id={sectionId}
+            // Drives the expanded/collapsed row sizing in `styles.wrapper`.
+            data-expanded={expandedState ? "true" : "false"}
             style={[
                 styles.wrapper,
                 animated && styles.wrapperWithAnimation,
                 sectionStyles.wrapper,
-                expandedState
-                    ? styles.wrapperExpanded
-                    : styles.wrapperCollapsed,
                 style,
             ]}
             testId={testId}
@@ -307,6 +306,16 @@ const styles = StyleSheet.create({
     wrapper: {
         // Use grid layout for clean animations.
         display: "grid",
+        gridTemplateRows: "min-content 1fr",
+        // The collapsed size is a selector on this same class rather than a
+        // separate one. Aphrodite merges each style list into one class and
+        // injects its rule lazily, so swapping classes points the first expand
+        // at a rule that doesn't exist yet: `grid-template-rows` computes to
+        // `none`, which can't interpolate, and the first open snaps.
+        // Note: while collapsed this outranks a consumer `style` override.
+        [':not([data-expanded="true"])' as any]: {
+            gridTemplateRows: "min-content 0fr",
+        },
         // Remove the View's default relative position because it creates
         // overlap issues with the outline. In this case, it's safe to
         // remove the stacking context beacuse accordion sections are always
@@ -317,12 +326,6 @@ const styles = StyleSheet.create({
     },
     wrapperWithAnimation: {
         transition: "grid-template-rows 300ms",
-    },
-    wrapperCollapsed: {
-        gridTemplateRows: "min-content 0fr",
-    },
-    wrapperExpanded: {
-        gridTemplateRows: "min-content 1fr",
     },
     contentWrapper: {
         overflow: "hidden",
