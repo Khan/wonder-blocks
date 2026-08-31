@@ -13,9 +13,11 @@ direction when rendered in right-to-left content. Layout position already
 mirrors via logical CSS; this flips the glyph itself.
 
 Which icons mirror is decided by the allowlist in
-`packages/wonder-blocks-icon/src/util/mirrored-icon-names.ts`. To add or remove
-an icon, open a Wonder Blocks PR against that list rather than handling RTL
-mirroring at the call site. For genuine one-offs, `mirrorInRtl` overrides the
+`packages/wonder-blocks-icon/src/util/mirrored-icon-names.ts`. Entries are
+[Phosphor](https://phosphoricons.com/) asset names without the weight suffix, so
+`caret-right` covers `caret-right-bold`, `caret-right-fill`, and the rest. To add
+or remove an icon, open a Wonder Blocks PR against that list rather than handling
+RTL mirroring at the call site. For genuine one-offs, `mirrorInRtl` overrides the
 allowlist in either direction.
 
 ### Mirrored by default
@@ -78,6 +80,11 @@ in when the glyph is directional — still pass the LTR-facing asset (no ternary
 <PhosphorIcon icon={myCustomForward} mirrorInRtl />
 ```
 
+Below, the same custom asset is rendered without the prop and with it. Without
+it the glyph stays LTR-facing in both panels; with it, the RTL panel flips.
+
+<Canvas of={PhosphorIconRtlStories.CustomIconMirrorInRtl} />
+
 ### Opting out
 
 `mirrorInRtl={false}` suppresses mirroring for an allowlisted icon. This is an
@@ -87,5 +94,3 @@ otherwise double-flip — prefer removing the swap instead.
 ```tsx
 <PhosphorIcon icon={caretRightIcon} mirrorInRtl={false} />
 ```
-
-<Canvas of={PhosphorIconRtlStories.CustomIconMirrorInRtl} />

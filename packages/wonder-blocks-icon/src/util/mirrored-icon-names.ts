@@ -3,6 +3,10 @@
  * add or remove names in a Wonder Blocks PR rather than special-casing a call
  * site. `mirrorInRtl` exists for the exceptions. See the PhosphorIcon RTL docs
  * for deliberate exclusions (media, launch, trends, physical text-align, etc.).
+ *
+ * Names are the Phosphor asset names, without the weight suffix — browse them
+ * at https://phosphoricons.com/. All weights of a name share one entry, so
+ * `caret-right` covers `caret-right-bold`, `caret-right-fill`, and so on.
  */
 export const MIRRORED_ICON_NAMES: ReadonlySet<string> = new Set([
     "arrow-arc-left",
