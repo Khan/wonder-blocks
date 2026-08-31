@@ -20,13 +20,6 @@ function renderPicker(props = {}) {
     return render(<DatePicker {...defaultPickerProps} {...props} />);
 }
 
-function expectOverlayVisible() {
-    expect(screen.getByTestId("focus-sentinel-prev")).toBeInTheDocument();
-}
-function expectOverlayHidden() {
-    expect(screen.queryByTestId("focus-sentinel-prev")).not.toBeInTheDocument();
-}
-
 describe("DatePicker", () => {
     beforeEach(() => {
         // Mock getBoundingClientRect to provide realistic dimensions
@@ -50,7 +43,9 @@ describe("DatePicker", () => {
         render(<DatePicker updateDate={() => {}} />);
 
         // Assert
-        expectOverlayHidden();
+        expect(
+            screen.queryByTestId("focus-sentinel-prev"),
+        ).not.toBeInTheDocument();
     });
 
     it("does not show the date picker overlay if the input is clicked", async () => {
@@ -61,7 +56,9 @@ describe("DatePicker", () => {
         await userEvent.click(screen.getByRole("textbox"));
 
         // Assert
-        expectOverlayHidden();
+        expect(
+            screen.queryByTestId("focus-sentinel-prev"),
+        ).not.toBeInTheDocument();
     });
 
     it("does not show the date picker overlay if disabled", async () => {
@@ -72,7 +69,9 @@ describe("DatePicker", () => {
         await userEvent.click(screen.getByRole("textbox"));
 
         // Assert
-        expectOverlayHidden();
+        expect(
+            screen.queryByTestId("focus-sentinel-prev"),
+        ).not.toBeInTheDocument();
     });
 
     it("does not show the date picker overlay if the input is focused", async () => {
@@ -83,7 +82,9 @@ describe("DatePicker", () => {
         await userEvent.tab();
 
         // Assert
-        expectOverlayHidden();
+        expect(
+            screen.queryByTestId("focus-sentinel-prev"),
+        ).not.toBeInTheDocument();
     });
 
     it("shows the date picker overlay when the calendar button is clicked", async () => {
@@ -97,7 +98,7 @@ describe("DatePicker", () => {
         );
 
         // Assert
-        expectOverlayVisible();
+        expect(screen.getByTestId("focus-sentinel-prev")).toBeInTheDocument();
     });
 
     it("shows the calendar grid when the calendar button is clicked", async () => {
@@ -128,7 +129,9 @@ describe("DatePicker", () => {
         );
 
         // Assert
-        expectOverlayHidden();
+        expect(
+            screen.queryByTestId("focus-sentinel-prev"),
+        ).not.toBeInTheDocument();
     });
 
     it("sets aria-expanded to false on the calendar button by default", () => {
@@ -180,7 +183,9 @@ describe("DatePicker", () => {
         );
 
         // Assert
-        expectOverlayHidden();
+        expect(
+            screen.queryByTestId("focus-sentinel-prev"),
+        ).not.toBeInTheDocument();
     });
 
     it("includes a footer if set", async () => {
@@ -244,7 +249,9 @@ describe("DatePicker", () => {
         await userEvent.type(screen.getByRole("textbox"), "{Esc}");
 
         // Assert
-        expectOverlayHidden();
+        expect(
+            screen.queryByTestId("focus-sentinel-prev"),
+        ).not.toBeInTheDocument();
     });
 
     it("keeps focus on the calendar button when it's clicked to open the overlay", async () => {
@@ -273,7 +280,11 @@ describe("DatePicker", () => {
         await userEvent.keyboard("{Escape}");
 
         // Assert
-        await waitFor(() => expectOverlayHidden());
+        await waitFor(() =>
+            expect(
+                screen.queryByTestId("focus-sentinel-prev"),
+            ).not.toBeInTheDocument(),
+        );
     });
 
     it("returns focus to the calendar button when Escape is pressed", async () => {
@@ -300,13 +311,19 @@ describe("DatePicker", () => {
             screen.getByRole("button", {name: "Toggle calendar"}),
         );
         await userEvent.keyboard("{Escape}");
-        await waitFor(() => expectOverlayHidden());
+        await waitFor(() =>
+            expect(
+                screen.queryByTestId("focus-sentinel-prev"),
+            ).not.toBeInTheDocument(),
+        );
 
         // Act
         await userEvent.keyboard("{Escape}");
 
         // Assert
-        expectOverlayHidden();
+        expect(
+            screen.queryByTestId("focus-sentinel-prev"),
+        ).not.toBeInTheDocument();
     });
 
     it("does not reopen the overlay with ArrowDown when the calendar button is focused", async () => {
@@ -317,13 +334,19 @@ describe("DatePicker", () => {
             screen.getByRole("button", {name: "Toggle calendar"}),
         );
         await userEvent.keyboard("{Escape}");
-        await waitFor(() => expectOverlayHidden());
+        await waitFor(() =>
+            expect(
+                screen.queryByTestId("focus-sentinel-prev"),
+            ).not.toBeInTheDocument(),
+        );
 
         // Act
         await userEvent.keyboard("{ArrowDown}");
 
         // Assert
-        expectOverlayHidden();
+        expect(
+            screen.queryByTestId("focus-sentinel-prev"),
+        ).not.toBeInTheDocument();
     });
 
     it("does not open the overlay when Enter is pressed on the input while closed", async () => {
@@ -335,7 +358,9 @@ describe("DatePicker", () => {
         await userEvent.keyboard("{Enter}");
 
         // Assert
-        expectOverlayHidden();
+        expect(
+            screen.queryByTestId("focus-sentinel-prev"),
+        ).not.toBeInTheDocument();
     });
 
     it("closes the date picker if Enter is pressed when open", async () => {
@@ -350,7 +375,9 @@ describe("DatePicker", () => {
         await userEvent.keyboard("{Enter}");
 
         // Assert
-        expectOverlayHidden();
+        expect(
+            screen.queryByTestId("focus-sentinel-prev"),
+        ).not.toBeInTheDocument();
     });
 
     // The calendar button is the only way to open the overlay -- ArrowDown
@@ -365,7 +392,9 @@ describe("DatePicker", () => {
         await userEvent.keyboard("{ArrowDown}");
 
         // Assert
-        expectOverlayHidden();
+        expect(
+            screen.queryByTestId("focus-sentinel-prev"),
+        ).not.toBeInTheDocument();
     });
 
     it("moves focus into the calendar grid when ArrowDown is pressed on the calendar button while the overlay is already open", async () => {
@@ -435,7 +464,7 @@ describe("DatePicker", () => {
             screen.getByRole("button", {name: "Toggle calendar"}),
         );
         await userEvent.type(screen.getByRole("textbox"), "{Enter}");
-        expectOverlayVisible();
+        expect(screen.getByTestId("focus-sentinel-prev")).toBeInTheDocument();
     });
 
     it("allows keyboard users to select a date using Tab and Enter", async () => {
@@ -467,7 +496,9 @@ describe("DatePicker", () => {
             screen.getByRole("button", {name: "Toggle calendar"}),
         );
         await userEvent.click(document.body);
-        expectOverlayHidden();
+        expect(
+            screen.queryByTestId("focus-sentinel-prev"),
+        ).not.toBeInTheDocument();
     });
 
     it("closes the date picker if we click outside the container", async () => {
@@ -477,7 +508,11 @@ describe("DatePicker", () => {
             screen.getByRole("button", {name: "Toggle calendar"}),
         );
         await userEvent.click(document.body);
-        await waitFor(() => expectOverlayHidden());
+        await waitFor(() =>
+            expect(
+                screen.queryByTestId("focus-sentinel-prev"),
+            ).not.toBeInTheDocument(),
+        );
     });
     it("closes the date picker if a date is selected", async () => {
         DateMock.advanceTo(new Date("2023-05-10T09:30:00"));
