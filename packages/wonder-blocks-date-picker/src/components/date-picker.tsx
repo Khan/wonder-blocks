@@ -192,6 +192,7 @@ const DatePicker = (props: Props) => {
     >(selectedDate);
 
     const datePickerInputRef = React.useRef<HTMLInputElement | null>(null);
+    const calendarButtonRef = React.useRef<HTMLButtonElement | null>(null);
     const datePickerRef = React.useRef<HTMLElement | null>(null);
     const refWrapper = React.useRef<HTMLDivElement>(null);
     const skipNextOpenRef = React.useRef(false);
@@ -288,30 +289,6 @@ const DatePicker = (props: Props) => {
         }
     }, [disabled, showOverlay, close, open, skipNextOpenRef]);
 
-    // Moves focus back to the calendar toggle button, e.g. after Escape
-    // closes the overlay.
-    const focusCalendarButton = React.useCallback(() => {
-        (
-            datePickerInputRef.current as HTMLInputElement & {
-                focusCalendarButton?: () => void;
-            }
-        )?.focusCalendarButton?.();
-    }, [datePickerInputRef]);
-
-    // The calendar toggle button's DOM node, used both so focus moving
-    // to/from it isn't treated as "leaving" the widget, and as the
-    // overlay's focus-trap anchor (see calendarButtonElement below).
-    const getCalendarButtonElement = React.useCallback(():
-        | HTMLButtonElement
-        | null
-        | undefined => {
-        return (
-            datePickerInputRef.current as HTMLInputElement & {
-                getCalendarButtonElement?: () => HTMLButtonElement | null;
-            }
-        )?.getCalendarButtonElement?.();
-    }, [datePickerInputRef]);
-
     // Moves focus into the calendar grid (to the selected/today day cell,
     // via DayPicker's roving tabindex) when the overlay is already open.
     // Prefers the grid itself over nav buttons so ArrowDown always lands on
@@ -390,7 +367,7 @@ const DatePicker = (props: Props) => {
         if (dayPickerCalendar?.contains(e.relatedTarget)) {
             return false;
         }
-        const calendarButton = getCalendarButtonElement();
+        const calendarButton = calendarButtonRef.current;
         if (calendarButton?.contains(e.relatedTarget)) {
             return false;
         }
@@ -411,8 +388,8 @@ const DatePicker = (props: Props) => {
     const onEscapeCloseOverlay = React.useCallback(() => {
         skipNextOpenRef.current = true; // focus restored to the button; don't reopen on focus
         close();
-        focusCalendarButton();
-    }, [close, skipNextOpenRef, focusCalendarButton]);
+        calendarButtonRef.current?.focus();
+    }, [close, skipNextOpenRef]);
 
     // Input keyboard: the calendar button is the only way to open the
     // overlay (matching native date/time inputs, where arrow keys adjust
@@ -537,6 +514,7 @@ const DatePicker = (props: Props) => {
                 onToggleOverlay={handleToggleOverlay}
                 onCalendarButtonKeyDown={handleCalendarButtonKeyDown}
                 calendarButtonAriaLabel={calendarButtonAriaLabel}
+                calendarButtonRef={calendarButtonRef}
             />
         );
     };
@@ -631,19 +609,20 @@ const DatePicker = (props: Props) => {
         handleMonthChange,
     ]);
 
-    // The overlay is positioned relative to the input, but the calendar
-    // toggle button -- not the input -- is the focus-trap anchor: Tab from
-    // the button enters the overlay, and Shift+Tab out of its first element
-    // returns focus to the button.
-    const calendarButtonElement = getCalendarButtonElement() ?? undefined;
-
     return (
         <View style={style} ref={refWrapper}>
             {renderInput(modifiers)}
             {showOverlay && (
                 <DatePickerOverlay
                     referenceElement={datePickerInputRef.current}
-                    focusReferenceElement={calendarButtonElement}
+                    // The overlay is positioned relative to the input, but
+                    // the calendar toggle button -- not the input -- is the
+                    // focus-trap anchor: Tab from the button enters the
+                    // overlay, and Shift+Tab out of its first element
+                    // returns focus to the button.
+                    focusReferenceElement={
+                        calendarButtonRef.current ?? undefined
+                    }
                     onClose={close}
                     dir={dir === "rtl" ? "rtl" : "ltr"}
                     calendarGridRegionAriaLabel={calendarGridRegionAriaLabel}

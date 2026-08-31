@@ -56,6 +56,7 @@ export const IconButtonUnstyled: React.ForwardRefExoticComponent<
 
     const handleKeyDown = React.useCallback(
         (e: React.KeyboardEvent) => {
+            onKeyDownProp?.(e);
             const key = e.key;
             // Prevent default behavior for space and enter keys on
             // buttons. We let the browser handle the default behavior
@@ -66,13 +67,13 @@ export const IconButtonUnstyled: React.ForwardRefExoticComponent<
                     onPress?.(true);
                 }
             }
-            onKeyDownProp?.(e);
         },
         [disabled, href, onPress, onKeyDownProp],
     );
 
     const handleKeyUp = React.useCallback(
         (e: React.KeyboardEvent) => {
+            onKeyUpProp?.(e);
             const key = e.key;
             if (!href && (key === keys.enter || key === keys.space)) {
                 if (!disabled && restProps.onClick) {
@@ -80,7 +81,6 @@ export const IconButtonUnstyled: React.ForwardRefExoticComponent<
                 }
                 onPress?.(false);
             }
-            onKeyUpProp?.(e);
         },
         [disabled, href, onPress, restProps, onKeyUpProp],
     );

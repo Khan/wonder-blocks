@@ -60,6 +60,12 @@ interface Props {
      */
     calendarButtonAriaLabel?: string;
     /**
+     * Ref to the calendar toggle button's DOM node. Lets the parent
+     * (DatePicker) focus the button directly (e.g. after Escape closes the
+     * overlay) and use it as the overlay's focus-trap anchor.
+     */
+    calendarButtonRef?: React.Ref<HTMLButtonElement>;
+    /**
      * Called if the user press a key inside the input element.
      */
     onKeyDown?: (e: React.KeyboardEvent<HTMLInputElement>) => unknown;
@@ -168,6 +174,7 @@ const DatePickerInput = React.forwardRef<HTMLInputElement, Props>(
             onToggleOverlay,
             onCalendarButtonKeyDown,
             calendarButtonAriaLabel = DEFAULT_CALENDAR_BUTTON_ARIA_LABEL,
+            calendarButtonRef,
             ...restProps
         } = props;
 
@@ -399,7 +406,6 @@ const DatePickerInput = React.forwardRef<HTMLInputElement, Props>(
         };
 
         const innerRef = React.useRef<HTMLInputElement>(null);
-        const buttonRef = React.useRef<HTMLButtonElement>(null);
 
         const handleChange = (newValue: string) => {
             setValue(newValue);
@@ -448,17 +454,6 @@ const DatePickerInput = React.forwardRef<HTMLInputElement, Props>(
                 pendingValidationRef.current = false;
                 validateInput();
             };
-            // Lets the parent (DatePicker) return focus to the calendar
-            // toggle button, e.g. after Escape closes the overlay.
-            (inputElement as any).focusCalendarButton = () => {
-                buttonRef.current?.focus();
-            };
-            // Lets the parent (DatePicker) use the calendar toggle button --
-            // not the input -- as the overlay's focus-trap anchor, so
-            // Shift+Tab out of the overlay's first element (a nav button)
-            // returns focus to the button that opened it.
-            (inputElement as any).getCalendarButtonElement = () =>
-                buttonRef.current;
             return inputElement;
         });
 
@@ -481,7 +476,7 @@ const DatePickerInput = React.forwardRef<HTMLInputElement, Props>(
                     style={styles.textField}
                 />
                 <IconButton
-                    ref={buttonRef}
+                    ref={calendarButtonRef}
                     icon={calendarIcon}
                     size="small"
                     kind="tertiary"
