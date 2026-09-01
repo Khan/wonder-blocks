@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import type {Placement} from "@khanacademy/wonder-blocks-tooltip";
+import type {Placement} from "../util/types";
 
 export type PopoverContextType = {
     /**
@@ -9,10 +9,10 @@ export type PopoverContextType = {
      */
     close?: () => unknown;
     /**
-     * Facilitates passing this value from Popover (via TooltipPopper) down to
-     * PopoverContent. This is needed here to reposition the illustration to the
-     * start or the end of the content, in case the popper changes its
-     * placement.
+     * Facilitates passing this value from Popover (via the Floating component)
+     * down to PopoverContent. This is needed here to reposition the
+     * illustration to the start or the end of the content, in case the floating
+     * element changes its placement.
      */
     placement?: Placement;
 };

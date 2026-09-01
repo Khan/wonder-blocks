@@ -1,35 +1,22 @@
 import * as React from "react";
-import * as ReactDOM from "react-dom";
 
-import {TooltipPopper} from "@khanacademy/wonder-blocks-tooltip";
-import {maybeGetPortalMountedModalHostElement} from "@khanacademy/wonder-blocks-modal";
+import {Floating} from "@khanacademy/wonder-blocks-floating";
 
 import type {AriaProps} from "@khanacademy/wonder-blocks-core";
-import type {
-    Placement,
-    PopperElementProps,
-} from "@khanacademy/wonder-blocks-tooltip";
-import type {RootBoundary} from "@popperjs/core";
 
 import PopoverContent from "./popover-content";
 import PopoverContentCore from "./popover-content-core";
 import PopoverContext from "./popover-context";
 import PopoverAnchor from "./popover-anchor";
 import PopoverDialog from "./popover-dialog";
-import PopoverEventListener from "./popover-event-listener";
-import InitialFocus from "./initial-focus";
-import FocusManager from "./focus-manager";
+
+import type {Placement, RootBoundary} from "../util/types";
 
 type PopoverContents =
     | React.ReactElement<React.ComponentProps<typeof PopoverContent>>
     | React.ReactElement<React.ComponentProps<typeof PopoverContentCore>>;
 
 type Props = AriaProps & {
-    /**
-     * Whether the popover should update its position when the anchor
-     * element changes size or position. Defaults to false.
-     */
-    autoUpdate?: boolean;
     /**
      * The element that triggers the popover. This element will be used to
      * position the popover. It can be either a Node or a function using the
@@ -86,13 +73,6 @@ type Props = AriaProps & {
      */
     initialFocusId?: string;
     /**
-     * The delay in milliseconds before the initial focus is set.
-     * This allows any active event listeners to finish before focusing.
-     *
-     * Defaults to 0.
-     */
-    initialFocusDelay?: number;
-    /**
      * Renders the popover when true, renders nothing when false.
      *
      * Using this prop makes the component behave as a controlled component. The
@@ -127,18 +107,36 @@ type Props = AriaProps & {
      */
     portal?: boolean;
     /**
-     * Optional property to set what the root boundary is for the popper behavior.
-     * This is set to "viewport" by default, causing the popper to be positioned based
-     * on the user's viewport. If set to "document", it will position itself based
-     * on where there is available room within the document body.
+     * Optional property to set what the root boundary is for the positioning
+     * behavior. This is set to "viewport" by default, causing the popover to be
+     * positioned based on the user's viewport. If set to "document", it will
+     * position itself based on where there is available room within the
+     * document body.
      */
     rootBoundary?: RootBoundary;
     /**
      * If `rootBoundary` is `viewport`, this padding value is used to provide
-     * spacing between the popper and the viewport. If not provided, default
+     * spacing between the popover and the viewport. If not provided, default
      * spacing of 12px is applied.
      */
     viewportPadding?: number;
+    /**
+     * Whether the popover should update its position when the anchor
+     * element changes size or position.
+     *
+     * @deprecated The popover now always keeps its position in sync with the
+     * anchor element (via floating-ui's `autoUpdate`), so this prop no longer
+     * has any effect.
+     */
+    autoUpdate?: boolean;
+    /**
+     * The delay in milliseconds before the initial focus is set.
+     *
+     * @deprecated Initial focus is now handled by floating-ui and is applied
+     * synchronously when the popover opens, so this prop no longer has any
+     * effect.
+     */
+    initialFocusDelay?: number;
 };
 
 /**
@@ -147,8 +145,8 @@ type Props = AriaProps & {
  * illustrations. The main difference with `Tooltip` is that they must be
  * dismissed by clicking an element.
  *
- * This component uses the `PopoverPopper` component to position the
- * `PopoverContentCore` component according to the children it is wrapping.
+ * This component uses the `Floating` component (powered by floating-ui) to
+ * position the popover content according to the element it is wrapping.
  *
  * ### Usage
  *
@@ -166,7 +164,6 @@ type Props = AriaProps & {
  */
 function Popover(props: Props) {
     const {
-        autoUpdate,
         children,
         content,
         placement: placementProp = "top",
@@ -174,99 +171,123 @@ function Popover(props: Props) {
         id,
         closedFocusId,
         initialFocusId,
-        initialFocusDelay,
         opened: openedProp,
         onClose,
         showTail = true,
         portal = true,
         rootBoundary = "viewport",
         viewportPadding,
+        testId,
         "aria-label": ariaLabel,
         "aria-describedby": ariaDescribedBy,
     } = props;
 
-    // Internal opened state for uncontrolled mode
-    const [internalOpened, setInternalOpened] = React.useState(!!openedProp);
-    // Anchor element reference
-    const [anchorElement, setAnchorElement] = React.useState<HTMLElement>();
-    // Current placement
-    const [placement, setPlacement] = React.useState<Placement>(placementProp);
-
-    // Content ref
-    const contentRef = React.useRef<HTMLElement | null>(null);
-
-    // Determine if controlled or uncontrolled
+    // Determine if controlled or uncontrolled.
     const isControlled = typeof openedProp === "boolean";
+
+    // Internal opened state for uncontrolled mode.
+    const [internalOpened, setInternalOpened] = React.useState(!!openedProp);
     const opened = isControlled ? openedProp : internalOpened;
 
-    // Sync internal state with controlled prop
+    // The resolved placement (after floating-ui middleware runs). This is
+    // shared via PopoverContext so PopoverContent can reposition its
+    // illustration if the popover flips.
+    const [placement, setPlacement] = React.useState<Placement>(placementProp);
+
+    // The element that receives initial focus when the popover opens. It is
+    // resolved from `initialFocusId` when the dialog mounts.
+    const initialFocusRef = React.useRef<HTMLElement | null>(null);
+
+    // The element that receives focus when the popover closes. It is resolved
+    // from `closedFocusId` while the popover is open.
+    const returnFocusRef = React.useRef<HTMLElement | null>(null);
+
+    // Ensures `onClose` is only called once per open/close cycle. floating-ui
+    // (and the Floating component's own effects) can request a close through
+    // multiple channels, so we guard against calling `onClose` more than once.
+    const closeFiredRef = React.useRef(false);
+
+    const generatedUniqueId = React.useId();
+    const uniqueId = id ?? generatedUniqueId;
+
+    // Resolve the element to return focus to when the popover closes.
     React.useEffect(() => {
-        if (isControlled) {
-            setInternalOpened(openedProp);
+        if (opened && closedFocusId) {
+            returnFocusRef.current = document.getElementById(closedFocusId);
         }
-    }, [isControlled, openedProp]);
+    }, [opened, closedFocusId]);
 
     /**
-     * Returns focus to a given element.
+     * Handles opening/closing driven by the Floating component (e.g. dismiss on
+     * escape/outside click/focus out) as well as internal open/close requests.
      */
-    const maybeReturnFocus = React.useCallback(() => {
-        // Focus on the specified element after dismissing the popover.
-        if (closedFocusId) {
-            const focusElement = document.getElementById(closedFocusId);
-            focusElement?.focus();
-            return;
-        }
-
-        // If no element is specified, focus on the element that triggered the
-        // popover.
-        if (anchorElement) {
-            anchorElement.focus();
-        }
-    }, [closedFocusId, anchorElement]);
-
-    /**
-     * Popover dialog closed
-     */
-    const handleClose = React.useCallback(
-        (shouldReturnFocus = true) => {
+    const handleOpenChange = React.useCallback(
+        (nextOpened: boolean) => {
             if (!isControlled) {
-                setInternalOpened(false);
+                setInternalOpened(nextOpened);
             }
-            onClose?.();
-            if (shouldReturnFocus) {
-                maybeReturnFocus();
+
+            if (nextOpened) {
+                closeFiredRef.current = false;
+            } else if (!closeFiredRef.current) {
+                closeFiredRef.current = true;
+                onClose?.();
             }
         },
-        [isControlled, onClose, maybeReturnFocus],
+        [isControlled, onClose],
     );
 
     /**
-     * Popover dialog opened
+     * Closes the popover. Provided to the popover content (via context) so
+     * elements such as the close button and actions can dismiss it.
      */
-    const handleOpen = React.useCallback(() => {
-        if (dismissEnabled && opened) {
-            handleClose(true);
-        } else if (!isControlled) {
-            setInternalOpened(true);
+    const handleClose = React.useCallback(() => {
+        handleOpenChange(false);
+    }, [handleOpenChange]);
+
+    /**
+     * Toggles the popover when the anchor is clicked, preserving the previous
+     * behavior: clicking the trigger opens the popover, and (when
+     * `dismissEnabled`) clicking it again closes it.
+     */
+    const handleAnchorClick = React.useCallback(() => {
+        if (!opened) {
+            handleOpenChange(true);
+        } else if (dismissEnabled) {
+            handleOpenChange(false);
         }
-    }, [dismissEnabled, opened, handleClose, isControlled]);
+    }, [opened, dismissEnabled, handleOpenChange]);
 
     /**
-     * Update anchor element reference
+     * Keeps the shared placement in sync with the resolved floating-ui
+     * placement, normalized to one of the four coarse values Popover reasons
+     * about.
      */
-    const updateRef = React.useCallback(
+    const handlePlacementChange = React.useCallback((nextPlacement: string) => {
+        setPlacement(nextPlacement.split("-")[0] as Placement);
+    }, []);
+
+    /**
+     * Resolves the initial focus element (from `initialFocusId`) as soon as the
+     * dialog element is committed to the DOM, before floating-ui's focus
+     * manager applies the initial focus.
+     */
+    const handleDialogRef = React.useCallback(
         (node: HTMLElement | null) => {
-            if (node && anchorElement !== node) {
-                setAnchorElement(node);
+            if (node && initialFocusId) {
+                initialFocusRef.current = node.querySelector<HTMLElement>(
+                    `#${initialFocusId}`,
+                );
             }
         },
-        [anchorElement],
+        [initialFocusId],
     );
 
     /**
-     * Render popover content
+     * Renders the popover content, injecting the unique id so the content can
+     * wire up its title/content elements for accessibility.
      */
-    const renderContent = (uniqueId: string): PopoverContents => {
+    const renderContent = (): PopoverContents => {
         const popoverContents: PopoverContents =
             typeof content === "function"
                 ? content({close: handleClose})
@@ -274,114 +295,27 @@ function Popover(props: Props) {
 
         // @ts-expect-error: TS2769 - No overload matches this call.
         return React.cloneElement(popoverContents, {
-            ref: contentRef,
             // internal prop: only injected by Popover
             // This allows us to announce the popover content when it is opened.
             uniqueId,
         });
     };
 
-    /**
-     * Render popper with content
-     */
-    const renderPopper = (uniqueId: string): React.ReactNode => {
-        const describedBy = ariaDescribedBy || `${uniqueId}-content`;
-        const ariaLabelledBy = ariaLabel ? undefined : `${uniqueId}-title`;
+    const describedBy = ariaDescribedBy || `${uniqueId}-content`;
+    const ariaLabelledBy = ariaLabel ? undefined : `${uniqueId}-title`;
 
-        // When autoUpdate is enabled, defer rendering TooltipPopper until the
-        // anchor element is available. Without this guard, controlled popovers
-        // (opened={true} initially) mount TooltipPopper before PopoverAnchor's
-        // componentDidMount has a chance to set anchorElement in state, causing
-        // TooltipPopper.componentDidMount to skip observer setup.
-        const shouldAnchorExist = autoUpdate ? anchorElement : true;
-        if (!shouldAnchorExist) {
-            return null;
-        }
-
-        const popperContent = (
-            <TooltipPopper
-                anchorElement={anchorElement}
-                autoUpdate={autoUpdate}
-                placement={placementProp}
-                rootBoundary={rootBoundary}
-                viewportPadding={viewportPadding}
-            >
-                {(popperProps: PopperElementProps) => (
-                    <PopoverDialog
-                        {...popperProps}
-                        aria-label={ariaLabel}
-                        aria-describedby={describedBy}
-                        aria-labelledby={ariaLabelledBy}
-                        id={uniqueId}
-                        onUpdate={setPlacement}
-                        showTail={showTail}
-                    >
-                        {renderContent(uniqueId)}
-                    </PopoverDialog>
-                )}
-            </TooltipPopper>
-        );
-
-        if (portal) {
-            return (
-                <FocusManager
-                    anchorElement={anchorElement}
-                    initialFocusId={initialFocusId}
-                    initialFocusDelay={initialFocusDelay}
-                    onFocusOut={dismissEnabled ? handleClose : undefined}
-                >
-                    {popperContent}
-                </FocusManager>
-            );
-        } else {
-            return (
-                // Ensures the user is focused on the first available element
-                // when popover is rendered without the focus manager.
-                <InitialFocus
-                    initialFocusId={initialFocusId}
-                    delay={initialFocusDelay}
-                >
-                    {popperContent}
-                </InitialFocus>
-            );
-        }
-    };
-
-    /**
-     * Get portal host element
-     */
-    const getHost = (): Element | null => {
-        // If we are in a modal, we find where we should be portalling the
-        // popover by using the helper function from the modal package on the
-        // trigger element. If we are not in a modal, we use body as the
-        // location to portal to.
-        return (
-            maybeGetPortalMountedModalHostElement(anchorElement) ||
-            document.body
-        );
-    };
-
-    /**
-     * Render portal with popover content
-     */
-    const renderPortal = (uniqueId: string, isOpened: boolean) => {
-        if (!isOpened) {
-            return null;
-        }
-
-        const popperHost = getHost();
-
-        // Attach the popover to a Portal
-        if (portal && popperHost) {
-            return ReactDOM.createPortal(renderPopper(uniqueId), popperHost);
-        }
-
-        // Otherwise, append the dialog next to the trigger element
-        return renderPopper(uniqueId);
-    };
-
-    const generatedUniqueId = React.useId();
-    const uniqueId = id ?? generatedUniqueId;
+    const dialog = (
+        <PopoverDialog
+            ref={handleDialogRef}
+            id={uniqueId}
+            placement={placement}
+            aria-label={ariaLabel}
+            aria-labelledby={ariaLabelledBy}
+            aria-describedby={describedBy}
+        >
+            {renderContent()}
+        </PopoverDialog>
+    );
 
     return (
         <PopoverContext.Provider
@@ -390,23 +324,35 @@ function Popover(props: Props) {
                 placement: placement,
             }}
         >
-            <PopoverAnchor
-                ref={updateRef}
-                id={`${uniqueId}-anchor`}
-                aria-controls={uniqueId}
-                aria-expanded={opened ? "true" : "false"}
-                onClick={handleOpen}
+            <Floating
+                open={opened}
+                strategy="fixed"
+                onOpenChange={handleOpenChange}
+                placement={placementProp}
+                onPlacementChange={handlePlacementChange}
+                content={dialog}
+                dismissEnabled={!!dismissEnabled}
+                // When dismissal is enabled, the popover should also close when
+                // focus leaves it (e.g. the user tabs past the last focusable
+                // element).
+                closeOnFocusOut={!!dismissEnabled}
+                showArrow={showTail}
+                portal={portal}
+                rootBoundary={rootBoundary}
+                shiftPadding={viewportPadding}
+                initialFocusRef={initialFocusId ? initialFocusRef : undefined}
+                returnFocus={closedFocusId ? returnFocusRef : true}
+                testId={testId}
             >
-                {children}
-            </PopoverAnchor>
-            {renderPortal(uniqueId, opened)}
-
-            {dismissEnabled && opened && (
-                <PopoverEventListener
-                    onClose={handleClose}
-                    contentRef={contentRef}
-                />
-            )}
+                <PopoverAnchor
+                    id={`${uniqueId}-anchor`}
+                    aria-controls={uniqueId}
+                    aria-expanded={opened ? "true" : "false"}
+                    onClick={handleAnchorClick}
+                >
+                    {children}
+                </PopoverAnchor>
+            </Floating>
         </PopoverContext.Provider>
     );
 }
