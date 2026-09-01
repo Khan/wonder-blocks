@@ -68,9 +68,6 @@ describe("PopoverAnchor", () => {
 
     it("should pass the floating reference attribute to a child that can't receive a ref", async () => {
         // Arrange
-        const consoleErrorSpy = jest
-            .spyOn(console, "error")
-            .mockImplementation(() => {});
         // A plain function component can't receive a ref, so it only spreads
         // the props it is given onto the element it renders.
         function FunctionComponentTrigger(props: {label: string}) {
@@ -94,8 +91,29 @@ describe("PopoverAnchor", () => {
             FloatingReferenceAttributeName,
             "reference-id",
         );
-        // React would warn about `Function components cannot be given refs` if
-        // the anchor injected a ref into the trigger.
+    });
+
+    it("should not inject a ref into a function component trigger", async () => {
+        // Arrange
+        const consoleErrorSpy = jest
+            .spyOn(console, "error")
+            .mockImplementation(() => {});
+        // A plain function component can't receive a ref, so React would warn
+        // about `Function components cannot be given refs` if the anchor
+        // injected a ref into the trigger.
+        function FunctionComponentTrigger(props: {label: string}) {
+            const {label, ...otherProps} = props;
+            return <button {...otherProps}>{label}</button>;
+        }
+
+        // Act
+        render(
+            <PopoverAnchor onClick={jest.fn()}>
+                <FunctionComponentTrigger label="test" />
+            </PopoverAnchor>,
+        );
+
+        // Assert
         expect(consoleErrorSpy).not.toHaveBeenCalled();
     });
 
