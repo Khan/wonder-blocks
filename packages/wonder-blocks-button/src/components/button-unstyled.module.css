@@ -1,0 +1,34 @@
+/**
+ * The build wraps every `*.module.css` in `@layer shared`, so this file becomes
+ * `@layer shared { @layer reset { … } }` — the sub-layer `shared.reset`.
+ * Component styles have no inner layer, so they sit directly in `shared`, and
+ * rules directly in a layer outrank that layer's named sub-layers. The cascade
+ * is therefore decided by the layer, not by bundle order.
+ */
+
+@layer reset {
+    .reset {
+        position: relative;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0;
+        padding: 0;
+        border: none;
+        cursor: pointer;
+        outline: none;
+        text-decoration: none;
+        box-sizing: border-box;
+
+        /* Removes the 300ms click delay on mobile browsers by indicating that
+         * "double-tap to zoom" shouldn't be used on this element. */
+        touch-action: manipulation;
+        user-select: none;
+    }
+
+    .reset:focus {
+        /* Mobile: removes the blue highlight shown when the user taps a
+         * button. */
+        -webkit-tap-highlight-color: transparent;
+    }
+}
