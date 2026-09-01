@@ -19,7 +19,10 @@ import {
     semanticColor,
 } from "@khanacademy/wonder-blocks-tokens";
 import {addStyle, StyleType} from "@khanacademy/wonder-blocks-core";
-import {ARROW_SIZE_INLINE} from "../util/constants";
+import {
+    ARROW_SIZE_INLINE,
+    FloatingReferenceAttributeName,
+} from "../util/constants";
 import {Arrow, type ArrowStyles} from "./floating-arrow";
 import {Portal} from "./floating-portal";
 import {rtlMirror} from "../util/rtl-mirror-middleware";
@@ -30,6 +33,18 @@ type FloatingProps = {
     /**
      * The reference (or anchored) element that is used to calculate the
      * position of the floating element.
+     *
+     * No wrapper element is rendered around the trigger, so the DOM hierarchy
+     * stays exactly as the consumer wrote it.
+     *
+     * The trigger never has to accept, forward or attach a ref, and its type
+     * doesn't matter (host element, `React.forwardRef` component, class
+     * component or plain function component). It only has to spread the props
+     * it is given (which it needs to do anyway for the interaction and ARIA
+     * props) onto the element the floating element should be anchored to, and
+     * `Floating` finds that element in the DOM. A trigger that renders several
+     * elements therefore chooses the one to anchor to by spreading the props
+     * onto it.
      */
     children: React.ReactElement;
     /**
@@ -110,6 +125,25 @@ type FloatingProps = {
     shift?: boolean;
 
     /**
+     * The padding (in pixels) between the floating element and the boundary
+     * when it is shifted to stay in view.
+     * @default 12
+     */
+    shiftPadding?: number;
+
+    /**
+     * The boundary that the floating element should be kept within by the
+     * `flip` and `shift` middleware.
+     *
+     * - `"viewport"`: keep the element within the user's viewport.
+     * - `"document"`: keep the element within the document body.
+     *
+     * @default "viewport"
+     * @see https://floating-ui.com/docs/detectOverflow#rootboundary
+     */
+    rootBoundary?: "viewport" | "document";
+
+    /**
      * Whether to show the arrow on the floating element.
      * @default true
      */
@@ -133,6 +167,36 @@ type FloatingProps = {
      * @default false
      */
     dismissEnabled?: boolean;
+
+    /**
+     * Called with the resolved placement of the floating element whenever it
+     * changes. Unlike the `placement` prop (the requested placement), this
+     * reports the placement actually used after middleware such as `flip` has
+     * run.
+     *
+     * This is useful for consumers that need to adapt their content based on
+     * the final placement (e.g. repositioning an illustration).
+     */
+    onPlacementChange?: (placement: Placement) => void;
+
+    /**
+     * Whether focus should be returned to the reference element once the
+     * floating element closes/unmounts. Can also be set to a ref to explicitly
+     * control which element receives focus on close (e.g. when focus should
+     * move somewhere other than the trigger).
+     *
+     * Only relevant when `focusManagerEnabled` is `true`.
+     * @default true
+     */
+    returnFocus?: boolean | React.MutableRefObject<HTMLElement | null>;
+
+    /**
+     * Whether the floating element should close when focus moves outside of it
+     * (e.g. the user tabs past the last focusable element). Only relevant for
+     * non-modal focus management (i.e. when `focusManagerEnabled` is `true`).
+     * @default false
+     */
+    closeOnFocusOut?: boolean;
 };
 
 type FocusManagerProps =
@@ -209,12 +273,17 @@ export default function Floating({
     // focus management
     focusManagerEnabled = true,
     initialFocusRef,
+    returnFocus = true,
+    closeOnFocusOut = false,
     dismissEnabled = false,
+    onPlacementChange,
     // middleware specific
     hide: hideProp = true,
     offset: offsetProp = 20,
     flip: flipProp = true,
     shift: shiftProp = true,
+    shiftPadding = SHIFT_PADDING,
+    rootBoundary = "viewport",
     showArrow = true,
     styles: stylesProp,
 }: Props) {
@@ -222,32 +291,39 @@ export default function Floating({
     const prevOpenRef = React.useRef(open ?? false);
 
     // Calculate the floating styles and context
-    const {elements, refs, floatingStyles, context, middlewareData} =
-        useFloating({
-            open,
-            onOpenChange,
-            placement,
-            strategy,
-            // Ensure the floating element stays in sync with the reference element
-            whileElementsMounted: autoUpdate,
-            middleware: [
-                // Add offset from the reference element
-                offset({mainAxis: offsetProp}),
-                // Flip to the opposite side if there's not enough space
-                flipProp ? flip() : undefined,
-                // Shift along the axis to keep it in view
-                shiftProp
-                    ? shift({
-                          padding: SHIFT_PADDING,
-                          crossAxis: true,
-                      })
-                    : undefined,
-                showArrow ? arrow({element: arrowRef}) : undefined,
-                hideProp ? hide() : undefined,
-                // Mirror the floating element in RTL when placement is left/right
-                rtlMirror(),
-            ],
-        });
+    const {
+        elements,
+        refs,
+        floatingStyles,
+        context,
+        middlewareData,
+        placement: resolvedPlacement,
+    } = useFloating({
+        open,
+        onOpenChange,
+        placement,
+        strategy,
+        // Ensure the floating element stays in sync with the reference element
+        whileElementsMounted: autoUpdate,
+        middleware: [
+            // Add offset from the reference element
+            offset({mainAxis: offsetProp}),
+            // Flip to the opposite side if there's not enough space
+            flipProp ? flip({rootBoundary}) : undefined,
+            // Shift along the axis to keep it in view
+            shiftProp
+                ? shift({
+                      padding: shiftPadding,
+                      crossAxis: true,
+                      rootBoundary,
+                  })
+                : undefined,
+            showArrow ? arrow({element: arrowRef}) : undefined,
+            hideProp ? hide() : undefined,
+            // Mirror the floating element in RTL when placement is left/right
+            rtlMirror(),
+        ],
+    });
 
     // Closes the floating element when a dismissal is requested.
     const dismiss = useDismiss(context, {
@@ -266,14 +342,58 @@ export default function Floating({
         }
     }, [onOpenChange, open]);
 
-    // Clone the child element and add the ref
+    // Notify consumers of the resolved placement (after middleware such as
+    // `flip` has run) so they can adapt their content accordingly.
+    React.useEffect(() => {
+        onPlacementChange?.(resolvedPlacement);
+    }, [onPlacementChange, resolvedPlacement]);
 
+    const {setReference} = refs;
+
+    // Identifies this instance's trigger in the DOM, so that we can look up its
+    // element (see the effect below). `React.useId` values are unique for every
+    // component instance, so instances never resolve each other's trigger.
+    const referenceId = React.useId();
+
+    // Clone the trigger to inject the interaction props and the attribute that
+    // identifies its DOM element. We never inject a ref: that would make the
+    // trigger's type part of the contract (plain function components can't
+    // receive one), and it would mean either wrapping the trigger in an extra
+    // element or asking consumers to forward refs.
     const trigger = React.useMemo(() => {
         return React.cloneElement(children, {
-            ref: refs.setReference,
+            [FloatingReferenceAttributeName]: referenceId,
             ...getReferenceProps(),
         });
-    }, [children, refs.setReference, getReferenceProps]);
+    }, [children, getReferenceProps, referenceId]);
+
+    // Resolve the reference element from the DOM. The trigger only has to spread
+    // the props it is given (which it needs to do anyway for the interaction and
+    // ARIA props) onto the element the floating element is anchored to, and we
+    // find that element by the attribute injected above.
+    //
+    // NOTE: This runs after every render (no dependency array) so that the
+    // reference element stays in sync if the trigger renders a different DOM
+    // element. Setting the same element again is a no-op in floating-ui.
+    React.useLayoutEffect(() => {
+        const node = document.querySelector(
+            `[${FloatingReferenceAttributeName}="${referenceId}"]`,
+        );
+
+        if (node !== elements.reference) {
+            setReference(node);
+        }
+
+        if (process.env.NODE_ENV !== "production" && open && !node) {
+            // eslint-disable-next-line no-console
+            console.warn(
+                "Floating: could not find the trigger's element in the DOM, " +
+                    "so the floating element can't be positioned. Make sure " +
+                    "the trigger spreads the props it is given onto the " +
+                    "element the floating element should be anchored to.",
+            );
+        }
+    });
 
     return (
         <>
@@ -288,9 +408,8 @@ export default function Floating({
                         context={context}
                         modal={false}
                         initialFocus={initialFocusRef}
-                        // TODO(WB-1987): Determine if we want to close the
-                        // floating element when the user focuses outside of it.
-                        closeOnFocusOut={false}
+                        returnFocus={returnFocus}
+                        closeOnFocusOut={closeOnFocusOut}
                         visuallyHiddenDismiss={dismissEnabled}
                     >
                         <StyledDiv
@@ -331,8 +450,6 @@ const styles = StyleSheet.create({
         background: semanticColor.core.background.base.default,
         border: `solid ${border.width.thin} ${semanticColor.core.border.neutral.subtle}`,
         borderRadius: border.radius.radius_040,
-        // NOTE: Adapted from Tooltip.
-        maxInlineSize: 472,
         // Allow the floating element to be at least as tall as the arrow. We
         // set inline size to ensure that it works with inline placements.
         minBlockSize: ARROW_SIZE_INLINE,
