@@ -2,6 +2,7 @@ import * as React from "react";
 import {addStyle, AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
 
 import {IconSize, PhosphorIconAsset} from "../types";
+import {resolveMirrorInRtl} from "../util/directional-icons";
 
 import styles from "./phosphor-icon.module.css";
 
@@ -55,6 +56,17 @@ type Props = Pick<AriaProps, "aria-hidden" | "aria-label" | "role"> & {
      * - `string`: an import referencing an arbitrary SVG file.
      */
     icon: PhosphorIconAsset | string;
+
+    /**
+     * Whether to mirror this icon's glyph in right-to-left content, overriding
+     * the directional allowlist.
+     *
+     * - `true`: mirror even if the icon is not allowlisted (e.g. a custom
+     *   directional SVG).
+     * - `false`: do not mirror even if the icon is allowlisted.
+     * - omitted: use the allowlist.
+     */
+    mirrorInRtl?: boolean;
 };
 
 /**
@@ -84,6 +96,13 @@ type Props = Pick<AriaProps, "aria-hidden" | "aria-label" | "role"> & {
  * - medium: 2.4rem (24px)
  * - large: 4.8rem (48px)
  * - xlarge: 9.6rem (96px)
+ *
+ * ## Right-to-left
+ *
+ * Directional glyphs (arrows, carets, and similar) are mirrored automatically
+ * in RTL via a central allowlist. Pass the LTR-facing icon — do not swap icons
+ * based on `isRtl`. Use `mirrorInRtl` to override the allowlist per call site.
+ * See the PhosphorIcon RTL Mirroring docs for the list.
  */
 export const PhosphorIcon = React.forwardRef(function PhosphorIcon(
     props: Props,
@@ -97,11 +116,13 @@ export const PhosphorIcon = React.forwardRef(function PhosphorIcon(
         testId,
         className,
         role,
+        mirrorInRtl,
         ...sharedProps
     } = props;
 
     const sizeStyles = getSize(size);
     const classNames = `${className ?? ""}`;
+    const shouldMirror = resolveMirrorInRtl(icon, mirrorInRtl);
 
     return (
         <StyledSpan
@@ -120,6 +141,7 @@ export const PhosphorIcon = React.forwardRef(function PhosphorIcon(
                     maskRepeat: "no-repeat",
                     maskPosition: "center",
                 },
+                shouldMirror && styles.mirroredInRtl,
                 style,
             ]}
             data-testid={testId}

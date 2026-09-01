@@ -3,7 +3,7 @@
   "description": "Dropdown variants for Wonder Blocks.",
   "author": "Khan Academy",
   "license": "MIT",
-  "version": "10.11.7",
+  "version": "10.12.0",
   "publishConfig": {
     "access": "public"
   },
@@ -61,6 +61,7 @@
     "react-window": "catalog:"
   },
   "devDependencies": {
-    "@khanacademy/wb-dev-build-settings": "workspace:*"
+    "@khanacademy/wb-dev-build-settings": "workspace:*",
+    "@khanacademy/wonder-blocks-labeled-field": "workspace:*"
   }
 }

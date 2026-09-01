@@ -3,7 +3,7 @@
   "description": "",
   "author": "Khan Academy",
   "license": "MIT",
-  "version": "17.1.2",
+  "version": "17.2.0",
   "publishConfig": {
     "access": "public"
   },
@@ -31,7 +31,6 @@
   "peerDependencies": {
     "@khanacademy/wonder-stuff-core": "catalog:",
     "aphrodite": "catalog:",
-    "node-fetch": "catalog:",
     "react": "catalog:",
     "react-dom": "catalog:",
     "react-router-dom": "catalog:",

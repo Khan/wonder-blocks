@@ -1,0 +1,96 @@
+import {Canvas, Meta} from "@storybook/addon-docs/blocks";
+
+import * as PhosphorIconRtlStories from "./phosphor-icon-rtl.stories";
+
+<Meta of={PhosphorIconRtlStories} />
+
+# PhosphorIcon
+
+## Directional icons in RTL
+
+`PhosphorIcon` automatically mirrors icons whose glyph encodes a **reading**
+direction when rendered in right-to-left content. Layout position already
+mirrors via logical CSS; this flips the glyph itself.
+
+Which icons mirror is decided by the allowlist in
+`packages/wonder-blocks-icon/src/util/mirrored-icon-names.ts`. Entries are
+[Phosphor](https://phosphoricons.com/) asset names without the weight suffix, so
+`caret-right` covers `caret-right-bold`, `caret-right-fill`, and the rest. To add
+or remove an icon, open a Wonder Blocks PR against that list rather than handling
+RTL mirroring at the call site. For genuine one-offs, `mirrorInRtl` overrides the
+allowlist in either direction.
+
+### Mirrored by default
+
+- Navigational arrows and carets (`arrow-left`/`arrow-right`,
+  `caret-left`/`caret-right`, and most `bend`, `elbow`, `circle`, `square`,
+  `line`, `fat`, and `u` variants)
+- `paper-plane`, `sign-in`, `sign-out`
+- `text-indent`, `text-outdent`
+
+The box-and-arrow diagonals (`arrow-square-out`, `arrow-square-up-left`,
+`arrow-square-up-right`) are excluded: they read as action symbols
+("opens elsewhere" / export) rather than direction, so the diagonal is
+decorative. Mirroring one can also invert its meaning, since an arrow pointing
+*into* a box reads as import. `arrow-up-right` is excluded for the same reason
+— it is used for pop-outs and chart trends, not navigation. `arrow-up-left`
+stays mirrored as a plain directional glyph.
+
+<Canvas of={PhosphorIconRtlStories.ExpectedToMirror} />
+
+### Not mirrored
+
+- Media controls (`play`, `fast-forward`, `rewind`, `skip-forward`, `skip-back`)
+- Rotation (`arrow-clockwise`, `arrow-counter-clockwise`)
+- Charts / trends (`trend-up`, `trend-down`)
+- Vertical or symmetric glyphs (`arrows-down-up`, `arrows-left-right`,
+  `text-align-center`, `text-align-justify`)
+- Physical text alignment (`text-align-left`, `text-align-right`)
+- Launch / pop-out (`arrow-square-out`, `arrow-up-right`,
+  `arrow-square-up-left`, `arrow-square-up-right`)
+- `magnifying-glass`
+
+<Canvas of={PhosphorIconRtlStories.ExpectedNotToMirror} />
+
+### Examples
+
+<Canvas of={PhosphorIconRtlStories.CommonPatterns} />
+
+### Do not swap icons by direction
+
+Manual RTL icon swaps double-flip with auto-mirroring:
+
+```tsx
+// Don't
+<PhosphorIcon icon={isRtl ? caretLeftIcon : caretRightIcon} />
+
+// Do — pass the LTR-facing icon and let mirroring handle it
+<PhosphorIcon icon={caretRightIcon} />
+```
+
+The same applies to icon slots: keep `endIcon` as `endIcon` — `Button` already
+places it at the inline end.
+
+### Custom icons
+
+Custom (non-Phosphor) SVGs are not on the allowlist. Pass `mirrorInRtl` to opt
+in when the glyph is directional — still pass the LTR-facing asset (no ternary):
+
+```tsx
+<PhosphorIcon icon={myCustomForward} mirrorInRtl />
+```
+
+Below, the same custom asset is rendered without the prop and with it. Without
+it the glyph stays LTR-facing in both panels; with it, the RTL panel flips.
+
+<Canvas of={PhosphorIconRtlStories.CustomIconMirrorInRtl} />
+
+### Opting out
+
+`mirrorInRtl={false}` suppresses mirroring for an allowlisted icon. This is an
+escape hatch for call sites that still do their own RTL icon swap and would
+otherwise double-flip — prefer removing the swap instead.
+
+```tsx
+<PhosphorIcon icon={caretRightIcon} mirrorInRtl={false} />
+```

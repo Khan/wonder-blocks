@@ -16,13 +16,7 @@ exports[`#mockFetch should reject with a useful error when there are no matching
 
 exports[`#mockFetch should reject with a useful error when there are no matching mocks for %s 3`] = `
 "No matching mock response found for request:
-    Input: {
-  "size": 0,
-  "timeout": 0,
-  "follow": 20,
-  "compress": true,
-  "counter": 0
-}
+    Input: {}
     Options: {
   "method": "POST"
 }"

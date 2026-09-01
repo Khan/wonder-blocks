@@ -23,7 +23,11 @@ import type {
     OpenerProps,
     OptionItemComponentArray,
 } from "../util/types";
-import {getLabel, getSelectOpenerLabel} from "../util/helpers";
+import {
+    getLabel,
+    getListboxLabelProps,
+    getSelectOpenerLabel,
+} from "../util/helpers";
 import {useSelectValidation} from "../hooks/use-select-validation";
 
 export type SingleSelectLabelsValues = {
@@ -292,6 +296,7 @@ const SingleSelect = (props: Props) => {
         style,
         className,
         "aria-label": ariaLabel,
+        "aria-labelledby": ariaLabelledBy,
         "aria-invalid": ariaInvalid,
         "aria-required": ariaRequired,
         disabled = false,
@@ -526,6 +531,7 @@ const SingleSelect = (props: Props) => {
                         <SelectOpener
                             {...sharedProps}
                             aria-label={ariaLabel}
+                            aria-labelledby={ariaLabelledBy}
                             aria-controls={dropdownId}
                             aria-required={computedRequired}
                             disabled={isDisabled}
@@ -560,6 +566,13 @@ const SingleSelect = (props: Props) => {
     const items = getMenuItems(allChildren);
     const isDisabled = numEnabledOptions === 0 || disabled;
     const disableInteraction = isDisabled || readOnly;
+
+    // Label the listbox with the same name as the opener.
+    const listboxLabelProps = getListboxLabelProps({
+        ariaLabel,
+        ariaLabelledBy,
+        openerElement,
+    });
 
     const {someResults} = labels;
     const someResultsRef = React.useRef(someResults);
@@ -603,6 +616,7 @@ const SingleSelect = (props: Props) => {
                     }
                     searchText={isFilterable ? searchText : ""}
                     labels={labels}
+                    {...listboxLabelProps}
                     aria-invalid={ariaInvalid}
                     aria-required={ariaRequired}
                     // If readOnly is true, DropdownCore should be disabled to

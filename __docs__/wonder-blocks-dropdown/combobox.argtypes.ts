@@ -1,6 +1,9 @@
 import {ArgTypes} from "@storybook/react-vite";
+import AriaArgTypes from "../wonder-blocks-core/aria.argtypes";
 
 const argTypes: ArgTypes = {
+    ...AriaArgTypes,
+
     autoComplete: {
         options: ["none", "list"],
         control: {type: "select"},

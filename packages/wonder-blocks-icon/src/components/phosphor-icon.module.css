@@ -33,3 +33,9 @@
     inline-size: var(--wb-sizing-size_960);
     block-size: var(--wb-sizing-size_960);
 }
+
+/* Mirrors the glyph in RTL. Uses `:dir()` (not JS) so portal-rendered icons
+ * stay correct. */
+.mirroredInRtl:dir(rtl) {
+    transform: scaleX(-1);
+}

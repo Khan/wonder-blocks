@@ -84,3 +84,48 @@ export function getSelectOpenerLabel(
     }
     return props.label;
 }
+
+/**
+ * Returns the aria attributes that label a listbox with the same name as its
+ * opener. The listbox is rendered in a portal, so it needs its own name to give
+ * the options context.
+ */
+export function getListboxLabelProps({
+    ariaLabel,
+    ariaLabelledBy,
+    openerElement,
+}: {
+    ariaLabel?: string | null;
+    ariaLabelledBy?: string | null;
+    openerElement?: HTMLElement;
+}): {
+    "aria-label"?: string;
+    "aria-labelledby"?: string;
+} {
+    // The opener is labelable, so it may be named by a `<label for="">`
+    // element, e.g. the one rendered by LabeledField.
+    const openerLabel = getOpenerLabel(openerElement);
+    const labelId = ariaLabelledBy || openerLabel?.id;
+
+    if (labelId) {
+        return {"aria-labelledby": labelId};
+    }
+
+    // Fall back to the label's text for a `<label>` without an id.
+    const label = openerLabel?.textContent || ariaLabel;
+
+    return label ? {"aria-label": label} : {};
+}
+
+/**
+ * Returns the `<label>` element associated with the opener, if there is one.
+ */
+function getOpenerLabel(
+    openerElement?: HTMLElement,
+): HTMLLabelElement | undefined {
+    if (!openerElement || !("labels" in openerElement)) {
+        return undefined;
+    }
+
+    return (openerElement as HTMLButtonElement).labels?.[0];
+}

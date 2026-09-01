@@ -14,6 +14,8 @@ import {
 } from "@testing-library/user-event";
 
 import {PropsFor} from "@khanacademy/wonder-blocks-core";
+import {LabeledField} from "@khanacademy/wonder-blocks-labeled-field";
+
 import OptionItem from "../option-item";
 import MultiSelect from "../multi-select";
 import {defaultLabels as builtinLabels} from "../../util/constants";
@@ -2563,6 +2565,96 @@ describe("MultiSelect", () => {
             // Assert
             expect(opener).toHaveAttribute("aria-controls", dropdown.id);
             expect(opener).toHaveAttribute("aria-controls", expect.any(String));
+        });
+    });
+
+    describe("a11y > listbox label", () => {
+        it("should label the listbox with the label from LabeledField", async () => {
+            // Arrange
+            const {userEvent} = doRender(
+                <LabeledField
+                    label="Students"
+                    field={
+                        <MultiSelect onChange={jest.fn()}>
+                            <OptionItem label="item 1" value="1" />
+                            <OptionItem label="item 2" value="2" />
+                        </MultiSelect>
+                    }
+                />,
+            );
+
+            // Act
+            await userEvent.click(await screen.findByRole("combobox"));
+
+            // Assert
+            expect(
+                await screen.findByRole("listbox", {hidden: true}),
+            ).toHaveAccessibleName("Students");
+        });
+
+        it("should label the listbox with the label element associated with the opener", async () => {
+            // Arrange
+            const {userEvent} = doRender(
+                <div>
+                    <label id="select-label" htmlFor="select">
+                        Students
+                    </label>
+                    <MultiSelect id="select" onChange={jest.fn()}>
+                        <OptionItem label="item 1" value="1" />
+                        <OptionItem label="item 2" value="2" />
+                    </MultiSelect>
+                </div>,
+            );
+
+            // Act
+            await userEvent.click(await screen.findByRole("combobox"));
+
+            // Assert
+            expect(
+                await screen.findByRole("listbox", {hidden: true}),
+            ).toHaveAccessibleName("Students");
+        });
+
+        it("should use the aria-label from the select as the accessible name for the listbox", async () => {
+            // Arrange
+            const {userEvent} = doRender(
+                <MultiSelect onChange={jest.fn()} aria-label="Students">
+                    <OptionItem label="item 1" value="1" />
+                    <OptionItem label="item 2" value="2" />
+                </MultiSelect>,
+            );
+
+            // Act
+            await userEvent.click(await screen.findByRole("combobox"));
+
+            // Assert
+            expect(
+                await screen.findByRole("listbox", {hidden: true}),
+            ).toHaveAccessibleName("Students");
+        });
+
+        it("should label the listbox with the same element as the opener when aria-labelledby is set", async () => {
+            // Arrange
+            const {userEvent} = doRender(
+                <div>
+                    <span id="external-label">Students</span>
+                    <MultiSelect
+                        onChange={jest.fn()}
+                        aria-labelledby="external-label"
+                    >
+                        <OptionItem label="item 1" value="1" />
+                        <OptionItem label="item 2" value="2" />
+                    </MultiSelect>
+                </div>,
+            );
+
+            // Act
+            await userEvent.click(await screen.findByRole("combobox"));
+
+            // Assert
+            expect(
+                await screen.findByRole("listbox", {hidden: true}),
+            ).toHaveAccessibleName("Students");
         });
     });
 

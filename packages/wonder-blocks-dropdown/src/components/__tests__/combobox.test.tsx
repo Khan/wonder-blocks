@@ -1,6 +1,7 @@
 import {RenderStateRoot} from "@khanacademy/wonder-blocks-core";
 import {render, screen, waitFor} from "@testing-library/react";
 import * as React from "react";
+import {StyleSheet} from "aphrodite";
 import magnifyingGlassIcon from "@phosphor-icons/core/regular/magnifying-glass.svg";
 
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
@@ -455,6 +456,107 @@ describe("Combobox", () => {
             expect(screen.getByRole("combobox")).toHaveAttribute(
                 "aria-invalid",
                 "false",
+            );
+        });
+    });
+
+    describe("aria attributes", () => {
+        it("should use the aria-label as the accessible name", () => {
+            // Arrange
+
+            // Act
+            doRender(
+                <Combobox
+                    selectionType="single"
+                    value=""
+                    aria-label="Choose an option"
+                >
+                    <OptionItem label="option 1" value="option1" />
+                    <OptionItem label="option 2" value="option2" />
+                    <OptionItem label="option 3" value="option3" />
+                </Combobox>,
+            );
+
+            // Assert
+            expect(
+                screen.getByRole("combobox", {name: "Choose an option"}),
+            ).toBeInTheDocument();
+        });
+
+        it.each([
+            ["aria-describedby", "some-hint-id"],
+            ["aria-labelledby", "some-label-id"],
+            ["aria-details", "some-details-id"],
+            ["aria-errormessage", "some-error-id"],
+            ["aria-required", "true"],
+        ])("should pass %s to the input element", (attribute, value) => {
+            // Arrange
+
+            // Act
+            doRender(
+                <Combobox
+                    selectionType="single"
+                    value=""
+                    {...{[attribute]: value}}
+                >
+                    <OptionItem label="option 1" value="option1" />
+                    <OptionItem label="option 2" value="option2" />
+                    <OptionItem label="option 3" value="option3" />
+                </Combobox>,
+            );
+
+            // Assert
+            expect(screen.getByRole("combobox")).toHaveAttribute(
+                attribute,
+                value,
+            );
+        });
+
+        it("should keep the internal aria-controls when a consumer passes another aria attribute", () => {
+            // Arrange
+
+            // Act
+            doRender(
+                <Combobox
+                    selectionType="single"
+                    value=""
+                    opened={true}
+                    aria-describedby="some-hint-id"
+                >
+                    <OptionItem label="option 1" value="option1" />
+                    <OptionItem label="option 2" value="option2" />
+                    <OptionItem label="option 3" value="option3" />
+                </Combobox>,
+            );
+
+            // Assert
+            expect(screen.getByRole("combobox")).toHaveAttribute(
+                "aria-controls",
+            );
+        });
+    });
+
+    describe("style", () => {
+        // NOTE: This is a regression test for a prop that was declared but
+        // silently dropped, not an assertion about visual appearance.
+        it("should apply the style prop to the combobox input", () => {
+            // Arrange
+            const styles = StyleSheet.create({
+                custom: {minInlineSize: 250},
+            });
+
+            // Act
+            doRender(
+                <Combobox selectionType="single" value="" style={styles.custom}>
+                    <OptionItem label="option 1" value="option1" />
+                    <OptionItem label="option 2" value="option2" />
+                    <OptionItem label="option 3" value="option3" />
+                </Combobox>,
+            );
+
+            // Assert
+            expect(screen.getByRole("combobox")).toHaveStyle(
+                "min-inline-size: 250px",
             );
         });
     });

@@ -594,8 +594,10 @@ export const WithState: StoryComponentType = {
 };
 
 /**
- * When in the right-to-left direction, the `startIcon` and `endIcon` are
- * flipped. This example has text in Arabic, a right-to-left language.
+ * When in the right-to-left direction, `startIcon` / `endIcon` placement flips
+ * via logical layout, and directional caret glyphs mirror via PhosphorIcon.
+ * Pass the same LTR-facing icons as elsewhere — do not swap left/right carets
+ * for RTL (that double-flips with auto-mirroring).
  */
 export const RightToLeftWithIcons: StoryComponentType = {
     render: () => (
@@ -604,7 +606,7 @@ export const RightToLeftWithIcons: StoryComponentType = {
                 <Link
                     href="/"
                     startIcon={
-                        <PhosphorIcon icon={IconMappings.caretRightBold} />
+                        <PhosphorIcon icon={IconMappings.caretLeftBold} />
                     }
                 >
                     هذا الرابط مكتوب باللغة العربية
@@ -612,7 +614,9 @@ export const RightToLeftWithIcons: StoryComponentType = {
                 <Strut size={16} />
                 <Link
                     href="/"
-                    endIcon={<PhosphorIcon icon={IconMappings.caretLeftBold} />}
+                    endIcon={
+                        <PhosphorIcon icon={IconMappings.caretRightBold} />
+                    }
                 >
                     هذا الرابط مكتوب باللغة العربية
                 </Link>
@@ -620,9 +624,11 @@ export const RightToLeftWithIcons: StoryComponentType = {
                 <Link
                     href="/"
                     startIcon={
+                        <PhosphorIcon icon={IconMappings.caretLeftBold} />
+                    }
+                    endIcon={
                         <PhosphorIcon icon={IconMappings.caretRightBold} />
                     }
-                    endIcon={<PhosphorIcon icon={IconMappings.caretLeftBold} />}
                 >
                     هذا الرابط مكتوب باللغة العربية
                 </Link>
