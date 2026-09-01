@@ -152,11 +152,8 @@ describe("Floating", () => {
             expect(secondContent).toBeInTheDocument();
         });
 
-        it("should warn and not render the floating content when the trigger doesn't spread the props it is given", () => {
+        it("should not render the floating content when the trigger doesn't spread the props it is given", () => {
             // Arrange
-            const consoleWarnSpy = jest
-                .spyOn(console, "warn")
-                .mockImplementation(() => {});
             // Without the injected props there is no way to find the trigger's
             // DOM element, so there is no reference element to anchor to.
             const NoSpreadTrigger = (props: {children: React.ReactNode}) => (
@@ -174,6 +171,27 @@ describe("Floating", () => {
 
             // Assert
             expect(content).not.toBeInTheDocument();
+        });
+
+        it("should warn when the trigger doesn't spread the props it is given", () => {
+            // Arrange
+            const consoleWarnSpy = jest
+                .spyOn(console, "warn")
+                .mockImplementation(() => {});
+            // Without the injected props there is no way to find the trigger's
+            // DOM element, so there is no reference element to anchor to.
+            const NoSpreadTrigger = (props: {children: React.ReactNode}) => (
+                <button>{props.children}</button>
+            );
+
+            // Act
+            render(
+                <Floating content="Floating content" open={true}>
+                    <NoSpreadTrigger>Trigger</NoSpreadTrigger>
+                </Floating>,
+            );
+
+            // Assert
             expect(consoleWarnSpy).toHaveBeenCalledWith(
                 expect.stringContaining(
                     "could not find the trigger's element in the DOM",
