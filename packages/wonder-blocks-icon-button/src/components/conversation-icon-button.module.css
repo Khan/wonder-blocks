@@ -43,9 +43,9 @@
  * colours are keyed by `kind` alone, so they live on the kind classes.
  *
  * Unlike `IconButton`, the border widths and the border radius here do *not*
- * vary by `kind` — the Aphrodite `theme` object spelled out all three kinds
- * with identical values. They are therefore assigned once on `.button` rather
- * than once per kind class, and the radius is written directly.
+ * vary by `kind` — the `theme` object they came from spelled out all three
+ * kinds with identical values. They are therefore assigned once on `.button`
+ * rather than once per kind class, and the radius is written directly.
  *
  * Specificity: every state rule sits at (0,2,0) — `.button` plus a
  * pseudo-class — so source order alone decides precedence. They are declared
@@ -276,9 +276,9 @@
  * `PhosphorIcon` at `size="small"`, which sizes itself.
  *
  * Qualified with `.button` on purpose: `PhosphorIcon` ships single-class rules
- * in the same `@layer shared`, and Aphrodite's `!important` used to settle that
- * contest for us. The compound selector makes the outcome depend on specificity
- * instead of which package's stylesheet happens to load first.
+ * in the same `@layer shared`, so at equal specificity the winner would come
+ * down to which package's stylesheet happens to load first. The compound
+ * selector makes the outcome depend on specificity instead.
  */
 .button .icon {
     inline-size: var(--wb-sizing-size_160);
