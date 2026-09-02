@@ -112,8 +112,8 @@ export const NodeIconButton: React.ForwardRefExoticComponent<
     // keeps the element focusable. Class-name strings are composed through the
     // `style` prop — `processStyleList` routes them to `className`.
     //
-    // The `tokens` prop stays last so its Aphrodite declarations (which are
-    // emitted unlayered) override the variant classes.
+    // The `tokens` prop stays last so its declarations (which are emitted
+    // unlayered) override the variant classes.
     const buttonStyles = React.useMemo(
         () => [
             styles.button,
