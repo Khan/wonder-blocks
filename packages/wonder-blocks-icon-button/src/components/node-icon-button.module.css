@@ -40,11 +40,15 @@
  * `notStarted` classes *are* the defaults. (The Aphrodite version carried a
  * `DEFAULT_TOKENS` object that duplicated them.)
  *
- * Specificity: the box state rules all sit at (0,3,0) — `.button` plus a
+ * Specificity: most box state rules sit at (0,3,0) — `.button` plus a
  * pseudo-class/attribute plus `.box` — so source order alone decides
  * precedence. They are declared hover → active → disabled → focus, which is the
  * priority we want: press has to survive hover, disabled resets both, and the
  * focus ring has to survive all of them.
+ *
+ * The one exception is `.button[aria-disabled="true"]:active .box` at (0,4,0),
+ * which deliberately climbs above the disabled reset so a disabled box still
+ * "drops" on pointer-press. See the comment on that rule.
  *
  * The `.box` and `.icon` base rules are qualified with `.button` because `View`
  * (`.default`) and `PhosphorIcon` ship single-class rules in the same
@@ -218,13 +222,37 @@
 }
 
 .button[aria-disabled="true"] .box,
-.button[aria-disabled="true"]:hover .box,
-.button[aria-disabled="true"]:active .box {
+.button[aria-disabled="true"]:hover .box {
     background: var(--wb-semanticColor-chonky-disabled-background-primary);
     box-shadow: 0 var(--wb-c-node-icon-button--box-shadow-y-rest) 0 0
         var(--wb-semanticColor-chonky-disabled-shadow-primary);
     color: var(--wb-semanticColor-chonky-disabled-foreground-primary);
     transform: none;
+}
+
+/**
+ * Disabled + pointer-press. A disabled box deliberately still "drops" when
+ * pressed with the pointer, keeping its disabled colours — the Aphrodite
+ * version reset `:is(:hover) .chonky` but not `:is(:active) .chonky`, and that
+ * behaviour is preserved here on purpose rather than harmonised with
+ * `ActivityIconButton` (which does reset both).
+ *
+ * This needs to be spelled out rather than just omitted from the reset above:
+ * `.button:active .box` and `.button[aria-disabled="true"] .box` are both at
+ * (0,3,0), so the later-declared disabled rule would otherwise win and flatten
+ * the box. At (0,4,0) this rule restores the press shadow and transform while
+ * leaving the disabled background and foreground in place.
+ *
+ * Note the shadow uses the `actionType` shadow colour, not the disabled one —
+ * matching what the Aphrodite `chonkyPressed` style did.
+ *
+ * Keyboard presses are unaffected: `node-icon-button` only applies `.pressed`
+ * when the button is not disabled, so `.pressed` never appears here.
+ */
+.button[aria-disabled="true"]:active .box {
+    box-shadow: 0 var(--wb-c-node-icon-button--box-shadow-y-press) 0 0
+        var(--wb-c-node-icon-button--box-shadow-color);
+    transform: translateY(var(--wb-c-node-icon-button--box-shadow-y-rest));
 }
 
 /**
