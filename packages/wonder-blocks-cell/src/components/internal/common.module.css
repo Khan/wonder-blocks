@@ -1,0 +1,37 @@
+/**
+ * Horizontal-rule variants, selected by `getHorizontalRuleStyles`.
+ *
+ * `.horizontalRuleInset` only narrows the rule, so it must be emitted after
+ * `.horizontalRule` — the two are applied together for the `"inset"` variant
+ * and set `width` on the same `::after` at equal specificity. Keeping both in
+ * this one file makes that order deterministic.
+ *
+ * `cell-core.module.css` hides this pseudo-element while the cell is focused
+ * (`.clickable:focus-visible::after`); that rule out-specifies these (0,2,0 vs
+ * 0,1,0), so it wins regardless of which stylesheet the bundler emits first.
+ */
+
+.horizontalRule {
+    position: relative;
+}
+
+.horizontalRule::after {
+    inline-size: 100%;
+    content: "";
+    position: absolute;
+
+    /* align to the bottom of the cell */
+    inset-block-end: 0;
+
+    /* align border to the right of the cell */
+    inset-inline-end: 0;
+    block-size: var(--wb-c-cell-rule-sizing-height);
+    box-shadow: var(--wb-c-cell-rule-shadow);
+}
+
+.horizontalRuleInset::after {
+    /* Inset doesn't include the left padding of the cell. */
+    inline-size: calc(
+        100% - var(--wb-c-cell-root-layout-padding-inline-default)
+    );
+}
