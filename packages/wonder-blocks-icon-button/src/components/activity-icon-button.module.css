@@ -1,0 +1,382 @@
+/**
+ * ActivityIconButton styles
+ *
+ * Component-token surface
+ * -----------------------
+ * Every value a variant axis can change is funnelled through a
+ * `--wb-c-activity-icon-button--*` custom property ("component token"). This
+ * mirrors `ActivityButton`, which shares the same `semanticColor.chonky` token
+ * family.
+ *
+ *   --wb-c-activity-icon-button--box-border-width      structural (all variants)
+ *   --wb-c-activity-icon-button--box-shadow-y-rest
+ *   --wb-c-activity-icon-button--box-shadow-y-hover
+ *   --wb-c-activity-icon-button--box-shadow-y-press
+ *   --wb-c-activity-icon-button--label-color           root text colour (actionType)
+ *   --wb-c-activity-icon-button--box-bg-rest           box colours (actionType × kind)
+ *   --wb-c-activity-icon-button--box-fg-rest
+ *   --wb-c-activity-icon-button--box-border-rest
+ *   --wb-c-activity-icon-button--box-shadow-color-rest
+ *   --wb-c-activity-icon-button--box-bg-hover
+ *   --wb-c-activity-icon-button--box-fg-hover
+ *   --wb-c-activity-icon-button--box-border-hover
+ *   --wb-c-activity-icon-button--box-shadow-color-hover
+ *   --wb-c-activity-icon-button--box-bg-press
+ *   --wb-c-activity-icon-button--box-fg-press
+ *   --wb-c-activity-icon-button--box-border-press
+ *   --wb-c-activity-icon-button--box-shadow-color-press
+ *   --wb-c-activity-icon-button--box-bg-disabled       disabled colours (kind)
+ *   --wb-c-activity-icon-button--box-fg-disabled
+ *   --wb-c-activity-icon-button--box-border-disabled
+ *   --wb-c-activity-icon-button--box-shadow-color-disabled
+ *
+ * Every rule below does exactly one of two jobs, never both:
+ *
+ * - **Variant classes assign tokens.** One class per axis value
+ *   (`.progressive`, `.primary`) sets token values and nothing else.
+ *   `activity-icon-button` composes them through the existing `style` prop
+ *   (Wonder Blocks' `processStyleList` routes class-name strings to
+ *   `className`), so the axes stay orthogonal and no `clsx` dependency is
+ *   needed.
+ * - **Base and state rules only read tokens.** `.button` / `.box` plus one
+ *   rule per interactive state, so each state is declared once rather than
+ *   once-per-cell of the variant matrix.
+ *
+ * Colour is the one place the axes aren't orthogonal: the semantic tokens are
+ * keyed by `actionType` *and* `kind`
+ * (`--wb-semanticColor-chonky-<actionType>-<property>-<kind>-<state>`), so
+ * those six cells are spelled out as compound `.progressive.primary` rules.
+ * Collapsing them would mean interpolating token names, which only JS can do.
+ * Disabled colours are keyed by `kind` alone, so they live on the kind classes.
+ *
+ * Specificity: the box state rules all sit at (0,3,0) — `.button` plus a
+ * pseudo-class/attribute plus `.box` — so source order alone decides
+ * precedence. They are declared hover → active → disabled → focus, which is
+ * the priority we want: press has to survive hover, disabled resets both, and
+ * the focus ring has to survive all of them.
+ *
+ * The `.box` and `.label` base rules are qualified with `.button` even though
+ * they're only ever used inside one. `View` (`.default`) and `BodyText`
+ * (`.smallSemi`) ship single-class rules in the same `@layer shared` that set
+ * some of the same properties (`flex-direction`, `padding`, `border-width`,
+ * `align-items`, `margin`), and Aphrodite's `!important` used to settle those
+ * contests for us. The compound selector makes the outcome depend on
+ * specificity instead of which package's stylesheet happens to load first.
+ *
+ * `disabled` is selected via the `[aria-disabled="true"]` attribute that
+ * `icon-button-unstyled` already sets (the element stays focusable). The build
+ * wraps every rule below in `@layer shared { … }` via the wrap-in-layer PostCSS
+ * plugin.
+ */
+
+@import "@khanacademy/wonder-blocks-styles/focus-styles.css";
+
+/**
+ * Root element. Assigns the structural component tokens (identical across
+ * every variant) and otherwise only reads tokens.
+ */
+.button {
+    --wb-c-activity-icon-button--box-border-width: var(--wb-border-width-thin);
+
+    /* NOTE: We use px units to prevent a bug in Safari where the shadow
+     * animation flickers when using rem units. */
+    --wb-c-activity-icon-button--box-shadow-y-rest: 6px;
+    --wb-c-activity-icon-button--box-shadow-y-hover: 8px;
+    --wb-c-activity-icon-button--box-shadow-y-press: var(--wb-sizing-size_0);
+
+    /* Used for the focus ring. */
+    border-radius: var(--wb-border-radius-radius_120);
+    color: var(--wb-c-activity-icon-button--label-color);
+
+    /* Layout */
+    flex-direction: column;
+    gap: var(--wb-sizing-size_020);
+
+    /* Putting an arbitrary max inline size to prevent the button from
+     * stretching to fill the parent. */
+    max-inline-size: 200px;
+    place-self: flex-start center;
+}
+
+/**
+ * `actionType` axis. Owns the root text colour only — the box colours depend on
+ * `kind` as well and are set by the colour matrix below.
+ */
+.progressive {
+    --wb-c-activity-icon-button--label-color: var(
+        --wb-c-icon-button-activityIconButton-label-color-progressive
+    );
+}
+
+.neutral {
+    --wb-c-activity-icon-button--label-color: var(
+        --wb-semanticColor-core-foreground-neutral-default
+    );
+}
+
+/**
+ * `kind` axis. Owns the disabled colours, which depend on `kind` only.
+ */
+.primary {
+    --wb-c-activity-icon-button--box-bg-disabled: var(--wb-semanticColor-chonky-disabled-background-primary);
+    --wb-c-activity-icon-button--box-fg-disabled: var(--wb-semanticColor-chonky-disabled-foreground-primary);
+    --wb-c-activity-icon-button--box-border-disabled: var(--wb-semanticColor-chonky-disabled-border-primary);
+    --wb-c-activity-icon-button--box-shadow-color-disabled: var(--wb-semanticColor-chonky-disabled-shadow-primary);
+}
+
+.secondary {
+    --wb-c-activity-icon-button--box-bg-disabled: var(--wb-semanticColor-chonky-disabled-background-secondary);
+    --wb-c-activity-icon-button--box-fg-disabled: var(--wb-semanticColor-chonky-disabled-foreground-secondary);
+    --wb-c-activity-icon-button--box-border-disabled: var(--wb-semanticColor-chonky-disabled-border-secondary);
+    --wb-c-activity-icon-button--box-shadow-color-disabled: var(--wb-semanticColor-chonky-disabled-shadow-secondary);
+}
+
+.tertiary {
+    --wb-c-activity-icon-button--box-bg-disabled: var(--wb-semanticColor-chonky-disabled-background-tertiary);
+    --wb-c-activity-icon-button--box-fg-disabled: var(--wb-semanticColor-chonky-disabled-foreground-tertiary);
+    --wb-c-activity-icon-button--box-border-disabled: var(--wb-semanticColor-chonky-disabled-border-tertiary);
+    --wb-c-activity-icon-button--box-shadow-color-disabled: var(--wb-semanticColor-chonky-disabled-shadow-tertiary);
+}
+
+/**
+ * Colour matrix: `actionType × kind`. Each cell sets the bg / fg / border /
+ * shadow tokens for the rest, hover and press states.
+ */
+.progressive.primary {
+    --wb-c-activity-icon-button--box-bg-rest: var(--wb-semanticColor-chonky-progressive-background-primary-rest);
+    --wb-c-activity-icon-button--box-fg-rest: var(--wb-semanticColor-chonky-progressive-foreground-primary-rest);
+    --wb-c-activity-icon-button--box-border-rest: var(--wb-semanticColor-chonky-progressive-border-primary-rest);
+    --wb-c-activity-icon-button--box-shadow-color-rest: var(--wb-semanticColor-chonky-progressive-shadow-primary-rest);
+    --wb-c-activity-icon-button--box-bg-hover: var(--wb-semanticColor-chonky-progressive-background-primary-hover);
+    --wb-c-activity-icon-button--box-fg-hover: var(--wb-semanticColor-chonky-progressive-foreground-primary-hover);
+    --wb-c-activity-icon-button--box-border-hover: var(--wb-semanticColor-chonky-progressive-border-primary-hover);
+    --wb-c-activity-icon-button--box-shadow-color-hover: var(--wb-semanticColor-chonky-progressive-shadow-primary-hover);
+    --wb-c-activity-icon-button--box-bg-press: var(--wb-semanticColor-chonky-progressive-background-primary-press);
+    --wb-c-activity-icon-button--box-fg-press: var(--wb-semanticColor-chonky-progressive-foreground-primary-press);
+    --wb-c-activity-icon-button--box-border-press: var(--wb-semanticColor-chonky-progressive-border-primary-press);
+    --wb-c-activity-icon-button--box-shadow-color-press: var(--wb-semanticColor-chonky-progressive-shadow-primary-press);
+}
+
+.progressive.secondary {
+    --wb-c-activity-icon-button--box-bg-rest: var(--wb-semanticColor-chonky-progressive-background-secondary-rest);
+    --wb-c-activity-icon-button--box-fg-rest: var(--wb-semanticColor-chonky-progressive-foreground-secondary-rest);
+    --wb-c-activity-icon-button--box-border-rest: var(--wb-semanticColor-chonky-progressive-border-secondary-rest);
+    --wb-c-activity-icon-button--box-shadow-color-rest: var(--wb-semanticColor-chonky-progressive-shadow-secondary-rest);
+    --wb-c-activity-icon-button--box-bg-hover: var(--wb-semanticColor-chonky-progressive-background-secondary-hover);
+    --wb-c-activity-icon-button--box-fg-hover: var(--wb-semanticColor-chonky-progressive-foreground-secondary-hover);
+    --wb-c-activity-icon-button--box-border-hover: var(--wb-semanticColor-chonky-progressive-border-secondary-hover);
+    --wb-c-activity-icon-button--box-shadow-color-hover: var(--wb-semanticColor-chonky-progressive-shadow-secondary-hover);
+    --wb-c-activity-icon-button--box-bg-press: var(--wb-semanticColor-chonky-progressive-background-secondary-press);
+    --wb-c-activity-icon-button--box-fg-press: var(--wb-semanticColor-chonky-progressive-foreground-secondary-press);
+    --wb-c-activity-icon-button--box-border-press: var(--wb-semanticColor-chonky-progressive-border-secondary-press);
+    --wb-c-activity-icon-button--box-shadow-color-press: var(--wb-semanticColor-chonky-progressive-shadow-secondary-press);
+}
+
+.progressive.tertiary {
+    --wb-c-activity-icon-button--box-bg-rest: var(--wb-semanticColor-chonky-progressive-background-tertiary-rest);
+    --wb-c-activity-icon-button--box-fg-rest: var(--wb-semanticColor-chonky-progressive-foreground-tertiary-rest);
+    --wb-c-activity-icon-button--box-border-rest: var(--wb-semanticColor-chonky-progressive-border-tertiary-rest);
+    --wb-c-activity-icon-button--box-shadow-color-rest: var(--wb-semanticColor-chonky-progressive-shadow-tertiary-rest);
+    --wb-c-activity-icon-button--box-bg-hover: var(--wb-semanticColor-chonky-progressive-background-tertiary-hover);
+    --wb-c-activity-icon-button--box-fg-hover: var(--wb-semanticColor-chonky-progressive-foreground-tertiary-hover);
+    --wb-c-activity-icon-button--box-border-hover: var(--wb-semanticColor-chonky-progressive-border-tertiary-hover);
+    --wb-c-activity-icon-button--box-shadow-color-hover: var(--wb-semanticColor-chonky-progressive-shadow-tertiary-hover);
+    --wb-c-activity-icon-button--box-bg-press: var(--wb-semanticColor-chonky-progressive-background-tertiary-press);
+    --wb-c-activity-icon-button--box-fg-press: var(--wb-semanticColor-chonky-progressive-foreground-tertiary-press);
+    --wb-c-activity-icon-button--box-border-press: var(--wb-semanticColor-chonky-progressive-border-tertiary-press);
+    --wb-c-activity-icon-button--box-shadow-color-press: var(--wb-semanticColor-chonky-progressive-shadow-tertiary-press);
+}
+
+.neutral.primary {
+    --wb-c-activity-icon-button--box-bg-rest: var(--wb-semanticColor-chonky-neutral-background-primary-rest);
+    --wb-c-activity-icon-button--box-fg-rest: var(--wb-semanticColor-chonky-neutral-foreground-primary-rest);
+    --wb-c-activity-icon-button--box-border-rest: var(--wb-semanticColor-chonky-neutral-border-primary-rest);
+    --wb-c-activity-icon-button--box-shadow-color-rest: var(--wb-semanticColor-chonky-neutral-shadow-primary-rest);
+    --wb-c-activity-icon-button--box-bg-hover: var(--wb-semanticColor-chonky-neutral-background-primary-hover);
+    --wb-c-activity-icon-button--box-fg-hover: var(--wb-semanticColor-chonky-neutral-foreground-primary-hover);
+    --wb-c-activity-icon-button--box-border-hover: var(--wb-semanticColor-chonky-neutral-border-primary-hover);
+    --wb-c-activity-icon-button--box-shadow-color-hover: var(--wb-semanticColor-chonky-neutral-shadow-primary-hover);
+    --wb-c-activity-icon-button--box-bg-press: var(--wb-semanticColor-chonky-neutral-background-primary-press);
+    --wb-c-activity-icon-button--box-fg-press: var(--wb-semanticColor-chonky-neutral-foreground-primary-press);
+    --wb-c-activity-icon-button--box-border-press: var(--wb-semanticColor-chonky-neutral-border-primary-press);
+    --wb-c-activity-icon-button--box-shadow-color-press: var(--wb-semanticColor-chonky-neutral-shadow-primary-press);
+}
+
+.neutral.secondary {
+    --wb-c-activity-icon-button--box-bg-rest: var(--wb-semanticColor-chonky-neutral-background-secondary-rest);
+    --wb-c-activity-icon-button--box-fg-rest: var(--wb-semanticColor-chonky-neutral-foreground-secondary-rest);
+    --wb-c-activity-icon-button--box-border-rest: var(--wb-semanticColor-chonky-neutral-border-secondary-rest);
+    --wb-c-activity-icon-button--box-shadow-color-rest: var(--wb-semanticColor-chonky-neutral-shadow-secondary-rest);
+    --wb-c-activity-icon-button--box-bg-hover: var(--wb-semanticColor-chonky-neutral-background-secondary-hover);
+    --wb-c-activity-icon-button--box-fg-hover: var(--wb-semanticColor-chonky-neutral-foreground-secondary-hover);
+    --wb-c-activity-icon-button--box-border-hover: var(--wb-semanticColor-chonky-neutral-border-secondary-hover);
+    --wb-c-activity-icon-button--box-shadow-color-hover: var(--wb-semanticColor-chonky-neutral-shadow-secondary-hover);
+    --wb-c-activity-icon-button--box-bg-press: var(--wb-semanticColor-chonky-neutral-background-secondary-press);
+    --wb-c-activity-icon-button--box-fg-press: var(--wb-semanticColor-chonky-neutral-foreground-secondary-press);
+    --wb-c-activity-icon-button--box-border-press: var(--wb-semanticColor-chonky-neutral-border-secondary-press);
+    --wb-c-activity-icon-button--box-shadow-color-press: var(--wb-semanticColor-chonky-neutral-shadow-secondary-press);
+}
+
+.neutral.tertiary {
+    --wb-c-activity-icon-button--box-bg-rest: var(--wb-semanticColor-chonky-neutral-background-tertiary-rest);
+    --wb-c-activity-icon-button--box-fg-rest: var(--wb-semanticColor-chonky-neutral-foreground-tertiary-rest);
+    --wb-c-activity-icon-button--box-border-rest: var(--wb-semanticColor-chonky-neutral-border-tertiary-rest);
+    --wb-c-activity-icon-button--box-shadow-color-rest: var(--wb-semanticColor-chonky-neutral-shadow-tertiary-rest);
+    --wb-c-activity-icon-button--box-bg-hover: var(--wb-semanticColor-chonky-neutral-background-tertiary-hover);
+    --wb-c-activity-icon-button--box-fg-hover: var(--wb-semanticColor-chonky-neutral-foreground-tertiary-hover);
+    --wb-c-activity-icon-button--box-border-hover: var(--wb-semanticColor-chonky-neutral-border-tertiary-hover);
+    --wb-c-activity-icon-button--box-shadow-color-hover: var(--wb-semanticColor-chonky-neutral-shadow-tertiary-hover);
+    --wb-c-activity-icon-button--box-bg-press: var(--wb-semanticColor-chonky-neutral-background-tertiary-press);
+    --wb-c-activity-icon-button--box-fg-press: var(--wb-semanticColor-chonky-neutral-foreground-tertiary-press);
+    --wb-c-activity-icon-button--box-border-press: var(--wb-semanticColor-chonky-neutral-border-tertiary-press);
+    --wb-c-activity-icon-button--box-shadow-color-press: var(--wb-semanticColor-chonky-neutral-shadow-tertiary-press);
+}
+
+/**
+ * The "chonky" box. Reads the component tokens the root assigns — custom
+ * properties inherit, so the box picks up whichever variant classes the root
+ * carries.
+ */
+.button .box {
+    /* Layout */
+    border-radius: var(--wb-border-radius-radius_120);
+    margin-block-end: var(--wb-c-activity-icon-button--box-shadow-y-rest);
+    padding-block: var(--wb-sizing-size_140);
+    padding-inline: var(--wb-sizing-size_200);
+    inline-size: var(--wb-sizing-size_640);
+    align-items: center;
+    justify-content: center;
+
+    /* Theming */
+    background: var(--wb-c-activity-icon-button--box-bg-rest);
+    border: var(--wb-c-activity-icon-button--box-border-width) solid
+        var(--wb-c-activity-icon-button--box-border-rest);
+    color: var(--wb-c-activity-icon-button--box-fg-rest);
+
+    /* Gives the button a "chonky" look and feel. */
+    box-shadow: 0 var(--wb-c-activity-icon-button--box-shadow-y-rest) 0 0
+        var(--wb-c-activity-icon-button--box-shadow-color-rest);
+
+    /* Motion */
+    transition: all 0.12s ease-out;
+}
+
+@media not (hover: hover) {
+    .button .box {
+        transition: none;
+    }
+}
+
+/**
+ * Hover. Note this is deliberately *not* gated behind `@media (hover: hover)`
+ * — only the transition above is. The box lifts by the difference between the
+ * hover and rest shadow depths so its top edge stays put.
+ */
+.button:hover .box {
+    background: var(--wb-c-activity-icon-button--box-bg-hover);
+    border: var(--wb-c-activity-icon-button--box-border-width) solid
+        var(--wb-c-activity-icon-button--box-border-hover);
+    box-shadow: 0 var(--wb-c-activity-icon-button--box-shadow-y-hover) 0 0
+        var(--wb-c-activity-icon-button--box-shadow-color-hover);
+    color: var(--wb-c-activity-icon-button--box-fg-hover);
+    transform: translateY(
+        calc(
+            (
+                    var(--wb-c-activity-icon-button--box-shadow-y-hover) -
+                        var(--wb-c-activity-icon-button--box-shadow-y-rest)
+                ) * -1
+        )
+    );
+}
+
+/**
+ * Active / pressed. The `:active` pseudo-class covers pointer presses; the
+ * `.pressed` class covers programmatic (keyboard) presses tracked by
+ * `IconButtonUnstyled`'s `onPress` callback. The box drops by the rest shadow
+ * depth so it looks pushed flat against the shadow.
+ */
+.button:active .box,
+.button.pressed .box {
+    background: var(--wb-c-activity-icon-button--box-bg-press);
+    border: var(--wb-c-activity-icon-button--box-border-width) solid
+        var(--wb-c-activity-icon-button--box-border-press);
+    box-shadow: 0 var(--wb-c-activity-icon-button--box-shadow-y-press) 0 0
+        var(--wb-c-activity-icon-button--box-shadow-color-press);
+    color: var(--wb-c-activity-icon-button--box-fg-press);
+    transform: translateY(var(--wb-c-activity-icon-button--box-shadow-y-rest));
+}
+
+/**
+ * Disabled. Selected via `aria-disabled` so the element stays focusable.
+ * Declared after hover / active so it resets them; the `:hover` / `:active`
+ * variants below only exist to outrank those rules.
+ */
+.button[aria-disabled="true"] {
+    cursor: not-allowed;
+    color: var(--wb-semanticColor-core-foreground-disabled-default);
+    outline: none;
+    transform: none;
+}
+
+.button[aria-disabled="true"]:hover,
+.button[aria-disabled="true"]:active {
+    outline: none;
+    transform: none;
+}
+
+.button[aria-disabled="true"] .box,
+.button[aria-disabled="true"]:hover .box,
+.button[aria-disabled="true"]:active .box {
+    background: var(--wb-c-activity-icon-button--box-bg-disabled);
+
+    /* `border-width` / `border-color` rather than the `border` shorthand so
+     * the `solid` style set on `.box` survives. */
+    border-width: var(--wb-c-activity-icon-button--box-border-width);
+    border-color: var(--wb-c-activity-icon-button--box-border-disabled);
+    box-shadow: 0 var(--wb-c-activity-icon-button--box-shadow-y-rest) 0 0
+        var(--wb-c-activity-icon-button--box-shadow-color-disabled);
+    color: var(--wb-c-activity-icon-button--box-fg-disabled);
+    transform: none;
+}
+
+/**
+ * Focus. `:focus-visible` provides keyboard-only focus styling.
+ *
+ * Declared last so the ring survives hover / press. The disabled variant is
+ * spelled out separately because `.button[aria-disabled="true"]:hover` above
+ * outranks the plain `.button:focus-visible` rule and would otherwise strip the
+ * outline off a focused-and-hovered disabled button.
+ */
+.button:focus-visible {
+    @apply --wb-focus-visible;
+}
+
+.button[aria-disabled="true"]:focus-visible {
+    @apply --wb-focus-visible;
+
+    transform: none;
+}
+
+/**
+ * Label.
+ */
+.button .label {
+    margin: 0;
+    text-align: center;
+
+    /* Text clipping. Restricted to a maximum of 2 lines.
+     * @see https://css-tricks.com/line-clampin/#aa-the-standardized-way */
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+
+    /* Label fitting for long (esp. translated) labels: prefer locale-aware
+     * hyphenation, then fall back to breaking long words so nothing overflows.
+     * `word-break: normal` is required so hyphens can win — `break-word` would
+     * force a hard break first.
+     * @see WB-2354 */
+    hyphens: auto;
+    word-break: normal;
+    overflow-wrap: break-word;
+}
