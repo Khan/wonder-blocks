@@ -58,7 +58,9 @@ type Props = AriaProps & {
  *
  * <Toolbar
  *   size="small"
- *   leftContent={<IconButton icon={icons.dismiss} kind="tertiary" />}
+ *   leftContent={
+ *     <IconButton icon={icons.dismiss} kind="tertiary" aria-label="Close" />
+ *   }
  *   rightContent={<Button>Next Video</Button>}
  * />
  * ```
