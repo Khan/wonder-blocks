@@ -1,21 +1,17 @@
 import * as React from "react";
-import {CSSProperties, StyleSheet} from "aphrodite";
 import {Link} from "react-router-dom-v5-compat";
 
 import {View} from "@khanacademy/wonder-blocks-core";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
-import {focusStyles} from "@khanacademy/wonder-blocks-styles";
-import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 
 import {BodyText} from "@khanacademy/wonder-blocks-typography";
 import type {
     ActivityIconButtonActionType,
     ActivityIconButtonProps,
-    IconButtonKind,
 } from "../util/icon-button.types";
 
 import {IconButtonUnstyled} from "./icon-button-unstyled";
-import themeTokens from "../theme";
+import styles from "./activity-icon-button.module.css";
 
 type AriaLabelOnly = {
     /**
@@ -88,21 +84,26 @@ export const ActivityIconButton: React.ForwardRefExoticComponent<
 
     const [pressed, setPressed] = React.useState(false);
 
-    const buttonStyles = _generateStyles(actionType, !!disabled, kind);
-
-    const styles = [
-        buttonStyles.button,
-        disabled && buttonStyles.disabled,
-        !disabled && pressed && buttonStyles.pressed,
+    // One class per variant axis. Each of these only assigns the
+    // `--wb-c-activity-icon-button--*` component tokens that its axis owns;
+    // `styles.button` / `styles.box` and the state rules in the module read
+    // those tokens. `disabled` is selected in CSS via the
+    // `[aria-disabled="true"]` attribute (set by `IconButtonUnstyled`), which
+    // keeps the element focusable. Class-name strings are composed through the
+    // `style` prop — `processStyleList` routes them to `className`.
+    const buttonStyles = [
+        styles.button,
+        styles[actionType],
+        styles[kind],
+        // Enable the press state for programmatic (keyboard) interaction
+        // tracked by `IconButtonUnstyled`'s `onPress` callback.
+        !disabled && pressed && styles.pressed,
         stylesProp?.root,
     ];
 
-    const chonkyStyles = [
-        buttonStyles.chonky,
-        disabled && buttonStyles.chonkyDisabled,
-        !disabled && pressed && buttonStyles.chonkyPressed,
-        stylesProp?.box,
-    ];
+    // The box's own rest / hover / press / disabled styling is driven by the
+    // root's state selectors in the module, so this only needs the base class.
+    const chonkyStyles = [styles.box, stylesProp?.box];
 
     const handlePress = React.useCallback((isPressing: boolean) => {
         setPressed(isPressing);
@@ -127,12 +128,15 @@ export const ActivityIconButton: React.ForwardRefExoticComponent<
             kind={kind}
             onPress={handlePress}
             ref={ref}
-            style={styles}
+            style={buttonStyles}
             type={type}
             {...(!hasVisibleLabel ? {"aria-label": ariaLabel} : {})}
         >
             <>
-                {/* NOTE: Using a regular className to be able to use descendant selectors to account for the hover and press states */}
+                {/* NOTE: The plain `chonky` className is kept as a
+                consumer/test hook. It no longer drives styling — the box is
+                styled by descendant selectors from the root in the CSS
+                module. */}
                 <View style={chonkyStyles} className="chonky">
                     {iconElement}
                 </View>
@@ -141,7 +145,7 @@ export const ActivityIconButton: React.ForwardRefExoticComponent<
                         tag="span"
                         size="small"
                         weight="semi"
-                        style={[buttonStyles.label, stylesProp?.label]}
+                        style={[styles.label, stylesProp?.label]}
                     >
                         {label}
                     </BodyText>
@@ -150,203 +154,3 @@ export const ActivityIconButton: React.ForwardRefExoticComponent<
         </IconButtonUnstyled>
     );
 });
-
-// NOTE: Theme is defined in the file directly to avoid generating CSS variables
-// as we are reusing the following tokens in all themes.
-const theme = {
-    root: {
-        border: {
-            width: {
-                primary: {
-                    rest: border.width.thin,
-                    hover: border.width.thin,
-                    press: border.width.thin,
-                },
-                secondary: {
-                    rest: border.width.thin,
-                    hover: border.width.thin,
-                    press: border.width.thin,
-                },
-                tertiary: {
-                    rest: border.width.thin,
-                    hover: border.width.thin,
-                    press: border.width.thin,
-                },
-            },
-            radius: border.radius.radius_120,
-        },
-        layout: {
-            padding: {
-                block: sizing.size_140,
-                inline: sizing.size_200,
-            },
-        },
-        shadow: {
-            y: {
-                // NOTE: We use px units to prevent a bug in Safari where the
-                // shadow animation flickers when using rem units.
-                rest: "6px",
-                hover: "8px",
-                press: sizing.size_0,
-            },
-        },
-    },
-    label: {
-        color: {
-            progressive: themeTokens.activityIconButton.label.color.progressive,
-            neutral: semanticColor.core.foreground.neutral.default,
-            disabled: semanticColor.core.foreground.disabled.default,
-        },
-        layout: {
-            inlineSize: sizing.size_640,
-        },
-    },
-};
-
-const styles: Record<string, any> = {};
-
-const _generateStyles = (
-    actionType: ActivityIconButtonActionType = "progressive",
-    disabled: boolean,
-    kind: IconButtonKind,
-) => {
-    const buttonType = `${actionType}-d_${disabled}-${kind}`;
-    if (styles[buttonType]) {
-        return styles[buttonType];
-    }
-
-    const borderWidthKind = theme.root.border.width[kind];
-    const themeVariant = semanticColor.chonky[actionType];
-    const disabledState = semanticColor.chonky.disabled;
-
-    const disabledStatesStyles = {
-        outline: "none",
-        transform: "none",
-    };
-    const chonkyDisabled = {
-        background: disabledState.background[kind],
-        borderWidth: borderWidthKind.rest,
-        borderColor: disabledState.border[kind],
-        color: disabledState.foreground[kind],
-        boxShadow: `0 ${theme.root.shadow.y.rest} 0 0 ${disabledState.shadow[kind]}`,
-        transform: "none",
-    };
-
-    const chonkyPressed = {
-        // theming
-        background: themeVariant.background[kind].press,
-        border: `${borderWidthKind.press} solid ${themeVariant.border[kind].press}`,
-        boxShadow: `0 ${theme.root.shadow.y.press} 0 0 ${themeVariant.shadow[kind].press}`,
-        color: themeVariant.foreground[kind].press,
-        // motion
-        transform: `translateY(${theme.root.shadow.y.rest})`,
-    };
-
-    const newStyles: Record<string, CSSProperties> = {
-        button: {
-            // theming
-            // Used for the focus ring.
-            borderRadius: theme.root.border.radius,
-            color: theme.label.color[actionType],
-            // layout
-            flexDirection: "column",
-            gap: sizing.size_020,
-            // Putting an arbitrary max inline size to prevent the button from
-            // stretching to fill the parent.
-            maxInlineSize: 200,
-            alignSelf: "flex-start",
-            justifySelf: "center",
-            /**
-             * States
-             *
-             * Defined in the following order: hover, active, focus.
-             *
-             * This is important as we want to give more priority to the
-             * :focus-visible styles.
-             */
-            [":is(:hover) .chonky" as any]: {
-                background: themeVariant.background[kind].hover,
-                border: `${borderWidthKind.hover} solid ${themeVariant.border[kind].hover}`,
-                boxShadow: `0 ${theme.root.shadow.y.hover} 0 0 ${themeVariant.shadow[kind].hover}`,
-                color: themeVariant.foreground[kind].hover,
-                // motion
-                transform: `translateY(calc((${theme.root.shadow.y.hover} - ${theme.root.shadow.y.rest}) * -1))`,
-            },
-
-            [":is(:active) .chonky" as any]: chonkyPressed,
-
-            // :focus-visible -> Provide focus styles for keyboard users only.
-            ...focusStyles.focus,
-        },
-        disabled: {
-            cursor: "not-allowed",
-            color: theme.label.color.disabled,
-            ...disabledStatesStyles,
-            // Reset hover and active styles on disabled buttons.
-            ":hover": disabledStatesStyles,
-            ":active": disabledStatesStyles,
-            ":focus-visible": {
-                transform: "none",
-            },
-            // Reset hover and active styles on the chonky element.
-            [":is(:hover) .chonky" as any]: disabledStatesStyles,
-            [":is(:hover) .chonky" as any]: chonkyDisabled,
-            [":is(:active) .chonky" as any]: chonkyDisabled,
-        },
-        // Enable keyboard support for press styles.
-        pressed: {
-            [".chonky" as any]: chonkyPressed,
-        },
-
-        chonky: {
-            // layout
-            // Used for the chonky box.
-            borderRadius: theme.root.border.radius,
-            marginBlockEnd: theme.root.shadow.y.rest,
-            paddingBlock: theme.root.layout.padding.block,
-            paddingInline: theme.root.layout.padding.inline,
-            inlineSize: theme.label.layout.inlineSize,
-            justifyContent: "center",
-            alignItems: "center",
-            // theming
-            background: themeVariant.background[kind].rest,
-            border: `${borderWidthKind.rest} solid ${themeVariant.border[kind].rest}`,
-            color: themeVariant.foreground[kind].rest,
-            // Gives the button a "chonky" look and feel.
-            boxShadow: `0 ${theme.root.shadow.y.rest} 0 0 ${themeVariant.shadow[kind].rest}`,
-            // motion
-            transition: "all 0.12s ease-out",
-
-            ["@media not (hover: hover)" as any]: {
-                transition: "none",
-            },
-        },
-        chonkyPressed,
-        chonkyDisabled,
-        /**
-         * Label
-         */
-        label: {
-            margin: 0,
-            textAlign: "center",
-            // text clipping
-            // @see https://css-tricks.com/line-clampin/#aa-the-standardized-way
-            display: "-webkit-box",
-            WebkitBoxOrient: "vertical",
-            // We restrict the label to a maximum of 2 lines.
-            WebkitLineClamp: "2",
-            overflow: "hidden",
-            // Label fitting for long (esp. translated) labels: prefer
-            // locale-aware hyphenation, then fall back to breaking long words
-            // so nothing overflows. `wordBreak: normal` is required so hyphens
-            // can win — `break-word` would force a hard break first.
-            // @see WB-2354
-            hyphens: "auto",
-            wordBreak: "normal",
-            overflowWrap: "break-word",
-        },
-    } as const;
-
-    styles[buttonType] = StyleSheet.create(newStyles);
-    return styles[buttonType];
-};
