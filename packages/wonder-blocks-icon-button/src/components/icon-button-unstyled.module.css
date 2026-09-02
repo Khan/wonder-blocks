@@ -6,10 +6,10 @@
  * is therefore decided by the layer, not by bundle order.
  *
  * This mirrors `button-unstyled.module.css`, but the property set is the one
- * `IconButtonUnstyled` already shipped as Aphrodite — it has `background: none`
- * and lacks `user-select` / the `-webkit-tap-highlight-color` rule that
- * `ButtonUnstyled` carries. Those differences are pre-existing and deliberately
- * preserved here so this migration stays visually neutral.
+ * `IconButtonUnstyled` previously shipped — it has `background: none` and lacks
+ * `user-select` / the `-webkit-tap-highlight-color` rule that `ButtonUnstyled`
+ * carries. Those differences are pre-existing and deliberately preserved here
+ * so this migration stays visually neutral.
  */
 
 @layer reset {
