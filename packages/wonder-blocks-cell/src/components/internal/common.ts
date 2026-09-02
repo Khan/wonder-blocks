@@ -1,8 +1,8 @@
-import {StyleSheet} from "aphrodite";
 import type {StyleType} from "@khanacademy/wonder-blocks-core";
-import theme from "../../theme";
 
 import type {HorizontalRuleVariant} from "../../util/types";
+
+import styles from "./common.module.css";
 
 /**
  * Gets the horizontalRule style based on the variant.
@@ -22,27 +22,3 @@ export const getHorizontalRuleStyles = (
             return {};
     }
 };
-
-const styles = StyleSheet.create({
-    horizontalRule: {
-        position: "relative",
-        ":after": {
-            width: "100%",
-            content: "''",
-            position: "absolute",
-            // align to the bottom of the cell
-            insetBlockEnd: 0,
-            // align border to the right of the cell
-            insetInlineEnd: 0,
-            height: theme.rule.sizing.height,
-            boxShadow: theme.rule.shadow,
-        },
-    },
-
-    horizontalRuleInset: {
-        ":after": {
-            // Inset doesn't include the left padding of the cell.
-            width: `calc(100% - ${theme.root.layout.padding.inline.default})`,
-        },
-    },
-});
