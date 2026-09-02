@@ -294,10 +294,10 @@
  * Hover.
  *
  * NOTE: Unlike `Button`, hover here is *not* gated behind
- * `@media (hover: hover)`. The Aphrodite version only reset the background on
- * non-hover devices, and this migration preserves that exactly rather than
- * quietly widening the reset. (The two components disagreeing about this is
- * pre-existing; worth reconciling, but not in a parity migration.)
+ * `@media (hover: hover)`. The previous implementation only reset the
+ * background on non-hover devices, and this migration preserves that exactly
+ * rather than quietly widening the reset. (The two components disagreeing about
+ * this is pre-existing; worth reconciling, but not in a parity migration.)
  */
 .button:hover {
     background: var(--wb-c-icon-button--bg-hover);
@@ -413,10 +413,9 @@
  * Icon.
  *
  * Qualified with `.button` on purpose: `PhosphorIcon` ships single-class rules
- * (`.small` / `.medium`) in the same `@layer shared`, and Aphrodite's
- * `!important` used to settle that contest for us. The compound selector makes
- * the outcome depend on specificity instead of which package's stylesheet
- * happens to load first.
+ * (`.small` / `.medium`) in the same `@layer shared`, so at equal specificity
+ * the winner would come down to which package's stylesheet happens to load
+ * first. The compound selector makes the outcome depend on specificity instead.
  */
 .button .icon {
     inline-size: var(--wb-c-icon-button--icon-size);
