@@ -129,6 +129,13 @@ export type BaseIconButtonProps = Partial<Omit<AriaProps, "aria-disabled">> & {
 
 export type IconButtonProps = BaseIconButtonProps & {
     /**
+     * The alternative text for the icon button. This is required for
+     * accessibility because the button only contains an icon and has no visible
+     * text label. It is used to announce the button's purpose to users of
+     * assistive technology such as screen readers.
+     */
+    "aria-label": string;
+    /**
      * The action type/category of the icon button.
      *
      * - `progressive` is used for actions that move the user forward in a flow.

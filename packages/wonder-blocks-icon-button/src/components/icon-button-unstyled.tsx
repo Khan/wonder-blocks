@@ -13,7 +13,16 @@ const StyledA = addStyle("a");
 const StyledButton = addStyle("button");
 const StyledLink = addStyle(Link);
 
-type Props = Omit<IconButtonProps, "icon"> & {
+type Props = Omit<IconButtonProps, "icon" | "aria-label"> & {
+    /**
+     * The alternative text for the icon button.
+     *
+     * Optional at this internal level because higher-level components may label
+     * the button in different ways (e.g. `ActivityIconButton` can use a visible
+     * `label` instead of `aria-label`). The public icon button components are
+     * responsible for enforcing their own labeling requirements.
+     */
+    "aria-label"?: string;
     /**
      * The button content.
      */
