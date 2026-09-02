@@ -1,17 +1,15 @@
 import * as React from "react";
-import {StyleSheet} from "aphrodite";
 
 import type {StyleType} from "@khanacademy/wonder-blocks-core";
 
 import Clickable from "@khanacademy/wonder-blocks-clickable";
 import {View} from "@khanacademy/wonder-blocks-core";
 
-import {border, semanticColor} from "@khanacademy/wonder-blocks-tokens";
-import {focusStyles} from "@khanacademy/wonder-blocks-styles";
 import {getHorizontalRuleStyles} from "./common";
 
 import type {CellProps} from "../../util/types";
-import theme from "../../theme";
+
+import styles from "./cell-core.module.css";
 
 type LeftAccessoryProps = {
     leftAccessory?: CellProps["leftAccessory"];
@@ -230,151 +228,5 @@ const CellCore = (props: CellCoreProps): React.ReactElement => {
         </View>
     );
 };
-
-const styles = StyleSheet.create({
-    wrapper: {
-        background: semanticColor.core.background.base.default,
-        borderRadius: theme.root.border.radius.default,
-        color: semanticColor.core.foreground.neutral.strong,
-        minBlockSize: theme.root.sizing.minHeight,
-        // Hide overflow so that if custom styling applies a border radius, the
-        // left visual indicator for press/active states does not overflow
-        overflow: "hidden",
-        textAlign: "start",
-        width: "100%",
-        // layout
-        // We need to specify flex as the wrapper can be a <View> or a
-        // <Clickable> component.
-        display: "flex",
-        flex: 1,
-        flexDirection: "row",
-        // The spacing between the left and right accessories.
-        gap: theme.root.layout.gap.default,
-        paddingBlock: theme.root.layout.padding.block.default,
-        paddingInline: theme.root.layout.padding.inline.default,
-    },
-
-    content: {
-        alignSelf: "center",
-        // Expand the content to fill the available space.
-        flex: 1,
-        overflowWrap: "break-word",
-    },
-
-    accessory: {
-        // Use content width by default.
-        minInlineSize: "auto",
-        // Horizontal alignment of the accessory.
-        alignItems: "center",
-        // Vertical alignment.
-        alignSelf: "center",
-    },
-
-    accessoryLeft: {
-        color: theme.accessoryLeft.color.default.foreground,
-    },
-
-    accessoryRight: {
-        // The right accessory will have this color by default. Unless the
-        // accessory element overrides that color internally.
-        color: theme.accessoryRight.color.default.foreground,
-    },
-
-    /**
-     * States
-     */
-    clickable: {
-        /**
-         * States
-         */
-        ":hover": {
-            background: semanticColor.core.background.instructive.subtle,
-        },
-        ":active": {
-            background: semanticColor.core.background.instructive.subtle,
-            borderRadius: theme.root.border.radius.press,
-        },
-        // focus (only visible when using keyboard navigation)
-        ":focus-visible": {
-            borderRadius: theme.root.border.radius.focus,
-            outline: focusStyles.focus[":focus-visible"].outline,
-            outlineOffset: `calc(${theme.root.border.width.default} * -1)`,
-            // We need to use a thicker box-shadow to ensure that the inner ring
-            // is visible when the cell is focused.
-            boxShadow: `inset 0 0 0 calc(${border.width.medium}*2) ${semanticColor.focus.inner}`,
-            // To hide the internal corners of the cell.
-            overflow: "hidden",
-            // To display the focus ring based on the cell's border.
-            position: "relative",
-
-            // Hide the left bar indicator when focused, so the focus ring
-            // doesn't overlap with it.
-            [":after" as any]: {
-                content: "unset",
-            },
-        },
-        [":focus-visible:active" as any]: {
-            borderRadius: theme.root.border.radius.focusPress,
-        },
-        // press + enabled + not currently selected (active prop: false)
-        [":active[aria-disabled=false]:not([aria-current=true])" as any]: {
-            position: "relative",
-            ":before": {
-                content: "''",
-                position: "absolute",
-                insetBlockStart: 0,
-                insetInlineStart: 0,
-                insetBlockEnd: 0,
-                width: theme.root.border.width.default,
-                // We use the border token as this element acts like a border
-                // when the cell is pressed.
-                backgroundColor: theme.root.color.press.border,
-            },
-        },
-    },
-
-    active: {
-        background: semanticColor.core.background.instructive.subtle,
-        color: theme.root.color.selected.foreground,
-        cursor: "default",
-        position: "relative",
-        ":before": {
-            // Styles for the left bar indicator
-            content: "''",
-            position: "absolute",
-            insetBlockStart: 0,
-            insetInlineStart: 0,
-            insetBlockEnd: 0,
-            width: theme.root.border.width.selected,
-            backgroundColor: theme.root.color.selected.border,
-        },
-    },
-
-    disabled: {
-        background: semanticColor.core.background.base.default,
-        borderRadius: theme.root.border.radius.default,
-        color: theme.root.color.disabled.foreground,
-        ":hover": {
-            background: semanticColor.core.background.base.default,
-            cursor: "not-allowed",
-        },
-        ":active": {
-            background: semanticColor.core.background.base.default,
-            borderRadius: theme.root.border.radius.default,
-        },
-        [":focus-visible:active" as any]: {
-            borderRadius: theme.root.border.radius.default,
-        },
-    },
-
-    accessoryActive: {
-        color: semanticColor.core.foreground.instructive.default,
-    },
-
-    accessoryDisabled: {
-        color: theme.accessoryRight.color.disabled.foreground,
-        opacity: 0.32,
-    },
-});
 
 export default CellCore;

@@ -1,0 +1,216 @@
+/**
+ * CellCore styles — the skeleton shared by `CompactCell` and `DetailCell`.
+ *
+ * Cascade
+ * -------
+ * Aphrodite merged the `style` array into a single generated class, so
+ * precedence was decided purely by array order, not specificity. The rules
+ * below are declared in that same order so source order reproduces it:
+ *
+ *   wrapper → detail → active → (horizontal rule) → clickable → disabled
+ *
+ * and, for the accessories:
+ *
+ *   accessory → accessoryLeft / accessoryRight → accessoryDisabled →
+ *   accessoryActive
+ *
+ * Everything sits directly in `@layer shared` (the build adds the wrap), so a
+ * consumer's `style` / `styles` overrides — which still route through
+ * Aphrodite and are emitted unlayered — continue to win over all of it.
+ *
+ * The horizontal-rule classes live in `common.module.css` because
+ * `getHorizontalRuleStyles` owns them. They only ever interact with this file
+ * through `::after`, and the focus rule that hides the rule out-specifies them
+ * (0,2,0 vs 0,1,0), so splitting them across files is order-independent.
+ */
+
+/**
+ * Base wrapper. Rendered as either a `<View>` or a `<Clickable>`.
+ */
+.wrapper {
+    background: var(--wb-semanticColor-core-background-base-default);
+    border-radius: var(--wb-c-cell-root-border-radius-default);
+    color: var(--wb-semanticColor-core-foreground-neutral-strong);
+    min-block-size: var(--wb-c-cell-root-sizing-minHeight);
+
+    /* Hide overflow so that if custom styling applies a border radius, the
+       left visual indicator for press/active states does not overflow */
+    overflow: hidden;
+    text-align: start;
+    inline-size: 100%;
+
+    /* layout */
+
+    /* We need to specify flex as the wrapper can be a <View> or a
+       <Clickable> component. */
+    display: flex;
+    flex: 1;
+    flex-direction: row;
+
+    /* The spacing between the left and right accessories. */
+    gap: var(--wb-c-cell-root-layout-gap-default);
+    padding-block: var(--wb-c-cell-root-layout-padding-block-default);
+    padding-inline: var(--wb-c-cell-root-layout-padding-inline-default);
+}
+
+/**
+ * `DetailCell`'s padding, passed in through the internal `innerStyle` prop.
+ * Kept here rather than in `detail-cell.module.css` so that it is guaranteed
+ * to be emitted after `.wrapper`: both rules set `padding-block` /
+ * `padding-inline` at the same specificity, so across two files the winner
+ * would depend on the order the bundler emitted them in.
+ */
+.detail {
+    padding-block: var(--wb-c-cell-root-layout-padding-block-detail);
+    padding-inline: var(--wb-c-cell-root-layout-padding-inline-detail);
+}
+
+/**
+ * Selected. Draws the left bar indicator via `::before`.
+ */
+.active {
+    background: var(--wb-semanticColor-core-background-instructive-subtle);
+    color: var(--wb-c-cell-root-color-selected-foreground);
+    cursor: default;
+    position: relative;
+}
+
+.active::before {
+    /* Styles for the left bar indicator */
+    content: "";
+    position: absolute;
+    inset-block: 0;
+    inset-inline-start: 0;
+    inline-size: var(--wb-c-cell-root-border-width-selected);
+    background-color: var(--wb-c-cell-root-color-selected-border);
+}
+
+/**
+ * Pressable cell. Only applied when the cell renders a `<Clickable>`.
+ */
+.clickable:hover {
+    background: var(--wb-semanticColor-core-background-instructive-subtle);
+}
+
+.clickable:active {
+    background: var(--wb-semanticColor-core-background-instructive-subtle);
+    border-radius: var(--wb-c-cell-root-border-radius-press);
+}
+
+/* focus (only visible when using keyboard navigation) */
+.clickable:focus-visible {
+    border-radius: var(--wb-c-cell-root-border-radius-focus);
+    outline: var(--wb-border-width-medium) solid
+        var(--wb-semanticColor-focus-outer);
+    outline-offset: calc(var(--wb-c-cell-root-border-width-default) * -1);
+
+    /* We need to use a thicker box-shadow to ensure that the inner ring
+       is visible when the cell is focused. */
+    box-shadow: inset 0 0 0 calc(var(--wb-border-width-medium) * 2)
+        var(--wb-semanticColor-focus-inner);
+
+    /* To hide the internal corners of the cell. */
+    overflow: hidden;
+
+    /* To display the focus ring based on the cell's border. */
+    position: relative;
+}
+
+/* Hide the left bar indicator when focused, so the focus ring
+   doesn't overlap with it. */
+.clickable:focus-visible::after {
+    content: unset;
+}
+
+.clickable:focus-visible:active {
+    border-radius: var(--wb-c-cell-root-border-radius-focusPress);
+}
+
+/**
+ * press + enabled + not currently selected (active prop: false)
+ */
+.clickable:active[aria-disabled="false"]:not([aria-current="true"]) {
+    position: relative;
+}
+
+.clickable:active[aria-disabled="false"]:not([aria-current="true"])::before {
+    content: "";
+    position: absolute;
+    inset-block: 0;
+    inset-inline-start: 0;
+    inline-size: var(--wb-c-cell-root-border-width-default);
+
+    /* We use the border token as this element acts like a border
+       when the cell is pressed. */
+    background-color: var(--wb-c-cell-root-color-press-border);
+}
+
+/**
+ * Disabled. Declared after `.clickable` so each state rule resets its
+ * counterpart at matching specificity. `:focus-visible` is deliberately *not*
+ * reset — a disabled cell keeps its focus ring, since `aria-disabled` leaves
+ * the element in the tab order.
+ */
+.disabled {
+    background: var(--wb-semanticColor-core-background-base-default);
+    border-radius: var(--wb-c-cell-root-border-radius-default);
+    color: var(--wb-c-cell-root-color-disabled-foreground);
+}
+
+.disabled:hover {
+    background: var(--wb-semanticColor-core-background-base-default);
+    cursor: not-allowed;
+}
+
+.disabled:active {
+    background: var(--wb-semanticColor-core-background-base-default);
+    border-radius: var(--wb-c-cell-root-border-radius-default);
+}
+
+.disabled:focus-visible:active {
+    border-radius: var(--wb-c-cell-root-border-radius-default);
+}
+
+/**
+ * Cell contents.
+ */
+.content {
+    align-self: center;
+
+    /* Expand the content to fill the available space. */
+    flex: 1;
+    overflow-wrap: break-word;
+}
+
+/**
+ * Accessories.
+ */
+.accessory {
+    /* Use content width by default. */
+    min-inline-size: auto;
+
+    /* Horizontal alignment of the accessory. */
+    align-items: center;
+
+    /* Vertical alignment. */
+    align-self: center;
+}
+
+.accessoryLeft {
+    color: var(--wb-c-cell-accessoryLeft-color-default-foreground);
+}
+
+.accessoryRight {
+    /* The right accessory will have this color by default. Unless the
+       accessory element overrides that color internally. */
+    color: var(--wb-c-cell-accessoryRight-color-default-foreground);
+}
+
+.accessoryDisabled {
+    color: var(--wb-c-cell-accessoryRight-color-disabled-foreground);
+    opacity: 0.32;
+}
+
+.accessoryActive {
+    color: var(--wb-semanticColor-core-foreground-instructive-default);
+}
