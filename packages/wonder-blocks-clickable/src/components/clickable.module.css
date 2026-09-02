@@ -1,0 +1,99 @@
+/**
+ * Clickable styles.
+ *
+ * Source: https://gist.github.com/MoOx/9137295
+ *
+ * Cascade
+ * -------
+ * The build wraps every `*.module.css` in `@layer shared`, so this file becomes
+ * `@layer shared { @layer reset { … } }` — the sub-layer `shared.reset`, shared
+ * with `button-unstyled.module.css`. Rules directly in a layer outrank that
+ * layer's named sub-layers, so *everything* Clickable emits loses to a
+ * consumer's own component styles (which sit directly in `shared`) regardless
+ * of the order the bundler emits the two stylesheets in.
+ *
+ * That is deliberate: all four rules below are base defaults that consumers
+ * (Cell, Pill, AccordionSectionHeader, …) are expected to override. Aphrodite
+ * gave them the same precedence by putting the caller's `style` prop last in
+ * the array; the sub-layer reproduces that without depending on bundle order.
+ * Overrides passed through the `style` prop are unaffected either way — those
+ * still route through Aphrodite, which emits unlayered rules that win over any
+ * `@layer`.
+ *
+ * Within the layer every rule sits at the same specificity, so source order
+ * decides precedence. They are declared reset → link → focused → disabled,
+ * matching the order Aphrodite composed them in `getStyle`.
+ */
+
+@layer reset {
+    .reset {
+        margin: 0;
+        padding: 0;
+        border: none;
+        width: auto;
+        background: var(--wb-semanticColor-core-transparent);
+        box-sizing: border-box;
+        overflow: visible;
+        text-decoration: none;
+
+        /* Inherit font & color from ancestor. `font` is a shorthand that also
+         * resets `line-height`, so the `line-height` normalization below has
+         * to stay after it. */
+        color: inherit;
+        font: inherit;
+
+        /* Normalize `line-height`. Cannot be changed from `normal` in
+         * Firefox 4+. */
+        line-height: normal;
+
+        /* This is usually frowned upon b/c of accessibility. We expect users of
+         * Clickable to define their own focus styles. */
+        outline: none;
+
+        /* This removes the 300ms click delay on mobile browsers by indicating
+         * that "double-tap to zoom" shouldn't be used on this element. */
+        touch-action: manipulation;
+        user-select: none;
+
+        /* Corrects font smoothing for webkit */
+        -webkit-font-smoothing: inherit;
+        -moz-osx-font-smoothing: inherit;
+    }
+
+    .link {
+        cursor: pointer;
+    }
+
+    /**
+     * The default focus ring, applied only when `hideDefaultFocusRing` is unset
+     * and `ClickableBehavior` reports the element as focused. The `:focus`
+     * qualifier is carried over from the Aphrodite version unchanged.
+     */
+    .focused:focus {
+        outline: solid var(--wb-border-width-medium)
+            var(--wb-semanticColor-focus-outer);
+    }
+
+    /**
+     * Disabled. Declared last so it resets the focus ring above (both rules
+     * sit at the same specificity), and so its `color` outranks the
+     * `color: inherit` in `.reset`.
+     *
+     * `:focus-visible` follows `:focus` for the same reason: a disabled
+     * Clickable drops the programmatic focus ring but keeps the keyboard-only
+     * one.
+     */
+    .disabled {
+        cursor: not-allowed;
+        color: var(--wb-semanticColor-action-secondary-disabled-foreground);
+    }
+
+    .disabled:focus {
+        outline: none;
+    }
+
+    .disabled:focus-visible {
+        outline: solid var(--wb-border-width-medium)
+            var(--wb-semanticColor-focus-outer);
+    }
+}
