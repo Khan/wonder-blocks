@@ -23,9 +23,13 @@ props, same DOM structure, and the same `styles.root` / `styles.box` /
   descendant selectors from the root element rather than by classes toggled in
   JS. The box keeps its plain `chonky` class name in the DOM as a
   consumer/test hook, it just no longer drives styling.
-- Two fixes to disabled-state handling that the Aphrodite version got wrong
-  through rule ordering, bringing `NodeIconButton` in line with the rest of the
-  button family: pressing a disabled button with the pointer no longer applies
-  the pressed "drop" styling to the box (the Aphrodite `disabled` style reset
-  `:hover` but not `:active`), and a disabled button that is both focused and
-  hovered now keeps the full global focus ring.
+- A focused *and* hovered disabled button now keeps the full global focus ring.
+  Previously the disabled hover reset stripped its outline, which was an
+  artifact of Aphrodite's rule ordering rather than an intentional design.
+  `Button`, `ActivityButton`, `IconButton` and `ConversationIconButton` already
+  made the same call.
+- Pressing a disabled button with the pointer still applies the pressed "drop"
+  styling to the box, keeping its disabled colours. The Aphrodite version reset
+  `:hover` on the box but not `:active`, and that behaviour is deliberately
+  preserved rather than harmonised with `ActivityIconButton` (which resets
+  both).
