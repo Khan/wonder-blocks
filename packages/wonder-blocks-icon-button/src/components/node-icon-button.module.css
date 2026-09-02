@@ -32,13 +32,13 @@
  * compound colour matrix.
  *
  * The `tokens` prop still overrides any of these: it routes through
- * `mapTokensToVariables` and Aphrodite, which emits unlayered declarations that
- * win over these `@layer shared` rules regardless of specificity.
+ * `mapTokensToVariables`, which emits unlayered declarations that win over
+ * these `@layer shared` rules regardless of specificity.
  *
  * The component always applies exactly one size class and one actionType class,
  * so there is no base block re-declaring the defaults — the `large` and
- * `notStarted` classes *are* the defaults. (The Aphrodite version carried a
- * `DEFAULT_TOKENS` object that duplicated them.)
+ * `notStarted` classes *are* the defaults. (The previous implementation carried
+ * a `DEFAULT_TOKENS` object that duplicated them.)
  *
  * Specificity: most box state rules sit at (0,3,0) — `.button` plus a
  * pseudo-class/attribute plus `.box` — so source order alone decides
@@ -53,9 +53,9 @@
  * The `.box` and `.icon` base rules are qualified with `.button` because `View`
  * (`.default`) and `PhosphorIcon` ship single-class rules in the same
  * `@layer shared` that set some of the same properties (`padding`,
- * `align-items`, `inline-size`), and Aphrodite's `!important` used to settle
- * those contests for us. The compound selector makes the outcome depend on
- * specificity instead of which package's stylesheet happens to load first.
+ * `align-items`, `inline-size`), so at equal specificity those contests would
+ * be settled by which package's stylesheet happens to load first. The compound
+ * selector makes the outcome depend on specificity instead.
  *
  * `disabled` is selected via the `[aria-disabled="true"]` attribute that
  * `icon-button-unstyled` already sets (the element stays focusable). The build
@@ -232,8 +232,8 @@
 
 /**
  * Disabled + pointer-press. A disabled box deliberately still "drops" when
- * pressed with the pointer, keeping its disabled colours — the Aphrodite
- * version reset `:is(:hover) .chonky` but not `:is(:active) .chonky`, and that
+ * pressed with the pointer, keeping its disabled colours — the previous
+ * implementation reset the box's hover state but not its active state, and that
  * behaviour is preserved here on purpose rather than harmonised with
  * `ActivityIconButton` (which does reset both).
  *
@@ -243,8 +243,8 @@
  * the box. At (0,4,0) this rule restores the press shadow and transform while
  * leaving the disabled background and foreground in place.
  *
- * Note the shadow uses the `actionType` shadow colour, not the disabled one —
- * matching what the Aphrodite `chonkyPressed` style did.
+ * Note the shadow uses the `actionType` shadow colour, not the disabled one,
+ * which is also what the previous implementation did.
  *
  * Keyboard presses are unaffected: `node-icon-button` only applies `.pressed`
  * when the button is not disabled, so `.pressed` never appears here.
