@@ -59,9 +59,9 @@
  * they're only ever used inside one. `View` (`.default`) and `BodyText`
  * (`.smallSemi`) ship single-class rules in the same `@layer shared` that set
  * some of the same properties (`flex-direction`, `padding`, `border-width`,
- * `align-items`, `margin`), and Aphrodite's `!important` used to settle those
- * contests for us. The compound selector makes the outcome depend on
- * specificity instead of which package's stylesheet happens to load first.
+ * `align-items`, `margin`), so at equal specificity those contests would be
+ * settled by which package's stylesheet happens to load first. The compound
+ * selector makes the outcome depend on specificity instead.
  *
  * `disabled` is selected via the `[aria-disabled="true"]` attribute that
  * `icon-button-unstyled` already sets (the element stays focusable). The build
