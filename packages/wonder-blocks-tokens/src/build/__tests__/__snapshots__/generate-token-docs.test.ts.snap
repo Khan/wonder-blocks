@@ -375,13 +375,13 @@ import {semanticColor} from "@khanacademy/wonder-blocks-tokens";
 | \`semanticColor.graphics.progress.complete.foreground.strong\` | \`--wb-semanticColor-graphics-progress-complete-foreground-strong\` | \`#2C5037\` | \`#2C5037\` | \`#2C5037\` |
 | \`semanticColor.graphics.role.all.current.background\` | \`--wb-semanticColor-graphics-role-all-current-background\` | \`#F8F9FB\` | \`#F8F9FB\` | \`#151521\` |
 | \`semanticColor.graphics.role.all.current.foreground\` | \`--wb-semanticColor-graphics-role-all-current-foreground\` | \`#EBF1FD\` | \`#EBF1FD\` | \`#222149\` |
-| \`semanticColor.graphics.role.administrator.background\` | \`--wb-semanticColor-graphics-role-administrator-background\` | \`#CCE9FE\` | \`#CCE9FE\` | \`#1D3F58\` |
+| \`semanticColor.graphics.role.administrator.background\` | \`--wb-semanticColor-graphics-role-administrator-background\` | \`#A9DAFD\` | \`#A9DAFD\` | \`#1D3F58\` |
 | \`semanticColor.graphics.role.administrator.foreground\` | \`--wb-semanticColor-graphics-role-administrator-foreground\` | \`#57BAFD\` | \`#57BAFD\` | \`#20628F\` |
 | \`semanticColor.graphics.role.learner.background\` | \`--wb-semanticColor-graphics-role-learner-background\` | \`#FEBFB1\` | \`#FEBFB1\` | \`#672912\` |
 | \`semanticColor.graphics.role.learner.foreground\` | \`--wb-semanticColor-graphics-role-learner-foreground\` | \`#F8551A\` | \`#F8551A\` | \`#983C1A\` |
-| \`semanticColor.graphics.role.parent.background\` | \`--wb-semanticColor-graphics-role-parent-background\` | \`#D5F3D5\` | \`#D5F3D5\` | \`#24432D\` |
+| \`semanticColor.graphics.role.parent.background\` | \`--wb-semanticColor-graphics-role-parent-background\` | \`#BCEBBB\` | \`#BCEBBB\` | \`#24432D\` |
 | \`semanticColor.graphics.role.parent.foreground\` | \`--wb-semanticColor-graphics-role-parent-foreground\` | \`#72BB82\` | \`#72BB82\` | \`#2C5037\` |
-| \`semanticColor.graphics.role.teacher.background\` | \`--wb-semanticColor-graphics-role-teacher-background\` | \`#FDD673\` | \`#FDD673\` | \`#5F4500\` |
+| \`semanticColor.graphics.role.teacher.background\` | \`--wb-semanticColor-graphics-role-teacher-background\` | \`#FEE7AD\` | \`#FEE7AD\` | \`#5F4500\` |
 | \`semanticColor.graphics.role.teacher.foreground\` | \`--wb-semanticColor-graphics-role-teacher-foreground\` | \`#FCB706\` | \`#FCB706\` | \`#966B00\` |
 | \`semanticColor.graphics.streaks.background.subtle\` | \`--wb-semanticColor-graphics-streaks-background-subtle\` | \`#FEE9E5\` | \`#FEE9E5\` | \`#3E1F19\` |
 | \`semanticColor.graphics.streaks.background.default\` | \`--wb-semanticColor-graphics-streaks-background-default\` | \`#FEDFD8\` | \`#FEDFD8\` | \`#672912\` |
