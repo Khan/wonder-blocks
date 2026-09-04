@@ -11,3 +11,15 @@ export type DateSegment = {
     /** Character offset into the formatted string (exclusive). */
     end: number;
 };
+
+/** One part of an Intl.DateTimeFormat pattern (see `buildNumericDatePattern`). */
+export type DatePatternPart = {
+    type: DateSegmentType | "literal";
+    value: string;
+};
+
+/** A regex (and its day/month/year capture order) for a locale's numeric date pattern. */
+export type NumericDatePattern = {
+    regex: RegExp;
+    partOrder: Array<DateSegmentType>;
+};

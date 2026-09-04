@@ -4,7 +4,7 @@ import {Temporal} from "temporal-polyfill";
 import * as React from "react";
 import {expect, userEvent, waitFor, within} from "storybook/test";
 
-import {fr, es} from "date-fns/locale";
+import {ar, fr, es} from "date-fns/locale";
 import Button from "@khanacademy/wonder-blocks-button";
 import {addStyle, View, type PropsFor} from "@khanacademy/wonder-blocks-core";
 import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
@@ -364,11 +364,27 @@ export const OpenCalendarOverlay: Story = {
 export const WithAlternateLocale: Story = {
     render: (args) => <DatePickerWithOpenOverlay {...args} />,
     args: {
-        selectedDate: Temporal.PlainDate.from("2025-11-01"),
-        minDate: Temporal.PlainDate.from("2025-11-01"),
-        maxDate: Temporal.PlainDate.from("2026-12-31"),
+        selectedDate: Temporal.PlainDate.from("2026-11-01"),
+        minDate: Temporal.PlainDate.from("2026-11-01"),
+        maxDate: Temporal.PlainDate.from("2027-12-31"),
         updateDate: () => {},
         locale: fr,
+        inputAriaLabel: "Choisir ou entrer une date",
+    },
+};
+
+/**
+ * DatePicker with an RTL locale and numeric format. This story is useful for
+ * testing writing direction functionality.
+ */
+export const WithRTLNumericLocale: Story = {
+    render: (args) => <DatePickerWithOpenOverlay {...args} />,
+    args: {
+        selectedDate: Temporal.PlainDate.from("2026-11-01"),
+        minDate: Temporal.PlainDate.from("2026-11-01"),
+        maxDate: Temporal.PlainDate.from("2027-12-31"),
+        updateDate: () => {},
+        locale: ar,
         inputAriaLabel: "Choisir ou entrer une date",
     },
 };
