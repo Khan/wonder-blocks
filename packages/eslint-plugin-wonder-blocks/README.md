@@ -73,6 +73,7 @@ The following shows what rules are enabled in each config:
 | [`no-custom-tab-role`](docs/no-custom-tab-role.md)| |✅|
 | [`no-excessive-bodytext-children`](docs/no-excessive-bodytext-children.md)| |✅|
 | [`no-hardcoded-color`](docs/no-hardcoded-color.md)| |✅|
+| [`no-heading-in-accordion-header`](docs/no-heading-in-accordion-header.md)|✅|✅|
 | [`no-invalid-bodytext-children`](docs/no-invalid-bodytext-children.md)|✅|✅|
 | [`no-invalid-bodytext-parent`](docs/no-invalid-bodytext-parent.md)| |✅|
 | [`require-logical-properties-for-rtl`](docs/require-logical-properties-for-rtl.md)| opt-in | opt-in |

@@ -100,6 +100,14 @@ export const WB_HEADING_COMPONENTS = new Set([
 ]);
 
 /**
+ * Matches the HTML heading tags h1-h6. Wonder Blocks components that accept a
+ * `tag` prop (Text, View, BodyText, BodyMonospace, ...) render a real heading
+ * element when given one, so the component name alone doesn't say whether it
+ * produces a heading.
+ */
+export const HEADING_TAG_REGEX = /^h[1-6]$/;
+
+/**
  * HTML elements that are block-level and therefore cannot appear inside a <p>.
  * Excludes <div> and <p> which have their own dedicated message IDs in the
  * no-invalid-bodytext-children rule.
@@ -138,6 +146,57 @@ export const HTML_BLOCK_ELEMENTS = new Set([
     "table",
     "ul",
 ]);
+
+/**
+ * Returns true when a value looks like an AST node.
+ */
+function isNode(value: unknown): value is TSESTree.Node {
+    return (
+        typeof value === "object" &&
+        value !== null &&
+        typeof (value as {type?: unknown}).type === "string"
+    );
+}
+
+/**
+ * Calls `callback` for every JSXOpeningElement beneath `node`, including `node`
+ * itself.
+ *
+ * For rules inspecting a prop whose value is JSX (e.g. `header={<Foo />}`),
+ * where the element of interest may be wrapped in a fragment, conditional,
+ * array, or another element. It cannot see through indirection.
+ */
+export function forEachJSXOpeningElement(
+    node: TSESTree.Node,
+    callback: (element: TSESTree.JSXOpeningElement) => void,
+): void {
+    const visit = (current: TSESTree.Node): void => {
+        if (current.type === "JSXOpeningElement") {
+            callback(current);
+        }
+
+        for (const key of Object.keys(current)) {
+            // `parent` points back up the tree and would recurse forever.
+            if (key === "parent") {
+                continue;
+            }
+
+            const value = (current as unknown as Record<string, unknown>)[key];
+
+            if (Array.isArray(value)) {
+                for (const item of value) {
+                    if (isNode(item)) {
+                        visit(item);
+                    }
+                }
+            } else if (isNode(value)) {
+                visit(value);
+            }
+        }
+    };
+
+    visit(node);
+}
 
 /**
  * Returns the string value of a JSX attribute if it is a simple string
