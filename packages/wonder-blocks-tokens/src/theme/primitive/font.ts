@@ -38,7 +38,6 @@ export const font = {
             xsmall: sizing.size_160,
             small: sizing.size_180,
             medium: sizing.size_200,
-            large: sizing.size_220,
         },
     },
     heading: {
