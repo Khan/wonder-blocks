@@ -26,16 +26,6 @@ type Props = Omit<IconButtonProps, "icon"> & {
      */
     href?: string;
     /**
-     * Listens for keydown events on the button. This is useful for preventing
-     * default behavior when the user presses the spacebar or enter key.
-     */
-    onKeyDown?: (e: React.KeyboardEvent) => unknown;
-    /**
-     * Listens for keyup events on the button. This is useful for triggering
-     * actions when the user presses the spacebar or enter key.
-     */
-    onKeyUp?: (e: React.KeyboardEvent) => unknown;
-    /**
      * When the button is in a pressing state. This is useful for keyboard
      * interactions, so we can provide visual feedback to the user.
      */
@@ -53,6 +43,8 @@ export const IconButtonUnstyled: React.ForwardRefExoticComponent<
         disabled,
         href,
         kind,
+        onKeyDown: onKeyDownProp,
+        onKeyUp: onKeyUpProp,
         onPress,
         skipClientNav,
         style,
@@ -64,6 +56,7 @@ export const IconButtonUnstyled: React.ForwardRefExoticComponent<
 
     const handleKeyDown = React.useCallback(
         (e: React.KeyboardEvent) => {
+            onKeyDownProp?.(e);
             const key = e.key;
             // Prevent default behavior for space and enter keys on
             // buttons. We let the browser handle the default behavior
@@ -75,11 +68,12 @@ export const IconButtonUnstyled: React.ForwardRefExoticComponent<
                 }
             }
         },
-        [disabled, href, onPress],
+        [disabled, href, onPress, onKeyDownProp],
     );
 
     const handleKeyUp = React.useCallback(
         (e: React.KeyboardEvent) => {
+            onKeyUpProp?.(e);
             const key = e.key;
             if (!href && (key === keys.enter || key === keys.space)) {
                 if (!disabled && restProps.onClick) {
@@ -88,7 +82,7 @@ export const IconButtonUnstyled: React.ForwardRefExoticComponent<
                 onPress?.(false);
             }
         },
-        [disabled, href, onPress, restProps],
+        [disabled, href, onPress, restProps, onKeyUpProp],
     );
 
     const commonProps = {
