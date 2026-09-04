@@ -1,18 +1,15 @@
 import * as React from "react";
-import {StyleSheet} from "aphrodite";
 
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
-import {focusStyles} from "@khanacademy/wonder-blocks-styles";
-import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 
 import type {
     ActivityIconButtonActionType,
     BaseIconButtonProps,
-    IconButtonKind,
     IconButtonRef,
 } from "../util/icon-button.types";
 
 import {IconButtonUnstyled} from "./icon-button-unstyled";
+import styles from "./conversation-icon-button.module.css";
 
 type Props = BaseIconButtonProps & {
     /**
@@ -65,12 +62,20 @@ export const ConversationIconButton: React.ForwardRefExoticComponent<
 
     const [pressed, setPressed] = React.useState(false);
 
-    const buttonStyles = _generateStyles(actionType, !!disabled, kind);
-
-    const styles = [
-        buttonStyles.default,
-        disabled && buttonStyles.disabled,
-        pressed && buttonStyles.pressed,
+    // One class per variant axis. Each of these only assigns the
+    // `--wb-c-conversation-icon-button--*` component tokens that its axis owns;
+    // `styles.button` and the state rules in the module read those tokens.
+    // `disabled` is selected in CSS via the `[aria-disabled="true"]` attribute
+    // (set by `IconButtonUnstyled`), which keeps the element focusable.
+    // Class-name strings are composed through the `style` prop —
+    // `processStyleList` routes them to `className`.
+    const buttonStyles = [
+        styles.button,
+        styles[kind],
+        styles[actionType],
+        // Enable the press state for programmatic (keyboard) interaction
+        // tracked by `IconButtonUnstyled`'s `onPress` callback.
+        !disabled && pressed && styles.pressed,
         style,
     ];
 
@@ -85,156 +90,16 @@ export const ConversationIconButton: React.ForwardRefExoticComponent<
             kind={kind}
             onPress={handlePress}
             ref={ref}
-            style={styles}
+            style={buttonStyles}
             type={type}
         >
             {/* If the icon is not a string, it is a custom icon that can be
             rendered directly with the corresponding styles */}
             {typeof icon !== "string" ? (
-                React.cloneElement(icon, {style: [staticStyles.icon]})
+                React.cloneElement(icon, {style: [styles.icon]})
             ) : (
                 <PhosphorIcon size="small" color="currentColor" icon={icon} />
             )}
         </IconButtonUnstyled>
     );
 });
-
-const staticStyles = StyleSheet.create({
-    icon: {
-        width: sizing.size_160,
-        height: sizing.size_160,
-    },
-});
-
-const styles: Record<string, any> = {};
-
-const theme = {
-    root: {
-        border: {
-            radius: border.radius.radius_full,
-            width: {
-                primary: {
-                    default: border.width.thin,
-                    hover: border.width.thin,
-                    press: border.width.medium,
-                },
-                secondary: {
-                    default: border.width.thin,
-                    hover: border.width.thin,
-                    press: border.width.medium,
-                },
-                tertiary: {
-                    default: border.width.thin,
-                    hover: border.width.thin,
-                    press: border.width.medium,
-                },
-            },
-        },
-        layout: {
-            padding: sizing.size_100,
-        },
-        sizing: {
-            default: sizing.size_360,
-        },
-    },
-};
-
-const _generateStyles = (
-    actionType: ActivityIconButtonActionType = "progressive",
-    disabled: boolean,
-    kind: IconButtonKind,
-) => {
-    const buttonType = `${actionType}-d_${disabled}-${kind}`;
-    if (styles[buttonType]) {
-        return styles[buttonType];
-    }
-
-    const borderWidthKind = theme.root.border.width[kind];
-    const themeVariant = semanticColor.action[kind][actionType];
-    const disabledState = semanticColor.action[kind].disabled;
-
-    const disabledStatesStyles = {
-        padding: theme.root.layout.padding,
-        // theming
-        borderColor: disabledState.border,
-        borderWidth: borderWidthKind.default,
-        background: disabledState.background,
-        color: disabledState.foreground,
-    };
-
-    const pressStyles = {
-        border: `${borderWidthKind.press} solid ${themeVariant.press.border}`,
-        background: themeVariant.press.background,
-        color: themeVariant.press.foreground,
-        // Adjust padding to account for border width
-        padding: `calc(${theme.root.layout.padding} - 1px)`,
-    };
-
-    const newStyles = {
-        default: {
-            // layout
-            borderRadius: theme.root.border.radius,
-            padding: theme.root.layout.padding,
-            alignSelf: "center",
-            justifySelf: "center",
-            // theming
-            borderStyle: "solid",
-            borderWidth: borderWidthKind.default,
-            borderColor: themeVariant.default.border,
-            background: themeVariant.default.background,
-            color: themeVariant.default.foreground,
-
-            /**
-             * States
-             *
-             * Defined in the following order: hover, active, focus.
-             *
-             * This is important as we want to give more priority to the
-             * :focus-visible styles.
-             */
-            ":hover": {
-                // layout
-                padding: theme.root.layout.padding,
-                // theming
-                background: themeVariant.hover.background,
-                color: themeVariant.hover.foreground,
-                border: `${borderWidthKind.hover} solid ${themeVariant.hover.border}`,
-            },
-            // Allow hover styles on non-touch devices only. This prevents an
-            // issue with hover being sticky on touch devices (e.g. mobile).
-            ["@media not (hover: hover)"]: {
-                ":hover": {
-                    // reset hover styles on non-touch devices
-                    backgroundColor: "transparent",
-                },
-            },
-            ":active": pressStyles,
-            // :focus-visible -> Provide focus styles for keyboard users only.
-            ...focusStyles.focus,
-        },
-        disabled: {
-            cursor: "not-allowed",
-            ...disabledStatesStyles,
-            // NOTE: Even that browsers recommend to specify pseudo-classes in
-            // this order: link, visited, focus, hover, active, we need to
-            // specify focus after hover to override hover styles. By doing this
-            // we are able to reset the border/outline styles to the default
-            // ones (rest state).
-            // For order reference: https://css-tricks.com/snippets/css/link-pseudo-classes-in-order/
-            ":hover": {
-                ...disabledStatesStyles,
-                outline: "none",
-            },
-            ":active": {
-                ...disabledStatesStyles,
-                outline: "none",
-            },
-            ":focus-visible": disabledStatesStyles,
-        },
-        // Enable keyboard support for press styles.
-        pressed: pressStyles,
-    } as const;
-
-    styles[buttonType] = StyleSheet.create(newStyles);
-    return styles[buttonType];
-};
