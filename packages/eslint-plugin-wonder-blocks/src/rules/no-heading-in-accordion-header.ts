@@ -2,6 +2,7 @@ import {ESLintUtils, TSESTree} from "@typescript-eslint/utils";
 
 import type {WonderBlocksPluginDocs} from "../types";
 import {
+    HEADING_TAG_REGEX,
     HTML_HEADING_ELEMENTS,
     WB_HEADING_COMPONENTS,
     forEachJSXOpeningElement,
@@ -17,6 +18,7 @@ type Options = [];
 type MessageIds =
     | "headingElementInHeader"
     | "headingComponentInHeader"
+    | "headingTagInHeader"
     | "roleHeadingInHeader";
 
 // The fix is always the same, so every message ends with it.
@@ -36,6 +38,7 @@ export default createRule<Options, MessageIds>({
         messages: {
             headingElementInHeader: `AccordionSection already wraps its header in a heading element containing a <button>, so <{{name}}> here produces nested headings inside a <button>, which is invalid HTML. ${ADVICE}`,
             headingComponentInHeader: `AccordionSection already wraps its header in a heading element containing a <button>, so {{name}} here produces nested headings inside a <button>, which is invalid HTML. ${ADVICE}`,
+            headingTagInHeader: `{{name}} renders a <{{tag}}> element. AccordionSection already wraps its header in a heading element containing a <button>, so this produces nested headings inside a <button>, which is invalid HTML. ${ADVICE}`,
             roleHeadingInHeader: `AccordionSection already wraps its header in a heading element containing a <button>, so role="heading" here produces nested headings. ${ADVICE}`,
         },
     },
@@ -86,6 +89,19 @@ export default createRule<Options, MessageIds>({
                             node: element,
                             messageId: "headingComponentInHeader",
                             data: {name},
+                        });
+                        return;
+                    }
+
+                    // Components like BodyText, Text and View render whatever
+                    // element their `tag` prop names, so the component name
+                    // alone doesn't say whether it produces a heading.
+                    const tag = getAttributeStringValue(element, "tag");
+                    if (tag !== null && HEADING_TAG_REGEX.test(tag)) {
+                        context.report({
+                            node: element,
+                            messageId: "headingTagInHeader",
+                            data: {name, tag},
                         });
                         return;
                     }

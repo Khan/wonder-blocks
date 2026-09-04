@@ -13,7 +13,8 @@ duplicated heading structure. Nothing caught this before.
 
 - **eslint-plugin-wonder-blocks:** new `no-heading-in-accordion-header` rule,
   enabled at `error` in the `recommended` config. It flags `<h1>`–`<h6>`, Wonder
-  Blocks `Heading` components, and `role="heading"` anywhere inside a literal
+  Blocks `Heading` components, a `tag="h1"`–`tag="h6"` on any component (e.g.
+  `<BodyText tag="h1">`), and `role="heading"` anywhere inside a literal
   `header` prop on `AccordionSection`. This is a major bump because projects
   extending `recommended` will see new lint errors.
 - **wonder-blocks-accordion:** `AccordionSection` now logs a development-only

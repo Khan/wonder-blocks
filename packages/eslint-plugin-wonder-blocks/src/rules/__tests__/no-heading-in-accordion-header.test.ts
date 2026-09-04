@@ -51,6 +51,16 @@ ruleTester.run(ruleName, rule, {
         },
         {code: `<AccordionSection header={<View role="presentation" />} />`},
 
+        // Non-heading `tag` values
+        {
+            code: `<AccordionSection header={<View tag="section">Title</View>} />`,
+        },
+        {code: `<AccordionSection header={<Text tag="span">Title</Text>} />`},
+        // A dynamic tag can't be resolved statically, so it isn't flagged
+        {
+            code: `<AccordionSection header={<BodyText tag={tag}>Title</BodyText>} />`,
+        },
+
         // Icons and other inline decorations
         {
             code: `<AccordionSection header={<><PhosphorIcon icon={icon} /><BodyText tag="span">Title</BodyText></>} />`,
@@ -127,6 +137,56 @@ ruleTester.run(ruleName, rule, {
                 {
                     messageId: "headingComponentInHeader",
                     data: {name: "HeadingSmall"},
+                },
+            ],
+        },
+
+        // ---------------------------------------------------------------- //
+        // Heading level supplied via a `tag` prop                          //
+        // ---------------------------------------------------------------- //
+        {
+            code: `<AccordionSection header={<BodyText tag="h1">Title</BodyText>} />`,
+            errors: [
+                {
+                    messageId: "headingTagInHeader",
+                    data: {name: "BodyText", tag: "h1"},
+                },
+            ],
+        },
+        {
+            code: `<AccordionSection header={<View tag="h2">Title</View>} />`,
+            errors: [
+                {
+                    messageId: "headingTagInHeader",
+                    data: {name: "View", tag: "h2"},
+                },
+            ],
+        },
+        {
+            code: `<AccordionSection header={<Text tag="h6">Title</Text>} />`,
+            errors: [
+                {
+                    messageId: "headingTagInHeader",
+                    data: {name: "Text", tag: "h6"},
+                },
+            ],
+        },
+        {
+            code: `<AccordionSection header={<BodyMonospace tag="h3">Title</BodyMonospace>} />`,
+            errors: [
+                {
+                    messageId: "headingTagInHeader",
+                    data: {name: "BodyMonospace", tag: "h3"},
+                },
+            ],
+        },
+        {
+            // Nested inside other markup
+            code: `<AccordionSection header={<View><BodyText tag="h4">Title</BodyText></View>} />`,
+            errors: [
+                {
+                    messageId: "headingTagInHeader",
+                    data: {name: "BodyText", tag: "h4"},
                 },
             ],
         },

@@ -68,8 +68,9 @@ you pass to `header` ends up **inside** them:
 </h2>
 ```
 
-So passing a heading — an `<h3>`, a `Heading` component, or anything with
-`role="heading"` — produces `h2 > button > h3`, which is invalid twice over:
+So passing a heading — an `<h3>`, a `Heading` component, a `tag="h3"` on
+something like `BodyText` or `View`, or anything with `role="heading"` —
+produces `h2 > button > h3`, which is invalid twice over:
 
 1. A `<button>` may only contain
    [phrasing content](https://html.spec.whatwg.org/#phrasing-content), and a
@@ -78,8 +79,9 @@ So passing a heading — an `<h3>`, a `Heading` component, or anything with
    structure.
 
 ```jsx
-// ❌ Don't — this nests a heading inside the heading AccordionSection renders
+// ❌ Don't — these nest a heading inside the heading AccordionSection renders
 <AccordionSection header={<Heading size="medium">Section title</Heading>} />
+<AccordionSection header={<BodyText tag="h3">Section title</BodyText>} />
 
 // ✅ Do — set the level with `tag`, and keep the content inline
 <AccordionSection tag="h3" header="Section title" />

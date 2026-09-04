@@ -244,6 +244,26 @@ describe("AccordionSection", () => {
             expect(warnSpy).toHaveBeenCalledTimes(1);
         });
 
+        test("warns when the header content sets a heading tag", () => {
+            // Arrange
+            const warnSpy = jest
+                .spyOn(console, "warn")
+                .mockImplementation(() => {});
+
+            // Act
+            render(
+                // The misuse under test, so the lint rule is disabled here.
+                // eslint-disable-next-line @khanacademy/wonder-blocks/no-heading-in-accordion-header
+                <AccordionSection header={<BodyText tag="h1">Title</BodyText>}>
+                    Section content
+                </AccordionSection>,
+                {wrapper: RenderStateRoot},
+            );
+
+            // Assert
+            expect(warnSpy).toHaveBeenCalledTimes(1);
+        });
+
         test("warns when a Heading is nested inside the header content", () => {
             // Arrange
             const warnSpy = jest

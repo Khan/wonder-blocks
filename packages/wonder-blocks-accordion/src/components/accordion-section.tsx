@@ -30,8 +30,9 @@ type Props = AriaProps & {
      *
      * NOTE: this content renders inside a `<button>` that is itself wrapped in
      * a heading, so it must not contain a heading of its own (`<h1>`–`<h6>`,
-     * `Heading`, or `role="heading"`) — that is invalid HTML. Use the `tag`
-     * prop to set the heading level, and `<BodyText tag="span">` with
+     * `Heading`, a `tag="h1"`–`tag="h6"` on any component, or
+     * `role="heading"`) — that is invalid HTML. Use AccordionSection's own
+     * `tag` prop to set the heading level, and `<BodyText tag="span">` with
      * `font.heading.*` tokens for heading-sized text.
      */
     header: string | React.ReactElement;

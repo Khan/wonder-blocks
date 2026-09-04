@@ -100,6 +100,14 @@ export const WB_HEADING_COMPONENTS = new Set([
 ]);
 
 /**
+ * Matches the HTML heading tags h1-h6. Wonder Blocks components that accept a
+ * `tag` prop (Text, View, BodyText, BodyMonospace, ...) render a real heading
+ * element when given one, so the component name alone doesn't say whether it
+ * produces a heading.
+ */
+export const HEADING_TAG_REGEX = /^h[1-6]$/;
+
+/**
  * HTML elements that are block-level and therefore cannot appear inside a <p>.
  * Excludes <div> and <p> which have their own dedicated message IDs in the
  * no-invalid-bodytext-children rule.

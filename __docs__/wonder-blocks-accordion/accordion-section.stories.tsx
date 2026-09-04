@@ -235,10 +235,11 @@ export const ReactElementInHeader: StoryComponentType = {
 /**
  * AccordionSection already renders a heading element wrapping the header
  * `<button>`, so anything passed to `header` ends up inside both of them.
- * A heading in there (an `<h3>`, a `Heading` component, or anything with
- * `role="heading"`) produces `h2 > button > h3`, which is invalid HTML on two
- * counts: a `<button>` may only contain phrasing content, and nested headings
- * give screen reader users a duplicated heading structure.
+ * A heading in there — an `<h3>`, a `Heading` component, a `tag="h3"` on
+ * something like `BodyText` or `View`, or anything with `role="heading"` —
+ * produces `h2 > button > h3`, which is invalid HTML on two counts: a
+ * `<button>` may only contain phrasing content, and nested headings give
+ * screen reader users a duplicated heading structure.
  *
  * To get heading-sized text without heading semantics, use
  * `<BodyText tag="span">` with the `font.heading.*` tokens, and set the real
@@ -318,6 +319,14 @@ export const CustomHeaderWithoutNestedHeading: StoryComponentType = {
                 This is the information present in the section
             </AccordionSection>
         );
+    },
+    parameters: {
+        chromatic: {
+            // Disabling because this documents a semantics/a11y guideline, and
+            // the custom header rendering is already covered by
+            // ReactElementInHeader.
+            disableSnapshot: true,
+        },
     },
 };
 

@@ -18,8 +18,10 @@ _inside_ that button:
 </h2>
 ```
 
-Passing a heading (`<h3>`, `<Heading>`, or anything with `role="heading"`)
-therefore produces `h2 > button > h3`, which is invalid twice over:
+Passing a heading — `<h3>`, `<Heading>`, a `tag="h3"` on a component that
+renders whatever its `tag` names (`BodyText`, `Text`, `View`, ...), or anything
+with `role="heading"` — therefore produces `h2 > button > h3`, which is invalid
+twice over:
 
 1. A `<button>`'s content model is
    [phrasing content](https://html.spec.whatwg.org/#phrasing-content) only, so a
@@ -44,6 +46,10 @@ Examples of **incorrect** code:
 
 /* Wonder Blocks heading components */
 <AccordionSection header={<Heading size="medium">Section title</Heading>} />
+
+/* A `tag` prop that names a heading element */
+<AccordionSection header={<BodyText tag="h3">Section title</BodyText>} />
+<AccordionSection header={<View tag="h3">Section title</View>} />
 
 /* Explicit heading role */
 <AccordionSection header={<View role="heading" aria-level={3}>Title</View>} />
@@ -92,11 +98,15 @@ Examples of **correct** code:
 ## Limitations
 
 This rule is static analysis, so it only sees headings written literally in the
-`header` prop. A component that renders a heading internally is invisible to it:
+`header` prop. A component that renders a heading internally, or a `tag` that
+can't be resolved statically, is invisible to it:
 
 ```tsx
 /* Not flagged — but still wrong if CourseTitle renders an <h3> */
 <AccordionSection header={<CourseTitle />} />
+
+/* Not flagged — the tag can't be resolved at lint time */
+<AccordionSection header={<BodyText tag={headingTag}>Title</BodyText>} />
 ```
 
 AccordionSection also warns at runtime in development when the rendered header
