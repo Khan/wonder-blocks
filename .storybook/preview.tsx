@@ -128,6 +128,16 @@ const parameters: Preview["parameters"] = {
             },
         },
     },
+    chromatic: {
+        // Disable snapshots for all stories only when the build sets
+        // STORYBOOK_CHROMATIC_DISABLE_SNAPSHOTS=true. The draft-PR Chromatic
+        // workflow sets this so the Storybook is still published to Chromatic
+        // for preview, but no snapshots are captured (saving snapshot quota).
+        // Full snapshots still run on ready-for-review PRs and on demand via a
+        // `/chromatic` PR comment.
+        disableSnapshot:
+            import.meta.env.STORYBOOK_CHROMATIC_DISABLE_SNAPSHOTS === "true",
+    },
     // https://storybook.js.org/docs/react/configure/story-layout
     layout: "padded",
     options: {
