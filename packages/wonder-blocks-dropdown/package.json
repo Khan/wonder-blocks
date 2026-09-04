@@ -3,7 +3,7 @@
   "description": "Dropdown variants for Wonder Blocks.",
   "author": "Khan Academy",
   "license": "MIT",
-  "version": "10.12.1",
+  "version": "10.12.2",
   "publishConfig": {
     "access": "public"
   },

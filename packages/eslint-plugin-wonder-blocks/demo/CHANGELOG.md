@@ -1,5 +1,11 @@
 # eslint-plugin-wonder-blocks-demo
 
+## 0.4.12
+
+### Patch Changes
+
+- @khanacademy/wonder-blocks-dropdown@10.12.2
+
 ## 0.4.11
 
 ### Patch Changes
