@@ -25,8 +25,14 @@ type Props = AriaProps & {
      */
     children: string | React.ReactElement;
     /**
-     * The header for this section. If a string is passed in, it will
-     * automatically be given Body typography from Wonder Blocks Typography.
+     * The header for this section. A string is given Heading typography and
+     * the standard header spacing; a React element is rendered as-is.
+     *
+     * NOTE: this content renders inside a `<button>` that is itself wrapped in
+     * a heading, so it must not contain a heading of its own (`<h1>`–`<h6>`,
+     * `Heading`, or `role="heading"`) — that is invalid HTML. Use the `tag`
+     * prop to set the heading level, and `<BodyText tag="span">` with
+     * `font.heading.*` tokens for heading-sized text.
      */
     header: string | React.ReactElement;
     /**

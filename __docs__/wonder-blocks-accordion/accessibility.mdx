@@ -54,6 +54,70 @@ as [advised by W3](https://www.w3.org/WAI/ARIA/apg/patterns/accordion/).
     -   If there are six or fewer sections, each section's content panel
         has the `role` attribute set to "region".
 
+### Don't put a heading in the `header` prop
+
+Because AccordionSection renders the heading and the button for you, whatever
+you pass to `header` ends up **inside** them:
+
+```html
+<h2>
+    <!-- from AccordionSection's `tag` prop -->
+    <button>
+        <!-- your `header` content goes here -->
+    </button>
+</h2>
+```
+
+So passing a heading — an `<h3>`, a `Heading` component, or anything with
+`role="heading"` — produces `h2 > button > h3`, which is invalid twice over:
+
+1. A `<button>` may only contain
+   [phrasing content](https://html.spec.whatwg.org/#phrasing-content), and a
+   heading element is not phrasing content.
+2. Nested headings give screen reader users a duplicated, confusing heading
+   structure.
+
+```jsx
+// ❌ Don't — this nests a heading inside the heading AccordionSection renders
+<AccordionSection header={<Heading size="medium">Section title</Heading>} />
+
+// ✅ Do — set the level with `tag`, and keep the content inline
+<AccordionSection tag="h3" header="Section title" />
+
+// ✅ Do — for custom headers, use inline typography with heading-sized tokens
+<AccordionSection
+    tag="h3"
+    header={
+        <View style={styles.header}>
+            <PhosphorIcon icon={icon} />
+            <BodyText
+                tag="span"
+                weight="bold"
+                style={{
+                    fontSize: font.heading.size.medium,
+                    lineHeight: font.heading.lineHeight.medium,
+                }}
+            >
+                Section title
+            </BodyText>
+        </View>
+    }
+/>
+```
+
+Two things help catch this:
+
+-   The
+    [`no-heading-in-accordion-header`](https://github.com/Khan/wonder-blocks/blob/main/packages/eslint-plugin-wonder-blocks/docs/no-heading-in-accordion-header.md)
+    lint rule flags headings written directly in the `header` prop.
+-   AccordionSection logs a development-only console warning when the rendered
+    header turns out to contain a heading. Because it inspects the DOM, it also
+    catches headings rendered inside your own components, which the lint rule
+    can't see.
+
+The runtime warning needs the DOM, so it does not fire during server-side
+rendering.
+
 ### Considerations for the User
 
 -   The accordion can be animated using the `animated` prop. However,
@@ -62,6 +126,7 @@ as [advised by W3](https://www.w3.org/WAI/ARIA/apg/patterns/accordion/).
 -   PLEASE use AccordionSection's `tag` prop to appropriately set the
     section's heading level! It defaults to `<h2>`, but it needs to be
     set appropriately based on the page's heading structure.
+-   PLEASE don't pass a heading into the `header` prop — see above.
 
 ### References
 
