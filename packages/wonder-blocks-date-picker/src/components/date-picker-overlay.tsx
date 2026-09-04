@@ -84,13 +84,6 @@ const DatePickerOverlay = ({
         return null;
     }
 
-    // 1. Portal: Used to append the child element to the document (or a modal
-    //    if exists). This way we prevent having issues with any stacking
-    //    context generated in DOM tree associated to the parent component.
-    // 2. FocusManager: Used to steal focus, then return focus to the next
-    //    element after the overlay.
-    // 3. Popper: Automatically calculates the position based on the
-    //    referenceElement and applies the required styles to the child element.
     return createPortal(
         <FocusManager
             referenceElement={referenceElement}
