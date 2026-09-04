@@ -3,6 +3,7 @@ import {Temporal} from "temporal-polyfill";
 import {es, fr} from "react-day-picker/locale";
 
 import {
+    buildNumericDatePattern,
     formatDate,
     isTextFormatDate,
     normalizeDateStringForComparison,
@@ -765,6 +766,86 @@ describe("TemporalLocaleUtils", () => {
             endOfDay(date);
             // Assert
             expect(date.getTime()).toBe(before);
+        });
+    });
+
+    describe("buildNumericDatePattern", () => {
+        it("orders captures as month/day/year for en-US", () => {
+            // Arrange
+            // (inputs are inline)
+            // Act
+            const result = buildNumericDatePattern("en-US", undefined);
+            // Assert
+            expect(result?.partOrder).toEqual(["month", "day", "year"]);
+        });
+
+        it("orders captures as day/month/year for de-DE", () => {
+            // Arrange
+            // (inputs are inline)
+            // Act
+            const result = buildNumericDatePattern("de-DE", undefined);
+            // Assert
+            expect(result?.partOrder).toEqual(["day", "month", "year"]);
+        });
+
+        it("returns null for a dateStyle that spells out the month", () => {
+            // Arrange
+            // (inputs are inline)
+            // Act
+            const result = buildNumericDatePattern("en-US", "dateStyle:long");
+            // Assert
+            expect(result).toBeNull();
+        });
+
+        it("matches a real Arabic-formatted value, capturing day/month/year around the embedded RTL mark", () => {
+            // Arrange
+            const value = formatDate(
+                Temporal.PlainDate.from("2026-11-01"),
+                undefined,
+                "ar",
+            );
+            const pattern = buildNumericDatePattern("ar", undefined)!;
+            // Act
+            const match = value.match(pattern.regex);
+            // Assert
+            expect(match?.slice(1)).toEqual(["1", "11", "2026"]);
+        });
+
+        it("matches a Bulgarian value without its trailing era marker", () => {
+            // Arrange
+            const pattern = buildNumericDatePattern("bg", undefined)!;
+            // Act
+            const match = "1.11.2026".match(pattern.regex);
+            // Assert
+            expect(match?.slice(1)).toEqual(["1", "11", "2026"]);
+        });
+
+        it("matches a Bulgarian value with its trailing era marker", () => {
+            // Arrange
+            const value = formatDate(
+                Temporal.PlainDate.from("2026-11-01"),
+                undefined,
+                "bg",
+            );
+            const pattern = buildNumericDatePattern("bg", undefined)!;
+            // Act
+            const match = value.match(pattern.regex);
+            // Assert
+            expect(match?.slice(1)).toEqual(["1", "11", "2026"]);
+        });
+
+        it("matches a Hungarian value with its trailing separator", () => {
+            // Arrange
+            const value = formatDate(
+                Temporal.PlainDate.from("2026-11-01"),
+                undefined,
+                "hu",
+            );
+            const pattern = buildNumericDatePattern("hu", undefined)!;
+            // Act
+            const match = value.match(pattern.regex);
+            // Assert
+            expect(match?.slice(1)).toEqual(["2026", "11", "01"]);
         });
     });
 });

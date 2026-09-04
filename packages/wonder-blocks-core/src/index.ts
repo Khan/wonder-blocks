@@ -4,6 +4,7 @@ export {default as InitialFallback} from "./components/initial-fallback";
 export {default as addStyle} from "./util/add-style";
 export {default as Server} from "./util/server";
 export {Id} from "./components/id";
+export {useDirectionDetection} from "./hooks/use-direction-detection";
 export {useForceUpdate} from "./hooks/use-force-update";
 export {useIsMounted} from "./hooks/use-is-mounted";
 export {useLatestRef} from "./hooks/use-latest-ref";

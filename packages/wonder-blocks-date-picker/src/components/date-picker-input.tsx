@@ -6,6 +6,7 @@ import {TextField} from "@khanacademy/wonder-blocks-form";
 import IconButton from "@khanacademy/wonder-blocks-icon-button";
 import {sizing} from "@khanacademy/wonder-blocks-tokens";
 import calendarIcon from "@phosphor-icons/core/bold/calendar-blank-bold.svg";
+import {useDateSegmentArrowKeys} from "../hooks/use-date-segment-arrow-keys";
 import {
     enUSLocaleCode,
     TemporalLocaleUtils,
@@ -441,6 +442,24 @@ const DatePickerInput = React.forwardRef<HTMLInputElement, Props>(
             // to avoid resetting parent state during partial input
         };
 
+        const handleSegmentKeyDown = useDateSegmentArrowKeys({
+            value,
+            dateFormat,
+            locale,
+            parseDate,
+            handleChange,
+            innerRef,
+        });
+
+        const handleInputKeyDown = (
+            e: React.KeyboardEvent<HTMLInputElement>,
+        ) => {
+            if (!expanded && handleSegmentKeyDown(e)) {
+                return;
+            }
+            onKeyDown?.(e);
+        };
+
         // Expose both HTMLInputElement methods and validation method via ref
         React.useImperativeHandle(ref, () => {
             const inputElement = innerRef.current;
@@ -464,7 +483,7 @@ const DatePickerInput = React.forwardRef<HTMLInputElement, Props>(
                     {...restProps}
                     onBlur={handleBlur}
                     onFocus={handleFocus}
-                    onKeyDown={onKeyDown}
+                    onKeyDown={handleInputKeyDown}
                     onChange={handleChange}
                     disabled={restProps.disabled}
                     placeholder={placeholder}
