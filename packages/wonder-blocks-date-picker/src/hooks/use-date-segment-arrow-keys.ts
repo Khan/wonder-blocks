@@ -1,5 +1,7 @@
 import * as React from "react";
 
+import {useDirectionDetection} from "@khanacademy/wonder-blocks-core";
+
 import {adjustDateSegment} from "../util/adjust-date-segment";
 import {findSegmentAtOffset} from "../util/find-segment-at-offset";
 import {getDateSegments} from "../util/get-date-segments";
@@ -19,10 +21,11 @@ type Params = {
 };
 
 /**
- * Let ArrowUp/ArrowDown increment/decrement the day/month/year segment the
- * caret is currently in, matching native `<input type="date">`/`type="time"`
- * behavior. Only handles numeric date formats (see `getDateSegments`) and
- * only when the current value is already a fully valid, parseable date.
+ * ArrowUp/ArrowDown increment/decrement the day/month/year segment under the
+ * caret; ArrowLeft/ArrowRight move the selection to the adjacent segment.
+ * Matches native `<input type="date">`/`type="time">` behavior. Only handles
+ * numeric date formats (see `getDateSegments`). ArrowUp/ArrowDown also
+ * require the current value to be a valid, parseable date.
  *
  * @param params.value - The current text shown in the input.
  * @param params.dateFormat - The `dateFormat` prop value used to render `value`.
@@ -45,6 +48,7 @@ export function useDateSegmentArrowKeys({
     innerRef,
 }: Params): (e: React.KeyboardEvent<HTMLInputElement>) => boolean {
     const pendingSelectionRef = React.useRef<[number, number] | null>(null);
+    const isRtl = useDirectionDetection(innerRef) === "rtl";
 
     React.useEffect(() => {
         if (pendingSelectionRef.current && innerRef.current) {
@@ -56,15 +60,13 @@ export function useDateSegmentArrowKeys({
 
     return React.useCallback(
         (e: React.KeyboardEvent<HTMLInputElement>): boolean => {
-            if (e.key !== "ArrowUp" && e.key !== "ArrowDown") {
+            const key = e.key;
+            const isVerticalKey = key === "ArrowUp" || key === "ArrowDown";
+            const isHorizontalKey = key === "ArrowLeft" || key === "ArrowRight";
+            if (!isVerticalKey && !isHorizontalKey) {
                 return false;
             }
-            if (!value || !parseDate) {
-                return false;
-            }
-
-            const jsDate = parseDate(value, dateFormat, locale);
-            if (!jsDate) {
+            if (!value) {
                 return false;
             }
 
@@ -79,9 +81,38 @@ export function useDateSegmentArrowKeys({
                 return false;
             }
 
+            if (isHorizontalKey) {
+                // ArrowRight moves toward the next segment in LTR, the
+                // previous one in RTL.
+                const movesToNextSegment = isRtl
+                    ? key === "ArrowLeft"
+                    : key === "ArrowRight";
+                const currentIndex = segments.indexOf(segment);
+                // Clamp at the first/last segment instead of falling
+                // through to native caret movement, which is unreliable
+                // for a segmented, non-prose value.
+                const targetSegment =
+                    segments[currentIndex + (movesToNextSegment ? 1 : -1)] ??
+                    segment;
+                e.preventDefault();
+                innerRef.current?.setSelectionRange(
+                    targetSegment.start,
+                    targetSegment.end,
+                );
+                return true;
+            }
+
+            if (!parseDate) {
+                return false;
+            }
+            const jsDate = parseDate(value, dateFormat, locale);
+            if (!jsDate) {
+                return false;
+            }
+
             const currentDate =
                 TemporalLocaleUtils.jsDateToTemporalDate(jsDate);
-            const delta = e.key === "ArrowUp" ? 1 : -1;
+            const delta = key === "ArrowUp" ? 1 : -1;
             const adjustedDate = adjustDateSegment(
                 currentDate,
                 segment.type,
@@ -105,6 +136,6 @@ export function useDateSegmentArrowKeys({
             handleChange(newValue);
             return true;
         },
-        [value, dateFormat, locale, parseDate, handleChange],
+        [value, dateFormat, locale, parseDate, handleChange, isRtl, innerRef],
     );
 }
