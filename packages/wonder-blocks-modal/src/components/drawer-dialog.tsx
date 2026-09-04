@@ -7,8 +7,14 @@ import {
     useDrawerContext,
     DEFAULT_DRAWER_ANIMATED,
     DEFAULT_DRAWER_IS_EXITING,
-    DEFAULT_DRAWER_TIMING_DURATION_MS,
 } from "../util/drawer-context";
+import {
+    DRAWER_ENTER_DURATION_MS,
+    DRAWER_ENTER_EASING,
+    DRAWER_EXIT_DURATION_MS,
+    DRAWER_EXIT_EASING,
+    DRAWER_SLIDE_OFFSET,
+} from "../util/drawer-animation";
 import FlexibleDialog from "./flexible-dialog";
 import theme from "../theme";
 import {useDirectionDetection} from "../hooks/use-direction-detection";
@@ -130,11 +136,11 @@ const DrawerDialog = React.forwardRef(function DrawerDialog(
 ): React.ReactElement {
     // Get drawer props from context
     const contextProps = useDrawerContext();
-    const alignment = contextProps.alignment;
+    const alignment = contextProps.alignment ?? "inlineEnd";
     const animated = contextProps.animated ?? DEFAULT_DRAWER_ANIMATED;
     const isExiting = contextProps.isExiting ?? DEFAULT_DRAWER_IS_EXITING;
-    const timingDuration =
-        contextProps.timingDuration ?? DEFAULT_DRAWER_TIMING_DURATION_MS;
+    const timingDuration = contextProps.timingDuration;
+    const easing = contextProps.easing;
 
     const {styles} = props;
 
@@ -142,16 +148,25 @@ const DrawerDialog = React.forwardRef(function DrawerDialog(
     const direction = useDirectionDetection();
     const isRtl = direction === "rtl";
 
-    const componentStyles = getComponentStyles({
-        alignment,
-        isRtl,
-        animated,
-        isExiting,
-        timingDuration,
-    });
+    const phase = isExiting ? "exit" : "enter";
+    const defaultAnimationStyle =
+        DEFAULT_ANIMATION_STYLES[alignment][isRtl ? "rtl" : "ltr"][phase];
+    const phaseEasing = easing?.[phase];
 
-    const alignmentStyles =
-        (alignment && componentStyles[alignment]) || componentStyles.inlineEnd;
+    // Plain object — never passed to StyleSheet.create in this file.
+    const animationStyle = !animated
+        ? undefined
+        : timingDuration === undefined && phaseEasing === undefined
+          ? defaultAnimationStyle
+          : {
+                ...defaultAnimationStyle,
+                ...(timingDuration !== undefined && {
+                    animationDuration: `${timingDuration}ms`,
+                }),
+                ...(phaseEasing !== undefined && {
+                    animationTimingFunction: phaseEasing,
+                }),
+            };
 
     return (
         <FlexibleDialog
@@ -159,158 +174,183 @@ const DrawerDialog = React.forwardRef(function DrawerDialog(
             ref={ref}
             styles={{
                 root: [
-                    componentStyles.root,
-                    alignmentStyles,
-                    styles?.root,
+                    componentStyles.root, // Aphrodite class
+                    componentStyles[alignment], // Aphrodite class
+                    animationStyle, // plain object
+                    styles?.root, // consumer-provided override
                 ].filter(Boolean),
-                dialog: [componentStyles.dialog, styles?.dialog].filter(
-                    Boolean,
-                ),
-                panel: styles?.panel,
-                content: styles?.content,
-                closeButton: styles?.closeButton,
+                dialog: [
+                    alignment === "blockEnd"
+                        ? componentStyles.dialogBlockEnd // Aphrodite class
+                        : componentStyles.dialogDefault, // Aphrodite class
+                    styles?.dialog, // consumer-provided override
+                ].filter(Boolean),
+                panel: styles?.panel, // consumer-provided override
+                content: styles?.content, // consumer-provided override
+                closeButton: styles?.closeButton, // consumer-provided override
             }}
         />
     );
 });
 
+/** The resting transform, shared by all alignments. */
+const REST_TRANSFORM = "translate3d(0, 0, 0)";
+
+/**
+ * The transform that displaces the panel from its resting position by `offset`,
+ * a CSS length or percentage, along the axis its alignment docks to.
+ */
 const getTransformValue = (
     isRtl: boolean,
     alignment: DrawerAlignment,
-    percentage: number,
+    offset: string,
 ): string => {
     if (alignment === "blockEnd") {
-        return `translate3d(0, ${percentage}%, 0)`;
+        // Positive Y is downward, off the bottom edge.
+        return `translate3d(0, ${offset}, 0)`;
     }
 
-    // For inlineEnd, we need to reverse the direction compared to inlineStart
-    const directionMultiplier = isRtl
+    const isNegative = isRtl
         ? alignment === "inlineEnd"
-            ? -1
-            : 1
-        : alignment === "inlineEnd"
-          ? 1
-          : -1;
+        : alignment === "inlineStart";
 
-    return `translate3d(${directionMultiplier * percentage}%, 0, 0)`;
+    // calc() rather than a "-" prefix, since `offset` is a string.
+    const signedOffset = isNegative ? `calc(-1 * ${offset})` : offset;
+
+    return `translate3d(${signedOffset}, 0, 0)`;
 };
 
+/**
+ * The panel fades as it slides. The slide covers only part of the panel's size,
+ * so the fade is what carries it the rest of the way in and out.
+ */
 const createKeyframes = (isRtl: boolean, alignment: DrawerAlignment) => ({
     slideIn: {
         "0%": {
-            transform: getTransformValue(isRtl, alignment, 100),
+            transform: getTransformValue(isRtl, alignment, DRAWER_SLIDE_OFFSET),
             opacity: 0,
         },
         "100%": {
-            transform: getTransformValue(isRtl, alignment, 0),
+            transform: REST_TRANSFORM,
             opacity: 1,
         },
     },
     slideOut: {
         "0%": {
-            transform: getTransformValue(isRtl, alignment, 0),
+            transform: REST_TRANSFORM,
             opacity: 1,
         },
         "100%": {
-            transform: getTransformValue(isRtl, alignment, 100),
+            transform: getTransformValue(isRtl, alignment, DRAWER_SLIDE_OFFSET),
             opacity: 0,
         },
     },
 });
 
-const getComponentStyles = ({
-    alignment,
-    isRtl,
-    animated,
-    isExiting,
-    timingDuration,
-}: {
-    alignment: DrawerAlignment | undefined;
-    isRtl: boolean;
-    animated: boolean;
-    timingDuration: number;
-    isExiting?: boolean;
-}) => {
-    // Generate keyframes for the current alignment and RTL state
-    const alignmentKeyframes = alignment
-        ? createKeyframes(isRtl, alignment)
-        : null;
+/**
+ * The default animation style for one phase: which keyframes to run, the
+ * default duration and curve, and which end state to hold outside the
+ * animation. Returns a plain object — never passed to StyleSheet.create.
+ */
+const buildDefaultStyle = (
+    isExiting: boolean,
+    alignmentKeyframes: ReturnType<typeof createKeyframes>,
+): React.CSSProperties => ({
+    // Aphrodite accepts a keyframes object for `animationName`, but the
+    // CSSProperties type only permits a string. [FEI-5019]
+    animationName: (isExiting
+        ? alignmentKeyframes.slideOut
+        : alignmentKeyframes.slideIn) as unknown as React.CSSProperties["animationName"],
+    animationDuration: `${isExiting ? DRAWER_EXIT_DURATION_MS : DRAWER_ENTER_DURATION_MS}ms`,
+    animationTimingFunction: isExiting
+        ? DRAWER_EXIT_EASING
+        : DRAWER_ENTER_EASING,
+    // `backwards` holds the off-screen `from` before the entrance starts;
+    // `forwards` holds the off-screen `to` after the exit completes.
+    animationFillMode: isExiting ? "forwards" : "backwards",
+});
 
-    return StyleSheet.create({
-        root: {
-            boxShadow: theme.dialog.shadow.default,
-            // Allows propagating the text color to all the children.
-            color: semanticColor.core.foreground.neutral.strong,
-            overflow: "auto", // Prevent dialog from scrolling with background
-            position: "relative",
-            willChange: "transform, opacity",
+const buildDirectionStyles = (alignment: DrawerAlignment) => {
+    const ltrKeyframes = createKeyframes(false, alignment);
+    // blockEnd never mirrors, so its RTL entry reuses the same keyframes.
+    const rtlKeyframes =
+        alignment === "blockEnd"
+            ? ltrKeyframes
+            : createKeyframes(true, alignment);
 
-            // Override FlexibleDialog defaults for drawer usage
-            height: "100%",
-            minBlockSize: "100vh",
-
-            // Use common widths for mininum/maximum
-            minInlineSize: breakpoint.width.xsMax,
-            maxInlineSize: breakpoint.width.smMax,
-            width: "100%",
-
-            // Unset minimums on smaller screens
-            [breakpoint.mediaQuery.smOrSmaller]: {
-                minInlineSize: "unset",
-                maxInlineSize: "unset",
-            },
+    return {
+        ltr: {
+            enter: buildDefaultStyle(false, ltrKeyframes),
+            exit: buildDefaultStyle(true, ltrKeyframes),
         },
-        dialog: {
-            // Override the minBlockSize and minInlineSize on View
-            // And allow BlockEnd content to provide its own height
-            minBlockSize: alignment === "blockEnd" ? "unset" : "100vh",
-            minInlineSize: "unset",
+        rtl: {
+            enter: buildDefaultStyle(false, rtlKeyframes),
+            exit: buildDefaultStyle(true, rtlKeyframes),
         },
-        inlineStart: {
-            // @ts-expect-error [FEI-5019] - `animationName` expects a string not an object
-            animationName:
-                animated &&
-                alignmentKeyframes &&
-                (isExiting
-                    ? alignmentKeyframes.slideOut
-                    : alignmentKeyframes.slideIn),
-            animationDuration: `${timingDuration}ms`,
-            animationTimingFunction: "linear",
-            animationFillMode: "forwards",
-        },
-        inlineEnd: {
-            // @ts-expect-error [FEI-5019] - `animationName` expects a string not an object
-            animationName:
-                animated &&
-                alignmentKeyframes &&
-                (isExiting
-                    ? alignmentKeyframes.slideOut
-                    : alignmentKeyframes.slideIn),
-            animationDuration: `${timingDuration}ms`,
-            animationTimingFunction: "linear",
-            animationFillMode: "forwards",
-        },
-        blockEnd: {
-            // @ts-expect-error [FEI-5019] - `animationName` expects a string not an object
-            animationName:
-                animated &&
-                alignmentKeyframes &&
-                (isExiting
-                    ? alignmentKeyframes.slideOut
-                    : alignmentKeyframes.slideIn),
-            animationDuration: `${timingDuration}ms`,
-            animationTimingFunction: "linear",
-            animationFillMode: "forwards",
-            height: "auto",
-            minBlockSize: "unset",
-            maxInlineSize: "unset",
-
-            [breakpoint.mediaQuery.smOrSmaller]: {
-                height: "auto",
-            },
-        },
-    });
+    };
 };
+
+// The default animation style for every alignment × direction × phase
+// combination, computed once. Plain objects — never passed to
+// StyleSheet.create.
+const DEFAULT_ANIMATION_STYLES: Record<
+    DrawerAlignment,
+    ReturnType<typeof buildDirectionStyles>
+> = {
+    inlineStart: buildDirectionStyles("inlineStart"),
+    inlineEnd: buildDirectionStyles("inlineEnd"),
+    blockEnd: buildDirectionStyles("blockEnd"),
+};
+
+// Positioning only — independent of animation state, so this is computed once
+// rather than per render. Aphrodite classes (StyleSheet.create), unlike the
+// animation styles above.
+const componentStyles = StyleSheet.create({
+    root: {
+        boxShadow: theme.dialog.shadow.default,
+        // Allows propagating the text color to all the children.
+        color: semanticColor.core.foreground.neutral.strong,
+        overflow: "auto", // Prevent dialog from scrolling with background
+        position: "relative",
+        willChange: "transform, opacity",
+
+        // Override FlexibleDialog defaults for drawer usage
+        height: "100%",
+        minBlockSize: "100vh",
+
+        // Use common widths for mininum/maximum
+        minInlineSize: breakpoint.width.xsMax,
+        maxInlineSize: breakpoint.width.smMax,
+        width: "100%",
+
+        // Unset minimums on smaller screens
+        [breakpoint.mediaQuery.smOrSmaller]: {
+            minInlineSize: "unset",
+            maxInlineSize: "unset",
+        },
+    },
+    // Override the minBlockSize and minInlineSize on View, and allow blockEnd
+    // content to provide its own height.
+    dialogDefault: {
+        minBlockSize: "100vh",
+        minInlineSize: "unset",
+    },
+    dialogBlockEnd: {
+        minBlockSize: "unset",
+        minInlineSize: "unset",
+    },
+    inlineStart: {},
+    inlineEnd: {},
+    blockEnd: {
+        height: "auto",
+        minBlockSize: "unset",
+        maxInlineSize: "unset",
+
+        [breakpoint.mediaQuery.smOrSmaller]: {
+            height: "auto",
+        },
+    },
+});
 
 DrawerDialog.displayName = "DrawerDialog";
 

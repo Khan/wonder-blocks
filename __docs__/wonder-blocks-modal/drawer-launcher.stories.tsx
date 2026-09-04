@@ -7,7 +7,7 @@ import {View} from "@khanacademy/wonder-blocks-core";
 import {ActionMenu, ActionItem} from "@khanacademy/wonder-blocks-dropdown";
 import {RadioGroup, Choice} from "@khanacademy/wonder-blocks-form";
 import {LabeledField} from "@khanacademy/wonder-blocks-labeled-field";
-import {sizing} from "@khanacademy/wonder-blocks-tokens";
+import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {BodyText} from "@khanacademy/wonder-blocks-typography";
 
 import {DrawerDialog, DrawerLauncher} from "@khanacademy/wonder-blocks-modal";
@@ -55,7 +55,7 @@ export default {
 It can align a dialog on the \`inlineStart\` (left),  \`inlineEnd\` (right), or \`blockEnd\` (bottom).
 
 - Slide animations can be turned off with the \`animated\` prop.
-- Timing of animations can be fine-tuned with the \`timingDuration\` prop, used on enter and exit animations. It is also used to coordinate timing of focus management on open and close.
+- The drawer slides in over 300ms easing out, and leaves over 150ms easing in. Override the durations with \`timingDuration\` and the curves with \`easing\` — see the \`WithCustomAnimation\` example.
 
 **IMPORTANT**: This component should only be used with \`DrawerDialog\`. Using it with other
 dialog components may result in incorrect animations, positioning, and styling.
@@ -161,13 +161,11 @@ export const InlineEndAligned: StoryComponentType = {
 /**
  *
  * An blockEnd-aligned drawer. Uses the `alignment` prop to slide in from the
- * bottom in all writing modes, and a `timingDuration` of 400 milliseconds to
- * allow more time for animating-in vertically.
+ * bottom in all writing modes.
  */
 export const BlockEndAligned: StoryComponentType = {
     args: {
         alignment: "blockEnd",
-        timingDuration: 400,
     },
     render: (args) => (
         <DrawerLauncher modal={DefaultModal} alignment={args.alignment}>
@@ -192,6 +190,51 @@ export const WithNoAnimation: StoryComponentType = {
             animated={false}
             alignment={args.alignment}
         >
+            {({openModal}) => (
+                <Button onClick={openModal}>Click me to open the modal</Button>
+            )}
+        </DrawerLauncher>
+    ),
+};
+
+/**
+ * A drawer with a slower animation and custom curves. `timingDuration` sets the
+ * duration of both phases; `easing` sets the curve per phase, on the panel only.
+ */
+export const WithCustomAnimation: StoryComponentType = {
+    args: {
+        alignment: "inlineEnd",
+        timingDuration: 700,
+        easing: {
+            enter: "ease-out",
+            exit: "ease-in",
+        },
+    },
+    render: (args) => (
+        <DrawerLauncher {...args} modal={DefaultModal}>
+            {({openModal}) => (
+                <Button onClick={openModal}>Click me to open the modal</Button>
+            )}
+        </DrawerLauncher>
+    ),
+};
+
+/**
+ * A drawer whose backdrop uses a solid color instead of the semi-transparent
+ * scrim, so it covers the page rather than dimming it. `styles.backdrop` is applied
+ * after the backdrop's own styles.
+ */
+export const WithCustomBackdropStyles: StoryComponentType = {
+    args: {
+        alignment: "inlineEnd",
+        styles: {
+            backdrop: {
+                background: semanticColor.core.background.neutral.default,
+            },
+        },
+    },
+    render: (args) => (
+        <DrawerLauncher {...args} modal={DefaultModal}>
             {({openModal}) => (
                 <Button onClick={openModal}>Click me to open the modal</Button>
             )}
