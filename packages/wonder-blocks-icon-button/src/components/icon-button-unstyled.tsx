@@ -6,8 +6,8 @@ import {Link, useInRouterContext} from "react-router-dom-v5-compat";
 
 import {addStyle, keys} from "@khanacademy/wonder-blocks-core";
 import {isClientSideUrl} from "@khanacademy/wonder-blocks-clickable";
-import {StyleSheet} from "aphrodite";
 import type {IconButtonProps, IconButtonRef} from "../util/icon-button.types";
+import styles from "./icon-button-unstyled.module.css";
 
 const StyledA = addStyle("a");
 const StyledButton = addStyle("button");
@@ -94,7 +94,7 @@ export const IconButtonUnstyled: React.ForwardRefExoticComponent<
     const commonProps = {
         "data-testid": testId,
         "data-kind": kind,
-        style: [styles.shared, style],
+        style: [styles.reset, style],
         onKeyDown: handleKeyDown,
         onKeyUp: handleKeyUp,
         ...restProps,
@@ -131,24 +131,4 @@ export const IconButtonUnstyled: React.ForwardRefExoticComponent<
             </StyledButton>
         );
     }
-});
-
-const styles = StyleSheet.create({
-    shared: {
-        position: "relative",
-        display: "inline-flex",
-        alignItems: "center",
-        justifyContent: "center",
-        boxSizing: "border-box",
-        padding: 0,
-        cursor: "pointer",
-        border: "none",
-        outline: "none",
-        textDecoration: "none",
-        background: "none",
-        margin: 0,
-        // This removes the 300ms click delay on mobile browsers by indicating that
-        // "double-tap to zoom" shouldn't be used on this element.
-        touchAction: "manipulation",
-    },
 });
