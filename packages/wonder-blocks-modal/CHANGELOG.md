@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-modal
 
+## 8.8.0
+
+### Minor Changes
+
+- e11b241: DrawerLauncher: update the default animation timing, easing, and slide distance, and add an `easing` prop and a `styles.backdrop` key
+
 ## 8.7.12
 
 ### Patch Changes
