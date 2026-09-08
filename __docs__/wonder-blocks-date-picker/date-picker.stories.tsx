@@ -1,12 +1,13 @@
 import type {Meta, StoryObj} from "@storybook/react-vite";
+import {StyleSheet} from "aphrodite";
 import {Temporal} from "temporal-polyfill";
 import * as React from "react";
 import {expect, userEvent, waitFor, within} from "storybook/test";
 
 import {fr, es} from "date-fns/locale";
 import Button from "@khanacademy/wonder-blocks-button";
-import {View, type PropsFor} from "@khanacademy/wonder-blocks-core";
-import {sizing} from "@khanacademy/wonder-blocks-tokens";
+import {addStyle, View, type PropsFor} from "@khanacademy/wonder-blocks-core";
+import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {BodyText} from "@khanacademy/wonder-blocks-typography";
 import {LabeledField} from "@khanacademy/wonder-blocks-labeled-field";
 import {ModalLauncher, OnePaneDialog} from "@khanacademy/wonder-blocks-modal";
@@ -15,8 +16,11 @@ import {DatePicker} from "@khanacademy/wonder-blocks-date-picker";
 import ComponentInfo from "../components/component-info";
 import packageConfig from "../../packages/wonder-blocks-date-picker/package.json";
 import DatePickerArgTypes from "./date-picker.argtypes";
+import {focusStyles} from "@khanacademy/wonder-blocks-styles";
 
 type Props = PropsFor<typeof DatePicker>;
+
+const StyledInput = addStyle("input");
 
 const DatePickerWrapper = (props: Props) => {
     const [selectedDate, setSelectedDate] = React.useState<
@@ -304,11 +308,15 @@ const DatePickerWithOpenOverlay = (props: Props) => {
     const containerRef = React.useRef<HTMLDivElement>(null);
 
     React.useEffect(() => {
-        // Wait for the component to render, then click the input to open the calendar
+        // Wait for the component to render, then click the calendar toggle
+        // button to open the calendar (matches real user activation).
         const timer = setTimeout(() => {
-            const input = containerRef.current?.querySelector("input");
-            if (input) {
-                input.click();
+            const button =
+                containerRef.current?.querySelector<HTMLButtonElement>(
+                    "button",
+                );
+            if (button) {
+                button.click();
             }
         }, 100);
 
@@ -459,20 +467,24 @@ export const InsideModal: Story = {
     play: async ({canvasElement}) => {
         const canvas = within(canvasElement.ownerDocument.body);
 
-        // Open modal and focus the first date picker input so the overlay opens
+        // Open modal, then click the first date picker's calendar button to
+        // open its overlay (explicit activation, not just focus/click).
         await userEvent.click(canvas.getByRole("button", {name: "Open Modal"}));
         const dialog = await canvas.findByRole("dialog", {
             name: "Date Picker in Modal",
         });
-        const textboxes = await within(dialog).findAllByRole("textbox");
-        const dateInput = textboxes[0];
-        await userEvent.click(dateInput);
+        const calendarButtons = await within(dialog).findAllByRole("button", {
+            name: "Toggle calendar",
+        });
+        await userEvent.click(calendarButtons[0]);
 
         await canvas.findByRole("grid");
-        expect(dateInput).toHaveFocus();
+        // Clicking the toggle button opens the overlay without moving focus
+        // off the button (matching native date/time inputs).
+        expect(calendarButtons[0]).toHaveFocus();
 
         // fire keydown to trigger handledEscapeRef in DatePicker
-        dateInput.dispatchEvent(
+        calendarButtons[0].dispatchEvent(
             new KeyboardEvent("keydown", {
                 key: "Escape",
                 bubbles: true,
@@ -480,7 +492,7 @@ export const InsideModal: Story = {
         );
 
         // fire keyup to stop propagation to modal based on handledEscapeRef
-        dateInput.dispatchEvent(
+        calendarButtons[0].dispatchEvent(
             new KeyboardEvent("keyup", {
                 key: "Escape",
                 bubbles: true,
@@ -568,3 +580,88 @@ export const WithCustomStyles: Story = {
         updateDate: () => {},
     },
 };
+
+const ActivationComparisonExample = () => {
+    const [selectedDate, setSelectedDate] = React.useState<
+        Temporal.PlainDate | null | undefined
+    >(Temporal.Now.plainDateISO());
+    const [time, setTime] = React.useState("13:00");
+
+    return (
+        <View
+            style={{
+                flexDirection: "row",
+                alignItems: "flex-start",
+                gap: sizing.size_320,
+                padding: sizing.size_320,
+            }}
+        >
+            <View style={{gap: sizing.size_080, inlineSize: 240}}>
+                <LabeledField
+                    label="Wonder Blocks DatePicker"
+                    description="Try focusing/clicking the field vs. clicking the calendar icon button to see when the overlay opens."
+                    field={
+                        <DatePicker
+                            selectedDate={selectedDate}
+                            updateDate={setSelectedDate}
+                            inputAriaLabel="Choose or enter a date"
+                        />
+                    }
+                />
+            </View>
+
+            <View style={{gap: sizing.size_080, inlineSize: 240}}>
+                <LabeledField
+                    label="Native time input"
+                    description="For comparison: try focusing/clicking/typing to see when the
+                    native time picker overlay opens."
+                    field={
+                        <StyledInput
+                            type="time"
+                            id="native-time-input"
+                            value={time}
+                            onChange={(e) => {
+                                // Entering 0 causes this to be empty
+                                if (e.target.value === "") {
+                                    return;
+                                }
+                                setTime(e.target.value);
+                            }}
+                            data-testid="time-input"
+                            style={styles.timeInput}
+                        />
+                    }
+                />
+            </View>
+        </View>
+    );
+};
+
+/**
+ * Renders the Wonder Blocks DatePicker next to a native `<input type="time">`
+ * so we can manually compare when each control's overlay activates.
+ *
+ * Both controls now only show their picker overlay on **explicit
+ * activation**: for the native time input, clicking its clock icon (or
+ * pressing a key like Space/Enter/Down while focused); for the DatePicker,
+ * clicking its calendar icon button (or pressing Enter/Space while it's
+ * focused, or ArrowDown/Enter while the text input is focused). Plain focus
+ * (e.g. tabbing into either field) no longer opens either overlay. Use this
+ * story to manually verify the two controls feel consistent.
+ */
+export const DateAndTimeComparison: Story = {
+    render: () => <ActivationComparisonExample />,
+};
+
+const styles = StyleSheet.create({
+    timeInput: {
+        height: "4rem",
+        padding: `0 ${sizing.size_160}`,
+        font: "inherit",
+        border: `${border.width.thin} solid ${semanticColor.input.default.border}`,
+        borderRadius: border.radius.radius_080,
+        backgroundColor: semanticColor.input.default.background,
+        color: semanticColor.input.default.foreground,
+        ...focusStyles.focus,
+    },
+});
