@@ -19,6 +19,7 @@ export function adjustDateSegment(
 ): Temporal.PlainDate {
     if (type === "day") {
         const {daysInMonth} = date;
+        // The day is 1-based, so we need to adjust the calculation accordingly.
         const newDay =
             ((((date.day - 1 + delta) % daysInMonth) + daysInMonth) %
                 daysInMonth) +
@@ -26,8 +27,10 @@ export function adjustDateSegment(
         return date.with({day: newDay});
     }
     if (type === "month") {
+        // The month is 1-based, so we need to adjust the calculation accordingly.
         const newMonth = ((((date.month - 1 + delta) % 12) + 12) % 12) + 1;
         return date.with({month: newMonth});
     }
+    // The year is not 1-based, so we can adjust it directly.
     return date.with({year: date.year + delta});
 }
