@@ -378,7 +378,7 @@ export const WithAlternateLocale: Story = {
  * testing writing direction functionality.
  */
 export const WithRTLNumericLocale: Story = {
-    render: (args) => <DatePickerWithOpenOverlay {...args} />,
+    render: (args) => <DatePickerWrapper {...args} />,
     args: {
         selectedDate: Temporal.PlainDate.from("2026-11-01"),
         minDate: Temporal.PlainDate.from("2026-11-01"),
