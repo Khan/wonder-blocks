@@ -1,6 +1,9 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
-import type {StyleType} from "@khanacademy/wonder-blocks-core";
+import {
+    useDirectionDetection,
+    type StyleType,
+} from "@khanacademy/wonder-blocks-core";
 import {breakpoint, semanticColor} from "@khanacademy/wonder-blocks-tokens";
 import type {DrawerAlignment} from "../util/types";
 import {
@@ -17,7 +20,6 @@ import {
 } from "../util/drawer-animation";
 import FlexibleDialog from "./flexible-dialog";
 import theme from "../theme";
-import {useDirectionDetection} from "../hooks/use-direction-detection";
 
 // One of these three props is required for labeling the dialog:
 // `title`, `aria-label`, or `aria-labelledby`.

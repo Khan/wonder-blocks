@@ -1,5 +1,4 @@
-import * as React from "react";
-import {renderHook, render, act} from "@testing-library/react";
+import {renderHook} from "@testing-library/react";
 
 import {useDirectionDetection} from "../use-direction-detection";
 
@@ -149,44 +148,19 @@ describe("useDirectionDetection", () => {
         expect(result.current).toBe("ltr");
     });
 
-    it("should update direction when element ref changes", () => {
+    it("should update direction when the ref's element changes", () => {
         // Arrange
-        const newElement = document.createElement("div");
-        newElement.setAttribute("dir", "rtl");
-        document.body.appendChild(newElement);
+        const rtlElement = document.createElement("div");
+        rtlElement.setAttribute("dir", "rtl");
+        const {result, rerender} = renderHook(
+            ({element}) => useDirectionDetection({current: element}),
+            {initialProps: {element: mockElement as HTMLElement | null}},
+        );
 
-        // Use a state-based approach that will trigger the effect
-        const TestComponent = () => {
-            const [element, setElement] = React.useState<HTMLElement | null>(
-                mockElement,
-            );
-            const ref = {current: element};
-            const direction = useDirectionDetection(ref);
-
-            // Expose methods for testing
-            React.useEffect(() => {
-                (TestComponent as any).setElement = setElement;
-                (TestComponent as any).direction = direction;
-            }, [direction, setElement]);
-
-            return null;
-        };
-
-        // Act & Assert
-        render(<TestComponent />);
-
-        // Initial state should be ltr
-        expect((TestComponent as any).direction).toBe("ltr");
-
-        // Change ref to point to element with rtl
-        act(() => {
-            (TestComponent as any).setElement(newElement);
-        });
+        // Act
+        rerender({element: rtlElement});
 
         // Assert
-        expect((TestComponent as any).direction).toBe("rtl");
-
-        // Cleanup
-        document.body.removeChild(newElement);
+        expect(result.current).toBe("rtl");
     });
 });
