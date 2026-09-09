@@ -2,12 +2,10 @@
 // This file IS the Wonder Blocks Clickable implementation — it intentionally
 // wraps addStyle("button") as its underlying DOM primitive.
 import * as React from "react";
-import {StyleSheet} from "aphrodite";
 import {Link, useInRouterContext} from "react-router-dom-v5-compat";
 
 import {addStyle} from "@khanacademy/wonder-blocks-core";
 import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
-import {border, semanticColor} from "@khanacademy/wonder-blocks-tokens";
 
 import getClickableBehavior from "../util/get-clickable-behavior";
 import type {
@@ -16,6 +14,8 @@ import type {
     ExposedEventHandlers,
 } from "./clickable-behavior";
 import {isClientSideUrl} from "../util/is-client-side-url";
+
+import styles from "./clickable.module.css";
 
 type CommonProps =
     /**
@@ -334,56 +334,3 @@ const Clickable = React.forwardRef(function Clickable(
 });
 
 export default Clickable;
-
-// Source:  https://gist.github.com/MoOx/9137295
-const styles = StyleSheet.create({
-    reset: {
-        border: "none",
-        margin: 0,
-        padding: 0,
-        width: "auto",
-        overflow: "visible",
-
-        background: semanticColor.core.transparent,
-        textDecoration: "none",
-
-        /* inherit font & color from ancestor */
-        color: "inherit",
-        font: "inherit",
-
-        boxSizing: "border-box",
-        // This removes the 300ms click delay on mobile browsers by indicating that
-        // "double-tap to zoom" shouldn't be used on this element.
-        touchAction: "manipulation",
-        userSelect: "none",
-
-        // This is usual frowned upon b/c of accessibility.  We expect users of Clickable
-        // to define their own focus styles.
-        outline: "none",
-
-        /* Normalize `line-height`. Cannot be changed from `normal` in Firefox 4+. */
-        lineHeight: "normal",
-
-        /* Corrects font smoothing for webkit */
-        WebkitFontSmoothing: "inherit",
-        MozOsxFontSmoothing: "inherit",
-    },
-    link: {
-        cursor: "pointer",
-    },
-    focused: {
-        ":focus": {
-            outline: `solid ${border.width.medium} ${semanticColor.focus.outer}`,
-        },
-    },
-    disabled: {
-        color: semanticColor.action.secondary.disabled.foreground,
-        cursor: "not-allowed",
-        ":focus": {
-            outline: "none",
-        },
-        ":focus-visible": {
-            outline: `solid ${border.width.medium} ${semanticColor.focus.outer}`,
-        },
-    },
-});
