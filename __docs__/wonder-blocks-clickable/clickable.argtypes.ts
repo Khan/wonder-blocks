@@ -253,6 +253,30 @@ export default {
             },
         },
     },
+    disableMinTargetSize: {
+        description: `Whether to disable the minimum 24x24 hit area applied to
+            this component. By default a transparent \`::after\`
+            pseudo-element expands the hit area to at least 24x24 to satisfy
+            WCAG 2.5.8 (Target Size, Minimum), without changing the visual
+            layout.`,
+        control: {type: "boolean"},
+        table: {
+            category: "Accessibility",
+            defaultValue: {summary: "false"},
+            type: {
+                summary: "boolean",
+                detail: `Set this to true when: the expanded hit area would
+                overlap an adjacent target; the Clickable wraps its own
+                interactive elements that the hit area would otherwise cover;
+                or the element already draws its own \`::after\`. That last
+                case matters because \`:after\` and \`::after\` are the same
+                pseudo-element, so a rule you pass via \`style\` and the hit
+                area cascade together and merge per-property, breaking both.
+                Note that applying the hit area also makes the element a
+                containing block (\`position: relative\`).`,
+            },
+        },
+    },
     role: {
         description:
             "The role of the component, can be a role of type `ClickableRole`",

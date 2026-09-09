@@ -71,9 +71,6 @@ declare module "aphrodite" {
         ":active"?: _CSSProperties;
         ":after"?: _CSSProperties;
         ":before"?: _CSSProperties;
-        // Aphrodite accepts any key starting with ":" (see `pseudoSelectors`
-        // in aphrodite/src/generate.js), so the modern double-colon form for
-        // pseudo-elements works as well as the legacy single-colon one.
         "::after"?: _CSSProperties;
         "::before"?: _CSSProperties;
         ":first-child"?: _CSSProperties;

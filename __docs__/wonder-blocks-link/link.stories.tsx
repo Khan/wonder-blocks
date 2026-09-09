@@ -594,6 +594,42 @@ export const WithState: StoryComponentType = {
 };
 
 /**
+ * `Link` guarantees a minimum 24x24 pointer target, satisfying
+ * [WCAG 2.5.8 (Target Size, Minimum)](https://www.w3.org/WAI/WCAG22/Understanding/target-size-minimum.html).
+ * The hit area is expanded with a transparent `::after` pseudo-element rather
+ * than by growing the element, so the visual layout is unchanged. Note that
+ * this also makes the link a containing block (`position: relative`).
+ *
+ * This applies to standalone links only. `inline` links are exempt: WCAG 2.5.8
+ * excludes targets whose size is constrained by the line-height of the
+ * surrounding text, and expanding an inline link would steal clicks from
+ * adjacent lines. The `disableMinTargetSize` prop opts a standalone link out,
+ * which is useful when the expanded hit area would overlap an adjacent target.
+ */
+export const MinimumTargetSize: StoryComponentType = {
+    render: () => (
+        <View style={{gap: sizing.size_160}}>
+            <View style={styles.standaloneLinkWrapper}>
+                <Link href="#link">Standalone link (24px hit area)</Link>
+            </View>
+            <View style={styles.standaloneLinkWrapper}>
+                <Link href="#link" disableMinTargetSize={true}>
+                    Standalone link (hit area disabled)
+                </Link>
+            </View>
+            <BodyText>
+                An{" "}
+                <Link href="#link" inline={true}>
+                    inline link
+                </Link>{" "}
+                inside a sentence keeps its natural height, so it never steals
+                clicks from the lines above or below it.
+            </BodyText>
+        </View>
+    ),
+};
+
+/**
  * When in the right-to-left direction, `startIcon` / `endIcon` placement flips
  * via logical layout, and directional caret glyphs mirror via PhosphorIcon.
  * Pass the same LTR-facing icons as elsewhere — do not swap left/right carets

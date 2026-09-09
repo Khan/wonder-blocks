@@ -193,12 +193,7 @@ const CellCore = (props: CellCoreProps): React.ReactElement => {
                 onClick={onClick}
                 href={href}
                 hideDefaultFocusRing={true}
-                // Cell draws its own `:after` pseudo-element (the horizontal
-                // rule, see `common.ts`) on this same element, and cancels it
-                // with `content: "unset"` when focused. `:after` and `::after`
-                // are the same pseudo-element, so Clickable's min-target hit
-                // area would cascade into the rule and break both. Cell is
-                // already at least 44px tall, so it needs no expanded hit area.
+                // Cell has its own `after` pseudo-element; this would conflict
                 disableMinTargetSize={true}
                 aria-label={ariaLabel ? ariaLabel : undefined}
                 aria-selected={ariaSelected ? ariaSelected : undefined}

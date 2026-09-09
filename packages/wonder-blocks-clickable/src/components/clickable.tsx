@@ -86,9 +86,9 @@ type CommonProps =
          * By default a transparent `::after` pseudo-element expands the hit
          * area to at least 24x24 to satisfy WCAG 2.5.8 (Target Size, Minimum).
          *
-         * Set this to `true` when the expanded area would overlap an adjacent
-         * target, or when the Clickable wraps its own interactive elements that
-         * the hit area would otherwise cover.
+         * Set this to `true` when:
+         * - the expanded area would overlap an adjacent target
+         * - you need to implement a different 'after' pseudo-element
          *
          * @defaultValue false
          */

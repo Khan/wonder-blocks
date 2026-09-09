@@ -64,8 +64,8 @@ const LinkCore = React.forwardRef(function LinkCore(
         styles.shared,
         styles.rest,
         inline && styles.restInline,
-        // WCAG 2.5.8 exempts inline links, and expanding one would steal
-        // clicks from adjacent lines of text.
+        // WCAG 2.5.8 exempts inline links; expanding one would steal clicks
+        // from adjacent lines of text.
         !inline && !disableMinTargetSize && minTargetSizeStyles.minTargetSize,
         // focused is preserved to allow for programmatic focus.
         !pressed && focused && styles.focus,

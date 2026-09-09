@@ -37,10 +37,8 @@ type CommonProps = AriaProps & {
      * Set this to `true` where the expanded area would overlap an adjacent
      * target.
      *
-     * Note that this has no effect on `inline` links: WCAG 2.5.8 exempts
-     * targets whose size is constrained by the line-height of the surrounding
-     * text, and expanding an inline link would steal clicks from adjacent
-     * lines.
+     * No change to `inline` links: WCAG 2.5.8 exempts targets whose size is
+     * constrained by the line-height of the surrounding text
      *
      * @defaultValue false
      */

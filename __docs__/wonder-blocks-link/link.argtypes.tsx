@@ -189,6 +189,26 @@ export default {
         },
     },
 
+    disableMinTargetSize: {
+        control: {type: "boolean"},
+        description: `Whether to disable the minimum 24x24 hit area applied to
+            this link. By default a transparent \`::after\` pseudo-element
+            expands the link's hit area to at least 24x24 to satisfy WCAG 2.5.8
+            (Target Size, Minimum), without changing the visual layout.`,
+        table: {
+            category: "Accessibility",
+            defaultValue: {summary: "false"},
+            type: {
+                summary: "boolean",
+                detail: `This has no effect on \`inline\` links. WCAG 2.5.8
+                exempts targets whose size is constrained by the line-height of
+                the surrounding text, and expanding an inline link would steal
+                clicks from adjacent lines. Set this to true where the expanded
+                hit area would overlap an adjacent target.`,
+            },
+        },
+    },
+
     labels: {
         control: {type: "object"},
         description: `The object containing the custom labels used inside this component. This is useful for internationalization. Defaults to English.`,
