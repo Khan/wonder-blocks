@@ -739,4 +739,61 @@ describe("Clickable", () => {
             expect(blurred).toBe(true);
         });
     });
+
+    describe("minimum target size", () => {
+        // Aphrodite is inlined into the `style` attribute under the repo's
+        // default SNAPSHOT_INLINE_APHRODITE, which cannot express `::after`.
+        // Turn it off so real class names are generated.
+        let inlineAphrodite: any;
+
+        beforeEach(() => {
+            inlineAphrodite = (global as any).SNAPSHOT_INLINE_APHRODITE;
+            (global as any).SNAPSHOT_INLINE_APHRODITE = false;
+        });
+
+        afterEach(() => {
+            (global as any).SNAPSHOT_INLINE_APHRODITE = inlineAphrodite;
+        });
+
+        it("should apply the min target size style by default", () => {
+            // Arrange
+            render(<Clickable onClick={() => {}}>{() => "Click"}</Clickable>);
+
+            // Act
+            const button = screen.getByRole("button");
+
+            // Assert
+            expect(button.className).toContain("minTargetSize");
+        });
+
+        it("should not apply the min target size style when disabled", () => {
+            // Arrange
+            render(
+                <Clickable onClick={() => {}} disableMinTargetSize={true}>
+                    {() => "Click"}
+                </Clickable>,
+            );
+
+            // Act
+            const button = screen.getByRole("button");
+
+            // Assert
+            expect(button.className).not.toContain("minTargetSize");
+        });
+
+        it("should let a consumer style override the min target size style", () => {
+            // Arrange
+            render(
+                <Clickable onClick={() => {}} style={{position: "static"}}>
+                    {() => "Click"}
+                </Clickable>,
+            );
+
+            // Act
+            const button = screen.getByRole("button");
+
+            // Assert
+            expect(button.className).toContain("minTargetSize");
+        });
+    });
 });

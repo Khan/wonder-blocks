@@ -42,6 +42,24 @@ const styles = StyleSheet.create({
     tabButton: {
         width: "100%",
     },
+    // Deliberately smaller than the 24x24 WCAG 2.5.8 minimum, to show the
+    // expanded hit area doing its job.
+    tinyTarget: {
+        blockSize: sizing.size_160,
+        inlineSize: sizing.size_160,
+        background: actionCategory.default.border,
+    },
+    row: {
+        flexDirection: "row",
+        gap: sizing.size_240,
+        alignItems: "center",
+    },
+    tightRow: {
+        flexDirection: "row",
+        // Deliberately tighter than 24px, so the hit areas overlap.
+        gap: sizing.size_040,
+        alignItems: "center",
+    },
 });
 
 export default {
@@ -110,4 +128,37 @@ export const KeyboardNavigation = {
     ),
 
     name: "Keyboard navigation",
+};
+
+export const MinimumTargetSize = {
+    render: () => (
+        <View style={styles.row}>
+            <Clickable onClick={() => {}} aria-label="Default hit area">
+                {() => <View style={styles.tinyTarget} />}
+            </Clickable>
+            <Clickable
+                onClick={() => {}}
+                aria-label="Hit area disabled"
+                disableMinTargetSize={true}
+            >
+                {() => <View style={styles.tinyTarget} />}
+            </Clickable>
+        </View>
+    ),
+
+    name: "Minimum target size",
+};
+
+export const OverlappingTargets = {
+    render: () => (
+        <View style={styles.tightRow}>
+            {["First", "Second", "Third"].map((label) => (
+                <Clickable key={label} onClick={() => {}} aria-label={label}>
+                    {() => <View style={styles.tinyTarget} />}
+                </Clickable>
+            ))}
+        </View>
+    ),
+
+    name: "Overlapping targets",
 };

@@ -30,6 +30,22 @@ type CommonProps = AriaProps & {
      */
     inline?: boolean;
     /**
+     * Whether to disable the minimum 24x24 hit area applied to this link.
+     *
+     * By default a transparent `::after` pseudo-element expands the link's hit
+     * area to at least 24x24 to satisfy WCAG 2.5.8 (Target Size, Minimum).
+     * Set this to `true` where the expanded area would overlap an adjacent
+     * target.
+     *
+     * Note that this has no effect on `inline` links: WCAG 2.5.8 exempts
+     * targets whose size is constrained by the line-height of the surrounding
+     * text, and expanding an inline link would steal clicks from adjacent
+     * lines.
+     *
+     * @defaultValue false
+     */
+    disableMinTargetSize?: boolean;
+    /**
      * Specifies the type of relationship between the current document and the
      * linked document. Should only be used when `href` is specified. This
      * defaults to "noopener noreferrer" when `target="_blank"`, but can be

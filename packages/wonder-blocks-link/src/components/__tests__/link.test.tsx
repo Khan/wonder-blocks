@@ -755,4 +755,61 @@ describe("Link", () => {
             });
         });
     });
+
+    describe("minimum target size", () => {
+        // Aphrodite is inlined into the `style` attribute under the repo's
+        // default SNAPSHOT_INLINE_APHRODITE, which cannot express `::after`.
+        // Turn it off so real class names are generated.
+        let inlineAphrodite: any;
+
+        beforeEach(() => {
+            inlineAphrodite = (global as any).SNAPSHOT_INLINE_APHRODITE;
+            (global as any).SNAPSHOT_INLINE_APHRODITE = false;
+        });
+
+        afterEach(() => {
+            (global as any).SNAPSHOT_INLINE_APHRODITE = inlineAphrodite;
+        });
+
+        it("should apply the min target size style by default", () => {
+            // Arrange
+            render(<Link href="/foo">Algebra basics</Link>);
+
+            // Act
+            const link = screen.getByRole("link");
+
+            // Assert
+            expect(link.className).toContain("minTargetSize");
+        });
+
+        it("should not apply the min target size style to inline links", () => {
+            // Arrange
+            render(
+                <Link href="/foo" inline={true}>
+                    Algebra basics
+                </Link>,
+            );
+
+            // Act
+            const link = screen.getByRole("link");
+
+            // Assert
+            expect(link.className).not.toContain("minTargetSize");
+        });
+
+        it("should not apply the min target size style when disabled", () => {
+            // Arrange
+            render(
+                <Link href="/foo" disableMinTargetSize={true}>
+                    Algebra basics
+                </Link>,
+            );
+
+            // Act
+            const link = screen.getByRole("link");
+
+            // Assert
+            expect(link.className).not.toContain("minTargetSize");
+        });
+    });
 });

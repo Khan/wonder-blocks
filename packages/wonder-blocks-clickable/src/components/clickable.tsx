@@ -16,6 +16,7 @@ import type {
     ExposedEventHandlers,
 } from "./clickable-behavior";
 import {isClientSideUrl} from "../util/is-client-side-url";
+import {minTargetSizeStyles} from "../util/min-target-size-styles";
 
 type CommonProps =
     /**
@@ -78,6 +79,20 @@ type CommonProps =
          * a custom focus ring within your own component that uses Clickable.
          */
         hideDefaultFocusRing?: boolean;
+        /**
+         * Whether to disable the minimum 24x24 hit area applied to this
+         * component.
+         *
+         * By default a transparent `::after` pseudo-element expands the hit
+         * area to at least 24x24 to satisfy WCAG 2.5.8 (Target Size, Minimum).
+         *
+         * Set this to `true` when the expanded area would overlap an adjacent
+         * target, or when the Clickable wraps its own interactive elements that
+         * the hit area would otherwise cover.
+         *
+         * @defaultValue false
+         */
+        disableMinTargetSize?: boolean;
         /**
          * Set the tabindex attribute on the rendered element.
          */
@@ -270,6 +285,7 @@ const Clickable = React.forwardRef(function Clickable(
         target = undefined,
         testId,
         hideDefaultFocusRing,
+        disableMinTargetSize = false,
         disabled,
         tabIndex,
         ...restProps
@@ -283,6 +299,7 @@ const Clickable = React.forwardRef(function Clickable(
     const getStyle = (state: ClickableState): StyleType => [
         styles.reset,
         styles.link,
+        !disableMinTargetSize && minTargetSizeStyles.minTargetSize,
         !hideDefaultFocusRing && state.focused && styles.focused,
         disabled && styles.disabled,
         style,

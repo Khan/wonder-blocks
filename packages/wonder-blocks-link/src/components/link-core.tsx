@@ -10,7 +10,10 @@ import {
     sizing,
 } from "@khanacademy/wonder-blocks-tokens";
 import {focusStyles} from "@khanacademy/wonder-blocks-styles";
-import {isClientSideUrl} from "@khanacademy/wonder-blocks-clickable";
+import {
+    isClientSideUrl,
+    minTargetSizeStyles,
+} from "@khanacademy/wonder-blocks-clickable";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import externalLinkIcon from "@phosphor-icons/core/bold/arrow-square-out-bold.svg";
 
@@ -43,6 +46,7 @@ const LinkCore = React.forwardRef(function LinkCore(
         hovered, // eslint-disable-line @typescript-eslint/no-unused-vars
         href,
         inline = false,
+        disableMinTargetSize = false,
         pressed,
         style,
         testId,
@@ -60,6 +64,9 @@ const LinkCore = React.forwardRef(function LinkCore(
         styles.shared,
         styles.rest,
         inline && styles.restInline,
+        // WCAG 2.5.8 exempts inline links, and expanding one would steal
+        // clicks from adjacent lines of text.
+        !inline && !disableMinTargetSize && minTargetSizeStyles.minTargetSize,
         // focused is preserved to allow for programmatic focus.
         !pressed && focused && styles.focus,
     ];

@@ -101,4 +101,36 @@ describe("CompactCell", () => {
         // Assert
         expect(onClickMock).toHaveBeenCalled();
     });
+
+    describe("minimum target size", () => {
+        // Aphrodite is inlined into the `style` attribute under the repo's
+        // default SNAPSHOT_INLINE_APHRODITE, which cannot express `::after`.
+        // Turn it off so real class names are generated.
+        let inlineAphrodite: any;
+
+        beforeEach(() => {
+            inlineAphrodite = (global as any).SNAPSHOT_INLINE_APHRODITE;
+            (global as any).SNAPSHOT_INLINE_APHRODITE = false;
+        });
+
+        afterEach(() => {
+            (global as any).SNAPSHOT_INLINE_APHRODITE = inlineAphrodite;
+        });
+
+        it("should opt out of Clickable's min target size hit area", () => {
+            // Cell draws its own `:after` (the horizontal rule) on the same
+            // element. `:after` and `::after` are the same pseudo-element, so
+            // the two rules would cascade together and break each other. Cell
+            // is already at least 44px tall, so it opts out instead.
+
+            // Arrange
+            render(<CompactCell title="Compact cell" onClick={() => {}} />);
+
+            // Act
+            const cell = screen.getByRole("button");
+
+            // Assert
+            expect(cell.className).not.toContain("minTargetSize");
+        });
+    });
 });
