@@ -37,10 +37,15 @@ export {toGqlOperation} from "./util/to-gql-operation";
 export {GqlRouter} from "./components/gql-router";
 export {useGql} from "./hooks/use-gql";
 export {GqlError, GqlErrors} from "./util/gql-error";
+export {ErrorResultGqlError} from "./util/error-result-gql-error";
+export {isErrorResultGqlError} from "./util/is-error-result-gql-error";
 export type {
     GqlContext,
     GqlOperation,
     GqlOperationType,
     GqlFetchOptions,
     GqlFetchFn,
+    GqlPartialData,
+    GqlResponseError,
+    GqlErrorResultPayload,
 } from "./util/gql-types";

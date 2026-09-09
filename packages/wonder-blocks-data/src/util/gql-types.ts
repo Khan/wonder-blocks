@@ -62,3 +62,36 @@ export type GqlFetchOptions<
     variables?: TVariables;
     context?: Partial<TContext>;
 };
+
+/**
+ * The data of a GraphQL response that reported errors.
+ *
+ * Each top-level field is either the requested value or null. A field that
+ * errored is nulled, and that null propagates to the nearest nullable
+ * ancestor, so the top level of the result is the only level whose shape we
+ * can state with certainty.
+ */
+export type GqlPartialData<TData> = {
+    [K in keyof TData]: TData[K] | null;
+};
+
+/**
+ * An error entry from the `errors` array of a GraphQL response.
+ */
+export type GqlResponseError = {
+    message: string;
+    locations?: ReadonlyArray<{line: number; column: number}>;
+    path?: ReadonlyArray<string | number>;
+    extensions?: Record<string, unknown>;
+};
+
+/**
+ * The payload of a GraphQL response that reported errors.
+ *
+ * `data` is absent or null when the whole operation failed; otherwise it is
+ * the partial data the server was able to resolve.
+ */
+export type GqlErrorResultPayload<TData> = {
+    data?: GqlPartialData<TData> | null;
+    errors: ReadonlyArray<GqlResponseError>;
+};
