@@ -13,11 +13,11 @@
  * There are three exports, and they are deliberately in one file so they
  * cannot drift apart:
  *
- * 1. `WonderBlocksStrings` — the type components consume, via `useWbStrings`.
+ * 1. `WonderBlocksStrings` — the type components consume, via `useWonderBlocksI18n`.
  * 2. `strings` — the untranslated English source plus the context a translator
  *    needs. A consumer's build step reads this and generates the binding that
  *    produces a translated `WonderBlocksStrings`.
- * 3. `defaultStrings` — English, ready to render. This is the config context's
+ * 3. `defaultStrings` — English, ready to render. This is the i18n context's
  *    default value, so Wonder Blocks renders correctly (in English) wherever
  *    no provider is mounted: its own Storybook, unit tests, and any app that
  *    has not adopted the provider.
@@ -29,10 +29,15 @@
  * the first two mandatory and the type annotation on `defaultStrings` makes
  * the third — you cannot half-add a string.
  *
- * Keys are flat and prefixed by the component that renders them (rather than
- * nested per component) because the string extraction tooling walks a single
- * `Object.entries`. Keep the entries grouped in per-component blocks so the
- * file still reads by component.
+ * Keys are flat rather than nested per component, because the string
+ * extraction tooling walks a single `Object.entries`. Name them by what the
+ * string is, prefixed so that strings of a kind sort together — `icon*` for
+ * the alt text of an icon, `sr*` for screen-reader-only copy — and group the
+ * entries under those headings, so a new string joins strings it might
+ * duplicate rather than hiding at the end of a list. That grouping is the
+ * defence against the kind of drift this replaces: "Clear search" and "This
+ * field is required." each got declared twice precisely because nobody could
+ * see both declarations at once.
  */
 
 /**
@@ -45,11 +50,13 @@
  * component's own `labels` prop.
  */
 export type WonderBlocksStrings = {
+    // Icon alt text
+
     /**
-     * `Link`: the accessible name for the icon that marks a link opening in a
-     * new window.
+     * The accessible name for the icon that marks a link opening in a new
+     * window. Rendered by `Link`.
      */
-    linkExternalIcon: string;
+    iconExternalLink: string;
 };
 
 /**
@@ -71,8 +78,8 @@ export type WonderBlocksStrings = {
  * exist here without existing in the type, or vice versa.
  */
 export const strings = {
-    // Link
-    linkExternalIcon: {
+    // Icon alt text
+    iconExternalLink: {
         context:
             "Accessible name for the icon marking a link that opens in a new window.",
         message: "Opens in a new window",
@@ -87,14 +94,14 @@ export const strings = {
 /**
  * English strings, ready to render.
  *
- * This is the config context's default value in every environment, so Wonder
+ * This is the i18n context's default value in every environment, so Wonder
  * Blocks never crashes or renders a blank label when no provider is mounted.
  * Keep the wording in sync with `strings` above — this is the same copy, with
  * the translator metadata resolved away and `%(name)s` placeholders expressed
  * as functions.
  *
  * These messages are repeated rather than read off `strings` on purpose. A
- * reference like `strings.linkExternalIcon.message` keeps the whole `strings`
+ * reference like `strings.iconExternalLink.message` keeps the whole `strings`
  * object — every `context` line with it — in the bundle that every consumer of
  * this package loads, because it is a runtime property lookup that the
  * minifier will not inline. It also does not extend to pluralized entries,
@@ -102,6 +109,6 @@ export const strings = {
  * checks the two for drift instead.
  */
 export const defaultStrings: WonderBlocksStrings = {
-    // Link
-    linkExternalIcon: "Opens in a new window",
+    // Icon alt text
+    iconExternalLink: "Opens in a new window",
 };

@@ -2,7 +2,7 @@ import * as React from "react";
 import {StyleSheet} from "aphrodite";
 import {Link, useInRouterContext} from "react-router-dom-v5-compat";
 
-import {addStyle, useWbStrings} from "@khanacademy/wonder-blocks-core";
+import {addStyle, useWonderBlocksI18n} from "@khanacademy/wonder-blocks-core";
 import {
     border,
     font,
@@ -35,7 +35,7 @@ const LinkCore = React.forwardRef(function LinkCore(
     ref: React.ForwardedRef<typeof Link | HTMLAnchorElement>,
 ) {
     const inRouterContext = useInRouterContext();
-    const strings = useWbStrings();
+    const {strings} = useWonderBlocksI18n();
 
     const {
         children,
@@ -83,9 +83,9 @@ const LinkCore = React.forwardRef(function LinkCore(
             style={[styles.endIcon, styles.centered]}
             testId="external-icon"
             // The `labels` prop wins, then the configured translation, then
-            // English from the config context's default value.
+            // English from the i18n context's default value.
             aria-label={
-                labels?.externalIconAriaLabel ?? strings.linkExternalIcon
+                labels?.externalIconAriaLabel ?? strings.iconExternalLink
             }
         />
     );

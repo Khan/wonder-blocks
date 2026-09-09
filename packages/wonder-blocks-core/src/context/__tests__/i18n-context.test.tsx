@@ -1,32 +1,32 @@
 import * as React from "react";
 import {render, screen} from "@testing-library/react";
 
-import {WonderBlocksConfigProvider} from "../wonder-blocks-config-provider";
-import {ConfigContext} from "../config-context";
-import {useWbLocale} from "../../hooks/use-wb-locale";
-import {useWbStrings} from "../../hooks/use-wb-strings";
+import {
+    useWonderBlocksI18n,
+    WonderBlocksI18nContext,
+    WonderBlocksI18nContextProvider,
+} from "../i18n-context";
 import {defaultStrings} from "../../strings";
 
-import type {WonderBlocksConfig} from "../config-context";
+import type {I18nContextType} from "../i18n-context";
 
-const StringsProbe = () => <div>{useWbStrings().linkExternalIcon}</div>;
+const StringsProbe = () => (
+    <div>{useWonderBlocksI18n().strings.iconExternalLink}</div>
+);
 
-const LocaleProbe = () => <div>{useWbLocale()}</div>;
+const LocaleProbe = () => <div>{useWonderBlocksI18n().locale}</div>;
 
-describe("WonderBlocksConfigProvider", () => {
-    describe("useWbStrings", () => {
+describe("WonderBlocksI18nContextProvider", () => {
+    describe("strings", () => {
         test("returns the strings supplied by the provider", () => {
             // Arrange
             render(
-                <WonderBlocksConfigProvider
-                    strings={{
-                        ...defaultStrings,
-                        linkExternalIcon: "Se abre en una ventana nueva",
-                    }}
+                <WonderBlocksI18nContextProvider
+                    strings={{iconExternalLink: "Se abre en una ventana nueva"}}
                     locale="es"
                 >
                     <StringsProbe />
-                </WonderBlocksConfigProvider>,
+                </WonderBlocksI18nContextProvider>,
             );
 
             // Act
@@ -41,7 +41,7 @@ describe("WonderBlocksConfigProvider", () => {
             render(<StringsProbe />);
 
             // Act
-            const label = screen.getByText(defaultStrings.linkExternalIcon);
+            const label = screen.getByText(defaultStrings.iconExternalLink);
 
             // Assert
             expect(label).toBeInTheDocument();
@@ -50,20 +50,17 @@ describe("WonderBlocksConfigProvider", () => {
         test("returns the strings from the nearest provider when nested", () => {
             // Arrange
             render(
-                <WonderBlocksConfigProvider
-                    strings={{
-                        ...defaultStrings,
-                        linkExternalIcon: "Outer",
-                    }}
+                <WonderBlocksI18nContextProvider
+                    strings={{iconExternalLink: "Outer"}}
                     locale="en"
                 >
-                    <WonderBlocksConfigProvider
-                        strings={{...defaultStrings, linkExternalIcon: "Inner"}}
+                    <WonderBlocksI18nContextProvider
+                        strings={{iconExternalLink: "Inner"}}
                         locale="en"
                     >
                         <StringsProbe />
-                    </WonderBlocksConfigProvider>
-                </WonderBlocksConfigProvider>,
+                    </WonderBlocksI18nContextProvider>
+                </WonderBlocksI18nContextProvider>,
             );
 
             // Act
@@ -74,16 +71,16 @@ describe("WonderBlocksConfigProvider", () => {
         });
     });
 
-    describe("useWbLocale", () => {
+    describe("locale", () => {
         test("returns the locale supplied by the provider", () => {
             // Arrange
             render(
-                <WonderBlocksConfigProvider
+                <WonderBlocksI18nContextProvider
                     strings={defaultStrings}
                     locale="pt-PT"
                 >
                     <LocaleProbe />
-                </WonderBlocksConfigProvider>,
+                </WonderBlocksI18nContextProvider>,
             );
 
             // Act
@@ -112,18 +109,18 @@ describe("WonderBlocksConfigProvider", () => {
         // since a generated binding returns a new object per call.
         test("keeps the same context value across a re-render with unchanged props", () => {
             // Arrange
-            const configs: Array<WonderBlocksConfig> = [];
-            const ConfigProbe = () => {
-                configs.push(React.useContext(ConfigContext));
+            const values: Array<I18nContextType> = [];
+            const ContextProbe = () => {
+                values.push(React.useContext(WonderBlocksI18nContext));
                 return null;
             };
             const renderTree = () => (
-                <WonderBlocksConfigProvider
+                <WonderBlocksI18nContextProvider
                     strings={defaultStrings}
                     locale="en"
                 >
-                    <ConfigProbe />
-                </WonderBlocksConfigProvider>
+                    <ContextProbe />
+                </WonderBlocksI18nContextProvider>
             );
             const {rerender} = render(renderTree());
 
@@ -131,7 +128,7 @@ describe("WonderBlocksConfigProvider", () => {
             rerender(renderTree());
 
             // Assert
-            expect(configs[1]).toBe(configs[0]);
+            expect(values[1]).toBe(values[0]);
         });
     });
 });

@@ -14,7 +14,7 @@ import type {Meta, StoryObj} from "@storybook/react-vite";
 
 import {
     View,
-    WonderBlocksConfigProvider,
+    WonderBlocksI18nContextProvider,
 } from "@khanacademy/wonder-blocks-core";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
@@ -66,7 +66,7 @@ export const Default: StoryComponentType = {
  * open in a new tab.
  *
  * The external icon has an accessible name of its own. It comes from
- * `WonderBlocksConfigProvider` when one is mounted (see Translated Strings
+ * `WonderBlocksI18nContextProvider` when one is mounted (see Translated Strings
  * below) and falls back to English otherwise, so most call sites need to do
  * nothing. Use `labels.externalIconAriaLabel`, as this example does, only when
  * one particular link needs different wording.
@@ -649,10 +649,10 @@ export const RightToLeftWithIcons: StoryComponentType = {
 
 /**
  * `Link` reads the accessible name for its external-link icon from
- * `WonderBlocksConfigProvider`, so an app supplies the translation once near
- * its root instead of at every call site. Mount the provider above everything
- * that renders Wonder Blocks components — including libraries such as Perseus
- * that render them internally.
+ * `WonderBlocksI18nContextProvider`, so an app supplies the translation once
+ * near its root instead of at every call site. Mount the provider above
+ * everything that renders Wonder Blocks components — including libraries such
+ * as Perseus that render them internally.
  *
  * The `strings` object is a complete set, produced in Khan's webapp by the
  * string extraction tooling that reads the English source from
@@ -667,8 +667,8 @@ export const RightToLeftWithIcons: StoryComponentType = {
  */
 export const TranslatedStrings: StoryComponentType = {
     render: () => (
-        <WonderBlocksConfigProvider
-            strings={{linkExternalIcon: "Se abre en una ventana nueva"}}
+        <WonderBlocksI18nContextProvider
+            strings={{iconExternalLink: "Se abre en una ventana nueva"}}
             locale="es"
         >
             <BodyText>
@@ -680,7 +680,7 @@ export const TranslatedStrings: StoryComponentType = {
                     Khan Academy en español
                 </Link>
             </BodyText>
-        </WonderBlocksConfigProvider>
+        </WonderBlocksI18nContextProvider>
     ),
 };
 
