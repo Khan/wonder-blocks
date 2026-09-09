@@ -125,6 +125,18 @@ export type BaseIconButtonProps = Partial<Omit<AriaProps, "aria-disabled">> & {
      * Function to call when the mouse down event is triggered.
      */
     onMouseDown?: (e: React.MouseEvent) => void;
+
+    /**
+     * Function to call when a key is pressed down while the button is
+     * focused. Composed with, not replacing, internal Space/Enter handling.
+     */
+    onKeyDown?: (e: React.KeyboardEvent) => unknown;
+
+    /**
+     * Function to call when a key is released while the button is focused.
+     * Composed with, not replacing, internal Space/Enter handling.
+     */
+    onKeyUp?: (e: React.KeyboardEvent) => unknown;
 };
 
 export type IconButtonProps = BaseIconButtonProps & {

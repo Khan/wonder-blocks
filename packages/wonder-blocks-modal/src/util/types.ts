@@ -19,3 +19,15 @@ export type ModalElement = React.ReactElement | null;
  * `blockEnd` is bottom-aligned.
  */
 export type DrawerAlignment = "inlineStart" | "inlineEnd" | "blockEnd";
+
+/**
+ * Easing curves for the drawer's slide animation, one per phase. Each value is
+ * any CSS `animation-timing-function`; omitting a phase leaves it on its default
+ * curve.
+ */
+export type DrawerEasing = {
+    /** The curve used while the drawer slides into place. */
+    enter?: string;
+    /** The curve used while the drawer slides away. */
+    exit?: string;
+};

@@ -369,6 +369,135 @@ describe("IconButtonUnstyled", () => {
             });
         });
 
+        it("calls a consumer-provided onKeyDown for keys other than Enter/Space", () => {
+            // Arrange
+            const onKeyDownMock = jest.fn();
+
+            render(
+                <IconButtonUnstyled
+                    aria-label="search"
+                    onClick={() => {}}
+                    onKeyDown={onKeyDownMock}
+                    testId="icon-button"
+                >
+                    <PhosphorIcon icon={magnifyingGlassIcon} />
+                </IconButtonUnstyled>,
+            );
+
+            // Act
+            const button = screen.getByRole("button");
+            // eslint-disable-next-line testing-library/prefer-user-event
+            fireEvent.keyDown(button, {key: "ArrowDown"});
+
+            // Assert
+            expect(onKeyDownMock).toHaveBeenCalledWith(
+                expect.objectContaining({key: "ArrowDown"}),
+            );
+        });
+
+        it("calls a consumer-provided onKeyUp for keys other than Enter/Space", () => {
+            // Arrange
+            const onKeyUpMock = jest.fn();
+
+            render(
+                <IconButtonUnstyled
+                    aria-label="search"
+                    onClick={() => {}}
+                    onKeyUp={onKeyUpMock}
+                    testId="icon-button"
+                >
+                    <PhosphorIcon icon={magnifyingGlassIcon} />
+                </IconButtonUnstyled>,
+            );
+
+            // Act
+            const button = screen.getByRole("button");
+            // eslint-disable-next-line testing-library/prefer-user-event
+            fireEvent.keyUp(button, {key: "ArrowDown"});
+
+            // Assert
+            expect(onKeyUpMock).toHaveBeenCalledWith(
+                expect.objectContaining({key: "ArrowDown"}),
+            );
+        });
+
+        it("calls a consumer-provided onKeyUp on Enter", () => {
+            // Arrange
+            const onKeyUpMock = jest.fn();
+
+            render(
+                <IconButtonUnstyled
+                    aria-label="search"
+                    onClick={() => {}}
+                    onKeyUp={onKeyUpMock}
+                    testId="icon-button"
+                >
+                    <PhosphorIcon icon={magnifyingGlassIcon} />
+                </IconButtonUnstyled>,
+            );
+
+            // Act
+            const button = screen.getByRole("button");
+            // eslint-disable-next-line testing-library/prefer-user-event
+            fireEvent.keyUp(button, {key: "Enter"});
+
+            // Assert
+            expect(onKeyUpMock).toHaveBeenCalledWith(
+                expect.objectContaining({key: "Enter"}),
+            );
+        });
+
+        it("still triggers onPress(true) on Enter when a consumer onKeyDown is also provided", () => {
+            // Arrange
+            const onPressMock = jest.fn();
+
+            render(
+                <IconButtonUnstyled
+                    aria-label="search"
+                    onKeyDown={() => {}}
+                    onPress={onPressMock}
+                    testId="icon-button"
+                >
+                    <PhosphorIcon icon={magnifyingGlassIcon} />
+                </IconButtonUnstyled>,
+            );
+
+            // Act
+            const button = screen.getByRole("button");
+            // eslint-disable-next-line testing-library/prefer-user-event
+            fireEvent.keyDown(button, {key: "Enter"});
+
+            // Assert: the consumer's handler and the button's own internal
+            // press-state handling both run -- neither clobbers the other.
+            expect(onPressMock).toHaveBeenCalledWith(true);
+        });
+
+        it("still triggers onClick via keyup on Enter when a consumer onKeyUp is also provided", () => {
+            // Arrange
+            const onClickMock = jest.fn();
+
+            render(
+                <IconButtonUnstyled
+                    aria-label="search"
+                    onClick={onClickMock}
+                    onKeyUp={() => {}}
+                    testId="icon-button"
+                >
+                    <PhosphorIcon icon={magnifyingGlassIcon} />
+                </IconButtonUnstyled>,
+            );
+
+            // Act
+            const button = screen.getByRole("button");
+            // eslint-disable-next-line testing-library/prefer-user-event
+            fireEvent.keyUp(button, {key: "Enter"});
+
+            // Assert: the consumer's handler and the button's own internal
+            // click-on-activation handling both run -- neither clobbers the
+            // other.
+            expect(onClickMock).toHaveBeenCalledTimes(1);
+        });
+
         describe("when disabled", () => {
             describe.each([
                 {key: "Enter", label: "Enter"},

@@ -1,5 +1,25 @@
 # @khanacademy/wonder-blocks-modal
 
+## 8.8.1
+
+### Patch Changes
+
+- 63dcc94: Move `useDirectionDetection` from `wonder-blocks-modal` (internal-only) to `wonder-blocks-core` and export it publicly, so other packages can detect the nearest ancestor's writing direction (RTL/LTR) without depending on `wonder-blocks-modal`. `wonder-blocks-modal`'s own usage (`DrawerDialog`) now imports it from `wonder-blocks-core`; no change to `wonder-blocks-modal`'s public API.
+- Updated dependencies [63dcc94]
+- Updated dependencies [5dd4192]
+    - @khanacademy/wonder-blocks-core@12.5.0
+    - @khanacademy/wonder-blocks-icon-button@11.5.0
+    - @khanacademy/wonder-blocks-announcer@1.1.2
+    - @khanacademy/wonder-blocks-breadcrumbs@3.2.28
+    - @khanacademy/wonder-blocks-layout@3.1.61
+    - @khanacademy/wonder-blocks-typography@5.0.4
+
+## 8.8.0
+
+### Minor Changes
+
+- e11b241: DrawerLauncher: update the default animation timing, easing, and slide distance, and add an `easing` prop and a `styles.backdrop` key
+
 ## 8.7.12
 
 ### Patch Changes
