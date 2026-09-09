@@ -1,0 +1,171 @@
+/**
+ * LabeledField styles
+ *
+ * Theming
+ * -------
+ * Every value that differs between the default, thunderblocks and syl-dark
+ * themes is already emitted as a `--wb-c-labeled-field-*` custom property by
+ * `build:css` (from `src/theme/{default,thunderblocks,syl-dark}.ts` into
+ * `dist/css/vars.css`, switched on `[data-wb-theme]`), so the rules below read
+ * those variables directly instead of importing the `theme` object in JS.
+ * Values that never varied by theme are written as the plain `--wb-*` token
+ * they resolved to.
+ *
+ * Specificity
+ * -----------
+ * Every rule is nested inside `.root` — the marker class on the outermost
+ * element, which carries no declarations of its own — for two reasons:
+ *
+ * 1. `BodyText` (`.mediumMedium`, `.smallSemi`, …), `View` (`.default`) and
+ *    `PhosphorIcon` (`.small`) ship single-class rules in the same
+ *    `@layer shared`, and this component's job is to override several of the
+ *    properties they set (`font-size`, `line-height`, `font-weight`,
+ *    `flex-direction`). Aphrodite's `!important` used to settle that contest;
+ *    at equal specificity the winner would instead come down to the order the
+ *    packages' stylesheets happen to load in, so the compound selector makes
+ *    the outcome depend on specificity.
+ * 2. It puts every rule below at the same specificity, so source order alone
+ *    decides precedence between them. `&` takes the specificity of its parent
+ *    (`:is(.root)`, or (0,1,0) here), so each nested rule lands at (0,2,0) —
+ *    identical to spelling out `.root .label`.
+ *
+ * Nesting is emitted as-is: nothing in the PostCSS chain
+ * (`postcss.config.cjs`) flattens it, so this ships as native CSS nesting.
+ * Each nested selector is written with an explicit `&` rather than relying on
+ * relaxed parsing of a bare class, which lowers the browser floor to
+ * Chrome 112 / Safari 16.5 / Firefox 117.
+ *
+ * Source order mirrors the order the class names used to appear in the
+ * Aphrodite `style` arrays (where the last entry won): base rules first, then
+ * the disabled and error modifiers that override them. The order between
+ * `.helperText` → `.disabledHelperText` → `.contextLabelWithError` and
+ * `.label` → `.labelWithError` → `.disabledLabel` is load-bearing.
+ *
+ * The `error` and `disabled` axes are selected by conditional class names
+ * composed through the existing `style` prop (Wonder Blocks' `processStyleList`
+ * routes class-name strings to `className`), not by pseudo-classes: both are
+ * derived from the *field child's* props (`field.props.error` /
+ * `field.props.disabled`) rather than from this element's own DOM state.
+ *
+ * The build wraps the rule below in `@layer shared { … }` via the
+ * wrap-in-layer PostCSS plugin.
+ */
+
+.root {
+    /* The label and the context label sit on one row, pushed to opposite
+     * edges. */
+    & .labelContainer {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        gap: var(--wb-c-labeled-field-root-layout-spacingBetweenHelperText);
+    }
+
+    & .label {
+        color: var(--wb-semanticColor-core-foreground-neutral-strong);
+        overflow-wrap: break-word;
+
+        /* This enables the wrapping behaviour */
+        min-inline-size: var(--wb-sizing-size_0);
+    }
+
+    & .labelWithDescription {
+        padding-block-end: var(
+            --wb-c-labeled-field-root-layout-paddingBlockEnd-labelWithDescription
+        );
+    }
+
+    & .labelWithNoDescription {
+        padding-block-end: var(
+            --wb-c-labeled-field-root-layout-paddingBlockEnd-labelWithNoDescription
+        );
+    }
+
+    /* Shared by the context label, the description, the read only message, the
+     * error message and the additional helper message. */
+    & .helperText {
+        color: var(--wb-c-labeled-field-helperText-color-default-foreground);
+        font-size: var(--wb-c-labeled-field-helperText-font-size);
+        line-height: var(--wb-c-labeled-field-helperText-font-lineHeight);
+        overflow-wrap: break-word;
+
+        /* This enables the wrapping behaviour on the helper message */
+        min-inline-size: var(--wb-sizing-size_0);
+    }
+
+    & .contextLabel {
+        /* Make the line height match the label so the context label is
+         * aligned with the label */
+        line-height: var(--wb-font-body-lineHeight-medium);
+
+        /* At most, the context label will take up 30% of the width of the
+         * LabeledField */
+        max-inline-size: 30%;
+
+        /* This prevents the context label from shrinking to fit the label */
+        flex-shrink: 0;
+    }
+
+    /* The error and read only messages pair an icon with their text. */
+    & .helperTextWithIcon {
+        flex-direction: row;
+        gap: var(--wb-c-labeled-field-helperText-layout-gap);
+    }
+
+    & .spacingAboveHelperText {
+        padding-block-start: var(
+            --wb-c-labeled-field-root-layout-spacingBetweenHelperText
+        );
+    }
+
+    & .spacingBelowHelperText {
+        padding-block-end: var(
+            --wb-c-labeled-field-root-layout-spacingBetweenHelperText
+        );
+    }
+
+    /* Disabled and error modifiers. Declared after the base rules they
+     * override — see the specificity note above. */
+    & .disabledHelperText {
+        color: var(--wb-c-labeled-field-helperText-color-disabled-foreground);
+    }
+
+    & .contextLabelWithError {
+        color: var(--wb-c-labeled-field-contextLabel-color-error-foreground);
+        font-weight: var(--wb-c-labeled-field-error-font-weight);
+    }
+
+    & .labelWithError {
+        color: var(--wb-c-labeled-field-label-color-error-foreground);
+        font-weight: var(--wb-c-labeled-field-error-font-weight);
+    }
+
+    & .disabledLabel {
+        color: var(--wb-c-labeled-field-label-color-disabled-foreground);
+    }
+
+    & .errorIcon {
+        /* This vertically aligns the icon with the text */
+        margin-block-start: var(--wb-sizing-size_010);
+    }
+
+    & .errorMessage {
+        font-weight: var(--wb-c-labeled-field-error-font-weight);
+
+        /* This aligns the helper text with the icon */
+        margin-block-start: var(
+            --wb-c-labeled-field-error-layout-marginBlockStart
+        );
+    }
+
+    /* Applied to both the error icon and the error message. `PhosphorIcon`
+     * masks its glyph with `background-color: currentColor`, so setting
+     * `color` here tints the icon as well as the text. */
+    & .error {
+        color: var(--wb-semanticColor-core-foreground-critical-default);
+    }
+
+    & .readOnlyIcon {
+        color: var(--wb-semanticColor-core-foreground-neutral-subtle);
+    }
+}
