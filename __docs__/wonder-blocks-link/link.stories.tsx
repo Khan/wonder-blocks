@@ -12,7 +12,10 @@ import {
 } from "react-router-dom-v5-compat";
 import type {Meta, StoryObj} from "@storybook/react-vite";
 
-import {View} from "@khanacademy/wonder-blocks-core";
+import {
+    View,
+    WonderBlocksConfigProvider,
+} from "@khanacademy/wonder-blocks-core";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
 import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
@@ -62,10 +65,11 @@ export const Default: StoryComponentType = {
  * automatically added to the end of the link. This indicates that the link will
  * open in a new tab.
  *
- * A translated `aria-label` for the external icon can be set using the
- * `labels.externalIconAriaLabel` prop. We recommend setting this to a translated
- * string for `(opens in a new tab)`. (Note: In the long term once WB handles
- * i18n internally, this will be handled automatically.)
+ * The external icon has an accessible name of its own. It comes from
+ * `WonderBlocksConfigProvider` when one is mounted (see Translated Strings
+ * below) and falls back to English otherwise, so most call sites need to do
+ * nothing. Use `labels.externalIconAriaLabel`, as this example does, only when
+ * one particular link needs different wording.
  */
 export const OpensInANewTab: StoryComponentType = {
     render: () => (
@@ -641,6 +645,43 @@ export const RightToLeftWithIcons: StoryComponentType = {
             disableSnapshot: false,
         },
     },
+};
+
+/**
+ * `Link` reads the accessible name for its external-link icon from
+ * `WonderBlocksConfigProvider`, so an app supplies the translation once near
+ * its root instead of at every call site. Mount the provider above everything
+ * that renders Wonder Blocks components — including libraries such as Perseus
+ * that render them internally.
+ *
+ * The `strings` object is a complete set, produced in Khan's webapp by the
+ * string extraction tooling that reads the English source from
+ * `@khanacademy/wonder-blocks-core/strings` and wraps each message for
+ * translation. Where no provider is mounted — Wonder Blocks' own Storybook,
+ * unit tests, an app that has not adopted it — components render English.
+ *
+ * A `labels` prop on an individual `Link` still wins over the configured
+ * string, which is how one instance can be worded differently from the rest.
+ *
+ * Inspect the icon below to see its `aria-label`.
+ */
+export const TranslatedStrings: StoryComponentType = {
+    render: () => (
+        <WonderBlocksConfigProvider
+            strings={{linkExternalIcon: "Se abre en una ventana nueva"}}
+            locale="es"
+        >
+            <BodyText>
+                <Link
+                    href="https://es.khanacademy.org/"
+                    target="_blank"
+                    skipClientNav={true}
+                >
+                    Khan Academy en español
+                </Link>
+            </BodyText>
+        </WonderBlocksConfigProvider>
+    ),
 };
 
 const styles = StyleSheet.create({

@@ -6,7 +6,19 @@ import {nodeExternals} from "rollup-plugin-node-externals";
 import swc from "@rollup/plugin-swc";
 import resolve from "@rollup/plugin-node-resolve";
 
-const createConfig = (pkgName) => {
+/**
+ * Entry points a package builds in addition to `src/index.ts`, keyed by
+ * package name. Each one is a module under `src/` (without its extension) and
+ * needs a matching subpath in that package's `exports` map.
+ */
+const ADDITIONAL_ENTRY_POINTS = {
+    // The English source of Wonder Blocks' own strings, imported by
+    // translation tooling rather than by app code, so it must be reachable
+    // without pulling in React and every component.
+    "wonder-blocks-core": ["strings"],
+};
+
+const createConfig = (pkgName, entryPoint) => {
     const packageJsonPath = path.join("packages", pkgName, "package.json");
     if (!fs.existsSync(packageJsonPath)) {
         return null;
@@ -17,16 +29,16 @@ const createConfig = (pkgName) => {
     return {
         output: [
             {
-                file: `packages/${pkgName}/dist/es/index.js`,
+                file: `packages/${pkgName}/dist/es/${entryPoint}.js`,
                 format: "esm",
             },
             // TODO(FEI-5030): Stop building CJS modules
             {
-                file: `packages/${pkgName}/dist/index.js`,
+                file: `packages/${pkgName}/dist/${entryPoint}.js`,
                 format: "cjs",
             },
         ],
-        input: `packages/${pkgName}/src/index.ts`,
+        input: `packages/${pkgName}/src/${entryPoint}.ts`,
         plugins: [
             swc({
                 swc: {
@@ -52,4 +64,11 @@ const createConfig = (pkgName) => {
     };
 };
 
-export default fs.readdirSync("packages").map(createConfig).filter(Boolean);
+export default fs
+    .readdirSync("packages")
+    .flatMap((pkgName) =>
+        ["index", ...(ADDITIONAL_ENTRY_POINTS[pkgName] ?? [])].map(
+            (entryPoint) => createConfig(pkgName, entryPoint),
+        ),
+    )
+    .filter(Boolean);

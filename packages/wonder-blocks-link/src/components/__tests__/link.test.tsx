@@ -9,6 +9,7 @@ import {
 import {fireEvent, render, screen, waitFor} from "@testing-library/react";
 import {userEvent} from "@testing-library/user-event";
 
+import {WonderBlocksConfigProvider} from "@khanacademy/wonder-blocks-core";
 import {Icon, PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import plusIcon from "@phosphor-icons/core/bold/plus-bold.svg";
 
@@ -459,7 +460,7 @@ describe("Link", () => {
             });
         });
 
-        test("external icon has no aria-label by default", async () => {
+        test("external icon uses the English default aria-label when no config provider is mounted", async () => {
             // Arrange
             render(
                 <Link href="https://www.google.com/" target="_blank">
@@ -471,7 +472,60 @@ describe("Link", () => {
             const icon = await screen.findByTestId("external-icon");
 
             // Assert
-            expect(icon).not.toHaveAttribute("aria-label");
+            expect(icon).toHaveAttribute("aria-label", "Opens in a new window");
+        });
+
+        test("external icon uses the aria-label from the config provider", async () => {
+            // Arrange
+            render(
+                <WonderBlocksConfigProvider
+                    strings={{linkExternalIcon: "Se abre en una ventana nueva"}}
+                    locale="es"
+                >
+                    <Link href="https://www.google.com/" target="_blank">
+                        Click me!
+                    </Link>
+                </WonderBlocksConfigProvider>,
+            );
+
+            // Act
+            const icon = await screen.findByTestId("external-icon");
+
+            // Assert
+            expect(icon).toHaveAttribute(
+                "aria-label",
+                "Se abre en una ventana nueva",
+            );
+        });
+
+        test("external icon prefers the `labels` prop over the config provider", async () => {
+            // Arrange
+            render(
+                <WonderBlocksConfigProvider
+                    strings={{linkExternalIcon: "Se abre en una ventana nueva"}}
+                    locale="es"
+                >
+                    <Link
+                        href="https://www.google.com/"
+                        target="_blank"
+                        labels={{
+                            externalIconAriaLabel:
+                                "(abre en una pestaña nueva)",
+                        }}
+                    >
+                        Click me!
+                    </Link>
+                </WonderBlocksConfigProvider>,
+            );
+
+            // Act
+            const icon = await screen.findByTestId("external-icon");
+
+            // Assert
+            expect(icon).toHaveAttribute(
+                "aria-label",
+                "(abre en una pestaña nueva)",
+            );
         });
 
         test("external icon uses provided aria-label", async () => {
