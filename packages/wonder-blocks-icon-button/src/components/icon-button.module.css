@@ -1,0 +1,382 @@
+/**
+ * IconButton styles
+ *
+ * Every value a variant axis can change goes through a `--wb-c-icon-button--*`
+ * custom property ("component token"), as `Button` and `NodeIconButton` do. The
+ * double dash keeps the namespace distinct from the codegen'd theme tokens
+ * these read from (`--wb-c-icon-button-iconButton-*`, `--wb-semanticColor-*`).
+ *
+ *   --wb-c-icon-button--size               target area, block + inline (size)
+ *   --wb-c-icon-button--icon-size          icon block + inline size  (size)
+ *   --wb-c-icon-button--border-width-default  per-state widths       (kind)
+ *   --wb-c-icon-button--border-width-hover
+ *   --wb-c-icon-button--border-width-press
+ *   --wb-c-icon-button--outline-offset     primary's outline offset  (kind)
+ *   --wb-c-icon-button--bg-default         per-state colours (kind × actionType)
+ *   --wb-c-icon-button--fg-default
+ *   --wb-c-icon-button--border-default
+ *   --wb-c-icon-button--bg-hover
+ *   --wb-c-icon-button--fg-hover
+ *   --wb-c-icon-button--border-hover
+ *   --wb-c-icon-button--bg-press
+ *   --wb-c-icon-button--fg-press
+ *   --wb-c-icon-button--border-press
+ *   --wb-c-icon-button--bg-disabled        disabled colours          (kind)
+ *   --wb-c-icon-button--fg-disabled
+ *   --wb-c-icon-button--border-disabled
+ *
+ * Axis classes assign tokens and nothing else (composed through the `style`
+ * prop — `processStyleList` routes class-name strings to `className`);
+ * `.button` and its states only read them. Declaring the axes first and
+ * `.button` last is therefore cascade-neutral. Colour is the one axis that
+ * isn't orthogonal — the semantic tokens are keyed by `kind` *and* `actionType`
+ * — so its nine cells are compound selectors nested in their kind.
+ *
+ * Nesting is native CSS: every `&` is explicit and resolves to the flat
+ * selector it replaces, at the same specificity. State rules qualify the kind
+ * with `:where(…)`, so they all sit at equal specificity and source order
+ * decides — hover → active → focus → disabled, so focus survives hover/press
+ * and disabled resets everything. Disabled is the `[aria-disabled="true"]`
+ * attribute `icon-button-unstyled` sets, which keeps the element focusable.
+ * Tokens resolve against the per-theme `[data-wb-theme]` blocks, and the build
+ * wraps every rule in `@layer shared { … }`.
+ */
+
+@import "@khanacademy/wonder-blocks-styles/focus-styles.css";
+
+/**
+ * Axis classes: the only rules that assign component tokens.
+ *
+ * `kind` owns the per-state border widths, primary's outline offset and the
+ * disabled colours. The `kind × actionType` colour cells are nested inside the
+ * kind they belong to.
+ */
+.primary {
+    --wb-c-icon-button--border-width-default: var(
+        --wb-c-icon-button-iconButton-root-border-width-primary-default
+    );
+    --wb-c-icon-button--border-width-hover: var(
+        --wb-c-icon-button-iconButton-root-border-width-primary-hover
+    );
+    --wb-c-icon-button--border-width-press: var(
+        --wb-c-icon-button-iconButton-root-border-width-primary-press
+    );
+    --wb-c-icon-button--outline-offset: var(
+        --wb-c-icon-button-iconButton-root-border-offset-primary
+    );
+    --wb-c-icon-button--bg-disabled: var(--wb-semanticColor-action-primary-disabled-background);
+    --wb-c-icon-button--fg-disabled: var(--wb-semanticColor-action-primary-disabled-foreground);
+    --wb-c-icon-button--border-disabled: var(--wb-semanticColor-action-primary-disabled-border);
+
+    &.progressive {
+        --wb-c-icon-button--bg-default: var(--wb-semanticColor-action-primary-progressive-default-background);
+        --wb-c-icon-button--fg-default: var(--wb-semanticColor-action-primary-progressive-default-foreground);
+        --wb-c-icon-button--border-default: var(--wb-semanticColor-action-primary-progressive-default-border);
+        --wb-c-icon-button--bg-hover: var(--wb-semanticColor-action-primary-progressive-hover-background);
+        --wb-c-icon-button--fg-hover: var(--wb-semanticColor-action-primary-progressive-hover-foreground);
+        --wb-c-icon-button--border-hover: var(--wb-semanticColor-action-primary-progressive-hover-border);
+        --wb-c-icon-button--bg-press: var(--wb-semanticColor-action-primary-progressive-press-background);
+        --wb-c-icon-button--fg-press: var(--wb-semanticColor-action-primary-progressive-press-foreground);
+        --wb-c-icon-button--border-press: var(--wb-semanticColor-action-primary-progressive-press-border);
+    }
+
+    &.destructive {
+        --wb-c-icon-button--bg-default: var(--wb-semanticColor-action-primary-destructive-default-background);
+        --wb-c-icon-button--fg-default: var(--wb-semanticColor-action-primary-destructive-default-foreground);
+        --wb-c-icon-button--border-default: var(--wb-semanticColor-action-primary-destructive-default-border);
+        --wb-c-icon-button--bg-hover: var(--wb-semanticColor-action-primary-destructive-hover-background);
+        --wb-c-icon-button--fg-hover: var(--wb-semanticColor-action-primary-destructive-hover-foreground);
+        --wb-c-icon-button--border-hover: var(--wb-semanticColor-action-primary-destructive-hover-border);
+        --wb-c-icon-button--bg-press: var(--wb-semanticColor-action-primary-destructive-press-background);
+        --wb-c-icon-button--fg-press: var(--wb-semanticColor-action-primary-destructive-press-foreground);
+        --wb-c-icon-button--border-press: var(--wb-semanticColor-action-primary-destructive-press-border);
+    }
+
+    &.neutral {
+        --wb-c-icon-button--bg-default: var(--wb-semanticColor-action-primary-neutral-default-background);
+        --wb-c-icon-button--fg-default: var(--wb-semanticColor-action-primary-neutral-default-foreground);
+        --wb-c-icon-button--border-default: var(--wb-semanticColor-action-primary-neutral-default-border);
+        --wb-c-icon-button--bg-hover: var(--wb-semanticColor-action-primary-neutral-hover-background);
+        --wb-c-icon-button--fg-hover: var(--wb-semanticColor-action-primary-neutral-hover-foreground);
+        --wb-c-icon-button--border-hover: var(--wb-semanticColor-action-primary-neutral-hover-border);
+        --wb-c-icon-button--bg-press: var(--wb-semanticColor-action-primary-neutral-press-background);
+        --wb-c-icon-button--fg-press: var(--wb-semanticColor-action-primary-neutral-press-foreground);
+        --wb-c-icon-button--border-press: var(--wb-semanticColor-action-primary-neutral-press-border);
+    }
+}
+
+.secondary {
+    --wb-c-icon-button--border-width-default: var(
+        --wb-c-icon-button-iconButton-root-border-width-secondary-default
+    );
+    --wb-c-icon-button--border-width-hover: var(
+        --wb-c-icon-button-iconButton-root-border-width-secondary-hover
+    );
+    --wb-c-icon-button--border-width-press: var(
+        --wb-c-icon-button-iconButton-root-border-width-secondary-press
+    );
+    --wb-c-icon-button--outline-offset: var(
+        --wb-c-icon-button-iconButton-root-border-offset-secondary
+    );
+    --wb-c-icon-button--bg-disabled: var(--wb-semanticColor-action-secondary-disabled-background);
+    --wb-c-icon-button--fg-disabled: var(--wb-semanticColor-action-secondary-disabled-foreground);
+    --wb-c-icon-button--border-disabled: var(--wb-semanticColor-action-secondary-disabled-border);
+
+    &.progressive {
+        --wb-c-icon-button--bg-default: var(--wb-semanticColor-action-secondary-progressive-default-background);
+        --wb-c-icon-button--fg-default: var(--wb-semanticColor-action-secondary-progressive-default-foreground);
+        --wb-c-icon-button--border-default: var(--wb-semanticColor-action-secondary-progressive-default-border);
+        --wb-c-icon-button--bg-hover: var(--wb-semanticColor-action-secondary-progressive-hover-background);
+        --wb-c-icon-button--fg-hover: var(--wb-semanticColor-action-secondary-progressive-hover-foreground);
+        --wb-c-icon-button--border-hover: var(--wb-semanticColor-action-secondary-progressive-hover-border);
+        --wb-c-icon-button--bg-press: var(--wb-semanticColor-action-secondary-progressive-press-background);
+        --wb-c-icon-button--fg-press: var(--wb-semanticColor-action-secondary-progressive-press-foreground);
+        --wb-c-icon-button--border-press: var(--wb-semanticColor-action-secondary-progressive-press-border);
+    }
+
+    &.destructive {
+        --wb-c-icon-button--bg-default: var(--wb-semanticColor-action-secondary-destructive-default-background);
+        --wb-c-icon-button--fg-default: var(--wb-semanticColor-action-secondary-destructive-default-foreground);
+        --wb-c-icon-button--border-default: var(--wb-semanticColor-action-secondary-destructive-default-border);
+        --wb-c-icon-button--bg-hover: var(--wb-semanticColor-action-secondary-destructive-hover-background);
+        --wb-c-icon-button--fg-hover: var(--wb-semanticColor-action-secondary-destructive-hover-foreground);
+        --wb-c-icon-button--border-hover: var(--wb-semanticColor-action-secondary-destructive-hover-border);
+        --wb-c-icon-button--bg-press: var(--wb-semanticColor-action-secondary-destructive-press-background);
+        --wb-c-icon-button--fg-press: var(--wb-semanticColor-action-secondary-destructive-press-foreground);
+        --wb-c-icon-button--border-press: var(--wb-semanticColor-action-secondary-destructive-press-border);
+    }
+
+    &.neutral {
+        --wb-c-icon-button--bg-default: var(--wb-semanticColor-action-secondary-neutral-default-background);
+        --wb-c-icon-button--fg-default: var(--wb-semanticColor-action-secondary-neutral-default-foreground);
+        --wb-c-icon-button--border-default: var(--wb-semanticColor-action-secondary-neutral-default-border);
+        --wb-c-icon-button--bg-hover: var(--wb-semanticColor-action-secondary-neutral-hover-background);
+        --wb-c-icon-button--fg-hover: var(--wb-semanticColor-action-secondary-neutral-hover-foreground);
+        --wb-c-icon-button--border-hover: var(--wb-semanticColor-action-secondary-neutral-hover-border);
+        --wb-c-icon-button--bg-press: var(--wb-semanticColor-action-secondary-neutral-press-background);
+        --wb-c-icon-button--fg-press: var(--wb-semanticColor-action-secondary-neutral-press-foreground);
+        --wb-c-icon-button--border-press: var(--wb-semanticColor-action-secondary-neutral-press-border);
+    }
+}
+
+.tertiary {
+    --wb-c-icon-button--border-width-default: var(
+        --wb-c-icon-button-iconButton-root-border-width-tertiary-default
+    );
+    --wb-c-icon-button--border-width-hover: var(
+        --wb-c-icon-button-iconButton-root-border-width-tertiary-hover
+    );
+    --wb-c-icon-button--border-width-press: var(
+        --wb-c-icon-button-iconButton-root-border-width-tertiary-press
+    );
+    --wb-c-icon-button--outline-offset: var(
+        --wb-c-icon-button-iconButton-root-border-offset-tertiary
+    );
+    --wb-c-icon-button--bg-disabled: var(--wb-semanticColor-action-tertiary-disabled-background);
+    --wb-c-icon-button--fg-disabled: var(--wb-semanticColor-action-tertiary-disabled-foreground);
+    --wb-c-icon-button--border-disabled: var(--wb-semanticColor-action-tertiary-disabled-border);
+
+    &.progressive {
+        --wb-c-icon-button--bg-default: var(--wb-semanticColor-action-tertiary-progressive-default-background);
+        --wb-c-icon-button--fg-default: var(--wb-semanticColor-action-tertiary-progressive-default-foreground);
+        --wb-c-icon-button--border-default: var(--wb-semanticColor-action-tertiary-progressive-default-border);
+        --wb-c-icon-button--bg-hover: var(--wb-semanticColor-action-tertiary-progressive-hover-background);
+        --wb-c-icon-button--fg-hover: var(--wb-semanticColor-action-tertiary-progressive-hover-foreground);
+        --wb-c-icon-button--border-hover: var(--wb-semanticColor-action-tertiary-progressive-hover-border);
+        --wb-c-icon-button--bg-press: var(--wb-semanticColor-action-tertiary-progressive-press-background);
+        --wb-c-icon-button--fg-press: var(--wb-semanticColor-action-tertiary-progressive-press-foreground);
+        --wb-c-icon-button--border-press: var(--wb-semanticColor-action-tertiary-progressive-press-border);
+    }
+
+    &.destructive {
+        --wb-c-icon-button--bg-default: var(--wb-semanticColor-action-tertiary-destructive-default-background);
+        --wb-c-icon-button--fg-default: var(--wb-semanticColor-action-tertiary-destructive-default-foreground);
+        --wb-c-icon-button--border-default: var(--wb-semanticColor-action-tertiary-destructive-default-border);
+        --wb-c-icon-button--bg-hover: var(--wb-semanticColor-action-tertiary-destructive-hover-background);
+        --wb-c-icon-button--fg-hover: var(--wb-semanticColor-action-tertiary-destructive-hover-foreground);
+        --wb-c-icon-button--border-hover: var(--wb-semanticColor-action-tertiary-destructive-hover-border);
+        --wb-c-icon-button--bg-press: var(--wb-semanticColor-action-tertiary-destructive-press-background);
+        --wb-c-icon-button--fg-press: var(--wb-semanticColor-action-tertiary-destructive-press-foreground);
+        --wb-c-icon-button--border-press: var(--wb-semanticColor-action-tertiary-destructive-press-border);
+    }
+
+    &.neutral {
+        --wb-c-icon-button--bg-default: var(--wb-semanticColor-action-tertiary-neutral-default-background);
+        --wb-c-icon-button--fg-default: var(--wb-semanticColor-action-tertiary-neutral-default-foreground);
+        --wb-c-icon-button--border-default: var(--wb-semanticColor-action-tertiary-neutral-default-border);
+        --wb-c-icon-button--bg-hover: var(--wb-semanticColor-action-tertiary-neutral-hover-background);
+        --wb-c-icon-button--fg-hover: var(--wb-semanticColor-action-tertiary-neutral-hover-foreground);
+        --wb-c-icon-button--border-hover: var(--wb-semanticColor-action-tertiary-neutral-hover-border);
+        --wb-c-icon-button--bg-press: var(--wb-semanticColor-action-tertiary-neutral-press-background);
+        --wb-c-icon-button--fg-press: var(--wb-semanticColor-action-tertiary-neutral-press-foreground);
+        --wb-c-icon-button--border-press: var(--wb-semanticColor-action-tertiary-neutral-press-border);
+    }
+}
+
+/**
+ * `size` owns the target area and the icon size. Unlike `Button` there is no
+ * base size — the component always applies exactly one of these.
+ */
+.xsmall {
+    --wb-c-icon-button--size: var(
+        --wb-c-icon-button-iconButton-root-sizing-xsmall
+    );
+    --wb-c-icon-button--icon-size: var(
+        --wb-c-icon-button-iconButton-icon-sizing-xsmall
+    );
+}
+
+.small {
+    --wb-c-icon-button--size: var(
+        --wb-c-icon-button-iconButton-root-sizing-small
+    );
+    --wb-c-icon-button--icon-size: var(
+        --wb-c-icon-button-iconButton-icon-sizing-small
+    );
+}
+
+.medium {
+    --wb-c-icon-button--size: var(
+        --wb-c-icon-button-iconButton-root-sizing-medium
+    );
+    --wb-c-icon-button--icon-size: var(
+        --wb-c-icon-button-iconButton-icon-sizing-medium
+    );
+}
+
+.large {
+    --wb-c-icon-button--size: var(
+        --wb-c-icon-button-iconButton-root-sizing-large
+    );
+    --wb-c-icon-button--icon-size: var(
+        --wb-c-icon-button-iconButton-icon-sizing-large
+    );
+}
+
+/**
+ * The button itself. Reads the tokens the axis classes assign — never assigns
+ * them.
+ */
+.button {
+    /* Layout. The target area is square. */
+    block-size: var(--wb-c-icon-button--size);
+    inline-size: var(--wb-c-icon-button--size);
+
+    /* Theming, driven by the colour tokens set by the variant classes. */
+    border-radius: var(--wb-c-icon-button-iconButton-root-border-radius-default);
+    border-style: solid;
+    border-width: var(--wb-c-icon-button--border-width-default);
+    border-color: var(--wb-c-icon-button--border-default);
+    background: var(--wb-c-icon-button--bg-default);
+    color: var(--wb-c-icon-button--fg-default);
+
+    &:hover {
+        background: var(--wb-c-icon-button--bg-hover);
+        border-radius: var(--wb-c-icon-button-iconButton-root-border-radius-hover);
+        color: var(--wb-c-icon-button--fg-hover);
+    }
+
+    &:where(.primary):hover {
+        outline: var(--wb-c-icon-button--border-width-hover) solid
+            var(--wb-c-icon-button--border-hover);
+        outline-offset: var(--wb-c-icon-button--outline-offset);
+    }
+
+    &:where(.secondary, .tertiary):hover {
+        border: var(--wb-c-icon-button--border-width-hover) solid
+            var(--wb-c-icon-button--border-hover);
+    }
+
+    /* Prevents hover from being "sticky" on touch devices (e.g. mobile). */
+    @media not (hover: hover) {
+        &:hover {
+            background-color: transparent;
+        }
+    }
+
+    /**
+     * Active / pressed. `:active` covers pointer presses, `.pressed` covers
+     * programmatic (keyboard) presses from `IconButtonUnstyled`'s `onPress`.
+     */
+    &:active,
+    &.pressed {
+        background: var(--wb-c-icon-button--bg-press);
+        border-radius: var(--wb-c-icon-button-iconButton-root-border-radius-press);
+        color: var(--wb-c-icon-button--fg-press);
+
+        /* Animation */
+        transition: border-radius 0.1s ease-in-out;
+    }
+
+    &:where(.primary):active,
+    &:where(.primary).pressed {
+        border: none;
+        outline: var(--wb-c-icon-button--border-width-press) solid
+            var(--wb-c-icon-button--border-press);
+        outline-offset: var(--wb-c-icon-button--outline-offset);
+    }
+
+    &:where(.secondary, .tertiary):active,
+    &:where(.secondary, .tertiary).pressed {
+        border: var(--wb-c-icon-button--border-width-press) solid
+            var(--wb-c-icon-button--border-press);
+        outline: none;
+    }
+
+    /**
+     * Focus. Declared after hover / active, which sit at the same specificity
+     * (their kind qualifier is `:where(…)`), so the ring keeps priority when a
+     * button is focused *and* hovered or pressed.
+     */
+    &:focus-visible {
+        @apply --wb-focus-visible;
+    }
+
+    /** Disabled. Declared last so it resets hover / active / focus. */
+    &[aria-disabled="true"] {
+        cursor: not-allowed;
+
+        /* Longhands, not the `border` shorthand, so `.button`'s `solid` style
+         * survives. */
+        border-width: var(--wb-c-icon-button--border-width-default);
+        border-color: var(--wb-c-icon-button--border-disabled);
+        background: var(--wb-c-icon-button--bg-disabled);
+        color: var(--wb-c-icon-button--fg-disabled);
+
+        /* Reset hover / active back to the rest state. */
+        &:hover,
+        &:active {
+            border-width: var(--wb-c-icon-button--border-width-default);
+            border-color: var(--wb-c-icon-button--border-disabled);
+            border-radius: var(
+                --wb-c-icon-button-iconButton-root-border-radius-default
+            );
+            background: var(--wb-c-icon-button--bg-disabled);
+            color: var(--wb-c-icon-button--fg-disabled);
+            outline: none;
+        }
+
+        /**
+         * A disabled button still gets the focus ring. Spelled out separately
+         * because the `:hover` reset above outranks `.button:focus-visible`.
+         */
+        &:focus-visible {
+            @apply --wb-focus-visible;
+
+            border-width: var(--wb-c-icon-button--border-width-default);
+            border-color: var(--wb-c-icon-button--border-disabled);
+            background: var(--wb-c-icon-button--bg-disabled);
+            color: var(--wb-c-icon-button--fg-disabled);
+        }
+    }
+
+    /**
+     * Icon. Qualified with `.button` on purpose: `PhosphorIcon` ships
+     * single-class `.small` / `.medium` rules in the same `@layer shared`, so
+     * at equal specificity stylesheet load order would decide the winner.
+     */
+    & .icon {
+        inline-size: var(--wb-c-icon-button--icon-size);
+        block-size: var(--wb-c-icon-button--icon-size);
+    }
+}

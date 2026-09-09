@@ -1,22 +1,15 @@
 import * as React from "react";
-import {StyleSheet} from "aphrodite";
 
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
-import {focusStyles} from "@khanacademy/wonder-blocks-styles";
-import {semanticColor} from "@khanacademy/wonder-blocks-tokens";
 
 import type {
-    IconButtonActionType,
-    IconButtonKind,
     IconButtonProps,
     IconButtonRef,
     IconButtonSize,
 } from "../util/icon-button.types";
 
-import iconButtonTheme from "../theme/index";
 import {IconButtonUnstyled} from "./icon-button-unstyled";
-
-const theme = iconButtonTheme.iconButton;
+import styles from "./icon-button.module.css";
 
 /**
  * Returns the phosphor icon component based on the size. This is necessary
@@ -29,18 +22,16 @@ function IconChooser({
     icon: IconButtonProps["icon"];
     size: IconButtonSize;
 }) {
-    // We set the icon size based on the theme object. This is necessary
-    // because the icon size could change based on the theme.
-    const iconStyle = {
-        width: theme.icon.sizing[size],
-        height: theme.icon.sizing[size],
-    };
+    // The icon's box is sized by the `--wb-c-icon-button--icon-size` component
+    // token, which the `size` class on the root element assigns. This keeps the
+    // icon size theme-driven without the component having to read the theme
+    // object in JS.
 
     // If the icon is not a string, it is a custom icon that can be rendered
     // directly with the corresponding styles
     if (typeof icon !== "string") {
         return React.cloneElement(icon, {
-            style: [iconStyle],
+            style: [styles.icon],
         });
     }
 
@@ -51,7 +42,7 @@ function IconChooser({
                     size="small"
                     color="currentColor"
                     icon={icon as PhosphorBold | PhosphorFill}
-                    style={iconStyle}
+                    style={styles.icon}
                 />
             );
         case "medium":
@@ -61,7 +52,7 @@ function IconChooser({
                     size="medium"
                     color="currentColor"
                     icon={icon as PhosphorRegular | PhosphorFill}
-                    style={iconStyle}
+                    style={styles.icon}
                 />
             );
     }
@@ -125,12 +116,21 @@ export const IconButton: React.ForwardRefExoticComponent<
 
     const [pressed, setPressed] = React.useState(false);
 
-    const buttonStyles = _generateStyles(actionType, !!disabled, kind, size);
-
-    const styles = [
-        buttonStyles.default,
-        disabled && buttonStyles.disabled,
-        pressed && buttonStyles.pressed,
+    // One class per variant axis. Each of these only assigns the
+    // `--wb-c-icon-button--*` component tokens that its axis owns;
+    // `styles.button` and the state rules in the module read those tokens.
+    // `disabled` is selected in CSS via the `[aria-disabled="true"]` attribute
+    // (set by `IconButtonUnstyled`), which keeps the element focusable.
+    // Class-name strings are composed through the `style` prop —
+    // `processStyleList` routes them to `className`.
+    const buttonStyles = [
+        styles.button,
+        styles[kind],
+        styles[actionType],
+        styles[size],
+        // Enable the press state for programmatic (keyboard) interaction
+        // tracked by `IconButtonUnstyled`'s `onPress` callback.
+        !disabled && pressed && styles.pressed,
         style,
     ];
 
@@ -145,133 +145,10 @@ export const IconButton: React.ForwardRefExoticComponent<
             kind={kind}
             onPress={handlePress}
             ref={ref}
-            style={styles}
+            style={buttonStyles}
             type={type}
         >
             <IconChooser size={size} icon={icon} />
         </IconButtonUnstyled>
     );
 });
-
-const styles: Record<string, any> = {};
-
-const _generateStyles = (
-    actionType: IconButtonActionType = "progressive",
-    disabled: boolean,
-    kind: IconButtonKind,
-    size: IconButtonSize,
-) => {
-    const buttonType = `${actionType}-d_${disabled}-${kind}-${size}`;
-    if (styles[buttonType]) {
-        return styles[buttonType];
-    }
-
-    const borderWidthKind = theme.root.border.width[kind];
-    const outlineOffsetKind = theme.root.border.offset[kind];
-    const themeVariant = semanticColor.action[kind][actionType];
-    const disabledState = semanticColor.action[kind].disabled;
-
-    const disabledStatesStyles = {
-        borderColor: disabledState.border,
-        borderWidth: borderWidthKind.default,
-        background: disabledState.background,
-        color: disabledState.foreground,
-    };
-
-    const pressStyles = {
-        // primary
-        outline:
-            kind === "primary"
-                ? `${borderWidthKind.press} solid ${themeVariant.press.border}`
-                : "none",
-        outlineOffset: kind === "primary" ? outlineOffsetKind : undefined,
-        // secondary, tertiary
-        border:
-            kind !== "primary"
-                ? `${borderWidthKind.press} solid ${themeVariant.press.border}`
-                : "none",
-        background: themeVariant.press.background,
-        borderRadius: theme.root.border.radius.press,
-        color: themeVariant.press.foreground,
-        // Animation
-        transition: "border-radius 0.1s ease-in-out",
-    };
-
-    const newStyles = {
-        default: {
-            // Define button sizes per theme.
-            height: theme.root.sizing[size],
-            width: theme.root.sizing[size],
-            borderRadius: theme.root.border.radius.default,
-            // theming
-            borderStyle: "solid",
-            borderWidth: borderWidthKind.default,
-            borderColor: themeVariant.default.border,
-            background: themeVariant.default.background,
-            color: themeVariant.default.foreground,
-
-            /**
-             * States
-             *
-             * Defined in the following order: hover, active, focus.
-             *
-             * This is important as we want to give more priority to the
-             * :focus-visible styles.
-             */
-            ":hover": {
-                background: themeVariant.hover.background,
-                borderRadius: theme.root.border.radius.hover,
-                color: themeVariant.hover.foreground,
-                outline:
-                    kind === "primary"
-                        ? `${borderWidthKind.hover} solid ${themeVariant.hover.border}`
-                        : undefined,
-                outlineOffset:
-                    kind === "primary" ? outlineOffsetKind : undefined,
-                border:
-                    kind !== "primary"
-                        ? `${borderWidthKind.hover} solid ${themeVariant.hover.border}`
-                        : undefined,
-            },
-            // Allow hover styles on non-touch devices only. This prevents an
-            // issue with hover being sticky on touch devices (e.g. mobile).
-            ["@media not (hover: hover)"]: {
-                ":hover": {
-                    // reset hover styles on non-touch devices
-                    backgroundColor: "transparent",
-                },
-            },
-
-            ":active": pressStyles,
-
-            // :focus-visible -> Provide focus styles for keyboard users only.
-            ...focusStyles.focus,
-        },
-        disabled: {
-            cursor: "not-allowed",
-            ...disabledStatesStyles,
-            // NOTE: Even that browsers recommend to specify pseudo-classes in
-            // this order: link, visited, focus, hover, active, we need to
-            // specify focus after hover to override hover styles. By doing this
-            // we are able to reset the border/outline styles to the default
-            // ones (rest state).
-            // For order reference: https://css-tricks.com/snippets/css/link-pseudo-classes-in-order/
-            ":hover": {
-                ...disabledStatesStyles,
-                outline: "none",
-                borderRadius: theme.root.border.radius.default,
-            },
-            ":active": {
-                ...disabledStatesStyles,
-                outline: "none",
-                borderRadius: theme.root.border.radius.default,
-            },
-            ":focus-visible": disabledStatesStyles,
-        },
-        // Enable keyboard support for press styles.
-        pressed: pressStyles,
-    } as const;
-
-    styles[buttonType] = StyleSheet.create(newStyles);
-    return styles[buttonType];
-};
