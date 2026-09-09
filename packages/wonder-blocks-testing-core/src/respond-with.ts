@@ -125,6 +125,23 @@ export const RespondWith = Object.freeze({
         ),
 
     /**
+     * Response with the given GraphQL JSON body and status code 200.
+     *
+     * Use this to mock a response that carries both partial data and errors.
+     * For data-only or errors-only responses, `graphQLData` and
+     * `graphQLErrors` are more succinct.
+     */
+    graphQL: <TData extends Record<any, any>>(
+        result: GraphQLJson<TData>,
+        signal: SettleSignal | null = null,
+    ): MockResponse<GraphQLJson<TData>> =>
+        textResponse<GraphQLJson<TData>>(
+            () => JSON.stringify(result),
+            200,
+            signal,
+        ),
+
+    /**
      * Response with body that will not parse as JSON and status code 200.
      */
     unparseableBody: (signal: SettleSignal | null = null): MockResponse<any> =>
