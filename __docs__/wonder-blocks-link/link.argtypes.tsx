@@ -191,10 +191,7 @@ export default {
 
     disableMinTargetSize: {
         control: {type: "boolean"},
-        description: `Whether to disable the minimum 24x24 hit area applied to
-            this link. By default a transparent \`::after\` pseudo-element
-            expands the link's hit area to at least 24x24 to satisfy WCAG 2.5.8
-            (Target Size, Minimum), without changing the visual layout.`,
+        description: `Whether to disable the minimum hit area applied this link.`,
         table: {
             category: "Accessibility",
             defaultValue: {summary: "false"},

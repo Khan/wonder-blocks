@@ -68,9 +68,9 @@ make sure to use `href` and `skipClientNav={true}`.
 The hit area is expanded with a transparent `::after` pseudo-element rather than
 by growing the element, so the visual layout is unchanged.
 
-Both squares below are 16x16. The first has the default hit area and is
+Both squares below are 12x12. The first has the default hit area and is
 clickable well beyond its visible bounds; the second sets
-`disableMinTargetSize` and is only clickable within them.
+`disableMinTargetSize` and is only clickable within its visible bounds.
 
 <Canvas of={AccessibilityStories.MinimumTargetSize} />
 
@@ -90,15 +90,12 @@ Note that applying the hit area also makes the element a containing block
 (`position: relative`), which affects absolutely-positioned descendants that
 previously resolved against an ancestor.
 
-### Overlapping targets
+#### Overlapping targets
 
 Because the hit area extends past the element's visual box, controls placed
 closer together than 24px end up with overlapping hit areas, and the
-later-painted one wins. In the example below the three 16x16 controls are only
-4px apart, so the rightmost one captures clicks intended for its neighbours.
+later-painted one wins. In the example below the nine 12x12 controls with no
+gap to demonstrate how the last-painted target captures clicks intended for its
+neighbours.
 
 <Canvas of={AccessibilityStories.OverlappingTargets} />
-
-Either space such controls at least 24px apart — which satisfies WCAG 2.5.8's
-own spacing exception, and is the better fix — or set `disableMinTargetSize` on
-them.
