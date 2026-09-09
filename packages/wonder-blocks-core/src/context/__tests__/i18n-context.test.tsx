@@ -103,10 +103,8 @@ describe("WonderBlocksI18nContextProvider", () => {
     });
 
     describe("context value identity", () => {
-        // The context value is memoized so that a re-render of whatever holds
-        // the provider does not re-render every Wonder Blocks component below
-        // it. Consumers still need to keep the `strings` object itself stable,
-        // since a generated binding returns a new object per call.
+        // Guards the memoization: without it, a re-render of whatever holds the
+        // provider re-renders every Wonder Blocks component below it.
         test("keeps the same context value across a re-render with unchanged props", () => {
             // Arrange
             const values: Array<I18nContextType> = [];

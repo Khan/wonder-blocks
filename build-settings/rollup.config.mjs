@@ -7,14 +7,11 @@ import swc from "@rollup/plugin-swc";
 import resolve from "@rollup/plugin-node-resolve";
 
 /**
- * Entry points a package builds in addition to `src/index.ts`, keyed by
- * package name. Each one is a module under `src/` (without its extension) and
- * needs a matching subpath in that package's `exports` map.
+ * Extra entry points per package, as module names under `src/`. Each needs a
+ * matching subpath in that package's `exports` map to be importable.
  */
 const ADDITIONAL_ENTRY_POINTS = {
-    // The English source of Wonder Blocks' own strings, imported by
-    // translation tooling rather than by app code, so it must be reachable
-    // without pulling in React and every component.
+    // Read by translation tooling, so it has to be importable without React.
     "wonder-blocks-core": ["strings"],
 };
 

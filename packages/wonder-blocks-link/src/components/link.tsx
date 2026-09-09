@@ -123,19 +123,15 @@ type CommonProps = AriaProps & {
     /**
      * The object containing the custom labels used inside this component.
      *
-     * Use this to override the wording for a single `Link`. For translating
-     * every `Link` in an app, mount `WonderBlocksI18nContextProvider` from
-     * `@khanacademy/wonder-blocks-core` instead — a label passed here wins
-     * over the configured translation.
+     * For translating every `Link` in an app, mount
+     * `WonderBlocksI18nContextProvider` instead; use this only where one
+     * `Link` needs different wording, which it overrides.
      */
     labels?: {
         /**
-         * An optional aria-label for the external link icon, describing to
-         * screen reader users that the link opens in a new window.
-         *
-         * Defaults to the `iconExternalLink` string from
-         * `WonderBlocksI18nContextProvider`, and to "Opens in a new window" where
-         * no provider is mounted.
+         * An optional aria-label for the external link icon. Defaults to the
+         * `iconExternalLink` string from `WonderBlocksI18nContextProvider`,
+         * and to "Opens in a new window" with no provider mounted.
          */
         externalIconAriaLabel?: string;
     };

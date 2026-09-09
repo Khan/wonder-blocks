@@ -82,8 +82,6 @@ const LinkCore = React.forwardRef(function LinkCore(
             size="small"
             style={[styles.endIcon, styles.centered]}
             testId="external-icon"
-            // The `labels` prop wins, then the configured translation, then
-            // English from the i18n context's default value.
             aria-label={
                 labels?.externalIconAriaLabel ?? strings.iconExternalLink
             }
