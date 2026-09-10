@@ -1,6 +1,6 @@
 import {SettleSignal} from "./settle-signal";
 
-import type {GraphQLJson} from "./types";
+import type {GraphQLJson, GraphQLPartialData} from "./types";
 
 /**
  * This symbol is used so we can create an opaque type, using a custom field
@@ -125,18 +125,26 @@ export const RespondWith = Object.freeze({
         ),
 
     /**
-     * Response with the given GraphQL JSON body and status code 200.
+     * Response with GraphQL partial data and errors and status code 200.
      *
-     * Use this to mock a response that carries both partial data and errors.
-     * For data-only or errors-only responses, `graphQLData` and
-     * `graphQLErrors` are more succinct.
+     * This mocks a response where some fields resolved and others failed:
+     * the body carries both `data`, with the failed fields set to null, and
+     * `errors`. Use `graphQLData` for a data-only response and
+     * `graphQLErrors` for an errors-only response.
      */
-    graphQL: <TData extends Record<any, any>>(
-        result: GraphQLJson<TData>,
+    graphQLPartialData: <TData extends Record<any, any>>(
+        data: GraphQLPartialData<TData> | null,
+        errorMessages: ReadonlyArray<string>,
         signal: SettleSignal | null = null,
     ): MockResponse<GraphQLJson<TData>> =>
         textResponse<GraphQLJson<TData>>(
-            () => JSON.stringify(result),
+            () =>
+                JSON.stringify({
+                    data,
+                    errors: errorMessages.map((e) => ({
+                        message: e,
+                    })),
+                }),
             200,
             signal,
         ),
