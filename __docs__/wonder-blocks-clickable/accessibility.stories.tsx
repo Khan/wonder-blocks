@@ -7,6 +7,7 @@ import Clickable, {
 import {StyleType, View} from "@khanacademy/wonder-blocks-core";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {
+    border,
     boxShadow,
     semanticColor,
     sizing,
@@ -48,7 +49,12 @@ const styles = StyleSheet.create({
         blockSize: sizing.size_120,
         inlineSize: sizing.size_120,
         padding: "unset",
-        borderWidth: 3,
+        borderWidth: border.width.medium,
+    },
+    pseudoShadow: {
+        "::after": {
+            boxShadow: boxShadow.mid,
+        },
     },
     row: {
         flexDirection: "row",
@@ -137,7 +143,11 @@ export const KeyboardNavigation = {
 export const MinimumTargetSize = {
     render: () => (
         <View style={styles.row}>
-            <Clickable onClick={() => {}} aria-label="Default hit area">
+            <Clickable
+                onClick={() => {}}
+                aria-label="Default hit area"
+                style={styles.pseudoShadow}
+            >
                 {(state) => <Target style={styles.tinyTarget} {...state} />}
             </Clickable>
             <Clickable
@@ -162,7 +172,6 @@ export const OverlappingTargets = {
                         key={j}
                         onClick={() => {}}
                         aria-label={String(j)}
-                        style={styles.tinyTarget}
                     >
                         {(state) => (
                             <Target style={styles.tinyTarget} {...state} />

@@ -70,7 +70,8 @@ by growing the element, so the visual layout is unchanged.
 
 Both squares below are 12x12. The first has the default hit area and is
 clickable well beyond its visible bounds; the second sets
-`disableMinTargetSize` and is only clickable within its visible bounds.
+`disableMinTargetSize` and is only clickable within its visible bounds. A
+shadow has been added to the hit area for demonstration purposes.
 
 <Canvas of={AccessibilityStories.MinimumTargetSize} />
 
@@ -79,12 +80,13 @@ Set `disableMinTargetSize` when:
 - The expanded hit area would overlap an adjacent target.
 - The `Clickable` wraps its own interactive elements that the hit area would
   otherwise cover.
-- **The element already draws its own `::after`.** `:after` and `::after` are
+- **The element already draws its own `after`.** `:after` and `::after` are
   the same pseudo-element, so a style you pass via `style` that defines either
-  form will cascade together with the hit area — same specificity, both
-  `!important` — and the two will merge per-property by source order, breaking
-  both. `Cell` is the in-repo example: it draws its horizontal rule with
-  `:after` on the `Clickable` element, so it opts out.
+  form will cascade together with the hit area. `Cell` is the in-repo example:
+  it draws its horizontal rule with `:after` on the `Clickable` element, so it
+  opts out.
+- You can guarantee that the size of the clickable element will always be at
+  least 24x24.
 
 Note that applying the hit area also makes the element a containing block
 (`position: relative`), which affects absolutely-positioned descendants that
