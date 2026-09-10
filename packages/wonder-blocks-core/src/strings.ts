@@ -47,7 +47,7 @@ export const strings = {
  * the minifier will not inline, so it would keep every `context` line in the
  * bundle each consumer of this package loads. `strings.test.ts` guards drift.
  */
-export const defaultStrings: WonderBlocksStrings = {
+export const mockStrings: WonderBlocksStrings = {
     // Icon alt text
     iconExternalLink: "Opens in a new window",
 };

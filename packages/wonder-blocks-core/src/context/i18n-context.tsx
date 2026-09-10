@@ -6,7 +6,7 @@
 import * as React from "react";
 import {useContext, useMemo} from "react";
 
-import {defaultStrings} from "../strings";
+import {mockStrings} from "../strings";
 
 import type {WonderBlocksStrings} from "../strings";
 
@@ -20,7 +20,7 @@ export type I18nContextType = {
 // Blocks has to render where no provider is mounted and never will be: its own
 // Storybook, consumer test suites, and inside Perseus.
 export const WonderBlocksI18nContext = React.createContext<I18nContextType>({
-    strings: defaultStrings,
+    strings: mockStrings,
     locale: "en",
 });
 WonderBlocksI18nContext.displayName = "WonderBlocksI18nContext";

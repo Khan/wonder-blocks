@@ -6,7 +6,7 @@ import {
     WonderBlocksI18nContext,
     WonderBlocksI18nContextProvider,
 } from "../i18n-context";
-import {defaultStrings} from "../../strings";
+import {mockStrings} from "../../strings";
 
 import type {I18nContextType} from "../i18n-context";
 
@@ -41,7 +41,7 @@ describe("WonderBlocksI18nContextProvider", () => {
             render(<StringsProbe />);
 
             // Act
-            const label = screen.getByText(defaultStrings.iconExternalLink);
+            const label = screen.getByText(mockStrings.iconExternalLink);
 
             // Assert
             expect(label).toBeInTheDocument();
@@ -76,7 +76,7 @@ describe("WonderBlocksI18nContextProvider", () => {
             // Arrange
             render(
                 <WonderBlocksI18nContextProvider
-                    strings={defaultStrings}
+                    strings={mockStrings}
                     locale="pt-PT"
                 >
                     <LocaleProbe />
@@ -114,7 +114,7 @@ describe("WonderBlocksI18nContextProvider", () => {
             };
             const renderTree = () => (
                 <WonderBlocksI18nContextProvider
-                    strings={defaultStrings}
+                    strings={mockStrings}
                     locale="en"
                 >
                     <ContextProbe />
