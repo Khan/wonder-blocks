@@ -195,7 +195,6 @@ import {font} from "@khanacademy/wonder-blocks-tokens";
 | \`font.body.lineHeight.xsmall\` | \`--wb-font-body-lineHeight-xsmall\` | \`1.6rem\` | \`var(--wb-sizing-size_160)\` | \`var(--wb-sizing-size_160)\` |
 | \`font.body.lineHeight.small\` | \`--wb-font-body-lineHeight-small\` | \`1.8rem\` | \`var(--wb-sizing-size_180)\` | \`var(--wb-sizing-size_180)\` |
 | \`font.body.lineHeight.medium\` | \`--wb-font-body-lineHeight-medium\` | \`2rem\` | \`var(--wb-sizing-size_240)\` | \`var(--wb-sizing-size_240)\` |
-| \`font.body.lineHeight.large\` | \`--wb-font-body-lineHeight-large\` | \`2.2rem\` | \`2.2rem\` | \`2.2rem\` |
 | \`font.heading.size.small\` | \`--wb-font-heading-size-small\` | \`1.2rem\` | \`var(--wb-sizing-size_160)\` | \`var(--wb-sizing-size_160)\` |
 | \`font.heading.size.medium\` | \`--wb-font-heading-size-medium\` | \`2rem\` | \`var(--wb-sizing-size_180)\` | \`var(--wb-sizing-size_180)\` |
 | \`font.heading.size.large\` | \`--wb-font-heading-size-large\` | \`2.4rem\` | \`var(--wb-sizing-size_200)\` | \`var(--wb-sizing-size_200)\` |
