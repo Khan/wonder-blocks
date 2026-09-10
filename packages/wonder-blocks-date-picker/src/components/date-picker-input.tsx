@@ -3,14 +3,17 @@ import * as React from "react";
 
 import {useOnMountEffect, View} from "@khanacademy/wonder-blocks-core";
 import {TextField} from "@khanacademy/wonder-blocks-form";
-import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
-import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
+import IconButton from "@khanacademy/wonder-blocks-icon-button";
+import {sizing} from "@khanacademy/wonder-blocks-tokens";
 import calendarIcon from "@phosphor-icons/core/bold/calendar-blank-bold.svg";
+import {useDateSegmentArrowKeys} from "../hooks/use-date-segment-arrow-keys";
 import {
     enUSLocaleCode,
     TemporalLocaleUtils,
 } from "../util/temporal-locale-utils";
 import type {CustomModifiers} from "../util/types";
+
+const DEFAULT_CALENDAR_BUTTON_ARIA_LABEL = "Toggle calendar";
 
 interface Props {
     /**
@@ -34,13 +37,35 @@ interface Props {
      */
     onBlur?: (e: React.FocusEvent<HTMLInputElement>) => unknown;
     /**
-     * Called when the input element is clicked.
-     */
-    onClick?: (arg1: React.MouseEvent<Element>) => unknown;
-    /**
      * Called when the input element gains focus.
      */
     onFocus?: (e: React.FocusEvent<HTMLInputElement>) => unknown;
+    /**
+     * Whether the calendar overlay is currently open. Reflected on the
+     * calendar toggle button via `aria-expanded`.
+     */
+    expanded: boolean;
+    /**
+     * Called when the calendar toggle button is clicked (or activated via
+     * keyboard) to open/close the calendar overlay.
+     */
+    onToggleOverlay: () => unknown;
+    /**
+     * Called on keydown while the calendar toggle button is focused. Used to
+     * move focus into the calendar overlay on ArrowDown when it's already
+     * open, and to close it on Escape.
+     */
+    onCalendarButtonKeyDown?: (e: React.KeyboardEvent) => unknown;
+    /**
+     * The aria-label for the calendar toggle button.
+     */
+    calendarButtonAriaLabel?: string;
+    /**
+     * Ref to the calendar toggle button's DOM node. Lets the parent
+     * (DatePicker) focus the button directly (e.g. after Escape closes the
+     * overlay) and use it as the overlay's focus-trap anchor.
+     */
+    calendarButtonRef?: React.Ref<HTMLButtonElement>;
     /**
      * Called if the user press a key inside the input element.
      */
@@ -134,7 +159,6 @@ const DatePickerInput = React.forwardRef<HTMLInputElement, Props>(
         const {
             value: propValue,
             onBlur,
-            onClick,
             onFocus,
             onKeyDown,
             onChange,
@@ -147,6 +171,11 @@ const DatePickerInput = React.forwardRef<HTMLInputElement, Props>(
             testId,
             resetInvalidValueOnBlur = true,
             ["aria-label"]: ariaLabel,
+            expanded,
+            onToggleOverlay,
+            onCalendarButtonKeyDown,
+            calendarButtonAriaLabel = DEFAULT_CALENDAR_BUTTON_ARIA_LABEL,
+            calendarButtonRef,
             ...restProps
         } = props;
 
@@ -413,6 +442,24 @@ const DatePickerInput = React.forwardRef<HTMLInputElement, Props>(
             // to avoid resetting parent state during partial input
         };
 
+        const handleSegmentKeyDown = useDateSegmentArrowKeys({
+            value,
+            dateFormat,
+            locale,
+            parseDate,
+            handleChange,
+            innerRef,
+        });
+
+        const handleInputKeyDown = (
+            e: React.KeyboardEvent<HTMLInputElement>,
+        ) => {
+            if (!expanded && handleSegmentKeyDown(e)) {
+                return;
+            }
+            onKeyDown?.(e);
+        };
+
         // Expose both HTMLInputElement methods and validation method via ref
         React.useImperativeHandle(ref, () => {
             const inputElement = innerRef.current;
@@ -430,20 +477,13 @@ const DatePickerInput = React.forwardRef<HTMLInputElement, Props>(
         });
 
         return (
-            <View
-                style={styles.container}
-                onClick={(e) => {
-                    if (!restProps.disabled && onClick) {
-                        onClick(e);
-                    }
-                }}
-            >
+            <View style={styles.container}>
                 <TextField
                     ref={innerRef}
                     {...restProps}
                     onBlur={handleBlur}
                     onFocus={handleFocus}
-                    onKeyDown={onKeyDown}
+                    onKeyDown={handleInputKeyDown}
                     onChange={handleChange}
                     disabled={restProps.disabled}
                     placeholder={placeholder}
@@ -454,14 +494,18 @@ const DatePickerInput = React.forwardRef<HTMLInputElement, Props>(
                     type="text"
                     style={styles.textField}
                 />
-                <PhosphorIcon
+                <IconButton
+                    ref={calendarButtonRef}
                     icon={calendarIcon}
-                    color={
-                        restProps.disabled
-                            ? semanticColor.core.foreground.disabled.default
-                            : semanticColor.core.foreground.instructive.default
-                    }
                     size="small"
+                    kind="tertiary"
+                    actionType="neutral"
+                    disabled={restProps.disabled}
+                    aria-label={calendarButtonAriaLabel}
+                    aria-expanded={expanded}
+                    aria-haspopup="grid"
+                    onClick={() => onToggleOverlay()}
+                    onKeyDown={onCalendarButtonKeyDown}
                     style={styles.icon}
                 />
             </View>
@@ -469,12 +513,16 @@ const DatePickerInput = React.forwardRef<HTMLInputElement, Props>(
     },
 );
 
-// Match form field left padding; right side uses the same edge spacing so
-// the icon sits 16px from the right edge (symmetric with 16px left padding).
+// Match form field left padding. Inset the button's own hit target (not
+// just its icon glyph) by this amount, so the button's edges -- which
+// become visible on hover/focus/press -- line up with the text field's
+// left inline padding at every interaction state.
 const fieldPaddingInline = sizing.size_160; // match TextField theme
-const iconSize = sizing.size_160; // PhosphorIcon size="small"
-const fieldPaddingInlineEnd =
-    fieldPaddingInline + iconSize + fieldPaddingInline; // gap + icon + gap
+const calendarButtonSize = sizing.size_320; // IconButton size="small"
+
+// Reserve enough end padding on the text field that typed text never runs
+// under the calendar button.
+const fieldPaddingInlineEnd = `calc(${fieldPaddingInline} + ${calendarButtonSize} + ${fieldPaddingInline} / 2)`;
 
 const styles = StyleSheet.create({
     container: {
@@ -483,7 +531,7 @@ const styles = StyleSheet.create({
         justifyContent: "stretch",
     },
     icon: {
-        pointerEvents: "none",
+        margin: 0,
         position: "absolute",
         insetInlineEnd: fieldPaddingInline,
     },

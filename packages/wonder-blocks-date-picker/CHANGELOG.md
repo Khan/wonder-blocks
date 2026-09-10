@@ -1,5 +1,32 @@
 # @khanacademy/wonder-blocks-date-picker
 
+## 1.1.0
+
+### Minor Changes
+
+- 5dd4192: DatePicker: the calendar overlay now only opens by clicking the calendar toggle button (or activating it via keyboard), matching native browser date/time inputs.
+
+    DatePicker's focused day button in the calendar grid now also uses the standard Wonder Blocks focus style (`focusStyles` from `@khanacademy/wonder-blocks-styles`) instead of react-day-picker's default focus ring.
+
+- 63dcc94: DatePicker: ArrowUp/ArrowDown now adjust the day/month/year segment under the caret for numeric date formats. ArrowLeft/ArrowRight move the selection between segments, respecting the input's writing direction (RTL/LTR) instead of relying on native bidi caret movement.
+
+### Patch Changes
+
+- a207883: Update date picker styling for accessibility
+- Updated dependencies [63dcc94]
+- Updated dependencies [5dd4192]
+    - @khanacademy/wonder-blocks-core@12.5.0
+    - @khanacademy/wonder-blocks-modal@8.8.1
+    - @khanacademy/wonder-blocks-icon-button@11.5.0
+    - @khanacademy/wonder-blocks-form@7.6.12
+
+## 1.0.22
+
+### Patch Changes
+
+- Updated dependencies [e11b241]
+    - @khanacademy/wonder-blocks-modal@8.8.0
+
 ## 1.0.21
 
 ### Patch Changes

@@ -305,7 +305,7 @@ const graphics = {
             },
         },
         administrator: {
-            background: graphicsPalette.cyan_70,
+            background: graphicsPalette.cyan_60,
             foreground: graphicsPalette.cyan_40,
         },
         learner: {
@@ -313,11 +313,11 @@ const graphics = {
             foreground: graphicsPalette.orange_30,
         },
         parent: {
-            background: graphicsPalette.green_70,
+            background: graphicsPalette.green_60,
             foreground: graphicsPalette.green_40,
         },
         teacher: {
-            background: graphicsPalette.yellow_50,
+            background: graphicsPalette.yellow_60,
             foreground: graphicsPalette.yellow_30,
         },
     },

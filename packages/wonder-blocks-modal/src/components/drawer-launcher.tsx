@@ -8,7 +8,7 @@ import type {StyleType} from "@khanacademy/wonder-blocks-core";
 import FocusTrap from "./focus-trap";
 import DrawerBackdrop from "./drawer-backdrop";
 import ScrollDisabler from "./scroll-disabler";
-import type {DrawerAlignment, ModalElement} from "../util/types";
+import type {DrawerAlignment, DrawerEasing, ModalElement} from "../util/types";
 import {
     DrawerContext,
     DEFAULT_DRAWER_TIMING_DURATION_MS,
@@ -16,6 +16,7 @@ import {
     DEFAULT_DRAWER_BACKDROP_DISMISS_ENABLED,
     DEFAULT_DRAWER_IS_EXITING,
 } from "../util/drawer-context";
+import {DRAWER_EXIT_DURATION_MS} from "../util/drawer-animation";
 import ModalContext from "./modal-context";
 import type {DrawerDialogStyles} from "./drawer-dialog";
 
@@ -81,19 +82,40 @@ type BaseProps = Readonly<{
     /**
      * Optional styles for the DrawerLauncher.
      *
-     * This can be used to style the container that holds the focus trap, modal
-     * dialog, and scrollable region.
+     * - `container` styles the container that holds the focus trap, modal dialog,
+     *   and scrollable region.
+     * - `backdrop` styles the backdrop overlaying the page behind the drawer,
+     *   applied last so it overrides the backdrop's own styles. This is also the
+     *   only way to reach the backdrop's opacity animation. Prefer
+     *   `timingDuration` over setting `animationDuration` here, which desyncs the
+     *   backdrop from the panel; `animationName: "none"` drops the animation in
+     *   both directions, leaving the overlay to appear and disappear in a single
+     *   frame each way.
      */
     styles?: {
         container?: StyleType;
+        backdrop?: StyleType;
     };
     /**
-     * Optional number of milliseconds for slide-in animation. Defaults to 400ms.
-     * Used to ensure timing of focused elements after modals are opened.
+     * Optional number of milliseconds for the slide animations, overriding the
+     * duration of *both* phases. Also used to ensure timing of focused elements
+     * after modals are opened.
+     *
+     * When unset, the enter runs at 300ms and the exit at 150ms. Easing is
+     * unaffected either way.
      *
      * Turned off when `animated` option is `false` for reduced-motion preferences.
      */
     timingDuration?: number;
+    /**
+     * Optional per-phase easing overrides for the slide animation, e.g.
+     * `{enter: "ease-out", exit: "ease-in"}`. Each value is any CSS
+     * `animation-timing-function`, and either phase may be omitted to keep its
+     * default curve.
+     *
+     * Applies to the sliding panel only; the backdrop's fade stays linear.
+     */
+    easing?: DrawerEasing;
     /**
      * Whether to include animation in the `DrawerLauncher` and child components.
      * This should be false if the user has `prefers-reduced-motion` opted in.
@@ -166,7 +188,6 @@ type Props = ControlledProps | UncontrolledProps;
 
 const defaultProps = {
     backdropDismissEnabled: DEFAULT_DRAWER_BACKDROP_DISMISS_ENABLED,
-    defaultTimingDuration: DEFAULT_DRAWER_TIMING_DURATION_MS,
 } as const;
 
 const DrawerLauncher = (props: Props) => {
@@ -183,8 +204,14 @@ const DrawerLauncher = (props: Props) => {
         alignment,
         styles,
         animated = DEFAULT_DRAWER_ANIMATED,
-        timingDuration = defaultProps.defaultTimingDuration,
+        // Undefined by default, so the drawer components fall back to their
+        // per-phase durations and easing curves.
+        timingDuration,
+        easing,
     } = props;
+
+    const easingEnter = easing?.enter;
+    const easingExit = easing?.exit;
 
     // State for uncontrolled mode
     const [uncontrolledOpened, setUncontrolledOpened] = React.useState(false);
@@ -235,7 +262,7 @@ const DrawerLauncher = (props: Props) => {
 
     const handleCloseModal = React.useCallback(() => {
         if (animated) {
-            // If component is animated, allow time for exit animations
+            // If component is animated, allow time for the exit animation.
             setIsExiting(true);
             setTimeout(() => {
                 setIsExiting(false);
@@ -246,7 +273,7 @@ const DrawerLauncher = (props: Props) => {
                     onClose?.();
                 }
                 returnFocus();
-            }, timingDuration);
+            }, timingDuration ?? DRAWER_EXIT_DURATION_MS);
         } else {
             // For non-animated case, cleanup immediately
             if (typeof controlledOpened === "boolean") {
@@ -271,8 +298,18 @@ const DrawerLauncher = (props: Props) => {
             animated,
             isExiting,
             timingDuration,
+            easing: {enter: easingEnter, exit: easingExit},
         }),
-        [alignment, animated, isExiting, timingDuration],
+        // Depends on the easing phases individually rather than the object, so an
+        // inline `easing={{enter: "..."}}` literal doesn't invalidate the memo.
+        [
+            alignment,
+            animated,
+            isExiting,
+            timingDuration,
+            easingEnter,
+            easingExit,
+        ],
     );
 
     const renderModal = React.useCallback(() => {
@@ -318,6 +355,7 @@ const DrawerLauncher = (props: Props) => {
                               <DrawerBackdrop
                                   initialFocusId={initialFocusId}
                                   testId={testId}
+                                  style={styles?.backdrop}
                                   onCloseModal={
                                       backdropDismissEnabled
                                           ? handleCloseModal
@@ -371,9 +409,11 @@ function DrawerLauncherKeypressListener({onClose}: {onClose: () => unknown}) {
  * modal components may result in incorrect animations, positioning, and styling.
  *
  * - Slide animations can be turned off with the `animated` prop.
- * - Timing of animations can be fine-tuned with the `timingDuration` prop, used on
- * enter and exit animations. It is also used to coordinate timing of focus management
- * on open and close.
+ * - The drawer slides in over 300ms easing out, and leaves over 150ms easing in.
+ * - `timingDuration` overrides the duration of both phases. It is also used to
+ * coordinate timing of focus management on open and close.
+ * - `easing` overrides the curves per phase, e.g.
+ * `easing={{enter: "ease-out", exit: "ease-in"}}`.
  *
  * For conditionally rendering modals, ensure there is only one `DrawerLauncher` in
  * your component tree. A launcher needs to stay mounted on the current page to
