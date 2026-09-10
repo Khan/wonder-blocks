@@ -45,6 +45,11 @@ const config: StorybookConfig = {
         const {mergeConfig} = await import("vite");
 
         return mergeConfig(config, {
+            define: {
+                // This is used to determine if we are running in a
+                // Dev/Storybook environment.
+                "process.env.STORYBOOK": "true",
+            },
             // Prevent Vite from inlining phosphor-icons
             build: {
                 assetsInlineLimit: 0,

@@ -41,7 +41,8 @@ export const strings = {
 };
 
 /**
- * Rendered wherever no provider is mounted.
+ * Mock strings for the Wonder Blocks packages, to be used for tests and
+ * Storybook.
  *
  * Repeated rather than read off `strings`: that reference is a property lookup
  * the minifier will not inline, so it would keep every `context` line in the

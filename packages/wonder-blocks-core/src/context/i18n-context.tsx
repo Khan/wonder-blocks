@@ -16,13 +16,19 @@ export type I18nContextType = {
     locale: string;
 };
 
-// Defaults to English rather than to null as Perseus does, because Wonder
-// Blocks has to render where no provider is mounted and never will be: its own
-// Storybook, consumer test suites, and inside Perseus.
-export const WonderBlocksI18nContext = React.createContext<I18nContextType>({
-    strings: mockStrings,
-    locale: "en",
-});
+// @ts-expect-error - TS2322 - Type 'Context<{ strings: {}; locale: string; }>' is not assignable to type 'Context<I18nContextType>'.
+export const WonderBlocksI18nContext: React.Context<I18nContextType> =
+    React.createContext(
+        process.env.NODE_ENV === "test" || process.env.STORYBOOK
+            ? {
+                  strings: mockStrings,
+                  locale: "en",
+              }
+            : // We want to return null here, not an empty object, so that we
+              // are will throw an error when attempting to access the
+              // undefined locale or strings, making it easier to debug.
+              null,
+    );
 WonderBlocksI18nContext.displayName = "WonderBlocksI18nContext";
 
 type Props = React.PropsWithChildren<I18nContextType>;
