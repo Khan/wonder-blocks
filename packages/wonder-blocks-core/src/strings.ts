@@ -40,8 +40,14 @@ export const strings = {
         | {context?: string; one: string; other: string};
 };
 
-/** Rendered wherever no provider is mounted. */
+/**
+ * Rendered wherever no provider is mounted.
+ *
+ * Repeated rather than read off `strings`: that reference is a property lookup
+ * the minifier will not inline, so it would keep every `context` line in the
+ * bundle each consumer of this package loads. `strings.test.ts` guards drift.
+ */
 export const defaultStrings: WonderBlocksStrings = {
     // Icon alt text
-    iconExternalLink: strings.iconExternalLink.message,
+    iconExternalLink: "Opens in a new window",
 };
