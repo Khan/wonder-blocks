@@ -1,0 +1,5 @@
+---
+"@khanacademy/wonder-blocks-tokens": minor
+---
+
+Add animation design tokens. New primitive scales (`animation.duration.*` as fixed `ms`, `animation.easing.*` as cubic-bézier curves) and semantic presets named by pattern + change (e.g. `animation.overlay.enter`, `animation.disclosure.expand`, `animation.control.press`). Each preset is a `{duration, easing, delay}` clock and, where it matters, the `from`/`to` states (`opacity`/`offset`/`scale`) that give the motion its character — so a component applies one preset instead of inventing durations and distances. Tokens are implementation-agnostic: `animation` exposes CSS variable references for CSS/Aphrodite, `animationValue` exposes the raw values (ms numbers + bézier arrays + preset states) for JS animation libraries and WAAPI. Adapters: `cssDuration`/`cssEasing`/`motionTransition` for timing, and `cssPreset`/`motionPreset`/`waapiPreset` (each taking `{origin}` for direction) for full presets. The `animation` namespace intentionally avoids colliding with the `motion` React library.
