@@ -99,21 +99,6 @@ declare module "aphrodite" {
 
     export const StyleSheet: StyleSheetStatic;
 
-    /**
-     * Renders a function to a string while buffering the CSS Aphrodite
-     * generates, so the result can be asserted on. Mainly useful in tests,
-     * since jsdom does not lay out pseudo-elements.
-     */
-    export const StyleSheetServer: {
-        renderStatic<T>(renderFunc: () => T): {
-            html: T;
-            css: {
-                content: string;
-                renderedClassNames: Array<string>;
-            };
-        };
-    };
-
     type Falsy = false | 0 | null | undefined;
 
     /**

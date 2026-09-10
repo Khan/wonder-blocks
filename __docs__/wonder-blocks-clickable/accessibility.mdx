@@ -1,5 +1,6 @@
 import {Meta, Story, Canvas} from "@storybook/addon-docs/blocks";
 import * as AccessibilityStories from './accessibility.stories';
+import LinkTo from "@storybook/addon-links/react";
 
 <Meta of={AccessibilityStories} />
 
@@ -82,15 +83,23 @@ Set `disableMinTargetSize` when:
   otherwise cover.
 - **The element already draws its own `after`.** `:after` and `::after` are
   the same pseudo-element, so a style you pass via `style` that defines either
-  form will cascade together with the hit area. `Cell` is the in-repo example:
-  it draws its horizontal rule with `:after` on the `Clickable` element, so it
-  opts out.
+  form collides with the hit area: an Aphrodite style merges with it
+  per-property, while a plain object replaces it outright. `Cell` is the
+  in-repo example: it draws its horizontal rule with `:after` on the
+  `Clickable` element, so it opts out. To keep both, spread the hit area into
+  <LinkTo title="Packages / Styles / Min Target Size Styles" story="docs">your own rule</LinkTo>
+  instead.
 - You can guarantee that the size of the clickable element will always be at
   least 24x24.
 
 Note that applying the hit area also makes the element a containing block
 (`position: relative`), which affects absolutely-positioned descendants that
 previously resolved against an ancestor.
+
+The hit area itself is the shared `minTargetSizeStyles` style from
+`@khanacademy/wonder-blocks-styles` — see
+<LinkTo title="Packages / Styles / Min Target Size Styles" story="docs">Minimum target size</LinkTo> if you are
+implementing a component that needs it directly.
 
 #### Overlapping targets
 

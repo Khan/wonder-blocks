@@ -9,11 +9,11 @@ import {
     semanticColor,
     sizing,
 } from "@khanacademy/wonder-blocks-tokens";
-import {focusStyles} from "@khanacademy/wonder-blocks-styles";
 import {
-    isClientSideUrl,
+    focusStyles,
     minTargetSizeStyles,
-} from "@khanacademy/wonder-blocks-clickable";
+} from "@khanacademy/wonder-blocks-styles";
+import {isClientSideUrl} from "@khanacademy/wonder-blocks-clickable";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import externalLinkIcon from "@phosphor-icons/core/bold/arrow-square-out-bold.svg";
 

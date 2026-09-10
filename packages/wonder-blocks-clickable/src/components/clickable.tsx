@@ -8,6 +8,7 @@ import {Link, useInRouterContext} from "react-router-dom-v5-compat";
 import {addStyle} from "@khanacademy/wonder-blocks-core";
 import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
 import {border, semanticColor} from "@khanacademy/wonder-blocks-tokens";
+import {minTargetSizeStyles} from "@khanacademy/wonder-blocks-styles";
 
 import getClickableBehavior from "../util/get-clickable-behavior";
 import type {
@@ -16,7 +17,6 @@ import type {
     ExposedEventHandlers,
 } from "./clickable-behavior";
 import {isClientSideUrl} from "../util/is-client-side-url";
-import {minTargetSizeStyles} from "../util/min-target-size-styles";
 
 type CommonProps =
     /**
