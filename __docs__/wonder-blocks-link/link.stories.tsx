@@ -62,19 +62,15 @@ export const Default: StoryComponentType = {
  * automatically added to the end of the link. This indicates that the link will
  * open in a new tab.
  *
- * A translated `aria-label` for the external icon can be set using the
- * `labels.externalIconAriaLabel` prop. We recommend setting this to a translated
- * string for `(opens in a new tab)`. (Note: In the long term once WB handles
- * i18n internally, this will be handled automatically.)
+ * The icon's accessible name comes from `WonderBlocksI18nContextProvider`,
+ * falling back to "(opens in a new tab)", so call sites need to do nothing —
+ * as below. Pass `labels.externalIconAriaLabel` only where one link needs
+ * different wording.
  */
 export const OpensInANewTab: StoryComponentType = {
     render: () => (
         <View>
-            <Link
-                href="https://cat-bounce.com/"
-                target="_blank"
-                labels={{externalIconAriaLabel: "(opens in a new tab)"}}
-            >
+            <Link href="https://cat-bounce.com/" target="_blank">
                 This is an external link
             </Link>
         </View>
