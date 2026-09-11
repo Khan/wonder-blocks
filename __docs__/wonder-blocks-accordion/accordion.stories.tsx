@@ -283,6 +283,63 @@ export const WithInitialExpandedIndex: StoryComponentType = {
 };
 
 /**
+ * An Accordion can be controlled by passing in the `expandedIndices` prop
+ * along with the `onToggle` prop. In controlled mode, the parent owns the
+ * expanded state: clicking a section header does not expand or collapse it
+ * on its own, it calls `onToggle` so the parent can decide what happens.
+ *
+ * `onToggle` is passed the index of the section that was toggled, along with
+ * the indices of every section that would be expanded as a result of the
+ * toggle. That second argument is the value to pass back in as
+ * `expandedIndices`.
+ *
+ * This is useful when something outside of the Accordion needs to change
+ * which sections are expanded, like the "Expand all" and "Collapse all"
+ * buttons in this example.
+ *
+ * NOTE: `expandedIndices` cannot be used with `initialExpandedIndex`. Use
+ * `initialExpandedIndex` when the Accordion should manage its own state.
+ */
+export const Controlled: StoryComponentType = {
+    render: function Render() {
+        const [expandedIndices, setExpandedIndices] = React.useState<
+            Array<number>
+        >([1]);
+
+        return (
+            <View>
+                <View style={styles.controlButtons}>
+                    <Button
+                        kind="secondary"
+                        onClick={() =>
+                            setExpandedIndices(
+                                exampleSections.map((_, index) => index),
+                            )
+                        }
+                    >
+                        Expand all
+                    </Button>
+                    <Button
+                        kind="secondary"
+                        onClick={() => setExpandedIndices([])}
+                    >
+                        Collapse all
+                    </Button>
+                </View>
+                <Accordion
+                    expandedIndices={expandedIndices}
+                    onToggle={(_, allExpandedIndices) =>
+                        setExpandedIndices(allExpandedIndices)
+                    }
+                >
+                    {exampleSections}
+                </Accordion>
+            </View>
+        );
+    },
+};
+
+/**
  * An Accordion can be animated using the `animated` prop. This
  * animation includes the caret, the expansion/collapse, and the last
  * section's border radius. In this example, animated accordions with
@@ -682,6 +739,11 @@ const styles = StyleSheet.create({
     },
     button: {
         width: "fit-content",
+        marginBlockEnd: sizing.size_160,
+    },
+    controlButtons: {
+        flexDirection: "row",
+        gap: sizing.size_080,
         marginBlockEnd: sizing.size_160,
     },
 });
