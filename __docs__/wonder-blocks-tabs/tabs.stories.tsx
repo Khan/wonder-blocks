@@ -661,14 +661,21 @@ export const TabLabelRenderFunction: StoryComponentType = {
             config: {
                 rules: [
                     {
-                        // The "Tab with an opened Popover" example anchors a
-                        // Popover to a tab inside the tablist. When open, the
-                        // Popover (via wonder-blocks-floating / floating-ui)
-                        // inserts tab-order and focus-guard scaffolding (e.g.
-                        // `span[aria-owns]`) as siblings of the anchor, which
-                        // trips `aria-required-children` on the tablist. This
-                        // scaffolding is accessible-by-design; the rule is being
-                        // strict about the tablist's allowed DOM children.
+                        // The "Tab with an opened Popover" example (tab-4)
+                        // anchors an `opened` Popover to a tab inside the
+                        // tablist. While the popover is open, floating-ui's
+                        // `FloatingFocusManager` inserts a hidden
+                        // `<span aria-owns="{floating-id}">` immediately after
+                        // the anchor so screen readers place the popover next
+                        // to its trigger in the virtual buffer. Because the
+                        // anchor is a tab, that span lands inside the tablist
+                        // and axe reports "Element has children which are not
+                        // allowed: span[aria-owns]". The span is
+                        // accessible-by-design, so the rule is disabled here.
+                        //
+                        // To reproduce: this story only (the popover must be
+                        // open — the closed Popover on tab-2 does not render
+                        // the span).
                         id: "aria-required-children",
                         enabled: false,
                     },
