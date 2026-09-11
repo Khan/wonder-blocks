@@ -1,3 +1,4 @@
+import {ErrorResultGqlError} from "../error-result-gql-error";
 import {getGqlDataFromResponse} from "../get-gql-data-from-response";
 
 describe("#getGqlDataFromReponse", () => {
@@ -156,6 +157,54 @@ describe("#getGqlDataFromReponse", () => {
             result: {
                 data: {},
                 errors: [{message: "GraphQL error"}],
+            },
+        });
+    });
+
+    it("should throw an ErrorResultGqlError when the response has GraphQL errors", async () => {
+        // Arrange
+        const response: any = {
+            status: 200,
+            text: jest.fn(() =>
+                Promise.resolve(
+                    JSON.stringify({
+                        data: {thing: null, other: "value"},
+                        errors: [{message: "GraphQL error", path: ["thing"]}],
+                    }),
+                ),
+            ),
+        };
+
+        // Act
+        const result = getGqlDataFromResponse(response);
+
+        // Assert
+        await expect(result).rejects.toBeInstanceOf(ErrorResultGqlError);
+    });
+
+    it("should expose the partial data and errors on the ErrorResultGqlError", async () => {
+        // Arrange
+        const response: any = {
+            status: 200,
+            text: jest.fn(() =>
+                Promise.resolve(
+                    JSON.stringify({
+                        data: {thing: null, other: "value"},
+                        errors: [{message: "GraphQL error", path: ["thing"]}],
+                    }),
+                ),
+            ),
+        };
+
+        // Act
+        const result = getGqlDataFromResponse(response);
+
+        // Assert
+        await expect(result).rejects.toMatchObject({
+            statusCode: 200,
+            result: {
+                data: {thing: null, other: "value"},
+                errors: [{message: "GraphQL error", path: ["thing"]}],
             },
         });
     });

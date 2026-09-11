@@ -48,20 +48,25 @@ export const IconContrast = {
 
 export const RightToLeftIcons = {
     render: () => (
-        <View
-            dir="ltr"
-            style={{
-                flexDirection: "row",
-            }}
-        >
-            <PhosphorIcon icon={IconMappings.caretRight} />
-            <BodyText
-                style={{
-                    marginInlineStart: sizing.size_080,
-                }}
+        <View style={{flexDirection: "row", gap: sizing.size_240}}>
+            <View
+                dir="ltr"
+                style={{flexDirection: "row", alignItems: "center"}}
             >
-                {"Left to right"}
-            </BodyText>
+                <PhosphorIcon icon={IconMappings.caretRight} />
+                <BodyText style={{marginInlineStart: sizing.size_080}}>
+                    Left to right
+                </BodyText>
+            </View>
+            <View
+                dir="rtl"
+                style={{flexDirection: "row", alignItems: "center"}}
+            >
+                <PhosphorIcon icon={IconMappings.caretRight} />
+                <BodyText style={{marginInlineStart: sizing.size_080}}>
+                    Right to left
+                </BodyText>
+            </View>
         </View>
     ),
     name: "Right to left icons",

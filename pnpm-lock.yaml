@@ -904,9 +904,9 @@ importers:
       '@khanacademy/wonder-blocks-form':
         specifier: workspace:*
         version: link:../wonder-blocks-form
-      '@khanacademy/wonder-blocks-icon':
+      '@khanacademy/wonder-blocks-icon-button':
         specifier: workspace:*
-        version: link:../wonder-blocks-icon
+        version: link:../wonder-blocks-icon-button
       '@khanacademy/wonder-blocks-modal':
         specifier: workspace:*
         version: link:../wonder-blocks-modal
@@ -1075,28 +1075,6 @@ importers:
       '@phosphor-icons/core':
         specifier: 'catalog:'
         version: 2.1.1
-      aphrodite:
-        specifier: 'catalog:'
-        version: 1.2.5
-      react:
-        specifier: 'catalog:'
-        version: 18.2.0
-    devDependencies:
-      '@khanacademy/wb-dev-build-settings':
-        specifier: workspace:*
-        version: link:../../build-settings
-
-  packages/wonder-blocks-grid:
-    dependencies:
-      '@khanacademy/wonder-blocks-core':
-        specifier: workspace:*
-        version: link:../wonder-blocks-core
-      '@khanacademy/wonder-blocks-layout':
-        specifier: workspace:*
-        version: link:../wonder-blocks-layout
-      '@khanacademy/wonder-blocks-tokens':
-        specifier: workspace:*
-        version: link:../wonder-blocks-tokens
       aphrodite:
         specifier: 'catalog:'
         version: 1.2.5

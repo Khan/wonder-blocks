@@ -1,5 +1,22 @@
 # @khanacademy/wonder-blocks-data
 
+## 15.1.0
+
+### Minor Changes
+
+- 6c55a12: Add `ErrorResultGqlError`, a typed `GqlError` thrown when a GraphQL response reports errors, exposing `statusCode` and the parsed `result` payload (partial `data` plus `errors`) so consumers can use partial results without type suppression. Also adds the `isErrorResultGqlError` type guard and the `GqlPartialData`, `GqlResponseError`, and `GqlErrorResultPayload` types.
+
+### Patch Changes
+
+- @khanacademy/wonder-blocks-core@12.5.0
+
+## 15.0.4
+
+### Patch Changes
+
+- Updated dependencies [63dcc94]
+    - @khanacademy/wonder-blocks-core@12.5.0
+
 ## 15.0.3
 
 ### Patch Changes

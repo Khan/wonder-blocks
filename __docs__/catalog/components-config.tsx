@@ -1139,8 +1139,8 @@ export const floatingComponents = [
             React.useEffect(() => {
                 // Wait for the DatePicker to render, then dispatch a click
                 const timeout = setTimeout(() => {
-                    // Click the input to open the calendar
-                    const el = ref.current?.querySelector("input");
+                    // Click the calendar toggle button to open the calendar
+                    const el = ref.current?.querySelector("button");
                     if (el) {
                         el.click();
                     }

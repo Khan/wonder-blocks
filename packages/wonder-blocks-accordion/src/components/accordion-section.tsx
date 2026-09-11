@@ -25,8 +25,15 @@ type Props = AriaProps & {
      */
     children: string | React.ReactElement;
     /**
-     * The header for this section. If a string is passed in, it will
-     * automatically be given Body typography from Wonder Blocks Typography.
+     * The header for this section. A string is given Heading typography and
+     * the standard header spacing; a React element is rendered as-is.
+     *
+     * NOTE: this content renders inside a `<button>` that is itself wrapped in
+     * a heading, so it must not contain a heading of its own (`<h1>`–`<h6>`,
+     * `Heading`, a `tag="h1"`–`tag="h6"` on any component, or
+     * `role="heading"`) — that is invalid HTML. Use AccordionSection's own
+     * `tag` prop to set the heading level, and `<BodyText tag="span">` with
+     * `font.heading.*` tokens for heading-sized text.
      */
     header: string | React.ReactElement;
     /**
@@ -249,13 +256,12 @@ const AccordionSection = React.forwardRef(function AccordionSection(
     return (
         <View
             id={sectionId}
+            // Drives the expanded/collapsed row sizing in `styles.wrapper`.
+            data-expanded={expandedState ? "true" : "false"}
             style={[
                 styles.wrapper,
                 animated && styles.wrapperWithAnimation,
                 sectionStyles.wrapper,
-                expandedState
-                    ? styles.wrapperExpanded
-                    : styles.wrapperCollapsed,
                 style,
             ]}
             testId={testId}
@@ -307,6 +313,16 @@ const styles = StyleSheet.create({
     wrapper: {
         // Use grid layout for clean animations.
         display: "grid",
+        gridTemplateRows: "min-content 1fr",
+        // The collapsed size is a selector on this same class rather than a
+        // separate one. Aphrodite merges each style list into one class and
+        // injects its rule lazily, so swapping classes points the first expand
+        // at a rule that doesn't exist yet: `grid-template-rows` computes to
+        // `none`, which can't interpolate, and the first open snaps.
+        // Note: while collapsed this outranks a consumer `style` override.
+        [':not([data-expanded="true"])' as any]: {
+            gridTemplateRows: "min-content 0fr",
+        },
         // Remove the View's default relative position because it creates
         // overlap issues with the outline. In this case, it's safe to
         // remove the stacking context beacuse accordion sections are always
@@ -317,12 +333,6 @@ const styles = StyleSheet.create({
     },
     wrapperWithAnimation: {
         transition: "grid-template-rows 300ms",
-    },
-    wrapperCollapsed: {
-        gridTemplateRows: "min-content 0fr",
-    },
-    wrapperExpanded: {
-        gridTemplateRows: "min-content 1fr",
     },
     contentWrapper: {
         overflow: "hidden",

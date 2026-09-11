@@ -1,0 +1,9 @@
+<svg viewBox="0 0 256 256" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+    <!--
+      Demo-only custom directional asset for PhosphorIcon mirrorInRtl docs.
+      Deliberately not a Phosphor caret/chevron: ring badge + stubby arrow.
+      Filled shapes so mask-image (used by PhosphorIcon) renders correctly.
+    -->
+    <path d="M128 16 A112 112 0 1 1 127.9 16 Z M128 48 A80 80 0 1 0 128.1 48 Z" fill="black" fill-rule="evenodd"/>
+    <path d="M76 112 H140 V88 L188 128 L140 168 V144 H76 Z" fill="black"/>
+</svg>

@@ -14,6 +14,8 @@ import {
 
 import FocusManager from "./focus-manager";
 
+const DEFAULT_CALENDAR_GRID_REGION_ARIA_LABEL = "Date picker calendar";
+
 // Custom styles to display the calendar popup correctly.
 const DEFAULT_STYLE = {
     background: semanticColor.core.background.base.default,
@@ -47,6 +49,17 @@ interface Props {
      */
     referenceElement: HTMLElement | null | undefined;
     /**
+     * The element used as the focus-trap's anchor: Tab from this element
+     * enters the overlay, and Shift+Tab out of the overlay's first element
+     * returns focus to it. Defaults to `referenceElement` if not given.
+     *
+     * This is separate from `referenceElement` because the popper should
+     * stay positioned relative to the input field, even when a different
+     * element (e.g. a toggle button) is what keyboard focus should treat as
+     * the overlay's anchor.
+     */
+    focusReferenceElement?: HTMLElement | null | undefined;
+    /**
      * Text direction: when "rtl", the overlay is positioned at the end (e.g. bottom-end)
      * so it aligns with the input in RTL layout. Defaults to "ltr" (bottom-start).
      */
@@ -55,6 +68,10 @@ interface Props {
      * Styles that will be applied to the children.
      */
     style?: StyleType;
+    /**
+     * The aria-label for the calendar grid region. Defaults to "Date picker calendar".
+     */
+    calendarGridRegionAriaLabel?: string;
 }
 
 /**
@@ -68,9 +85,11 @@ interface Props {
 const DatePickerOverlay = ({
     children,
     referenceElement,
+    focusReferenceElement,
     onClose,
     dir = "ltr",
     style = DEFAULT_STYLE,
+    calendarGridRegionAriaLabel = DEFAULT_CALENDAR_GRID_REGION_ARIA_LABEL,
 }: Props): React.ReactElement | null => {
     if (!referenceElement) {
         return null;
@@ -84,16 +103,9 @@ const DatePickerOverlay = ({
         return null;
     }
 
-    // 1. Portal: Used to append the child element to the document (or a modal
-    //    if exists). This way we prevent having issues with any stacking
-    //    context generated in DOM tree associated to the parent component.
-    // 2. FocusManager: Used to steal focus, then return focus to the next
-    //    element after the overlay.
-    // 3. Popper: Automatically calculates the position based on the
-    //    referenceElement and applies the required styles to the child element.
     return createPortal(
         <FocusManager
-            referenceElement={referenceElement}
+            referenceElement={focusReferenceElement ?? referenceElement}
             onEndFocused={onClose}
         >
             <Popper
@@ -137,7 +149,9 @@ const DatePickerOverlay = ({
 
                     return (
                         <div
+                            aria-label={calendarGridRegionAriaLabel}
                             ref={ref}
+                            role="region"
                             style={combinedStyles}
                             data-placement={placement}
                         >

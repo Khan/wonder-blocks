@@ -1,5 +1,27 @@
 # @khanacademy/wonder-blocks-icon
 
+## 6.0.2
+
+### Patch Changes
+
+- Updated dependencies [04522d4]
+- Updated dependencies [5b4fed3]
+    - @khanacademy/wonder-blocks-tokens@18.0.0
+    - @khanacademy/wonder-blocks-core@12.5.0
+
+## 6.0.1
+
+### Patch Changes
+
+- Updated dependencies [63dcc94]
+    - @khanacademy/wonder-blocks-core@12.5.0
+
+## 6.0.0
+
+### Major Changes
+
+- a1f5a09: `PhosphorIcon` now automatically mirrors directional icons in RTL via a central allowlist, so call sites must stop swapping icons on `isRtl` (or pass `mirrorInRtl` to override per call site) to avoid double-flipping.
+
 ## 5.3.23
 
 ### Patch Changes

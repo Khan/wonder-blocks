@@ -1,4 +1,5 @@
 import {DataError, DataErrors} from "./data-error";
+import {ErrorResultGqlError} from "./error-result-gql-error";
 import {GqlError, GqlErrors} from "./gql-error";
 
 /**
@@ -52,12 +53,7 @@ export const getGqlDataFromResponse = async <TData>(
         Array.isArray(result.errors) &&
         result.errors.length > 0
     ) {
-        throw new GqlError("GraphQL errors", GqlErrors.ErrorResult, {
-            metadata: {
-                statusCode: response.status,
-                result,
-            },
-        });
+        throw new ErrorResultGqlError<TData>(response.status, result);
     }
 
     // We got here, so return the data.

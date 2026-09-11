@@ -1,5 +1,65 @@
 # @khanacademy/wonder-blocks-accordion
 
+## 3.1.72
+
+### Patch Changes
+
+- 8ce8b48: Warn when a heading is passed to `AccordionSection`'s `header` prop
+
+    `AccordionSection` wraps its trigger in a heading element containing a
+    `<button>`, and the `header` content renders inside that button. A heading in
+    there produces `h2 > button > h3`, which is invalid HTML — a `<button>` may only
+    contain phrasing content, and nested headings give screen reader users a
+    duplicated heading structure. Nothing caught this before.
+
+    - **eslint-plugin-wonder-blocks:** new `no-heading-in-accordion-header` rule,
+      enabled at `error` in the `recommended` config. It flags `<h1>`–`<h6>`, Wonder
+      Blocks `Heading` components, a `tag="h1"`–`tag="h6"` on any component (e.g.
+      `<BodyText tag="h1">`), and `role="heading"` anywhere inside a literal
+      `header` prop on `AccordionSection`. This is a major bump because projects
+      extending `recommended` will see new lint errors.
+    - **wonder-blocks-accordion:** `AccordionSection` now logs a development-only
+      console warning when the rendered header turns out to contain a heading. It
+      inspects the DOM, so it also catches headings rendered inside a consumer's own
+      components, which the lint rule cannot see. It does not fire during
+      server-side rendering. The `header` prop documentation now states the
+      constraint.
+
+    To set the heading level, use `AccordionSection`'s `tag` prop. For
+    heading-sized text without heading semantics, use `<BodyText tag="span">` with
+    the `font.heading.*` tokens.
+
+- Updated dependencies [04522d4]
+- Updated dependencies [5b4fed3]
+    - @khanacademy/wonder-blocks-tokens@18.0.0
+    - @khanacademy/wonder-blocks-clickable@8.2.11
+    - @khanacademy/wonder-blocks-icon@6.0.2
+    - @khanacademy/wonder-blocks-typography@5.0.5
+    - @khanacademy/wonder-blocks-core@12.5.0
+
+## 3.1.71
+
+### Patch Changes
+
+- Updated dependencies [63dcc94]
+    - @khanacademy/wonder-blocks-core@12.5.0
+    - @khanacademy/wonder-blocks-clickable@8.2.10
+    - @khanacademy/wonder-blocks-icon@6.0.1
+    - @khanacademy/wonder-blocks-typography@5.0.4
+
+## 3.1.70
+
+### Patch Changes
+
+- 07d6605: Fix `AccordionSection` not animating the first time a section is opened when `animated` is true. The expand/collapse row sizing now lives on a single stable Aphrodite class, selected off a `data-expanded` attribute, instead of swapping between two classes. Aphrodite injects a merged class's rule lazily, so the old approach pointed the first expand at a rule that did not exist yet — `grid-template-rows` computed to `none`, which cannot interpolate, and the section snapped open. Every subsequent toggle animated correctly, which is why this only ever showed up on first open.
+
+    `AccordionSection`'s wrapper element now renders a `data-expanded="true" | "false"` attribute, so snapshot tests that render an `AccordionSection` will need regenerating.
+
+    If your Jest setup inlines Aphrodite styles (`SNAPSHOT_INLINE_APHRODITE`, as Wonder Blocks' own config does), note that nested selectors are not applied on that path: a **collapsed** wrapper now reports `grid-template-rows: min-content 1fr` rather than `0fr`, so it reads as expanded in a snapshot even when it isn't. Assert expanded state via `aria-expanded` on the header, or the new `data-expanded` attribute, rather than via the wrapper's styles.
+
+- Updated dependencies [a1f5a09]
+    - @khanacademy/wonder-blocks-icon@6.0.0
+
 ## 3.1.69
 
 ### Patch Changes
