@@ -553,7 +553,7 @@ export const CustomStyles: StoryComponentType = {
     },
 };
 
-type Placement = PropsFor<typeof Floating>["placement"];
+type Placement = NonNullable<PropsFor<typeof Floating>["placement"]>;
 
 /**
  * This story demonstrates how to render the floating element in different
