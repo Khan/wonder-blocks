@@ -137,12 +137,15 @@ type CommonProps = AriaProps & {
     /**
      * The object containing the custom labels used inside this component.
      *
-     * This is useful for internationalization. Defaults to English.
+     * For translating every `Link` in an app, mount
+     * `WonderBlocksI18nContextProvider` instead; use this only where one
+     * `Link` needs different wording, which it overrides.
      */
     labels?: {
         /**
-         * An optional aria-label for the external link icon. This is used to
-         * provide a translatable description for screen readers.
+         * An optional aria-label for the external link icon. Defaults to the
+         * `iconAltOpensNewTab` string from `WonderBlocksI18nContextProvider`,
+         * and to "(opens in a new tab)" with no provider mounted.
          */
         externalIconAriaLabel?: string;
     };
