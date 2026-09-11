@@ -1,5 +1,17 @@
 # @khanacademy/wonder-blocks-icon-button
 
+## 12.0.0
+
+### Major Changes
+
+- 849def2: `IconButton` now requires an `aria-label` prop. Since an `IconButton` only renders an icon with no visible text, an accessible name is needed for it to be announced correctly by assistive technology. Making `aria-label` required at the type level prevents call sites from accidentally shipping unlabeled buttons. All existing call sites must be updated to pass an `aria-label`.
+
+### Patch Changes
+
+- Updated dependencies [8ac496e]
+    - @khanacademy/wonder-blocks-clickable@8.3.0
+    - @khanacademy/wonder-blocks-styles@0.3.0
+
 ## 11.5.1
 
 ### Patch Changes
