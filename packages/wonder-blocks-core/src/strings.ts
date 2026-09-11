@@ -30,8 +30,8 @@ export const strings = {
     // Icon alt text
     iconExternalLink: {
         context:
-            "Accessible name for the icon marking a link that opens in a new window.",
-        message: "Opens in a new window",
+            "Accessible name for the icon marking a link that opens in a new tab.",
+        message: "(opens in a new tab)",
     },
 } satisfies {
     [Key in keyof WonderBlocksStrings]:
@@ -49,5 +49,5 @@ export const strings = {
  */
 export const mockStrings: WonderBlocksStrings = {
     // Icon alt text
-    iconExternalLink: "Opens in a new window",
+    iconExternalLink: "(opens in a new tab)",
 };

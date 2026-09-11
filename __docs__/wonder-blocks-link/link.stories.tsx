@@ -63,17 +63,14 @@ export const Default: StoryComponentType = {
  * open in a new tab.
  *
  * The icon's accessible name comes from `WonderBlocksI18nContextProvider`,
- * falling back to English, so most call sites need to do nothing.
- * `labels.externalIconAriaLabel`, used here, overrides it for one link.
+ * falling back to "(opens in a new tab)", so call sites need to do nothing —
+ * as below. Pass `labels.externalIconAriaLabel` only where one link needs
+ * different wording.
  */
 export const OpensInANewTab: StoryComponentType = {
     render: () => (
         <View>
-            <Link
-                href="https://cat-bounce.com/"
-                target="_blank"
-                labels={{externalIconAriaLabel: "(opens in a new tab)"}}
-            >
+            <Link href="https://cat-bounce.com/" target="_blank">
                 This is an external link
             </Link>
         </View>

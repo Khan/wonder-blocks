@@ -472,7 +472,7 @@ describe("Link", () => {
             const icon = await screen.findByTestId("external-icon");
 
             // Assert
-            expect(icon).toHaveAttribute("aria-label", "Opens in a new window");
+            expect(icon).toHaveAttribute("aria-label", "(opens in a new tab)");
         });
 
         test("external icon uses the aria-label from the config provider", async () => {
