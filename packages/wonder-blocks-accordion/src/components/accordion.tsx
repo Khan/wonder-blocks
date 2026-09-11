@@ -13,6 +13,32 @@ export type AccordionCornerKindType =
     | "rounded"
     | "rounded-per-section";
 
+type ControlledProps = {
+    /**
+     * The indices of the AccordionSections that are currently expanded.
+     *
+     * Passing this prop puts the Accordion into controlled mode: the parent
+     * owns the expanded state, and the Accordion only reports changes via
+     * `onToggle`. Use `initialExpandedIndex` instead if you want the
+     * Accordion to manage the expanded state itself.
+     */
+    expandedIndices: ReadonlyArray<number>;
+    initialExpandedIndex?: never;
+};
+
+type UncontrolledProps = {
+    /**
+     * The index of the AccordionSection that should be expanded when the
+     * Accordion is first rendered. If not specified, no AccordionSections
+     * will be expanded when the Accordion is first rendered.
+     *
+     * This is only read on the first render. Use `expandedIndices` if you
+     * need to control the expanded state after that.
+     */
+    initialExpandedIndex?: number;
+    expandedIndices?: never;
+};
+
 type Props = AriaProps & {
     /**
      * The unique identifier for the accordion.
@@ -24,12 +50,6 @@ type Props = AriaProps & {
     children: Array<
         React.ReactElement<React.ComponentProps<typeof AccordionSection>>
     >;
-    /**
-     * The index of the AccordionSection that should be expanded when the
-     * Accordion is first rendered. If not specified, no AccordionSections
-     * will be expanded when the Accordion is first rendered.
-     */
-    initialExpandedIndex?: number;
     /**
      * Whether multiple AccordionSections can be expanded at the same time.
      * If not specified, multiple AccordionSections can be expanded at a time.
@@ -73,7 +93,18 @@ type Props = AriaProps & {
      * Custom styles for the overall accordion container.
      */
     style?: StyleType;
-};
+    /**
+     * Called when a section is toggled. It is passed the index of the section
+     * that was toggled, along with the indices of every section that is
+     * expanded as a result of the toggle. In controlled mode, the second
+     * argument is the value that should be passed back in as
+     * `expandedIndices`.
+     */
+    onToggle?: (
+        toggledIndex: number,
+        allExpandedIndices: Array<number>,
+    ) => unknown;
+} & (ControlledProps | UncontrolledProps);
 
 const LANDMARK_PROLIFERATION_THRESHOLD = 6;
 
@@ -113,22 +144,49 @@ const Accordion = React.forwardRef(function Accordion(
     const {
         children,
         id,
-        initialExpandedIndex,
         allowMultipleExpanded = true,
         caretPosition,
         cornerKind = "rounded",
         animated,
         style,
+        onToggle,
+        expandedIndices,
+        initialExpandedIndex,
         ...ariaProps
     } = props;
 
-    // Starting array for the initial expanded state of each section.
-    const startingArray = Array(children.length).fill(false);
-    // If initialExpandedIndex is specified, we want to open that section.
-    if (initialExpandedIndex !== undefined) {
-        startingArray[initialExpandedIndex] = true;
-    }
-    const [sectionsOpened, setSectionsOpened] = React.useState(startingArray);
+    // The Accordion is controlled when the consumer passes expandedIndices.
+    // In that case the expanded state comes from that prop instead of from
+    // our internal state.
+    const isControlled = expandedIndices !== undefined;
+
+    const [internalSectionsOpened, setInternalSectionsOpened] = React.useState(
+        () => {
+            // Starting array for the initial expanded state of each section.
+            const startingArray: Array<boolean> = Array(children.length).fill(
+                false,
+            );
+            // If initialExpandedIndex is specified, we want to open that
+            // section.
+            if (initialExpandedIndex !== undefined) {
+                startingArray[initialExpandedIndex] = true;
+            }
+            return startingArray;
+        },
+    );
+
+    const controlledSectionsOpened = React.useMemo(() => {
+        if (expandedIndices === undefined) {
+            return null;
+        }
+        const openedArray: Array<boolean> = Array(children.length).fill(false);
+        for (const index of expandedIndices) {
+            openedArray[index] = true;
+        }
+        return openedArray;
+    }, [children.length, expandedIndices]);
+
+    const sectionsOpened = controlledSectionsOpened ?? internalSectionsOpened;
 
     //  NOTE: It may seem like we should filter out non-collapsible sections
     //  here as they are effectively disabled. However, we should keep these
@@ -153,17 +211,23 @@ const Accordion = React.forwardRef(function Accordion(
     ) => {
         // If allowMultipleExpanded is false, we want to close all other
         // sections when one is opened.
-        const newSectionsOpened = allowMultipleExpanded
+        const newSectionsOpened: Array<boolean> = allowMultipleExpanded
             ? [...sectionsOpened]
             : Array(children.length).fill(false);
         const newOpenedValueAtIndex = !sectionsOpened[index];
 
         newSectionsOpened[index] = newOpenedValueAtIndex;
-        setSectionsOpened(newSectionsOpened);
-
-        if (childOnToggle) {
-            childOnToggle(newOpenedValueAtIndex);
+        if (!isControlled) {
+            setInternalSectionsOpened(newSectionsOpened);
         }
+
+        childOnToggle?.(newOpenedValueAtIndex);
+        onToggle?.(
+            index,
+            newSectionsOpened.flatMap((isOpened, sectionIndex) =>
+                isOpened ? [sectionIndex] : [],
+            ),
+        );
     };
 
     /**
@@ -233,6 +297,7 @@ const Accordion = React.forwardRef(function Accordion(
     return (
         // eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions -- TODO(WB-1881): Address a11y error
         <StyledUl
+            id={id}
             style={[styles.wrapper, style]}
             onKeyDown={handleKeyDown}
             {...ariaProps}
@@ -258,7 +323,10 @@ const Accordion = React.forwardRef(function Accordion(
                     // If the AccordionSections are rendered within the
                     // Accordion, they are part of a list, so they should
                     // be list items.
-                    <li key={index} id={id}>
+                    <li
+                        key={index}
+                        id={id ? `${id}-section-${index}` : undefined}
+                    >
                         {React.cloneElement(child, {
                             // Prioritize AccordionSection's props when
                             // they're overloading Accordion's props.
@@ -268,7 +336,7 @@ const Accordion = React.forwardRef(function Accordion(
                             // AccordionSection's expanded prop does not get
                             // used here when it's rendered within Accordion
                             // since the expanded state is managed by Accordion.
-                            expanded: sectionsOpened[index],
+                            expanded: sectionsOpened[index] ?? false,
                             onToggle: () =>
                                 handleSectionClick(index, childOnToggle),
                             isFirstSection: isFirstChild,
