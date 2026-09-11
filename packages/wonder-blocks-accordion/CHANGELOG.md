@@ -1,5 +1,16 @@
 # @khanacademy/wonder-blocks-accordion
 
+## 3.2.0
+
+### Minor Changes
+
+- 1f8807a: Accordion: add controlled mode via the `expandedIndices` and `onToggle` props, and fix the `id` prop so it is set on the accordion itself instead of being duplicated onto every list item
+
+### Patch Changes
+
+- Updated dependencies [8ac496e]
+    - @khanacademy/wonder-blocks-clickable@8.3.0
+
 ## 3.1.72
 
 ### Patch Changes
