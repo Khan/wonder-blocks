@@ -39,6 +39,18 @@ type Props = AriaProps & {
  * This is the base popover container. It’s used internally by all the variants.
  * Also, it can be used to create flexible popovers.
  *
+ * ### Presentation
+ *
+ * `PopoverContentCore` only lays out the popover's contents (max width,
+ * padding and the optional close button). The popover "bubble" chrome —
+ * background, border, border radius, shadow and the tail — is drawn by the
+ * `Floating` component that `Popover` renders it inside.
+ *
+ * This means that when `PopoverContentCore` is rendered **standalone**, outside
+ * of a `Popover` — which is how the examples on this page are rendered — it has
+ * no bubble around it and you need to supply your own container styling. Inside
+ * a `Popover` it looks like a popover with no extra work.
+ *
  * ### Usage
  *
  * ```jsx
