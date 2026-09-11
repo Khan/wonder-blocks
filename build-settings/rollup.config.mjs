@@ -6,27 +6,42 @@ import {nodeExternals} from "rollup-plugin-node-externals";
 import swc from "@rollup/plugin-swc";
 import resolve from "@rollup/plugin-node-resolve";
 
-const createConfig = (pkgName) => {
-    const packageJsonPath = path.join("packages", pkgName, "package.json");
-    if (!fs.existsSync(packageJsonPath)) {
-        return null;
-    }
+/**
+ * What to build for a package, taken from the `source` on each of its
+ * `exports` entries, so that adding a subpath is a package.json change rather
+ * than a build one. Entries without a `source` — and packages with no
+ * `exports` map at all — build `src/index.ts` into `main` and `module`.
+ */
+const getEntryPoints = (pkgJson) => {
+    const fromExports = Object.values(pkgJson.exports ?? {})
+        .filter((entry) => entry?.source)
+        .map((entry) => ({
+            input: entry.source,
+            esm: entry.import,
+            cjs: entry.require,
+        }));
 
+    return fromExports.length > 0
+        ? fromExports
+        : [{input: "src/index.ts", esm: pkgJson.module, cjs: pkgJson.main}];
+};
+
+const createConfig = (pkgName, {input, esm, cjs}) => {
     const extensions = [".js", ".jsx", ".ts", ".tsx"];
 
     return {
         output: [
             {
-                file: `packages/${pkgName}/dist/es/index.js`,
+                file: path.join("packages", pkgName, esm),
                 format: "esm",
             },
             // TODO(FEI-5030): Stop building CJS modules
             {
-                file: `packages/${pkgName}/dist/index.js`,
+                file: path.join("packages", pkgName, cjs),
                 format: "cjs",
             },
         ],
-        input: `packages/${pkgName}/src/index.ts`,
+        input: path.join("packages", pkgName, input),
         plugins: [
             swc({
                 swc: {
@@ -52,4 +67,15 @@ const createConfig = (pkgName) => {
     };
 };
 
-export default fs.readdirSync("packages").map(createConfig).filter(Boolean);
+export default fs.readdirSync("packages").flatMap((pkgName) => {
+    const packageJsonPath = path.join("packages", pkgName, "package.json");
+    if (!fs.existsSync(packageJsonPath)) {
+        return [];
+    }
+
+    const pkgJson = JSON.parse(fs.readFileSync(packageJsonPath));
+
+    return getEntryPoints(pkgJson).map((entryPoint) =>
+        createConfig(pkgName, entryPoint),
+    );
+});
