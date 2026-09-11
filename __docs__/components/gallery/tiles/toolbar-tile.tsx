@@ -22,7 +22,13 @@ export default function ToolbarTile(props: CommonTileProps) {
             <View>
                 <Toolbar
                     title="Counting with small numbers"
-                    leftContent={<IconButton icon={xIcon} kind="tertiary" />}
+                    leftContent={
+                        <IconButton
+                            icon={xIcon}
+                            kind="tertiary"
+                            aria-label="Close"
+                        />
+                    }
                     rightContent={<Button kind="tertiary">Import...</Button>}
                 />
             </View>
