@@ -41,12 +41,12 @@ export default {
         type: {name: "other", value: "React.ReactNode", required: true},
     },
     placement: {
-        control: {
-            type: "select",
-            options: ["top", "bottom", "right", "left"],
-        },
+        control: {type: "select"},
+        // NOTE: `options` has to live at the top level of the argType. Nesting
+        // it under `control` leaves the select with no choices to pick from.
+        options: ["top", "bottom", "right", "left"],
         table: {
-            type: {summary: "Placement"},
+            type: {summary: `"top" | "bottom" | "right" | "left"`},
             defaultValue: {summary: "top"},
         },
     },
@@ -96,11 +96,10 @@ export default {
         },
     },
     rootBoundary: {
-        control: {
-            type: "select",
-            options: ["viewport", "document"],
-        },
+        control: {type: "select"},
+        options: ["viewport", "document"],
         table: {
+            type: {summary: `"viewport" | "document"`},
             defaultValue: {summary: "viewport"},
         },
     },
