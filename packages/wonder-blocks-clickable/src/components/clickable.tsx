@@ -83,12 +83,12 @@ type CommonProps =
          * Whether to disable the minimum 24x24 hit area applied to this
          * component.
          *
-         * By default a transparent `::after` pseudo-element expands the hit
+         * By default a transparent `::before` pseudo-element expands the hit
          * area to at least 24x24 to satisfy WCAG 2.5.8 (Target Size, Minimum).
          *
          * Set this to `true` when:
          * - the expanded area would overlap an adjacent target
-         * - you need to implement a different 'after' pseudo-element
+         * - you need to implement a different 'before' pseudo-element
          *
          * @defaultValue false
          */

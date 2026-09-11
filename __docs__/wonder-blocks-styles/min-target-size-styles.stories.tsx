@@ -23,7 +23,7 @@ import {allThemeModes} from "../../.storybook/modes";
  * 24x24, satisfying
  * [WCAG 2.5.8 (Target Size, Minimum)](https://www.w3.org/WAI/WCAG22/Understanding/target-size-minimum.html).
  *
- * The hit area is expanded with an `::after` pseudo-element rather than by
+ * The hit area is expanded with an `::before` pseudo-element rather than by
  * growing the element, so **the visual layout is unchanged**. `minTargetSize`
  * is used internally by `Clickable` and `Link`, which apply it by default.
  *
@@ -42,13 +42,12 @@ import {allThemeModes} from "../../.storybook/modes";
  *   by the line-height of the surrounding text, and expanding one would steal
  *   clicks from adjacent lines. `Link` skips the hit area for `inline` links
  *   regardless of `disableMinTargetSize`.
- * - **Elements that draw their own `after`.** `:after` and `::after` are the
+ * - **Elements that draw their own `after`.** `:before` and `::before` are the
  *   same pseudo-element, so a rule of your own collides with the hit area. An
  *   Aphrodite style stays its own class and merges with it per-property; a
  *   plain object is merged into the same class and replaces it outright. To
- *   coexist either way, spread the hit area into your own `::after` (see the
- *   scenarios below); otherwise opt out. `Cell` hits this — it draws its
- *   horizontal rule with `:after` — so it opts out internally.
+ *   coexist either way, spread the hit area into your own `::before` (see the
+ *   scenarios below); otherwise opt out.
  * - **Targets closer than 24px apart.** The hit area extends past the
  *   element's visual box, so neighbouring hit areas overlap and the
  *   later-painted one wins.
@@ -81,12 +80,12 @@ const StyledButton = addStyle("button");
 const styles = StyleSheet.create({
     /**
      * The hit area is transparent, so it is invisible in a screenshot. This
-     * contributes a shadow to the same `::after` to make it visible. It shares
+     * contributes a shadow to the same `::before` to make it visible. It shares
      * no property with the hit area, so the per-property cascade merge leaves
      * both intact.
      */
     visibleHitArea: {
-        "::after": {
+        "::before": {
             boxShadow: boxShadow.mid,
         },
     },
@@ -211,7 +210,7 @@ export const Scenarios: Story = {
                 },
             },
             {
-                name: "Composing with your own ::after",
+                name: "Composing with your own ::before",
                 props: {
                     children: (
                         // eslint-disable-next-line @khanacademy/wonder-blocks/no-raw-button
@@ -224,17 +223,17 @@ export const Scenarios: Story = {
                                 background:
                                     semanticColor.core.background.critical
                                         .default,
-                                "::after": {
+                                "::before": {
                                     // the hit area must be spread in, since
-                                    // `:after` and `::after` are the same
+                                    // `:before` and `::before` are the same
                                     // pseudo-element
                                     ...minTargetSizeStyles.minTargetSize[
-                                        "::after"
+                                        "::before"
                                     ],
                                     boxShadow: boxShadow.mid,
                                 },
                             }}
-                            aria-label="Custom button composing ::after"
+                            aria-label="Custom button composing ::before"
                         />
                     ),
                 },

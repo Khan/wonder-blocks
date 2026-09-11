@@ -17,9 +17,9 @@ import {sizing} from "@khanacademy/wonder-blocks-tokens";
  *   be applied to inline links.
  */
 export const minTargetSize = {
-    // Establishes the containing block for the ::after hit area below.
+    // Establishes the containing block for the ::before hit area below.
     position: "relative",
-    "::after": {
+    "::before": {
         content: "''",
         position: "absolute",
         insetBlockStart: "50%",

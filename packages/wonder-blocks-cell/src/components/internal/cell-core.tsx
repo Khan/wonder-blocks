@@ -193,8 +193,6 @@ const CellCore = (props: CellCoreProps): React.ReactElement => {
                 onClick={onClick}
                 href={href}
                 hideDefaultFocusRing={true}
-                // Cell has its own `after` pseudo-element; this would conflict
-                disableMinTargetSize={true}
                 aria-label={ariaLabel ? ariaLabel : undefined}
                 aria-selected={ariaSelected ? ariaSelected : undefined}
                 aria-checked={ariaChecked}

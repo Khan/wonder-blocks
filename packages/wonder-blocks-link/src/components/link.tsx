@@ -32,7 +32,7 @@ type CommonProps = AriaProps & {
     /**
      * Whether to disable the minimum 24x24 hit area applied to this link.
      *
-     * By default a transparent `::after` pseudo-element expands the link's hit
+     * By default a transparent `::before` pseudo-element expands the link's hit
      * area to at least 24x24 to satisfy WCAG 2.5.8 (Target Size, Minimum).
      * Set this to `true` where the expanded area would overlap an adjacent
      * target.

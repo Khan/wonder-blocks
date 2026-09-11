@@ -66,7 +66,7 @@ make sure to use `href` and `skipClientNav={true}`.
 
 `Clickable` guarantees a minimum 24x24 pointer target, satisfying
 [WCAG 2.5.8 (Target Size, Minimum)](https://www.w3.org/WAI/WCAG22/Understanding/target-size-minimum.html).
-The hit area is expanded with a transparent `::after` pseudo-element rather than
+The hit area is expanded with a transparent `::before` pseudo-element rather than
 by growing the element, so the visual layout is unchanged.
 
 Both squares below are 12x12. The first has the default hit area and is
@@ -81,12 +81,11 @@ Set `disableMinTargetSize` when:
 - The expanded hit area would overlap an adjacent target.
 - The `Clickable` wraps its own interactive elements that the hit area would
   otherwise cover.
-- **The element already draws its own `after`.** `:after` and `::after` are
+- **The element already draws its own `before`.** `:before` and `::before` are
   the same pseudo-element, so a style you pass via `style` that defines either
   form collides with the hit area: an Aphrodite style merges with it
-  per-property, while a plain object replaces it outright. `Cell` is the
-  in-repo example: it draws its horizontal rule with `:after` on the
-  `Clickable` element, so it opts out. To keep both, spread the hit area into
+  per-property, while a plain object replaces it outright. To keep both, spread
+  the hit area into
   <LinkTo title="Packages / Styles / Min Target Size Styles" story="docs">your own rule</LinkTo>
   instead.
 - You can guarantee that the size of the clickable element will always be at
