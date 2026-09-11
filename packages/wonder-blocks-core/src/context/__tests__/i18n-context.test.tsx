@@ -11,7 +11,7 @@ import {defaultEnStrings} from "../../strings";
 import type {I18nContextType} from "../i18n-context";
 
 const StringsProbe = () => (
-    <div>{useWonderBlocksI18n().strings.iconExternalLink}</div>
+    <div>{useWonderBlocksI18n().strings.iconAltOpensNewTab}</div>
 );
 
 const LocaleProbe = () => <div>{useWonderBlocksI18n().locale}</div>;
@@ -22,7 +22,9 @@ describe("WonderBlocksI18nContextProvider", () => {
             // Arrange
             render(
                 <WonderBlocksI18nContextProvider
-                    strings={{iconExternalLink: "Se abre en una ventana nueva"}}
+                    strings={{
+                        iconAltOpensNewTab: "Se abre en una ventana nueva",
+                    }}
                     locale="es"
                 >
                     <StringsProbe />
@@ -41,7 +43,7 @@ describe("WonderBlocksI18nContextProvider", () => {
             render(<StringsProbe />);
 
             // Act
-            const label = screen.getByText(defaultEnStrings.iconExternalLink);
+            const label = screen.getByText(defaultEnStrings.iconAltOpensNewTab);
 
             // Assert
             expect(label).toBeInTheDocument();
@@ -51,11 +53,11 @@ describe("WonderBlocksI18nContextProvider", () => {
             // Arrange
             render(
                 <WonderBlocksI18nContextProvider
-                    strings={{iconExternalLink: "Outer"}}
+                    strings={{iconAltOpensNewTab: "Outer"}}
                     locale="en"
                 >
                     <WonderBlocksI18nContextProvider
-                        strings={{iconExternalLink: "Inner"}}
+                        strings={{iconAltOpensNewTab: "Inner"}}
                         locale="en"
                     >
                         <StringsProbe />

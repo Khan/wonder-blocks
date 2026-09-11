@@ -7,15 +7,15 @@
  * read the English source without pulling in React.
  *
  * Keys are flat because the extraction tooling walks one `Object.entries`, and
- * prefixed by kind (`icon*`, `sr*`) so a new string lands beside ones it might
- * duplicate.
+ * prefixed by kind (`iconAlt*`, `sr*`) so a new string lands beside ones it
+ * might duplicate.
  */
 
 export type WonderBlocksStrings = {
     // Icon alt text
 
     /** Rendered by `Link`. */
-    iconExternalLink: string;
+    iconAltOpensNewTab: string;
 };
 
 /**
@@ -28,7 +28,7 @@ export type WonderBlocksStrings = {
  */
 export const strings = {
     // Icon alt text
-    iconExternalLink: {
+    iconAltOpensNewTab: {
         context:
             "Accessible name for the icon marking a link that opens in a new tab.",
         message: "(opens in a new tab)",
@@ -49,5 +49,5 @@ export const strings = {
  */
 export const defaultEnStrings: WonderBlocksStrings = {
     // Icon alt text
-    iconExternalLink: "(opens in a new tab)",
+    iconAltOpensNewTab: "(opens in a new tab)",
 };

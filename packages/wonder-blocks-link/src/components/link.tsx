@@ -130,7 +130,7 @@ type CommonProps = AriaProps & {
     labels?: {
         /**
          * An optional aria-label for the external link icon. Defaults to the
-         * `iconExternalLink` string from `WonderBlocksI18nContextProvider`,
+         * `iconAltOpensNewTab` string from `WonderBlocksI18nContextProvider`,
          * and to "(opens in a new tab)" with no provider mounted.
          */
         externalIconAriaLabel?: string;

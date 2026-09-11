@@ -479,7 +479,9 @@ describe("Link", () => {
             // Arrange
             render(
                 <WonderBlocksI18nContextProvider
-                    strings={{iconExternalLink: "Se abre en una ventana nueva"}}
+                    strings={{
+                        iconAltOpensNewTab: "Se abre en una ventana nueva",
+                    }}
                     locale="es"
                 >
                     <Link href="https://www.google.com/" target="_blank">
@@ -502,7 +504,9 @@ describe("Link", () => {
             // Arrange
             render(
                 <WonderBlocksI18nContextProvider
-                    strings={{iconExternalLink: "Se abre en una ventana nueva"}}
+                    strings={{
+                        iconAltOpensNewTab: "Se abre en una ventana nueva",
+                    }}
                     locale="es"
                 >
                     <Link
