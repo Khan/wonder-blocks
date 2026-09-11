@@ -1,4 +1,4 @@
-import {mockStrings, strings} from "../strings";
+import {defaultEnStrings, strings} from "../strings";
 
 import type {WonderBlocksStrings} from "../strings";
 
@@ -23,16 +23,16 @@ describe("strings", () => {
     const singularKeys = keys.filter((key) => messageOf(strings[key]) !== null);
 
     it.each(singularKeys)(
-        "should declare the same English for %s in `mockStrings` as in `strings`",
+        "should declare the same English for %s in `defaultEnStrings` as in `strings`",
         (key) => {
             // Arrange
             const englishSource = messageOf(strings[key]);
 
             // Act
-            const englishMock = mockStrings[key];
+            const englishDefault = defaultEnStrings[key];
 
             // Assert
-            expect(englishMock).toBe(englishSource);
+            expect(englishDefault).toBe(englishSource);
         },
     );
 });
