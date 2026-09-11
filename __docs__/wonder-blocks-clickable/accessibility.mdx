@@ -84,8 +84,10 @@ Set `disableMinTargetSize` when:
 - **The element already draws its own `before`.** `:before` and `::before` are
   the same pseudo-element, so a style you pass via `style` that defines either
   form collides with the hit area: an Aphrodite style merges with it
-  per-property, while a plain object replaces it outright. To keep both, spread
-  the hit area into
+  per-property, while a plain object replaces it outright. `Cell` is the
+  in-repo example: it draws the left bar indicator for its active and press
+  states with `:before` on the `Clickable` element, so it opts out. To keep
+  both, spread the hit area into
   <LinkTo title="Packages / Styles / Min Target Size Styles" story="docs">your own rule</LinkTo>
   instead.
 - You can guarantee that the size of the clickable element will always be at

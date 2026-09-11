@@ -23,7 +23,7 @@ import {allThemeModes} from "../../.storybook/modes";
  * 24x24, satisfying
  * [WCAG 2.5.8 (Target Size, Minimum)](https://www.w3.org/WAI/WCAG22/Understanding/target-size-minimum.html).
  *
- * The hit area is expanded with an `::before` pseudo-element rather than by
+ * The hit area is expanded with a `::before` pseudo-element rather than by
  * growing the element, so **the visual layout is unchanged**. `minTargetSize`
  * is used internally by `Clickable` and `Link`, which apply it by default.
  *
@@ -42,12 +42,14 @@ import {allThemeModes} from "../../.storybook/modes";
  *   by the line-height of the surrounding text, and expanding one would steal
  *   clicks from adjacent lines. `Link` skips the hit area for `inline` links
  *   regardless of `disableMinTargetSize`.
- * - **Elements that draw their own `after`.** `:before` and `::before` are the
+ * - **Elements that draw their own `before`.** `:before` and `::before` are the
  *   same pseudo-element, so a rule of your own collides with the hit area. An
  *   Aphrodite style stays its own class and merges with it per-property; a
  *   plain object is merged into the same class and replaces it outright. To
  *   coexist either way, spread the hit area into your own `::before` (see the
- *   scenarios below); otherwise opt out.
+ *   scenarios below); otherwise opt out. `Cell` hits this — it draws the left
+ *   bar indicator for its active and press states with `:before` — so it opts
+ *   out internally.
  * - **Targets closer than 24px apart.** The hit area extends past the
  *   element's visual box, so neighbouring hit areas overlap and the
  *   later-painted one wins.
