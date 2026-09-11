@@ -301,6 +301,11 @@ export const WithInitialExpandedIndex: StoryComponentType = {
  * `initialExpandedIndex` when the Accordion should manage its own state.
  */
 export const Controlled: StoryComponentType = {
+    parameters: {
+        chromatic: {
+            disableSnapshot: true,
+        },
+    },
     render: function Render() {
         const [expandedIndices, setExpandedIndices] = React.useState<
             Array<number>
