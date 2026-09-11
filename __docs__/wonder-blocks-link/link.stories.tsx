@@ -596,7 +596,7 @@ export const WithState: StoryComponentType = {
 /**
  * `Link` guarantees a minimum 24x24 pointer target, satisfying
  * [WCAG 2.5.8 (Target Size, Minimum)](https://www.w3.org/WAI/WCAG22/Understanding/target-size-minimum.html).
- * The hit area is expanded with a transparent `::after` pseudo-element rather
+ * The hit area is expanded with a transparent `::before` pseudo-element rather
  * than by growing the element, so the visual layout is unchanged. Note that
  * this also makes the link a containing block (`position: relative`).
  *

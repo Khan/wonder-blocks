@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
         borderWidth: border.width.medium,
     },
     pseudoShadow: {
-        "::after": {
+        "::before": {
             boxShadow: boxShadow.mid,
         },
     },

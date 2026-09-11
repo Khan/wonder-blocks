@@ -255,7 +255,7 @@ export default {
     },
     disableMinTargetSize: {
         description: `Whether to disable the minimum 24x24 hit area applied to
-            this component. By default a transparent \`::after\`
+            this component. By default a transparent \`::before\`
             pseudo-element expands the hit area to at least 24x24 to satisfy
             WCAG 2.5.8 (Target Size, Minimum), without changing the visual
             layout.`,
@@ -268,8 +268,8 @@ export default {
                 detail: `Set this to true when: the expanded hit area would
                 overlap an adjacent target; the Clickable wraps its own
                 interactive elements that the hit area would otherwise cover;
-                or the element already draws its own \`::after\`. That last
-                case matters because \`:after\` and \`::after\` are the same
+                or the element already draws its own \`::before\`. That last
+                case matters because \`:before\` and \`::before\` are the same
                 pseudo-element, so a rule you pass via \`style\` and the hit
                 area cascade together and merge per-property, breaking both.
                 Note that applying the hit area also makes the element a
