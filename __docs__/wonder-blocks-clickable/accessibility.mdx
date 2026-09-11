@@ -1,5 +1,6 @@
 import {Meta, Story, Canvas} from "@storybook/addon-docs/blocks";
 import * as AccessibilityStories from './accessibility.stories';
+import LinkTo from "@storybook/addon-links/react";
 
 <Meta of={AccessibilityStories} />
 
@@ -60,3 +61,52 @@ way, your components are accessible and emulate better the browser's behavior.
 make sure to use `href` and `skipClientNav={true}`.
 
 <Canvas of={AccessibilityStories.KeyboardNavigation} />
+
+### Minimum target size
+
+`Clickable` guarantees a minimum 24x24 pointer target, satisfying
+[WCAG 2.5.8 (Target Size, Minimum)](https://www.w3.org/WAI/WCAG22/Understanding/target-size-minimum.html).
+The hit area is expanded with a transparent `::after` pseudo-element rather than
+by growing the element, so the visual layout is unchanged.
+
+Both squares below are 12x12. The first has the default hit area and is
+clickable well beyond its visible bounds; the second sets
+`disableMinTargetSize` and is only clickable within its visible bounds. A
+shadow has been added to the hit area for demonstration purposes.
+
+<Canvas of={AccessibilityStories.MinimumTargetSize} />
+
+Set `disableMinTargetSize` when:
+
+- The expanded hit area would overlap an adjacent target.
+- The `Clickable` wraps its own interactive elements that the hit area would
+  otherwise cover.
+- **The element already draws its own `after`.** `:after` and `::after` are
+  the same pseudo-element, so a style you pass via `style` that defines either
+  form collides with the hit area: an Aphrodite style merges with it
+  per-property, while a plain object replaces it outright. `Cell` is the
+  in-repo example: it draws its horizontal rule with `:after` on the
+  `Clickable` element, so it opts out. To keep both, spread the hit area into
+  <LinkTo title="Packages / Styles / Min Target Size Styles" story="docs">your own rule</LinkTo>
+  instead.
+- You can guarantee that the size of the clickable element will always be at
+  least 24x24.
+
+Note that applying the hit area also makes the element a containing block
+(`position: relative`), which affects absolutely-positioned descendants that
+previously resolved against an ancestor.
+
+The hit area itself is the shared `minTargetSizeStyles` style from
+`@khanacademy/wonder-blocks-styles` — see
+<LinkTo title="Packages / Styles / Min Target Size Styles" story="docs">Minimum target size</LinkTo> if you are
+implementing a component that needs it directly.
+
+#### Overlapping targets
+
+Because the hit area extends past the element's visual box, controls placed
+closer together than 24px end up with overlapping hit areas, and the
+later-painted one wins. In the example below the nine 12x12 controls with no
+gap to demonstrate how the last-painted target captures clicks intended for its
+neighbours.
+
+<Canvas of={AccessibilityStories.OverlappingTargets} />

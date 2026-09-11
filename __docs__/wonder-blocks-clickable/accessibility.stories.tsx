@@ -1,10 +1,13 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
-import Clickable from "@khanacademy/wonder-blocks-clickable";
-import {View} from "@khanacademy/wonder-blocks-core";
+import Clickable, {
+    type ClickableState,
+} from "@khanacademy/wonder-blocks-clickable";
+import {StyleType, View} from "@khanacademy/wonder-blocks-core";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {
+    border,
     boxShadow,
     semanticColor,
     sizing,
@@ -41,6 +44,22 @@ const styles = StyleSheet.create({
     },
     tabButton: {
         width: "100%",
+    },
+    tinyTarget: {
+        blockSize: sizing.size_120,
+        inlineSize: sizing.size_120,
+        padding: "unset",
+        borderWidth: border.width.medium,
+    },
+    pseudoShadow: {
+        "::after": {
+            boxShadow: boxShadow.mid,
+        },
+    },
+    row: {
+        flexDirection: "row",
+        gap: sizing.size_240,
+        alignItems: "center",
     },
 });
 
@@ -84,6 +103,22 @@ export const DisabledState = {
     name: "Disabled state",
 };
 
+const Target = (
+    props: React.PropsWithChildren<ClickableState & {style?: StyleType}>,
+) => (
+    <View
+        style={[
+            styles.rest,
+            props.hovered && styles.hover,
+            props.focused && styles.focus,
+            props.pressed && styles.press,
+            props.style,
+        ]}
+    >
+        {props.children}
+    </View>
+);
+
 export const KeyboardNavigation = {
     render: () => (
         <View>
@@ -93,21 +128,58 @@ export const KeyboardNavigation = {
                 id="button-1"
                 style={styles.tabButton}
             >
-                {({hovered, focused, pressed}) => (
-                    <View
-                        style={[
-                            styles.rest,
-                            hovered && styles.hover,
-                            focused && styles.focus,
-                            pressed && styles.press,
-                        ]}
-                    >
+                {(state) => (
+                    <Target {...state}>
                         <BodyText tag="span">School Info</BodyText>
-                    </View>
+                    </Target>
                 )}
             </Clickable>
         </View>
     ),
 
     name: "Keyboard navigation",
+};
+
+export const MinimumTargetSize = {
+    render: () => (
+        <View style={styles.row}>
+            <Clickable
+                onClick={() => {}}
+                aria-label="Default hit area"
+                style={styles.pseudoShadow}
+            >
+                {(state) => <Target style={styles.tinyTarget} {...state} />}
+            </Clickable>
+            <Clickable
+                onClick={() => {}}
+                aria-label="Hit area disabled"
+                disableMinTargetSize={true}
+            >
+                {(state) => <Target style={styles.tinyTarget} {...state} />}
+            </Clickable>
+        </View>
+    ),
+
+    name: "Minimum target size",
+};
+
+export const OverlappingTargets = {
+    render: () =>
+        Array.from({length: 3}).map((_, i) => (
+            <View key={i} style={[styles.row, {gap: "unset"}]}>
+                {Array.from({length: 3}).map((_, j) => (
+                    <Clickable
+                        key={j}
+                        onClick={() => {}}
+                        aria-label={String(j)}
+                    >
+                        {(state) => (
+                            <Target style={styles.tinyTarget} {...state} />
+                        )}
+                    </Clickable>
+                ))}
+            </View>
+        )),
+
+    name: "Overlapping targets",
 };
