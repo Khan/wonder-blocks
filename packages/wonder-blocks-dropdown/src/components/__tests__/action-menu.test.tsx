@@ -1292,4 +1292,43 @@ describe("ActionMenu", () => {
             expect(opener).toHaveAccessibleName("Custom opener label");
         });
     });
+
+    describe("a11y > list markup", () => {
+        it("renders the menu using list markup (ul element)", async () => {
+            // Arrange
+            render(
+                <ActionMenu menuText="Action menu!">
+                    <ActionItem label="Algebra1 - Lowe" href="/algebra" />
+                    <ActionItem label="Writing - Lowe" href="/writing" />
+                </ActionMenu>,
+            );
+            await userEvent.click(await screen.findByRole("button"));
+
+            // Act
+            const menu = await screen.findByRole("menu", {hidden: true});
+
+            // Assert
+            expect(menu).toHaveProperty("tagName", "UL");
+        });
+
+        it("wraps each menu item in a list item (li element)", async () => {
+            // Arrange
+            render(
+                <ActionMenu menuText="Action menu!">
+                    <ActionItem label="Algebra1 - Lowe" href="/algebra" />
+                    <ActionItem label="Writing - Lowe" href="/writing" />
+                </ActionMenu>,
+            );
+            await userEvent.click(await screen.findByRole("button"));
+
+            // Act
+            const [menuItem] = await screen.findAllByRole("menuitem", {
+                hidden: true,
+            });
+
+            // Assert
+            // eslint-disable-next-line testing-library/no-node-access -- verify the menu item is wrapped in a semantic <li> element (WB-2148)
+            expect(menuItem.closest("li")).toBeInTheDocument();
+        });
+    });
 });
