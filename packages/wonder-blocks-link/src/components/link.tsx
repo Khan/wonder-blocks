@@ -135,17 +135,12 @@ type CommonProps = AriaProps & {
     endIcon?: React.ReactElement<React.ComponentProps<typeof PhosphorIcon>>;
 
     /**
-     * The object containing the custom labels used inside this component.
-     *
-     * For translating every `Link` in an app, mount
-     * `WonderBlocksI18nContextProvider` instead; use this only where one
-     * `Link` needs different wording, which it overrides.
+     * The object containing custom labels for this component. This
+     * overrides the default labels provided by `WonderBlocksI18nContextProvider`.
      */
     labels?: {
         /**
-         * An optional aria-label for the external link icon. Defaults to the
-         * `iconAltOpensNewTab` string from `WonderBlocksI18nContextProvider`,
-         * and to "(opens in a new tab)" with no provider mounted.
+         * An optional aria-label for the external link icon.
          */
         externalIconAriaLabel?: string;
     };
