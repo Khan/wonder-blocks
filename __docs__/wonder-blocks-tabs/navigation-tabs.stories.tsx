@@ -442,8 +442,9 @@ export const ChildrenRenderFunction: StoryComponentType = {
         );
     },
     parameters: {
-        // Added to ensure that the popover/tooltip is rendered using PopperJS.
         chromatic: {
+            // Delay the snapshot so the popover/tooltip has time to render and
+            // position before it is captured.
             delay: 500,
             // Enable snapshot so we can confirm it looks okay in this example
             disableSnapshot: false,

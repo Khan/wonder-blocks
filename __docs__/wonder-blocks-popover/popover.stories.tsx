@@ -718,8 +718,10 @@ export const WithDocumentRootBoundary: StoryComponentType = {
             <View style={{paddingBlockEnd: "500px"}}>
                 <Popover
                     rootBoundary="document"
+                    dismissEnabled
                     content={() => (
                         <PopoverContent
+                            closeButtonVisible
                             title="Popover with rootBoundary='document'"
                             content="This example shows a popover with the rootBoundary='document'. This means that instead of aligning the popover to the viewport, it will instead place the popover where there is room in the DOM. This is a useful tool for popovers with large content that might not fit in small screen sizes or at 400% zoom."
                         />
