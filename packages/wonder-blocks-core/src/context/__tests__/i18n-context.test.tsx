@@ -18,7 +18,7 @@ const LocaleProbe = () => <div>{useWonderBlocksI18n().locale}</div>;
 
 describe("WonderBlocksI18nContextProvider", () => {
     describe("strings", () => {
-        test("returns the strings supplied by the provider", () => {
+        it("returns the strings supplied by the provider", () => {
             // Arrange
             render(
                 <WonderBlocksI18nContextProvider
@@ -38,7 +38,7 @@ describe("WonderBlocksI18nContextProvider", () => {
             expect(label).toBeInTheDocument();
         });
 
-        test("returns English when no provider is mounted", () => {
+        it("returns English when no provider is mounted", () => {
             // Arrange
             render(<StringsProbe />);
 
@@ -49,7 +49,7 @@ describe("WonderBlocksI18nContextProvider", () => {
             expect(label).toBeInTheDocument();
         });
 
-        test("returns the strings from the nearest provider when nested", () => {
+        it("returns the strings from the nearest provider when nested", () => {
             // Arrange
             render(
                 <WonderBlocksI18nContextProvider
@@ -74,7 +74,7 @@ describe("WonderBlocksI18nContextProvider", () => {
     });
 
     describe("locale", () => {
-        test("returns the locale supplied by the provider", () => {
+        it("returns the locale supplied by the provider", () => {
             // Arrange
             render(
                 <WonderBlocksI18nContextProvider
@@ -92,7 +92,7 @@ describe("WonderBlocksI18nContextProvider", () => {
             expect(locale).toBeInTheDocument();
         });
 
-        test("returns `en` when no provider is mounted", () => {
+        it("returns `en` when no provider is mounted", () => {
             // Arrange
             render(<LocaleProbe />);
 
@@ -107,7 +107,7 @@ describe("WonderBlocksI18nContextProvider", () => {
     describe("context value identity", () => {
         // Guards the memoization: without it, a re-render of whatever holds the
         // provider re-renders every Wonder Blocks component below it.
-        test("keeps the same context value across a re-render with unchanged props", () => {
+        it("keeps the same context value across a re-render with unchanged props", () => {
             // Arrange
             const values: Array<I18nContextType> = [];
             const ContextProbe = () => {
