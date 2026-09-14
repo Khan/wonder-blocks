@@ -442,6 +442,29 @@ describe("AccordionSection", () => {
         });
     });
 
+    // The content panel is clipped with `overflow: clip` (instead of
+    // `hidden`) so that the clip edge can be pushed outwards with
+    // `overflow-clip-margin`, leaving room for the focus rings of content at
+    // the edges of the section. The clip margin itself isn't verifiable here
+    // because jsdom drops the declaration, so it is covered visually in
+    // Chromatic instead.
+    test("clips the content panel with `overflow: clip`", () => {
+        // Arrange
+
+        // Act
+        render(
+            <AccordionSection header="Title" testId="accordion-section">
+                Section content
+            </AccordionSection>,
+            {wrapper: RenderStateRoot},
+        );
+
+        // Assert
+        expect(
+            screen.getByTestId("accordion-section-content-panel"),
+        ).toHaveStyle({overflow: "clip"});
+    });
+
     describe("data-expanded", () => {
         // The expanded/collapsed row sizing is selected off this attribute
         // rather than by swapping classes, so it has to track the state.

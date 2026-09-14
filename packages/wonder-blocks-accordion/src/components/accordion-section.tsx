@@ -309,6 +309,14 @@ const AccordionSection = React.forwardRef(function AccordionSection(
     );
 });
 
+// How far a focus ring reaches outside the element it belongs to: `focus`
+// from `@khanacademy/wonder-blocks-styles` draws an outline of
+// `border.width.medium` at an offset of the same width, which adds up to
+// `border.width.thick`.
+// NOTE: This can't be written as a `calc()` of the outline's own token
+// because `overflow-clip-margin` doesn't accept `calc()` values.
+const FOCUS_RING_SPACE = border.width.thick;
+
 const styles = StyleSheet.create({
     wrapper: {
         // Use grid layout for clean animations.
@@ -335,7 +343,16 @@ const styles = StyleSheet.create({
         transition: "grid-template-rows 300ms",
     },
     contentWrapper: {
-        overflow: "hidden",
+        // The content is clipped so that it stays within the section while
+        // the row is collapsed (or animating), and so that it doesn't spill
+        // out of the rounded corners applied in `_generateStyles`.
+        //
+        // `clip` instead of `hidden` so that the clip edge can be pushed
+        // outwards with `overflow-clip-margin` (see
+        // `styles.contentWrapperExpanded`). `clip` also stops this from being
+        // a scroll container, so the browser can no longer scroll clipped
+        // content into view when something inside it is focused.
+        overflow: "clip",
     },
     conentWrapperCollapsed: {
         // Make sure screen readers don't read the content when it's
@@ -344,6 +361,18 @@ const styles = StyleSheet.create({
     },
     contentWrapperExpanded: {
         visibility: "visible",
+        // Focus rings are painted outside the element they belong to, so
+        // content sitting against the edge of the section (a full width
+        // Button, for example) would have its focus ring clipped. Push the
+        // clip edge out far enough to fit one. Browsers without
+        // `overflow-clip-margin` support clip at the content box, which is
+        // what `overflow: hidden` used to do here.
+        // NOTE: This is only applied while the section is expanded so that
+        // nothing can show outside a collapsed section. The clip edge is
+        // pushed out on every side, so content that paints all the way to
+        // the section's edges follows a corner curve that is this much
+        // wider than the section's own.
+        overflowClipMargin: FOCUS_RING_SPACE,
     },
     stringContent: {
         padding: sizing.size_160,

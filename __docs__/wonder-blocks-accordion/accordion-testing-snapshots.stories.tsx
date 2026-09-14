@@ -6,6 +6,7 @@ import {
     Accordion,
     AccordionSection,
 } from "@khanacademy/wonder-blocks-accordion";
+import Button from "@khanacademy/wonder-blocks-button";
 import {allThemeModes} from "../../.storybook/modes";
 import {defaultPseudoStates, StateSheet} from "../components/state-sheet";
 import {ScenariosLayout} from "../components/scenarios-layout";
@@ -53,6 +54,10 @@ const exampleSections = [
         This is the information present in the third section
     </AccordionSection>,
 ];
+
+// Used to focus only the button inside a section's content in the Scenarios
+// story, leaving the section headers at rest.
+const FOCUSED_BUTTON_ID = "accordion-content-button";
 
 // Rows: the section's expanded state. The header's border radius differs
 // between collapsed and expanded for rounded corner kinds.
@@ -190,6 +195,25 @@ export const Scenarios: Story = {
                     initialExpandedIndex: 0,
                 },
             },
+            {
+                // The section clips its content, so a focused element flush
+                // against the section's edges (its focus ring is painted
+                // outside its own box) is where clipping is visible.
+                name: "Focused content at the edge of a section",
+                props: {
+                    children: [
+                        <AccordionSection
+                            key="focus-ring"
+                            header="Section with a button"
+                        >
+                            <Button id={FOCUSED_BUTTON_ID} onClick={() => {}}>
+                                Start
+                            </Button>
+                        </AccordionSection>,
+                    ],
+                    initialExpandedIndex: 0,
+                },
+            },
         ];
 
         return (
@@ -201,5 +225,12 @@ export const Scenarios: Story = {
                 )}
             </ScenariosLayout>
         );
+    },
+    parameters: {
+        // Only the button in the last scenario is focused so that the
+        // snapshot catches its focus ring being clipped by the section that
+        // contains it. The section headers stay at rest (they have their own
+        // pseudo states in the StateSheet story).
+        pseudo: {focusVisible: [`#${FOCUSED_BUTTON_ID}`]},
     },
 };
