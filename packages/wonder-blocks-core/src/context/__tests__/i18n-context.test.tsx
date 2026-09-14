@@ -23,6 +23,7 @@ describe("WonderBlocksI18nContextProvider", () => {
             render(
                 <WonderBlocksI18nContextProvider
                     strings={{
+                        ...defaultStringsEn,
                         iconAltOpensNewTab: "Se abre en una ventana nueva",
                     }}
                     locale="es"
@@ -53,11 +54,14 @@ describe("WonderBlocksI18nContextProvider", () => {
             // Arrange
             render(
                 <WonderBlocksI18nContextProvider
-                    strings={{iconAltOpensNewTab: "Outer"}}
+                    strings={{...defaultStringsEn, iconAltOpensNewTab: "Outer"}}
                     locale="en"
                 >
                     <WonderBlocksI18nContextProvider
-                        strings={{iconAltOpensNewTab: "Inner"}}
+                        strings={{
+                            ...defaultStringsEn,
+                            iconAltOpensNewTab: "Inner",
+                        }}
                         locale="en"
                     >
                         <StringsProbe />
