@@ -193,6 +193,11 @@ const CellCore = (props: CellCoreProps): React.ReactElement => {
                 onClick={onClick}
                 href={href}
                 hideDefaultFocusRing={true}
+                // Cell draws its own `before` pseudo-element (the left bar
+                // indicator for the active/press states); this would conflict.
+                // Cell is always at least `theme.root.sizing.minHeight` tall,
+                // so no target size guarantee is lost.
+                disableMinTargetSize={true}
                 aria-label={ariaLabel ? ariaLabel : undefined}
                 aria-selected={ariaSelected ? ariaSelected : undefined}
                 aria-checked={ariaChecked}
