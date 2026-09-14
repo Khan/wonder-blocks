@@ -62,20 +62,25 @@ export const Default: StoryComponentType = {
  * automatically added to the end of the link. This indicates that the link will
  * open in a new tab.
  *
- * A translated `aria-label` for the external icon can be set using the
- * `labels.externalIconAriaLabel` prop. We recommend setting this to a translated
- * string for `(opens in a new tab)`. (Note: In the long term once WB handles
- * i18n internally, this will be handled automatically.)
+ * The icon's accessible name is built-in: "(opens in a new tab)". It can be
+ * overridden using the `labels.externalIconAriaLabel` prop.
  */
 export const OpensInANewTab: StoryComponentType = {
-    render: () => (
-        <View>
+    render: (args) => (
+        <View style={styles.container}>
+            <Link href="https://cat-bounce.com/" target="_blank">
+                This is an external link
+            </Link>
+
             <Link
                 href="https://cat-bounce.com/"
                 target="_blank"
-                labels={{externalIconAriaLabel: "(opens in a new tab)"}}
+                labels={{
+                    externalIconAriaLabel: "Custom label: Opens in a new tab!",
+                }}
             >
-                This is an external link
+                This is an external link with a custom aria-label for the
+                external icon
             </Link>
         </View>
     ),
@@ -715,5 +720,8 @@ const styles = StyleSheet.create({
         width: "100%",
         height: "100%",
         padding: sizing.size_160,
+    },
+    container: {
+        gap: sizing.size_200,
     },
 });
