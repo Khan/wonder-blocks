@@ -66,10 +66,21 @@ export const Default: StoryComponentType = {
  * overridden using the `labels.externalIconAriaLabel` prop.
  */
 export const OpensInANewTab: StoryComponentType = {
-    render: () => (
-        <View>
+    render: (args) => (
+        <View style={styles.container}>
             <Link href="https://cat-bounce.com/" target="_blank">
                 This is an external link
+            </Link>
+
+            <Link
+                href="https://cat-bounce.com/"
+                target="_blank"
+                labels={{
+                    externalIconAriaLabel: "Custom label: Opens in a new tab!",
+                }}
+            >
+                This is an external link with a custom aria-label for the
+                external icon
             </Link>
         </View>
     ),
@@ -709,5 +720,8 @@ const styles = StyleSheet.create({
         width: "100%",
         height: "100%",
         padding: sizing.size_160,
+    },
+    container: {
+        gap: sizing.size_200,
     },
 });
