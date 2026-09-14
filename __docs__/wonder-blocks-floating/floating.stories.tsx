@@ -79,6 +79,85 @@ export const Default: StoryComponentType = {
     },
 };
 
+/**
+ * A custom trigger implemented as a plain function component.
+ *
+ * It doesn't need to accept or forward a ref: it only spreads the props it is
+ * given onto the element it renders, which it needs to do anyway for the props
+ * `Floating` injects into the trigger (e.g. the ones needed for dismissal).
+ * `Floating` then uses that element as the reference (anchor) element.
+ */
+function CustomTrigger({
+    label,
+    onClick,
+    ...otherProps
+}: {
+    label: string;
+    onClick: () => void;
+}) {
+    return (
+        <View
+            {...otherProps}
+            tag="button"
+            onClick={onClick}
+            style={styles.customTrigger}
+        >
+            <PhosphorIcon icon={IconMappings.cookie} />
+            <BodyText>{label}</BodyText>
+        </View>
+    );
+}
+
+/**
+ * Any custom component can be used as the trigger (and therefore as the
+ * reference element that the floating element is positioned against). `Floating`
+ * doesn't render a wrapper element around the trigger, so the DOM stays exactly
+ * as you wrote it.
+ *
+ * The trigger doesn't have to accept, forward or attach a ref, and its type
+ * doesn't matter: host elements, `React.forwardRef` components (such as `Button`
+ * or `IconButton`) and plain function components all work the same way. It only
+ * has to spread the props it receives onto the element the floating element
+ * should be anchored to, which it needs to do anyway (`Floating` injects props
+ * into the trigger, e.g. to support dismissal). `CustomTrigger` below is a plain
+ * function component that does exactly that.
+ *
+ * A trigger that renders several elements picks the one to anchor to by
+ * spreading the props onto it.
+ */
+export const CustomTriggerComponent: StoryComponentType = {
+    args: {
+        focusManagerEnabled: true,
+        dismissEnabled: true,
+    },
+    render: function Render(args) {
+        const [open, setOpen] = React.useState(args.open ?? false);
+
+        return (
+            <Floating
+                {...args}
+                open={open}
+                onOpenChange={setOpen}
+                content={
+                    <View style={styles.contentContainer}>
+                        <Heading size="small">Custom trigger</Heading>
+                        <BodyText>
+                            This floating element is anchored to a custom
+                            trigger component that only spreads the props it is
+                            given onto the element it renders.
+                        </BodyText>
+                    </View>
+                }
+            >
+                <CustomTrigger
+                    label={open ? "Close" : "Open"}
+                    onClick={() => setOpen(!open)}
+                />
+            </Floating>
+        );
+    },
+};
+
 function SwitchWithLabel({
     checked,
     onChange,
@@ -474,7 +553,7 @@ export const CustomStyles: StoryComponentType = {
     },
 };
 
-type Placement = PropsFor<typeof Floating>["placement"];
+type Placement = NonNullable<PropsFor<typeof Floating>["placement"]>;
 
 /**
  * This story demonstrates how to render the floating element in different
@@ -493,66 +572,49 @@ export const Placements: StoryComponentType = {
     args: {
         open: true,
     },
-    render: function Render(args, {globals}) {
-        const isRTL = globals.direction === "rtl";
+    render: function Render(args) {
         const placements: Array<{name: Placement; icon: PhosphorRegular}> = [
             {
                 name: "top-start",
-                icon: isRTL
-                    ? IconMappings.arrowElbowRightUp
-                    : IconMappings.arrowElbowLeftUp,
+                icon: IconMappings.arrowElbowLeftUp,
             },
             {name: "top", icon: IconMappings.arrowUp},
             {
                 name: "top-end",
-                icon: isRTL
-                    ? IconMappings.arrowElbowLeftUp
-                    : IconMappings.arrowElbowRightUp,
+                icon: IconMappings.arrowElbowRightUp,
             },
             {
                 name: "right-start",
-                icon: isRTL
-                    ? IconMappings.arrowElbowDownLeft
-                    : IconMappings.arrowElbowUpRight,
+                icon: IconMappings.arrowElbowUpRight,
             },
             {
                 name: "right",
-                icon: isRTL ? IconMappings.arrowLeft : IconMappings.arrowRight,
+                icon: IconMappings.arrowRight,
             },
             {
                 name: "right-end",
-                icon: isRTL
-                    ? IconMappings.arrowElbowUpLeft
-                    : IconMappings.arrowElbowDownRight,
+                icon: IconMappings.arrowElbowDownRight,
             },
             {
                 name: "bottom-start",
-                icon: isRTL
-                    ? IconMappings.arrowElbowRightDown
-                    : IconMappings.arrowElbowLeftDown,
+                icon: IconMappings.arrowElbowLeftDown,
             },
             {name: "bottom", icon: IconMappings.arrowDown},
             {
                 name: "bottom-end",
-                icon: isRTL
-                    ? IconMappings.arrowElbowLeftDown
-                    : IconMappings.arrowElbowRightDown,
+                icon: IconMappings.arrowElbowRightDown,
             },
             {
                 name: "left-start",
-                icon: isRTL
-                    ? IconMappings.arrowElbowDownRight
-                    : IconMappings.arrowElbowUpLeft,
+                icon: IconMappings.arrowElbowUpLeft,
             },
             {
                 name: "left",
-                icon: isRTL ? IconMappings.arrowRight : IconMappings.arrowLeft,
+                icon: IconMappings.arrowLeft,
             },
             {
                 name: "left-end",
-                icon: isRTL
-                    ? IconMappings.arrowElbowUpRight
-                    : IconMappings.arrowElbowDownLeft,
+                icon: IconMappings.arrowElbowDownLeft,
             },
         ];
 
@@ -584,7 +646,7 @@ export const Placements: StoryComponentType = {
 
 const styles = StyleSheet.create({
     storyCanvas: {
-        minHeight: 200,
+        minBlockSize: 200,
         padding: sizing.size_640,
         justifyContent: "center",
         alignItems: "center",
@@ -628,6 +690,18 @@ const styles = StyleSheet.create({
     contentContainer: {
         padding: sizing.size_160,
         gap: sizing.size_160,
+    },
+    customTrigger: {
+        flexDirection: "row",
+        alignItems: "center",
+        gap: sizing.size_080,
+        background: semanticColor.core.background.instructive.default,
+        color: semanticColor.core.foreground.knockout.default,
+        border: "none",
+        borderRadius: border.radius.radius_040,
+        paddingBlock: sizing.size_080,
+        paddingInline: sizing.size_160,
+        cursor: "pointer",
     },
     placementsContainer: {
         display: "grid",
