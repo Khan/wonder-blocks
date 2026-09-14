@@ -572,66 +572,49 @@ export const Placements: StoryComponentType = {
     args: {
         open: true,
     },
-    render: function Render(args, {globals}) {
-        const isRTL = globals.direction === "rtl";
+    render: function Render(args) {
         const placements: Array<{name: Placement; icon: PhosphorRegular}> = [
             {
                 name: "top-start",
-                icon: isRTL
-                    ? IconMappings.arrowElbowRightUp
-                    : IconMappings.arrowElbowLeftUp,
+                icon: IconMappings.arrowElbowLeftUp,
             },
             {name: "top", icon: IconMappings.arrowUp},
             {
                 name: "top-end",
-                icon: isRTL
-                    ? IconMappings.arrowElbowLeftUp
-                    : IconMappings.arrowElbowRightUp,
+                icon: IconMappings.arrowElbowRightUp,
             },
             {
                 name: "right-start",
-                icon: isRTL
-                    ? IconMappings.arrowElbowDownLeft
-                    : IconMappings.arrowElbowUpRight,
+                icon: IconMappings.arrowElbowUpRight,
             },
             {
                 name: "right",
-                icon: isRTL ? IconMappings.arrowLeft : IconMappings.arrowRight,
+                icon: IconMappings.arrowRight,
             },
             {
                 name: "right-end",
-                icon: isRTL
-                    ? IconMappings.arrowElbowUpLeft
-                    : IconMappings.arrowElbowDownRight,
+                icon: IconMappings.arrowElbowDownRight,
             },
             {
                 name: "bottom-start",
-                icon: isRTL
-                    ? IconMappings.arrowElbowRightDown
-                    : IconMappings.arrowElbowLeftDown,
+                icon: IconMappings.arrowElbowLeftDown,
             },
             {name: "bottom", icon: IconMappings.arrowDown},
             {
                 name: "bottom-end",
-                icon: isRTL
-                    ? IconMappings.arrowElbowLeftDown
-                    : IconMappings.arrowElbowRightDown,
+                icon: IconMappings.arrowElbowRightDown,
             },
             {
                 name: "left-start",
-                icon: isRTL
-                    ? IconMappings.arrowElbowDownRight
-                    : IconMappings.arrowElbowUpLeft,
+                icon: IconMappings.arrowElbowUpLeft,
             },
             {
                 name: "left",
-                icon: isRTL ? IconMappings.arrowRight : IconMappings.arrowLeft,
+                icon: IconMappings.arrowLeft,
             },
             {
                 name: "left-end",
-                icon: isRTL
-                    ? IconMappings.arrowElbowUpRight
-                    : IconMappings.arrowElbowDownLeft,
+                icon: IconMappings.arrowElbowDownLeft,
             },
         ];
 
