@@ -62,10 +62,8 @@ export const Default: StoryComponentType = {
  * automatically added to the end of the link. This indicates that the link will
  * open in a new tab.
  *
- * The icon's accessible name comes from `WonderBlocksI18nContextProvider`,
- * falling back to "(opens in a new tab)", so call sites need to do nothing —
- * as below. Pass `labels.externalIconAriaLabel` only where one link needs
- * different wording.
+ * The icon's accessible name is built-in: "(opens in a new tab)". It can be
+ * overridden using the `labels.externalIconAriaLabel` prop.
  */
 export const OpensInANewTab: StoryComponentType = {
     render: () => (

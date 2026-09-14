@@ -460,7 +460,7 @@ describe("Link", () => {
             });
         });
 
-        test("external icon uses the English default aria-label when no config provider is mounted", async () => {
+        test("external icon has an aria-label", async () => {
             // Arrange
             render(
                 <Link href="https://www.google.com/" target="_blank">
@@ -480,7 +480,7 @@ describe("Link", () => {
             render(
                 <WonderBlocksI18nContextProvider
                     strings={{
-                        iconAltOpensNewTab: "Se abre en una ventana nueva",
+                        iconAltOpensNewTab: "translated text",
                     }}
                     locale="es"
                 >
@@ -494,10 +494,7 @@ describe("Link", () => {
             const icon = await screen.findByTestId("external-icon");
 
             // Assert
-            expect(icon).toHaveAttribute(
-                "aria-label",
-                "Se abre en una ventana nueva",
-            );
+            expect(icon).toHaveAttribute("aria-label", "translated text");
         });
 
         test("external icon prefers the `labels` prop over the config provider", async () => {
@@ -505,7 +502,7 @@ describe("Link", () => {
             render(
                 <WonderBlocksI18nContextProvider
                     strings={{
-                        iconAltOpensNewTab: "Se abre en una ventana nueva",
+                        iconAltOpensNewTab: "translated text",
                     }}
                     locale="es"
                 >
@@ -513,8 +510,7 @@ describe("Link", () => {
                         href="https://www.google.com/"
                         target="_blank"
                         labels={{
-                            externalIconAriaLabel:
-                                "(abre en una pestaña nueva)",
+                            externalIconAriaLabel: "overriding label",
                         }}
                     >
                         Click me!
@@ -526,10 +522,7 @@ describe("Link", () => {
             const icon = await screen.findByTestId("external-icon");
 
             // Assert
-            expect(icon).toHaveAttribute(
-                "aria-label",
-                "(abre en una pestaña nueva)",
-            );
+            expect(icon).toHaveAttribute("aria-label", "overriding label");
         });
 
         test("external icon uses provided aria-label", async () => {
