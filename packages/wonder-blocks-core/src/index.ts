@@ -12,8 +12,15 @@ export {useOnMountEffect} from "./hooks/use-on-mount-effect";
 export {useOnline} from "./hooks/use-online";
 export {usePreHydrationEffect} from "./hooks/use-pre-hydration-effect";
 export {useRenderState} from "./hooks/use-render-state";
+export {useWonderBlocksI18n} from "./context/i18n-context";
 export {RenderStateRoot} from "./components/render-state-root";
 export {RenderState} from "./components/render-state-context";
+export {
+    WonderBlocksI18nContext,
+    WonderBlocksI18nContextProvider,
+} from "./context/i18n-context";
+export type {I18nContextType} from "./context/i18n-context";
+export type {WonderBlocksStrings} from "./strings";
 export type {AriaRole, AriaAttributes} from "./util/aria-types";
 export type {AriaProps, StyleType, PropsFor} from "./util/types";
 export {keys} from "./util/keys";
