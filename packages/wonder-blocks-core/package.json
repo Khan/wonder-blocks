@@ -31,8 +31,7 @@
       "source": "./src/strings.ts",
       "import": "./dist/es/strings.js",
       "require": "./dist/strings.js"
-    },
-    "./*": "./*"
+    }
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
