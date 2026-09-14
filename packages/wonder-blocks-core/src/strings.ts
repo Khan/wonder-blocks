@@ -27,6 +27,6 @@ export const strings = {
 /**
  * Default 'en' strings to use.
  */
-export const defaultEnStrings: WonderBlocksStrings = {
+export const defaultStringsEn: WonderBlocksStrings = {
     iconAltOpensNewTab: strings.iconAltOpensNewTab.message,
 };

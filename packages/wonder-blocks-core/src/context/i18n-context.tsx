@@ -1,7 +1,7 @@
 import * as React from "react";
 import {useContext, useMemo} from "react";
 
-import {defaultEnStrings} from "../strings";
+import {defaultStringsEn} from "../strings";
 
 import type {WonderBlocksStrings} from "../strings";
 
@@ -16,7 +16,7 @@ export type I18nContextType = {
  * Defaults to English translations if not provided.
  */
 export const WonderBlocksI18nContext = React.createContext<I18nContextType>({
-    strings: defaultEnStrings,
+    strings: defaultStringsEn,
     locale: "en",
 });
 WonderBlocksI18nContext.displayName = "WonderBlocksI18nContext";
