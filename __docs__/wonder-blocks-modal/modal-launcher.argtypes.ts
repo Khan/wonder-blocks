@@ -28,6 +28,15 @@ export default {
         },
     },
 
+    styles: {
+        control: {type: undefined},
+        table: {
+            type: {summary: "{backdrop?: StyleType}"},
+        },
+        description:
+            "Optional styles for the launcher. `backdrop` styles the veil that overlays the page behind the modal, and is applied last so it overrides the backdrop's own styles. Use it for properties that have to live on the veil element itself, such as a `viewTransitionName` for a View Transition.",
+    },
+
     initialFocusId: {
         control: {type: "text"},
         description:
