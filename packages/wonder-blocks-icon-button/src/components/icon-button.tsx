@@ -22,11 +22,6 @@ function IconChooser({
     icon: IconButtonProps["icon"];
     size: IconButtonSize;
 }) {
-    // The icon's box is sized by the `--wb-c-icon-button--icon-size` component
-    // token, which the `size` class on the root element assigns. This keeps the
-    // icon size theme-driven without the component having to read the theme
-    // object in JS.
-
     // If the icon is not a string, it is a custom icon that can be rendered
     // directly with the corresponding styles
     if (typeof icon !== "string") {
