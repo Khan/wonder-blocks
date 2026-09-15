@@ -1,5 +1,39 @@
 # @khanacademy/wonder-blocks-date-picker
 
+## 1.1.3
+
+### Patch Changes
+
+- Updated dependencies [66bae92]
+    - @khanacademy/wonder-blocks-styles@0.4.0
+    - @khanacademy/wonder-blocks-icon-button@12.0.1
+    - @khanacademy/wonder-blocks-modal@8.8.4
+    - @khanacademy/wonder-blocks-form@7.6.15
+
+## 1.1.2
+
+### Patch Changes
+
+- Updated dependencies [849def2]
+- Updated dependencies [8ac496e]
+    - @khanacademy/wonder-blocks-icon-button@12.0.0
+    - @khanacademy/wonder-blocks-styles@0.3.0
+    - @khanacademy/wonder-blocks-modal@8.8.3
+    - @khanacademy/wonder-blocks-form@7.6.14
+
+## 1.1.1
+
+### Patch Changes
+
+- Updated dependencies [04522d4]
+- Updated dependencies [5b4fed3]
+    - @khanacademy/wonder-blocks-tokens@18.0.0
+    - @khanacademy/wonder-blocks-form@7.6.13
+    - @khanacademy/wonder-blocks-icon-button@11.5.1
+    - @khanacademy/wonder-blocks-modal@8.8.2
+    - @khanacademy/wonder-blocks-styles@0.2.54
+    - @khanacademy/wonder-blocks-core@12.5.0
+
 ## 1.1.0
 
 ### Minor Changes

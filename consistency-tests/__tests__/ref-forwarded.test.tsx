@@ -273,7 +273,7 @@ describe("IconButton", () => {
         const ref: React.RefObject<HTMLButtonElement> = React.createRef();
 
         // Act
-        render(<IconButton ref={ref} icon={plus} />);
+        render(<IconButton ref={ref} icon={plus} aria-label="Add" />);
 
         // Assert
         expect(ref.current).toBeInstanceOf(HTMLButtonElement);
@@ -292,6 +292,7 @@ describe("IconButton", () => {
                 skipClientNav={true}
                 ref={ref}
                 icon={plus}
+                aria-label="Add"
             />,
         );
 
@@ -314,6 +315,7 @@ describe("IconButton", () => {
                         skipClientNav={false}
                         ref={ref}
                         icon={plus}
+                        aria-label="Add"
                     />
                     ,
                 </CompatRouter>

@@ -702,4 +702,446 @@ describe("Accordion", () => {
             },
         );
     });
+
+    describe("controlled mode", () => {
+        it("expands the sections listed in expandedIndices", async () => {
+            // Arrange
+            render(
+                <Accordion expandedIndices={[0, 2]}>
+                    <AccordionSection header="Section 1">
+                        Section 1 content
+                    </AccordionSection>
+                    <AccordionSection header="Section 2">
+                        Section 2 content
+                    </AccordionSection>
+                    <AccordionSection header="Section 3">
+                        Section 3 content
+                    </AccordionSection>
+                </Accordion>,
+                {wrapper: RenderStateRoot},
+            );
+
+            // Act
+            const content = await screen.findByText("Section 3 content");
+
+            // Assert
+            expect(content).toBeVisible();
+        });
+
+        it("collapses the sections that are not listed in expandedIndices", async () => {
+            // Arrange
+            render(
+                <Accordion expandedIndices={[0, 2]}>
+                    <AccordionSection header="Section 1">
+                        Section 1 content
+                    </AccordionSection>
+                    <AccordionSection header="Section 2">
+                        Section 2 content
+                    </AccordionSection>
+                    <AccordionSection header="Section 3">
+                        Section 3 content
+                    </AccordionSection>
+                </Accordion>,
+                {wrapper: RenderStateRoot},
+            );
+
+            // Act
+            const content = await screen.findByText("Section 2 content");
+
+            // Assert
+            expect(content).not.toBeVisible();
+        });
+
+        it("keeps every section collapsed when expandedIndices is empty", async () => {
+            // Arrange
+            render(
+                <Accordion expandedIndices={[]}>
+                    <AccordionSection header="Section 1">
+                        Section 1 content
+                    </AccordionSection>
+                    <AccordionSection header="Section 2">
+                        Section 2 content
+                    </AccordionSection>
+                </Accordion>,
+                {wrapper: RenderStateRoot},
+            );
+
+            // Act
+            await userEvent.click(
+                await screen.findByRole("button", {name: "Section 1"}),
+            );
+
+            // Assert
+            expect(screen.getByText("Section 1 content")).not.toBeVisible();
+        });
+
+        it("does not change the expanded state when a section is clicked", async () => {
+            // Arrange
+            render(
+                <Accordion expandedIndices={[1]}>
+                    <AccordionSection header="Section 1">
+                        Section 1 content
+                    </AccordionSection>
+                    <AccordionSection header="Section 2">
+                        Section 2 content
+                    </AccordionSection>
+                </Accordion>,
+                {wrapper: RenderStateRoot},
+            );
+
+            // Act
+            await userEvent.click(
+                await screen.findByRole("button", {name: "Section 2"}),
+            );
+
+            // Assert
+            expect(screen.getByText("Section 2 content")).toBeVisible();
+        });
+
+        it("updates the expanded sections when expandedIndices changes", async () => {
+            // Arrange
+            const {rerender} = render(
+                <Accordion expandedIndices={[0]}>
+                    <AccordionSection header="Section 1">
+                        Section 1 content
+                    </AccordionSection>
+                    <AccordionSection header="Section 2">
+                        Section 2 content
+                    </AccordionSection>
+                </Accordion>,
+                {wrapper: RenderStateRoot},
+            );
+
+            // Act
+            rerender(
+                <Accordion expandedIndices={[1]}>
+                    <AccordionSection header="Section 1">
+                        Section 1 content
+                    </AccordionSection>
+                    <AccordionSection header="Section 2">
+                        Section 2 content
+                    </AccordionSection>
+                </Accordion>,
+            );
+
+            // Assert
+            expect(screen.getByText("Section 2 content")).toBeVisible();
+        });
+
+        it("collapses a section when it is removed from expandedIndices", async () => {
+            // Arrange
+            const {rerender} = render(
+                <Accordion expandedIndices={[0]}>
+                    <AccordionSection header="Section 1">
+                        Section 1 content
+                    </AccordionSection>
+                    <AccordionSection header="Section 2">
+                        Section 2 content
+                    </AccordionSection>
+                </Accordion>,
+                {wrapper: RenderStateRoot},
+            );
+
+            // Act
+            rerender(
+                <Accordion expandedIndices={[1]}>
+                    <AccordionSection header="Section 1">
+                        Section 1 content
+                    </AccordionSection>
+                    <AccordionSection header="Section 2">
+                        Section 2 content
+                    </AccordionSection>
+                </Accordion>,
+            );
+
+            // Assert
+            expect(screen.getByText("Section 1 content")).not.toBeVisible();
+        });
+
+        it("expands the section that the consumer opens in response to onToggle", async () => {
+            // Arrange
+            const ControlledAccordion = () => {
+                const [expandedIndices, setExpandedIndices] = React.useState<
+                    Array<number>
+                >([]);
+                return (
+                    <Accordion
+                        expandedIndices={expandedIndices}
+                        onToggle={(_, allExpandedIndices) =>
+                            setExpandedIndices(allExpandedIndices)
+                        }
+                    >
+                        <AccordionSection header="Section 1">
+                            Section 1 content
+                        </AccordionSection>
+                        <AccordionSection header="Section 2">
+                            Section 2 content
+                        </AccordionSection>
+                    </Accordion>
+                );
+            };
+            render(<ControlledAccordion />, {wrapper: RenderStateRoot});
+
+            // Act
+            await userEvent.click(
+                await screen.findByRole("button", {name: "Section 2"}),
+            );
+
+            // Assert
+            expect(screen.getByText("Section 2 content")).toBeVisible();
+        });
+    });
+
+    describe("onToggle", () => {
+        it("is called with the index of the section that was toggled", async () => {
+            // Arrange
+            const onToggleSpy = jest.fn();
+            render(
+                <Accordion onToggle={onToggleSpy}>
+                    <AccordionSection header="Section 1">
+                        Section 1 content
+                    </AccordionSection>
+                    <AccordionSection header="Section 2">
+                        Section 2 content
+                    </AccordionSection>
+                </Accordion>,
+                {wrapper: RenderStateRoot},
+            );
+
+            // Act
+            await userEvent.click(
+                await screen.findByRole("button", {name: "Section 2"}),
+            );
+
+            // Assert
+            expect(onToggleSpy).toHaveBeenCalledWith(1, expect.anything());
+        });
+
+        it("is called with the indices of every expanded section", async () => {
+            // Arrange
+            const onToggleSpy = jest.fn();
+            render(
+                <Accordion initialExpandedIndex={0} onToggle={onToggleSpy}>
+                    <AccordionSection header="Section 1">
+                        Section 1 content
+                    </AccordionSection>
+                    <AccordionSection header="Section 2">
+                        Section 2 content
+                    </AccordionSection>
+                    <AccordionSection header="Section 3">
+                        Section 3 content
+                    </AccordionSection>
+                </Accordion>,
+                {wrapper: RenderStateRoot},
+            );
+
+            // Act
+            await userEvent.click(
+                await screen.findByRole("button", {name: "Section 3"}),
+            );
+
+            // Assert
+            expect(onToggleSpy).toHaveBeenCalledWith(2, [0, 2]);
+        });
+
+        it("is called with the remaining expanded indices when a section is closed", async () => {
+            // Arrange
+            const onToggleSpy = jest.fn();
+            render(
+                <Accordion expandedIndices={[0, 1]} onToggle={onToggleSpy}>
+                    <AccordionSection header="Section 1">
+                        Section 1 content
+                    </AccordionSection>
+                    <AccordionSection header="Section 2">
+                        Section 2 content
+                    </AccordionSection>
+                </Accordion>,
+                {wrapper: RenderStateRoot},
+            );
+
+            // Act
+            await userEvent.click(
+                await screen.findByRole("button", {name: "Section 1"}),
+            );
+
+            // Assert
+            expect(onToggleSpy).toHaveBeenCalledWith(0, [1]);
+        });
+
+        it("is called with only the newly expanded index when allowMultipleExpanded is false", async () => {
+            // Arrange
+            const onToggleSpy = jest.fn();
+            render(
+                <Accordion
+                    expandedIndices={[0]}
+                    allowMultipleExpanded={false}
+                    onToggle={onToggleSpy}
+                >
+                    <AccordionSection header="Section 1">
+                        Section 1 content
+                    </AccordionSection>
+                    <AccordionSection header="Section 2">
+                        Section 2 content
+                    </AccordionSection>
+                </Accordion>,
+                {wrapper: RenderStateRoot},
+            );
+
+            // Act
+            await userEvent.click(
+                await screen.findByRole("button", {name: "Section 2"}),
+            );
+
+            // Assert
+            expect(onToggleSpy).toHaveBeenCalledWith(1, [1]);
+        });
+
+        it("is called alongside the child's own onToggle", async () => {
+            // Arrange
+            const childOnToggleSpy = jest.fn();
+            render(
+                <Accordion onToggle={jest.fn()}>
+                    <AccordionSection
+                        header="Section 1"
+                        onToggle={childOnToggleSpy}
+                    >
+                        Section 1 content
+                    </AccordionSection>
+                    <AccordionSection header="Section 2">
+                        Section 2 content
+                    </AccordionSection>
+                </Accordion>,
+                {wrapper: RenderStateRoot},
+            );
+
+            // Act
+            await userEvent.click(
+                await screen.findByRole("button", {name: "Section 1"}),
+            );
+
+            // Assert
+            expect(childOnToggleSpy).toHaveBeenCalledExactlyOnceWith(true);
+        });
+    });
+
+    describe("ids", () => {
+        it("sets the id on the accordion list", () => {
+            // Arrange
+            render(
+                <Accordion id="test-accordion">
+                    <AccordionSection header="Section 1">
+                        Section 1 content
+                    </AccordionSection>
+                    <AccordionSection header="Section 2">
+                        Section 2 content
+                    </AccordionSection>
+                </Accordion>,
+                {wrapper: RenderStateRoot},
+            );
+
+            // Act
+            const list = screen.getByRole("list");
+
+            // Assert
+            expect(list).toHaveAttribute("id", "test-accordion");
+        });
+
+        it.each([0, 1])(
+            "gives the list item at index %i a unique id derived from the accordion id",
+            (index) => {
+                // Arrange
+                render(
+                    <Accordion id="test-accordion">
+                        <AccordionSection header="Section 1">
+                            Section 1 content
+                        </AccordionSection>
+                        <AccordionSection header="Section 2">
+                            Section 2 content
+                        </AccordionSection>
+                    </Accordion>,
+                    {wrapper: RenderStateRoot},
+                );
+
+                // Act
+                const listItem = screen.getAllByRole("listitem")[index];
+
+                // Assert
+                expect(listItem).toHaveAttribute(
+                    "id",
+                    `test-accordion-section-${index}`,
+                );
+            },
+        );
+
+        it("does not set an id on the list items when the accordion has no id", () => {
+            // Arrange
+            render(
+                <Accordion>
+                    <AccordionSection header="Section 1">
+                        Section 1 content
+                    </AccordionSection>
+                    <AccordionSection header="Section 2">
+                        Section 2 content
+                    </AccordionSection>
+                </Accordion>,
+                {wrapper: RenderStateRoot},
+            );
+
+            // Act
+            const listItem = screen.getAllByRole("listitem")[0];
+
+            // Assert
+            expect(listItem).not.toHaveAttribute("id");
+        });
+    });
+
+    describe("Accessibility", () => {
+        describe("axe", () => {
+            it("should not have any violations when sections are expanded", async () => {
+                // Arrange
+                const {container} = render(
+                    <Accordion id="test-accordion" expandedIndices={[0, 1]}>
+                        <AccordionSection header="Section 1">
+                            Section 1 content
+                        </AccordionSection>
+                        <AccordionSection header="Section 2">
+                            Section 2 content
+                        </AccordionSection>
+                    </Accordion>,
+                    {wrapper: RenderStateRoot},
+                );
+
+                // Act
+
+                // Assert
+                await expect(container).toHaveNoA11yViolations();
+            });
+        });
+
+        describe("ARIA", () => {
+            it.each(["expandedIndices", "initialExpandedIndex"])(
+                "does not forward the %s prop to the DOM",
+                (propName) => {
+                    // Arrange
+                    render(
+                        <Accordion expandedIndices={[0]}>
+                            <AccordionSection header="Section 1">
+                                Section 1 content
+                            </AccordionSection>
+                            <AccordionSection header="Section 2">
+                                Section 2 content
+                            </AccordionSection>
+                        </Accordion>,
+                        {wrapper: RenderStateRoot},
+                    );
+
+                    // Act
+                    const list = screen.getByRole("list");
+
+                    // Assert
+                    expect(list).not.toHaveAttribute(propName.toLowerCase());
+                },
+            );
+        });
+    });
 });

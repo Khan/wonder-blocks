@@ -33,12 +33,43 @@ export default {
         description: `The index of the AccordionSection that should be expanded
             when the Accordion is first rendered. If not specified, no
             AccordionSections will be expanded when the Accordion is first
-            rendered.`,
+            rendered. This is only read on the first render, so use
+            \`expandedIndices\` instead if you need to control the expanded
+            state after that. Cannot be used with \`expandedIndices\`.`,
         table: {
             category: "State",
             type: {summary: "number"},
         },
         type: {name: "number", required: false},
+    },
+    expandedIndices: {
+        control: {type: "object"},
+        description: `The indices of the AccordionSections that are currently
+            expanded. Passing this prop puts the Accordion into controlled
+            mode: the parent owns the expanded state, and the Accordion only
+            reports changes via \`onToggle\`. Cannot be used with
+            \`initialExpandedIndex\`.`,
+        table: {
+            category: "State",
+            type: {summary: "ReadonlyArray<number>"},
+        },
+        type: {name: "other", required: false, value: "ReadonlyArray<number>"},
+    },
+    onToggle: {
+        control: {type: undefined},
+        description: `Called when a section is toggled. It is passed the index
+            of the section that was toggled, along with the indices of every
+            section that is expanded as a result of the toggle. In controlled
+            mode, the second argument is the value that should be passed back
+            in as \`expandedIndices\`.`,
+        table: {
+            category: "Events",
+            type: {
+                summary:
+                    "(toggledIndex: number, allExpandedIndices: Array<number>) => unknown",
+            },
+        },
+        type: {name: "function", required: false},
     },
     allowMultipleExpanded: {
         control: {type: "boolean"},

@@ -282,8 +282,10 @@ export const UsingHref: StoryComponentType = {
 };
 
 /**
- * By default, the icon buttons do not have accessible names. The `aria-label` prop must be used
- * to explain the function of the button. Remember to keep the description concise but understandable.
+ * Because an icon button only renders an icon and has no visible text, the
+ * `aria-label` prop is required to give it an accessible name. It is used to
+ * explain the function of the button. Remember to keep the description concise
+ * but understandable.
  */
 export const WithAriaLabel: StoryComponentType = {
     render: () => {

@@ -180,6 +180,88 @@ describe("RespondWith", () => {
         });
     });
 
+    describe("#graphQLPartialData", () => {
+        it("should respond with the given partial data and errors", async () => {
+            // Arrange
+
+            // Act
+            const response = await RespondWith.graphQLPartialData(
+                {some: "json", failed: null},
+                ["BOOM!"],
+            ).toPromise();
+            const result = await response.json();
+
+            // Assert
+            expect(result).toStrictEqual({
+                data: {some: "json", failed: null},
+                errors: [{message: "BOOM!"}],
+            });
+        });
+
+        it("should respond with null data and errors", async () => {
+            // Arrange
+
+            // Act
+            const response = await RespondWith.graphQLPartialData(null, [
+                "BOOM!",
+                "BANG!",
+            ]).toPromise();
+            const result = await response.json();
+
+            // Assert
+            expect(result).toStrictEqual({
+                data: null,
+                errors: [{message: "BOOM!"}, {message: "BANG!"}],
+            });
+        });
+
+        it("should not settle if the signal is not raised", async () => {
+            // Arrange
+            const settleController = new SettleController();
+            const settleableResponse = RespondWith.graphQLPartialData(
+                {result: "SIGNALLED"},
+                ["BOOM!"],
+                settleController.signal,
+            ).toPromise();
+            const otherResponse = RespondWith.text("NO SIGNAL").toPromise();
+
+            // Act
+            const firstResponse = await Promise.race([
+                settleableResponse,
+                otherResponse,
+            ]);
+            const result = await firstResponse.text();
+
+            // Assert
+            expect(result).toBe("NO SIGNAL");
+        });
+
+        it("should settle if the signal is raised", async () => {
+            // Arrange
+            const settleController = new SettleController();
+            const settleableResponse = RespondWith.graphQLPartialData(
+                {result: "SIGNALLED"},
+                ["BOOM!"],
+                settleController.signal,
+            ).toPromise();
+            const otherResponse = RespondWith.text("NO SIGNAL").toPromise();
+
+            // Act
+            settleController.settle();
+            const firstResponse = await Promise.race([
+                settleableResponse,
+                otherResponse,
+            ]);
+            const result = await firstResponse.json();
+
+            // Assert
+            expect(result).toStrictEqual({
+                data: {result: "SIGNALLED"},
+                errors: [{message: "BOOM!"}],
+            });
+        });
+    });
+
     describe("#unparseableBody", () => {
         it("should reject JSON as unparseable", async () => {
             // Arrange
