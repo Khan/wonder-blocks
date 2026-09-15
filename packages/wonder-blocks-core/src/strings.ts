@@ -1,12 +1,21 @@
 /**
  * The translated strings that are used to render Wonder Blocks.
  *
+ * Keys are organized into three groups, in this order: the general strings
+ * that users can see, then `iconAlt*`, then `sr*`. Keys are sorted
+ * alphabetically within each group, and all three exports in this file
+ * (`WonderBlocksStrings`, `strings` and `defaultStringsEn`) use the same
+ * grouping and ordering so they can be read side by side.
+ *
  * Naming conventions:
  * - `iconAlt*`: accessible names (alt text / `aria-label`) for icons.
  * - `sr*`: messages that are only announced to screen readers (live regions).
  * - Everything else is named after what it labels.
  */
 export type WonderBlocksStrings = {
+    // General strings: visible labels, placeholders, error messages and
+    // selection summaries.
+
     /**
      * Shown on a multi select's opener when every option is selected.
      */
@@ -31,6 +40,54 @@ export type WonderBlocksStrings = {
      * The placeholder for the input used to filter a dropdown's options.
      */
     filterPlaceholder: string;
+    /**
+     * The error message shown when the birthday picker's value is not a valid
+     * date.
+     */
+    invalidBirthdateErrorMessage: string;
+    /**
+     * The accessible name for a combobox's list of options.
+     */
+    listboxLabel: string;
+    /**
+     * The label for the month field of the birthday picker.
+     */
+    month: string;
+    /**
+     * Shown when filtering a dropdown's options matches nothing.
+     */
+    noResults: string;
+    /**
+     * The error message shown when a required field is left empty.
+     */
+    requiredFieldErrorMessage: string;
+    /**
+     * The label for the shortcut that selects every option of a multi select.
+     * `numOptions` is the number of options that would be selected.
+     */
+    selectAll: (args: {numOptions: number}) => string;
+    /**
+     * Summarizes how many options a multi select currently has selected.
+     * `numItems` is the number of selected options and can be zero.
+     */
+    selectedItemsCount: (args: {numItems: number}) => string;
+    /**
+     * The label for the shortcut that deselects every option of a multi
+     * select.
+     */
+    selectNone: string;
+    /**
+     * The accessible name for the dropdown that tabs collapse into when there
+     * isn't enough horizontal space to show them as tabs.
+     */
+    tabs: string;
+    /**
+     * The label for the year field of the birthday picker.
+     */
+    year: string;
+
+    // Icon alt text: accessible names for icons.
+
     /**
      * Accessible name for the button that clears the current selection.
      */
@@ -69,42 +126,10 @@ export type WonderBlocksStrings = {
      * Accessible name for the button that shows/hides a combobox's listbox.
      */
     iconAltToggleListbox: string;
-    /**
-     * The error message shown when the birthday picker's value is not a valid
-     * date.
-     */
-    invalidBirthdateErrorMessage: string;
-    /**
-     * The accessible name for a combobox's list of options.
-     */
-    listboxLabel: string;
-    /**
-     * The label for the month field of the birthday picker.
-     */
-    month: string;
-    /**
-     * Shown when filtering a dropdown's options matches nothing.
-     */
-    noResults: string;
-    /**
-     * The error message shown when a required field is left empty.
-     */
-    requiredFieldErrorMessage: string;
-    /**
-     * The label for the shortcut that selects every option of a multi select.
-     * `numOptions` is the number of options that would be selected.
-     */
-    selectAll: (args: {numOptions: number}) => string;
-    /**
-     * Summarizes how many options a multi select currently has selected.
-     * `numItems` is the number of selected options and can be zero.
-     */
-    selectedItemsCount: (args: {numItems: number}) => string;
-    /**
-     * The label for the shortcut that deselects every option of a multi
-     * select.
-     */
-    selectNone: string;
+
+    // Screen reader announcements: text that is only announced by assistive
+    // technology.
+
     /**
      * Screen reader announcement for the combobox being closed.
      */
@@ -153,27 +178,23 @@ export type WonderBlocksStrings = {
      * `labels` is a comma separated list of the deselected options' labels.
      */
     srUnselected: (args: {labels: string}) => string;
-    /**
-     * The accessible name for the dropdown that tabs collapse into when there
-     * isn't enough horizontal space to show them as tabs.
-     */
-    tabs: string;
-    /**
-     * The label for the year field of the birthday picker.
-     */
-    year: string;
 };
 
 /**
  * Untranslated strings used in Wonder Blocks. To be used by an external
  * translator to produce translated strings, passed in as `WonderBlocksStrings`.
  *
- * Interpolated values use the `%(name)s` syntax, and strings that vary with a
- * count are declared with `one`/`other` messages.
+ * Messages that interpolate values are declared as functions that take an
+ * object of the named values and return the message, and strings that vary
+ * with a count are declared with `one`/`other` messages instead of a single
+ * `message`.
  *
  * !! Note: Ensure that all escape sequences are double-escaped. (e.g. `\\text` -> `\\\\text`)
  */
 export const strings = {
+    // General strings: visible labels, placeholders, error messages and
+    // selection summaries.
+
     allItemsSelected: {
         context:
             "Shown on a multi select's opener when every option is selected.",
@@ -203,6 +224,56 @@ export const strings = {
             "Placeholder for the input used to filter the options of a dropdown.",
         message: "Filter",
     },
+    invalidBirthdateErrorMessage: {
+        context:
+            "Error message shown when the month, day and year chosen for a birthdate don't form a valid date.",
+        message: "Please select a valid birthdate.",
+    },
+    listboxLabel: {
+        context: "Accessible name for a combobox's list of options.",
+        message: "Options list",
+    },
+    month: {
+        context: "Label for the month field of a birthdate input.",
+        message: "Month",
+    },
+    noResults: {
+        context:
+            "Shown in place of a dropdown's options when the text typed into its filter input matches none of them.",
+        message: "No results",
+    },
+    requiredFieldErrorMessage: {
+        context: "Error message shown when a required form field is empty.",
+        message: "This field is required.",
+    },
+    selectAll: {
+        context:
+            "Label for the shortcut that selects every option of a multi select. The numOptions argument is how many options there are.",
+        message: ({numOptions}) => `Select all (${numOptions})`,
+    },
+    selectedItemsCount: {
+        context:
+            "Shown on a multi select's opener to summarize how many options are selected. The numItems argument is the number of selected options, and can be zero.",
+        one: ({numItems}) => `${numItems} item`,
+        other: ({numItems}) => `${numItems} items`,
+    },
+    selectNone: {
+        context:
+            "Label for the shortcut that deselects every option of a multi select.",
+        message: "Select none",
+    },
+    tabs: {
+        context:
+            "Accessible name for the dropdown that tabs collapse into when there isn't enough horizontal space to lay them out as tabs.",
+        message: "Tabs",
+    },
+    year: {
+        context: "Label for the year field of a birthdate input.",
+        message: "Year",
+    },
+
+    // Icon alt text: accessible names for icons.
+
     iconAltClearSelection: {
         context:
             "Accessible name for the button that clears the option currently selected in a combobox.",
@@ -233,8 +304,8 @@ export const strings = {
     },
     iconAltRemoveSelected: {
         context:
-            "Accessible name for the button that removes one of the options selected in a combobox. %(label)s is the option's label.",
-        message: "Remove %(label)s",
+            "Accessible name for the button that removes one of the options selected in a combobox. The label argument is the option's label.",
+        message: ({label}) => `Remove ${label}`,
     },
     iconAltToggleCalendar: {
         context:
@@ -246,44 +317,10 @@ export const strings = {
             "Accessible name for the button that shows or hides a combobox's list of options.",
         message: "Toggle listbox",
     },
-    invalidBirthdateErrorMessage: {
-        context:
-            "Error message shown when the month, day and year chosen for a birthdate don't form a valid date.",
-        message: "Please select a valid birthdate.",
-    },
-    listboxLabel: {
-        context: "Accessible name for a combobox's list of options.",
-        message: "Options list",
-    },
-    month: {
-        context: "Label for the month field of a birthdate input.",
-        message: "Month",
-    },
-    noResults: {
-        context:
-            "Shown in place of a dropdown's options when the text typed into its filter input matches none of them.",
-        message: "No results",
-    },
-    requiredFieldErrorMessage: {
-        context: "Error message shown when a required form field is empty.",
-        message: "This field is required.",
-    },
-    selectAll: {
-        context:
-            "Label for the shortcut that selects every option of a multi select. %(numOptions)s is how many options there are.",
-        message: "Select all (%(numOptions)s)",
-    },
-    selectedItemsCount: {
-        context:
-            "Shown on a multi select's opener to summarize how many options are selected. %(numItems)s is the number of selected options, and can be zero.",
-        one: "%(numItems)s item",
-        other: "%(numItems)s items",
-    },
-    selectNone: {
-        context:
-            "Label for the shortcut that deselects every option of a multi select.",
-        message: "Select none",
-    },
+
+    // Screen reader announcements: text that is only announced by assistive
+    // technology.
+
     srComboboxClosed: {
         context:
             "Announced to screen reader users when a combobox's list of options closes.",
@@ -291,8 +328,9 @@ export const strings = {
     },
     srCurrentItem: {
         context:
-            "Announced to screen reader users when they move to an option in a list. %(current)s is the option's label, %(index)s is its position in the list (starting at 1) and %(total)s is how many options there are. Any of srCurrentItemFocused, srCurrentItemDisabled and srCurrentItemSelected that apply are appended to %(current)s.",
-        message: "%(current)s, %(index)s of %(total)s.",
+            "Announced to screen reader users when they move to an option in a list. The current argument is the option's label, the index argument is its position in the list (starting at 1) and the total argument is how many options there are. Any of srCurrentItemFocused, srCurrentItemDisabled and srCurrentItemSelected that apply are appended to the option's label.",
+        message: ({current, index, total}) =>
+            `${current}, ${index} of ${total}.`,
     },
     srCurrentItemDisabled: {
         context:
@@ -311,20 +349,20 @@ export const strings = {
     },
     srResultsAvailable: {
         context:
-            "Announced to screen reader users to say how many options a list is currently showing. %(total)s is the number of options.",
-        one: "%(total)s result available.",
-        other: "%(total)s results available.",
+            "Announced to screen reader users to say how many options a list is currently showing. The total argument is the number of options.",
+        one: ({total}) => `${total} result available.`,
+        other: ({total}) => `${total} results available.`,
     },
     srSelected: {
         context:
-            "Announced to screen reader users when option(s) become selected. %(labels)s is a comma separated list of the selected options' labels.",
-        message: "%(labels)s selected",
+            "Announced to screen reader users when option(s) become selected. The labels argument is a comma separated list of the selected options' labels.",
+        message: ({labels}) => `${labels} selected`,
     },
     srSelectedOptionsTotal: {
         context:
-            "Announced to screen reader users to say how many options are currently selected. %(total)s is the number of selected options.",
-        one: "%(total)s selected option.",
-        other: "%(total)s selected options.",
+            "Announced to screen reader users to say how many options are currently selected. The total argument is the number of selected options.",
+        one: ({total}) => `${total} selected option.`,
+        other: ({total}) => `${total} selected options.`,
     },
     srSelectionCleared: {
         context:
@@ -333,70 +371,79 @@ export const strings = {
     },
     srUnselected: {
         context:
-            "Announced to screen reader users when option(s) become deselected. %(labels)s is a comma separated list of the deselected options' labels.",
-        message: "%(labels)s not selected",
-    },
-    tabs: {
-        context:
-            "Accessible name for the dropdown that tabs collapse into when there isn't enough horizontal space to lay them out as tabs.",
-        message: "Tabs",
-    },
-    year: {
-        context: "Label for the year field of a birthdate input.",
-        message: "Year",
+            "Announced to screen reader users when option(s) become deselected. The labels argument is a comma separated list of the deselected options' labels.",
+        message: ({labels}) => `${labels} not selected`,
     },
 } satisfies {
-    [Key in keyof WonderBlocksStrings]:
-        | string
-        | {context?: string; message: string}
-        | {context?: string; one: string; other: string};
+    [Key in keyof WonderBlocksStrings]: WonderBlocksStrings[Key] extends (
+        args: infer Args,
+    ) => string
+        ?
+              | {context?: string; message: (args: Args) => string}
+              | {
+                    context?: string;
+                    one: (args: Args) => string;
+                    other: (args: Args) => string;
+                }
+        : {context?: string; message: WonderBlocksStrings[Key]};
 };
 
 /**
  * Default 'en' strings to use.
  */
 export const defaultStringsEn: WonderBlocksStrings = {
+    // General strings: visible labels, placeholders, error messages and
+    // selection summaries.
+
     allItemsSelected: strings.allItemsSelected.message,
     breadcrumbsLabel: strings.breadcrumbsLabel.message,
     clearSearch: strings.clearSearch.message,
     datePickerCalendarLabel: strings.datePickerCalendarLabel.message,
     day: strings.day.message,
     filterPlaceholder: strings.filterPlaceholder.message,
+    invalidBirthdateErrorMessage: strings.invalidBirthdateErrorMessage.message,
+    listboxLabel: strings.listboxLabel.message,
+    month: strings.month.message,
+    noResults: strings.noResults.message,
+    requiredFieldErrorMessage: strings.requiredFieldErrorMessage.message,
+    selectAll: strings.selectAll.message,
+    selectedItemsCount: (args) =>
+        args.numItems === 1
+            ? strings.selectedItemsCount.one(args)
+            : strings.selectedItemsCount.other(args),
+    selectNone: strings.selectNone.message,
+    tabs: strings.tabs.message,
+    year: strings.year.message,
+
+    // Icon alt text: accessible names for icons.
+
     iconAltClearSelection: strings.iconAltClearSelection.message,
     iconAltCloseModal: strings.iconAltCloseModal.message,
     iconAltClosePopover: strings.iconAltClosePopover.message,
     iconAltDismissBanner: strings.iconAltDismissBanner.message,
     iconAltError: strings.iconAltError.message,
     iconAltOpensNewTab: strings.iconAltOpensNewTab.message,
-    iconAltRemoveSelected: ({label}) => `Remove ${label}`,
+    iconAltRemoveSelected: strings.iconAltRemoveSelected.message,
     iconAltToggleCalendar: strings.iconAltToggleCalendar.message,
     iconAltToggleListbox: strings.iconAltToggleListbox.message,
-    invalidBirthdateErrorMessage: strings.invalidBirthdateErrorMessage.message,
-    listboxLabel: strings.listboxLabel.message,
-    month: strings.month.message,
-    noResults: strings.noResults.message,
-    requiredFieldErrorMessage: strings.requiredFieldErrorMessage.message,
-    selectAll: ({numOptions}) => `Select all (${numOptions})`,
-    selectedItemsCount: ({numItems}) =>
-        numItems === 1 ? `${numItems} item` : `${numItems} items`,
-    selectNone: strings.selectNone.message,
+
+    // Screen reader announcements: text that is only announced by assistive
+    // technology.
+
     srComboboxClosed: strings.srComboboxClosed.message,
-    srCurrentItem: ({current, index, total}) =>
-        `${current}, ${index} of ${total}.`,
+    srCurrentItem: strings.srCurrentItem.message,
     srCurrentItemDisabled: strings.srCurrentItemDisabled.message,
     srCurrentItemFocused: strings.srCurrentItemFocused.message,
     srCurrentItemSelected: strings.srCurrentItemSelected.message,
-    srResultsAvailable: ({total}) =>
-        total === 1
-            ? `${total} result available.`
-            : `${total} results available.`,
-    srSelected: ({labels}) => `${labels} selected`,
-    srSelectedOptionsTotal: ({total}) =>
-        total === 1
-            ? `${total} selected option.`
-            : `${total} selected options.`,
+    srResultsAvailable: (args) =>
+        args.total === 1
+            ? strings.srResultsAvailable.one(args)
+            : strings.srResultsAvailable.other(args),
+    srSelected: strings.srSelected.message,
+    srSelectedOptionsTotal: (args) =>
+        args.total === 1
+            ? strings.srSelectedOptionsTotal.one(args)
+            : strings.srSelectedOptionsTotal.other(args),
     srSelectionCleared: strings.srSelectionCleared.message,
-    srUnselected: ({labels}) => `${labels} not selected`,
-    tabs: strings.tabs.message,
-    year: strings.year.message,
+    srUnselected: strings.srUnselected.message,
 };
