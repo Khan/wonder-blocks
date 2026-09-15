@@ -7,6 +7,10 @@ import {FloatingReferenceAttributeName} from "@khanacademy/wonder-blocks-floatin
 import PopoverAnchor from "../popover-anchor";
 
 describe("PopoverAnchor", () => {
+    afterEach(() => {
+        jest.restoreAllMocks();
+    });
+
     it("should pass the floating reference attribute to the child", async () => {
         // Arrange
         // `Floating` injects this attribute into the anchor to identify the
@@ -93,7 +97,7 @@ describe("PopoverAnchor", () => {
         );
     });
 
-    it("should not inject a ref into a function component trigger", async () => {
+    it("should not inject a ref into a function component trigger", () => {
         // Arrange
         const consoleErrorSpy = jest
             .spyOn(console, "error")
