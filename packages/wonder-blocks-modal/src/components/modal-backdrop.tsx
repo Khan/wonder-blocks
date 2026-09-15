@@ -2,6 +2,7 @@ import * as React from "react";
 import * as ReactDOM from "react-dom";
 
 import {View} from "@khanacademy/wonder-blocks-core";
+import type {StyleType} from "@khanacademy/wonder-blocks-core";
 
 import {StyleSheet} from "aphrodite";
 import {semanticColor} from "@khanacademy/wonder-blocks-tokens";
@@ -22,6 +23,11 @@ type Props = {
      * Test ID used for e2e testing.
      */
     testId?: string;
+    /**
+     * Optional custom styles, applied last so they override the backdrop's own
+     * styles.
+     */
+    style?: StyleType;
 };
 
 /**
@@ -87,6 +93,7 @@ const ModalBackdrop = ({
     initialFocusId,
     onCloseModal,
     testId,
+    style,
 }: Props): React.ReactElement => {
     const backdropRef = React.useRef<HTMLElement | null>(null);
     const [mousePressedOutside, setMousePressedOutside] = React.useState(false);
@@ -154,7 +161,11 @@ const ModalBackdrop = ({
     return (
         <View
             ref={backdropRef}
-            style={styles.modalPositioner}
+            style={[
+                styles.modalPositioner,
+                // Last, so it overrides the styles above.
+                style,
+            ]}
             onMouseDown={handleMouseDown}
             onMouseUp={handleMouseUp}
             testId={testId}

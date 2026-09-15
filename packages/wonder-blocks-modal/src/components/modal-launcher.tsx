@@ -8,6 +8,7 @@ import {
     SchedulePolicy,
     ClearPolicy,
 } from "@khanacademy/wonder-blocks-timing";
+import type {StyleType} from "@khanacademy/wonder-blocks-core";
 
 import FocusTrap from "./focus-trap";
 import ModalBackdrop from "./modal-backdrop";
@@ -34,6 +35,17 @@ type Props = Readonly<{
      * Enables the backdrop to dismiss the modal on click/tap
      */
     backdropDismissEnabled?: boolean;
+    /**
+     * Optional styles for the ModalLauncher.
+     *
+     * - `backdrop` styles the backdrop (the veil) that overlays the page behind
+     *   the modal, applied last so it overrides the backdrop's own styles. This
+     *   is the hook for things that have to live on the veil element itself,
+     *   such as a `viewTransitionName` for a View Transition.
+     */
+    styles?: {
+        backdrop?: StyleType;
+    };
     /**
      * The selector for the element that will be focused when the dialog shows.
      * When not set, the first tabbable element within the dialog will be used,
@@ -109,6 +121,7 @@ const ModalLauncher = (props: Props): React.ReactElement | null => {
         onClose,
         opened: controlledOpened,
         schedule,
+        styles: stylesProp,
         testId,
     } = props;
 
@@ -218,6 +231,7 @@ const ModalLauncher = (props: Props): React.ReactElement | null => {
                         <ModalBackdrop
                             initialFocusId={initialFocusId}
                             testId={testId}
+                            style={stylesProp?.backdrop}
                             onCloseModal={
                                 backdropDismissEnabled
                                     ? handleCloseModal
