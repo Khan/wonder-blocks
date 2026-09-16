@@ -24,8 +24,7 @@ type Props = {
      */
     testId?: string;
     /**
-     * Optional custom styles, applied last so they override the backdrop's own
-     * styles.
+     * Optional custom styles.
      */
     style?: StyleType;
 };
@@ -161,11 +160,7 @@ const ModalBackdrop = ({
     return (
         <View
             ref={backdropRef}
-            style={[
-                styles.modalPositioner,
-                // Last, so it overrides the styles above.
-                style,
-            ]}
+            style={[styles.modalPositioner, style]}
             onMouseDown={handleMouseDown}
             onMouseUp={handleMouseUp}
             testId={testId}

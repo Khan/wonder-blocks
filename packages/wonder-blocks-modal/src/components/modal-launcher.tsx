@@ -36,12 +36,7 @@ type Props = Readonly<{
      */
     backdropDismissEnabled?: boolean;
     /**
-     * Optional styles for the ModalLauncher.
-     *
-     * - `backdrop` styles the backdrop (the veil) that overlays the page behind
-     *   the modal, applied last so it overrides the backdrop's own styles. This
-     *   is the hook for things that have to live on the veil element itself,
-     *   such as a `viewTransitionName` for a View Transition.
+     * Optional custom styles.
      */
     styles?: {
         backdrop?: StyleType;
