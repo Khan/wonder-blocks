@@ -140,6 +140,27 @@ Simple.parameters = {
     },
 };
 
+/**
+ * The `styles.backdrop` prop styles the veil that overlays the page behind the
+ * modal.
+ */
+export const WithCustomBackdropStyles: StoryComponentType = {
+    args: {
+        styles: {
+            backdrop: {
+                background: semanticColor.core.background.neutral.default,
+            },
+        },
+    },
+    render: (args) => (
+        <ModalLauncher {...args} modal={DefaultModal}>
+            {({openModal}) => (
+                <Button onClick={openModal}>Click me to open the modal</Button>
+            )}
+        </ModalLauncher>
+    ),
+};
+
 export const WithLongContentsAndFooter: StoryComponentType = () => {
     const LongModal = () => (
         <OnePaneDialog
