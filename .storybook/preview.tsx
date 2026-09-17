@@ -191,7 +191,19 @@ const withThemeSwitcher: Decorator = (Story, {globals: {theme}}) => {
 };
 
 /**
- * Applies the story's background color to the document body.
+ * Whether stories are being rendered by the Vitest browser-mode test runner
+ * (`pnpm test:storybook`) instead of by the Storybook preview.
+ *
+ * This is the same signal Storybook uses internally to detect a test run.
+ * Note that it is deliberately not a CI check: `pnpm test:storybook` also runs
+ * locally, and the test environment has to behave identically in both places
+ * so that failures can be reproduced and debugged locally.
+ */
+const isStorybookTestRun = (): boolean =>
+    !!(globalThis as {__vitest_browser__?: boolean}).__vitest_browser__;
+
+/**
+ * Applies the story's background color to the document body during test runs.
  *
  * Storybook's built-in `backgrounds` addon paints the selected background by
  * injecting a `.sb-show-main { background: ... !important; }` rule from the
@@ -205,9 +217,9 @@ const withThemeSwitcher: Decorator = (Story, {globals: {theme}}) => {
  * what makes these failures look like a timing issue.
  *
  * Setting the background on the body ourselves means the a11y tests audit the
- * background that users actually see. The addon's `!important` rule still
- * takes precedence in the real preview, so the "Backgrounds" toolbar control
- * and the grid overlay keep working there.
+ * background that users actually see. This only runs in the test environment,
+ * so the "Backgrounds" toolbar control and the grid overlay in the real
+ * preview are left entirely to the addon.
  */
 const withBackgroundColor: Decorator = (Story, context) => {
     const {options = {}, disable} = context.parameters.backgrounds ?? {};
@@ -221,7 +233,11 @@ const withBackgroundColor: Decorator = (Story, context) => {
     React.useEffect(() => {
         // In docs mode the addon styles each `.docs-story` block rather than
         // the page, so painting the body would tint the whole docs page.
-        if (context.viewMode !== "story" || !background) {
+        if (
+            !isStorybookTestRun() ||
+            context.viewMode !== "story" ||
+            !background
+        ) {
             return;
         }
 
