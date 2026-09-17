@@ -5,7 +5,7 @@ import {LabeledField} from "@khanacademy/wonder-blocks-labeled-field";
 import packageConfig from "../../packages/wonder-blocks-labeled-field/package.json";
 import ComponentInfo from "../components/component-info";
 import {allThemeModes} from "../../.storybook/modes";
-import {PropsFor, View} from "@khanacademy/wonder-blocks-core";
+import {View} from "@khanacademy/wonder-blocks-core";
 import {ScenariosLayout} from "../components/scenarios-layout";
 import {border, semanticColor} from "@khanacademy/wonder-blocks-tokens";
 import {TextField} from "@khanacademy/wonder-blocks-form";
@@ -336,30 +336,48 @@ const scenarios = [
     },
 ];
 
+const labeledFieldContainerTestId = "labeled-field-container";
+
 /**
  * The following story shows what the LabeledField looks like when different
  * props are set.
  */
-export const Scenarios = (args: PropsFor<typeof LabeledField>) => {
-    const [textFieldValue, setTextFieldValue] = React.useState("");
-    return (
-        <View style={{maxInlineSize: "475px"}}>
-            <ScenariosLayout
-                scenarios={scenarios}
-                styles={{root: {alignItems: "stretch"}}}
-            >
-                {(props) => (
-                    <LabeledField
-                        field={
-                            <TextField
-                                value={textFieldValue}
-                                onChange={setTextFieldValue}
-                            />
-                        }
-                        {...props}
-                    />
-                )}
-            </ScenariosLayout>
-        </View>
-    );
+export const Scenarios = {
+    render: function Scenarios() {
+        const [textFieldValue, setTextFieldValue] = React.useState("");
+        return (
+            <View style={{maxInlineSize: "475px"}}>
+                <ScenariosLayout
+                    scenarios={scenarios}
+                    styles={{root: {alignItems: "stretch"}}}
+                >
+                    {(props) => (
+                        <LabeledField
+                            field={
+                                <TextField
+                                    value={textFieldValue}
+                                    onChange={setTextFieldValue}
+                                />
+                            }
+                            testId={labeledFieldContainerTestId}
+                            {...props}
+                        />
+                    )}
+                </ScenariosLayout>
+            </View>
+        );
+    },
+    parameters: {
+        a11y: {
+            config: {
+                rules: [
+                    {
+                        // Exempt color contrast rule for labeled field contents when it is related to a disabled field. This is the intended design.
+                        id: "color-contrast",
+                        selector: `[data-testid='${labeledFieldContainerTestId}']:has([aria-disabled='true'])`,
+                    },
+                ],
+            },
+        },
+    },
 };
