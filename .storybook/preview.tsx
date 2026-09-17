@@ -191,6 +191,69 @@ const withThemeSwitcher: Decorator = (Story, {globals: {theme}}) => {
 };
 
 /**
+ * Whether stories are being rendered by the Vitest browser-mode test runner
+ * (`pnpm test:storybook`) instead of by the Storybook preview.
+ *
+ * This is the same signal Storybook uses internally to detect a test run.
+ * Note that it is deliberately not a CI check: `pnpm test:storybook` also runs
+ * locally, and the test environment has to behave identically in both places
+ * so that failures can be reproduced and debugged locally.
+ */
+const isStorybookTestRun = (): boolean =>
+    !!(globalThis as {__vitest_browser__?: boolean}).__vitest_browser__;
+
+/**
+ * Applies the story's background color to the document body during test runs.
+ *
+ * Storybook's built-in `backgrounds` addon paints the selected background by
+ * injecting a `.sb-show-main { background: ... !important; }` rule from the
+ * preview runtime. Neither that rule nor the `sb-show-main` class exists in
+ * the Vitest browser-mode environment used by `pnpm test:storybook`, so
+ * stories are rendered on a transparent page there. axe treats a page with no
+ * background as white, so any story with light-on-dark text (i.e. every story
+ * under the `syl-dark` theme) fails the `color-contrast` rule with
+ * "foreground color: #ededee, background color: #ffffff" — even though the
+ * same story passes when the a11y check is re-run in the browser, which is
+ * what makes these failures look like a timing issue.
+ *
+ * Setting the background on the body ourselves means the a11y tests audit the
+ * background that users actually see. This only runs in the test environment,
+ * so the "Backgrounds" toolbar control and the grid overlay in the real
+ * preview are left entirely to the addon.
+ */
+const withBackgroundColor: Decorator = (Story, context) => {
+    const {options = {}, disable} = context.parameters.backgrounds ?? {};
+    const selected = context.globals.backgrounds?.value;
+    // Options can be declared as a plain color string or as a `{name, value}`
+    // object, matching what the addon itself accepts.
+    const option = disable || !selected ? undefined : options[selected];
+    const background: string | undefined =
+        typeof option === "string" ? option : option?.value;
+
+    React.useEffect(() => {
+        // In docs mode the addon styles each `.docs-story` block rather than
+        // the page, so painting the body would tint the whole docs page.
+        if (
+            !isStorybookTestRun() ||
+            context.viewMode !== "story" ||
+            !background
+        ) {
+            return;
+        }
+
+        document.body.style.backgroundColor = background;
+
+        // Cleanup on unmount so the next story isn't left with this
+        // background.
+        return () => {
+            document.body.style.removeProperty("background-color");
+        };
+    }, [background, context.viewMode]);
+
+    return <Story />;
+};
+
+/**
  * Sets the dir attribute on document.documentElement and wraps story with dir div.
  * This ensures portaled content (like modals) can detect the direction.
  */
@@ -266,6 +329,7 @@ const preview: Preview = {
     parameters,
     decorators: [
         withThemeSwitcher,
+        withBackgroundColor,
         withLanguageDirection,
         withZoom,
         withAnnouncer,
