@@ -191,6 +191,53 @@ const withThemeSwitcher: Decorator = (Story, {globals: {theme}}) => {
 };
 
 /**
+ * Applies the story's background color to the document body.
+ *
+ * Storybook's built-in `backgrounds` addon paints the selected background by
+ * injecting a `.sb-show-main { background: ... !important; }` rule from the
+ * preview runtime. Neither that rule nor the `sb-show-main` class exists in
+ * the Vitest browser-mode environment used by `pnpm test:storybook`, so
+ * stories are rendered on a transparent page there. axe treats a page with no
+ * background as white, so any story with light-on-dark text (i.e. every story
+ * under the `syl-dark` theme) fails the `color-contrast` rule with
+ * "foreground color: #ededee, background color: #ffffff" — even though the
+ * same story passes when the a11y check is re-run in the browser, which is
+ * what makes these failures look like a timing issue.
+ *
+ * Setting the background on the body ourselves means the a11y tests audit the
+ * background that users actually see. The addon's `!important` rule still
+ * takes precedence in the real preview, so the "Backgrounds" toolbar control
+ * and the grid overlay keep working there.
+ */
+const withBackgroundColor: Decorator = (Story, context) => {
+    const {options = {}, disable} = context.parameters.backgrounds ?? {};
+    const selected = context.globals.backgrounds?.value;
+    // Options can be declared as a plain color string or as a `{name, value}`
+    // object, matching what the addon itself accepts.
+    const option = disable || !selected ? undefined : options[selected];
+    const background: string | undefined =
+        typeof option === "string" ? option : option?.value;
+
+    React.useEffect(() => {
+        // In docs mode the addon styles each `.docs-story` block rather than
+        // the page, so painting the body would tint the whole docs page.
+        if (context.viewMode !== "story" || !background) {
+            return;
+        }
+
+        document.body.style.backgroundColor = background;
+
+        // Cleanup on unmount so the next story isn't left with this
+        // background.
+        return () => {
+            document.body.style.removeProperty("background-color");
+        };
+    }, [background, context.viewMode]);
+
+    return <Story />;
+};
+
+/**
  * Sets the dir attribute on document.documentElement and wraps story with dir div.
  * This ensures portaled content (like modals) can detect the direction.
  */
@@ -266,6 +313,7 @@ const preview: Preview = {
     parameters,
     decorators: [
         withThemeSwitcher,
+        withBackgroundColor,
         withLanguageDirection,
         withZoom,
         withAnnouncer,
