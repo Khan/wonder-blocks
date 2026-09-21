@@ -843,6 +843,12 @@ importers:
         specifier: workspace:*
         version: link:../../build-settings
 
+  packages/wonder-blocks-config:
+    devDependencies:
+      '@khanacademy/wb-dev-build-settings':
+        specifier: workspace:*
+        version: link:../../build-settings
+
   packages/wonder-blocks-core:
     dependencies:
       aphrodite:

@@ -1,6 +1,6 @@
 {
     "name": "@khanacademy/wonder-blocks-config",
-    "description": "Placeholder to allow Trusted Publishing configuration",
+    "description": "Configuration for Wonder Blocks",
     "author": "Khan Academy",
     "license": "MIT",
     "version": "0.0.1",
@@ -14,6 +14,14 @@
     "bugs": {
         "url": "https://github.com/Khan/wonder-blocks/issues"
     },
-    "module": "index.js",
-    "main": "index.js"
+    "main": "dist/index.js",
+    "module": "dist/es/index.js",
+    "types": "dist/index.d.ts",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "prepublishOnly": "../../utils/publish/package-pre-publish-check.sh"
+    },
+    "devDependencies": {
+        "@khanacademy/wb-dev-build-settings": "workspace:*"
+    }
 }
