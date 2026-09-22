@@ -5,7 +5,7 @@ import {
     WonderBlocksI18nContextProvider,
 } from "../context/i18n-context";
 
-import type {I18nContextType} from "../context/i18n-context";
+import type {I18nConfig} from "../context/i18n-context";
 
 type Props = React.PropsWithChildren<{
     /**
@@ -17,7 +17,7 @@ type Props = React.PropsWithChildren<{
      * `WonderBlocksConfigProvider`, or the default English strings when there
      * is no enclosing provider.
      */
-    i18n?: I18nContextType;
+    i18n?: I18nConfig;
 }>;
 
 /**

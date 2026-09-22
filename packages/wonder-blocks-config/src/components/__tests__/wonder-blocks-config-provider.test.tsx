@@ -8,7 +8,7 @@ import {
 } from "../../context/i18n-context";
 import {defaultStringsEn} from "../../strings";
 
-import type {I18nContextType} from "../../context/i18n-context";
+import type {I18nConfig} from "../../context/i18n-context";
 
 const StringsProbe = () => (
     <div>{useWonderBlocksI18n().strings.iconAltOpensNewTab}</div>
@@ -188,7 +188,7 @@ describe("WonderBlocksConfigProvider", () => {
         // component below it.
         it("keeps the same context value across a re-render with unchanged props", () => {
             // Arrange
-            const values: Array<I18nContextType> = [];
+            const values: Array<I18nConfig> = [];
             const i18n = {strings: defaultStringsEn, locale: "en"};
             const ContextProbe = () => {
                 values.push(React.useContext(WonderBlocksI18nContext));

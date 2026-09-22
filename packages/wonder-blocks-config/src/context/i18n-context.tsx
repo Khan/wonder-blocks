@@ -5,8 +5,22 @@ import {defaultStringsEn} from "../strings";
 
 import type {WonderBlocksStrings} from "../strings";
 
-export type I18nContextType = {
+/**
+ * The i18n configuration for Wonder Blocks components: the strings they
+ * render, and the locale those strings are translated into.
+ *
+ * This is both what `WonderBlocksConfigProvider` takes as its `i18n` prop and
+ * what `useWonderBlocksI18n` returns.
+ */
+export type I18nConfig = {
+    /**
+     * The translated strings that Wonder Blocks components render.
+     */
     strings: WonderBlocksStrings;
+    /**
+     * The locale `strings` are translated into, as a BCP 47 language tag
+     * (e.g. `es`, `pt-PT`).
+     */
     locale: string;
 };
 
@@ -15,13 +29,13 @@ export type I18nContextType = {
  *
  * Defaults to English translations if not provided.
  */
-export const WonderBlocksI18nContext = React.createContext<I18nContextType>({
+export const WonderBlocksI18nContext = React.createContext<I18nConfig>({
     strings: defaultStringsEn,
     locale: "en",
 });
 WonderBlocksI18nContext.displayName = "WonderBlocksI18nContext";
 
-type Props = React.PropsWithChildren<I18nContextType>;
+type Props = React.PropsWithChildren<I18nConfig>;
 
 /**
  * Provides i18n to Wonder Blocks components.
