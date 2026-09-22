@@ -183,8 +183,8 @@ export const Scenarios: Story = {
                         <StyledButton
                             style={{
                                 background:
-                                    semanticColor.core.background.critical
-                                        .default,
+                                    semanticColor.core.background.neutral
+                                        .strong,
                                 color: semanticColor.core.foreground.knockout
                                     .default,
                                 // focus styles will be merged with the

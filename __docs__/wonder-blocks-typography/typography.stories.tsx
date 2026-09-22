@@ -20,6 +20,7 @@ import {allThemeModes} from "../../.storybook/modes";
 // NOTE: Only for testing purposes.
 // eslint-disable-next-line import/no-unassigned-import
 import "./styles.css";
+import {border} from "../../packages/wonder-blocks-tokens/src/theme/primitive/border";
 
 /**
 Typography. `wonder-blocks-typography`
@@ -104,10 +105,11 @@ export const WithStyle: StoryObj<typeof Heading> = {
     render: () => {
         const styles = StyleSheet.create({
             blueText: {
-                color: semanticColor.core.foreground.instructive.default,
+                color: semanticColor.core.foreground.instructive.strong,
             },
             highlighted: {
-                background: semanticColor.core.background.neutral.subtle,
+                border: "none",
+                borderBlockEnd: `${border.width.thick} solid ${semanticColor.core.border.instructive.strong}`,
             },
         });
 
