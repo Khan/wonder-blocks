@@ -541,7 +541,7 @@ export const Fields: StoryComponentType = {
                     {
                         // Exempt color contrast rule for labeled field contents when it is related to a disabled field. This is the intended design.
                         id: "color-contrast",
-                        selector: `[data-testid="disabledLabeledFieldContainerTestId"]`,
+                        selector: `[data-testid="${disabledLabeledFieldContainerTestId}"]`,
                     },
                 ],
             },
