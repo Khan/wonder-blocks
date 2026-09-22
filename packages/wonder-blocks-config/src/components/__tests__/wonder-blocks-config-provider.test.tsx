@@ -17,15 +17,17 @@ const StringsProbe = () => (
 const LocaleProbe = () => <div>{useWonderBlocksI18n().locale}</div>;
 
 describe("WonderBlocksConfigProvider", () => {
-    describe("strings", () => {
+    describe("i18n", () => {
         it("provides the strings it is given to the components beneath it", () => {
             // Arrange
             render(
                 <WonderBlocksConfigProvider
-                    strings={{
-                        iconAltOpensNewTab: "Se abre en una ventana nueva",
+                    i18n={{
+                        strings: {
+                            iconAltOpensNewTab: "Se abre en una ventana nueva",
+                        },
+                        locale: "es",
                     }}
-                    locale="es"
                 >
                     <StringsProbe />
                 </WonderBlocksConfigProvider>,
@@ -38,7 +40,24 @@ describe("WonderBlocksConfigProvider", () => {
             expect(label).toBeInTheDocument();
         });
 
-        it("falls back to the default English strings when strings are not given", () => {
+        it("provides the locale it is given to the components beneath it", () => {
+            // Arrange
+            render(
+                <WonderBlocksConfigProvider
+                    i18n={{strings: defaultStringsEn, locale: "pt-PT"}}
+                >
+                    <LocaleProbe />
+                </WonderBlocksConfigProvider>,
+            );
+
+            // Act
+            const locale = screen.getByText("pt-PT");
+
+            // Assert
+            expect(locale).toBeInTheDocument();
+        });
+
+        it("falls back to the default English strings when i18n is not given", () => {
             // Arrange
             render(
                 <WonderBlocksConfigProvider>
@@ -52,28 +71,8 @@ describe("WonderBlocksConfigProvider", () => {
             // Assert
             expect(label).toBeInTheDocument();
         });
-    });
 
-    describe("locale", () => {
-        it("provides the locale it is given to the components beneath it", () => {
-            // Arrange
-            render(
-                <WonderBlocksConfigProvider
-                    strings={defaultStringsEn}
-                    locale="pt-PT"
-                >
-                    <LocaleProbe />
-                </WonderBlocksConfigProvider>,
-            );
-
-            // Act
-            const locale = screen.getByText("pt-PT");
-
-            // Assert
-            expect(locale).toBeInTheDocument();
-        });
-
-        it("falls back to `en` when a locale is not given", () => {
+        it("falls back to the `en` locale when i18n is not given", () => {
             // Arrange
             render(
                 <WonderBlocksConfigProvider>
@@ -90,14 +89,16 @@ describe("WonderBlocksConfigProvider", () => {
     });
 
     describe("nesting", () => {
-        it("keeps the enclosing provider's strings when the nested one omits them", () => {
+        it("keeps the enclosing provider's strings when the nested one omits i18n", () => {
             // Arrange
             render(
                 <WonderBlocksConfigProvider
-                    strings={{iconAltOpensNewTab: "Outer strings"}}
-                    locale="en"
+                    i18n={{
+                        strings: {iconAltOpensNewTab: "Outer strings"},
+                        locale: "en",
+                    }}
                 >
-                    <WonderBlocksConfigProvider locale="es">
+                    <WonderBlocksConfigProvider>
                         <StringsProbe />
                     </WonderBlocksConfigProvider>
                 </WonderBlocksConfigProvider>,
@@ -110,16 +111,13 @@ describe("WonderBlocksConfigProvider", () => {
             expect(label).toBeInTheDocument();
         });
 
-        it("keeps the enclosing provider's locale when the nested one omits it", () => {
+        it("keeps the enclosing provider's locale when the nested one omits i18n", () => {
             // Arrange
             render(
                 <WonderBlocksConfigProvider
-                    strings={defaultStringsEn}
-                    locale="pt-PT"
+                    i18n={{strings: defaultStringsEn, locale: "pt-PT"}}
                 >
-                    <WonderBlocksConfigProvider
-                        strings={{iconAltOpensNewTab: "Inner strings"}}
-                    >
+                    <WonderBlocksConfigProvider>
                         <LocaleProbe />
                     </WonderBlocksConfigProvider>
                 </WonderBlocksConfigProvider>,
@@ -132,15 +130,20 @@ describe("WonderBlocksConfigProvider", () => {
             expect(locale).toBeInTheDocument();
         });
 
-        it("overrides the enclosing provider's strings when the nested one sets them", () => {
+        it("overrides the enclosing provider's strings when the nested one sets i18n", () => {
             // Arrange
             render(
                 <WonderBlocksConfigProvider
-                    strings={{iconAltOpensNewTab: "Outer strings"}}
-                    locale="en"
+                    i18n={{
+                        strings: {iconAltOpensNewTab: "Outer strings"},
+                        locale: "en",
+                    }}
                 >
                     <WonderBlocksConfigProvider
-                        strings={{iconAltOpensNewTab: "Inner strings"}}
+                        i18n={{
+                            strings: {iconAltOpensNewTab: "Inner strings"},
+                            locale: "es",
+                        }}
                     >
                         <StringsProbe />
                     </WonderBlocksConfigProvider>
@@ -153,6 +156,30 @@ describe("WonderBlocksConfigProvider", () => {
             // Assert
             expect(label).toBeInTheDocument();
         });
+
+        it("overrides the enclosing provider's locale when the nested one sets i18n", () => {
+            // Arrange
+            render(
+                <WonderBlocksConfigProvider
+                    i18n={{strings: defaultStringsEn, locale: "en"}}
+                >
+                    <WonderBlocksConfigProvider
+                        i18n={{
+                            strings: {iconAltOpensNewTab: "Inner strings"},
+                            locale: "es",
+                        }}
+                    >
+                        <LocaleProbe />
+                    </WonderBlocksConfigProvider>
+                </WonderBlocksConfigProvider>,
+            );
+
+            // Act
+            const locale = screen.getByText("es");
+
+            // Assert
+            expect(locale).toBeInTheDocument();
+        });
     });
 
     describe("context value identity", () => {
@@ -162,15 +189,13 @@ describe("WonderBlocksConfigProvider", () => {
         it("keeps the same context value across a re-render with unchanged props", () => {
             // Arrange
             const values: Array<I18nContextType> = [];
+            const i18n = {strings: defaultStringsEn, locale: "en"};
             const ContextProbe = () => {
                 values.push(React.useContext(WonderBlocksI18nContext));
                 return null;
             };
             const renderTree = () => (
-                <WonderBlocksConfigProvider
-                    strings={defaultStringsEn}
-                    locale="en"
-                >
+                <WonderBlocksConfigProvider i18n={i18n}>
                     <ContextProbe />
                 </WonderBlocksConfigProvider>
             );
