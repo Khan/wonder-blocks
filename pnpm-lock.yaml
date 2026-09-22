@@ -844,6 +844,10 @@ importers:
         version: link:../../build-settings
 
   packages/wonder-blocks-config:
+    dependencies:
+      react:
+        specifier: 'catalog:'
+        version: 18.2.0
     devDependencies:
       '@khanacademy/wb-dev-build-settings':
         specifier: workspace:*
