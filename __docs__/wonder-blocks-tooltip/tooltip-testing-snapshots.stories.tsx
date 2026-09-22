@@ -85,7 +85,7 @@ const rows = [
             // existing behaviour is not broken.
             backgroundColor: "darkBlue",
             contentStyle: {
-                // This is a hardcoded color since this example shows with primitive colors.
+                // This is a hardcoded color since this example uses a primitive color for the background
                 color: "white",
             },
         },
