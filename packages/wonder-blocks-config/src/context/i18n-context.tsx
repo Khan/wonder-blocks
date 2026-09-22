@@ -6,11 +6,7 @@ import {defaultStringsEn} from "../strings";
 import type {WonderBlocksStrings} from "../strings";
 
 /**
- * The i18n configuration for Wonder Blocks components: the strings they
- * render, and the locale those strings are translated into.
- *
- * This is both what `WonderBlocksConfigProvider` takes as its `i18n` prop and
- * what `useWonderBlocksI18n` returns.
+ * The i18n configuration for Wonder Blocks components
  */
 export type I18nConfig = {
     /**
@@ -18,8 +14,7 @@ export type I18nConfig = {
      */
     strings: WonderBlocksStrings;
     /**
-     * The locale `strings` are translated into, as a BCP 47 language tag
-     * (e.g. `es`, `pt-PT`).
+     * The locale `strings` are translated into.
      */
     locale: string;
 };
