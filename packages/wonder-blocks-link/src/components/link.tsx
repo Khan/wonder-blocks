@@ -136,7 +136,7 @@ type CommonProps = AriaProps & {
 
     /**
      * The object containing custom labels for this component. This
-     * overrides the default labels provided by `WonderBlocksI18nContextProvider`.
+     * overrides the default labels provided by `WonderBlocksConfigProvider`.
      */
     labels?: {
         /**
