@@ -11,7 +11,6 @@ import {defaultStringsEn} from "../../strings";
 import type {I18nConfig} from "../i18n-context";
 
 const stringsEs = {iconAltOpensNewTab: "(se abre en una pestaña nueva)"};
-const stringsFr = {iconAltOpensNewTab: "(s'ouvre dans un nouvel onglet)"};
 
 const StringsProbe = () => (
     <div>{useWonderBlocksI18n().strings.iconAltOpensNewTab}</div>
@@ -54,11 +53,11 @@ describe("WonderBlocksI18nContextProvider", () => {
             // Arrange
             render(
                 <WonderBlocksI18nContextProvider
-                    strings={stringsFr}
-                    locale="fr"
+                    strings={{iconAltOpensNewTab: "Outer text"}}
+                    locale="en"
                 >
                     <WonderBlocksI18nContextProvider
-                        strings={stringsEs}
+                        strings={{iconAltOpensNewTab: "Inner text"}}
                         locale="es"
                     >
                         <StringsProbe />
@@ -67,7 +66,7 @@ describe("WonderBlocksI18nContextProvider", () => {
             );
 
             // Act
-            const label = screen.getByText(stringsEs.iconAltOpensNewTab);
+            const label = screen.getByText("Inner text");
 
             // Assert
             expect(label).toBeInTheDocument();

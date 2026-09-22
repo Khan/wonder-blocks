@@ -11,7 +11,6 @@ import {defaultStringsEn} from "../../strings";
 import type {I18nConfig} from "../../context/i18n-context";
 
 const stringsEs = {iconAltOpensNewTab: "(se abre en una pestaña nueva)"};
-const stringsFr = {iconAltOpensNewTab: "(s'ouvre dans un nouvel onglet)"};
 
 const StringsProbe = () => (
     <div>{useWonderBlocksI18n().strings.iconAltOpensNewTab}</div>
@@ -61,10 +60,16 @@ describe("WonderBlocksConfigProvider", () => {
             // Arrange
             render(
                 <WonderBlocksConfigProvider
-                    i18n={{strings: stringsFr, locale: "fr"}}
+                    i18n={{
+                        strings: {iconAltOpensNewTab: "Outer text"},
+                        locale: "en",
+                    }}
                 >
                     <WonderBlocksConfigProvider
-                        i18n={{strings: stringsEs, locale: "es"}}
+                        i18n={{
+                            strings: {iconAltOpensNewTab: "Inner text"},
+                            locale: "es",
+                        }}
                     >
                         <StringsProbe />
                     </WonderBlocksConfigProvider>
@@ -72,7 +77,7 @@ describe("WonderBlocksConfigProvider", () => {
             );
 
             // Act
-            const label = screen.getByText(stringsEs.iconAltOpensNewTab);
+            const label = screen.getByText("Inner text");
 
             // Assert
             expect(label).toBeInTheDocument();
@@ -82,10 +87,16 @@ describe("WonderBlocksConfigProvider", () => {
             // Arrange
             render(
                 <WonderBlocksConfigProvider
-                    i18n={{strings: stringsFr, locale: "fr"}}
+                    i18n={{
+                        strings: {iconAltOpensNewTab: "Outer text"},
+                        locale: "en",
+                    }}
                 >
                     <WonderBlocksConfigProvider
-                        i18n={{strings: stringsEs, locale: "es"}}
+                        i18n={{
+                            strings: {iconAltOpensNewTab: "Inner text"},
+                            locale: "es",
+                        }}
                     >
                         <LocaleProbe />
                     </WonderBlocksConfigProvider>
