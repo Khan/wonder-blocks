@@ -10,6 +10,9 @@ import {defaultStringsEn} from "../../strings";
 
 import type {I18nConfig} from "../../context/i18n-context";
 
+const stringsEs = {iconAltOpensNewTab: "(se abre en una pestaña nueva)"};
+const stringsFr = {iconAltOpensNewTab: "(s'ouvre dans un nouvel onglet)"};
+
 const StringsProbe = () => (
     <div>{useWonderBlocksI18n().strings.iconAltOpensNewTab}</div>
 );
@@ -22,19 +25,14 @@ describe("WonderBlocksConfigProvider", () => {
             // Arrange
             render(
                 <WonderBlocksConfigProvider
-                    i18n={{
-                        strings: {
-                            iconAltOpensNewTab: "Se abre en una ventana nueva",
-                        },
-                        locale: "es",
-                    }}
+                    i18n={{strings: stringsEs, locale: "es"}}
                 >
                     <StringsProbe />
                 </WonderBlocksConfigProvider>,
             );
 
             // Act
-            const label = screen.getByText("Se abre en una ventana nueva");
+            const label = screen.getByText(stringsEs.iconAltOpensNewTab);
 
             // Assert
             expect(label).toBeInTheDocument();
@@ -44,14 +42,14 @@ describe("WonderBlocksConfigProvider", () => {
             // Arrange
             render(
                 <WonderBlocksConfigProvider
-                    i18n={{strings: defaultStringsEn, locale: "pt-PT"}}
+                    i18n={{strings: stringsEs, locale: "es"}}
                 >
                     <LocaleProbe />
                 </WonderBlocksConfigProvider>,
             );
 
             // Act
-            const locale = screen.getByText("pt-PT");
+            const locale = screen.getByText("es");
 
             // Assert
             expect(locale).toBeInTheDocument();
@@ -63,16 +61,10 @@ describe("WonderBlocksConfigProvider", () => {
             // Arrange
             render(
                 <WonderBlocksConfigProvider
-                    i18n={{
-                        strings: {iconAltOpensNewTab: "Outer strings"},
-                        locale: "en",
-                    }}
+                    i18n={{strings: stringsFr, locale: "fr"}}
                 >
                     <WonderBlocksConfigProvider
-                        i18n={{
-                            strings: {iconAltOpensNewTab: "Inner strings"},
-                            locale: "es",
-                        }}
+                        i18n={{strings: stringsEs, locale: "es"}}
                     >
                         <StringsProbe />
                     </WonderBlocksConfigProvider>
@@ -80,7 +72,7 @@ describe("WonderBlocksConfigProvider", () => {
             );
 
             // Act
-            const label = screen.getByText("Inner strings");
+            const label = screen.getByText(stringsEs.iconAltOpensNewTab);
 
             // Assert
             expect(label).toBeInTheDocument();
@@ -90,13 +82,10 @@ describe("WonderBlocksConfigProvider", () => {
             // Arrange
             render(
                 <WonderBlocksConfigProvider
-                    i18n={{strings: defaultStringsEn, locale: "en"}}
+                    i18n={{strings: stringsFr, locale: "fr"}}
                 >
                     <WonderBlocksConfigProvider
-                        i18n={{
-                            strings: {iconAltOpensNewTab: "Inner strings"},
-                            locale: "es",
-                        }}
+                        i18n={{strings: stringsEs, locale: "es"}}
                     >
                         <LocaleProbe />
                     </WonderBlocksConfigProvider>
