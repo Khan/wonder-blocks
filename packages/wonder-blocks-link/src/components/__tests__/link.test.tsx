@@ -9,7 +9,7 @@ import {
 import {fireEvent, render, screen, waitFor} from "@testing-library/react";
 import {userEvent} from "@testing-library/user-event";
 
-import {WonderBlocksI18nContextProvider} from "@khanacademy/wonder-blocks-core";
+import {WonderBlocksConfigProvider} from "@khanacademy/wonder-blocks-config";
 import {Icon, PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import plusIcon from "@phosphor-icons/core/bold/plus-bold.svg";
 
@@ -478,16 +478,16 @@ describe("Link", () => {
         test("external icon uses the aria-label from the config provider", async () => {
             // Arrange
             render(
-                <WonderBlocksI18nContextProvider
-                    strings={{
-                        iconAltOpensNewTab: "translated text",
+                <WonderBlocksConfigProvider
+                    i18n={{
+                        strings: {iconAltOpensNewTab: "translated text"},
+                        locale: "es",
                     }}
-                    locale="es"
                 >
                     <Link href="https://www.google.com/" target="_blank">
                         Click me!
                     </Link>
-                </WonderBlocksI18nContextProvider>,
+                </WonderBlocksConfigProvider>,
             );
 
             // Act
@@ -500,11 +500,11 @@ describe("Link", () => {
         test("external icon prefers the `labels` prop over the config provider", async () => {
             // Arrange
             render(
-                <WonderBlocksI18nContextProvider
-                    strings={{
-                        iconAltOpensNewTab: "translated text",
+                <WonderBlocksConfigProvider
+                    i18n={{
+                        strings: {iconAltOpensNewTab: "translated text"},
+                        locale: "es",
                     }}
-                    locale="es"
                 >
                     <Link
                         href="https://www.google.com/"
@@ -515,7 +515,7 @@ describe("Link", () => {
                     >
                         Click me!
                     </Link>
-                </WonderBlocksI18nContextProvider>,
+                </WonderBlocksConfigProvider>,
             );
 
             // Act

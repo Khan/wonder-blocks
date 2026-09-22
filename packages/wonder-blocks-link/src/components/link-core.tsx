@@ -2,7 +2,8 @@ import * as React from "react";
 import {StyleSheet} from "aphrodite";
 import {Link, useInRouterContext} from "react-router-dom-v5-compat";
 
-import {addStyle, useWonderBlocksI18n} from "@khanacademy/wonder-blocks-core";
+import {useWonderBlocksI18n} from "@khanacademy/wonder-blocks-config";
+import {addStyle} from "@khanacademy/wonder-blocks-core";
 import {
     border,
     font,
