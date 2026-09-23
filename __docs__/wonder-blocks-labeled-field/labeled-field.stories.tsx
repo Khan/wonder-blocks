@@ -540,8 +540,11 @@ export const Fields: StoryComponentType = {
                 rules: [
                     {
                         // Exempt color contrast rule for labeled field contents when it is related to a disabled field. This is the intended design.
+                        // Note: axe's `selector` option replaces the set of
+                        // elements the rule audits, so we audit everything
+                        // except the contents of the disabled container.
                         id: "color-contrast",
-                        selector: `[data-testid="${disabledLabeledFieldContainerTestId}"]`,
+                        selector: `*:not([data-testid="${disabledLabeledFieldContainerTestId}"] *)`,
                     },
                 ],
             },

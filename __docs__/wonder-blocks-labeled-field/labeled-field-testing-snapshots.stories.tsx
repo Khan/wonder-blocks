@@ -39,6 +39,9 @@ const styles = StyleSheet.create({
     },
 });
 
+const labeledFieldContainerTestId = "labeled-field-container";
+const disabledLabeledFieldContainerTestId = "disabled-labeled-field-container";
+
 const scenarios = [
     {
         name: "Label only",
@@ -188,6 +191,7 @@ const scenarios = [
         name: "With disabled field",
         props: {
             field: <TextField value="Value" onChange={() => {}} disabled />,
+            testId: disabledLabeledFieldContainerTestId,
             label: "Name",
             description: "Helpful description text.",
             additionalHelperMessage: "Additional helper message",
@@ -198,6 +202,7 @@ const scenarios = [
         name: "All properties disabled",
         props: {
             field: <TextField value="Value" onChange={() => {}} disabled />,
+            testId: disabledLabeledFieldContainerTestId,
             label: "Name",
             description: "Helpful description text.",
             errorMessage: "Message about the error",
@@ -210,6 +215,7 @@ const scenarios = [
         name: "All properties disabled without error",
         props: {
             field: <TextField value="Value" onChange={() => {}} disabled />,
+            testId: disabledLabeledFieldContainerTestId,
             label: "Name",
             description: "Helpful description text.",
             additionalHelperMessage: "Additional helper message",
@@ -336,8 +342,6 @@ const scenarios = [
     },
 ];
 
-const labeledFieldContainerTestId = "labeled-field-container";
-
 /**
  * The following story shows what the LabeledField looks like when different
  * props are set.
@@ -373,8 +377,12 @@ export const Scenarios = {
                 rules: [
                     {
                         // Exempt color contrast rule for labeled field contents when it is related to a disabled field. This is the intended design.
+                        // Note: axe's `selector` option replaces the set of
+                        // elements the rule audits (and axe doesn't support
+                        // `:has()`), so we audit everything except the
+                        // contents of the disabled scenarios.
                         id: "color-contrast",
-                        selector: `[data-testid='${labeledFieldContainerTestId}']:has([aria-disabled='true'])`,
+                        selector: `*:not([data-testid="${disabledLabeledFieldContainerTestId}"] *)`,
                     },
                 ],
             },
