@@ -39,7 +39,6 @@ const styles = StyleSheet.create({
     },
 });
 
-const labeledFieldContainerTestId = "labeled-field-container";
 const disabledLabeledFieldContainerTestId = "disabled-labeled-field-container";
 
 const scenarios = [
@@ -363,7 +362,6 @@ export const Scenarios = {
                                     onChange={setTextFieldValue}
                                 />
                             }
-                            testId={labeledFieldContainerTestId}
                             {...props}
                         />
                     )}
