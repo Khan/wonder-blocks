@@ -4,7 +4,7 @@ import type {Meta, StoryObj} from "@storybook/react-vite";
 
 import {addStyle, View} from "@khanacademy/wonder-blocks-core";
 import {OptionItem, SingleSelect} from "@khanacademy/wonder-blocks-dropdown";
-import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
+import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {
     Heading,
     BodyText,
@@ -20,7 +20,6 @@ import {allThemeModes} from "../../.storybook/modes";
 // NOTE: Only for testing purposes.
 // eslint-disable-next-line import/no-unassigned-import
 import "./styles.css";
-import {border} from "../../packages/wonder-blocks-tokens/src/theme/primitive/border";
 
 /**
 Typography. `wonder-blocks-typography`
