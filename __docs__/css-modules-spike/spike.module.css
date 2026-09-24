@@ -5,8 +5,13 @@
  *   - CSS Modules hashing yields stable, locally-scoped class names
  *   - declared inside @layer shared so consumer styles can win
  *   - token CSS variables resolve at runtime
+ *
+ * Phase 3 (WB-2327) additionally exercises the multi-state
+ * `--wb-action-inverse` mixin, which expands into nested `:hover` /
+ * `:focus-visible` / `:active` rules and reuses `--wb-focus-visible`.
  */
 @import "@khanacademy/wonder-blocks-styles/focus-styles.css";
+@import "@khanacademy/wonder-blocks-styles/action-styles.css";
 
 .root {
     display: inline-flex;
@@ -32,4 +37,31 @@
     background: var(--wb-semanticColor-core-background-instructive-subtle);
     color: var(--wb-semanticColor-core-foreground-instructive-strong);
     font-size: var(--wb-sizing-size_120);
+}
+
+/* Dark backdrop so the inverse (knockout) control reads correctly. */
+.inverseBackdrop {
+    display: inline-flex;
+    padding: var(--wb-sizing-size_160);
+    background: var(--wb-semanticColor-core-background-neutral-strong);
+}
+
+/*
+ * Inverse control — same layout as `.root`, but the interactive styling
+ * comes entirely from the `--wb-action-inverse` mixin. Applying the mixin
+ * here injects its nested `:hover` / `:focus-visible` / `:active` rules.
+ */
+.inverse {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--wb-sizing-size_080);
+    padding: var(--wb-sizing-size_080) var(--wb-sizing-size_120);
+    border: var(--wb-border-width-thin) solid transparent;
+    border-radius: var(--wb-border-radius-radius_040);
+    background: transparent;
+    font-family: inherit;
+    font-size: var(--wb-sizing-size_160);
+    cursor: pointer;
+
+    @apply --wb-action-inverse;
 }
