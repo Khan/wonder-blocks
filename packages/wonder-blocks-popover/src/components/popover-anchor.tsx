@@ -1,6 +1,11 @@
 import * as React from "react";
 
-import {FloatingReferenceAttributeName} from "@khanacademy/wonder-blocks-floating";
+import {
+    canAcceptRef,
+    FloatingReferenceAttributeName,
+    getElementRef,
+    useMergeRefs,
+} from "@khanacademy/wonder-blocks-floating";
 
 import type {AriaProps} from "@khanacademy/wonder-blocks-core";
 
@@ -34,8 +39,16 @@ type Props = AriaProps & {
 /**
  * The element that triggers the popover dialog. This is also used as reference
  * to position the dialog itself.
+ *
+ * The ref it receives comes from `Floating` and resolves the element the popover
+ * is anchored to. It is passed along to the trigger, alongside the attribute
+ * that lets `Floating` resolve that element from the DOM instead, so that a
+ * trigger only has to do one of the two (see `Floating`'s `children` prop).
  */
-export default function PopoverAnchor(props: Props) {
+const PopoverAnchor = React.forwardRef(function PopoverAnchor(
+    props: Props,
+    ref: React.ForwardedRef<HTMLElement>,
+) {
     const {
         children,
         id,
@@ -45,6 +58,20 @@ export default function PopoverAnchor(props: Props) {
         [FloatingReferenceAttributeName]: floatingReferenceId,
     } = props;
 
+    // Resolve the trigger element for both the function-as-children and the
+    // element-children patterns.
+    const isFunctionChildren = typeof children === "function";
+    const renderedChildren = isFunctionChildren
+        ? children({open: onClick})
+        : children;
+
+    // Give the trigger's own ref (if it has one) back to its owner, so that
+    // passing the one from `Floating` along doesn't take it away.
+    const triggerRef = useMergeRefs<HTMLElement>([
+        ref,
+        getElementRef<HTMLElement>(renderedChildren),
+    ]);
+
     // props that will be injected to both children versions
     const sharedProps = {
         id: id,
@@ -52,17 +79,14 @@ export default function PopoverAnchor(props: Props) {
         "aria-expanded": ariaExpanded,
         // Passed along so that the `Floating` component this anchor is rendered
         // in can find the trigger's element in the DOM and position the popover
-        // against it. This is why the trigger has to spread the props it is
-        // given, and it means it never has to accept or forward a ref.
+        // against it. This is why a trigger that doesn't attach the ref below
+        // has to spread the props it is given.
         [FloatingReferenceAttributeName]: floatingReferenceId,
+        // Only injected when the trigger can receive a ref: giving one to a
+        // plain function component would log a React error, and such a trigger
+        // is resolved from the DOM instead.
+        ...(canAcceptRef(renderedChildren) ? {ref: triggerRef} : undefined),
     } as const;
-
-    // Resolve the trigger element for both the function-as-children and the
-    // element-children patterns.
-    const isFunctionChildren = typeof children === "function";
-    const renderedChildren = isFunctionChildren
-        ? children({open: onClick})
-        : children;
 
     if (isFunctionChildren) {
         // we clone it to allow injecting the sharedProps defined before
@@ -85,4 +109,8 @@ export default function PopoverAnchor(props: Props) {
               }
             : onClick,
     });
-}
+});
+
+PopoverAnchor.displayName = "PopoverAnchor";
+
+export default PopoverAnchor;

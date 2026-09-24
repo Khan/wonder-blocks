@@ -114,16 +114,20 @@ function CustomTrigger({
  * doesn't render a wrapper element around the trigger, so the DOM stays exactly
  * as you wrote it.
  *
- * The trigger doesn't have to accept, forward or attach a ref, and its type
- * doesn't matter: host elements, `React.forwardRef` components (such as `Button`
- * or `IconButton`) and plain function components all work the same way. It only
- * has to spread the props it receives onto the element the floating element
- * should be anchored to, which it needs to do anyway (`Floating` injects props
- * into the trigger, e.g. to support dismissal). `CustomTrigger` below is a plain
- * function component that does exactly that.
+ * The trigger's type doesn't matter: host elements, `React.forwardRef`
+ * components (such as `Button` or `IconButton`) and plain function components
+ * all work the same way. It only has to do one of two things, and most triggers
+ * already do both:
+ *
+ * - Attach the ref it receives to its element. `Floating` only injects a ref
+ *   into triggers that can receive one, so a plain function component never gets
+ *   a React warning about it.
+ * - Spread the props it receives onto its element, which it needs to do anyway
+ *   (`Floating` injects props into the trigger, e.g. to support dismissal).
+ *   `CustomTrigger` below is a plain function component that does exactly that.
  *
  * A trigger that renders several elements picks the one to anchor to by
- * spreading the props onto it.
+ * attaching the ref (or spreading the props) onto it.
  */
 export const CustomTriggerComponent: StoryComponentType = {
     args: {

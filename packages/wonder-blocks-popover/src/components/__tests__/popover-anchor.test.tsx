@@ -34,6 +34,82 @@ describe("PopoverAnchor", () => {
         );
     });
 
+    it("should pass the ref it is given to the child", async () => {
+        // Arrange
+        // `Floating` gives the anchor the ref that resolves the element the
+        // popover is anchored to.
+        const ref = React.createRef<HTMLElement>();
+
+        // Act
+        render(
+            <PopoverAnchor ref={ref} onClick={jest.fn()}>
+                <button>test</button>
+            </PopoverAnchor>,
+        );
+
+        // Assert
+        const triggerElement = await screen.findByRole("button");
+        expect(ref.current).toBe(triggerElement);
+    });
+
+    it("should pass the ref it is given to the child with children as a function", async () => {
+        // Arrange
+        const ref = React.createRef<HTMLElement>();
+
+        // Act
+        render(
+            <PopoverAnchor ref={ref} onClick={jest.fn()}>
+                {({open}: any) => <button onClick={open}>test</button>}
+            </PopoverAnchor>,
+        );
+
+        // Assert
+        const triggerElement = await screen.findByRole("button");
+        expect(ref.current).toBe(triggerElement);
+    });
+
+    it("should pass the ref it is given to a child that drops the props it is given", async () => {
+        // Arrange
+        // A trigger that can receive a ref doesn't have to spread the props it
+        // is given for the popover to be anchored to it.
+        const NoSpreadTrigger = React.forwardRef<
+            HTMLButtonElement,
+            {label: string}
+        >((props, forwardedRef) => (
+            <button ref={forwardedRef}>{props.label}</button>
+        ));
+        const ref = React.createRef<HTMLElement>();
+
+        // Act
+        render(
+            <PopoverAnchor ref={ref} onClick={jest.fn()}>
+                <NoSpreadTrigger label="test" />
+            </PopoverAnchor>,
+        );
+
+        // Assert
+        const triggerElement = await screen.findByRole("button");
+        expect(ref.current).toBe(triggerElement);
+    });
+
+    it("should keep the child's own ref when passing the ref it is given along", async () => {
+        // Arrange
+        const ref = React.createRef<HTMLElement>();
+        const childRef = React.createRef<HTMLButtonElement>();
+
+        // Act
+        render(
+            <PopoverAnchor ref={ref} onClick={jest.fn()}>
+                <button ref={childRef}>test</button>
+            </PopoverAnchor>,
+        );
+
+        // Assert
+        const triggerElement = await screen.findByRole("button");
+        expect(ref.current).toBe(triggerElement);
+        expect(childRef.current).toBe(triggerElement);
+    });
+
     it("should allow passing a custom ref to the child", async () => {
         // Arrange
         const ref = React.createRef<HTMLButtonElement>();
