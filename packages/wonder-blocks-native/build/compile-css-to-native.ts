@@ -40,10 +40,12 @@ const packagesDir = path.join(rootDir, "packages");
 const outDir = path.join(__dirname, "../src/generated");
 
 /**
- * The themes mobile needs (SYL light + dark). `default` is always the base
- * that other themes override, mirroring `:root, [data-wb-theme='default']`.
+ * The themes mobile needs (SYL light + dark), plus `default` so the
+ * Storybook theme toolbar drives web and native stories the same way.
+ * `default` is also the base the other themes override, mirroring
+ * `:root, [data-wb-theme='default']`.
  */
-const THEMES = ["thunderblocks", "syl-dark"] as const;
+const THEMES = ["default", "thunderblocks", "syl-dark"] as const;
 
 /**
  * The component stylesheets this spike compiles. Keys become the generated

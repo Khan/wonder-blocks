@@ -10,8 +10,11 @@
  * - Logical properties (`block-size`, `padding-inline`, …) → the RN
  *   equivalents (`height`, `paddingStart`/`paddingEnd`, …).
  * - CSS `display: flex` defaults to `row`; RN defaults to `column`.
- * - Properties with no RN equivalent on the old architecture (`outline`,
- *   `box-shadow`, `cursor`, `transition`, …) are dropped and reported.
+ * - A spread-only inset `box-shadow` (`inset 0 0 0 2px <color>`, WB's
+ *   "thick border" hover/press ring) is drawn as extra border width.
+ * - Other properties with no RN equivalent on the old architecture
+ *   (`outline`, other `box-shadow`s, `cursor`, `transition`, …) are dropped
+ *   and reported.
  */
 import transform from "css-to-react-native";
 
@@ -159,6 +162,65 @@ const convertDeclaration = (prop: string, rawValue: string): RNStyle | null => {
     }
 };
 
+type InsetRing = {width: number; color: string};
+
+const BORDER_SIDES = ["Top", "Right", "Bottom", "Left"] as const;
+
+/**
+ * Match `inset 0 0 0 <spread> <color>` (either keyword position). Returns
+ * `null` for anything with offsets, blur or multiple shadows.
+ */
+const parseInsetRing = (value: string): InsetRing | "none" | null => {
+    const trimmed = remToPx(value).trim();
+    if (trimmed === "none") {
+        return "none";
+    }
+    if (/,(?![^(]*\))/.test(trimmed)) {
+        return null;
+    }
+    const tokens: Array<string> = [
+        ...(trimmed.match(/[^\s(]+(?:\([^)]*\))?/g) ?? []),
+    ];
+    const insetIndex = tokens.indexOf("inset");
+    if (insetIndex !== 0 && insetIndex !== tokens.length - 1) {
+        return null;
+    }
+    tokens.splice(insetIndex, 1);
+    const [x, y, blur, spread, ...color] = tokens;
+    const isZero = (t?: string) => t != null && /^0(px)?$/.test(t);
+    const spreadMatch = /^(\d*\.?\d+)px$/.exec(spread ?? "");
+    if (
+        !isZero(x) ||
+        !isZero(y) ||
+        !isZero(blur) ||
+        !spreadMatch ||
+        !color.length
+    ) {
+        return null;
+    }
+    return {width: parseFloat(spreadMatch[1]), color: color.join(" ")};
+};
+
+/**
+ * An inset ring paints inside the border box, so on top of any existing
+ * border it reads as a thicker border in the ring's colour. RN borders are
+ * also drawn inside the box (it's `border-box`), so adding the spread to the
+ * border width keeps the element's size unchanged.
+ */
+const applyInsetRing = (style: RNStyle, ring: InsetRing) => {
+    const baseWidth =
+        typeof style.borderWidth === "number" ? style.borderWidth : 0;
+    delete style.borderWidth;
+    delete style.borderColor;
+    for (const side of BORDER_SIDES) {
+        const current = style[`border${side}Width`];
+        style[`border${side}Width`] =
+            (typeof current === "number" ? current : baseWidth) + ring.width;
+        style[`border${side}Color`] = ring.color;
+    }
+    style.borderStyle ??= "solid";
+};
+
 export type ConvertResult = {
     style: RNStyle;
     /** `prop: value` pairs that couldn't be represented on native. */
@@ -170,13 +232,25 @@ export const convertDeclarations = (
 ): ConvertResult => {
     const style: RNStyle = {};
     const dropped: Array<string> = [];
+    let ring: InsetRing | null = null;
     for (const [prop, value] of declarations) {
+        if (prop === "box-shadow") {
+            const parsed = parseInsetRing(value);
+            if (parsed) {
+                ring = parsed === "none" ? null : parsed;
+                continue;
+            }
+        }
         const converted = convertDeclaration(prop, value);
         if (converted) {
             Object.assign(style, converted);
         } else {
             dropped.push(`${prop}: ${value}`);
         }
+    }
+
+    if (ring) {
+        applyInsetRing(style, ring);
     }
 
     // CSS `line-height` may be unitless (a multiplier); RN needs points.

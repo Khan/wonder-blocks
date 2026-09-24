@@ -6,6 +6,219 @@
 import type {NativeThemeVars} from "../css-runtime/types";
 
 export const themeVars = {
+    default: {
+        "--wb-border-width-medium": "2px",
+        "--wb-c-button-icon-margin-inline-inner": "0.6rem",
+        "--wb-c-button-icon-margin-inline-outer": "-2px",
+        "--wb-c-button-icon-padding": "0.2rem",
+        "--wb-c-button-root-border-offset-primary": "2px",
+        "--wb-c-button-root-border-offset-secondary": "0",
+        "--wb-c-button-root-border-offset-tertiary": "0",
+        "--wb-c-button-root-border-radius-default": "4px",
+        "--wb-c-button-root-border-radius-hover": "4px",
+        "--wb-c-button-root-border-radius-press": "4px",
+        "--wb-c-button-root-border-width-primary-default": "0px",
+        "--wb-c-button-root-border-width-primary-hover": "2px",
+        "--wb-c-button-root-border-width-primary-press": "2px",
+        "--wb-c-button-root-border-width-secondary-default": "1px",
+        "--wb-c-button-root-border-width-secondary-hover": "1px",
+        "--wb-c-button-root-border-width-secondary-press": "1px",
+        "--wb-c-button-root-border-width-tertiary-default": "0px",
+        "--wb-c-button-root-border-width-tertiary-hover": "0px",
+        "--wb-c-button-root-border-width-tertiary-press": "0px",
+        "--wb-c-button-root-font-decoration-hover": "underline",
+        "--wb-c-button-root-font-decoration-press": "underline",
+        "--wb-c-button-root-font-lineHeight-default": "2.4rem",
+        "--wb-c-button-root-font-lineHeight-large": "2.6rem",
+        "--wb-c-button-root-font-lineHeight-small": "2.2rem",
+        "--wb-c-button-root-font-offset-default": "0.4rem",
+        "--wb-c-button-root-font-size-large": "1.8rem",
+        "--wb-c-button-root-font-weight-default": "700",
+        "--wb-c-button-root-layout-padding-inline-primary-large": "3.2rem",
+        "--wb-c-button-root-layout-padding-inline-primary-medium": "1.6rem",
+        "--wb-c-button-root-layout-padding-inline-primary-small": "1.6rem",
+        "--wb-c-button-root-layout-padding-inline-secondary-large": "1.8rem",
+        "--wb-c-button-root-layout-padding-inline-secondary-medium": "1.6rem",
+        "--wb-c-button-root-layout-padding-inline-secondary-small": "1.2rem",
+        "--wb-c-button-root-layout-padding-inline-tertiary-large": "0rem",
+        "--wb-c-button-root-layout-padding-inline-tertiary-medium": "0rem",
+        "--wb-c-button-root-layout-padding-inline-tertiary-small": "0rem",
+        "--wb-c-button-root-sizing-height-large": "5.6rem",
+        "--wb-c-button-root-sizing-height-medium": "4rem",
+        "--wb-c-button-root-sizing-height-small": "3.2rem",
+        "--wb-c-button-root-sizing-underline-hover": "0.2rem",
+        "--wb-c-button-root-sizing-underline-press": "0.1rem",
+        "--wb-font-body-lineHeight-medium": "2rem",
+        "--wb-font-body-lineHeight-small": "1.8rem",
+        "--wb-font-body-lineHeight-xsmall": "1.6rem",
+        "--wb-font-body-size-medium": "1.6rem",
+        "--wb-font-body-size-small": "1.4rem",
+        "--wb-font-body-size-xsmall": "1.2rem",
+        "--wb-font-family-sans":
+            '"Lato", "Noto Sans", "Helvetica", "Corbel", sans-serif',
+        "--wb-font-weight-bold": "700",
+        "--wb-font-weight-medium": "400",
+        "--wb-font-weight-semi": "400",
+        "--wb-semanticColor-action-primary-destructive-default-background":
+            "#d92916",
+        "--wb-semanticColor-action-primary-destructive-default-border":
+            "transparent",
+        "--wb-semanticColor-action-primary-destructive-default-foreground":
+            "#ffffff",
+        "--wb-semanticColor-action-primary-destructive-hover-background":
+            "#d92916",
+        "--wb-semanticColor-action-primary-destructive-hover-border": "#d92916",
+        "--wb-semanticColor-action-primary-destructive-hover-foreground":
+            "#ffffff",
+        "--wb-semanticColor-action-primary-destructive-press-background":
+            "#9e271d",
+        "--wb-semanticColor-action-primary-destructive-press-border": "#9e271d",
+        "--wb-semanticColor-action-primary-destructive-press-foreground":
+            "#ffffff",
+        "--wb-semanticColor-action-primary-disabled-background": "#b8b9bb",
+        "--wb-semanticColor-action-primary-disabled-border": "#b8b9bb",
+        "--wb-semanticColor-action-primary-disabled-foreground": "#ffffff",
+        "--wb-semanticColor-action-primary-neutral-default-background":
+            "#5f6167",
+        "--wb-semanticColor-action-primary-neutral-default-border":
+            "transparent",
+        "--wb-semanticColor-action-primary-neutral-default-foreground":
+            "#ffffff",
+        "--wb-semanticColor-action-primary-neutral-hover-background": "#5f6167",
+        "--wb-semanticColor-action-primary-neutral-hover-border": "#909296",
+        "--wb-semanticColor-action-primary-neutral-hover-foreground": "#ffffff",
+        "--wb-semanticColor-action-primary-neutral-press-background": "#21242c",
+        "--wb-semanticColor-action-primary-neutral-press-border": "#5f6167",
+        "--wb-semanticColor-action-primary-neutral-press-foreground": "#ffffff",
+        "--wb-semanticColor-action-primary-progressive-default-background":
+            "#1865f2",
+        "--wb-semanticColor-action-primary-progressive-default-border":
+            "transparent",
+        "--wb-semanticColor-action-primary-progressive-default-foreground":
+            "#ffffff",
+        "--wb-semanticColor-action-primary-progressive-hover-background":
+            "#1865f2",
+        "--wb-semanticColor-action-primary-progressive-hover-border": "#1865f2",
+        "--wb-semanticColor-action-primary-progressive-hover-foreground":
+            "#ffffff",
+        "--wb-semanticColor-action-primary-progressive-press-background":
+            "#1b50b3",
+        "--wb-semanticColor-action-primary-progressive-press-border": "#1b50b3",
+        "--wb-semanticColor-action-primary-progressive-press-foreground":
+            "#ffffff",
+        "--wb-semanticColor-action-secondary-destructive-default-background":
+            "transparent",
+        "--wb-semanticColor-action-secondary-destructive-default-border":
+            "#909296",
+        "--wb-semanticColor-action-secondary-destructive-default-foreground":
+            "#d92916",
+        "--wb-semanticColor-action-secondary-destructive-hover-background":
+            "transparent",
+        "--wb-semanticColor-action-secondary-destructive-hover-border":
+            "#d92916",
+        "--wb-semanticColor-action-secondary-destructive-hover-foreground":
+            "#d92916",
+        "--wb-semanticColor-action-secondary-destructive-press-background":
+            "#fceeec",
+        "--wb-semanticColor-action-secondary-destructive-press-border":
+            "#9e271d",
+        "--wb-semanticColor-action-secondary-destructive-press-foreground":
+            "#9e271d",
+        "--wb-semanticColor-action-secondary-disabled-background":
+            "transparent",
+        "--wb-semanticColor-action-secondary-disabled-border": "#b8b9bb",
+        "--wb-semanticColor-action-secondary-disabled-foreground": "#b8b9bb",
+        "--wb-semanticColor-action-secondary-neutral-default-background":
+            "transparent",
+        "--wb-semanticColor-action-secondary-neutral-default-border": "#909296",
+        "--wb-semanticColor-action-secondary-neutral-default-foreground":
+            "#5f6167",
+        "--wb-semanticColor-action-secondary-neutral-hover-background":
+            "transparent",
+        "--wb-semanticColor-action-secondary-neutral-hover-border": "#909296",
+        "--wb-semanticColor-action-secondary-neutral-hover-foreground":
+            "#5f6167",
+        "--wb-semanticColor-action-secondary-neutral-press-background":
+            "#ededee",
+        "--wb-semanticColor-action-secondary-neutral-press-border": "#5f6167",
+        "--wb-semanticColor-action-secondary-neutral-press-foreground":
+            "#21242c",
+        "--wb-semanticColor-action-secondary-progressive-default-background":
+            "transparent",
+        "--wb-semanticColor-action-secondary-progressive-default-border":
+            "#909296",
+        "--wb-semanticColor-action-secondary-progressive-default-foreground":
+            "#1865f2",
+        "--wb-semanticColor-action-secondary-progressive-hover-background":
+            "transparent",
+        "--wb-semanticColor-action-secondary-progressive-hover-border":
+            "#1865f2",
+        "--wb-semanticColor-action-secondary-progressive-hover-foreground":
+            "#1865f2",
+        "--wb-semanticColor-action-secondary-progressive-press-background":
+            "#edf3fe",
+        "--wb-semanticColor-action-secondary-progressive-press-border":
+            "#1b50b3",
+        "--wb-semanticColor-action-secondary-progressive-press-foreground":
+            "#1b50b3",
+        "--wb-semanticColor-action-tertiary-destructive-default-background":
+            "transparent",
+        "--wb-semanticColor-action-tertiary-destructive-default-border":
+            "transparent",
+        "--wb-semanticColor-action-tertiary-destructive-default-foreground":
+            "#d92916",
+        "--wb-semanticColor-action-tertiary-destructive-hover-background":
+            "transparent",
+        "--wb-semanticColor-action-tertiary-destructive-hover-border":
+            "#d92916",
+        "--wb-semanticColor-action-tertiary-destructive-hover-foreground":
+            "#d92916",
+        "--wb-semanticColor-action-tertiary-destructive-press-background":
+            "transparent",
+        "--wb-semanticColor-action-tertiary-destructive-press-border":
+            "#9e271d",
+        "--wb-semanticColor-action-tertiary-destructive-press-foreground":
+            "#9e271d",
+        "--wb-semanticColor-action-tertiary-disabled-background": "transparent",
+        "--wb-semanticColor-action-tertiary-disabled-border": "#dbdcdd",
+        "--wb-semanticColor-action-tertiary-disabled-foreground": "#b8b9bb",
+        "--wb-semanticColor-action-tertiary-neutral-default-background":
+            "transparent",
+        "--wb-semanticColor-action-tertiary-neutral-default-border":
+            "transparent",
+        "--wb-semanticColor-action-tertiary-neutral-default-foreground":
+            "#5f6167",
+        "--wb-semanticColor-action-tertiary-neutral-hover-background":
+            "transparent",
+        "--wb-semanticColor-action-tertiary-neutral-hover-border": "#909296",
+        "--wb-semanticColor-action-tertiary-neutral-hover-foreground":
+            "#5f6167",
+        "--wb-semanticColor-action-tertiary-neutral-press-background":
+            "transparent",
+        "--wb-semanticColor-action-tertiary-neutral-press-border": "#5f6167",
+        "--wb-semanticColor-action-tertiary-neutral-press-foreground":
+            "#21242c",
+        "--wb-semanticColor-action-tertiary-progressive-default-background":
+            "transparent",
+        "--wb-semanticColor-action-tertiary-progressive-default-border":
+            "transparent",
+        "--wb-semanticColor-action-tertiary-progressive-default-foreground":
+            "#1865f2",
+        "--wb-semanticColor-action-tertiary-progressive-hover-background":
+            "transparent",
+        "--wb-semanticColor-action-tertiary-progressive-hover-border":
+            "#1865f2",
+        "--wb-semanticColor-action-tertiary-progressive-hover-foreground":
+            "#1865f2",
+        "--wb-semanticColor-action-tertiary-progressive-press-background":
+            "transparent",
+        "--wb-semanticColor-action-tertiary-progressive-press-border":
+            "#1b50b3",
+        "--wb-semanticColor-action-tertiary-progressive-press-foreground":
+            "#1b50b3",
+        "--wb-semanticColor-focus-inner": "#ffffff",
+        "--wb-semanticColor-focus-outer": "#1865f2",
+    },
     thunderblocks: {
         "--wb-border-width-medium": "2px",
         "--wb-c-button-icon-margin-inline-inner": "0.6rem",

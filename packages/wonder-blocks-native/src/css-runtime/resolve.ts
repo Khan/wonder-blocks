@@ -10,6 +10,8 @@
  */
 import {convertDeclarations} from "./css-to-rn";
 import type {RNStyle} from "./css-to-rn";
+import {parseTransitions} from "./transitions";
+import type {NativeTransition} from "./transitions";
 import type {
     CompoundCondition,
     NativeRule,
@@ -51,6 +53,11 @@ export type ResolvedStyle = {
     style: RNStyle;
     /** Pass to children as `inherited`. */
     inherited: Inherited;
+    /**
+     * CSS `transition`s that apply to this element. `style` holds the
+     * target values; `useTransitionedStyle` animates towards them.
+     */
+    transitions: Array<NativeTransition>;
     /** Declarations that couldn't be represented on native (for debugging). */
     dropped: Array<string>;
 };
@@ -209,10 +216,20 @@ export const resolveStyle = (
     }
 
     const converted = convertDeclarations(declarations);
+    const transition = declarations.find(([prop]) => prop === "transition");
+    const numericKeys = Object.keys(converted.style).filter(
+        (key) => typeof converted.style[key] === "number",
+    );
     return {
         style: converted.style,
         inherited: {vars: resolvedVars, text: inheritedText},
-        dropped: [...dropped, ...converted.dropped],
+        transitions: transition
+            ? parseTransitions(transition[1], numericKeys)
+            : [],
+        // `transition` is handled above rather than dropped.
+        dropped: [...dropped, ...converted.dropped].filter(
+            (d) => !d.startsWith("transition:"),
+        ),
     };
 };
 

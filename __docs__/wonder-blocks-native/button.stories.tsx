@@ -17,8 +17,7 @@ type StoryComponentType = StoryObj<typeof Button>;
  * `button.module.css` + theme variables, so it tracks the web design with no
  * hand-maintained native styles.
  *
- * Only the SYL themes are compiled for native; the default WB theme falls
- * back to `thunderblocks`.
+ * The Storybook theme toolbar drives both the web and native components.
  */
 export default {
     title: "Spikes / Native / Button",
@@ -26,11 +25,7 @@ export default {
     decorators: [
         (Story, {globals}) => (
             <NativeThemeProvider
-                theme={
-                    (globals.theme === "syl-dark"
-                        ? "syl-dark"
-                        : "thunderblocks") satisfies NativeThemeName
-                }
+                theme={(globals.theme ?? "default") as NativeThemeName}
                 // Storybook runs on desktop, so let `(hover: hover)` rules
                 // apply, as they would on web.
                 hover={true}
@@ -47,7 +42,8 @@ export default {
 
 /**
  * Interactive native button. Use the controls to change the props, and the
- * toolbar to switch between SYL light and SYL dark.
+ * toolbar to switch themes. In SYL themes, press and hold to see the corners
+ * ease from 8px to 12px (`transition: border-radius 0.1s ease-in-out`).
  */
 export const Default: StoryComponentType = {};
 

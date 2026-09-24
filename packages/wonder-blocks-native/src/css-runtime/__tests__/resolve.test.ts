@@ -70,6 +70,33 @@ describe("convertDeclarations", () => {
         expect(style).toEqual({display: "flex", flexDirection: "row"});
     });
 
+    it("should draw a spread-only inset box-shadow as extra border width", () => {
+        // Arrange, Act
+        const {style} = convertDeclarations([
+            ["border-width", "1px"],
+            ["box-shadow", "inset 0 0 0 2px red"],
+        ]);
+
+        // Assert
+        expect(style).toMatchObject({
+            borderTopWidth: 3,
+            borderRightWidth: 3,
+            borderBottomWidth: 3,
+            borderLeftWidth: 3,
+            borderTopColor: "red",
+        });
+    });
+
+    it("should still drop box-shadows that aren't inset rings", () => {
+        // Arrange, Act
+        const {dropped} = convertDeclarations([
+            ["box-shadow", "0 2px 4px rgba(0, 0, 0, 0.2)"],
+        ]);
+
+        // Assert
+        expect(dropped).toEqual(["box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2)"]);
+    });
+
     it("should report declarations with no native equivalent", () => {
         // Arrange, Act
         const {style, dropped} = convertDeclarations([
@@ -278,6 +305,27 @@ describe("compiled button.module.css", () => {
                 "--wb-semanticColor-action-primary-progressive-press-background"
             ],
         );
+    });
+
+    it("should give pressed SYL tertiary buttons the 2px press ring", () => {
+        // Arrange, Act
+        const {style} = resolveStyle(
+            sheets,
+            {
+                classes: ["reset", "button", "tertiary", "progressive"],
+                states: {press: true},
+            },
+            env,
+        );
+
+        // Assert
+        expect(style).toMatchObject({
+            borderTopWidth: 2,
+            borderTopColor:
+                themeVars.thunderblocks[
+                    "--wb-semanticColor-action-tertiary-progressive-press-border"
+                ],
+        });
     });
 
     it("should let disabled win over pressed", () => {

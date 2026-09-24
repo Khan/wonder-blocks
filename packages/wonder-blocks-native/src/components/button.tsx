@@ -1,6 +1,11 @@
 import * as React from "react";
-import {Pressable, Text} from "react-native";
-import type {StyleProp, TextStyle, ViewStyle} from "react-native";
+import {Animated, Pressable, Text} from "react-native";
+import type {
+    GestureResponderEvent,
+    StyleProp,
+    TextStyle,
+    ViewStyle,
+} from "react-native";
 
 // Type-only: web WB packages inject `require("./index.css")` into their JS,
 // which Metro can't resolve, so native code must never import them at
@@ -8,6 +13,7 @@ import type {StyleProp, TextStyle, ViewStyle} from "react-native";
 import type {ButtonProps as WebButtonProps} from "@khanacademy/wonder-blocks-button";
 
 import {splitTextStyle} from "../css-runtime/resolve";
+import {useTransitionedStyle} from "../css-runtime/use-transitioned-style";
 import bodyTextSheet from "../generated/body-text.native-styles";
 import buttonSheet from "../generated/button.native-styles";
 import buttonUnstyledSheet from "../generated/button-unstyled.native-styles";
@@ -53,6 +59,8 @@ type Props = {
     style?: StyleProp<ViewStyle>;
 };
 
+const AnimatedPressable = Animated.createAnimatedComponent(Pressable);
+
 /** Minimum touch target (Apple HIG: 44pt; Material: 48dp). */
 const MIN_TOUCH_TARGET = 44;
 
@@ -88,6 +96,22 @@ export const Button = React.forwardRef(function Button(
     const [pressed, setPressed] = React.useState(false);
     const [hovered, setHovered] = React.useState(false);
     const [focused, setFocused] = React.useState(false);
+    // Mirrors the browser's `:focus-visible` heuristic: focus that comes
+    // from a pointer/touch press doesn't show the focus styles (otherwise
+    // the focus rule would override the press styles on every tap, e.g.
+    // SYL tertiary's press ring). Keyboard presses keep focus visible.
+    const [focusFromPointer, setFocusFromPointer] = React.useState(false);
+    const focusVisible = focused && !focusFromPointer;
+
+    const handlePressIn = (event: GestureResponderEvent) => {
+        setPressed(true);
+        // react-native-web reports keyboard presses with the DOM keydown
+        // event; everything else is a pointer or touch.
+        const {type} = event.nativeEvent as {type?: string};
+        if (type !== "keydown" && type !== "keyup") {
+            setFocusFromPointer(true);
+        }
+    };
 
     // Same class list `button-core.tsx` builds on web.
     const buttonElement = {
@@ -102,7 +126,7 @@ export const Button = React.forwardRef(function Button(
         states: {
             hover: hovered,
             press: pressed,
-            focus: focused,
+            focus: focusVisible,
             disabled,
         },
     };
@@ -125,14 +149,21 @@ export const Button = React.forwardRef(function Button(
 
     const {view: rootViewStyle} = splitTextStyle(root.style);
 
-    // Small buttons are 32pt tall; extend the touch target without changing
-    // the layout.
+    // Small buttons are 26pt (SYL) / 32pt (default) tall; extend the touch
+    // target without changing the layout.
     const height =
         typeof rootViewStyle.height === "number" ? rootViewStyle.height : 0;
     const slop = Math.max(0, (MIN_TOUCH_TARGET - height) / 2);
 
+    // e.g. SYL's `transition: border-radius 0.1s ease-in-out` (the corners
+    // soften from 8px to 12px while pressed).
+    const animatedRootStyle = useTransitionedStyle(
+        rootViewStyle,
+        root.transitions,
+    );
+
     return (
-        <Pressable
+        <AnimatedPressable
             ref={ref}
             role="button"
             aria-label={ariaLabel}
@@ -143,13 +174,16 @@ export const Button = React.forwardRef(function Button(
             testID={testId}
             hitSlop={slop ? {top: slop, bottom: slop} : undefined}
             onPress={onPress}
-            onPressIn={() => setPressed(true)}
+            onPressIn={handlePressIn}
             onPressOut={() => setPressed(false)}
             onHoverIn={() => setHovered(true)}
             onHoverOut={() => setHovered(false)}
             onFocus={() => setFocused(true)}
-            onBlur={() => setFocused(false)}
-            style={[rootViewStyle as ViewStyle, style]}
+            onBlur={() => {
+                setFocused(false);
+                setFocusFromPointer(false);
+            }}
+            style={[animatedRootStyle as ViewStyle, style]}
         >
             <Text
                 numberOfLines={1}
@@ -158,6 +192,6 @@ export const Button = React.forwardRef(function Button(
             >
                 {children}
             </Text>
-        </Pressable>
+        </AnimatedPressable>
     );
 });
