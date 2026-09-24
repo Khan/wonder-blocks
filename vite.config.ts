@@ -20,6 +20,15 @@ export default defineConfig({
     },
     resolve: {
         alias: [
+            // SPIKE (FEI-8331): render `@khanacademy/wonder-blocks-native`
+            // components in Storybook through react-native-web.
+            {
+                find: /^react-native$/,
+                replacement: resolve(
+                    __dirname,
+                    "./packages/wonder-blocks-native/node_modules/react-native-web",
+                ),
+            },
             {
                 find: "@khanacademy/wonder-blocks-tokens/styles.css",
                 replacement: resolve(
