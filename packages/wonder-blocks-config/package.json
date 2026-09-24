@@ -1,0 +1,27 @@
+{
+    "name": "@khanacademy/wonder-blocks-config",
+    "description": "Configuration for Wonder Blocks",
+    "author": "Khan Academy",
+    "license": "MIT",
+    "version": "0.0.1",
+    "publishConfig": {
+        "access": "public"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/Khan/wonder-blocks.git"
+    },
+    "bugs": {
+        "url": "https://github.com/Khan/wonder-blocks/issues"
+    },
+    "main": "dist/index.js",
+    "module": "dist/es/index.js",
+    "types": "dist/index.d.ts",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "prepublishOnly": "../../utils/publish/package-pre-publish-check.sh"
+    },
+    "devDependencies": {
+        "@khanacademy/wb-dev-build-settings": "workspace:*"
+    }
+}
