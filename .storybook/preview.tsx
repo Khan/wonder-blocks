@@ -5,6 +5,10 @@ import {Decorator} from "@storybook/react-vite";
 import {DocsContainer} from "@storybook/addon-docs/blocks";
 import {semanticColor} from "@khanacademy/wonder-blocks-tokens";
 import {initAnnouncer} from "@khanacademy/wonder-blocks-announcer";
+import {
+    WonderBlocksConfigProvider,
+    defaultStringsEn,
+} from "@khanacademy/wonder-blocks-config";
 import Link from "@khanacademy/wonder-blocks-link";
 import {
     ThemeSwitcherContext,
@@ -325,6 +329,18 @@ const withAnnouncer: Decorator = (Story, {parameters: {addBodyClass}}) => {
     return <Story />;
 };
 
+/**
+ * Wraps a story with the Wonder Blocks config, using the default English
+ * strings.
+ */
+const withWonderBlocksConfig: Decorator = (Story) => (
+    <WonderBlocksConfigProvider
+        i18n={{strings: defaultStringsEn, locale: "en"}}
+    >
+        <Story />
+    </WonderBlocksConfigProvider>
+);
+
 const preview: Preview = {
     parameters,
     decorators: [
@@ -333,6 +349,7 @@ const preview: Preview = {
         withLanguageDirection,
         withZoom,
         withAnnouncer,
+        withWonderBlocksConfig,
     ],
     globalTypes: {
         // Allow the user to select a theme from the toolbar.
