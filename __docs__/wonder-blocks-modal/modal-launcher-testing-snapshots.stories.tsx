@@ -1,5 +1,6 @@
 import * as React from "react";
 import {Meta} from "@storybook/react-vite";
+import {StyleSheet} from "aphrodite";
 import {
     FlexibleDialog,
     ModalLauncher,
@@ -7,7 +8,9 @@ import {
 } from "@khanacademy/wonder-blocks-modal";
 import {allModes, allThemeModes} from "../../.storybook/modes";
 import Button from "@khanacademy/wonder-blocks-button";
-import {reallyLongText} from "../components/text-for-testing";
+import {longText, reallyLongText} from "../components/text-for-testing";
+import {View} from "@khanacademy/wonder-blocks-core";
+import {sizing} from "@khanacademy/wonder-blocks-tokens";
 
 export default {
     title: "Packages / Modal / Testing / Snapshots / ModalLauncher",
@@ -23,40 +26,70 @@ export default {
     tags: ["!autodocs", "!manifest"],
 } as Meta;
 
+const styles = StyleSheet.create({
+    container: {
+        alignItems: "flex-start",
+        gap: sizing.size_160,
+    },
+});
 export const WithOnePaneDialog = {
     render: function Render() {
+        const [opened, setOpened] = React.useState(true);
+
+        const open = () => {
+            setOpened(true);
+        };
+        const close = () => {
+            setOpened(false);
+        };
         return (
-            <ModalLauncher
-                modal={
-                    <OnePaneDialog
-                        title="OnePaneDialog"
-                        subtitle="Subtitle"
-                        content={<div>{reallyLongText}</div>}
-                        footer={<Button>Action</Button>}
-                    />
-                }
-                opened={true}
-            >
-                {({openModal}) => <Button onClick={openModal}>Open</Button>}
-            </ModalLauncher>
+            <View style={styles.container}>
+                {/* Include content in the background */}
+                {longText}
+                <Button onClick={open}>Open</Button>
+                <ModalLauncher
+                    modal={
+                        <OnePaneDialog
+                            title="OnePaneDialog"
+                            subtitle="Subtitle"
+                            content={<div>{reallyLongText}</div>}
+                            footer={<Button onClick={close}>Action</Button>}
+                        />
+                    }
+                    opened={opened}
+                    onClose={close}
+                />
+            </View>
         );
     },
 };
 
 export const WithFlexibleDialog = {
     render: function Render() {
+        const [opened, setOpened] = React.useState(true);
+
+        const open = () => {
+            setOpened(true);
+        };
+        const close = () => {
+            setOpened(false);
+        };
         return (
-            <ModalLauncher
-                modal={
-                    <FlexibleDialog
-                        title="FlexibleDialog"
-                        content={<div>{reallyLongText}</div>}
-                    />
-                }
-                opened={true}
-            >
-                {({openModal}) => <Button onClick={openModal}>Open</Button>}
-            </ModalLauncher>
+            <View style={styles.container}>
+                {/* Include content in the background */}
+                {longText}
+                <Button onClick={open}>Open</Button>
+                <ModalLauncher
+                    modal={
+                        <FlexibleDialog
+                            title="FlexibleDialog"
+                            content={<div>{reallyLongText}</div>}
+                        />
+                    }
+                    opened={opened}
+                    onClose={close}
+                />
+            </View>
         );
     },
 };

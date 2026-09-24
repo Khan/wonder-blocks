@@ -4,6 +4,14 @@ import {playwright} from "@vitest/browser-playwright";
 import {storybookTest} from "@storybook/addon-vitest/vitest-plugin";
 import viteConfig from "./vite.config";
 
+// Strip any trailing slash so the "Click to debug" link the Storybook Vitest
+// addon builds as `${storybookUrl}/?path=...` doesn't end up with a double
+// slash (the Chromatic-published URL we pass in CI ends with a slash).
+const storybookUrl = (process.env.SB_URL || "http://localhost:6061").replace(
+    /\/+$/,
+    "",
+);
+
 // More info at: https://storybook.js.org/docs/writing-tests/vitest-plugin
 export default mergeConfig(
     viteConfig,
@@ -16,8 +24,7 @@ export default mergeConfig(
                         // See options at: https://storybook.js.org/docs/writing-tests/vitest-plugin#storybooktest
                         storybookTest({
                             configDir: ".storybook",
-                            storybookUrl:
-                                process.env.SB_URL || "http://localhost:6061",
+                            storybookUrl,
                         }),
                     ],
 

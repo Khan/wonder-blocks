@@ -5,7 +5,7 @@ import {LabeledField} from "@khanacademy/wonder-blocks-labeled-field";
 import packageConfig from "../../packages/wonder-blocks-labeled-field/package.json";
 import ComponentInfo from "../components/component-info";
 import {allThemeModes} from "../../.storybook/modes";
-import {PropsFor, View} from "@khanacademy/wonder-blocks-core";
+import {View} from "@khanacademy/wonder-blocks-core";
 import {ScenariosLayout} from "../components/scenarios-layout";
 import {border, semanticColor} from "@khanacademy/wonder-blocks-tokens";
 import {TextField} from "@khanacademy/wonder-blocks-form";
@@ -38,6 +38,8 @@ const styles = StyleSheet.create({
         border: `${border.width.medium} solid ${semanticColor.core.border.neutral.subtle}`,
     },
 });
+
+const disabledLabeledFieldContainerTestId = "disabled-labeled-field-container";
 
 const scenarios = [
     {
@@ -188,6 +190,7 @@ const scenarios = [
         name: "With disabled field",
         props: {
             field: <TextField value="Value" onChange={() => {}} disabled />,
+            testId: disabledLabeledFieldContainerTestId,
             label: "Name",
             description: "Helpful description text.",
             additionalHelperMessage: "Additional helper message",
@@ -198,6 +201,7 @@ const scenarios = [
         name: "All properties disabled",
         props: {
             field: <TextField value="Value" onChange={() => {}} disabled />,
+            testId: disabledLabeledFieldContainerTestId,
             label: "Name",
             description: "Helpful description text.",
             errorMessage: "Message about the error",
@@ -210,6 +214,7 @@ const scenarios = [
         name: "All properties disabled without error",
         props: {
             field: <TextField value="Value" onChange={() => {}} disabled />,
+            testId: disabledLabeledFieldContainerTestId,
             label: "Name",
             description: "Helpful description text.",
             additionalHelperMessage: "Additional helper message",
@@ -340,26 +345,45 @@ const scenarios = [
  * The following story shows what the LabeledField looks like when different
  * props are set.
  */
-export const Scenarios = (args: PropsFor<typeof LabeledField>) => {
-    const [textFieldValue, setTextFieldValue] = React.useState("");
-    return (
-        <View style={{maxInlineSize: "475px"}}>
-            <ScenariosLayout
-                scenarios={scenarios}
-                styles={{root: {alignItems: "stretch"}}}
-            >
-                {(props) => (
-                    <LabeledField
-                        field={
-                            <TextField
-                                value={textFieldValue}
-                                onChange={setTextFieldValue}
-                            />
-                        }
-                        {...props}
-                    />
-                )}
-            </ScenariosLayout>
-        </View>
-    );
+export const Scenarios = {
+    render: function Scenarios() {
+        const [textFieldValue, setTextFieldValue] = React.useState("");
+        return (
+            <View style={{maxInlineSize: "475px"}}>
+                <ScenariosLayout
+                    scenarios={scenarios}
+                    styles={{root: {alignItems: "stretch"}}}
+                >
+                    {(props) => (
+                        <LabeledField
+                            field={
+                                <TextField
+                                    value={textFieldValue}
+                                    onChange={setTextFieldValue}
+                                />
+                            }
+                            {...props}
+                        />
+                    )}
+                </ScenariosLayout>
+            </View>
+        );
+    },
+    parameters: {
+        a11y: {
+            config: {
+                rules: [
+                    {
+                        // Exempt color contrast rule for labeled field contents when it is related to a disabled field. This is the intended design.
+                        // Note: axe's `selector` option replaces the set of
+                        // elements the rule audits (and axe doesn't support
+                        // `:has()`), so we audit everything except the
+                        // contents of the disabled scenarios.
+                        id: "color-contrast",
+                        selector: `*:not([data-testid="${disabledLabeledFieldContainerTestId}"] *)`,
+                    },
+                ],
+            },
+        },
+    },
 };
