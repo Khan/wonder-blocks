@@ -1,7 +1,7 @@
 import * as React from "react";
 import {Meta, StoryObj} from "@storybook/react-vite";
 import {TabsDropdown} from "../../packages/wonder-blocks-tabs/src/components/tabs-dropdown";
-import {PropsFor} from "@khanacademy/wonder-blocks-core";
+import {PropsFor, View} from "@khanacademy/wonder-blocks-core";
 import {sizing} from "@khanacademy/wonder-blocks-tokens";
 import tabsDropdownArgTypes from "./tabs-dropdown.argtypes";
 import {Icon, PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
@@ -89,19 +89,34 @@ export const Opened: Story = {
 
 /**
  * Normally, the label of the selected tab is displayed in the opener. However,
- * if the selected tab id is invalid, the `labels.defaultOpenerLabel` will be
- * used to label the opener. If the `labels.defaultOpenerLabel` is not set, a
- * default untranslated string is used.
+ * if the selected tab id is invalid, a built-in "Tabs" label is used for the
+ * opener instead. It can be overridden using the `labels.defaultOpenerLabel`
+ * prop.
  */
 export const InvalidSelectedTabId: Story = {
     args: {
         tabs,
         selectedTabId: "invalid-tab-id",
-        labels: {
-            defaultOpenerLabel: "Custom Tabs Label",
-        },
     },
-    render: ControlledTabsDropdown,
+    render: function Render(args) {
+        return (
+            <View style={{gap: sizing.size_200}}>
+                <ControlledTabsDropdown
+                    tabs={args.tabs}
+                    selectedTabId={args.selectedTabId}
+                    onTabSelected={() => {}}
+                    aria-label="Tabs dropdown with the default opener label"
+                />
+                <ControlledTabsDropdown
+                    tabs={args.tabs}
+                    selectedTabId={args.selectedTabId}
+                    onTabSelected={() => {}}
+                    aria-label="Tabs dropdown with a custom opener label"
+                    labels={{defaultOpenerLabel: "Custom Tabs Label"}}
+                />
+            </View>
+        );
+    },
 };
 
 /**
