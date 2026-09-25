@@ -5,6 +5,7 @@ import {PropsFor, View} from "@khanacademy/wonder-blocks-core";
 import {sizing} from "@khanacademy/wonder-blocks-tokens";
 import tabsDropdownArgTypes from "./tabs-dropdown.argtypes";
 import {Icon, PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
+import {BodyText} from "@khanacademy/wonder-blocks-typography";
 import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
 
 export default {
@@ -99,21 +100,34 @@ export const InvalidSelectedTabId: Story = {
         selectedTabId: "invalid-tab-id",
     },
     render: function Render(args) {
+        const defaultLabelId = React.useId();
+        const customLabelId = React.useId();
+
         return (
             <View style={{gap: sizing.size_200}}>
-                <ControlledTabsDropdown
-                    tabs={args.tabs}
-                    selectedTabId={args.selectedTabId}
-                    onTabSelected={() => {}}
-                    aria-label="Tabs dropdown with the default opener label"
-                />
-                <ControlledTabsDropdown
-                    tabs={args.tabs}
-                    selectedTabId={args.selectedTabId}
-                    onTabSelected={() => {}}
-                    aria-label="Tabs dropdown with a custom opener label"
-                    labels={{defaultOpenerLabel: "Custom Tabs Label"}}
-                />
+                <View style={{gap: sizing.size_080}}>
+                    <BodyText id={defaultLabelId}>
+                        Default opener label
+                    </BodyText>
+                    <ControlledTabsDropdown
+                        tabs={args.tabs}
+                        selectedTabId={args.selectedTabId}
+                        onTabSelected={() => {}}
+                        aria-labelledby={defaultLabelId}
+                    />
+                </View>
+                <View style={{gap: sizing.size_080}}>
+                    <BodyText id={customLabelId}>
+                        Custom opener label using labels.defaultOpenerLabel
+                    </BodyText>
+                    <ControlledTabsDropdown
+                        tabs={args.tabs}
+                        selectedTabId={args.selectedTabId}
+                        onTabSelected={() => {}}
+                        aria-labelledby={customLabelId}
+                        labels={{defaultOpenerLabel: "Custom Tabs Label"}}
+                    />
+                </View>
             </View>
         );
     },
