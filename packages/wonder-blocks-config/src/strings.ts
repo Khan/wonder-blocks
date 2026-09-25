@@ -2,11 +2,13 @@
  * The translated strings that are used to render Wonder Blocks.
  */
 export type WonderBlocksStrings = {
+    // Status icons
+    iconAltInfo: string;
+    iconAltSuccess: string;
+    iconAltWarning: string;
+    iconAltCritical: string;
+
     // Banner
-    iconAltBannerInfo: string;
-    iconAltBannerSuccess: string;
-    iconAltBannerWarning: string;
-    iconAltBannerCritical: string;
     iconAltDismissBanner: string;
 
     // BirthdayPicker
@@ -90,25 +92,26 @@ export type WonderBlocksStrings = {
  * !! Note: Ensure that all escape sequences are double-escaped. (e.g. `\\text` -> `\\\\text`)
  */
 export const strings = {
-    // Banner
-    iconAltBannerInfo: {
+    // Status icons
+    iconAltInfo: {
         context:
-            "Accessible name for the icon shown in an informational banner.",
+            "Accessible name for an icon indicating informational content.",
         message: "Info",
     },
-    iconAltBannerSuccess: {
-        context: "Accessible name for the icon shown in a success banner.",
+    iconAltSuccess: {
+        context: "Accessible name for an icon indicating a success.",
         message: "Success",
     },
-    iconAltBannerWarning: {
-        context: "Accessible name for the icon shown in a warning banner.",
+    iconAltWarning: {
+        context: "Accessible name for an icon indicating a warning.",
         message: "Warning",
     },
-    iconAltBannerCritical: {
-        context:
-            "Accessible name for the icon shown in a banner for a critical error.",
+    iconAltCritical: {
+        context: "Accessible name for an icon indicating a critical error.",
         message: "Critical",
     },
+
+    // Banner
     iconAltDismissBanner: {
         context: "Accessible name for the icon button that dismisses a banner.",
         message: "Dismiss banner.",
@@ -314,11 +317,13 @@ export const strings = {
  * Default 'en' strings to use.
  */
 export const defaultStringsEn: WonderBlocksStrings = {
+    // Status icons
+    iconAltInfo: strings.iconAltInfo.message,
+    iconAltSuccess: strings.iconAltSuccess.message,
+    iconAltWarning: strings.iconAltWarning.message,
+    iconAltCritical: strings.iconAltCritical.message,
+
     // Banner
-    iconAltBannerInfo: strings.iconAltBannerInfo.message,
-    iconAltBannerSuccess: strings.iconAltBannerSuccess.message,
-    iconAltBannerWarning: strings.iconAltBannerWarning.message,
-    iconAltBannerCritical: strings.iconAltBannerCritical.message,
     iconAltDismissBanner: strings.iconAltDismissBanner.message,
 
     // BirthdayPicker
