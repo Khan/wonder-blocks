@@ -2,7 +2,10 @@
  * The translated strings that are used to render Wonder Blocks.
  */
 export type WonderBlocksStrings = {
+    // Alt text for icons / icon buttons
     iconAltOpensNewTab: string;
+
+    // Labels
     breadcrumbs: string;
     tabs: string;
 };
@@ -14,11 +17,14 @@ export type WonderBlocksStrings = {
  * !! Note: Ensure that all escape sequences are double-escaped. (e.g. `\\text` -> `\\\\text`)
  */
 export const strings = {
+    // Alt text for icons / icon buttons
     iconAltOpensNewTab: {
         context:
             "Accessible name for an icon marking a link that opens in a new tab.",
         message: "(opens in a new tab)",
     },
+
+    // Labels
     breadcrumbs: {
         context:
             "Accessible name for the navigation landmark containing breadcrumb links.",
@@ -40,7 +46,10 @@ export const strings = {
  * Default 'en' strings to use.
  */
 export const defaultStringsEn: WonderBlocksStrings = {
+    // Alt text for icons / icon buttons
     iconAltOpensNewTab: strings.iconAltOpensNewTab.message,
+
+    // Labels
     breadcrumbs: strings.breadcrumbs.message,
     tabs: strings.tabs.message,
 };
