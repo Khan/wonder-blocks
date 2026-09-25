@@ -3,26 +3,19 @@
  *
  * Source: https://gist.github.com/MoOx/9137295
  *
- * Cascade
- * -------
  * The build wraps every `*.module.css` in `@layer shared`, so this file becomes
  * `@layer shared { @layer reset { … } }` — the sub-layer `shared.reset`, shared
- * with `button-unstyled.module.css`. Rules directly in a layer outrank that
- * layer's named sub-layers, so *everything* Clickable emits loses to a
- * consumer's own component styles (which sit directly in `shared`) regardless
- * of the order the bundler emits the two stylesheets in.
+ * with `button-unstyled.module.css`. Component styles have no inner layer, so
+ * they sit directly in `shared`, and rules directly in a layer outrank that
+ * layer's named sub-layers. Everything here is a base default that consumers
+ * (Cell, Pill, AccordionSectionHeader, …) are expected to override, so the
+ * cascade is decided by the layer, not by bundle order. Overrides passed
+ * through the `style` prop are emitted unlayered and win over any `@layer`.
  *
- * That is deliberate: all four rules below are base defaults that consumers
- * (Cell, Pill, AccordionSectionHeader, …) are expected to override. Aphrodite
- * gave them the same precedence by putting the caller's `style` prop last in
- * the array; the sub-layer reproduces that without depending on bundle order.
- * Overrides passed through the `style` prop are unaffected either way — those
- * still route through Aphrodite, which emits unlayered rules that win over any
- * `@layer`.
- *
- * Within the layer every rule sits at the same specificity, so source order
- * decides precedence. They are declared reset → link → focused → disabled,
- * matching the order Aphrodite composed them in `getStyle`.
+ * Nesting is native CSS: every `&` is explicit and resolves to the flat
+ * selector it replaces, at the same specificity. Within the layer every rule
+ * sits at equal specificity, so source order decides — reset → link → focused
+ * → disabled.
  */
 
 @layer reset {
@@ -66,34 +59,32 @@
 
     /**
      * The default focus ring, applied only when `hideDefaultFocusRing` is unset
-     * and `ClickableBehavior` reports the element as focused. The `:focus`
-     * qualifier is carried over from the Aphrodite version unchanged.
+     * and `ClickableBehavior` reports the element as focused.
      */
-    .focused:focus {
-        outline: solid var(--wb-border-width-medium)
-            var(--wb-semanticColor-focus-outer);
+    .focused {
+        &:focus {
+            outline: solid var(--wb-border-width-medium)
+                var(--wb-semanticColor-focus-outer);
+        }
     }
 
     /**
-     * Disabled. Declared last so it resets the focus ring above (both rules
-     * sit at the same specificity), and so its `color` outranks the
-     * `color: inherit` in `.reset`.
-     *
-     * `:focus-visible` follows `:focus` for the same reason: a disabled
-     * Clickable drops the programmatic focus ring but keeps the keyboard-only
-     * one.
+     * Disabled. Declared last so it resets the focus ring above, and so its
+     * `color` outranks the `color: inherit` in `.reset`.
      */
     .disabled {
         cursor: not-allowed;
         color: var(--wb-semanticColor-action-secondary-disabled-foreground);
-    }
 
-    .disabled:focus {
-        outline: none;
-    }
+        /* A disabled Clickable drops the programmatic focus ring but keeps the
+         * keyboard-only one, so `:focus-visible` follows `:focus`. */
+        &:focus {
+            outline: none;
+        }
 
-    .disabled:focus-visible {
-        outline: solid var(--wb-border-width-medium)
-            var(--wb-semanticColor-focus-outer);
+        &:focus-visible {
+            outline: solid var(--wb-border-width-medium)
+                var(--wb-semanticColor-focus-outer);
+        }
     }
 }
