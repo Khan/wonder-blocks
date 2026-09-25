@@ -1191,6 +1191,9 @@ importers:
       '@khanacademy/wonder-blocks-clickable':
         specifier: workspace:*
         version: link:../wonder-blocks-clickable
+      '@khanacademy/wonder-blocks-config':
+        specifier: workspace:*
+        version: link:../wonder-blocks-config
       '@khanacademy/wonder-blocks-core':
         specifier: workspace:*
         version: link:../wonder-blocks-core

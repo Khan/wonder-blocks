@@ -2,6 +2,7 @@ import * as React from "react";
 import {StyleSheet} from "aphrodite";
 import {Link, useInRouterContext} from "react-router-dom-v5-compat";
 
+import {useWonderBlocksI18n} from "@khanacademy/wonder-blocks-config";
 import {addStyle} from "@khanacademy/wonder-blocks-core";
 import {
     border,
@@ -38,6 +39,7 @@ const LinkCore = React.forwardRef(function LinkCore(
     ref: React.ForwardedRef<typeof Link | HTMLAnchorElement>,
 ) {
     const inRouterContext = useInRouterContext();
+    const {strings} = useWonderBlocksI18n();
 
     const {
         children,
@@ -88,7 +90,9 @@ const LinkCore = React.forwardRef(function LinkCore(
             size="small"
             style={[styles.endIcon, styles.centered]}
             testId="external-icon"
-            aria-label={labels?.externalIconAriaLabel}
+            aria-label={
+                labels?.externalIconAriaLabel ?? strings.iconAltOpensNewTab
+            }
         />
     );
 
