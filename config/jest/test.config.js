@@ -56,6 +56,14 @@ const projectConfig = {
     moduleNameMapper: {
         "^@khanacademy/wonder-blocks-([^/]*)$":
             "<rootDir>/packages/wonder-blocks-$1/src/index.ts",
+        // SPIKE (FEI-8331, option D): native components are tested in jsdom
+        // through react-native-web (plus a `PlatformColor` stand-in that the
+        // react-native-css runtime needs), so they run alongside the web
+        // tests.
+        "^react-native$":
+            "<rootDir>/packages/wonder-blocks-native/src/testing/react-native-web-shim.ts",
+        "^react-native-web$":
+            "<rootDir>/packages/wonder-blocks-native/node_modules/react-native-web",
         // Order matters: the module.css pattern must come before the generic
         // CSS mock so identity-obj-proxy handles `styles.foo` lookups, while
         // plain `*.css` imports keep using the no-op mock.

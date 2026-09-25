@@ -1,0 +1,69 @@
+{
+    "rewrites": [
+        {
+            "sheet": "button-unstyled",
+            "rewrite": "display: flex → + flex-direction: row",
+            "count": 1
+        },
+        {
+            "sheet": "button",
+            "rewrite": ":where(…) in compound → plain classes",
+            "count": 11
+        },
+        {
+            "sheet": "button",
+            "rewrite": "rule dropped silently by react-native-css: :focus-visible",
+            "count": 4
+        },
+        {
+            "sheet": "button",
+            "rewrite": "[aria-disabled=\"true\"] → :disabled",
+            "count": 4
+        },
+        {
+            "sheet": "button",
+            "rewrite": "logical size → height/width",
+            "count": 4
+        },
+        {
+            "sheet": "button",
+            "rewrite": "background → background-color",
+            "count": 6
+        },
+        {
+            "sheet": "button",
+            "rewrite": "transition removed (needs Reanimated 4)",
+            "count": 1
+        }
+    ],
+    "postCompileFixes": {
+        "lineHeightUnwrapped": 12
+    },
+    "dropped": {
+        "properties": [
+            "cursor",
+            "touch-action",
+            "outline",
+            "-webkit-tap-highlight-color",
+            "outline",
+            "text-underline-offset",
+            "outline",
+            "text-underline-offset",
+            "outline",
+            "outline",
+            "outline",
+            "cursor",
+            "text-decoration-thickness",
+            "text-underline-offset",
+            "outline",
+            "outline",
+            "white-space",
+            "text-overflow"
+        ],
+        "values": {
+            "border": ["medium", "none"],
+            "display": ["inline-flex", "block", "inline-block"],
+            "min-width": ["auto"]
+        }
+    }
+}

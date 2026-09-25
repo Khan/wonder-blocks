@@ -202,6 +202,9 @@
   "pnpm": {
     "patchedDependencies": {
       "react-router-dom-v5-compat@6.30.0": "patches/react-router-dom-v5-compat@6.30.0.patch"
+    },
+    "overrides": {
+      "@expo/metro-config>lightningcss": "1.30.1"
     }
   }
 }

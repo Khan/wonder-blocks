@@ -18,8 +18,52 @@ export default defineConfig({
             generateScopedName,
         },
     },
+    // SPIKE (FEI-8331, option D): don't pre-bundle react-native-css, so the
+    // `react-native-css-metro-override` alias below applies to its internal
+    // relative import (esbuild's pre-bundling doesn't see Vite aliases for
+    // relative paths).
+    optimizeDeps: {
+        exclude: ["react-native-css"],
+    },
     resolve: {
         alias: [
+            // SPIKE (FEI-8331, option D): render
+            // `@khanacademy/wonder-blocks-native` components in Storybook
+            // through react-native-web (plus the `PlatformColor` stand-in the
+            // react-native-css runtime needs).
+            {
+                find: /^react-native$/,
+                replacement: resolve(
+                    __dirname,
+                    "./packages/wonder-blocks-native/src/testing/react-native-web-shim.ts",
+                ),
+            },
+            // react-native-css throws a "setup error" at import time unless
+            // the bundler swaps this module for an empty one (its Metro
+            // wrapper does the same).
+            {
+                find: /^.*react-native-css-metro-override(\.js)?$/,
+                replacement: resolve(
+                    __dirname,
+                    "./packages/wonder-blocks-native/src/testing/empty-module.ts",
+                ),
+            },
+            // react-native-css `require()`s Reanimated (only for CSS
+            // transitions, which the spike strips), so it must resolve.
+            {
+                find: /^react-native-reanimated$/,
+                replacement: resolve(
+                    __dirname,
+                    "./packages/wonder-blocks-native/src/testing/react-native-reanimated-stub.ts",
+                ),
+            },
+            {
+                find: /^react-native-web$/,
+                replacement: resolve(
+                    __dirname,
+                    "./packages/wonder-blocks-native/node_modules/react-native-web",
+                ),
+            },
             {
                 find: "@khanacademy/wonder-blocks-tokens/styles.css",
                 replacement: resolve(
