@@ -1,12 +1,11 @@
 /**
  * NodeIconButton styles
  *
- * Component-token surface
- * -----------------------
- * `NodeIconButton` already had a `--wb-c-node-icon-button--*` token surface —
- * it's the component the convention was named after — so this migration mostly
- * moves the surface from JS objects (`DEFAULT_TOKENS` + `variants`) into
- * variant classes.
+ * Every value a variant axis can change goes through a
+ * `--wb-c-node-icon-button--*` custom property ("component token"), as
+ * `IconButton` does. Unlike the rest of the button family these names are
+ * public: the `tokens` prop maps its camelCase keys onto them (via
+ * `mapTokensToVariables`), so they keep their existing spelling.
  *
  *   --wb-c-node-icon-button--box-padding         (size)
  *   --wb-c-node-icon-button--box-shadow-y-rest   (size)
@@ -17,69 +16,36 @@
  *   --wb-c-node-icon-button--box-background      (actionType)
  *   --wb-c-node-icon-button--box-shadow-color    (actionType)
  *
- * Every rule below does exactly one of two jobs, never both:
+ * Axis classes assign tokens and nothing else (composed through the `style`
+ * prop — `processStyleList` routes class-name strings to `className`);
+ * `.button` and its states only read them. Declaring the axes first and
+ * `.button` last is therefore cascade-neutral. The two axes are fully
+ * orthogonal — `size` owns the geometry, `actionType` the colours — so there
+ * is no compound colour matrix. The component always applies exactly one class
+ * per axis, so `.large` and `.notStarted` *are* the defaults.
  *
- * - **Variant classes assign tokens.** One class per axis value (`.large`,
- *   `.notStarted`) sets token values and nothing else. `node-icon-button`
- *   composes them through the existing `style` prop (Wonder Blocks'
- *   `processStyleList` routes class-name strings to `className`), so the axes
- *   stay orthogonal and no `clsx` dependency is needed.
- * - **Base and state rules only read tokens.** `.button` / `.box` / `.icon`
- *   plus one rule per interactive state.
+ * The `tokens` prop still overrides any of these: `mapTokensToVariables` emits
+ * unlayered declarations, which win over these `@layer shared` rules
+ * regardless of specificity.
  *
- * The two axes are fully orthogonal here — `size` owns the geometry, `actionType`
- * owns the colours — so unlike the rest of the button family there is no
- * compound colour matrix.
- *
- * The `tokens` prop still overrides any of these: it routes through
- * `mapTokensToVariables`, which emits unlayered declarations that win over
- * these `@layer shared` rules regardless of specificity.
- *
- * The component always applies exactly one size class and one actionType class,
- * so there is no base block re-declaring the defaults — the `large` and
- * `notStarted` classes *are* the defaults. (The previous implementation carried
- * a `DEFAULT_TOKENS` object that duplicated them.)
- *
- * Specificity: most box state rules sit at (0,3,0) — `.button` plus a
- * pseudo-class/attribute plus `.box` — so source order alone decides
- * precedence. They are declared hover → active → disabled → focus, which is the
- * priority we want: press has to survive hover, disabled resets both, and the
- * focus ring has to survive all of them.
- *
- * The one exception is `.button[aria-disabled="true"]:active .box` at (0,4,0),
- * which deliberately climbs above the disabled reset so a disabled box still
- * "drops" on pointer-press. See the comment on that rule.
- *
- * The `.box` and `.icon` base rules are qualified with `.button` because `View`
- * (`.default`) and `PhosphorIcon` ship single-class rules in the same
- * `@layer shared` that set some of the same properties (`padding`,
- * `align-items`, `inline-size`), so at equal specificity those contests would
- * be settled by which package's stylesheet happens to load first. The compound
- * selector makes the outcome depend on specificity instead.
- *
- * `disabled` is selected via the `[aria-disabled="true"]` attribute that
- * `icon-button-unstyled` already sets (the element stays focusable). The build
- * wraps every rule below in `@layer shared { … }` via the wrap-in-layer PostCSS
- * plugin.
+ * Nesting is native CSS: every `&` is explicit and resolves to the flat
+ * selector it replaces, at the same specificity. The box state rules sit at
+ * equal specificity, so source order decides — hover → active → disabled →
+ * focus, so press survives hover, disabled resets both, and the focus ring
+ * survives all of them. The one deliberate exception is the disabled
+ * pointer-press rule; see the comment on it. Disabled is the
+ * `[aria-disabled="true"]` attribute `icon-button-unstyled` sets, which keeps
+ * the element focusable. Tokens resolve against the per-theme
+ * `[data-wb-theme]` blocks, and the build wraps every rule in
+ * `@layer shared { … }`.
  */
 
 @import "@khanacademy/wonder-blocks-styles/focus-styles.css";
 
 /**
- * Root element. Reads component tokens only — never assigns them.
- */
-.button {
-    /* Theming. Used for the focus ring. */
-    border-radius: var(--wb-border-radius-radius_full);
-
-    /* Layout */
-    flex-direction: column;
-    gap: var(--wb-sizing-size_020);
-    place-self: flex-start center;
-}
-
-/**
- * `size` axis. Owns the box geometry and the icon size.
+ * Axis classes: the only rules that assign component tokens.
+ *
+ * `size` owns the box geometry and the icon size.
  *
  * NOTE: The shadow depths use px units to prevent a bug in Safari where the
  * shadow animation flickers when using rem units.
@@ -101,7 +67,7 @@
 }
 
 /**
- * `actionType` axis. Owns the box colours.
+ * `actionType` owns the box colours.
  */
 .notStarted {
     --wb-c-node-icon-button--box-foreground: var(
@@ -140,143 +106,160 @@
 }
 
 /**
- * The "chonky" box. Reads the component tokens the root assigns — custom
- * properties inherit, so the box picks up whichever variant classes the root
- * carries (including any `tokens` prop overrides).
+ * The button itself. Reads the tokens the axis classes assign — never assigns
+ * them. Custom properties inherit, so the box and icon pick up whichever
+ * variant classes the root carries (including any `tokens` prop overrides).
  */
-.button .box {
-    /* Layout */
+.button {
+    /* Theming. Used for the focus ring. */
     border-radius: var(--wb-border-radius-radius_full);
-    padding: var(--wb-c-node-icon-button--box-padding);
-    inline-size: 100%;
-    block-size: 100%;
-    align-items: center;
-    justify-content: center;
 
-    /* Theming */
-    background: var(--wb-c-node-icon-button--box-background);
-    color: var(--wb-c-node-icon-button--box-foreground);
+    /* Layout */
+    flex-direction: column;
+    gap: var(--wb-sizing-size_020);
+    place-self: flex-start center;
 
-    /* Gives the button a "chonky" look and feel. */
-    margin-block-end: var(--wb-c-node-icon-button--box-shadow-y-rest);
-    box-shadow: 0 var(--wb-c-node-icon-button--box-shadow-y-rest) 0 0
-        var(--wb-c-node-icon-button--box-shadow-color);
+    /**
+     * The "chonky" box. Qualified with `.button` on purpose: `View`
+     * (`.default`) ships single-class rules in the same `@layer shared` that
+     * set some of the same properties, so at equal specificity stylesheet load
+     * order would decide the winner.
+     */
+    & .box {
+        /* Layout */
+        border-radius: var(--wb-border-radius-radius_full);
+        padding: var(--wb-c-node-icon-button--box-padding);
+        inline-size: 100%;
+        block-size: 100%;
+        align-items: center;
+        justify-content: center;
 
-    /* Motion. NOTE: We only want to transition the properties that are being
-     * animated. */
-    transition: 0.12s ease-out;
-    transition-property: box-shadow, transform, margin-block-end;
-}
+        /* Theming */
+        background: var(--wb-c-node-icon-button--box-background);
+        color: var(--wb-c-node-icon-button--box-foreground);
 
-@media not (hover: hover) {
-    .button .box {
-        transition: none;
+        /* Gives the button a "chonky" look and feel. */
+        margin-block-end: var(--wb-c-node-icon-button--box-shadow-y-rest);
+        box-shadow: 0 var(--wb-c-node-icon-button--box-shadow-y-rest) 0 0
+            var(--wb-c-node-icon-button--box-shadow-color);
+
+        /* Motion. NOTE: We only want to transition the properties that are
+         * being animated. */
+        transition: 0.12s ease-out;
+        transition-property: box-shadow, transform, margin-block-end;
     }
-}
 
-/**
- * Hover. The box lifts by the difference between the hover and rest shadow
- * depths so its top edge stays put.
- */
-.button:hover .box {
-    box-shadow: 0 var(--wb-c-node-icon-button--box-shadow-y-hover) 0 0
-        var(--wb-c-node-icon-button--box-shadow-color);
-    transform: translateY(
-        calc(
-            (
-                    var(--wb-c-node-icon-button--box-shadow-y-hover) -
-                        var(--wb-c-node-icon-button--box-shadow-y-rest)
-                ) * -1
-        )
-    );
-}
+    @media not (hover: hover) {
+        & .box {
+            transition: none;
+        }
+    }
 
-/**
- * Active / pressed. The `:active` pseudo-class covers pointer presses; the
- * `.pressed` class covers programmatic (keyboard) presses tracked by
- * `IconButtonUnstyled`'s `onPress` callback. The box drops by the rest shadow
- * depth so it looks pushed flat against the shadow.
- */
-.button:active .box,
-.button.pressed .box {
-    box-shadow: 0 var(--wb-c-node-icon-button--box-shadow-y-press) 0 0
-        var(--wb-c-node-icon-button--box-shadow-color);
-    transform: translateY(var(--wb-c-node-icon-button--box-shadow-y-rest));
-}
+    /**
+     * Hover. The box lifts by the difference between the hover and rest
+     * shadow depths so its top edge stays put.
+     */
+    &:hover .box {
+        box-shadow: 0 var(--wb-c-node-icon-button--box-shadow-y-hover) 0 0
+            var(--wb-c-node-icon-button--box-shadow-color);
+        transform: translateY(
+            calc(
+                (
+                        var(--wb-c-node-icon-button--box-shadow-y-hover) -
+                            var(--wb-c-node-icon-button--box-shadow-y-rest)
+                    ) * -1
+            )
+        );
+    }
 
-/**
- * Disabled. Selected via `aria-disabled` so the element stays focusable.
- * Declared after hover / active so it resets them; the `:hover` / `:active`
- * variants below only exist to outrank those rules.
- */
-.button[aria-disabled="true"] {
-    cursor: not-allowed;
-    outline: none;
-    transform: none;
-}
+    /**
+     * Active / pressed. `:active` covers pointer presses, `.pressed` covers
+     * programmatic (keyboard) presses from `IconButtonUnstyled`'s `onPress`.
+     * The box drops by the rest shadow depth so it looks pushed flat against
+     * the shadow.
+     */
+    &:active .box,
+    &.pressed .box {
+        box-shadow: 0 var(--wb-c-node-icon-button--box-shadow-y-press) 0 0
+            var(--wb-c-node-icon-button--box-shadow-color);
+        transform: translateY(var(--wb-c-node-icon-button--box-shadow-y-rest));
+    }
 
-.button[aria-disabled="true"]:hover,
-.button[aria-disabled="true"]:active {
-    outline: none;
-    transform: none;
-}
+    /** Disabled. Declared after hover / active so it resets them. */
+    &[aria-disabled="true"] {
+        cursor: not-allowed;
+        outline: none;
+        transform: none;
 
-.button[aria-disabled="true"] .box,
-.button[aria-disabled="true"]:hover .box {
-    background: var(--wb-semanticColor-chonky-disabled-background-primary);
-    box-shadow: 0 var(--wb-c-node-icon-button--box-shadow-y-rest) 0 0
-        var(--wb-semanticColor-chonky-disabled-shadow-primary);
-    color: var(--wb-semanticColor-chonky-disabled-foreground-primary);
-    transform: none;
-}
+        /* Only exist to outrank the hover / active rules above. */
+        &:hover,
+        &:active {
+            outline: none;
+            transform: none;
+        }
 
-/**
- * Disabled + pointer-press. A disabled box deliberately still "drops" when
- * pressed with the pointer, keeping its disabled colours — the previous
- * implementation reset the box's hover state but not its active state, and that
- * behaviour is preserved here on purpose rather than harmonised with
- * `ActivityIconButton` (which does reset both).
- *
- * This needs to be spelled out rather than just omitted from the reset above:
- * `.button:active .box` and `.button[aria-disabled="true"] .box` are both at
- * (0,3,0), so the later-declared disabled rule would otherwise win and flatten
- * the box. At (0,4,0) this rule restores the press shadow and transform while
- * leaving the disabled background and foreground in place.
- *
- * Note the shadow uses the `actionType` shadow colour, not the disabled one,
- * which is also what the previous implementation did.
- *
- * Keyboard presses are unaffected: `node-icon-button` only applies `.pressed`
- * when the button is not disabled, so `.pressed` never appears here.
- */
-.button[aria-disabled="true"]:active .box {
-    box-shadow: 0 var(--wb-c-node-icon-button--box-shadow-y-press) 0 0
-        var(--wb-c-node-icon-button--box-shadow-color);
-    transform: translateY(var(--wb-c-node-icon-button--box-shadow-y-rest));
-}
+        & .box,
+        &:hover .box {
+            background: var(
+                --wb-semanticColor-chonky-disabled-background-primary
+            );
+            box-shadow: 0 var(--wb-c-node-icon-button--box-shadow-y-rest) 0 0
+                var(--wb-semanticColor-chonky-disabled-shadow-primary);
+            color: var(--wb-semanticColor-chonky-disabled-foreground-primary);
+            transform: none;
+        }
 
-/**
- * Focus. `:focus-visible` provides keyboard-only focus styling.
- *
- * Declared last so the ring survives hover / press. The disabled variant is
- * spelled out separately because `.button[aria-disabled="true"]:hover` above
- * outranks the plain `.button:focus-visible` rule and would otherwise strip the
- * outline off a focused-and-hovered disabled button.
- */
-.button:focus-visible {
-    @apply --wb-focus-visible;
-}
+        /**
+         * Disabled + pointer-press. A disabled box deliberately still "drops"
+         * when pressed with the pointer, keeping its disabled colours — the
+         * previous implementation reset the box's hover state but not its
+         * active state, and that is preserved on purpose rather than
+         * harmonised with `ActivityIconButton` (which resets both).
+         *
+         * It has to be spelled out rather than just omitted from the reset
+         * above: `.button:active .box` and the disabled `.box` rule sit at
+         * equal specificity, so the later disabled rule would otherwise
+         * flatten the box. One extra pseudo-class lets this win while leaving
+         * the disabled background and foreground in place. The shadow uses the
+         * `actionType` shadow colour, not the disabled one, as the previous
+         * implementation did.
+         *
+         * Keyboard presses are unaffected: `node-icon-button` only applies
+         * `.pressed` when the button is not disabled.
+         */
+        &:active .box {
+            box-shadow: 0 var(--wb-c-node-icon-button--box-shadow-y-press) 0 0
+                var(--wb-c-node-icon-button--box-shadow-color);
+            transform: translateY(
+                var(--wb-c-node-icon-button--box-shadow-y-rest)
+            );
+        }
+    }
 
-.button[aria-disabled="true"]:focus-visible {
-    @apply --wb-focus-visible;
+    /**
+     * Focus. Declared last so the ring survives hover / press / disabled.
+     */
+    &:focus-visible {
+        @apply --wb-focus-visible;
+    }
 
-    transform: none;
-}
+    /**
+     * A disabled button still gets the focus ring. Spelled out separately
+     * because the disabled `:hover` reset above outranks
+     * `.button:focus-visible`.
+     */
+    &[aria-disabled="true"]:focus-visible {
+        @apply --wb-focus-visible;
 
-/**
- * Icon.
- */
-.button .icon {
-    inline-size: var(--wb-c-node-icon-button--icon-size);
-    block-size: var(--wb-c-node-icon-button--icon-size);
+        transform: none;
+    }
+
+    /**
+     * Icon. Qualified with `.button` for the same reason as `.box`:
+     * `PhosphorIcon` ships single-class rules in the same `@layer shared`.
+     */
+    & .icon {
+        inline-size: var(--wb-c-node-icon-button--icon-size);
+        block-size: var(--wb-c-node-icon-button--icon-size);
+    }
 }
