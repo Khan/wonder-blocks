@@ -1,12 +1,10 @@
 import * as React from "react";
-import {StyleSheet} from "aphrodite";
 import WarningCircle from "@phosphor-icons/core/bold/warning-circle-bold.svg";
 import LockIcon from "@phosphor-icons/core/bold/lock-bold.svg";
 import {BodyText} from "@khanacademy/wonder-blocks-typography";
 import {View, StyleType} from "@khanacademy/wonder-blocks-core";
-import {font, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
-import theme from "../theme";
+import styles from "./labeled-field.module.css";
 
 type Props = {
     /**
@@ -289,7 +287,9 @@ export default function LabeledField(props: Props) {
                 <PhosphorIcon
                     icon={LockIcon}
                     aria-label={labels.readOnlyIconAriaLabel}
-                    color={semanticColor.core.foreground.neutral.subtle}
+                    // The icon masks its glyph with `currentColor`, so the
+                    // colour is set by the `readOnlyIcon` class.
+                    style={styles.readOnlyIcon}
                 />
                 <BodyText style={styles.helperText}>{readOnlyMessage}</BodyText>
             </View>
@@ -319,7 +319,11 @@ export default function LabeledField(props: Props) {
     }
 
     return (
-        <View style={stylesProp?.root}>
+        // The `root` class carries no styling of its own — every rule in the
+        // module is qualified with it so this component's styles outrank the
+        // single-class rules that `BodyText`, `View` and `PhosphorIcon` ship in
+        // the same `@layer shared`. See `labeled-field.module.css`.
+        <View style={[styles.root, stylesProp?.root]}>
             {renderLabelAndContextLabel()}
             {maybeRenderDescription()}
             {renderField()}
@@ -329,76 +333,3 @@ export default function LabeledField(props: Props) {
         </View>
     );
 }
-
-const styles = StyleSheet.create({
-    labelContainer: {
-        display: "flex",
-        flexDirection: "row",
-        justifyContent: "space-between",
-        gap: theme.root.layout.spacingBetweenHelperText,
-    },
-    label: {
-        color: semanticColor.core.foreground.neutral.strong,
-        overflowWrap: "break-word",
-        minInlineSize: sizing.size_0, // This enables the wrapping behaviour
-    },
-    contextLabel: {
-        // Make the line height match the label so the context label is aligned
-        // with the label
-        lineHeight: font.body.lineHeight.medium,
-        // At most, the context label will take up 30% of the width of the
-        // LabeledField
-        maxInlineSize: "30%",
-        // This prevents the context label from shrinking to fit the label
-        flexShrink: 0,
-    },
-    labelWithError: {
-        color: theme.label.color.error.foreground,
-        fontWeight: theme.error.font.weight,
-    },
-    contextLabelWithError: {
-        color: theme.contextLabel.color.error.foreground,
-        fontWeight: theme.error.font.weight,
-    },
-    disabledLabel: {
-        color: theme.label.color.disabled.foreground,
-    },
-    labelWithDescription: {
-        paddingBlockEnd: theme.root.layout.paddingBlockEnd.labelWithDescription,
-    },
-    labelWithNoDescription: {
-        paddingBlockEnd:
-            theme.root.layout.paddingBlockEnd.labelWithNoDescription,
-    },
-    helperTextWithIcon: {
-        flexDirection: "row",
-        gap: theme.helperText.layout.gap,
-    },
-    spacingAboveHelperText: {
-        paddingBlockStart: theme.root.layout.spacingBetweenHelperText,
-    },
-    spacingBelowHelperText: {
-        paddingBlockEnd: theme.root.layout.spacingBetweenHelperText,
-    },
-    helperText: {
-        color: theme.helperText.color.default.foreground,
-        fontSize: theme.helperText.font.size,
-        lineHeight: theme.helperText.font.lineHeight,
-        minInlineSize: sizing.size_0, // This enables the wrapping behaviour on the helper message
-        overflowWrap: "break-word",
-    },
-    disabledHelperText: {
-        color: theme.helperText.color.disabled.foreground,
-    },
-    error: {
-        color: semanticColor.core.foreground.critical.default,
-    },
-    errorIcon: {
-        marginBlockStart: sizing.size_010, // This vertically aligns the icon with the text
-    },
-    errorMessage: {
-        fontWeight: theme.error.font.weight,
-        // This aligns the helper text with the icon
-        marginBlockStart: theme.error.layout.marginBlockStart,
-    },
-});
