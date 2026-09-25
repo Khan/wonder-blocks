@@ -6,6 +6,7 @@ import {StyleSheet} from "aphrodite";
 import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import checkCircleIcon from "@phosphor-icons/core/fill/check-circle-fill.svg";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
+import {useWonderBlocksI18n} from "@khanacademy/wonder-blocks-config";
 import {View, StyleType} from "@khanacademy/wonder-blocks-core";
 import {AriaLabelOrAriaLabelledby} from "./types";
 
@@ -73,11 +74,11 @@ export type TabsDropdownProps = AriaLabelOrAriaLabelledby & {
     onTabSelected: (id: string) => unknown;
 
     /**
-     * Labels for the dropdown.
+     * Custom labels for the dropdown. These override the default labels
+     * provided by `WonderBlocksConfigProvider`.
      */
     labels?: {
-        // The label used for the opener when there is no selected tab. Defaults
-        // to an untranslated "Tabs" string.
+        // The label used for the opener when there is no selected tab.
         defaultOpenerLabel?: string;
     };
 
@@ -106,10 +107,6 @@ export type TabsDropdownProps = AriaLabelOrAriaLabelledby & {
     };
 };
 
-const defaultLabels: Required<TabsDropdownProps["labels"]> = {
-    defaultOpenerLabel: "Tabs",
-};
-
 /**
  * The TabsDropdown component is used to represent tabs in an ActionMenu when
  * there is not enough horizontal space to render the tabs as a horizontal layout.
@@ -133,9 +130,13 @@ export const TabsDropdown = React.forwardRef<HTMLDivElement, TabsDropdownProps>(
             styles: stylesProp,
         } = props;
 
+        const {strings} = useWonderBlocksI18n();
         const labels = React.useMemo(() => {
-            return {...defaultLabels, ...labelsProp};
-        }, [labelsProp]);
+            return {
+                defaultOpenerLabel:
+                    labelsProp?.defaultOpenerLabel ?? strings.tabs,
+            };
+        }, [labelsProp, strings.tabs]);
 
         const generatedUniqueId = React.useId();
         const uniqueId = idProp ?? generatedUniqueId;

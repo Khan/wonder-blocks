@@ -10,7 +10,10 @@ import {defaultStringsEn} from "../../strings";
 
 import type {I18nConfig} from "../../context/i18n-context";
 
-const stringsEs = {iconAltOpensNewTab: "(se abre en una pestaña nueva)"};
+const stringsEs = {
+    ...defaultStringsEn,
+    iconAltOpensNewTab: "(se abre en una pestaña nueva)",
+};
 
 const StringsProbe = () => (
     <div>{useWonderBlocksI18n().strings.iconAltOpensNewTab}</div>
@@ -61,13 +64,19 @@ describe("WonderBlocksConfigProvider", () => {
             render(
                 <WonderBlocksConfigProvider
                     i18n={{
-                        strings: {iconAltOpensNewTab: "Outer text"},
+                        strings: {
+                            ...defaultStringsEn,
+                            iconAltOpensNewTab: "Outer text",
+                        },
                         locale: "en",
                     }}
                 >
                     <WonderBlocksConfigProvider
                         i18n={{
-                            strings: {iconAltOpensNewTab: "Inner text"},
+                            strings: {
+                                ...defaultStringsEn,
+                                iconAltOpensNewTab: "Inner text",
+                            },
                             locale: "es",
                         }}
                     >
@@ -88,13 +97,19 @@ describe("WonderBlocksConfigProvider", () => {
             render(
                 <WonderBlocksConfigProvider
                     i18n={{
-                        strings: {iconAltOpensNewTab: "Outer text"},
+                        strings: {
+                            ...defaultStringsEn,
+                            iconAltOpensNewTab: "Outer text",
+                        },
                         locale: "en",
                     }}
                 >
                     <WonderBlocksConfigProvider
                         i18n={{
-                            strings: {iconAltOpensNewTab: "Inner text"},
+                            strings: {
+                                ...defaultStringsEn,
+                                iconAltOpensNewTab: "Inner text",
+                            },
                             locale: "es",
                         }}
                     >
