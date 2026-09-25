@@ -4,6 +4,7 @@ import Button from "@khanacademy/wonder-blocks-button";
 import caretDown from "@phosphor-icons/core/bold/caret-down-bold.svg";
 import {StyleSheet} from "aphrodite";
 import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
+import {useWonderBlocksI18n} from "@khanacademy/wonder-blocks-config";
 import {addStyle, StyleType} from "@khanacademy/wonder-blocks-core";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import checkCircleIcon from "@phosphor-icons/core/fill/check-circle-fill.svg";
@@ -85,12 +86,12 @@ export type NavigationTabsDropdownProps = {
      */
     "aria-labelledby"?: string;
     /**
-     * Labels for the dropdown.
+     * Custom labels for the dropdown. These override the default labels
+     * provided by `WonderBlocksConfigProvider`.
      */
     labels?: {
         /**
-         * The label used for the opener when there is no selected tab. Defaults
-         * to an untranslated "Tabs" string.
+         * The label used for the opener when there is no selected tab.
          */
         defaultOpenerLabel?: string;
     };
@@ -117,10 +118,6 @@ export type NavigationTabsDropdownProps = {
      * Whether to show a divider under the tabs. Defaults to `false`.
      */
     showDivider?: boolean;
-};
-
-const defaultLabels: Required<NavigationTabsDropdownProps["labels"]> = {
-    defaultOpenerLabel: "Tabs",
 };
 
 /**
@@ -150,9 +147,12 @@ export const NavigationTabsDropdown = React.forwardRef<
 
     const StyledTag = React.useMemo(() => addStyle(tag), [tag]);
 
+    const {strings} = useWonderBlocksI18n();
     const labels = React.useMemo(() => {
-        return {...defaultLabels, ...labelsProp};
-    }, [labelsProp]);
+        return {
+            defaultOpenerLabel: labelsProp?.defaultOpenerLabel ?? strings.tabs,
+        };
+    }, [labelsProp, strings.tabs]);
 
     const selectedTabItem = React.useMemo(() => {
         return tabs.find(
