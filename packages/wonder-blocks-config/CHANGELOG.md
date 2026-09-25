@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-config
 
+## 0.2.0
+
+### Minor Changes
+
+- 2e7983b: Export `defaultStringsEn` from the package entry point
+
 ## 0.1.0
 
 ### Minor Changes
