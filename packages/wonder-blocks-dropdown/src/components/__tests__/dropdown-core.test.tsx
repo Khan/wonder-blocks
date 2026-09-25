@@ -905,4 +905,47 @@ describe("DropdownCore", () => {
             expect(onOpenMock).toHaveBeenCalledTimes(0);
         });
     });
+
+    describe("List markup (WB-2148)", () => {
+        it("renders the dropdown container using list markup (ul element)", async () => {
+            // Arrange
+            render(
+                <DropdownCore
+                    initialFocusedIndex={0}
+                    items={items}
+                    role="listbox"
+                    open={true}
+                    opener={<button />}
+                    onOpenChanged={jest.fn()}
+                />,
+            );
+
+            // Act
+            const listbox = await screen.findByRole("listbox");
+
+            // Assert
+            expect(listbox).toHaveProperty("tagName", "UL");
+        });
+
+        it("wraps each item in a list item (li element)", async () => {
+            // Arrange
+            render(
+                <DropdownCore
+                    initialFocusedIndex={0}
+                    items={items}
+                    role="listbox"
+                    open={true}
+                    opener={<button />}
+                    onOpenChanged={jest.fn()}
+                />,
+            );
+
+            // Act
+            const option = await screen.findByRole("option", {name: "item 0"});
+
+            // Assert
+            // eslint-disable-next-line testing-library/no-node-access -- verify the option is wrapped in a semantic <li> element (WB-2148)
+            expect(option.closest("li")).toBeInTheDocument();
+        });
+    });
 });
