@@ -54,8 +54,9 @@ export const InlineStyles: StoryComponentType = {
                 style={[
                     styles.container,
                     {
+                        // STOPSHIP: Force snapshot change for testing the new workflow
                         background:
-                            semanticColor.core.background.instructive.subtle,
+                            semanticColor.core.background.instructive.default,
                         border: `1px solid ${semanticColor.core.border.instructive.default}`,
                         padding: sizing.size_040,
                     },

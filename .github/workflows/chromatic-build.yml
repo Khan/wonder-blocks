@@ -10,6 +10,23 @@ on:
             target:
                 required: true
                 type: string
+            # Git ref (branch or SHA) to check out and build. Defaults to the
+            # ref that triggered the workflow. Used by chromatic-comment.yml to
+            # build a specific PR head when triggered from an `issue_comment`
+            # event (which otherwise runs against the default branch).
+            ref:
+                required: false
+                type: string
+                default: ""
+            # When true, the Storybook is built with Chromatic snapshots
+            # disabled for all stories (via STORYBOOK_CHROMATIC_DISABLE_SNAPSHOTS,
+            # see .storybook/preview.tsx). Chromatic still publishes the
+            # Storybook (so a preview URL is generated) but captures no
+            # snapshots, so no snapshot quota is consumed. Used for draft PRs.
+            disableSnapshots:
+                required: false
+                type: boolean
+                default: false
         # Map the workflow outputs to the job outputs - used in workflows that use
         # this reusable workflow (e.g. chromatic-push.yml)
         outputs:
@@ -62,6 +79,9 @@ jobs:
             - name: Checking out latest commit
               uses: actions/checkout@v5
               with:
+                  # When `ref` is provided (e.g. a `/chromatic` comment build),
+                  # check out that ref; otherwise fall back to the triggering ref.
+                  ref: ${{ inputs.ref || github.ref }}
                   # This makes Actions fetch all Git history so that Chromatic can track
                   # baselines with the correct commits.
                   # see: https://www.chromatic.com/docs/branching-and-baselines
@@ -85,6 +105,12 @@ jobs:
               run: pnpm build
             - name: Build Storybook
               run: pnpm build:storybook
+              env:
+                  # Disables Chromatic snapshots for all stories when requested
+                  # (draft PRs). Read by .storybook/preview.tsx via
+                  # import.meta.env. Storybook is still published to Chromatic,
+                  # but no snapshots are captured.
+                  STORYBOOK_CHROMATIC_DISABLE_SNAPSHOTS: ${{ inputs.disableSnapshots }}
 
             # (if) Run this step on non-dependabot PRs.
             - name: Publish to Chromatic for visual testing (review PRs only)
