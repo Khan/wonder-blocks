@@ -5,11 +5,12 @@ import type {Meta, StoryObj} from "@storybook/react-vite";
 import {
     useWonderBlocksI18n,
     WonderBlocksConfigProvider,
+    defaultStringsEn,
 } from "@khanacademy/wonder-blocks-config";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {OptionItem, SingleSelect} from "@khanacademy/wonder-blocks-dropdown";
 import {LabeledField} from "@khanacademy/wonder-blocks-labeled-field";
-import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
+import {sizing} from "@khanacademy/wonder-blocks-tokens";
 import {BodyText} from "@khanacademy/wonder-blocks-typography";
 import packageConfig from "../../packages/wonder-blocks-config/package.json";
 
@@ -17,12 +18,8 @@ import ComponentInfo from "../components/component-info";
 import WonderBlocksConfigProviderArgTypes from "./wonder-blocks-config-provider.argtypes";
 
 import type {I18nConfig} from "@khanacademy/wonder-blocks-config";
-import {defaultStringsEn} from "../../packages/wonder-blocks-config/src/strings";
+import {Card} from "@khanacademy/wonder-blocks-card";
 
-/**
- * Example i18n configs for the locale picker. Each one spreads the default
- * English strings and overrides only the strings translated for that locale.
- */
 const i18nExamples: Record<string, {label: string; i18n: I18nConfig}> = {
     en: {
         label: "English",
@@ -33,6 +30,7 @@ const i18nExamples: Record<string, {label: string; i18n: I18nConfig}> = {
         i18n: {
             strings: {
                 ...defaultStringsEn,
+                // Only show one string translated to French for demonstration purposes.
                 iconAltOpensNewTab: "(ouvre dans un nouvel onglet)",
             },
             locale: "fr",
@@ -44,7 +42,7 @@ const I18nConfigPreview = ({title}: {title: string}) => {
     const {strings, locale} = useWonderBlocksI18n();
 
     return (
-        <View style={styles.preview}>
+        <Card styles={{root: styles.preview}}>
             <BodyText weight="bold">{title}</BodyText>
             <BodyText>
                 <code>locale</code>: {locale}
@@ -53,7 +51,7 @@ const I18nConfigPreview = ({title}: {title: string}) => {
                 <code>strings.iconAltOpensNewTab</code>:{" "}
                 {strings.iconAltOpensNewTab}
             </BodyText>
-        </View>
+        </Card>
     );
 };
 
@@ -130,8 +128,5 @@ const styles = StyleSheet.create({
     },
     preview: {
         gap: sizing.size_080,
-        padding: sizing.size_160,
-        border: `${border.width.thin} solid ${semanticColor.core.border.neutral.subtle}`,
-        borderRadius: border.radius.radius_080,
     },
 });
