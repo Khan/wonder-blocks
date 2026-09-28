@@ -9,6 +9,7 @@ import {
 import {fireEvent, render, screen, waitFor} from "@testing-library/react";
 import {userEvent} from "@testing-library/user-event";
 
+import {WonderBlocksConfigProvider} from "@khanacademy/wonder-blocks-config";
 import {Icon, PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import plusIcon from "@phosphor-icons/core/bold/plus-bold.svg";
 
@@ -459,7 +460,7 @@ describe("Link", () => {
             });
         });
 
-        test("external icon has no aria-label by default", async () => {
+        test("external icon has an aria-label", async () => {
             // Arrange
             render(
                 <Link href="https://www.google.com/" target="_blank">
@@ -471,7 +472,57 @@ describe("Link", () => {
             const icon = await screen.findByTestId("external-icon");
 
             // Assert
-            expect(icon).not.toHaveAttribute("aria-label");
+            expect(icon).toHaveAttribute("aria-label", "(opens in a new tab)");
+        });
+
+        test("external icon uses the aria-label from the config provider", async () => {
+            // Arrange
+            render(
+                <WonderBlocksConfigProvider
+                    i18n={{
+                        strings: {iconAltOpensNewTab: "translated text"},
+                        locale: "es",
+                    }}
+                >
+                    <Link href="https://www.google.com/" target="_blank">
+                        Click me!
+                    </Link>
+                </WonderBlocksConfigProvider>,
+            );
+
+            // Act
+            const icon = await screen.findByTestId("external-icon");
+
+            // Assert
+            expect(icon).toHaveAttribute("aria-label", "translated text");
+        });
+
+        test("external icon prefers the `labels` prop over the config provider", async () => {
+            // Arrange
+            render(
+                <WonderBlocksConfigProvider
+                    i18n={{
+                        strings: {iconAltOpensNewTab: "translated text"},
+                        locale: "es",
+                    }}
+                >
+                    <Link
+                        href="https://www.google.com/"
+                        target="_blank"
+                        labels={{
+                            externalIconAriaLabel: "overriding label",
+                        }}
+                    >
+                        Click me!
+                    </Link>
+                </WonderBlocksConfigProvider>,
+            );
+
+            // Act
+            const icon = await screen.findByTestId("external-icon");
+
+            // Assert
+            expect(icon).toHaveAttribute("aria-label", "overriding label");
         });
 
         test("external icon uses provided aria-label", async () => {
