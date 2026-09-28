@@ -1087,11 +1087,9 @@ describe("DropdownCore", () => {
             );
 
             // Assert
-            await waitFor(async () => {
-                expect(
-                    await screen.findByRole("option", {name: "item 1"}),
-                ).toHaveFocus();
-            });
+            expect(
+                await screen.findByRole("option", {name: "item 1"}),
+            ).toHaveFocus();
         });
 
         describe("with fake timers", () => {
@@ -1123,9 +1121,7 @@ describe("DropdownCore", () => {
                 });
 
                 // Assert
-                expect(
-                    screen.getByRole("option", {name: "item 0"}),
-                ).not.toHaveFocus();
+                expect(document.body).toHaveFocus();
             });
         });
     });
@@ -1214,6 +1210,10 @@ describe("DropdownCore", () => {
             populatedProps: {},
         }));
 
+        // The 500ms type-ahead debounce, plus 1ms for the timeout that focuses
+        // the matching item (setTimeout(0) is clamped to 1ms).
+        const TYPE_AHEAD_DELAY = 501;
+
         beforeEach(() => {
             jest.useFakeTimers();
         });
@@ -1242,10 +1242,7 @@ describe("DropdownCore", () => {
 
             // Act
             act(() => {
-                jest.advanceTimersByTime(501);
-            });
-            act(() => {
-                jest.runOnlyPendingTimers();
+                jest.advanceTimersByTime(TYPE_AHEAD_DELAY);
             });
 
             // Assert
@@ -1274,10 +1271,7 @@ describe("DropdownCore", () => {
 
             // Act
             act(() => {
-                jest.advanceTimersByTime(501);
-            });
-            act(() => {
-                jest.runOnlyPendingTimers();
+                jest.advanceTimersByTime(TYPE_AHEAD_DELAY);
             });
 
             // Assert
@@ -1307,10 +1301,7 @@ describe("DropdownCore", () => {
 
             // Act
             act(() => {
-                jest.advanceTimersByTime(501);
-            });
-            act(() => {
-                jest.runOnlyPendingTimers();
+                jest.advanceTimersByTime(TYPE_AHEAD_DELAY);
             });
 
             // Assert
@@ -1337,7 +1328,7 @@ describe("DropdownCore", () => {
 
             // Act
             act(() => {
-                jest.advanceTimersByTime(501);
+                jest.advanceTimersByTime(TYPE_AHEAD_DELAY);
             });
 
             // Assert
@@ -1378,10 +1369,7 @@ describe("DropdownCore", () => {
 
             // Act
             act(() => {
-                jest.advanceTimersByTime(501);
-            });
-            act(() => {
-                jest.runOnlyPendingTimers();
+                jest.advanceTimersByTime(TYPE_AHEAD_DELAY);
             });
 
             // Assert
