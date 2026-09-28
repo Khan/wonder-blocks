@@ -1614,8 +1614,31 @@ describe("DropdownCore", () => {
             populatedProps: {},
         }));
 
+        beforeEach(() => {
+            // The virtualized list focuses items via animation frames and
+            // timeouts, so we use fake timers to make this deterministic.
+            jest.useFakeTimers();
+        });
+
+        afterEach(() => {
+            jest.useRealTimers();
+        });
+
+        // Advance the timers in small steps, so that the virtualized list can
+        // re-render between each of the scheduled animation frames.
+        const advanceFrames = () => {
+            for (let i = 0; i < 10; i++) {
+                act(() => {
+                    jest.advanceTimersByTime(20);
+                });
+            }
+        };
+
         it("should focus the next item when pressing ArrowDown", async () => {
             // Arrange
+            const user = userEvent.setup({
+                advanceTimers: jest.advanceTimersByTime,
+            });
             render(
                 <DropdownCore
                     initialFocusedIndex={0}
@@ -1626,21 +1649,16 @@ describe("DropdownCore", () => {
                     onOpenChanged={jest.fn()}
                 />,
             );
-            await waitFor(async () => {
-                expect(
-                    await screen.findByRole("option", {name: "Fruit # 1"}),
-                ).toHaveFocus();
-            });
+            advanceFrames();
 
             // Act
-            await userEvent.keyboard("{ArrowDown}");
+            await user.keyboard("{ArrowDown}");
+            advanceFrames();
 
             // Assert
-            await waitFor(async () => {
-                expect(
-                    await screen.findByRole("option", {name: "Fruit # 2"}),
-                ).toHaveFocus();
-            });
+            expect(
+                screen.getByRole("option", {name: "Fruit # 2"}),
+            ).toHaveFocus();
         });
     });
 });
