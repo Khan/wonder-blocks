@@ -1,5 +1,5 @@
 import * as React from "react";
-import {render, act, screen, waitFor} from "@testing-library/react";
+import {render, screen} from "@testing-library/react";
 import * as DateMock from "jest-date-mock";
 import {userEvent, PointerEventsCheckLevel} from "@testing-library/user-event";
 import {Temporal} from "temporal-polyfill";
@@ -260,6 +260,31 @@ describe("BirthdayPicker", () => {
         );
     });
 
+    describe("uncontrolled", () => {
+        it("ignores changes to defaultValue after the initial render", async () => {
+            // Arrange
+            const {rerender} = render(
+                <BirthdayPicker
+                    defaultValue="2017-07-17"
+                    onChange={jest.fn()}
+                />,
+            );
+
+            // Act
+            rerender(
+                <BirthdayPicker
+                    defaultValue="2018-08-09"
+                    onChange={jest.fn()}
+                />,
+            );
+
+            // Assert
+            expect(
+                await screen.findByTestId("birthday-picker-month"),
+            ).toHaveTextContent("Jul");
+        });
+    });
+
     describe("onChange", () => {
         it("onChange triggers when a new value is selected", async () => {
             // Arrange
@@ -408,31 +433,55 @@ describe("BirthdayPicker", () => {
         it("onChange triggers with null when an invalid value is selected after a default value is set", async () => {
             // Arrange
             const onChange = jest.fn();
-            let maybeInstance: BirthdayPicker | null | undefined = null;
-
-            // Act
             render(
                 <BirthdayPicker
                     defaultValue="2017-07-17"
                     onChange={onChange}
-                    ref={(node: any) => (maybeInstance = node)}
                 />,
             );
 
-            if (!maybeInstance) {
-                throw new Error("BirthdayPicker instance is undefined");
-            }
-            const instance: any = maybeInstance;
-
-            // This test was written by calling methods on the instance because
-            // react-window (used by SingleSelect) doesn't show all of the items
-            // in the dropdown.
-            await act(() => instance.handleMonthChange("2"));
-            await act(() => instance.handleDayChange("31"));
-            await act(() => instance.handleYearChange("2021"));
+            // Act
+            await userEvent.click(
+                await screen.findByTestId("birthday-picker-month"),
+            );
+            await userEvent.click(
+                await screen.findByRole("option", {name: "Feb"}),
+                {pointerEventsCheck: PointerEventsCheckLevel.Never},
+            );
+            await userEvent.click(
+                await screen.findByTestId("birthday-picker-day"),
+            );
+            await userEvent.click(
+                await screen.findByRole("option", {name: "31"}),
+                {pointerEventsCheck: PointerEventsCheckLevel.Never},
+            );
 
             // Assert
-            await waitFor(() => expect(onChange).toHaveBeenCalledWith(null));
+            expect(onChange).toHaveBeenLastCalledWith(null);
+        });
+
+        it("clears the error when a valid value is selected after an invalid default value", async () => {
+            // Arrange
+            DateMock.advanceTo(today);
+            render(
+                <BirthdayPicker
+                    defaultValue="2021-07-20"
+                    onChange={jest.fn()}
+                />,
+            );
+            await screen.findByRole("alert");
+
+            // Act
+            await userEvent.click(
+                await screen.findByTestId("birthday-picker-year"),
+            );
+            await userEvent.click(
+                await screen.findByRole("option", {name: "2020"}),
+                {pointerEventsCheck: PointerEventsCheckLevel.Never},
+            );
+
+            // Assert
+            expect(screen.queryByRole("alert")).not.toBeInTheDocument();
         });
 
         it("onChange triggers only one null when multiple invalid values are selected after a default value is set", async () => {
