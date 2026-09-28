@@ -446,14 +446,12 @@ describe("BirthdayPicker", () => {
             );
             await userEvent.click(
                 await screen.findByRole("option", {name: "Feb"}),
-                {pointerEventsCheck: PointerEventsCheckLevel.Never},
             );
             await userEvent.click(
                 await screen.findByTestId("birthday-picker-day"),
             );
             await userEvent.click(
                 await screen.findByRole("option", {name: "31"}),
-                {pointerEventsCheck: PointerEventsCheckLevel.Never},
             );
 
             // Assert
@@ -477,7 +475,6 @@ describe("BirthdayPicker", () => {
             );
             await userEvent.click(
                 await screen.findByRole("option", {name: "2020"}),
-                {pointerEventsCheck: PointerEventsCheckLevel.Never},
             );
 
             // Assert
