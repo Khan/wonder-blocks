@@ -170,84 +170,118 @@ const defaultStyles = StyleSheet.create({
         color: semanticColor.core.foreground.critical.default,
     },
 });
-export default class BirthdayPicker extends React.Component<Props, State> {
+/**
+ * Determines whether a given date is in the future.
+ *
+ * @param date - The Temporal.PlainDate to check.
+ * @returns True if the provided date comes after today's date, false otherwise.
+ */
+const isFutureDate = (date: Temporal.PlainDate): boolean => {
+    // The Temporal.PlainDate.compare() static method returns a number
+    // (-1, 0, or 1) indicating whether the first date comes before, is the
+    // same as, or comes after the second date.
+    return Temporal.PlainDate.compare(date, Temporal.Now.plainDateISO()) === 1;
+};
+
+/**
+ * Calculates the initial state values based on the default value.
+ */
+const getStateFromDefault = (
+    defaultValue: string | undefined,
+    monthYearOnly: boolean | undefined,
+    labels: Labels,
+): State => {
+    const initialState: State = {
+        month: null,
+        day: monthYearOnly ? "1" : null,
+        year: null,
+        error: null,
+    };
+
+    // If a default value was provided then we use Temporal to convert it
+    // into a date that we can use to populate the
+    if (defaultValue) {
+        let date: Temporal.PlainDate | null = null;
+        try {
+            date = Temporal.PlainDate.from(defaultValue);
+        } catch (err) {
+            initialState.error = labels.errorMessage;
+            return initialState;
+        }
+
+        if (monthYearOnly) {
+            date = date.with({day: date.daysInMonth});
+        }
+
+        initialState.month = String(date.month);
+        initialState.day = String(date.day);
+        initialState.year = String(date.year);
+
+        // If the date is in the future then we want to show an error to
+        // the user.
+        if (isFutureDate(date)) {
+            initialState.error = labels.errorMessage;
+        }
+    }
+
+    return initialState;
+};
+
+const getMonthYearWidth = (monthYearOnly: boolean | undefined): number => {
+    return monthYearOnly ? FIELD_MIN_WIDTH_MONTH_YEAR : FIELD_MIN_WIDTH_FULL;
+};
+
+const BirthdayPicker = (props: Props) => {
+    const {
+        defaultValue,
+        disabled,
+        dropdownStyle,
+        locale,
+        monthYearOnly,
+        onChange,
+        style,
+    } = props;
+
     /**
      * Strings used for placeholders and error message. These are used this way
      * to support i18n.
-     * NOTE: This is a field rather than state to avoid re-rendering the entire
-     * component. Also, we don't need to use state because these strings are
-     * only needed on mount.
+     * NOTE: This is stored in a ref rather than state to avoid re-rendering the
+     * entire component. Also, we don't need to use state because these strings
+     * are only needed on mount.
      */
-    // @ts-expect-error [FEI-5019] - TS2564 - Property 'labels' has no initializer and is not definitely assigned in the constructor.
-    labels: Labels;
+    // merge custom labels with the default ones
+    const labelsRef = React.useRef<Labels>({
+        ...defaultLabels,
+        ...props.labels,
+    });
+    const labels = labelsRef.current;
 
-    constructor(props: Props) {
-        super(props);
+    const [initialState] = React.useState<State>(() =>
+        getStateFromDefault(defaultValue, monthYearOnly, labels),
+    );
+    const [month, setMonth] = React.useState(initialState.month);
+    const [day, setDay] = React.useState(initialState.day);
+    const [year, setYear] = React.useState(initialState.year);
+    const [error, setError] = React.useState(initialState.error);
 
-        this.lastChangeValue = props.defaultValue || null;
-        this.state = this.getStateFromDefault();
-    }
+    // Mirror the selected values in a ref so that the change handlers can read
+    // the latest values right after updating them.
+    const valuesRef = React.useRef({
+        month: initialState.month,
+        day: initialState.day,
+        year: initialState.year,
+    });
 
-    /**
-     * Calculates the initial state values based on the default value.
-     */
-    getStateFromDefault(): State {
-        const {defaultValue, monthYearOnly} = this.props;
-        const initialState: State = {
-            month: null,
-            day: monthYearOnly ? "1" : null,
-            year: null,
-            error: null,
-        };
+    const lastChangeValueRef = React.useRef<string | null | undefined>(
+        defaultValue || null,
+    );
 
-        // merge custom labels with the default ones
-        this.labels = {...defaultLabels, ...this.props.labels};
-
-        // If a default value was provided then we use Temporal to convert it
-        // into a date that we can use to populate the
-        if (defaultValue) {
-            let date: Temporal.PlainDate | null = null;
-            try {
-                date = Temporal.PlainDate.from(defaultValue);
-            } catch (err) {
-                initialState.error = this.labels.errorMessage;
-                return initialState;
-            }
-
-            if (monthYearOnly) {
-                date = date.with({day: date.daysInMonth});
-            }
-
-            initialState.month = String(date.month);
-            initialState.day = String(date.day);
-            initialState.year = String(date.year);
-
-            // If the date is in the future then we want to show an error to
-            // the user.
-            if (this.isFutureDate(date)) {
-                initialState.error = this.labels.errorMessage;
-            }
-        }
-
-        return initialState;
-    }
-
-    /**
-     * Determines whether a given date is in the future.
-     *
-     * @param date - The Temporal.PlainDate to check.
-     * @returns True if the provided date comes after today's date, false otherwise.
-     */
-    isFutureDate(date: Temporal.PlainDate): boolean {
-        // The Temporal.PlainDate.compare() static method returns a number
-        // (-1, 0, or 1) indicating whether the first date comes before, is the
-        // same as, or comes after the second date.
-        return (
-            Temporal.PlainDate.compare(date, Temporal.Now.plainDateISO()) === 1
-        );
-    }
-
-    lastChangeValue: string | null | undefined = null;
+    // Keep the latest props in a ref so the stable callbacks below always
+    // read the current values.
+    const onChangeRef = React.useRef(onChange);
+    onChangeRef.current = onChange;
+    const monthYearOnlyRef = React.useRef(monthYearOnly);
+    monthYearOnlyRef.current = monthYearOnly;
 
     /**
      * Report changes back to the calling component, but only if the value
@@ -256,21 +290,24 @@ export default class BirthdayPicker extends React.Component<Props, State> {
      *
      * @param value the value to report back to the calling component.
      */
-    reportChange: (value?: string | null | undefined) => void = (value) => {
-        if (value !== this.lastChangeValue) {
-            this.lastChangeValue = value;
-            this.props.onChange(value);
-        }
-    };
+    const reportChange = React.useCallback(
+        (value?: string | null | undefined) => {
+            if (value !== lastChangeValueRef.current) {
+                lastChangeValueRef.current = value;
+                onChangeRef.current(value);
+            }
+        },
+        [],
+    );
 
     /**
      * Handle a change to any of the input fields, confirming if the input is
      * valid, and then reporting the result back to the calling component via
      * reportChange.
      */
-    handleChange: () => void = (): void => {
-        const {month, day, year} = this.state;
-        const {monthYearOnly} = this.props;
+    const handleChange = React.useCallback((): void => {
+        const {month, day, year} = valuesRef.current;
+        const monthYearOnly = monthYearOnlyRef.current;
 
         const dateFields = [year, month];
         if (!monthYearOnly) {
@@ -280,7 +317,7 @@ export default class BirthdayPicker extends React.Component<Props, State> {
         // If any of the values haven't been set then our overall value is
         // equal to null
         if (dateFields.some((field) => field === null)) {
-            this.reportChange(null);
+            reportChange(null);
             return;
         }
 
@@ -308,39 +345,52 @@ export default class BirthdayPicker extends React.Component<Props, State> {
                 );
             }
         } catch (err) {
-            this.setState({error: this.labels.errorMessage});
-            this.reportChange(null);
+            setError(labels.errorMessage);
+            reportChange(null);
             return;
         }
 
         // If the date is in the future or is invalid then we want to show
         // an error to the user and return a null value.
-        if (this.isFutureDate(date)) {
-            this.setState({error: this.labels.errorMessage});
-            this.reportChange(null);
+        if (isFutureDate(date)) {
+            setError(labels.errorMessage);
+            reportChange(null);
         } else {
-            this.setState({error: null});
+            setError(null);
             // Regardless of locale, we want to format the date as YYYY-MM-DD
             // toString() returns an ISO 8601 date string, which is YYYY-MM-DD.
-            this.reportChange(date.toString());
+            reportChange(date.toString());
         }
-    };
+    }, [labels, reportChange]);
 
-    handleMonthChange: (month: string) => void = (month) => {
-        this.setState({month}, this.handleChange);
-    };
+    const handleMonthChange = React.useCallback(
+        (month: string) => {
+            valuesRef.current = {...valuesRef.current, month};
+            setMonth(month);
+            handleChange();
+        },
+        [handleChange],
+    );
 
-    handleDayChange: (day: string) => void = (day) => {
-        this.setState({day}, this.handleChange);
-    };
+    const handleDayChange = React.useCallback(
+        (day: string) => {
+            valuesRef.current = {...valuesRef.current, day};
+            setDay(day);
+            handleChange();
+        },
+        [handleChange],
+    );
 
-    handleYearChange: (year: string) => void = (year) => {
-        this.setState({year}, this.handleChange);
-    };
+    const handleYearChange = React.useCallback(
+        (year: string) => {
+            valuesRef.current = {...valuesRef.current, year};
+            setYear(year);
+            handleChange();
+        },
+        [handleChange],
+    );
 
-    maybeRenderError(): React.ReactNode | null | undefined {
-        const {error} = this.state;
-
+    const maybeRenderError = (): React.ReactNode | null | undefined => {
         if (!error) {
             return null;
         }
@@ -358,40 +408,35 @@ export default class BirthdayPicker extends React.Component<Props, State> {
                 </BodyText>
             </View>
         );
-    }
+    };
 
-    monthsShort(): string[] {
-        const format = new Intl.DateTimeFormat(
-            this.props.locale ?? navigator.language,
-            {
-                month: "short",
-            },
-        ).format;
+    const monthsShort = (): string[] => {
+        const format = new Intl.DateTimeFormat(locale ?? navigator.language, {
+            month: "short",
+        }).format;
         return [...Array(12).keys()].map((m) =>
             // TODO: use Temporal.PlainDate.from() once the linter lets
             // format() accept a Temporal object
             // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat/format#parameters
             format(new Date(2021, m, 15)),
         );
-    }
+    };
 
-    renderMonth(): React.ReactNode {
-        const {disabled, monthYearOnly, dropdownStyle} = this.props;
-        const {month} = this.state;
-        const minWidth = this.getMonthYearWidth(monthYearOnly);
+    const renderMonth = (): React.ReactNode => {
+        const minWidth = getMonthYearWidth(monthYearOnly);
         return (
             <SingleSelect
-                aria-label={this.labels.month}
-                aria-invalid={!!this.state.error}
-                error={!!this.state.error}
+                aria-label={labels.month}
+                aria-invalid={!!error}
+                error={!!error}
                 disabled={disabled}
-                placeholder={this.labels.month}
-                onChange={this.handleMonthChange}
+                placeholder={labels.month}
+                onChange={handleMonthChange}
                 selectedValue={month}
                 style={[{minWidth}, defaultStyles.input, dropdownStyle]}
                 testId="birthday-picker-month"
             >
-                {this.monthsShort().map((monthShort, i) => (
+                {monthsShort().map((monthShort, i) => (
                     <OptionItem
                         key={monthShort}
                         label={monthShort}
@@ -401,12 +446,9 @@ export default class BirthdayPicker extends React.Component<Props, State> {
                 ))}
             </SingleSelect>
         );
-    }
+    };
 
-    maybeRenderDay(): React.ReactNode | null | undefined {
-        const {disabled, monthYearOnly, dropdownStyle} = this.props;
-        const {day} = this.state;
-
+    const maybeRenderDay = (): React.ReactNode | null | undefined => {
         // Hide the day field if the month/year only mode is enabled.
         if (monthYearOnly) {
             return null;
@@ -414,12 +456,12 @@ export default class BirthdayPicker extends React.Component<Props, State> {
 
         return (
             <SingleSelect
-                aria-label={this.labels.day}
-                aria-invalid={!!this.state.error}
-                error={!!this.state.error}
+                aria-label={labels.day}
+                aria-invalid={!!error}
+                error={!!error}
                 disabled={disabled}
-                placeholder={this.labels.day}
-                onChange={this.handleDayChange}
+                placeholder={labels.day}
+                onChange={handleDayChange}
                 selectedValue={day}
                 style={[
                     {
@@ -439,28 +481,19 @@ export default class BirthdayPicker extends React.Component<Props, State> {
                 ))}
             </SingleSelect>
         );
-    }
+    };
 
-    getMonthYearWidth(monthYearOnly: boolean | undefined): number {
-        return monthYearOnly
-            ? FIELD_MIN_WIDTH_MONTH_YEAR
-            : FIELD_MIN_WIDTH_FULL;
-    }
-
-    renderYear(): React.ReactNode {
-        const {disabled, monthYearOnly, dropdownStyle} = this.props;
-        const {year} = this.state;
-
-        const minWidth = this.getMonthYearWidth(monthYearOnly);
+    const renderYear = (): React.ReactNode => {
+        const minWidth = getMonthYearWidth(monthYearOnly);
 
         return (
             <SingleSelect
-                aria-label={this.labels.year}
-                aria-invalid={!!this.state.error}
-                error={!!this.state.error}
+                aria-label={labels.year}
+                aria-invalid={!!error}
+                error={!!error}
                 disabled={disabled}
-                placeholder={this.labels.year}
-                onChange={this.handleYearChange}
+                placeholder={labels.year}
+                onChange={handleYearChange}
                 selectedValue={year}
                 style={[{minWidth}, defaultStyles.input, dropdownStyle]}
                 // Allows displaying the dropdown options without truncating
@@ -477,25 +510,23 @@ export default class BirthdayPicker extends React.Component<Props, State> {
                 ))}
             </SingleSelect>
         );
-    }
+    };
 
-    render(): React.ReactNode {
-        const {style} = this.props;
+    return (
+        <>
+            <View
+                testId="birthday-picker"
+                style={[defaultStyles.wrapper, style]}
+            >
+                {renderMonth()}
 
-        return (
-            <>
-                <View
-                    testId="birthday-picker"
-                    style={[defaultStyles.wrapper, style]}
-                >
-                    {this.renderMonth()}
+                {maybeRenderDay()}
 
-                    {this.maybeRenderDay()}
+                {renderYear()}
+            </View>
+            {maybeRenderError()}
+        </>
+    );
+};
 
-                    {this.renderYear()}
-                </View>
-                {this.maybeRenderError()}
-            </>
-        );
-    }
-}
+export default BirthdayPicker;
