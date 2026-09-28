@@ -7,6 +7,8 @@ import {
     WonderBlocksConfigProvider,
 } from "@khanacademy/wonder-blocks-config";
 import {View} from "@khanacademy/wonder-blocks-core";
+import {OptionItem, SingleSelect} from "@khanacademy/wonder-blocks-dropdown";
+import {LabeledField} from "@khanacademy/wonder-blocks-labeled-field";
 import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {BodyText} from "@khanacademy/wonder-blocks-typography";
 import packageConfig from "../../packages/wonder-blocks-config/package.json";
@@ -15,22 +17,29 @@ import ComponentInfo from "../components/component-info";
 import WonderBlocksConfigProviderArgTypes from "./wonder-blocks-config-provider.argtypes";
 
 import type {I18nConfig} from "@khanacademy/wonder-blocks-config";
-
-const i18nEs: I18nConfig = {
-    strings: {iconAltOpensNewTab: "(se abre en una pestaña nueva)"},
-    locale: "es",
-};
-
-const i18nFr: I18nConfig = {
-    strings: {iconAltOpensNewTab: "(s'ouvre dans un nouvel onglet)"},
-    locale: "fr",
-};
+import {defaultStringsEn} from "../../packages/wonder-blocks-config/src/strings";
 
 /**
- * Renders the i18n config that Wonder Blocks components beneath a
- * `WonderBlocksConfigProvider` read, so the stories can show which values are
- * in effect.
+ * Example i18n configs for the locale picker. Each one spreads the default
+ * English strings and overrides only the strings translated for that locale.
  */
+const i18nExamples: Record<string, {label: string; i18n: I18nConfig}> = {
+    en: {
+        label: "English",
+        i18n: {strings: defaultStringsEn, locale: "en"},
+    },
+    fr: {
+        label: "French",
+        i18n: {
+            strings: {
+                ...defaultStringsEn,
+                iconAltOpensNewTab: "(ouvre dans un nouvel onglet)",
+            },
+            locale: "fr",
+        },
+    },
+};
+
 const I18nConfigPreview = ({title}: {title: string}) => {
     const {strings, locale} = useWonderBlocksI18n();
 
@@ -58,21 +67,6 @@ export default {
                 version={packageConfig.version}
             />
         ),
-        docs: {
-            description: {
-                component: `\`WonderBlocksConfigProvider\` configures the Wonder Blocks components rendered beneath it. Render it once near the root of your app.
-
-Right now it provides i18n: the translated strings that Wonder Blocks components render (for example, the accessible name of the icon on a link that opens in a new tab) and the locale they are translated into. Components rendered outside of a provider fall back to the default English strings.
-
-\`\`\`tsx
-import {WonderBlocksConfigProvider} from "@khanacademy/wonder-blocks-config";
-
-<WonderBlocksConfigProvider i18n={{strings: translatedStrings, locale}}>
-    <App />
-</WonderBlocksConfigProvider>
-\`\`\``,
-            },
-        },
         chromatic: {
             // The provider has no visuals of its own; these stories only
             // demonstrate which values are provided.
@@ -85,48 +79,47 @@ import {WonderBlocksConfigProvider} from "@khanacademy/wonder-blocks-config";
 type StoryComponentType = StoryObj<typeof WonderBlocksConfigProvider>;
 
 /**
- * Wonder Blocks components beneath the provider use the `strings` and `locale`
- * passed in through the `i18n` prop. Try changing them using the controls.
+ * Wonder Blocks components within the provider use the `strings` and `locale`
+ * passed in through the `i18n` prop. Try changing the locale to see the strings
+ * the components within the provider would render.
+ *
+ * Note: This story is only for demonstration purposes. Applications using
+ * Wonder Blocks will provide their own i18n config to the provider.
  */
 export const Default: StoryComponentType = {
     args: {
-        i18n: i18nEs,
+        i18n: i18nExamples.en.i18n,
     },
     render: function Render(args) {
-        return (
-            <WonderBlocksConfigProvider {...args}>
-                <I18nConfigPreview title="Beneath the provider" />
-            </WonderBlocksConfigProvider>
-        );
-    },
-};
+        const [locale, setLocale] = React.useState(args.i18n.locale);
+        const i18n = i18nExamples[locale]?.i18n ?? args.i18n;
 
-/**
- * When there is no `WonderBlocksConfigProvider` above them, Wonder Blocks
- * components use the default English strings and the `en` locale.
- */
-export const WithoutProvider: StoryComponentType = {
-    render: function Render() {
-        return <I18nConfigPreview title="Without a provider" />;
-    },
-};
-
-/**
- * Providers can be nested. Components use the config from the closest provider
- * above them, so a nested provider overrides the enclosing one for everything
- * beneath it.
- */
-export const Nested: StoryComponentType = {
-    render: function Render() {
         return (
-            <WonderBlocksConfigProvider i18n={i18nEs}>
-                <View style={styles.container}>
-                    <I18nConfigPreview title="Outer provider" />
-                    <WonderBlocksConfigProvider i18n={i18nFr}>
-                        <I18nConfigPreview title="Inner provider" />
-                    </WonderBlocksConfigProvider>
-                </View>
-            </WonderBlocksConfigProvider>
+            <View style={styles.container}>
+                <LabeledField
+                    label="Locale"
+                    field={
+                        <SingleSelect
+                            selectedValue={locale}
+                            onChange={setLocale}
+                            placeholder="Choose a locale"
+                        >
+                            {Object.entries(i18nExamples).map(
+                                ([value, {label}]) => (
+                                    <OptionItem
+                                        key={value}
+                                        label={`${label} (${value})`}
+                                        value={value}
+                                    />
+                                ),
+                            )}
+                        </SingleSelect>
+                    }
+                />
+                <WonderBlocksConfigProvider {...args} i18n={i18n}>
+                    <I18nConfigPreview title="Strings within the provider" />
+                </WonderBlocksConfigProvider>
+            </View>
         );
     },
 };
