@@ -136,14 +136,29 @@ export const Focus = () => {
     );
 };
 
-export const Input = () => {
-    return (
-        <ColorGroupStory
-            category={semanticColor.input}
-            group="input"
-            includeExample={true}
-        />
-    );
+export const Input = {
+    render: () => {
+        return (
+            <ColorGroupStory
+                category={semanticColor.input}
+                group="input"
+                includeExample={true}
+            />
+        );
+    },
+    parameters: {
+        a11y: {
+            config: {
+                rules: [
+                    {
+                        // Disabled state intentionally doesn't meet color contrast requirements. This is the intended design.
+                        id: "color-contrast",
+                        enabled: false,
+                    },
+                ],
+            },
+        },
+    },
 };
 
 export const LearningMath = () => {

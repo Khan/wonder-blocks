@@ -103,10 +103,12 @@ const DatePickerScenario = ({
         if (!opened) {
             return;
         }
-        // Wait for the component to render, then click the input to open the
-        // calendar.
+        // Wait for the component to render, then click the calendar toggle
+        // button to open the calendar.
         const timer = setTimeout(() => {
-            containerRef.current?.querySelector("input")?.click();
+            containerRef.current
+                ?.querySelector<HTMLButtonElement>("button")
+                ?.click();
         }, 100);
 
         return () => clearTimeout(timer);

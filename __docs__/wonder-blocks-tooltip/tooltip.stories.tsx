@@ -396,7 +396,7 @@ export const WithStyle: StoryComponentType = {
             <View style={[styles.centered, styles.row]}>
                 <Tooltip
                     contentStyle={{
-                        color: semanticColor.core.foreground.knockout.default,
+                        color: "white", // This is a hardcoded color since this example shows a background using a primitive color.
                         padding: sizing.size_320,
                     }}
                     content={`This is a styled tooltip.`}

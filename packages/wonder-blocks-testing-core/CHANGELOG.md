@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-testing-core
 
+## 5.3.0
+
+### Minor Changes
+
+- 6c55a12: Add `RespondWith.graphQLPartialData` for mocking a GraphQL response that carries both partial `data` and `errors`, and extend `GraphQLJson` with that shape along with the new `GraphQLPartialData` and `GraphQLResponseError` types.
+
 ## 5.2.0
 
 ### Minor Changes

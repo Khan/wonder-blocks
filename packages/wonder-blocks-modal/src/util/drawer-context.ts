@@ -1,5 +1,6 @@
 import * as React from "react";
-import type {DrawerAlignment} from "./types";
+import {DRAWER_ENTER_DURATION_MS} from "./drawer-animation";
+import type {DrawerAlignment, DrawerEasing} from "./types";
 
 /**
  * Centralized default values for the drawer system.
@@ -8,8 +9,12 @@ import type {DrawerAlignment} from "./types";
  * and can be imported by consumers who need to reference or override defaults.
  */
 
-/** Default duration in milliseconds for drawer slide animations and focus timing. */
-export const DEFAULT_DRAWER_TIMING_DURATION_MS = 400;
+/**
+ * The drawer's enter duration in milliseconds. Each phase has its own duration —
+ * see `DRAWER_ENTER_DURATION_MS` and `DRAWER_EXIT_DURATION_MS` in
+ * `./drawer-animation`.
+ */
+export const DEFAULT_DRAWER_TIMING_DURATION_MS = DRAWER_ENTER_DURATION_MS;
 
 /** Default setting for whether drawer animations are enabled. */
 export const DEFAULT_DRAWER_ANIMATED = true;
@@ -24,14 +29,17 @@ export interface DrawerContextProps {
     alignment?: DrawerAlignment;
     animated?: boolean;
     isExiting?: boolean;
+    /** Overrides the duration of both the enter and exit animations. */
     timingDuration?: number;
+    /** Per-phase overrides for the slide easing. */
+    easing?: DrawerEasing;
 }
 
-// Default values for the drawer context - using centralized defaults from DrawerLauncher
+// `timingDuration` and `easing` are omitted so that, when unset, the drawer
+// components fall back to the per-phase values in `./drawer-animation`.
 const defaultDrawerContextValue: DrawerContextProps = {
     animated: DEFAULT_DRAWER_ANIMATED,
     isExiting: DEFAULT_DRAWER_IS_EXITING,
-    timingDuration: DEFAULT_DRAWER_TIMING_DURATION_MS,
 };
 
 export const DrawerContext = React.createContext<DrawerContextProps>(

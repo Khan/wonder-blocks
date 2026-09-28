@@ -1,11 +1,13 @@
 import {Temporal} from "temporal-polyfill";
 import type {Locale} from "react-day-picker/locale";
-import {CustomModifiers} from "./types";
+import {enUSLocaleCode, TEXT_FORMAT_STRINGS} from "./constants";
+import type {
+    CustomModifiers,
+    DatePatternPart,
+    NumericDatePattern,
+} from "./types";
 
-export const enUSLocaleCode = "en-US";
-
-/** Date format strings that use month names (e.g. "January") and need special handling for partial input and commit detection. */
-const TEXT_FORMAT_STRINGS = ["LL", "MMMM D, YYYY", "MMM D, YYYY"] as const;
+export {enUSLocaleCode};
 
 /**
  * True if the format displays the month as text (LL, MMMM D YYYY, MMM D YYYY).
@@ -438,11 +440,93 @@ function getOptionsForFormat(format: string): Intl.DateTimeFormatOptions {
 }
 
 /**
+ * Builds a regex (and its day/month/year capture order) for a locale's
+ * numeric date pattern, detected via the same Intl.DateTimeFormat options
+ * `formatDate` used to produce the value this will parse -- different
+ * skeletons can use different separators for the same locale. Numeric parts
+ * become capture groups; a literal between two of them is required
+ * (disambiguates field boundaries), while a leading/trailing literal (e.g.
+ * an era marker) is optional. Returns null if the pattern isn't purely
+ * numeric (e.g. a locale whose short format spells out the month).
+ */
+export function buildNumericDatePattern(
+    localeStr: string,
+    format: string | null | undefined,
+): NumericDatePattern | null {
+    const detectionOptions: Intl.DateTimeFormatOptions =
+        format && format.startsWith("dateStyle:")
+            ? {
+                  dateStyle: format.slice(
+                      "dateStyle:".length,
+                  ) as Intl.DateTimeFormatOptions["dateStyle"],
+              }
+            : {year: "numeric", month: "numeric", day: "numeric"};
+    const formatter = new Intl.DateTimeFormat(localeStr, detectionOptions);
+    const testDate = new Date(2020, 0, 15); // Jan 15, 2020
+
+    const pattern: Array<DatePatternPart> = formatter
+        .formatToParts(testDate)
+        .map((p) => ({
+            type: p.type as DatePatternPart["type"],
+            value: p.value,
+        }));
+
+    // A day/month/year part only counts as numeric if its sample value is
+    // actually digits -- e.g. dateStyle:"long" has a month *part*, but its
+    // value ("January") is text, not a number.
+    const numericIndexes = pattern
+        .map((p, i) => (p.type !== "literal" && /^\d+$/.test(p.value) ? i : -1))
+        .filter((i) => i !== -1);
+    if (numericIndexes.length !== 3) {
+        return null;
+    }
+    const [firstNumericIndex, , lastNumericIndex] = numericIndexes;
+
+    // formatToParts() and format() can disagree on which whitespace
+    // codepoint a literal uses (seen in "bg": space vs U+202F) -- match
+    // either.
+    const escapeLiteral = (value: string) =>
+        value
+            .replace(/[.*+?^${}()|[\]\\]/g, "\\$&")
+            .replace(/[ \u202f]/g, "[ \\u202f]");
+
+    const partOrder: Array<"day" | "month" | "year"> = [];
+    let core = "";
+    let leadingLiteral = "";
+    let trailingLiteral = "";
+    pattern.forEach((patternPart, i) => {
+        if (patternPart.type !== "literal") {
+            core += "(\\d+)";
+            partOrder.push(patternPart.type);
+            return;
+        }
+        const escaped = escapeLiteral(patternPart.value);
+        if (i < firstNumericIndex) {
+            leadingLiteral += escaped;
+        } else if (i > lastNumericIndex) {
+            trailingLiteral += escaped;
+        } else {
+            core += escaped;
+        }
+    });
+
+    const regexSource =
+        "^" +
+        (leadingLiteral ? `(?:${leadingLiteral})?` : "") +
+        core +
+        (trailingLiteral ? `(?:${trailingLiteral})?` : "") +
+        "$";
+
+    return {regex: new RegExp(regexSource), partOrder};
+}
+
+/**
  * Parse a locale-aware date string (format "L" or dateStyle).
  * Uses Intl.DateTimeFormat to understand the locale's date pattern.
  */
 function parseLocaleAwareDate(
     str: string,
+    format: string | null | undefined,
     locale?: string,
 ): Temporal.PlainDate | undefined {
     const localeStr = locale || enUSLocaleCode;
@@ -453,61 +537,27 @@ function parseLocaleAwareDate(
     }
 
     try {
-        // Create a formatter with short date style to get the locale's pattern
-        const formatter = new Intl.DateTimeFormat(localeStr, {
-            dateStyle: "short",
-        });
-
-        // Use a known date to analyze the pattern
-        const testDate = new Date(2020, 0, 15); // Jan 15, 2020
-        const parts = formatter.formatToParts(testDate);
-
-        // Extract the order and separators
-        type PartType = "day" | "month" | "year" | "literal";
-        const pattern: Array<{type: PartType; value: string}> = parts.map(
-            (p) => ({
-                type: p.type as PartType,
-                value: p.value,
-            }),
-        );
-
-        // Find separators (literals between date parts)
-        const separators = pattern
-            .filter((p) => p.type === "literal")
-            .map((p) => p.value);
-
-        // Split input by all possible separators
-        const inputParts = cleaned.split(
-            new RegExp(`[${separators.map((s) => `\\${s}`).join("")}]`),
-        );
-
-        if (inputParts.length !== 3) {
+        const pattern = buildNumericDatePattern(localeStr, format);
+        if (!pattern) {
             // Not a numeric format - trigger fallback to text parser
             // (This error is caught internally, never shown to users)
             throw new Error("Not a numeric date format");
         }
 
-        // Map parts to day/month/year based on locale pattern
+        const match = cleaned.match(pattern.regex);
+        if (!match) {
+            throw new Error("Not a numeric date format");
+        }
+
+        // Map matched values to day/month/year based on locale pattern
         const dateComponents: {
             day?: number;
             month?: number;
             year?: number;
         } = {};
-        let partIndex = 0;
-
-        for (const patternPart of pattern) {
-            if (patternPart.type === "literal") {
-                continue;
-            }
-
-            const value = parseInt(inputParts[partIndex], 10);
-            if (isNaN(value)) {
-                throw new Error("Not a numeric date format");
-            }
-
-            dateComponents[patternPart.type] = value;
-            partIndex++;
-        }
+        pattern.partOrder.forEach((type, i) => {
+            dateComponents[type] = parseInt(match[i + 1], 10);
+        });
 
         // Validate ranges
         if (
@@ -641,7 +691,7 @@ function parseWithFormat(
 
     // Handle locale-aware formats ("L", "LL", or dateStyle)
     if (format === "L" || format === "LL" || format.startsWith("dateStyle:")) {
-        return parseLocaleAwareDate(str, locale);
+        return parseLocaleAwareDate(str, format, locale);
     }
 
     // Handle common formats manually

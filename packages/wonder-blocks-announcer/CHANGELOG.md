@@ -1,5 +1,12 @@
 # @khanacademy/wonder-blocks-announcer
 
+## 1.1.2
+
+### Patch Changes
+
+- Updated dependencies [63dcc94]
+    - @khanacademy/wonder-blocks-core@12.5.0
+
 ## 1.1.1
 
 ### Patch Changes

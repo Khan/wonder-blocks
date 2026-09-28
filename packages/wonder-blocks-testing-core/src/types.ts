@@ -4,14 +4,39 @@ import type {MockResponse} from "./respond-with";
  * A valid GraphQL response as supported by our mocking framework.
  * Note that we don't currently support both data and errors being set.
  */
+/**
+ * An error entry from the `errors` array of a GraphQL response.
+ */
+export type GraphQLResponseError = {
+    message: string;
+};
+
+/**
+ * The data of a GraphQL response that also reported errors.
+ *
+ * A field that errored is nulled, so each top-level field is either the
+ * requested value or null.
+ */
+export type GraphQLPartialData<TData extends Record<any, any>> = {
+    [K in keyof TData]: TData[K] | null;
+};
+
+/**
+ * The JSON body of a GraphQL response.
+ *
+ * A response carries data, errors, or both. When both are present, the data
+ * is partial: the fields that failed are null.
+ */
 export type GraphQLJson<TData extends Record<any, any>> =
     | {
           data: TData;
       }
     | {
-          errors: Array<{
-              message: string;
-          }>;
+          errors: Array<GraphQLResponseError>;
+      }
+    | {
+          data: GraphQLPartialData<TData> | null;
+          errors: Array<GraphQLResponseError>;
       };
 
 export interface MockFn<TOperationType, TResponseData> {

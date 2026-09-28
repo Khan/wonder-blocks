@@ -202,89 +202,131 @@ Uncontrolled.parameters = {
  * in as its header. Passing in a React Element means no built in styling
  * will be applied to the header.
  *
- * The first example here shows how a DetailCell can be used as the header.
- * The second example shows how a custom header can be created - note that
- * in this example, a smaller window size will cause the header text to
- * truncate with ellipses.
+ * This example shows how a DetailCell can be used as the header.
+ *
+ * Note that the header content is rendered inside a `<button>` that
+ * AccordionSection wraps in a heading element, so it must not contain a
+ * heading of its own. See the "Custom Header Without A Nested Heading" story
+ * below.
  */
 export const ReactElementInHeader: StoryComponentType = {
     render: function Render() {
         return (
-            <View>
-                <AccordionSection
-                    header={
-                        <DetailCell
-                            title="Header for article item"
-                            leftAccessory={
-                                <PhosphorIcon
-                                    icon={IconMappings.playCircle}
-                                    size="medium"
-                                />
-                            }
-                            horizontalRule="none"
-                        />
-                    }
-                >
-                    This is the information present in the first section
-                </AccordionSection>
-                <Strut size={32} />
-                {/* The following AccordionSection is implemented
-                the same way as the CourseAccordion in the LearnableNodeSidebar
-                that can be found on Khan Academy. It should truncate the
-                text with ellipses when the window size is small.*/}
-                <AccordionSection
-                    header={
+            <AccordionSection
+                header={
+                    <DetailCell
+                        title="Header for article item"
+                        leftAccessory={
+                            <PhosphorIcon
+                                icon={IconMappings.playCircle}
+                                size="medium"
+                            />
+                        }
+                        horizontalRule="none"
+                    />
+                }
+            >
+                This is the information present in the first section
+            </AccordionSection>
+        );
+    },
+};
+
+/**
+ * AccordionSection already renders a heading element wrapping the header
+ * `<button>`, so anything passed to `header` ends up inside both of them.
+ * A heading in there — an `<h3>`, a `Heading` component, a `tag="h3"` on
+ * something like `BodyText` or `View`, or anything with `role="heading"` —
+ * produces `h2 > button > h3`, which is invalid HTML on two counts: a
+ * `<button>` may only contain phrasing content, and nested headings give
+ * screen reader users a duplicated heading structure.
+ *
+ * To get heading-sized text without heading semantics, use
+ * `<BodyText tag="span">` with the `font.heading.*` tokens, and set the real
+ * heading level with AccordionSection's `tag` prop.
+ *
+ * ```jsx
+ * // ❌ Don't
+ * <AccordionSection header={<Heading size="medium">Title</Heading>} />
+ *
+ * // ✅ Do
+ * <AccordionSection tag="h3" header="Title" />
+ * ```
+ *
+ * The `no-heading-in-accordion-header` lint rule flags headings written
+ * directly in the `header` prop, and AccordionSection logs a development-only
+ * console warning when the rendered header turns out to contain a heading.
+ *
+ * This example also shows that a smaller window size will cause the header
+ * text to truncate with ellipses.
+ */
+export const CustomHeaderWithoutNestedHeading: StoryComponentType = {
+    render: function Render() {
+        return (
+            /* This AccordionSection is implemented
+            the same way as the CourseAccordion in the LearnableNodeSidebar
+            that can be found on Khan Academy. It should truncate the
+            text with ellipses when the window size is small.*/
+            <AccordionSection
+                tag="h3"
+                header={
+                    <View
+                        style={{
+                            flexDirection: "row",
+                            margin: sizing.size_160,
+                        }}
+                    >
                         <View
                             style={{
-                                flexDirection: "row",
-                                margin: sizing.size_160,
+                                backgroundSize: "contain",
+                                borderRadius: border.radius.radius_080,
+                                height: 40,
+                                marginInlineEnd: sizing.size_120,
+                                minInlineSize: 40,
+                                padding: sizing.size_080,
+                                width: 40,
                             }}
                         >
-                            <View
-                                style={{
-                                    backgroundSize: "contain",
-                                    borderRadius: border.radius.radius_080,
-                                    height: 40,
-                                    marginInlineEnd: sizing.size_120,
-                                    minInlineSize: 40,
-                                    padding: sizing.size_080,
-                                    width: 40,
-                                }}
-                            >
-                                <PhosphorIcon
-                                    aria-hidden="true"
-                                    icon={magnifyingGlass}
-                                    size="medium"
-                                    style={styles.icon}
-                                />
-                            </View>
-                            <BodyText
-                                weight="bold"
-                                // Rendering as a span here to avoid introducing
-                                // an extra heading level, since h2 is already
-                                // set on the AccordionSection's clickable
-                                // header. This way we can avoid redundancy in
-                                // the a11y tree.
-                                tag="span"
-                                style={{
-                                    whiteSpace: "nowrap",
-                                    overflow: "hidden",
-                                    textOverflow: "ellipsis",
-                                    alignSelf: "center",
-                                    fontSize: font.heading.size.medium,
-                                    lineHeight: font.heading.lineHeight.medium,
-                                }}
-                            >
-                                World History Project - Origins to the Present
-                                (Example of a long title)
-                            </BodyText>
+                            <PhosphorIcon
+                                aria-hidden="true"
+                                icon={magnifyingGlass}
+                                size="medium"
+                            />
                         </View>
-                    }
-                >
-                    This is the information present in the second section
-                </AccordionSection>
-            </View>
+                        <BodyText
+                            weight="bold"
+                            // Rendering as a span here to avoid introducing
+                            // an extra heading level, since h3 is already
+                            // set on the AccordionSection's clickable
+                            // header. This way we can avoid redundancy in
+                            // the a11y tree.
+                            tag="span"
+                            style={{
+                                whiteSpace: "nowrap",
+                                overflow: "hidden",
+                                textOverflow: "ellipsis",
+                                alignSelf: "center",
+                                fontSize: font.heading.size.medium,
+                                lineHeight: font.heading.lineHeight.medium,
+                            }}
+                        >
+                            World History Project - Origins to the Present
+                            (Example of a long title)
+                        </BodyText>
+                    </View>
+                }
+            >
+                This is the information present in the section
+            </AccordionSection>
         );
+    },
+    parameters: {
+        chromatic: {
+            // Disabling because this documents a semantics/a11y guideline, and
+            // the custom header rendering is already covered by
+            // ReactElementInHeader.
+            disableSnapshot: true,
+        },
     },
 };
 

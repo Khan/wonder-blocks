@@ -66,6 +66,7 @@ type Props = {
     /**
      * A unique id to use as the base of the ids for the elements within the component.
      * Here is how the id is used for the different elements in the component:
+     * - The root element will have an id formatted as `${id}`
      * - The label will have an id formatted as `${id}-label`
      * - The context label will have an id formatted as `${id}-context-label`
      * - The description will have an id formatted as `${id}-description`
@@ -85,6 +86,7 @@ type Props = {
     /**
      * Optional test id for e2e testing. Here is how the test id is used for the
      * different elements in the component:
+     * - The root element will have a testId formatted as `${testId}`
      * - The label will have a testId formatted as `${testId}-label`
      * - The context label will have a testId formatted as `${testId}-context-label`
      * - The description will have a testId formatted as `${testId}-description`
@@ -323,7 +325,11 @@ export default function LabeledField(props: Props) {
         // module is qualified with it so this component's styles outrank the
         // single-class rules that `BodyText`, `View` and `PhosphorIcon` ship in
         // the same `@layer shared`. See `labeled-field.module.css`.
-        <View style={[styles.root, stylesProp?.root]}>
+        <View
+            style={[styles.root, stylesProp?.root]}
+            testId={testId}
+            id={uniqueId}
+        >
             {renderLabelAndContextLabel()}
             {maybeRenderDescription()}
             {renderField()}

@@ -156,6 +156,9 @@ importers:
       '@khanacademy/wonder-blocks-clickable':
         specifier: workspace:*
         version: link:packages/wonder-blocks-clickable
+      '@khanacademy/wonder-blocks-config':
+        specifier: workspace:*
+        version: link:packages/wonder-blocks-config
       '@khanacademy/wonder-blocks-core':
         specifier: workspace:*
         version: link:packages/wonder-blocks-core
@@ -856,6 +859,9 @@ importers:
       '@khanacademy/wonder-blocks-core':
         specifier: workspace:*
         version: link:../wonder-blocks-core
+      '@khanacademy/wonder-blocks-styles':
+        specifier: workspace:*
+        version: link:../wonder-blocks-styles
       '@khanacademy/wonder-blocks-tokens':
         specifier: workspace:*
         version: link:../wonder-blocks-tokens
@@ -877,6 +883,16 @@ importers:
       react-router-dom-v5-compat:
         specifier: 'catalog:'
         version: 6.30.0(patch_hash=a5aa3aa17ce8dee8928732ae0a22bd6e9e3c0c458e4c2024a78e155de1060245)(react-dom@18.2.0(react@18.2.0))(react-router-dom@5.3.4(react@18.2.0))(react@18.2.0)
+    devDependencies:
+      '@khanacademy/wb-dev-build-settings':
+        specifier: workspace:*
+        version: link:../../build-settings
+
+  packages/wonder-blocks-config:
+    dependencies:
+      react:
+        specifier: 'catalog:'
+        version: 18.2.0
     devDependencies:
       '@khanacademy/wb-dev-build-settings':
         specifier: workspace:*
@@ -940,9 +956,9 @@ importers:
       '@khanacademy/wonder-blocks-form':
         specifier: workspace:*
         version: link:../wonder-blocks-form
-      '@khanacademy/wonder-blocks-icon':
+      '@khanacademy/wonder-blocks-icon-button':
         specifier: workspace:*
-        version: link:../wonder-blocks-icon
+        version: link:../wonder-blocks-icon-button
       '@khanacademy/wonder-blocks-modal':
         specifier: workspace:*
         version: link:../wonder-blocks-modal
@@ -1092,28 +1108,6 @@ importers:
       '@phosphor-icons/core':
         specifier: 'catalog:'
         version: 2.1.1
-      aphrodite:
-        specifier: 'catalog:'
-        version: 1.2.5
-      react:
-        specifier: 'catalog:'
-        version: 18.2.0
-    devDependencies:
-      '@khanacademy/wb-dev-build-settings':
-        specifier: workspace:*
-        version: link:../../build-settings
-
-  packages/wonder-blocks-grid:
-    dependencies:
-      '@khanacademy/wonder-blocks-core':
-        specifier: workspace:*
-        version: link:../wonder-blocks-core
-      '@khanacademy/wonder-blocks-layout':
-        specifier: workspace:*
-        version: link:../wonder-blocks-layout
-      '@khanacademy/wonder-blocks-tokens':
-        specifier: workspace:*
-        version: link:../wonder-blocks-tokens
       aphrodite:
         specifier: 'catalog:'
         version: 1.2.5
