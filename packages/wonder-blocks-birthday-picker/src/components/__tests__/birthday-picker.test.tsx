@@ -440,7 +440,7 @@ describe("BirthdayPicker", () => {
                 />,
             );
 
-            // Act
+            // Act - pick an invalid date
             await userEvent.click(
                 await screen.findByTestId("birthday-picker-month"),
             );
