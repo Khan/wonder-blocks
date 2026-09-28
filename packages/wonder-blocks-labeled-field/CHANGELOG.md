@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-labeled-field
 
+## 4.2.0
+
+### Minor Changes
+
+- bd6275f: LabeledField: use id and testId on the root element of the component
+
 ## 4.1.11
 
 ### Patch Changes

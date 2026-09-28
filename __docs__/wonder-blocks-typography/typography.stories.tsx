@@ -4,7 +4,7 @@ import type {Meta, StoryObj} from "@storybook/react-vite";
 
 import {addStyle, View} from "@khanacademy/wonder-blocks-core";
 import {OptionItem, SingleSelect} from "@khanacademy/wonder-blocks-dropdown";
-import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
+import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {
     Heading,
     BodyText,
@@ -104,10 +104,11 @@ export const WithStyle: StoryObj<typeof Heading> = {
     render: () => {
         const styles = StyleSheet.create({
             blueText: {
-                color: semanticColor.core.foreground.instructive.default,
+                color: semanticColor.core.foreground.instructive.strong,
             },
             highlighted: {
-                background: semanticColor.core.background.neutral.subtle,
+                border: "none",
+                borderBlockEnd: `${border.width.thick} solid ${semanticColor.core.border.instructive.strong}`,
             },
         });
 

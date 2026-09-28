@@ -385,7 +385,7 @@ export const CompactCellsAsListItems: StoryComponentType = {
                     styles={{
                         root: {
                             background:
-                                semanticColor.core.background.overlay.default,
+                                semanticColor.core.background.neutral.subtle,
                         },
                     }}
                 />

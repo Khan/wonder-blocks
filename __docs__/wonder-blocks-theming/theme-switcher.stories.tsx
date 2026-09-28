@@ -43,8 +43,10 @@ export const Default: Story = (() => {
                 <Button>Outside button (doesn&apos;t affect new theme)</Button>
             </View>
             <ThemeSwitcher theme={theme}>
-                <p>Theming demo using: {theme}</p>
-                <Button>Themed button</Button>
+                <View style={styles.container}>
+                    <p>Theming demo using: {theme}</p>
+                    <Button>Themed button</Button>
+                </View>
             </ThemeSwitcher>
         </>
     );
@@ -78,5 +80,7 @@ const styles = StyleSheet.create({
         padding: sizing.size_160,
         margin: sizing.size_160,
         border: `${border.width.thin} solid ${semanticColor.core.border.neutral.strong}`,
+        background: semanticColor.core.background.base.default,
+        color: semanticColor.core.foreground.neutral.strong,
     },
 });

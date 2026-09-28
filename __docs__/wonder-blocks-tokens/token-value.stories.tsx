@@ -35,6 +35,12 @@ const styles = StyleSheet.create({
         alignItems: "center",
         gap: sizing.size_080,
     },
+    container: {
+        backgroundColor: semanticColor.core.background.base.default,
+        color: semanticColor.core.foreground.neutral.strong,
+        padding: sizing.size_160,
+        gap: sizing.size_080,
+    },
 });
 
 const ColorItem = ({
@@ -103,7 +109,7 @@ export const TokenValueDefault: Story = {
         return (
             <View style={{flexDirection: "row", gap: sizing.size_240}}>
                 <ThemeSwitcher theme="default">
-                    <View ref={defaultRef} style={{gap: sizing.size_080}}>
+                    <View ref={defaultRef} style={styles.container}>
                         <Heading>default theme</Heading>
                         <ColorItem
                             testId="default-raw-value"
@@ -114,7 +120,7 @@ export const TokenValueDefault: Story = {
                     </View>
                 </ThemeSwitcher>
                 <ThemeSwitcher theme="thunderblocks">
-                    <View ref={tbRef} style={{gap: sizing.size_080}}>
+                    <View ref={tbRef} style={styles.container}>
                         <Heading>thunderblocks theme</Heading>
                         <ColorItem
                             testId="tb-raw-value"
@@ -166,7 +172,7 @@ export const TokenValueElementOverride: Story = {
         return (
             <View>
                 <ThemeSwitcher theme="thunderblocks">
-                    <View ref={themeRef} style={{gap: sizing.size_080}}>
+                    <View ref={themeRef} style={styles.container}>
                         <Heading>
                             semanticColor.core.foreground.instructive.default
                             token
