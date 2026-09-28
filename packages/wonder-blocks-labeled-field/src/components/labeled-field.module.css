@@ -20,18 +20,28 @@
  * - Base rules sit at (0,2,0), e.g. `.root .label`.
  * - Variants of a shared base class are compounded with it, e.g.
  *   `.root .helperText.contextLabel` at (0,3,0), so they override the base.
- * - State rules add the state class to `.root`, e.g. `.root.error .label` at
- *   (0,3,0), so they override the base rules.
+ * - State rules qualify `.root` with the state, e.g.
+ *   `.root:has([aria-invalid="true"]) .label` at (0,3,0) — `:has()` takes the
+ *   specificity of its argument — so they override the base rules.
  * - Where the error and disabled states set the same property, the combined
- *   `.root.error.disabled` block (0,4,0) picks the winner explicitly.
+ *   `.root:has([aria-invalid="true"]):has([aria-disabled="true"])` block
+ *   (0,4,0) picks the winner explicitly.
  *
  * Nesting is native CSS: every `&` is explicit and resolves to the flat
  * selector it replaces (`.root .label`, at (0,2,0)).
  *
- * `error` and `disabled` are conditional classes composed through the `style`
- * prop (`processStyleList` routes class-name strings to `className`), not
- * pseudo-classes: both come from the *field child's* props rather than this
- * element's own DOM state. The build wraps every rule in `@layer shared { … }`.
+ * Both states are read from the DOM rather than from the field's props:
+ *
+ * - Error: LabeledField passes `error` to the field, and the field reports it
+ *   as `aria-invalid="true"`. A field that doesn't set `aria-invalid` won't get
+ *   the error styling on the label and context label.
+ * - Disabled: WB fields report `disabled` as `aria-disabled="true"`. `:has()`
+ *   matches any descendant, so an `aria-disabled` element nested inside the
+ *   field (e.g. a disabled option) also triggers it, and read only selects set
+ *   `aria-disabled` too. A field that uses the native `disabled` attribute
+ *   instead won't get the disabled styling.
+ *
+ * The build wraps every rule in `@layer shared { … }`.
  */
 
 .root {
@@ -131,8 +141,10 @@
     }
 }
 
-/* Error state: the field has an error message or its own `error` prop. */
-.root.error {
+/* Error state: the field reports itself as invalid. LabeledField sets the
+ * field's `error` prop when there is an error message, so this covers both an
+ * error message and the field's own `error` prop. */
+.root:has([aria-invalid="true"]) {
     & .label {
         color: var(--wb-c-labeled-field-label-color-error-foreground);
         font-weight: var(--wb-c-labeled-field-error-font-weight);
@@ -144,9 +156,9 @@
     }
 }
 
-/* Disabled state: the field has the `disabled` prop. The read only and error
+/* Disabled state: the field reports itself as disabled. The read only and error
  * messages keep their colours. */
-.root.disabled {
+.root:has([aria-disabled="true"]) {
     & .label {
         color: var(--wb-c-labeled-field-label-color-disabled-foreground);
     }
@@ -160,7 +172,7 @@
 
 /* Error and disabled at once: the label reads as disabled, while the context
  * label keeps the error colour. Both still get the error font weight. */
-.root.error.disabled {
+.root:has([aria-invalid="true"]):has([aria-disabled="true"]) {
     & .label {
         color: var(--wb-c-labeled-field-label-color-disabled-foreground);
     }

@@ -145,7 +145,6 @@ export default function LabeledField(props: Props) {
     const contextLabelId = `${uniqueId}-context-label`;
 
     const hasError = !!errorMessage || !!field.props.error;
-    const isDisabled = !!field.props.disabled;
 
     function renderLabelAndContextLabel(): React.ReactNode {
         return (
@@ -316,16 +315,11 @@ export default function LabeledField(props: Props) {
         // The `root` class carries no styling of its own — every rule in the
         // module is qualified with it so this component's styles outrank the
         // single-class rules that `BodyText`, `View` and `PhosphorIcon` ship in
-        // the same `@layer shared`. The `error` and `disabled` state classes
-        // also live here, so each state's styles are grouped under the root.
-        // See `labeled-field.module.css`.
+        // the same `@layer shared`. The error and disabled states are matched
+        // from the field's `aria-invalid` and `aria-disabled`, so each state's
+        // styles are grouped under the root. See `labeled-field.module.css`.
         <View
-            style={[
-                styles.root,
-                hasError && styles.error,
-                isDisabled && styles.disabled,
-                stylesProp?.root,
-            ]}
+            style={[styles.root, stylesProp?.root]}
             testId={testId}
             id={uniqueId}
         >
