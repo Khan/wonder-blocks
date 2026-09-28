@@ -459,7 +459,7 @@ describe("BirthdayPicker", () => {
         });
 
         it("clears the error when a valid value is selected after an invalid default value", async () => {
-            // Arrange
+            // Arrange - default to tomorrow (a future date), so the error is shown
             DateMock.advanceTo(today);
             render(
                 <BirthdayPicker
@@ -469,7 +469,7 @@ describe("BirthdayPicker", () => {
             );
             await screen.findByRole("alert");
 
-            // Act
+            // Act - change the year so the date is in the past
             await userEvent.click(
                 await screen.findByTestId("birthday-picker-year"),
             );
