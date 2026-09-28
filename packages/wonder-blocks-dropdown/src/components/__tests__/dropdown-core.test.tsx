@@ -1210,10 +1210,6 @@ describe("DropdownCore", () => {
             populatedProps: {},
         }));
 
-        // The 500ms type-ahead debounce, plus 1ms for the timeout that focuses
-        // the matching item (setTimeout(0) is clamped to 1ms).
-        const TYPE_AHEAD_DELAY = 501;
-
         beforeEach(() => {
             jest.useFakeTimers();
         });
@@ -1242,7 +1238,7 @@ describe("DropdownCore", () => {
 
             // Act
             act(() => {
-                jest.advanceTimersByTime(TYPE_AHEAD_DELAY);
+                jest.runAllTimers();
             });
 
             // Assert
@@ -1271,7 +1267,7 @@ describe("DropdownCore", () => {
 
             // Act
             act(() => {
-                jest.advanceTimersByTime(TYPE_AHEAD_DELAY);
+                jest.runAllTimers();
             });
 
             // Assert
@@ -1301,7 +1297,7 @@ describe("DropdownCore", () => {
 
             // Act
             act(() => {
-                jest.advanceTimersByTime(TYPE_AHEAD_DELAY);
+                jest.runAllTimers();
             });
 
             // Assert
@@ -1328,7 +1324,7 @@ describe("DropdownCore", () => {
 
             // Act
             act(() => {
-                jest.advanceTimersByTime(TYPE_AHEAD_DELAY);
+                jest.runAllTimers();
             });
 
             // Assert
@@ -1369,7 +1365,7 @@ describe("DropdownCore", () => {
 
             // Act
             act(() => {
-                jest.advanceTimersByTime(TYPE_AHEAD_DELAY);
+                jest.runAllTimers();
             });
 
             // Assert
