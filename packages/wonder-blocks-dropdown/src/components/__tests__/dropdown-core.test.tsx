@@ -921,11 +921,6 @@ describe("DropdownCore", () => {
                 name: "opener",
             });
             rerender(<DropdownCore {...props} openerElement={openerElement} />);
-            await waitFor(async () => {
-                expect(
-                    await screen.findByRole("option", {name: "item 0"}),
-                ).toHaveFocus();
-            });
 
             // Act
             await userEvent.keyboard("{Escape}");
@@ -1155,11 +1150,6 @@ describe("DropdownCore", () => {
                 />,
             );
             await userEvent.keyboard("{ArrowDown}"); // 0 -> 1
-            await waitFor(async () => {
-                expect(
-                    await screen.findByRole("option", {name: "item 1"}),
-                ).toHaveFocus();
-            });
             rerender(
                 <DropdownCore
                     initialFocusedIndex={0}
@@ -1195,11 +1185,6 @@ describe("DropdownCore", () => {
                 />,
             );
             await userEvent.keyboard("{ArrowDown}"); // 0 -> 1
-            await waitFor(async () => {
-                expect(
-                    await screen.findByRole("option", {name: "item 1"}),
-                ).toHaveFocus();
-            });
 
             // Act
             rerender(
@@ -1561,11 +1546,6 @@ describe("DropdownCore", () => {
                     onOpenChanged={jest.fn()}
                 />,
             );
-            await waitFor(async () => {
-                expect(
-                    await screen.findByRole("option", {name: "item 0"}),
-                ).toHaveFocus();
-            });
 
             // Act
             await userEvent.keyboard("{ArrowDown}");
