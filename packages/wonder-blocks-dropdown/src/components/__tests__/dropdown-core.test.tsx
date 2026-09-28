@@ -1117,7 +1117,7 @@ describe("DropdownCore", () => {
                     />,
                 );
                 act(() => {
-                    jest.runOnlyPendingTimers();
+                    jest.runAllTimers();
                 });
 
                 // Assert
