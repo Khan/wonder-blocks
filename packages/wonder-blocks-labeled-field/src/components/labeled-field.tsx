@@ -153,11 +153,9 @@ export default function LabeledField(props: Props) {
                 <BodyText
                     style={[
                         styles.label,
-                        hasError ? styles.labelWithError : undefined,
                         description
                             ? styles.labelWithDescription
                             : styles.labelWithNoDescription,
-                        isDisabled && styles.disabledLabel,
                         stylesProp?.label,
                     ]}
                     tag="label"
@@ -176,8 +174,6 @@ export default function LabeledField(props: Props) {
                         style={[
                             styles.helperText,
                             styles.contextLabel,
-                            isDisabled && styles.disabledHelperText,
-                            hasError ? styles.contextLabelWithError : undefined,
                             stylesProp?.contextLabel,
                         ]}
                     >
@@ -197,8 +193,8 @@ export default function LabeledField(props: Props) {
             <BodyText
                 style={[
                     styles.helperText,
+                    styles.description,
                     styles.spacingBelowHelperText,
-                    isDisabled && styles.disabledHelperText,
                     stylesProp?.description,
                 ]}
                 testId={testId && `${testId}-description`}
@@ -234,16 +230,12 @@ export default function LabeledField(props: Props) {
                     <>
                         <PhosphorIcon
                             icon={WarningCircle}
-                            style={[styles.errorIcon, styles.error]}
+                            style={styles.errorIcon}
                             role="img"
                             aria-label={labels.errorIconAriaLabel}
                         />
                         <BodyText
-                            style={[
-                                styles.helperText,
-                                styles.errorMessage,
-                                styles.error,
-                            ]}
+                            style={[styles.helperText, styles.errorMessage]}
                         >
                             {errorMessage}
                         </BodyText>
@@ -309,8 +301,8 @@ export default function LabeledField(props: Props) {
                 testId={testId && `${testId}-additional-helper-message`}
                 style={[
                     styles.helperText,
+                    styles.additionalHelperMessage,
                     styles.spacingAboveHelperText,
-                    isDisabled && styles.disabledHelperText,
                     stylesProp?.additionalHelperMessage,
                 ]}
                 tag="div"
@@ -324,9 +316,16 @@ export default function LabeledField(props: Props) {
         // The `root` class carries no styling of its own — every rule in the
         // module is qualified with it so this component's styles outrank the
         // single-class rules that `BodyText`, `View` and `PhosphorIcon` ship in
-        // the same `@layer shared`. See `labeled-field.module.css`.
+        // the same `@layer shared`. The `error` and `disabled` state classes
+        // also live here, so each state's styles are grouped under the root.
+        // See `labeled-field.module.css`.
         <View
-            style={[styles.root, stylesProp?.root]}
+            style={[
+                styles.root,
+                hasError && styles.error,
+                isDisabled && styles.disabled,
+                stylesProp?.root,
+            ]}
             testId={testId}
             id={uniqueId}
         >
