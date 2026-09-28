@@ -1358,6 +1358,137 @@ describe("DropdownCore", () => {
             // Assert
             expect(onOpenMock).toHaveBeenCalledWith(true);
         });
+
+        // NOTE: This pins the current behavior. The code intends to also
+        // select the matching item for single selection, but the item refs
+        // don't exist yet while the menu is closed, so it only opens the menu.
+        it("should only open the menu and not select the matching item when typing while closed", async () => {
+            // Arrange
+            const onOpenMock = jest.fn();
+            const onItemClick = jest.fn();
+            const user = userEvent.setup({
+                advanceTimers: jest.advanceTimersByTime,
+            });
+            const ControlledDropdown = () => {
+                const [open, setOpen] = React.useState(false);
+                return (
+                    <DropdownCore
+                        items={fruitItems.map((item) => ({
+                            ...item,
+                            populatedProps: {onClick: onItemClick},
+                        }))}
+                        role="listbox"
+                        open={open}
+                        opener={<button />}
+                        onOpenChanged={(isOpen) => {
+                            onOpenMock(isOpen);
+                            setOpen(isOpen);
+                        }}
+                    />
+                );
+            };
+            render(<ControlledDropdown />);
+            screen.getByRole("button").focus();
+            await user.keyboard("b");
+
+            // Act
+            act(() => {
+                jest.advanceTimersByTime(501);
+            });
+            act(() => {
+                jest.runOnlyPendingTimers();
+            });
+
+            // Assert
+            expect({
+                onOpenChangedCalls: onOpenMock.mock.calls,
+                itemClicked: onItemClick.mock.calls.length > 0,
+            }).toEqual({onOpenChangedCalls: [[true]], itemClicked: false});
+        });
+    });
+
+    // NOTE: These pin the current behavior. Changes to the `labels` prop are
+    // only merged into the search field labels when the set of focusable items
+    // also changes while the menu is open. When there are no focusable items
+    // (e.g. no results), that check always passes, so the labels always update.
+    describe("when the labels prop changes while open", () => {
+        const labelsA = {
+            clearSearch: "Clear A",
+            filter: "Filter A",
+            noResults: "No results A",
+            someResults: (numOptions: number) => `${numOptions} results A`,
+        };
+        const labelsB = {
+            clearSearch: "Clear B",
+            filter: "Filter B",
+            noResults: "No results B",
+            someResults: (numOptions: number) => `${numOptions} results B`,
+        };
+        const baseProps = {
+            onSearchTextChanged: jest.fn(),
+            searchText: "",
+            isFilterable: true,
+            role: "listbox",
+            open: true,
+            opener: <button />,
+            onOpenChanged: jest.fn(),
+        } as const;
+
+        it("should keep the initial search field labels when the focusable items don't change", async () => {
+            // Arrange
+            const {rerender} = render(
+                <DropdownCore {...baseProps} items={items} labels={labelsA} />,
+            );
+
+            // Act
+            rerender(
+                <DropdownCore {...baseProps} items={items} labels={labelsB} />,
+            );
+
+            // Assert
+            expect(
+                await screen.findByPlaceholderText("Filter A"),
+            ).toBeInTheDocument();
+        });
+
+        it("should update the search field labels when the focusable items also change", async () => {
+            // Arrange
+            const {rerender} = render(
+                <DropdownCore {...baseProps} items={items} labels={labelsA} />,
+            );
+
+            // Act
+            rerender(
+                <DropdownCore
+                    {...baseProps}
+                    items={items.map((item, index) => ({
+                        ...item,
+                        focusable: index !== 0,
+                    }))}
+                    labels={labelsB}
+                />,
+            );
+
+            // Assert
+            expect(
+                await screen.findByPlaceholderText("Filter B"),
+            ).toBeInTheDocument();
+        });
+
+        it("should update the no results message", async () => {
+            // Arrange
+            const {rerender} = render(
+                <DropdownCore {...baseProps} items={[]} labels={labelsA} />,
+            );
+
+            // Act
+            rerender(
+                <DropdownCore {...baseProps} items={[]} labels={labelsB} />,
+            );
+
+            // Assert
+            expect(await screen.findByText("No results B")).toBeInTheDocument();
+        });
     });
 
     describe("rendering", () => {
