@@ -1,6 +1,7 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 import type {Meta, StoryObj} from "@storybook/react-vite";
+import {useArgs} from "storybook/preview-api";
 
 import {
     useWonderBlocksI18n,
@@ -72,6 +73,8 @@ export default {
         },
     },
     argTypes: WonderBlocksConfigProviderArgTypes,
+    // Hide stories in the sidebar. Only show Docs.
+    tags: ["!dev"],
 } as Meta<typeof WonderBlocksConfigProvider>;
 
 type StoryComponentType = StoryObj<typeof WonderBlocksConfigProvider>;
@@ -89,8 +92,11 @@ export const Default: StoryComponentType = {
         i18n: i18nExamples.en.i18n,
     },
     render: function Render(args) {
-        const [locale, setLocale] = React.useState(args.i18n.locale);
-        const i18n = i18nExamples[locale]?.i18n ?? args.i18n;
+        const [, updateArgs] = useArgs();
+
+        const handleLocaleChange = (locale: string) => {
+            updateArgs({i18n: i18nExamples[locale].i18n});
+        };
 
         return (
             <View style={styles.container}>
@@ -98,8 +104,8 @@ export const Default: StoryComponentType = {
                     label="Locale"
                     field={
                         <SingleSelect
-                            selectedValue={locale}
-                            onChange={setLocale}
+                            selectedValue={args.i18n.locale}
+                            onChange={handleLocaleChange}
                             placeholder="Choose a locale"
                         >
                             {Object.entries(i18nExamples).map(
@@ -114,7 +120,7 @@ export const Default: StoryComponentType = {
                         </SingleSelect>
                     }
                 />
-                <WonderBlocksConfigProvider {...args} i18n={i18n}>
+                <WonderBlocksConfigProvider {...args}>
                     <I18nConfigPreview title="Strings within the provider" />
                 </WonderBlocksConfigProvider>
             </View>
