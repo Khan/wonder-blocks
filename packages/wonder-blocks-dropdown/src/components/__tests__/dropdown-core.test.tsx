@@ -1334,6 +1334,34 @@ describe("DropdownCore", () => {
             expect(onOpenMock).toHaveBeenCalledWith(true);
         });
 
+        it("should not call onOpenChanged when a letter matching no item is typed while closed", async () => {
+            // Arrange
+            const letterMatchingNoItem = "z";
+            const onOpenMock = jest.fn();
+            const user = userEvent.setup({
+                advanceTimers: jest.advanceTimersByTime,
+            });
+            render(
+                <DropdownCore
+                    items={fruitItems}
+                    role="listbox"
+                    open={false}
+                    opener={<button />}
+                    onOpenChanged={onOpenMock}
+                />,
+            );
+            screen.getByRole("button").focus();
+            await user.keyboard(letterMatchingNoItem);
+
+            // Act
+            act(() => {
+                jest.runAllTimers();
+            });
+
+            // Assert
+            expect(onOpenMock).not.toHaveBeenCalled();
+        });
+
         // NOTE: This pins the current behavior. The code intends to also
         // select the matching item for single selection, but the item refs
         // don't exist yet while the menu is closed, so it only opens the menu.
