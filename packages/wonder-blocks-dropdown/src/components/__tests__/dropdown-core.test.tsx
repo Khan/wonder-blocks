@@ -1559,6 +1559,60 @@ describe("DropdownCore", () => {
             ).toBeInTheDocument();
         });
 
+        it("should keep the initial clear search label when the focusable items don't change", async () => {
+            // Arrange
+            const {rerender} = render(
+                <DropdownCore
+                    {...baseProps}
+                    searchText="item"
+                    items={items}
+                    labels={labelsA}
+                />,
+            );
+
+            // Act
+            rerender(
+                <DropdownCore
+                    {...baseProps}
+                    searchText="item"
+                    items={items}
+                    labels={labelsB}
+                />,
+            );
+
+            // Assert
+            expect(
+                await screen.findByRole("button", {name: "Clear A"}),
+            ).toBeInTheDocument();
+        });
+
+        it("should update the clear search label when the focusable items also change", async () => {
+            // Arrange
+            const {rerender} = render(
+                <DropdownCore
+                    {...baseProps}
+                    searchText="item"
+                    items={items}
+                    labels={labelsA}
+                />,
+            );
+
+            // Act
+            rerender(
+                <DropdownCore
+                    {...baseProps}
+                    searchText="item"
+                    items={itemsWithDisabled(0)}
+                    labels={labelsB}
+                />,
+            );
+
+            // Assert
+            expect(
+                await screen.findByRole("button", {name: "Clear B"}),
+            ).toBeInTheDocument();
+        });
+
         it("should update the no results message", async () => {
             // Arrange
             const {rerender} = render(
