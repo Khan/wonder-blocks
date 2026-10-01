@@ -1133,7 +1133,7 @@ describe("DropdownCore", () => {
                 focusable: index !== disabledIndex,
             }));
 
-        it("should keep the focused item when a different item stops being focusable", async () => {
+        it("should continue keyboard navigation from the focused item when a different item stops being focusable", async () => {
             // Arrange
             const {rerender} = render(
                 <DropdownCore
