@@ -1306,8 +1306,9 @@ describe("DropdownCore", () => {
             expect(screen.getByRole("option", {name: "apple"})).toHaveFocus();
         });
 
-        it("should open the menu when a matching item is typed while closed", async () => {
+        it("should call onOpenChanged(true) when a letter matching an item is typed while closed", async () => {
             // Arrange
+            const letterMatchingAnItem = "b";
             const onOpenMock = jest.fn();
             const user = userEvent.setup({
                 advanceTimers: jest.advanceTimersByTime,
@@ -1322,7 +1323,7 @@ describe("DropdownCore", () => {
                 />,
             );
             screen.getByRole("button").focus();
-            await user.keyboard("b");
+            await user.keyboard(letterMatchingAnItem);
 
             // Act
             act(() => {
