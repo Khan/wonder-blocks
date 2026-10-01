@@ -25,6 +25,14 @@ const items = [
     },
 ];
 
+// Returns `items` with the item at `disabledIndex` made non-focusable (as if it
+// were disabled).
+const itemsWithDisabled = (disabledIndex: number) =>
+    items.map((item, index) => ({
+        ...item,
+        focusable: index !== disabledIndex,
+    }));
+
 describe("DropdownCore", () => {
     it("should throw for invalid role", async () => {
         // Arrange
@@ -1127,12 +1135,6 @@ describe("DropdownCore", () => {
     });
 
     describe("when the focusable items change while open", () => {
-        const itemsWithDisabled = (disabledIndex: number) =>
-            items.map((item, index) => ({
-                ...item,
-                focusable: index !== disabledIndex,
-            }));
-
         it("should continue keyboard navigation from the focused item when a different item stops being focusable", async () => {
             // Arrange
             const {rerender} = render(
@@ -1461,10 +1463,7 @@ describe("DropdownCore", () => {
             rerender(
                 <DropdownCore
                     {...baseProps}
-                    items={items.map((item, index) => ({
-                        ...item,
-                        focusable: index !== 0,
-                    }))}
+                    items={itemsWithDisabled(0)}
                     labels={labelsB}
                 />,
             );
