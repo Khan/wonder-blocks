@@ -26,8 +26,13 @@ const items = [
     },
 ];
 
-// Returns `items` with the item at `disabledIndex` made non-focusable (as if it
-// were disabled).
+/**
+ * Get a copy of `items` with one item made non-focusable (as if it were
+ * disabled).
+ *
+ * @param disabledIndex The index of the item to make non-focusable.
+ * @returns The items, with `focusable: false` on the item at `disabledIndex`.
+ */
 const itemsWithDisabled = (disabledIndex: number) =>
     items.map((item, index) => ({
         ...item,
