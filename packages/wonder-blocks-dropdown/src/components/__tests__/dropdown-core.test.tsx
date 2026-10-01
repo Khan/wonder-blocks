@@ -1493,10 +1493,11 @@ describe("DropdownCore", () => {
         });
     });
 
-    // NOTE: These pin the current behavior. Changes to the `labels` prop are
-    // only merged into the search field labels when the set of focusable items
-    // also changes while the menu is open. When there are no focusable items
-    // (e.g. no results), that check always passes, so the labels always update.
+    // NOTE: These pin the current behavior. The search field labels (`filter`
+    // and `clearSearch`) are kept in state, and changes to the `labels` prop
+    // are only merged into that state when the set of focusable items also
+    // changes while the menu is open. The "No results" message reads
+    // `noResults` directly from the `labels` prop, so it always updates.
     describe("when the labels prop changes while open", () => {
         const labelsA = {
             clearSearch: "Clear A",
