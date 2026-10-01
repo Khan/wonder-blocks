@@ -1,5 +1,5 @@
 import * as React from "react";
-import {render, screen} from "@testing-library/react";
+import {act, render, screen} from "@testing-library/react";
 import * as DateMock from "jest-date-mock";
 import {userEvent, PointerEventsCheckLevel} from "@testing-library/user-event";
 import {Temporal} from "temporal-polyfill";
@@ -282,6 +282,29 @@ describe("BirthdayPicker", () => {
             expect(
                 await screen.findByTestId("birthday-picker-month"),
             ).toHaveTextContent("Jul");
+        });
+
+        it("ignores changes to labels after the initial render", async () => {
+            // Arrange
+            const {rerender} = render(
+                <BirthdayPicker
+                    labels={{...defaultLabels, month: "Initial month"}}
+                    onChange={jest.fn()}
+                />,
+            );
+
+            // Act
+            rerender(
+                <BirthdayPicker
+                    labels={{...defaultLabels, month: "Updated month"}}
+                    onChange={jest.fn()}
+                />,
+            );
+
+            // Assert
+            expect(
+                await screen.findByTestId("birthday-picker-month"),
+            ).toHaveTextContent("Initial month");
         });
     });
 
@@ -657,41 +680,52 @@ describe("BirthdayPicker", () => {
 
     describe("keyboard", () => {
         /*
-        The keyboard events (I tried .keyboard and .type) are not working as
-        needed. From what I can tell, they are going to the wrong element or
-        otherwise not getting handled as they would in a non-test world.
-        We had this issue with elsewhere too and haven't resolved it (since
-        updating to UserEvents v14, it seems). Skipping this test for now
-        until we can work out how to replicate things again. This could be
-        changed to a storybook test perhaps.
+        Typing on a closed dropdown only opens it (it doesn't select the
+        matching option; see the DropdownCore type-ahead tests), so each field
+        is opened with ArrowDown first, then the option is found by typing and
+        selected with Enter.
          */
-        it.skip("should find and select an item using the keyboard", async () => {
-            // Arrange
+        beforeEach(() => {
             jest.useFakeTimers();
+        });
+
+        afterEach(() => {
+            act(() => {
+                jest.runOnlyPendingTimers();
+            });
+            jest.useRealTimers();
+        });
+
+        it("should find and select an item using the keyboard", async () => {
+            // Arrange
             const ue = userEvent.setup({
                 advanceTimers: jest.advanceTimersByTime,
-                pointerEventsCheck: PointerEventsCheckLevel.Never,
             });
             const onChange = jest.fn();
             const lastYear = String(new Date().getFullYear() - 1);
-
+            const selectWithKeyboard = async (text: string) => {
+                await ue.keyboard("{ArrowDown}");
+                act(() => {
+                    jest.runOnlyPendingTimers();
+                });
+                await ue.keyboard(text);
+                act(() => {
+                    jest.runAllTimers();
+                });
+                await ue.keyboard("{Enter}");
+                act(() => {
+                    jest.runAllTimers();
+                });
+            };
             render(<BirthdayPicker onChange={onChange} />);
 
             // Act
-            // Focus on the month selector
             await ue.tab();
-            await ue.keyboard("Jul");
-            jest.advanceTimersByTime(501);
-
-            // Focus on the day selector
+            await selectWithKeyboard("Jul");
             await ue.tab();
-            await ue.keyboard("5");
-            jest.advanceTimersByTime(501);
-
-            // Focus on the year selector
+            await selectWithKeyboard("5");
             await ue.tab();
-            await ue.keyboard(lastYear);
-            jest.advanceTimersByTime(501);
+            await selectWithKeyboard(lastYear);
 
             // Assert
             expect(onChange).toHaveBeenCalledWith(`${lastYear}-07-05`);
