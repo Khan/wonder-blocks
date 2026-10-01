@@ -3,6 +3,7 @@ import * as React from "react";
 import {act, fireEvent, render, screen, waitFor} from "@testing-library/react";
 import {userEvent} from "@testing-library/user-event";
 
+import ActionItem from "../action-item";
 import OptionItem from "../option-item";
 import SeparatorItem from "../separator-item";
 import DropdownCore from "../dropdown-core";
@@ -1203,6 +1204,46 @@ describe("DropdownCore", () => {
                 ).toHaveFocus();
             });
         });
+
+        it("should let keyboard navigation reach an item added while open", async () => {
+            // Arrange
+            const itemsWithExtra = [
+                ...items,
+                {
+                    component: <OptionItem label="item 3" value="3" key="3" />,
+                    focusable: true,
+                    populatedProps: {},
+                },
+            ];
+            const {rerender} = render(
+                <DropdownCore
+                    initialFocusedIndex={2}
+                    items={items}
+                    role="listbox"
+                    open={true}
+                    opener={<button />}
+                    onOpenChanged={jest.fn()}
+                />,
+            );
+            rerender(
+                <DropdownCore
+                    initialFocusedIndex={2}
+                    items={itemsWithExtra}
+                    role="listbox"
+                    open={true}
+                    opener={<button />}
+                    onOpenChanged={jest.fn()}
+                />,
+            );
+
+            // Act
+            await userEvent.keyboard("{ArrowDown}"); // 2 -> 3
+
+            // Assert
+            expect(
+                await screen.findByRole("option", {name: "item 3"}),
+            ).toHaveFocus();
+        });
     });
 
     describe("type-ahead", () => {
@@ -1306,6 +1347,44 @@ describe("DropdownCore", () => {
 
             // Assert
             expect(screen.getByRole("option", {name: "apple"})).toHaveFocus();
+        });
+
+        it("should not match items that aren't options when typing", async () => {
+            // Arrange
+            const user = userEvent.setup({
+                advanceTimers: jest.advanceTimersByTime,
+            });
+            render(
+                <DropdownCore
+                    initialFocusedIndex={1}
+                    items={[
+                        {
+                            component: <ActionItem label="apple" key="apple" />,
+                            focusable: true,
+                            populatedProps: {},
+                        },
+                        ...fruitItems.slice(1),
+                    ]}
+                    role="menu"
+                    open={true}
+                    opener={<button />}
+                    onOpenChanged={jest.fn()}
+                />,
+            );
+            act(() => {
+                jest.runOnlyPendingTimers();
+            });
+            await user.keyboard("a");
+
+            // Act
+            act(() => {
+                jest.runAllTimers();
+            });
+
+            // Assert
+            expect(
+                screen.getByRole("menuitem", {name: "banana"}),
+            ).toHaveFocus();
         });
 
         it("should call onOpenChanged(true) when a letter matching an item is typed while closed", async () => {
@@ -1704,6 +1783,36 @@ describe("DropdownCore", () => {
             // Assert
             expect(
                 screen.getByRole("option", {name: "Fruit # 2"}),
+            ).toHaveFocus();
+        });
+
+        it("should skip a non-focusable item when pressing ArrowDown", async () => {
+            // Arrange
+            const user = userEvent.setup({
+                advanceTimers: jest.advanceTimersByTime,
+            });
+            render(
+                <DropdownCore
+                    initialFocusedIndex={0}
+                    items={optionItems.map((item, index) => ({
+                        ...item,
+                        focusable: index !== 1,
+                    }))}
+                    role="listbox"
+                    open={true}
+                    opener={<button />}
+                    onOpenChanged={jest.fn()}
+                />,
+            );
+            advanceFrames();
+
+            // Act
+            await user.keyboard("{ArrowDown}");
+            advanceFrames();
+
+            // Assert
+            expect(
+                screen.getByRole("option", {name: "Fruit # 3"}),
             ).toHaveFocus();
         });
     });
