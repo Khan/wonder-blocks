@@ -1509,35 +1509,87 @@ describe("DropdownCore", () => {
             expect(await screen.findAllByRole("menuitem")).toHaveLength(3);
         });
 
-        it("should use custom labels for the search field and no results message", async () => {
-            // Arrange
-            const labels = {
-                clearSearch: "Clear",
+        describe("custom labels", () => {
+            const customLabels = {
+                clearSearch: "Clear the fruit search",
                 filter: "Search fruits",
                 noResults: "Nothing here",
                 someResults: (numOptions: number) => `${numOptions} fruits`,
             };
 
-            // Act
-            render(
-                <DropdownCore
-                    labels={labels}
-                    onSearchTextChanged={jest.fn()}
-                    searchText=""
-                    isFilterable={true}
-                    items={[]}
-                    role="listbox"
-                    open={true}
-                    opener={<button />}
-                    onOpenChanged={jest.fn()}
-                />,
-            );
+            it("should use the filter label as the search field placeholder", async () => {
+                // Arrange
 
-            // Assert
-            expect(
-                await screen.findByPlaceholderText("Search fruits"),
-            ).toBeInTheDocument();
-            expect(await screen.findByText("Nothing here")).toBeInTheDocument();
+                // Act
+                render(
+                    <DropdownCore
+                        labels={customLabels}
+                        onSearchTextChanged={jest.fn()}
+                        searchText=""
+                        isFilterable={true}
+                        items={items}
+                        role="listbox"
+                        open={true}
+                        opener={<button />}
+                        onOpenChanged={jest.fn()}
+                    />,
+                );
+
+                // Assert
+                expect(
+                    await screen.findByPlaceholderText("Search fruits"),
+                ).toBeInTheDocument();
+            });
+
+            it("should use the noResults label when there are no items", async () => {
+                // Arrange
+
+                // Act
+                render(
+                    <DropdownCore
+                        labels={customLabels}
+                        onSearchTextChanged={jest.fn()}
+                        searchText="xyz"
+                        isFilterable={true}
+                        items={[]}
+                        role="listbox"
+                        open={true}
+                        opener={<button />}
+                        onOpenChanged={jest.fn()}
+                    />,
+                );
+
+                // Assert
+                expect(
+                    await screen.findByText("Nothing here"),
+                ).toBeInTheDocument();
+            });
+
+            it("should use the clearSearch label for the search field's clear button", async () => {
+                // Arrange
+
+                // Act
+                render(
+                    <DropdownCore
+                        labels={customLabels}
+                        onSearchTextChanged={jest.fn()}
+                        searchText="app"
+                        isFilterable={true}
+                        items={items}
+                        role="listbox"
+                        open={true}
+                        opener={<button />}
+                        onOpenChanged={jest.fn()}
+                    />,
+                );
+
+                // Assert
+                expect(
+                    await screen.findByRole("button", {
+                        name: "Clear the fruit search",
+                    }),
+                ).toBeInTheDocument();
+            });
         });
 
         it("should skip separators when navigating with the keyboard", async () => {
