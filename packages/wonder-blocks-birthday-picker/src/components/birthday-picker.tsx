@@ -402,7 +402,7 @@ const BirthdayPicker = (props: Props) => {
         );
     };
 
-    const monthsShort = (): string[] => {
+    const monthsShort = React.useMemo((): string[] => {
         const format = new Intl.DateTimeFormat(locale ?? navigator.language, {
             month: "short",
         }).format;
@@ -412,7 +412,7 @@ const BirthdayPicker = (props: Props) => {
             // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat/format#parameters
             format(new Date(2021, m, 15)),
         );
-    };
+    }, [locale]);
 
     const renderMonth = (): React.ReactNode => {
         const minWidth = getMonthYearWidth(monthYearOnly);
@@ -428,7 +428,7 @@ const BirthdayPicker = (props: Props) => {
                 style={[{minWidth}, defaultStyles.input, dropdownStyle]}
                 testId="birthday-picker-month"
             >
-                {monthsShort().map((monthShort, i) => (
+                {monthsShort.map((monthShort, i) => (
                     <OptionItem
                         key={monthShort}
                         label={monthShort}
