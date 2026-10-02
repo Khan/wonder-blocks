@@ -3,7 +3,7 @@ import {StyleSheet} from "aphrodite";
 import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {ActionColorGroup, ColorGroup} from "../components/color";
 import {PropsFor, View} from "@khanacademy/wonder-blocks-core";
-import {Heading} from "@khanacademy/wonder-blocks-typography";
+import {BodyText, Heading} from "@khanacademy/wonder-blocks-typography";
 
 export default {
     title: "Packages/Tokens/Semantic Colors/Groups",
@@ -21,7 +21,6 @@ const ColorGroupStory = ({
     category,
     group,
     includeExample = false,
-    omitSwatches,
 }: PropsFor<typeof ActionColorGroup>) => {
     return (
         <View style={styles.gridCompact}>
@@ -29,7 +28,6 @@ const ColorGroupStory = ({
                 category={category}
                 group={group}
                 includeExample={includeExample}
-                omitSwatches={omitSwatches}
                 valuePrefix={valuePrefix}
             />
         </View>
@@ -291,12 +289,28 @@ export const GraphicsCharactersFlesh = () => {
 
 export const GraphicsDataVizHeatmap = () => {
     return (
-        <ColorGroupStory
-            category={semanticColor.graphics.dataViz.heatmap}
-            group="graphics.dataViz.heatmap"
-            includeExample={true}
-            omitSwatches={["background", "foreground"]}
-        />
+        <View style={styles.gridCompact}>
+            {Object.entries(semanticColor.graphics.dataViz.heatmap).map(
+                ([band, {background, foreground}]) => (
+                    <View key={band} style={styles.heatmapBand}>
+                        <BodyText weight="bold" style={styles.capitalized}>
+                            {band}
+                        </BodyText>
+                        <View
+                            style={[
+                                styles.heatmapExample,
+                                {
+                                    backgroundColor: background,
+                                    color: foreground,
+                                },
+                            ]}
+                        >
+                            Hello, world!
+                        </View>
+                    </View>
+                ),
+            )}
+        </View>
     );
 };
 
@@ -396,5 +410,18 @@ const styles = StyleSheet.create({
 
     banner: {
         marginBlockEnd: sizing.size_320,
+    },
+
+    heatmapBand: {
+        margin: sizing.size_040,
+        padding: sizing.size_040,
+        gap: sizing.size_040,
+        border: `1px dashed ${semanticColor.core.border.neutral.subtle}`,
+    },
+    heatmapExample: {
+        marginBlock: sizing.size_080,
+        marginInline: sizing.size_160,
+        padding: sizing.size_160,
+        textAlign: "center",
     },
 });

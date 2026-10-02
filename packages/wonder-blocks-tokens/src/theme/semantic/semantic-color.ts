@@ -235,9 +235,6 @@ const graphics = {
         },
     },
     dataViz: {
-        // Each band is named for the first percentage it covers, so `band0`
-        // spans 0-9 and `band90` spans 90-99. `band100` is only ever an
-        // exact 100.
         heatmap: {
             band0: {
                 background: graphicsPalette.red_50,

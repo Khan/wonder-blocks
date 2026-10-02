@@ -172,11 +172,6 @@ type ActionColorGroupProps = {
      */
     includeExample?: boolean;
     /**
-     * Names to leave out of the swatch list, such as a `foreground` that the
-     * example already shows as text.
-     */
-    omitSwatches?: ReadonlyArray<string>;
-    /**
      * The prefix to use for the color value.
      */
     valuePrefix?: string;
@@ -186,35 +181,22 @@ export function ActionColorGroup({
     category,
     group,
     includeExample = true,
-    omitSwatches,
     valuePrefix,
 }: ActionColorGroupProps) {
-    return Object.entries(category).map(([state, colorGroup], index) => {
-        const swatches = omitSwatches
-            ? Object.fromEntries(
-                  Object.entries(colorGroup).filter(
-                      ([name]) => !omitSwatches.includes(name),
-                  ),
-              )
-            : colorGroup;
-
-        return (
-            <View style={styles.actionGroup} key={index}>
-                <BodyText weight="bold" style={styles.capitalized}>
-                    {state}
-                </BodyText>
-                {includeExample && <Example style={colorGroup} />}
-                {Object.keys(swatches).length > 0 && (
-                    <ColorGroup
-                        colors={swatches}
-                        group={group + "." + state}
-                        variant="compact"
-                        valuePrefix={valuePrefix}
-                    />
-                )}
-            </View>
-        );
-    });
+    return Object.entries(category).map(([state, colorGroup], index) => (
+        <View style={styles.actionGroup} key={index}>
+            <BodyText weight="bold" style={styles.capitalized}>
+                {state}
+            </BodyText>
+            {includeExample && <Example style={colorGroup} />}
+            <ColorGroup
+                colors={colorGroup}
+                group={group + "." + state}
+                variant="compact"
+                valuePrefix={valuePrefix}
+            />
+        </View>
+    ));
 }
 
 function Example({style}: {style?: any}) {
