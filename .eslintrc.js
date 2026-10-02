@@ -33,6 +33,9 @@ module.exports = {
         react: {
             version: "detect",
         },
+        // SPIKE (FEI-8331): react-native's entry point is Flow, which the
+        // TS parser can't read. Skip it for import/* rules.
+        "import/ignore": ["node_modules/react-native/"],
     },
     overrides: [
         {
