@@ -19,12 +19,16 @@
   "main": "dist/index.js",
   "module": "dist/es/index.js",
   "types": "dist/index.d.ts",
+  "sideEffects": [
+    "**/*.css"
+  ],
   "exports": {
     ".": {
       "import": "./dist/es/index.js",
       "require": "./dist/index.js",
       "types": "./dist/index.d.ts"
     },
+    "./css": "./dist/index.css",
     "./styles.css": "./dist/css/vars.css"
   },
   "scripts": {
@@ -34,13 +38,12 @@
   },
   "dependencies": {
     "@khanacademy/wonder-blocks-core": "workspace:*",
-    "@khanacademy/wonder-blocks-layout": "workspace:*",
+    "@khanacademy/wonder-blocks-icon": "workspace:*",
     "@khanacademy/wonder-blocks-tokens": "workspace:*",
     "@khanacademy/wonder-blocks-typography": "workspace:*"
   },
   "peerDependencies": {
     "@phosphor-icons/core": "catalog:",
-    "aphrodite": "catalog:",
     "react": "catalog:"
   },
   "devDependencies": {
