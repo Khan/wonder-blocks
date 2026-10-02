@@ -166,8 +166,8 @@ const sharedFeedbackStrongTokens = {
 
 /**
  * Graphics tokens are used for illustrative and decorative elements such as
- * character art, gems, streaks, progress indicators, role badges, and
- * external brand colors.
+ * character art, gems, streaks, progress indicators, role badges, data
+ * visualization, and external brand colors.
  */
 const graphics = {
     characters: {
@@ -232,6 +232,18 @@ const graphics = {
                     strong: graphicsPalette.orange_10,
                 },
             },
+        },
+    },
+    dataViz: {
+        heatmap: {
+            step1: graphicsPalette.red_60,
+            step2: graphicsPalette.red_20,
+            step3: graphicsPalette.yellow_80,
+            step4: graphicsPalette.yellow_50,
+            step5: graphicsPalette.yellow_20,
+            step6: graphicsPalette.green_40,
+            step7: graphicsPalette.green_20,
+            step8: graphicsPalette.green_10,
         },
     },
     /**
@@ -349,8 +361,8 @@ export const semanticColor = {
     core,
     /**
      * Graphics tokens are used for illustrative and decorative elements such
-     * as character art, gems, streaks, progress indicators, role badges, and
-     * external brand colors.
+     * as character art, gems, streaks, progress indicators, role badges, data
+     * visualization, and external brand colors.
      */
     graphics,
     /**

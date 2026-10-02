@@ -347,6 +347,14 @@ import {semanticColor} from "@khanacademy/wonder-blocks-tokens";
 | \`semanticColor.graphics.characters.flesh.orange.border.subtle\` | \`--wb-semanticColor-graphics-characters-flesh-orange-border-subtle\` | \`#F97B4F\` | \`#F97B4F\` | \`#983C1A\` |
 | \`semanticColor.graphics.characters.flesh.orange.border.default\` | \`--wb-semanticColor-graphics-characters-flesh-orange-border-default\` | \`#C8481A\` | \`#C8481A\` | \`#C8481A\` |
 | \`semanticColor.graphics.characters.flesh.orange.border.strong\` | \`--wb-semanticColor-graphics-characters-flesh-orange-border-strong\` | \`#983C1A\` | \`#983C1A\` | \`#F97B4F\` |
+| \`semanticColor.graphics.dataViz.heatmap.step1\` | \`--wb-semanticColor-graphics-dataViz-heatmap-step1\` | \`#FBB1B1\` | \`#FBB1B1\` | \`#BE2626\` |
+| \`semanticColor.graphics.dataViz.heatmap.step2\` | \`--wb-semanticColor-graphics-dataViz-heatmap-step2\` | \`#BE2626\` | \`#BE2626\` | \`#FBB1B1\` |
+| \`semanticColor.graphics.dataViz.heatmap.step3\` | \`--wb-semanticColor-graphics-dataViz-heatmap-step3\` | \`#FEF1D0\` | \`#FEF1D0\` | \`#966B00\` |
+| \`semanticColor.graphics.dataViz.heatmap.step4\` | \`--wb-semanticColor-graphics-dataViz-heatmap-step4\` | \`#FDD673\` | \`#FDD673\` | \`#FCB706\` |
+| \`semanticColor.graphics.dataViz.heatmap.step5\` | \`--wb-semanticColor-graphics-dataViz-heatmap-step5\` | \`#D69900\` | \`#D69900\` | \`#FEE7AD\` |
+| \`semanticColor.graphics.dataViz.heatmap.step6\` | \`--wb-semanticColor-graphics-dataViz-heatmap-step6\` | \`#72BB82\` | \`#72BB82\` | \`#97D39E\` |
+| \`semanticColor.graphics.dataViz.heatmap.step7\` | \`--wb-semanticColor-graphics-dataViz-heatmap-step7\` | \`#3C6D4A\` | \`#3C6D4A\` | \`#BCEBBB\` |
+| \`semanticColor.graphics.dataViz.heatmap.step8\` | \`--wb-semanticColor-graphics-dataViz-heatmap-step8\` | \`#2C5037\` | \`#2C5037\` | \`#D5F3D5\` |
 | \`semanticColor.graphics.externalBrands.google.red\` | \`--wb-semanticColor-graphics-externalBrands-google-red\` | \`#EA4335\` | \`#EA4335\` | \`#EA4335\` |
 | \`semanticColor.graphics.externalBrands.google.yellow\` | \`--wb-semanticColor-graphics-externalBrands-google-yellow\` | \`#FBBC05\` | \`#FBBC05\` | \`#FBBC05\` |
 | \`semanticColor.graphics.externalBrands.google.green\` | \`--wb-semanticColor-graphics-externalBrands-google-green\` | \`#34A853\` | \`#34A853\` | \`#34A853\` |

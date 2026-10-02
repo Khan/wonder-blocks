@@ -287,6 +287,16 @@ export const GraphicsCharactersFlesh = () => {
     );
 };
 
+export const GraphicsDataVizHeatmap = () => {
+    return (
+        <ColorGroup
+            colors={semanticColor.graphics.dataViz.heatmap}
+            group="graphics.dataViz.heatmap"
+            valuePrefix={valuePrefix}
+        />
+    );
+};
+
 export const GraphicsGems = () => {
     return (
         <ColorGroupStory

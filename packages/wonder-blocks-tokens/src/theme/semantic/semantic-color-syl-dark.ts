@@ -614,6 +614,18 @@ export const semanticColor = mergeTheme(thunderblocksSemanticColor, {
                 },
             },
         },
+        dataViz: {
+            heatmap: {
+                step1: graphicsPalette.red_20,
+                step2: graphicsPalette.red_60,
+                step3: graphicsPalette.yellow_10,
+                step4: graphicsPalette.yellow_30,
+                step5: graphicsPalette.yellow_60,
+                step6: graphicsPalette.green_50,
+                step7: graphicsPalette.green_60,
+                step8: graphicsPalette.green_70,
+            },
+        },
         externalBrands: {
             apple: {
                 brand: "#FFFFFF",

@@ -247,6 +247,14 @@ character art, gems, streaks, roles, and more.
     layout="fullscreen"
 />
 
+#### Data visualization
+
+Heat map cell fills, running from the lowest bucket (`step1`) to the highest
+(`step8`). The color encodes which bucket a value falls into, so the step is
+chosen by the data rather than by a UI role such as `critical` or `success`.
+
+<Canvas of={SemanticColorGroups.GraphicsDataVizHeatmap} layout="fullscreen" />
+
 #### Gems
 
 <Canvas of={SemanticColorGroups.GraphicsGems} layout="fullscreen" />
