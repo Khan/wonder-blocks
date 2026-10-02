@@ -276,13 +276,6 @@ const BirthdayPicker = (props: Props) => {
         defaultValue || null,
     );
 
-    // Keep the latest props in a ref so the stable callbacks below always
-    // read the current values.
-    const onChangeRef = React.useRef(onChange);
-    onChangeRef.current = onChange;
-    const monthYearOnlyRef = React.useRef(monthYearOnly);
-    monthYearOnlyRef.current = monthYearOnly;
-
     /**
      * Report changes back to the calling component, but only if the value
      * has actually changed since the last time it was reported
@@ -294,10 +287,10 @@ const BirthdayPicker = (props: Props) => {
         (value?: string | null | undefined) => {
             if (value !== lastChangeValueRef.current) {
                 lastChangeValueRef.current = value;
-                onChangeRef.current(value);
+                onChange(value);
             }
         },
-        [],
+        [onChange],
     );
 
     /**
@@ -307,7 +300,6 @@ const BirthdayPicker = (props: Props) => {
      */
     const handleChange = React.useCallback((): void => {
         const {month, day, year} = valuesRef.current;
-        const monthYearOnly = monthYearOnlyRef.current;
 
         const dateFields = [year, month];
         if (!monthYearOnly) {
@@ -361,7 +353,7 @@ const BirthdayPicker = (props: Props) => {
             // toString() returns an ISO 8601 date string, which is YYYY-MM-DD.
             reportChange(date.toString());
         }
-    }, [labels, reportChange]);
+    }, [labels, monthYearOnly, reportChange]);
 
     const handleMonthChange = React.useCallback(
         (month: string) => {
