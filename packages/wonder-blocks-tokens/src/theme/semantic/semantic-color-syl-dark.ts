@@ -616,14 +616,38 @@ export const semanticColor = mergeTheme(thunderblocksSemanticColor, {
         },
         dataViz: {
             heatmap: {
-                step1: graphicsPalette.red_20,
-                step2: graphicsPalette.red_60,
-                step3: graphicsPalette.yellow_10,
-                step4: graphicsPalette.yellow_30,
-                step5: graphicsPalette.yellow_60,
-                step6: graphicsPalette.green_50,
-                step7: graphicsPalette.green_60,
-                step8: graphicsPalette.green_70,
+                step1: {
+                    background: graphicsPalette.red_20,
+                    foreground: graphicsPalette.white_100,
+                },
+                step2: {
+                    background: graphicsPalette.red_60,
+                    foreground: graphicsPalette.black_100,
+                },
+                step3: {
+                    background: graphicsPalette.yellow_10,
+                    foreground: graphicsPalette.white_100,
+                },
+                step4: {
+                    background: graphicsPalette.yellow_30,
+                    foreground: graphicsPalette.black_100,
+                },
+                step5: {
+                    background: graphicsPalette.yellow_60,
+                    foreground: graphicsPalette.black_100,
+                },
+                step6: {
+                    background: graphicsPalette.green_50,
+                    foreground: graphicsPalette.black_100,
+                },
+                step7: {
+                    background: graphicsPalette.green_60,
+                    foreground: graphicsPalette.black_100,
+                },
+                step8: {
+                    background: graphicsPalette.green_70,
+                    foreground: graphicsPalette.black_100,
+                },
             },
         },
         externalBrands: {

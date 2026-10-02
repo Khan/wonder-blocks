@@ -236,14 +236,38 @@ const graphics = {
     },
     dataViz: {
         heatmap: {
-            step1: graphicsPalette.red_60,
-            step2: graphicsPalette.red_20,
-            step3: graphicsPalette.yellow_80,
-            step4: graphicsPalette.yellow_50,
-            step5: graphicsPalette.yellow_20,
-            step6: graphicsPalette.green_40,
-            step7: graphicsPalette.green_20,
-            step8: graphicsPalette.green_10,
+            step1: {
+                background: graphicsPalette.red_60,
+                foreground: graphicsPalette.black_100,
+            },
+            step2: {
+                background: graphicsPalette.red_20,
+                foreground: graphicsPalette.white_100,
+            },
+            step3: {
+                background: graphicsPalette.yellow_80,
+                foreground: graphicsPalette.black_100,
+            },
+            step4: {
+                background: graphicsPalette.yellow_50,
+                foreground: graphicsPalette.black_100,
+            },
+            step5: {
+                background: graphicsPalette.yellow_20,
+                foreground: graphicsPalette.black_100,
+            },
+            step6: {
+                background: graphicsPalette.green_40,
+                foreground: graphicsPalette.black_100,
+            },
+            step7: {
+                background: graphicsPalette.green_20,
+                foreground: graphicsPalette.white_100,
+            },
+            step8: {
+                background: graphicsPalette.green_10,
+                foreground: graphicsPalette.white_100,
+            },
         },
     },
     /**
