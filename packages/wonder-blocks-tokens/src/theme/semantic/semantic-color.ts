@@ -166,8 +166,8 @@ const sharedFeedbackStrongTokens = {
 
 /**
  * Graphics tokens are used for illustrative and decorative elements such as
- * character art, gems, streaks, progress indicators, role badges, and
- * external brand colors.
+ * character art, gems, streaks, progress indicators, role badges, data
+ * visualization, and external brand colors.
  */
 const graphics = {
     characters: {
@@ -231,6 +231,54 @@ const graphics = {
                     default: graphicsPalette.orange_20,
                     strong: graphicsPalette.orange_10,
                 },
+            },
+        },
+    },
+    dataViz: {
+        heatmap: {
+            band0: {
+                background: graphicsPalette.red_50,
+                foreground: graphicsPalette.black_100,
+            },
+            band10: {
+                background: graphicsPalette.red_60,
+                foreground: graphicsPalette.black_100,
+            },
+            band20: {
+                background: graphicsPalette.orange_60,
+                foreground: graphicsPalette.black_100,
+            },
+            band30: {
+                background: graphicsPalette.orange_50,
+                foreground: graphicsPalette.black_100,
+            },
+            band40: {
+                background: graphicsPalette.yellow_40,
+                foreground: graphicsPalette.black_100,
+            },
+            band50: {
+                background: graphicsPalette.yellow_50,
+                foreground: graphicsPalette.black_100,
+            },
+            band60: {
+                background: graphicsPalette.yellow_60,
+                foreground: graphicsPalette.black_100,
+            },
+            band70: {
+                background: graphicsPalette.green_70,
+                foreground: graphicsPalette.black_100,
+            },
+            band80: {
+                background: graphicsPalette.green_60,
+                foreground: graphicsPalette.black_100,
+            },
+            band90: {
+                background: graphicsPalette.green_50,
+                foreground: graphicsPalette.black_100,
+            },
+            band100: {
+                background: graphicsPalette.green_40,
+                foreground: graphicsPalette.black_100,
             },
         },
     },
@@ -349,8 +397,8 @@ export const semanticColor = {
     core,
     /**
      * Graphics tokens are used for illustrative and decorative elements such
-     * as character art, gems, streaks, progress indicators, role badges, and
-     * external brand colors.
+     * as character art, gems, streaks, progress indicators, role badges, data
+     * visualization, and external brand colors.
      */
     graphics,
     /**
