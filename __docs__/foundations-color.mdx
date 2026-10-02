@@ -249,11 +249,12 @@ character art, gems, streaks, roles, and more.
 
 #### Data visualization
 
-Heat map cells, running from the lowest bucket (`step1`) to the highest
-(`step8`). The color encodes which bucket a value falls into, so the step is
-chosen by the data rather than by a UI role such as `critical` or `success`.
-Each step pairs a `background` fill with a `foreground` for the value shown in
-the cell.
+Heat map cells, in eleven bands from `band0` to `band100`. Each band is named
+for the first percentage it covers, so `band0` spans 0-9 and `band90` spans
+90-99, while `band100` is only ever an exact 100. The color encodes which band
+a value falls into, so the band is chosen by the data rather than by a UI role
+such as `critical` or `success`. Each band pairs a `background` fill with a
+`foreground` for the value shown in the cell.
 
 <Canvas of={SemanticColorGroups.GraphicsDataVizHeatmap} layout="fullscreen" />
 

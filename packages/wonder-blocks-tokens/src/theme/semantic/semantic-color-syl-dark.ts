@@ -616,36 +616,48 @@ export const semanticColor = mergeTheme(thunderblocksSemanticColor, {
         },
         dataViz: {
             heatmap: {
-                step1: {
+                band0: {
+                    background: graphicsPalette.red_30,
+                    foreground: graphicsPalette.white_100,
+                },
+                band10: {
                     background: graphicsPalette.red_20,
                     foreground: graphicsPalette.white_100,
                 },
-                step2: {
-                    background: graphicsPalette.red_60,
-                    foreground: graphicsPalette.black_100,
-                },
-                step3: {
-                    background: graphicsPalette.yellow_10,
+                band20: {
+                    background: graphicsPalette.orange_20,
                     foreground: graphicsPalette.white_100,
                 },
-                step4: {
+                band30: {
+                    background: graphicsPalette.orange_30,
+                    foreground: graphicsPalette.black_100,
+                },
+                band40: {
                     background: graphicsPalette.yellow_30,
                     foreground: graphicsPalette.black_100,
                 },
-                step5: {
-                    background: graphicsPalette.yellow_60,
+                band50: {
+                    background: graphicsPalette.yellow_20,
                     foreground: graphicsPalette.black_100,
                 },
-                step6: {
-                    background: graphicsPalette.green_50,
+                band60: {
+                    background: graphicsPalette.yellow_10,
+                    foreground: graphicsPalette.white_100,
+                },
+                band70: {
+                    background: graphicsPalette.green_10,
+                    foreground: graphicsPalette.white_100,
+                },
+                band80: {
+                    background: graphicsPalette.green_20,
+                    foreground: graphicsPalette.white_100,
+                },
+                band90: {
+                    background: graphicsPalette.green_30,
                     foreground: graphicsPalette.black_100,
                 },
-                step7: {
-                    background: graphicsPalette.green_60,
-                    foreground: graphicsPalette.black_100,
-                },
-                step8: {
-                    background: graphicsPalette.green_70,
+                band100: {
+                    background: graphicsPalette.green_40,
                     foreground: graphicsPalette.black_100,
                 },
             },

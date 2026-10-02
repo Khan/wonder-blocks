@@ -235,38 +235,53 @@ const graphics = {
         },
     },
     dataViz: {
+        // Each band is named for the first percentage it covers, so `band0`
+        // spans 0-9 and `band90` spans 90-99. `band100` is only ever an
+        // exact 100.
         heatmap: {
-            step1: {
+            band0: {
+                background: graphicsPalette.red_50,
+                foreground: graphicsPalette.black_100,
+            },
+            band10: {
                 background: graphicsPalette.red_60,
                 foreground: graphicsPalette.black_100,
             },
-            step2: {
-                background: graphicsPalette.red_20,
-                foreground: graphicsPalette.white_100,
-            },
-            step3: {
-                background: graphicsPalette.yellow_80,
+            band20: {
+                background: graphicsPalette.orange_60,
                 foreground: graphicsPalette.black_100,
             },
-            step4: {
+            band30: {
+                background: graphicsPalette.orange_50,
+                foreground: graphicsPalette.black_100,
+            },
+            band40: {
+                background: graphicsPalette.yellow_40,
+                foreground: graphicsPalette.black_100,
+            },
+            band50: {
                 background: graphicsPalette.yellow_50,
                 foreground: graphicsPalette.black_100,
             },
-            step5: {
-                background: graphicsPalette.yellow_20,
+            band60: {
+                background: graphicsPalette.yellow_60,
                 foreground: graphicsPalette.black_100,
             },
-            step6: {
+            band70: {
+                background: graphicsPalette.green_70,
+                foreground: graphicsPalette.black_100,
+            },
+            band80: {
+                background: graphicsPalette.green_60,
+                foreground: graphicsPalette.black_100,
+            },
+            band90: {
+                background: graphicsPalette.green_50,
+                foreground: graphicsPalette.black_100,
+            },
+            band100: {
                 background: graphicsPalette.green_40,
                 foreground: graphicsPalette.black_100,
-            },
-            step7: {
-                background: graphicsPalette.green_20,
-                foreground: graphicsPalette.white_100,
-            },
-            step8: {
-                background: graphicsPalette.green_10,
-                foreground: graphicsPalette.white_100,
             },
         },
     },

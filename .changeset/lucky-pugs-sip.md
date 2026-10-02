@@ -2,4 +2,4 @@
 "@khanacademy/wonder-blocks-tokens": minor
 ---
 
-Add `semanticColor.graphics.dataViz.heatmap` tokens. The eight steps are heat map cells running from the lowest bucket (`step1`) to the highest (`step8`), chosen by the data a cell represents rather than by a UI role such as `critical` or `success`. Each step pairs a `background` fill with a `foreground` for the value shown in the cell. The red-through-yellow-to-green hue progression is preserved in every theme, and the lightness of each step is mirrored in the SYL Dark theme so a step keeps the same relationship to the page background it has in light themes.
+Add `semanticColor.graphics.dataViz.heatmap` tokens: eleven bands from `band0` to `band100`, each named for the first percentage it covers, so `band0` spans 0-9 and `band90` spans 90-99, while `band100` is only ever an exact 100. The color encodes which band a value falls into, so the band is chosen by the data a cell represents rather than by a UI role such as `critical` or `success`. Each band pairs a `background` fill with a `foreground` for the value shown in the cell. The SYL Dark theme defines its own values for every band.

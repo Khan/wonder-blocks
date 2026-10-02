@@ -21,6 +21,7 @@ const ColorGroupStory = ({
     category,
     group,
     includeExample = false,
+    omitSwatches,
 }: PropsFor<typeof ActionColorGroup>) => {
     return (
         <View style={styles.gridCompact}>
@@ -28,6 +29,7 @@ const ColorGroupStory = ({
                 category={category}
                 group={group}
                 includeExample={includeExample}
+                omitSwatches={omitSwatches}
                 valuePrefix={valuePrefix}
             />
         </View>
@@ -292,6 +294,8 @@ export const GraphicsDataVizHeatmap = () => {
         <ColorGroupStory
             category={semanticColor.graphics.dataViz.heatmap}
             group="graphics.dataViz.heatmap"
+            includeExample={true}
+            omitSwatches={["background", "foreground"]}
         />
     );
 };
