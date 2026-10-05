@@ -253,26 +253,6 @@ const DropdownCore = (props: Props) => {
     // so this hook has to be called before them.
     const schedule = useActionScheduler();
 
-    // Keep the latest props in a ref, so that the stable callbacks below
-    // (e.g. the document listeners and the debounced handler) always read the
-    // current values, like `this.props` did.
-    const propsRef = React.useRef({
-        ...props,
-        autoFocus,
-        enableTypeAhead,
-        initialFocusedIndex,
-        labels: propLabels,
-        selectionType,
-    });
-    propsRef.current = {
-        ...props,
-        autoFocus,
-        enableTypeAhead,
-        initialFocusedIndex,
-        labels: propLabels,
-        selectionType,
-    };
-
     // The root element of the component, used to detect clicks outside of it.
     const rootRef = React.useRef<HTMLElement | null>(null);
 
@@ -346,8 +326,8 @@ const DropdownCore = (props: Props) => {
     });
 
     const hasSearchField = React.useCallback((): boolean => {
-        return !!propsRef.current.isFilterable;
-    }, []);
+        return !!isFilterable;
+    }, [isFilterable]);
 
     const isSearchFieldFocused = React.useCallback((): boolean => {
         return (
@@ -375,8 +355,6 @@ const DropdownCore = (props: Props) => {
 
     // Resets our initial focus index to what was passed in via the props
     const resetFocusedIndex = React.useCallback((): void => {
-        const {initialFocusedIndex} = propsRef.current;
-
         // If we are given an initial focus index, select it. Otherwise default
         // to the first item
         if (typeof initialFocusedIndex !== "undefined") {
@@ -388,7 +366,12 @@ const DropdownCore = (props: Props) => {
 
             focusedIndexRef.current = 0;
         }
-    }, [focusSearchField, hasSearchField, isSearchFieldFocused]);
+    }, [
+        focusSearchField,
+        hasSearchField,
+        initialFocusedIndex,
+        isSearchFieldFocused,
+    ]);
 
     // Apply our initial focus index (this used to happen in the constructor).
     const initializedRef = React.useRef(false);
@@ -404,8 +387,8 @@ const DropdownCore = (props: Props) => {
     const shouldVirtualizeList = React.useCallback((): boolean => {
         // Verify if the list is long enough to be virtualized (passes the
         // threshold).
-        return propsRef.current.items.length > VIRTUALIZE_THRESHOLD;
-    }, []);
+        return items.length > VIRTUALIZE_THRESHOLD;
+    }, [items]);
 
     /**
      * Focus on the current item.
@@ -430,7 +413,7 @@ const DropdownCore = (props: Props) => {
 
             const focusNode = () => {
                 // No point in doing work if we're not open.
-                if (!propsRef.current.open) {
+                if (!open) {
                     return;
                 }
 
@@ -483,7 +466,7 @@ const DropdownCore = (props: Props) => {
                 focusNode();
             }
         },
-        [schedule, shouldVirtualizeList],
+        [open, schedule, shouldVirtualizeList],
     );
 
     const scheduleToFocusCurrentItem = React.useCallback(
@@ -504,8 +487,6 @@ const DropdownCore = (props: Props) => {
     // Figure out focus states for the dropdown after it has changed from open
     // to closed or vice versa
     const maybeFocusInitialItem = React.useCallback(() => {
-        const {autoFocus, open} = propsRef.current;
-
         if (!autoFocus) {
             return;
         }
@@ -516,50 +497,41 @@ const DropdownCore = (props: Props) => {
         } else if (!open) {
             itemsClickedRef.current = false;
         }
-    }, [resetFocusedIndex, scheduleToFocusCurrentItem]);
+    }, [autoFocus, open, resetFocusedIndex, scheduleToFocusCurrentItem]);
 
-    const handleInteract = React.useCallback((event: Event) => {
-        const {open, onOpenChanged} = propsRef.current;
-        const target: Node = event.target as any;
-        const thisElement = rootRef.current;
-        if (
-            open &&
-            thisElement &&
-            !thisElement.contains(target) &&
-            popperElementRef.current &&
-            !popperElementRef.current.contains(target)
-        ) {
-            onOpenChanged(false);
+    // Close the menu when the user interacts outside of it. The listeners are
+    // only attached while the menu is open.
+    React.useEffect(() => {
+        if (!open) {
+            return;
         }
-    }, []);
 
-    const addEventListeners = React.useCallback(() => {
+        const handleInteract = (event: Event) => {
+            const target: Node = event.target as any;
+            const thisElement = rootRef.current;
+            if (
+                thisElement &&
+                !thisElement.contains(target) &&
+                popperElementRef.current &&
+                !popperElementRef.current.contains(target)
+            ) {
+                onOpenChanged(false);
+            }
+        };
+
         document.addEventListener("mouseup", handleInteract);
         document.addEventListener("touchend", handleInteract);
-    }, [handleInteract]);
-
-    const removeEventListeners = React.useCallback(() => {
-        document.removeEventListener("mouseup", handleInteract);
-        document.removeEventListener("touchend", handleInteract);
-    }, [handleInteract]);
-
-    const updateEventListeners = React.useCallback(() => {
-        if (propsRef.current.open) {
-            addEventListeners();
-        } else {
-            removeEventListeners();
-        }
-    }, [addEventListeners, removeEventListeners]);
-
-    // componentDidMount / componentWillUnmount
-    React.useEffect(() => {
-        updateEventListeners();
-        maybeFocusInitialItem();
 
         return () => {
-            removeEventListeners();
+            document.removeEventListener("mouseup", handleInteract);
+            document.removeEventListener("touchend", handleInteract);
         };
-        // This should only run on mount and unmount.
+    }, [open, onOpenChanged]);
+
+    // componentDidMount
+    React.useEffect(() => {
+        maybeFocusInitialItem();
+        // This should only run on mount.
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
@@ -594,7 +566,6 @@ const DropdownCore = (props: Props) => {
         }
 
         if (prevProps.open !== open) {
-            updateEventListeners();
             maybeFocusInitialItem();
         }
         // If the menu changed, but from open to open, figure out if we need
@@ -687,14 +658,14 @@ const DropdownCore = (props: Props) => {
         // position in the DOM, we need to manually return focus to the
         // opener element before we let the natural propagation of tab
         // shift the focus to the next element in the tab order.
-        if (propsRef.current.openerElement) {
-            propsRef.current.openerElement.focus();
+        if (openerElement) {
+            openerElement.focus();
         }
-    }, []);
+    }, [openerElement]);
 
     const handleKeyDownDebounceResult = React.useCallback(
         (key: string) => {
-            const foundIndex = propsRef.current.items
+            const foundIndex = items
                 .filter((item) => item.focusable)
                 .findIndex(({component}) => {
                     if (SeparatorItem.isClassOf(component)) {
@@ -715,11 +686,11 @@ const DropdownCore = (props: Props) => {
                 });
 
             if (foundIndex >= 0) {
-                const isClosed = !propsRef.current.open;
+                const isClosed = !open;
                 if (isClosed) {
                     // Open the menu to be able to focus on the item that matches
                     // the text suggested.
-                    propsRef.current.onOpenChanged(true);
+                    onOpenChanged(true);
                 }
                 // Update the focus reference.
                 focusedIndexRef.current = foundIndex;
@@ -727,13 +698,9 @@ const DropdownCore = (props: Props) => {
                 scheduleToFocusCurrentItem((node) => {
                     // Force click only if the dropdown is closed and we are using
                     // the SingleSelect component.
-                    if (
-                        propsRef.current.selectionType === "single" &&
-                        isClosed &&
-                        node
-                    ) {
+                    if (selectionType === "single" && isClosed && node) {
                         node.click();
-                        propsRef.current.onOpenChanged(false);
+                        onOpenChanged(false);
                     }
                 });
             }
@@ -741,7 +708,7 @@ const DropdownCore = (props: Props) => {
             // Otherwise, reset current text
             textSuggestionRef.current = "";
         },
-        [scheduleToFocusCurrentItem],
+        [items, onOpenChanged, open, scheduleToFocusCurrentItem, selectionType],
     );
 
     // Keep the latest version of the debounce result handler, so the debounced
