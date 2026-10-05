@@ -25,8 +25,8 @@ const styles = StyleSheet.create({
     },
     reference: {
         display: "inline-flex",
-        background: semanticColor.core.background.instructive.default,
-        color: semanticColor.core.foreground.knockout.default,
+        background: semanticColor.action.primary.progressive.default.background,
+        color: semanticColor.action.primary.progressive.default.foreground,
         padding: sizing.size_160,
         placeSelf: "center",
     },
