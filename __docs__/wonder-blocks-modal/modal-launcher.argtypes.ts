@@ -28,6 +28,13 @@ export default {
         },
     },
 
+    styles: {
+        control: {type: undefined},
+        table: {
+            type: {summary: "{backdrop?: StyleType}"},
+        },
+    },
+
     initialFocusId: {
         control: {type: "text"},
         description:

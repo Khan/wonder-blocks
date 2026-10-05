@@ -223,6 +223,19 @@ export const StateSheetStory: StoryComponentType = {
         chromatic: {
             modes: allThemeModes,
         },
+        a11y: {
+            config: {
+                rules: [
+                    {
+                        // Exclude color contrast rule for action styles as this
+                        // is only supported in the legacy theme and we want to
+                        // move away from this
+                        id: "color-contrast",
+                        enabled: false,
+                    },
+                ],
+            },
+        },
     },
 };
 

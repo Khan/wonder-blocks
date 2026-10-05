@@ -14,7 +14,6 @@ import {Strut} from "@khanacademy/wonder-blocks-layout";
 import Link from "@khanacademy/wonder-blocks-link";
 import {sizing} from "@khanacademy/wonder-blocks-tokens";
 import {BodyText} from "@khanacademy/wonder-blocks-typography";
-import {actionStyles} from "@khanacademy/wonder-blocks-styles";
 
 const mobile = "@media (max-width: 1023px)";
 
@@ -91,11 +90,7 @@ export const rightContentMappings: Mappings = {
     primaryButton: <Button>Submit</Button>,
     tertiaryButton: <Button kind="tertiary">Import...</Button>,
     nextVideoButton: <Button>Next Video</Button>,
-    lightButton: (
-        <Button kind="secondary" style={actionStyles.inverse}>
-            Go to Article
-        </Button>
-    ),
+    lightButton: <Button>Go to Article</Button>,
     link: (
         <Link href="#exercise">
             <BodyText weight="bold">Go to exercise</BodyText>
