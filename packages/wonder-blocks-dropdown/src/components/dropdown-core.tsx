@@ -9,7 +9,12 @@ import {VariableSizeList as List} from "react-window";
 
 import {semanticColor, border, sizing} from "@khanacademy/wonder-blocks-tokens";
 
-import {PropsFor, View, keys} from "@khanacademy/wonder-blocks-core";
+import {
+    PropsFor,
+    View,
+    keys,
+    useLatestRef,
+} from "@khanacademy/wonder-blocks-core";
 import SearchField from "@khanacademy/wonder-blocks-search-field";
 import {BodyText} from "@khanacademy/wonder-blocks-typography";
 import {useActionScheduler} from "@khanacademy/wonder-blocks-timing";
@@ -253,6 +258,11 @@ const DropdownCore = (props: Props) => {
     // so this hook has to be called before them.
     const schedule = useActionScheduler();
 
+    // Keep the latest `open` value in a ref, so that focus attempts that run
+    // asynchronously (in a timeout or animation frame) check the current value
+    // instead of the one from the render that scheduled them.
+    const openRef = useLatestRef(open);
+
     // The root element of the component, used to detect clicks outside of it.
     const rootRef = React.useRef<HTMLElement | null>(null);
 
@@ -413,7 +423,7 @@ const DropdownCore = (props: Props) => {
 
             const focusNode = () => {
                 // No point in doing work if we're not open.
-                if (!open) {
+                if (!openRef.current) {
                     return;
                 }
 
@@ -466,7 +476,7 @@ const DropdownCore = (props: Props) => {
                 focusNode();
             }
         },
-        [open, schedule, shouldVirtualizeList],
+        [openRef, schedule, shouldVirtualizeList],
     );
 
     const scheduleToFocusCurrentItem = React.useCallback(
