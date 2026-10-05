@@ -157,6 +157,97 @@ export const TriggerElement: StoryComponentType = {
     ),
 };
 
+// The custom triggers below render their own label, so they don't take
+// `children`.
+type CustomTriggerProps = Omit<React.ComponentProps<typeof Button>, "children">;
+
+/**
+ * A trigger that spreads the props it is given onto its element. It is a plain
+ * function component, so it can't receive a ref, and `Popover` finds its
+ * element in the DOM instead.
+ */
+function SpreadPropsTrigger(props: CustomTriggerProps) {
+    return <Button {...props}>Plain function component</Button>;
+}
+
+/**
+ * A trigger that forwards the ref it is given to its element, and spreads the
+ * props it is given onto it too.
+ */
+const ForwardRefTrigger = React.forwardRef(function ForwardRefTrigger(
+    props: CustomTriggerProps,
+    ref: React.ForwardedRef<HTMLButtonElement>,
+) {
+    return (
+        <Button {...props} ref={ref}>
+            forwardRef component
+        </Button>
+    );
+});
+
+/**
+ * The trigger (`children`) is the element the popover is anchored to, so
+ * `Popover` needs to know which DOM element it renders. The trigger can be any
+ * component type (a host element like `<button>`, a `React.forwardRef`
+ * component, a class component or a plain function component), as long as it
+ * does **at least one** of the following:
+ *
+ * 1. **Attach the ref it is given** to its element. `Popover` only passes a ref
+ *    to triggers that can receive one (host elements and `React.forwardRef`
+ *    components).
+ * 2. **Spread the props it is given** onto its element. `Popover` injects the
+ *    `id`, `aria-controls`, `aria-expanded` and `onClick` props, plus an
+ *    attribute it uses to find the element in the DOM.
+ *
+ * Wonder Blocks components such as `Button` and `IconButton` do both, so they
+ * can be used as triggers directly.
+ *
+ * For custom triggers, we recommend spreading the props even if the ref is
+ * forwarded: the `aria-controls` and `aria-expanded` props are needed for
+ * screen readers, and the `onClick` prop is what opens the popover when
+ * `children` is an element. A trigger's own `ref` keeps working, since
+ * `Popover` merges it with its own instead of replacing it.
+ *
+ * If the trigger does neither (e.g. a function component that ignores its
+ * props), the popover has nothing to anchor to, and a warning is logged in
+ * development.
+ *
+ * **NOTE:** When the trigger renders several elements, the popover is anchored
+ * to the one that receives the ref (or the props).
+ */
+export const CustomTriggers: StoryComponentType = {
+    render: function Render() {
+        return (
+            <View style={[styles.row, {gap: sizing.size_160}]}>
+                <Popover
+                    dismissEnabled={true}
+                    content={
+                        <PopoverContent
+                            closeButtonVisible
+                            title="Plain function component"
+                            content="Anchored through the props it spreads onto its element."
+                        />
+                    }
+                >
+                    <SpreadPropsTrigger />
+                </Popover>
+                <Popover
+                    dismissEnabled={true}
+                    content={
+                        <PopoverContent
+                            closeButtonVisible
+                            title="forwardRef component"
+                            content="Anchored through the ref it forwards to its element."
+                        />
+                    }
+                >
+                    <ForwardRefTrigger />
+                </Popover>
+            </View>
+        );
+    },
+};
+
 /**
  * Povoper can be closed via light dismiss. This means that the popover will be
  * closed under the following conditions:
