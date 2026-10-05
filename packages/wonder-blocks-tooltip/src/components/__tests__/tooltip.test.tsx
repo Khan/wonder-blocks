@@ -213,7 +213,7 @@ describe("Tooltip", () => {
                 expect(result).not.toHaveAttribute("aria-describedby");
             });
 
-            test("id provided, attaches aria-describedby when bubble is displayed", async () => {
+            test("id provided, does not attach aria-describedby when bubble is displayed", async () => {
                 // Arrange
                 const ue = userEvent.setup({
                     advanceTimers: jest.advanceTimersByTimeAsync,
@@ -232,13 +232,10 @@ describe("Tooltip", () => {
                 await act(() => jest.runOnlyPendingTimersAsync());
 
                 // Assert
-                expect(result).toHaveAttribute(
-                    "aria-describedby",
-                    "tooltip-2-aria-content",
-                );
+                expect(result).not.toHaveAttribute("aria-describedby");
             });
 
-            test("id provided, aria-describedby id matches bubble id", async () => {
+            test("id provided, bubble id is derived from the id", async () => {
                 // Arrange
                 const ue = userEvent.setup({
                     advanceTimers: jest.advanceTimersByTimeAsync,
@@ -258,7 +255,7 @@ describe("Tooltip", () => {
                 const tooltip = await screen.findByRole("tooltip");
 
                 // Assert
-                expect(node).toHaveAttribute("aria-describedby", tooltip.id);
+                expect(tooltip).toHaveAttribute("id", "tooltip-2-aria-content");
             });
 
             test("no id provided, does not aria-describedby when bubble is not visible", async () => {
@@ -375,7 +372,7 @@ describe("Tooltip", () => {
                 expect(result).not.toHaveAttribute("aria-describedby");
             });
 
-            test("id provided, attaches aria-describedby when bubble is displayed", async () => {
+            test("id provided, does not attach aria-describedby when bubble is displayed", async () => {
                 // Arrange
                 const ue = userEvent.setup({
                     advanceTimers: jest.advanceTimersByTimeAsync,
@@ -402,19 +399,16 @@ describe("Tooltip", () => {
                 await act(() => jest.runOnlyPendingTimersAsync());
 
                 // Assert
-                expect(result).toHaveAttribute(
-                    "aria-describedby",
-                    "tooltip-3-aria-content",
-                );
+                expect(result).not.toHaveAttribute("aria-describedby");
             });
 
-            test("id provided, aria-describedby id matches bubble id", async () => {
+            test("id provided, consumer can reference the bubble id with aria-describedby", async () => {
                 // Arrange
                 const ue = userEvent.setup({
                     advanceTimers: jest.advanceTimersByTimeAsync,
                 });
                 const anchor = (
-                    <View>
+                    <View aria-describedby="tooltip-3-aria-content">
                         <View>Anchor</View>
                     </View>
                 );
@@ -526,6 +520,60 @@ describe("Tooltip", () => {
 
                 // Assert
                 expect(result).toHaveAttribute("aria-describedby", tooltip.id);
+            });
+
+            test("keeps the consumer's aria-describedby when bubble is not displayed", async () => {
+                // Arrange
+                const ref: Element = await new Promise((resolve: any) => {
+                    render(
+                        <View>
+                            <Tooltip ref={resolve} content="Content">
+                                <View aria-describedby="consumer-hint">
+                                    <View>Anchor</View>
+                                </View>
+                            </Tooltip>
+                        </View>,
+                    );
+                });
+
+                // Act
+                const result = ReactDOM.findDOMNode(ref) as any;
+
+                // Assert
+                expect(result).toHaveAttribute(
+                    "aria-describedby",
+                    "consumer-hint",
+                );
+            });
+
+            test("keeps the consumer's aria-describedby when bubble is displayed", async () => {
+                // Arrange
+                const ue = userEvent.setup({
+                    advanceTimers: jest.advanceTimersByTimeAsync,
+                });
+                const ref: Element = await new Promise((resolve: any) => {
+                    render(
+                        <View>
+                            <Tooltip ref={resolve} content="Content">
+                                <View aria-describedby="consumer-hint">
+                                    <View>Anchor</View>
+                                </View>
+                            </Tooltip>
+                        </View>,
+                    );
+                });
+
+                // Act
+                const result = ReactDOM.findDOMNode(ref) as any;
+                await ue.hover(result);
+                await act(() => jest.runOnlyPendingTimersAsync());
+                await screen.findByRole("tooltip");
+
+                // Assert
+                expect(result).toHaveAttribute(
+                    "aria-describedby",
+                    "consumer-hint",
+                );
             });
         });
     });

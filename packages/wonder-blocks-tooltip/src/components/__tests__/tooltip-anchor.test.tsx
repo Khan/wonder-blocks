@@ -42,7 +42,7 @@ describe("TooltipAnchor", () => {
             <TooltipAnchor
                 anchorRef={() => {}}
                 onActiveChanged={() => {}}
-                aria-describedby="ignore-this"
+                ariaDescribedBy="ignore-this"
             >
                 Anchor text
             </TooltipAnchor>,
@@ -78,7 +78,7 @@ describe("TooltipAnchor", () => {
             <TooltipAnchor
                 anchorRef={() => {}}
                 onActiveChanged={() => {}}
-                aria-describedby="ignore-this"
+                ariaDescribedBy="ignore-this"
             >
                 Anchor text
             </TooltipAnchor>,
@@ -115,7 +115,7 @@ describe("TooltipAnchor", () => {
                 forceAnchorFocusivity={true}
                 anchorRef={anchorRef}
                 onActiveChanged={() => {}}
-                aria-describedby="ignore-this"
+                ariaDescribedBy="ignore-this"
             >
                 <View id="portal">This is the anchor</View>
             </TooltipAnchor>,
@@ -136,7 +136,7 @@ describe("TooltipAnchor", () => {
                     forceAnchorFocusivity={true}
                     anchorRef={jest.fn()}
                     onActiveChanged={() => {}}
-                    aria-describedby="ignore-this"
+                    ariaDescribedBy="ignore-this"
                 >
                     <View id="portal">This is the anchor</View>
                 </TooltipAnchor>,
@@ -156,7 +156,7 @@ describe("TooltipAnchor", () => {
                     forceAnchorFocusivity={true}
                     anchorRef={jest.fn()}
                     onActiveChanged={() => {}}
-                    aria-describedby="ignore-this"
+                    ariaDescribedBy="ignore-this"
                 >
                     <View tabIndex={-1}>This is the anchor</View>
                 </TooltipAnchor>,
@@ -178,7 +178,7 @@ describe("TooltipAnchor", () => {
                     forceAnchorFocusivity={false}
                     anchorRef={jest.fn()}
                     onActiveChanged={() => {}}
-                    aria-describedby="ignore-this"
+                    ariaDescribedBy="ignore-this"
                 >
                     <View>This is the anchor</View>
                 </TooltipAnchor>,
@@ -198,7 +198,7 @@ describe("TooltipAnchor", () => {
                     forceAnchorFocusivity={props.force}
                     anchorRef={jest.fn()}
                     onActiveChanged={() => {}}
-                    aria-describedby="ignore-this"
+                    ariaDescribedBy="ignore-this"
                 >
                     <View>This is the anchor</View>
                 </TooltipAnchor>
@@ -225,7 +225,7 @@ describe("TooltipAnchor", () => {
                     forceAnchorFocusivity={props.force}
                     anchorRef={jest.fn()}
                     onActiveChanged={() => {}}
-                    aria-describedby="ignore-this"
+                    ariaDescribedBy="ignore-this"
                 >
                     <View tabIndex={-1}>This is the anchor</View>
                 </TooltipAnchor>
@@ -267,7 +267,7 @@ describe("TooltipAnchor", () => {
                     onActiveChanged={(active: any) => {
                         activeState = active;
                     }}
-                    aria-describedby="tooltip-description"
+                    ariaDescribedBy="tooltip-description"
                 >
                     Anchor Text
                 </TooltipAnchor>,
@@ -310,7 +310,7 @@ describe("TooltipAnchor", () => {
                     onActiveChanged={(active: any) => {
                         activeState = active;
                     }}
-                    aria-describedby="tooltip-description"
+                    ariaDescribedBy="tooltip-description"
                 >
                     Anchor Text
                 </TooltipAnchor>,
@@ -340,7 +340,7 @@ describe("TooltipAnchor", () => {
                     onActiveChanged={(active: any) => {
                         activeState = active;
                     }}
-                    aria-describedby="tooltip-description"
+                    ariaDescribedBy="tooltip-description"
                 >
                     Anchor Text
                 </TooltipAnchor>,
@@ -387,7 +387,7 @@ describe("TooltipAnchor", () => {
                     onActiveChanged={(active: any) => {
                         activeState = active;
                     }}
-                    aria-describedby="tooltip-description"
+                    ariaDescribedBy="tooltip-description"
                 >
                     Anchor Text
                 </TooltipAnchor>,
@@ -429,7 +429,7 @@ describe("TooltipAnchor", () => {
                     onActiveChanged={(active: any) => {
                         activeState = active;
                     }}
-                    aria-describedby="tooltip-description"
+                    ariaDescribedBy="tooltip-description"
                 >
                     Anchor Text
                 </TooltipAnchor>,
@@ -472,7 +472,7 @@ describe("TooltipAnchor", () => {
                     onActiveChanged={(active: any) => {
                         activeState = active;
                     }}
-                    aria-describedby="tooltip-description"
+                    ariaDescribedBy="tooltip-description"
                 >
                     Anchor Text
                 </TooltipAnchor>,
@@ -507,7 +507,7 @@ describe("TooltipAnchor", () => {
                     onActiveChanged={(active: any) => {
                         activeState = active;
                     }}
-                    aria-describedby="tooltip-description"
+                    ariaDescribedBy="tooltip-description"
                 >
                     Anchor Text
                 </TooltipAnchor>,
@@ -560,7 +560,7 @@ describe("TooltipAnchor", () => {
                     onActiveChanged={(active: any) => {
                         activeState = active;
                     }}
-                    aria-describedby="tooltip-description"
+                    ariaDescribedBy="tooltip-description"
                 >
                     Anchor Text
                 </TooltipAnchor>,
@@ -602,7 +602,7 @@ describe("TooltipAnchor", () => {
                     onActiveChanged={(active: any) => {
                         activeState = active;
                     }}
-                    aria-describedby="tooltip-description"
+                    ariaDescribedBy="tooltip-description"
                 >
                     Anchor Text
                 </TooltipAnchor>,
@@ -631,7 +631,7 @@ describe("TooltipAnchor", () => {
                     onActiveChanged={(active: any) => {
                         activeState = active;
                     }}
-                    aria-describedby="tooltip-description"
+                    ariaDescribedBy="tooltip-description"
                 >
                     Anchor Text
                 </TooltipAnchor>,
@@ -677,7 +677,7 @@ describe("TooltipAnchor", () => {
                     onActiveChanged={(active: any) => {
                         activeState = active;
                     }}
-                    aria-describedby="tooltip-description"
+                    ariaDescribedBy="tooltip-description"
                 >
                     Anchor Text
                 </TooltipAnchor>,
@@ -718,7 +718,7 @@ describe("TooltipAnchor", () => {
                     onActiveChanged={(active: any) => {
                         activeState = active;
                     }}
-                    aria-describedby="tooltip-description"
+                    ariaDescribedBy="tooltip-description"
                 >
                     Anchor Text
                 </TooltipAnchor>,
@@ -759,7 +759,7 @@ describe("TooltipAnchor", () => {
                     onActiveChanged={(active: any) => {
                         activeState = active;
                     }}
-                    aria-describedby="tooltip-description"
+                    ariaDescribedBy="tooltip-description"
                 >
                     Anchor Text
                 </TooltipAnchor>,
@@ -792,7 +792,7 @@ describe("TooltipAnchor", () => {
                     onActiveChanged={(active: any) => {
                         activeState = active;
                     }}
-                    aria-describedby="tooltip-description"
+                    ariaDescribedBy="tooltip-description"
                 >
                     Anchor Text
                 </TooltipAnchor>,
@@ -833,7 +833,7 @@ describe("TooltipAnchor", () => {
                 <TooltipAnchor
                     anchorRef={jest.fn()}
                     onActiveChanged={() => {}}
-                    aria-describedby="tooltip-description"
+                    ariaDescribedBy="tooltip-description"
                 >
                     Anchor Text
                 </TooltipAnchor>,
@@ -863,7 +863,7 @@ describe("TooltipAnchor", () => {
                 <TooltipAnchor
                     anchorRef={jest.fn()}
                     onActiveChanged={() => {}}
-                    aria-describedby="tooltip-description"
+                    ariaDescribedBy="tooltip-description"
                 >
                     Anchor Text
                 </TooltipAnchor>,
@@ -898,7 +898,7 @@ describe("TooltipAnchor", () => {
                 <TooltipAnchor
                     anchorRef={jest.fn()}
                     onActiveChanged={() => {}}
-                    aria-describedby="tooltip-description"
+                    ariaDescribedBy="tooltip-description"
                 >
                     Anchor Text
                 </TooltipAnchor>,
@@ -938,7 +938,7 @@ describe("TooltipAnchor", () => {
                 <TooltipAnchor
                     anchorRef={jest.fn()}
                     onActiveChanged={() => {}}
-                    aria-describedby="tooltip-description"
+                    ariaDescribedBy="tooltip-description"
                 >
                     Anchor Text
                 </TooltipAnchor>,
@@ -973,7 +973,7 @@ describe("TooltipAnchor", () => {
                     onActiveChanged={(active: any) => {
                         activeState = active;
                     }}
-                    aria-describedby="tooltip-description"
+                    ariaDescribedBy="tooltip-description"
                 >
                     Anchor Text
                 </TooltipAnchor>,
@@ -1009,7 +1009,7 @@ describe("TooltipAnchor", () => {
                 <TooltipAnchor
                     anchorRef={jest.fn()}
                     onActiveChanged={() => {}}
-                    aria-describedby="tooltip-description"
+                    ariaDescribedBy="tooltip-description"
                 >
                     Anchor Text
                 </TooltipAnchor>,
@@ -1038,6 +1038,79 @@ describe("TooltipAnchor", () => {
 
             // Assert
             expect(spyOnStopPropagation).toHaveBeenCalled();
+        });
+    });
+
+    describe("aria-describedby", () => {
+        test("applies ariaDescribedBy to a child without aria-describedby", async () => {
+            // Arrange
+            render(
+                <TooltipAnchor
+                    anchorRef={() => {}}
+                    onActiveChanged={() => {}}
+                    ariaDescribedBy="tooltip-description"
+                >
+                    <View>Anchor</View>
+                </TooltipAnchor>,
+            );
+
+            // Act
+            const anchor = await screen.findByText("Anchor");
+
+            // Assert
+            expect(anchor).toHaveAttribute(
+                "aria-describedby",
+                "tooltip-description",
+            );
+        });
+
+        test("does not add aria-describedby when ariaDescribedBy is undefined", async () => {
+            // Arrange
+            render(
+                <TooltipAnchor anchorRef={() => {}} onActiveChanged={() => {}}>
+                    <View>Anchor</View>
+                </TooltipAnchor>,
+            );
+
+            // Act
+            const anchor = await screen.findByText("Anchor");
+
+            // Assert
+            expect(anchor).not.toHaveAttribute("aria-describedby");
+        });
+
+        test("keeps the child's aria-describedby when ariaDescribedBy is undefined", async () => {
+            // Arrange
+            render(
+                <TooltipAnchor anchorRef={() => {}} onActiveChanged={() => {}}>
+                    <View aria-describedby="consumer-hint">Anchor</View>
+                </TooltipAnchor>,
+            );
+
+            // Act
+            const anchor = await screen.findByText("Anchor");
+
+            // Assert
+            expect(anchor).toHaveAttribute("aria-describedby", "consumer-hint");
+        });
+
+        test("keeps the child's aria-describedby when ariaDescribedBy is provided", async () => {
+            // Arrange
+            render(
+                <TooltipAnchor
+                    anchorRef={() => {}}
+                    onActiveChanged={() => {}}
+                    ariaDescribedBy="tooltip-description"
+                >
+                    <View aria-describedby="consumer-hint">Anchor</View>
+                </TooltipAnchor>,
+            );
+
+            // Act
+            const anchor = await screen.findByText("Anchor");
+
+            // Assert
+            expect(anchor).toHaveAttribute("aria-describedby", "consumer-hint");
         });
     });
 });

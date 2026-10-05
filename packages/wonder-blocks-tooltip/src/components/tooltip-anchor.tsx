@@ -53,12 +53,12 @@ type Props = {
      */
     onActiveChanged: (active: boolean) => unknown;
     /**
-     * Required aria-describedby id.
      * This ID will reference the text in the tooltip bubble.
      * It should only be set to `undefined` when the tooltip bubble
-     * is not visible.
+     * is not visible, or when the consumer is handling their own
+     * a11y concerns.
      */
-    "aria-describedby": string | undefined;
+    ariaDescribedBy?: string;
 };
 
 type DefaultProps = {
@@ -322,11 +322,20 @@ export default class TooltipAnchor
     }
 
     render(): React.ReactNode {
-        const {"aria-describedby": ariaDescribedBy} = this.props;
+        const {ariaDescribedBy} = this.props;
         const anchorableChildren = this._renderAnchorableChildren();
+        const consumerDescribedBy =
+            anchorableChildren.props["aria-describedby"];
 
-        return React.cloneElement(anchorableChildren, {
-            "aria-describedby": ariaDescribedBy,
-        });
+        return React.cloneElement(
+            anchorableChildren,
+            // don't override consumer's prop with "undefined", and don't
+            // replace it with ours when they've provided their own
+            ariaDescribedBy && !consumerDescribedBy
+                ? {
+                      "aria-describedby": ariaDescribedBy,
+                  }
+                : {},
+        );
     }
 }

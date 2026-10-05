@@ -57,11 +57,11 @@ type Props = AriaProps &
             | React.ReactElement<React.ComponentProps<typeof TooltipContent>>;
         /**
          * The unique identifier to give to the tooltip. Provide this in cases where
-         * you want to override the default accessibility solution. This identifier
-         * will be applied to the tooltip bubble content.
+         * you want to override the default accessibility solution. The tooltip
+         * bubble content will be given the id `${id}-aria-content`.
          *
          * By providing this identifier, the children that this tooltip anchors to
-         * will not be automatically given the aria-desribedby attribute. Instead,
+         * will not be automatically given the aria-describedby attribute. Instead,
          * the accessibility solution is the responsibility of the caller.
          *
          * If this is not provided, the aria-describedby attribute will be added
@@ -272,7 +272,7 @@ export default class Tooltip extends React.Component<Props, State> {
     }
 
     _renderTooltipAnchor(uniqueId: string): React.ReactNode {
-        const {autoUpdate, children, forceAnchorFocusivity} = this.props;
+        const {autoUpdate, children, forceAnchorFocusivity, id} = this.props;
         const {active, activeBubble} = this.state;
 
         const popperHost = this._getHost();
@@ -293,8 +293,10 @@ export default class Tooltip extends React.Component<Props, State> {
                     forceAnchorFocusivity={forceAnchorFocusivity}
                     anchorRef={(r) => this._updateAnchorElement(r)}
                     onActiveChanged={(active) => this.setState({active})}
-                    aria-describedby={
-                        shouldBeVisible ? ariaContentId : undefined
+                    ariaDescribedBy={
+                        // When an id is provided, the consumer is responsible
+                        // for wiring up the accessibility solution.
+                        !id && shouldBeVisible ? ariaContentId : undefined
                     }
                 >
                     {children}
