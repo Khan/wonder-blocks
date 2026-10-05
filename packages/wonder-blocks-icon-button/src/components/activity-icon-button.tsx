@@ -133,13 +133,7 @@ export const ActivityIconButton: React.ForwardRefExoticComponent<
             {...(!hasVisibleLabel ? {"aria-label": ariaLabel} : {})}
         >
             <>
-                {/* NOTE: The plain `chonky` className is kept as a
-                consumer/test hook. It no longer drives styling — the box is
-                styled by descendant selectors from the root in the CSS
-                module. */}
-                <View style={chonkyStyles} className="chonky">
-                    {iconElement}
-                </View>
+                <View style={chonkyStyles}>{iconElement}</View>
                 {hasVisibleLabel && (
                     <BodyText
                         tag="span"
