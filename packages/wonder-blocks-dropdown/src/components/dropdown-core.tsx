@@ -214,71 +214,6 @@ const createItemRefs = (items: Array<DropdownItem>): ItemRefs => {
     return itemRefs;
 };
 
-type DerivedItems = {
-    itemRefs: ItemRefs;
-    /**
-     * Whether the set of items that are focusable are the same, used for
-     * resetting focusedIndex and focusedOriginalIndex when an update
-     * happens.
-     */
-    sameItemsFocusable: boolean;
-};
-
-/**
- * Returns the refs used for keyboard focus, which only include the focusable
- * items.
- *
- * This mirrors what `getDerivedStateFromProps` did in the class version: we
- * avoid calling React.createRef on each rerender. Instead, we create the
- * itemRefs only if it's the first time or if the set of items that are
- * focusable has changed. The committed values are stored in a ref, and the
- * values for the current render are derived from them.
- *
- * @returns `derivedItems`, the values for the current render, and
- * `itemRefsRef`, which holds the latest committed itemRefs so that callbacks
- * can read them after the render has been committed (like
- * `this.state.itemRefs`).
- */
-const useItemRefs = (
-    items: Array<DropdownItem>,
-    open: boolean,
-): {
-    derivedItems: DerivedItems;
-    itemRefsRef: {readonly current: ItemRefs};
-} => {
-    const committedItemsRef = React.useRef<{
-        itemRefs: ItemRefs;
-        /**
-         * We store the previous items just to be able to compare them to see
-         * if we need to update itemRefs.
-         */
-        prevItems: Array<DropdownItem>;
-    }>({itemRefs: [], prevItems: items});
-
-    const {itemRefs: prevItemRefs, prevItems} = committedItemsRef.current;
-    const shouldCreateItemRefs =
-        (prevItemRefs.length === 0 && open) ||
-        !sameItemsFocusable(prevItems, items);
-
-    const derivedItems: DerivedItems = shouldCreateItemRefs
-        ? {itemRefs: createItemRefs(items), sameItemsFocusable: false}
-        : {itemRefs: prevItemRefs, sameItemsFocusable: true};
-
-    // Keep the latest itemRefs in a ref, so that callbacks can read them after
-    // the render has been committed (like `this.state.itemRefs`).
-    const itemRefsRef = React.useRef<ItemRefs>(derivedItems.itemRefs);
-
-    React.useEffect(() => {
-        committedItemsRef.current = {
-            itemRefs: derivedItems.itemRefs,
-            prevItems: items,
-        };
-        itemRefsRef.current = derivedItems.itemRefs;
-    });
-
-    return {derivedItems, itemRefsRef};
-};
-
 const defaultPropLabels: LabelsValues = {
     clearSearch: defaultLabels.clearSearch,
     filter: defaultLabels.filter,
@@ -356,7 +291,49 @@ const DropdownCore = (props: Props) => {
 
     // Refs to use for keyboard focus, contains only those for focusable items.
     // Also keeps track of the original index of the item.
-    const {derivedItems, itemRefsRef} = useItemRefs(items, open);
+    //
+    // This mirrors what `getDerivedStateFromProps` did in the class version:
+    // we avoid calling React.createRef on each rerender. Instead, we create
+    // the itemRefs only if it's the first time or if the set of items that are
+    // focusable has changed. The committed values are stored in this ref, and
+    // the values for the current render are derived from them below.
+    const committedItemsRef = React.useRef<{
+        itemRefs: ItemRefs;
+        /**
+         * We store the previous items just to be able to compare them to see
+         * if we need to update itemRefs.
+         */
+        prevItems: Array<DropdownItem>;
+    }>({itemRefs: [], prevItems: items});
+
+    const {itemRefs: prevItemRefs, prevItems} = committedItemsRef.current;
+    const shouldCreateItemRefs =
+        (prevItemRefs.length === 0 && open) ||
+        !sameItemsFocusable(prevItems, items);
+
+    const derivedItems: {
+        itemRefs: ItemRefs;
+        /**
+         * Whether the set of items that are focusable are the same, used for
+         * resetting focusedIndex and focusedOriginalIndex when an update
+         * happens.
+         */
+        sameItemsFocusable: boolean;
+    } = shouldCreateItemRefs
+        ? {itemRefs: createItemRefs(items), sameItemsFocusable: false}
+        : {itemRefs: prevItemRefs, sameItemsFocusable: true};
+
+    // Keep the latest itemRefs in a ref, so that callbacks can read them after
+    // the render has been committed (like `this.state.itemRefs`).
+    const itemRefsRef = React.useRef<ItemRefs>(derivedItems.itemRefs);
+
+    React.useEffect(() => {
+        committedItemsRef.current = {
+            itemRefs: derivedItems.itemRefs,
+            prevItems: items,
+        };
+        itemRefsRef.current = derivedItems.itemRefs;
+    });
 
     const hasSearchField = React.useCallback((): boolean => {
         return !!isFilterable;
@@ -499,7 +476,7 @@ const DropdownCore = (props: Props) => {
                 focusNode();
             }
         },
-        [itemRefsRef, openRef, schedule, shouldVirtualizeList],
+        [openRef, schedule, shouldVirtualizeList],
     );
 
     const scheduleToFocusCurrentItem = React.useCallback(
@@ -577,7 +554,7 @@ const DropdownCore = (props: Props) => {
         open: boolean;
         searchText: string | null | undefined;
         labels: LabelsValues;
-        derivedItems: DerivedItems;
+        derivedItems: typeof derivedItems;
     } | null>(null);
     // This runs after every update, like componentDidUpdate. It can't cause an
     // infinite loop: `setLabels` is only called when the `labels` prop changed
@@ -660,7 +637,6 @@ const DropdownCore = (props: Props) => {
         focusSearchField,
         hasSearchField,
         isSearchFieldFocused,
-        itemRefsRef,
         scheduleToFocusCurrentItem,
     ]);
 
@@ -684,7 +660,6 @@ const DropdownCore = (props: Props) => {
         focusSearchField,
         hasSearchField,
         isSearchFieldFocused,
-        itemRefsRef,
         scheduleToFocusCurrentItem,
     ]);
 
