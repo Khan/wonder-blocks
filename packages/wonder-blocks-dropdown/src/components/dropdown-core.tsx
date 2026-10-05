@@ -14,6 +14,7 @@ import {
     View,
     keys,
     useLatestRef,
+    useOnMountEffect,
 } from "@khanacademy/wonder-blocks-core";
 import SearchField from "@khanacademy/wonder-blocks-search-field";
 import {BodyText} from "@khanacademy/wonder-blocks-typography";
@@ -539,11 +540,9 @@ const DropdownCore = (props: Props) => {
     }, [open, onOpenChanged]);
 
     // componentDidMount
-    React.useEffect(() => {
+    useOnMountEffect(() => {
         maybeFocusInitialItem();
-        // This should only run on mount.
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+    });
 
     // componentDidUpdate
     //
