@@ -23,6 +23,12 @@ type Props = AriaProps & {
      * children-as-function pattern to pass an open function for use anywhere
      * within children. The latter provides a lot of flexibility in terms of
      * what actions may trigger the `Popover` to launch the popover dialog.
+     *
+     * The trigger can be any component type, but it has to either attach the
+     * ref it is given or spread the props it is given onto its element, so
+     * that the popover can be anchored to it. Spreading the props is
+     * recommended, since they include the ARIA attributes and the `onClick`
+     * handler that opens the popover. See the "Custom Triggers" example.
      */
     children:
         | React.ReactElement<any>

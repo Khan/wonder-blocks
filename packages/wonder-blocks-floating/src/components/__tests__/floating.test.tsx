@@ -152,7 +152,98 @@ describe("Floating", () => {
             expect(secondContent).toBeInTheDocument();
         });
 
-        it("should not render the floating content when the trigger doesn't spread the props it is given", () => {
+        it("should use the element the ref is attached to as the reference element when the trigger drops the props it is given", () => {
+            // Arrange
+            // A trigger that can receive a ref doesn't have to spread the props
+            // it is given to be anchored to, which matters for components that
+            // only forward the props they know about.
+            const NoSpreadTrigger = React.forwardRef<
+                HTMLButtonElement,
+                {children: React.ReactNode}
+            >((props, ref) => <button ref={ref}>{props.children}</button>);
+
+            render(
+                <Floating content="Floating content" open={true}>
+                    <NoSpreadTrigger>Trigger</NoSpreadTrigger>
+                </Floating>,
+            );
+
+            // Act
+            // The floating content is only rendered once the reference element
+            // has been resolved.
+            const content = screen.getByText("Floating content");
+
+            // Assert
+            expect(content).toBeInTheDocument();
+        });
+
+        it("should keep the trigger's own ref when injecting its own", () => {
+            // Arrange
+            const triggerRef = React.createRef<HTMLButtonElement>();
+
+            render(
+                <Floating content="Floating content" open={true}>
+                    <button ref={triggerRef}>Trigger</button>
+                </Floating>,
+            );
+
+            // Act
+            const trigger = screen.getByRole("button", {name: "Trigger"});
+
+            // Assert
+            expect(triggerRef.current).toBe(trigger);
+        });
+
+        it("should keep anchoring to the trigger when its own ref changes identity", () => {
+            // Arrange
+            // An inline ref callback is a new function every time the parent
+            // renders, so the merged ref has to keep resolving the trigger's
+            // element as the ref it merges is swapped out.
+            const InlineRefTrigger = () => {
+                const [, forceRender] = React.useState(0);
+
+                return (
+                    <>
+                        <button onClick={() => forceRender((n) => n + 1)}>
+                            Re-render
+                        </button>
+                        <Floating content="Floating content" open={true}>
+                            <button ref={() => {}}>Trigger</button>
+                        </Floating>
+                    </>
+                );
+            };
+
+            render(<InlineRefTrigger />);
+
+            // Act
+            // eslint-disable-next-line testing-library/no-unnecessary-act -- the re-render swaps the inline ref, which is what we're exercising
+            screen.getByRole("button", {name: "Re-render"}).click();
+
+            // Assert
+            expect(screen.getByText("Floating content")).toBeInTheDocument();
+        });
+
+        it("should not inject a ref into a trigger that can't receive one", () => {
+            // Arrange
+            const consoleErrorSpy = jest
+                .spyOn(console, "error")
+                .mockImplementation(() => {});
+
+            // Act
+            // React would log `Function components cannot be given refs` if we
+            // injected a ref into a plain function component.
+            render(
+                <Floating content="Floating content" open={true}>
+                    <SpreadTrigger>Trigger</SpreadTrigger>
+                </Floating>,
+            );
+
+            // Assert
+            expect(consoleErrorSpy).not.toHaveBeenCalled();
+        });
+
+        it("should not render the floating content when the trigger neither attaches the ref nor spreads the props it is given", () => {
             // Arrange
             // Without the injected props there is no way to find the trigger's
             // DOM element, so there is no reference element to anchor to.

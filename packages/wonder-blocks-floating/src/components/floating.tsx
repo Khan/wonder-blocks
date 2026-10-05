@@ -10,6 +10,7 @@ import {
     Placement,
     useDismiss,
     useInteractions,
+    useMergeRefs,
     FloatingFocusManager,
 } from "@floating-ui/react";
 import {StyleSheet} from "aphrodite";
@@ -26,6 +27,7 @@ import {
 import {Arrow, type ArrowStyles} from "./floating-arrow";
 import {Portal} from "./floating-portal";
 import {rtlMirror} from "../util/rtl-mirror-middleware";
+import {canAcceptRef, getElementRef} from "../util/trigger-refs";
 
 const StyledDiv = addStyle("div");
 
@@ -37,14 +39,19 @@ type FloatingProps = {
      * No wrapper element is rendered around the trigger, so the DOM hierarchy
      * stays exactly as the consumer wrote it.
      *
-     * The trigger never has to accept, forward or attach a ref, and its type
-     * doesn't matter (host element, `React.forwardRef` component, class
-     * component or plain function component). It only has to spread the props
-     * it is given (which it needs to do anyway for the interaction and ARIA
-     * props) onto the element the floating element should be anchored to, and
-     * `Floating` finds that element in the DOM. A trigger that renders several
-     * elements therefore chooses the one to anchor to by spreading the props
-     * onto it.
+     * The trigger has to do one of two things for the floating element to be
+     * anchored to it, and most triggers already do both:
+     *
+     * - Attach the ref it is given to its element. `Floating` only injects a
+     *   ref into triggers that can receive one (host elements such as
+     *   `<button>`, and `React.forwardRef` components), so triggers that can't
+     *   (e.g. plain function components) never get a React warning about it.
+     * - Spread the props it is given (which it needs to do anyway for the
+     *   interaction and ARIA props) onto its element. `Floating` then finds
+     *   that element in the DOM by the attribute it injected.
+     *
+     * A trigger that renders several elements chooses the one to anchor to by
+     * attaching the ref (or spreading the props) onto it.
      */
     children: React.ReactElement;
     /**
@@ -351,31 +358,70 @@ export default function Floating({
     const {setReference} = refs;
 
     // Identifies this instance's trigger in the DOM, so that we can look up its
-    // element (see the effect below). `React.useId` values are unique for every
-    // component instance, so instances never resolve each other's trigger.
+    // element if the ref doesn't resolve it (see the effect below).
+    // `React.useId` values are unique for every component instance, so
+    // instances never resolve each other's trigger.
     const referenceId = React.useId();
 
-    // Clone the trigger to inject the interaction props and the attribute that
-    // identifies its DOM element. We never inject a ref: that would make the
-    // trigger's type part of the contract (plain function components can't
-    // receive one), and it would mean either wrapping the trigger in an extra
-    // element or asking consumers to forward refs.
+    // The element the trigger attached the injected ref to, if any. It is kept
+    // in a ref (rather than in state) because it is only read to decide whether
+    // the DOM lookup below is needed; `setReference` already re-renders when
+    // the reference element changes.
+    const referenceFromRef = React.useRef<Element | null>(null);
+
+    /**
+     * Registers the element the trigger attached the injected ref to as the
+     * reference (anchor) element.
+     *
+     * Triggers that forward their ref to a component instance rather than to an
+     * element are ignored here, and resolved from the DOM instead.
+     */
+    const setReferenceFromTrigger = React.useCallback(
+        (node: unknown) => {
+            const element = node instanceof Element ? node : null;
+
+            referenceFromRef.current = element;
+            setReference(element);
+        },
+        [setReference],
+    );
+
+    // Give the trigger's own ref (if it has one) back to its owner, so that
+    // injecting ours doesn't take it away.
+    const triggerRef = useMergeRefs([
+        setReferenceFromTrigger,
+        getElementRef(children),
+    ]);
+
+    // Clone the trigger to inject the interaction props, the attribute that
+    // identifies its DOM element, and the ref (only when the trigger can
+    // receive one: giving a ref to a plain function component would log a React
+    // error and never resolve an element).
     const trigger = React.useMemo(() => {
         return React.cloneElement(children, {
             [FloatingReferenceAttributeName]: referenceId,
+            ...(canAcceptRef(children) ? {ref: triggerRef} : undefined),
             ...getReferenceProps(),
         });
-    }, [children, getReferenceProps, referenceId]);
+    }, [children, getReferenceProps, referenceId, triggerRef]);
 
-    // Resolve the reference element from the DOM. The trigger only has to spread
-    // the props it is given (which it needs to do anyway for the interaction and
-    // ARIA props) onto the element the floating element is anchored to, and we
-    // find that element by the attribute injected above.
+    // Resolve the reference element from the DOM for the triggers the ref above
+    // doesn't resolve: the ones that can't receive a ref, and the ones that
+    // don't attach the one they are given. Those only have to spread the props
+    // they are given (which they need to do anyway for the interaction and ARIA
+    // props) onto the element the floating element is anchored to, and we find
+    // that element by the attribute injected above.
     //
     // NOTE: This runs after every render (no dependency array) so that the
     // reference element stays in sync if the trigger renders a different DOM
     // element. Setting the same element again is a no-op in floating-ui.
     React.useLayoutEffect(() => {
+        // The trigger attached the injected ref, so it already registered its
+        // element (refs are attached before this effect runs).
+        if (referenceFromRef.current) {
+            return;
+        }
+
         const node = document.querySelector(
             `[${FloatingReferenceAttributeName}="${referenceId}"]`,
         );
@@ -389,8 +435,9 @@ export default function Floating({
             console.warn(
                 "Floating: could not find the trigger's element in the DOM, " +
                     "so the floating element can't be positioned. Make sure " +
-                    "the trigger spreads the props it is given onto the " +
-                    "element the floating element should be anchored to.",
+                    "the trigger either attaches the ref it is given or " +
+                    "spreads the props it is given onto the element the " +
+                    "floating element should be anchored to.",
             );
         }
     });

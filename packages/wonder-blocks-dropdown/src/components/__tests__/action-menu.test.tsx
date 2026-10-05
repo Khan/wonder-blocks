@@ -1028,6 +1028,123 @@ describe("ActionMenu", () => {
         });
     });
 
+    describe("ref", () => {
+        it("forwards the ref to the default opener", async () => {
+            // Arrange
+            const ref = React.createRef<HTMLElement>();
+
+            // Act
+            render(
+                <ActionMenu menuText="Action menu!" ref={ref}>
+                    <ActionItem label="Create" />
+                </ActionMenu>,
+            );
+
+            // Assert
+            expect(ref.current).toBe(await screen.findByRole("button"));
+        });
+
+        it("forwards the ref to a custom opener's element", async () => {
+            // Arrange
+            const ref = React.createRef<HTMLElement>();
+
+            // Act
+            render(
+                <ActionMenu
+                    menuText="Action menu!"
+                    ref={ref}
+                    opener={() => <button aria-label="Custom opener" />}
+                >
+                    <ActionItem label="Create" />
+                </ActionMenu>,
+            );
+
+            // Assert
+            expect(ref.current).toBe(
+                await screen.findByLabelText("Custom opener"),
+            );
+        });
+
+        it("forwards the ref to a class component opener's element", async () => {
+            // Arrange
+            class ClassOpener extends React.Component<
+                React.ComponentProps<"button">
+            > {
+                render() {
+                    return (
+                        <button {...this.props} aria-label="Custom opener" />
+                    );
+                }
+            }
+            const ref = React.createRef<HTMLElement>();
+
+            // Act
+            render(
+                <ActionMenu
+                    menuText="Action menu!"
+                    ref={ref}
+                    opener={() => <ClassOpener />}
+                >
+                    <ActionItem label="Create" />
+                </ActionMenu>,
+            );
+
+            // Assert
+            expect(ref.current).toBe(
+                await screen.findByLabelText("Custom opener"),
+            );
+        });
+
+        it("clears the ref when unmounted", () => {
+            // Arrange
+            const ref = React.createRef<HTMLElement>();
+            const {unmount} = render(
+                <ActionMenu menuText="Action menu!" ref={ref}>
+                    <ActionItem label="Create" />
+                </ActionMenu>,
+            );
+
+            // Act
+            unmount();
+
+            // Assert
+            expect(ref.current).toBeNull();
+        });
+
+        it("returns focus to a class component opener after selecting an item", async () => {
+            // Arrange
+            class ClassOpener extends React.Component<
+                React.ComponentProps<"button">
+            > {
+                render() {
+                    return (
+                        <button {...this.props} aria-label="Custom opener" />
+                    );
+                }
+            }
+            render(
+                <ActionMenu
+                    menuText="Action menu!"
+                    opener={() => <ClassOpener />}
+                >
+                    <ActionItem label="Create" />
+                </ActionMenu>,
+            );
+            await userEvent.click(
+                await screen.findByLabelText("Custom opener"),
+                {pointerEventsCheck: PointerEventsCheckLevel.Never},
+            );
+
+            // Act
+            await userEvent.click(await screen.findByText("Create"), {
+                pointerEventsCheck: PointerEventsCheckLevel.Never,
+            });
+
+            // Assert
+            expect(await screen.findByLabelText("Custom opener")).toHaveFocus();
+        });
+    });
+
     describe("a11y > aria-controls", () => {
         it("Should set the `aria-controls` attribute on the default opener to the provided dropdownId prop", async () => {
             // Arrange

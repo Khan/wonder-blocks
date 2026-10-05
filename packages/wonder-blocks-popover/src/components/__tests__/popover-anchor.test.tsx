@@ -2,11 +2,42 @@ import * as React from "react";
 import {render, screen} from "@testing-library/react";
 import {userEvent} from "@testing-library/user-event";
 
+import {FloatingReferenceAttributeName} from "@khanacademy/wonder-blocks-floating";
+
 import PopoverAnchor from "../popover-anchor";
 
 describe("PopoverAnchor", () => {
-    it("should set child node as ref", async () => {
+    afterEach(() => {
+        jest.restoreAllMocks();
+    });
+
+    it("should pass the floating reference attribute to the child", async () => {
         // Arrange
+        // `Floating` injects this attribute into the anchor to identify the
+        // trigger's element in the DOM.
+        const referenceProps = {
+            [FloatingReferenceAttributeName]: "reference-id",
+        };
+
+        // Act
+        render(
+            <PopoverAnchor onClick={jest.fn()} {...referenceProps}>
+                <button>test</button>
+            </PopoverAnchor>,
+        );
+
+        // Assert
+        const triggerElement = await screen.findByRole("button");
+        expect(triggerElement).toHaveAttribute(
+            FloatingReferenceAttributeName,
+            "reference-id",
+        );
+    });
+
+    it("should pass the ref it is given to the child", async () => {
+        // Arrange
+        // `Floating` gives the anchor the ref that resolves the element the
+        // popover is anchored to.
         const ref = React.createRef<HTMLElement>();
 
         // Act
@@ -16,11 +47,67 @@ describe("PopoverAnchor", () => {
             </PopoverAnchor>,
         );
 
-        // Act
+        // Assert
         const triggerElement = await screen.findByRole("button");
+        expect(ref.current).toBe(triggerElement);
+    });
+
+    it("should pass the ref it is given to the child with children as a function", async () => {
+        // Arrange
+        const ref = React.createRef<HTMLElement>();
+
+        // Act
+        render(
+            <PopoverAnchor ref={ref} onClick={jest.fn()}>
+                {({open}: any) => <button onClick={open}>test</button>}
+            </PopoverAnchor>,
+        );
 
         // Assert
+        const triggerElement = await screen.findByRole("button");
         expect(ref.current).toBe(triggerElement);
+    });
+
+    it("should pass the ref it is given to a child that drops the props it is given", async () => {
+        // Arrange
+        // A trigger that can receive a ref doesn't have to spread the props it
+        // is given for the popover to be anchored to it.
+        const NoSpreadTrigger = React.forwardRef<
+            HTMLButtonElement,
+            {label: string}
+        >((props, forwardedRef) => (
+            <button ref={forwardedRef}>{props.label}</button>
+        ));
+        const ref = React.createRef<HTMLElement>();
+
+        // Act
+        render(
+            <PopoverAnchor ref={ref} onClick={jest.fn()}>
+                <NoSpreadTrigger label="test" />
+            </PopoverAnchor>,
+        );
+
+        // Assert
+        const triggerElement = await screen.findByRole("button");
+        expect(ref.current).toBe(triggerElement);
+    });
+
+    it("should keep the child's own ref when passing the ref it is given along", async () => {
+        // Arrange
+        const ref = React.createRef<HTMLElement>();
+        const childRef = React.createRef<HTMLButtonElement>();
+
+        // Act
+        render(
+            <PopoverAnchor ref={ref} onClick={jest.fn()}>
+                <button ref={childRef}>test</button>
+            </PopoverAnchor>,
+        );
+
+        // Assert
+        const triggerElement = await screen.findByRole("button");
+        expect(ref.current).toBe(triggerElement);
+        expect(childRef.current).toBe(triggerElement);
     });
 
     it("should allow passing a custom ref to the child", async () => {
@@ -57,6 +144,57 @@ describe("PopoverAnchor", () => {
         // Assert
         const triggerElement = await screen.findByRole("button");
         expect(ref.current).toBe(triggerElement);
+    });
+
+    it("should pass the floating reference attribute to a child that can't receive a ref", async () => {
+        // Arrange
+        // A plain function component can't receive a ref, so it only spreads
+        // the props it is given onto the element it renders.
+        function FunctionComponentTrigger(props: {label: string}) {
+            const {label, ...otherProps} = props;
+            return <button {...otherProps}>{label}</button>;
+        }
+        const referenceProps = {
+            [FloatingReferenceAttributeName]: "reference-id",
+        };
+
+        // Act
+        render(
+            <PopoverAnchor onClick={jest.fn()} {...referenceProps}>
+                <FunctionComponentTrigger label="test" />
+            </PopoverAnchor>,
+        );
+
+        // Assert
+        const triggerElement = await screen.findByRole("button");
+        expect(triggerElement).toHaveAttribute(
+            FloatingReferenceAttributeName,
+            "reference-id",
+        );
+    });
+
+    it("should not inject a ref into a function component trigger", () => {
+        // Arrange
+        const consoleErrorSpy = jest
+            .spyOn(console, "error")
+            .mockImplementation(() => {});
+        // A plain function component can't receive a ref, so React would warn
+        // about `Function components cannot be given refs` if the anchor
+        // injected a ref into the trigger.
+        function FunctionComponentTrigger(props: {label: string}) {
+            const {label, ...otherProps} = props;
+            return <button {...otherProps}>{label}</button>;
+        }
+
+        // Act
+        render(
+            <PopoverAnchor onClick={jest.fn()}>
+                <FunctionComponentTrigger label="test" />
+            </PopoverAnchor>,
+        );
+
+        // Assert
+        expect(consoleErrorSpy).not.toHaveBeenCalled();
     });
 
     it("should add onClick handler if child is a function", async () => {
