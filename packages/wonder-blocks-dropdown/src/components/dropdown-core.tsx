@@ -569,7 +569,8 @@ const DropdownCore = (props: Props) => {
         };
 
         // Skip the initial mount (handled above), and any re-run of an effect
-        // for a render we have already processed.
+        // for a render we have already processed (e.g. when StrictMode
+        // double-invokes the effects on mount).
         if (!prevProps || prevProps.derivedItems === derivedItems) {
             return;
         }
@@ -823,8 +824,13 @@ const DropdownCore = (props: Props) => {
         // appropriate item in handleKeyDown
         itemsClickedRef.current = true;
         focusedIndexRef.current = index;
+        // NOTE: We read the item refs from this render instead of
+        // `itemRefsRef`, as this handler is attached to the items rendered
+        // with them. `itemRefsRef` is only updated once the effects run, so it
+        // can still be stale (e.g. empty, right after the menu opens) if an
+        // item is clicked before that.
         focusedOriginalIndexRef.current =
-            itemRefsRef.current[focusedIndexRef.current].originalIndex;
+            derivedItems.itemRefs[focusedIndexRef.current].originalIndex;
     };
 
     const handleDropdownMouseUp = (event: React.MouseEvent) => {
