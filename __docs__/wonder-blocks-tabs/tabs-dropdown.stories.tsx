@@ -118,7 +118,7 @@ export const InvalidSelectedTabId: Story = {
                 </View>
                 <View style={{gap: sizing.size_080}}>
                     <BodyText id={customLabelId}>
-                        Custom opener label using labels.defaultOpenerLabel
+                        Custom opener label using labels.defaultOpenerLabel prop
                     </BodyText>
                     <ControlledTabsDropdown
                         tabs={args.tabs}
