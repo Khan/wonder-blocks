@@ -6,7 +6,7 @@ import {expect, userEvent, within} from "storybook/test";
 import {useArgs} from "storybook/preview-api";
 import {action} from "storybook/actions";
 
-import {View} from "@khanacademy/wonder-blocks-core";
+import {View, type PropsFor} from "@khanacademy/wonder-blocks-core";
 import {Checkbox} from "@khanacademy/wonder-blocks-form";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
@@ -201,7 +201,7 @@ export const Default: StoryComponentType = {
 export const RightAligned: StoryComponentType = {
     args: {
         alignment: "right",
-    } as Partial<typeof ActionMenu>,
+    } as Partial<PropsFor<typeof ActionMenu>>,
     parameters: {
         chromatic: {
             // Disabling because this doesn't test visuals, its only showing the
@@ -223,7 +223,7 @@ export const RightAligned: StoryComponentType = {
 export const TruncatedOpener: StoryComponentType = {
     args: {
         style: {width: 100},
-    } as Partial<typeof ActionMenu>,
+    } as Partial<PropsFor<typeof ActionMenu>>,
 };
 
 /**
@@ -311,7 +311,7 @@ export const CustomDropdownStyle: StoryComponentType = {
     name: "Custom dropdownStyle",
     args: {
         dropdownStyle: styles.dropdown,
-    } as Partial<typeof ActionMenu>,
+    } as Partial<PropsFor<typeof ActionMenu>>,
     parameters: {
         chromatic: {
             // Disabling because this doesn't test visuals.
@@ -406,7 +406,7 @@ export const WithCustomOpener: StoryComponentType = {
     },
     args: {
         disabled: false,
-    } as Partial<typeof ActionMenu>,
+    } as Partial<PropsFor<typeof ActionMenu>>,
 };
 
 /**
@@ -434,7 +434,7 @@ export const WithPopperPlacement: StoryComponentType = {
         opener: ({text}: any) => (
             <Button endIcon={IconMappings.caretRight}>{text}</Button>
         ),
-    } as Partial<typeof ActionMenu>,
+    } as Partial<PropsFor<typeof ActionMenu>>,
     parameters: {
         chromatic: {
             // Delay to allow the dropdown menu to position itself to avoid
@@ -559,7 +559,7 @@ export const CustomActionItems: StoryComponentType = {
                 onClick={() => console.log(`Show homework assignments toggled`)}
             />,
         ],
-    } as Partial<typeof ActionMenu>,
+    } as Partial<PropsFor<typeof ActionMenu>>,
     render: function Render(args) {
         const [{selectedValues}, updateArgs] = useArgs();
         const handleChange = (selectedItems: Array<string>) => {
@@ -677,7 +677,7 @@ export const OpeningModal: StoryComponentType = {
                 icon={IconMappings.dotsThreeBold}
             />
         ),
-    } as Partial<typeof ActionMenu>,
+    } as Partial<PropsFor<typeof ActionMenu>>,
     parameters: {
         chromatic: {
             // Disabling because this doesn't test visuals.

@@ -3,12 +3,7 @@ import {StyleSheet} from "aphrodite";
 
 import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
 import {View} from "@khanacademy/wonder-blocks-core";
-import {
-    border,
-    boxShadow,
-    semanticColor,
-    sizing,
-} from "@khanacademy/wonder-blocks-tokens";
+import {sizing} from "@khanacademy/wonder-blocks-tokens";
 
 import {actionStyles} from "@khanacademy/wonder-blocks-styles";
 import CloseButton from "./close-button";
@@ -40,14 +35,21 @@ type Props = AriaProps & {
     testId?: string;
 };
 
-type DefaultProps = {
-    closeButtonLight: Props["closeButtonLight"];
-    closeButtonVisible: Props["closeButtonVisible"];
-};
-
 /**
  * This is the base popover container. It’s used internally by all the variants.
  * Also, it can be used to create flexible popovers.
+ *
+ * ### Presentation
+ *
+ * `PopoverContentCore` only lays out the popover's contents (max width,
+ * padding and the optional close button). The popover "bubble" chrome —
+ * background, border, border radius, shadow and the tail — is drawn by the
+ * `Floating` component that `Popover` renders it inside.
+ *
+ * This means that when `PopoverContentCore` is rendered **standalone**, outside
+ * of a `Popover` — which is how the examples on this page are rendered — it has
+ * no bubble around it and you need to supply your own container styling. Inside
+ * a `Popover` it looks like a popover with no extra work.
  *
  * ### Usage
  *
@@ -61,28 +63,25 @@ type DefaultProps = {
  * </PopoverContentCore>
  * ```
  */
-export default class PopoverContentCore extends React.Component<Props> {
-    static defaultProps: DefaultProps = {
-        closeButtonLight: false,
-        closeButtonVisible: false,
-    };
-
-    render(): React.ReactNode {
-        const {
+const PopoverContentCore = React.forwardRef<HTMLElement, Props>(
+    function PopoverContentCore(
+        {
             "aria-label": ariaLabel,
             children,
-            closeButtonLight,
+            closeButtonLight = false,
             closeButtonLabel,
-            closeButtonVisible,
+            closeButtonVisible = false,
             style,
             testId,
-        } = this.props;
-
+        }: Props,
+        ref,
+    ): React.ReactElement {
         return (
             <View
                 testId={testId}
                 style={[styles.content, style]}
                 aria-label={ariaLabel}
+                ref={ref}
             >
                 {closeButtonVisible && (
                     <CloseButton
@@ -97,15 +96,15 @@ export default class PopoverContentCore extends React.Component<Props> {
                 {children}
             </View>
         );
-    }
-}
+    },
+);
+
+PopoverContentCore.displayName = "PopoverContentCore";
+
+export default PopoverContentCore;
 
 const styles = StyleSheet.create({
     content: {
-        borderRadius: border.radius.radius_040,
-        border: `solid 1px ${semanticColor.core.border.neutral.subtle}`,
-        backgroundColor: semanticColor.core.background.base.default,
-        boxShadow: boxShadow.mid,
         margin: 0,
         maxInlineSize: `calc(${sizing.size_160} * 18)`, // 288px
         padding: sizing.size_240,
