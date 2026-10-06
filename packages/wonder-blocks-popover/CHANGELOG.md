@@ -1,5 +1,49 @@
 # @khanacademy/wonder-blocks-popover
 
+## 7.0.0
+
+### Major Changes
+
+- 4aef2da: Refactor `Popover` to use the `wonder-blocks-floating` package (floating-ui) instead of PopperJS and the `wonder-blocks-tooltip` dependency.
+
+    Breaking / behavior changes:
+
+    - `Popover` now positions its content with floating-ui via the `Floating` component. The `@popperjs/core` and `react-popper` peer dependencies (and the `@khanacademy/wonder-blocks-tooltip` / `@khanacademy/wonder-blocks-modal` dependencies) have been removed.
+    - `PopoverContentCore` no longer renders the popover "bubble" chrome (background, border, border radius and shadow). That chrome now comes from `Floating`, so a `PopoverContentCore` rendered on its own — outside a `Popover` — no longer looks like a popover bubble and needs its own container styling.
+    - The popover tail is now rendered by `Floating` (as its arrow) instead of `TooltipTail`. The `showTail` prop is unchanged, but the tail's markup and styling now come from `Floating`.
+    - The popover is positioned with floating-ui's `fixed` strategy, so it is no longer clipped by scrolling or `overflow`-clipping ancestors the way it could be before.
+    - Focus management is now handled by floating-ui's non-modal focus manager rather than the previous custom implementation. The popover remains non-modal and focus is not trapped or cycled (it never was): tabbing past the last focusable element in the popover moves focus on to the next element after the trigger, and `dismissEnabled` popovers close when focus leaves them. The mechanism behind that is floating-ui's focus guards rather than Popover's own keydown handling.
+    - `rootBoundary` and `viewportPadding` are now remapped onto floating-ui's `flip`/`shift` middleware (prop names unchanged).
+    - `autoUpdate` is deprecated and now a no-op: the popover always keeps its position in sync with the anchor (floating-ui's `autoUpdate`).
+    - `initialFocusDelay` is deprecated and now a no-op: initial focus is applied synchronously when the popover opens.
+    - `onClose` is now called at most once per open/close cycle. floating-ui can request a close through several channels (escape, outside click, focus out), so the callback is guarded against firing more than once for a single dismissal.
+    - `testId` is now actually applied. It was previously declared on `Popover`'s props but never used; it is now forwarded to the floating element.
+
+- 4aef2da: `Popover` no longer uses `ReactDOM.findDOMNode` (removed in React 19) to find its trigger's element. The trigger now has to do one of two things for the popover to anchor to it, and most triggers already do both:
+
+    - Attach the ref it is given to its element. `Popover` only passes a ref to triggers that can receive one (host elements and `React.forwardRef` components), so a plain function component doesn't get React's "Function components cannot be given refs" error.
+    - Spread the props it is given (`id`, `aria-controls`, `aria-expanded`, the `onClick` handler that opens the popover, and the attribute that identifies the anchor) onto its element. The anchor element is then resolved from the DOM.
+
+    The trigger can be any component type (host element, `React.forwardRef` component, class component or plain function component). A trigger that does neither, e.g. a function component that ignores its props, is no longer anchored. Before, `findDOMNode` anchored the popover to the trigger's first DOM node regardless.
+
+    A trigger's own `ref` is merged rather than replaced, so it keeps resolving the same element.
+
+### Patch Changes
+
+- 4aef2da: - Updates `PopoverAnchor`, `PopoverContent`, and `PopoverContentCore` to pass `forwardRef`
+
+    - Updates different components to be function components instead of class based components.
+
+- Updated dependencies [4aef2da]
+- Updated dependencies [4aef2da]
+- Updated dependencies [4aef2da]
+- Updated dependencies [4aef2da]
+- Updated dependencies [4aef2da]
+- Updated dependencies [4aef2da]
+- Updated dependencies [4aef2da]
+- Updated dependencies [4aef2da]
+    - @khanacademy/wonder-blocks-floating@0.1.0
+
 ## 6.3.19
 
 ### Patch Changes

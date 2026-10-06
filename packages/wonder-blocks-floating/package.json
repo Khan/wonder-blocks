@@ -3,7 +3,7 @@
   "description": "A package that provides support for floating UI components in our UIs, including portal and focus management support.",
   "author": "Khan Academy",
   "license": "MIT",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "publishConfig": {
     "access": "public"
   },
