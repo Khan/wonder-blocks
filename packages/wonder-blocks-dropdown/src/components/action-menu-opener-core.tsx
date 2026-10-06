@@ -34,32 +34,40 @@ type Props = Partial<Omit<AriaProps, "aria-disabled">> &
  * of differences:
  * - the down caret icon appears on the right instead of the left
  * - the down caret icon is smaller that the one that would be used by ButtonCore
+ *
+ * The ref is forwarded to the underlying `Button`, so it resolves to the
+ * opener's DOM element without needing `ReactDOM.findDOMNode` (which React 19
+ * removes).
  */
-export default class ActionMenuOpenerCore extends React.Component<Props> {
-    render(): React.ReactNode {
-        const {
-            children,
-            disabled,
-            waiting: _,
-            testId,
-            opened,
-            "aria-label": ariaLabel,
-            ...restProps
-        } = this.props;
+const ActionMenuOpenerCore = React.forwardRef(function ActionMenuOpenerCore(
+    props: Props,
+    ref: React.ForwardedRef<HTMLButtonElement>,
+) {
+    const {
+        children,
+        disabled,
+        waiting: _,
+        testId,
+        opened,
+        "aria-label": ariaLabel,
+        ...restProps
+    } = props;
 
-        return (
-            <Button
-                aria-expanded={opened ? "true" : "false"}
-                aria-haspopup="menu"
-                kind="tertiary"
-                aria-label={ariaLabel}
-                disabled={disabled}
-                {...restProps}
-                testId={testId}
-                endIcon={caretDownIcon}
-            >
-                {children}
-            </Button>
-        );
-    }
-}
+    return (
+        <Button
+            aria-expanded={opened ? "true" : "false"}
+            aria-haspopup="menu"
+            kind="tertiary"
+            aria-label={ariaLabel}
+            disabled={disabled}
+            {...restProps}
+            testId={testId}
+            endIcon={caretDownIcon}
+            ref={ref}
+        >
+            {children}
+        </Button>
+    );
+});
+
+export default ActionMenuOpenerCore;

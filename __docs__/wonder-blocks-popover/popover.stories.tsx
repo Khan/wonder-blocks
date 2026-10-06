@@ -16,32 +16,9 @@ import packageConfig from "../../packages/wonder-blocks-popover/package.json";
 import ComponentInfo from "../components/component-info";
 import PopoverArgtypes, {ContentMappings} from "./popover.argtypes";
 
-/**
- * Popovers provide additional information that is related to a particular
- * element and/or content. They can include text, links, icons and
- * illustrations. The main difference with `Tooltip` is that they must be
- * dismissed by clicking an element.
- *
- * This component uses the `PopoverPopper` component to position the
- * `PopoverContentCore` component according to the children it is wrapping.
- *
- * ### Usage
- *
- * ```jsx
- * import {Popover, PopoverContent} from "@khanacademy/wonder-blocks-popover";
- *
- * <Popover
- *  onClose={() => {}}
- *  content={
- *      <PopoverContent title="Title" content="Some content" closeButtonVisible />
- *  }>
- *      <Button>Open popover</Button>
- *  </Popover>
- * ```
- */
 export default {
     title: "Packages / Popover / Popover",
-    component: Popover as unknown as React.ComponentType<any>,
+    component: Popover,
     argTypes: PopoverArgtypes,
     parameters: {
         componentSubtitle: (
@@ -178,6 +155,97 @@ export const TriggerElement: StoryComponentType = {
             {({open}) => <Button onClick={open}>Trigger element</Button>}
         </Popover>
     ),
+};
+
+// The custom triggers below render their own label, so they don't take
+// `children`.
+type CustomTriggerProps = Omit<React.ComponentProps<typeof Button>, "children">;
+
+/**
+ * A trigger that spreads the props it is given onto its element. It is a plain
+ * function component, so it can't receive a ref, and `Popover` finds its
+ * element in the DOM instead.
+ */
+function SpreadPropsTrigger(props: CustomTriggerProps) {
+    return <Button {...props}>Plain function component</Button>;
+}
+
+/**
+ * A trigger that forwards the ref it is given to its element, and spreads the
+ * props it is given onto it too.
+ */
+const ForwardRefTrigger = React.forwardRef(function ForwardRefTrigger(
+    props: CustomTriggerProps,
+    ref: React.ForwardedRef<HTMLButtonElement>,
+) {
+    return (
+        <Button {...props} ref={ref}>
+            forwardRef component
+        </Button>
+    );
+});
+
+/**
+ * The trigger (`children`) is the element the popover is anchored to, so
+ * `Popover` needs to know which DOM element it renders. The trigger can be any
+ * component type (a host element like `<button>`, a `React.forwardRef`
+ * component, a class component or a plain function component), as long as it
+ * does **at least one** of the following:
+ *
+ * 1. **Attach the ref it is given** to its element. `Popover` only passes a ref
+ *    to triggers that can receive one (host elements and `React.forwardRef`
+ *    components).
+ * 2. **Spread the props it is given** onto its element. `Popover` injects the
+ *    `id`, `aria-controls`, `aria-expanded` and `onClick` props, plus an
+ *    attribute it uses to find the element in the DOM.
+ *
+ * Wonder Blocks components such as `Button` and `IconButton` do both, so they
+ * can be used as triggers directly.
+ *
+ * For custom triggers, we recommend spreading the props even if the ref is
+ * forwarded: the `aria-controls` and `aria-expanded` props are needed for
+ * screen readers, and the `onClick` prop is what opens the popover when
+ * `children` is an element. A trigger's own `ref` keeps working, since
+ * `Popover` merges it with its own instead of replacing it.
+ *
+ * If the trigger does neither (e.g. a function component that ignores its
+ * props), the popover has nothing to anchor to, and a warning is logged in
+ * development.
+ *
+ * **NOTE:** When the trigger renders several elements, the popover is anchored
+ * to the one that receives the ref (or the props).
+ */
+export const CustomTriggers: StoryComponentType = {
+    render: function Render() {
+        return (
+            <View style={[styles.row, {gap: sizing.size_160}]}>
+                <Popover
+                    dismissEnabled={true}
+                    content={
+                        <PopoverContent
+                            closeButtonVisible
+                            title="Plain function component"
+                            content="Anchored through the props it spreads onto its element."
+                        />
+                    }
+                >
+                    <SpreadPropsTrigger />
+                </Popover>
+                <Popover
+                    dismissEnabled={true}
+                    content={
+                        <PopoverContent
+                            closeButtonVisible
+                            title="forwardRef component"
+                            content="Anchored through the ref it forwards to its element."
+                        />
+                    }
+                >
+                    <ForwardRefTrigger />
+                </Popover>
+            </View>
+        );
+    },
 };
 
 /**
@@ -741,8 +809,10 @@ export const WithDocumentRootBoundary: StoryComponentType = {
             <View style={{paddingBlockEnd: "500px"}}>
                 <Popover
                     rootBoundary="document"
+                    dismissEnabled
                     content={() => (
                         <PopoverContent
+                            closeButtonVisible
                             title="Popover with rootBoundary='document'"
                             content="This example shows a popover with the rootBoundary='document'. This means that instead of aligning the popover to the viewport, it will instead place the popover where there is room in the DOM. This is a useful tool for popovers with large content that might not fit in small screen sizes or at 400% zoom."
                         />
