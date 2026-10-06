@@ -263,6 +263,10 @@ const DropdownCore = (props: Props) => {
     // asynchronously (in a timeout or animation frame) check the current value
     // instead of the one from the render that scheduled them.
     const openRef = useLatestRef(open);
+    // Keep the latest `onOpenChanged` in a ref too, so that the outside click
+    // listeners below are only added and removed when `open` changes (like the
+    // class version did), and not every time the parent passes a new callback.
+    const onOpenChangedRef = useLatestRef(onOpenChanged);
 
     // The root element of the component, used to detect clicks outside of it.
     const rootRef = React.useRef<HTMLElement | null>(null);
@@ -526,7 +530,7 @@ const DropdownCore = (props: Props) => {
                 popperElementRef.current &&
                 !popperElementRef.current.contains(target)
             ) {
-                onOpenChanged(false);
+                onOpenChangedRef.current(false);
             }
         };
 
@@ -537,7 +541,7 @@ const DropdownCore = (props: Props) => {
             document.removeEventListener("mouseup", handleInteract);
             document.removeEventListener("touchend", handleInteract);
         };
-    }, [open, onOpenChanged]);
+    }, [open, onOpenChangedRef]);
 
     // componentDidMount
     useOnMountEffect(() => {
