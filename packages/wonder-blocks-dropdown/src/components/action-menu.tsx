@@ -1,5 +1,4 @@
 import * as React from "react";
-import * as ReactDOM from "react-dom";
 import {StyleSheet} from "aphrodite";
 import {type AriaProps, type StyleType} from "@khanacademy/wonder-blocks-core";
 import {sizing} from "@khanacademy/wonder-blocks-tokens";
@@ -106,27 +105,36 @@ type Props = AriaProps &
  *  <ActionItem label="Settings" onClick={() => {}} />
  * </ActionMenu>
  * ```
+ *
+ * The `ref` resolves to the opener's DOM element, so components that anchor to
+ * their trigger (e.g. `Popover`) can wrap an `ActionMenu` directly.
  */
-function ActionMenu({
-    alignment = "left",
-    "aria-label": ariaLabel,
-    disabled = false,
-    children,
-    menuText,
-    opened: openedProp,
-    onToggle,
-    onChange,
-    selectedValues,
-    testId,
-    dropdownStyle,
-    style,
-    className,
-    opener,
-    dropdownId,
-    id,
-}: Props): React.ReactNode {
+const ActionMenu = React.forwardRef(function ActionMenu(
+    {
+        alignment = "left",
+        "aria-label": ariaLabel,
+        disabled = false,
+        children,
+        menuText,
+        opened: openedProp,
+        onToggle,
+        onChange,
+        selectedValues,
+        testId,
+        dropdownStyle,
+        style,
+        className,
+        opener,
+        dropdownId,
+        id,
+    }: Props,
+    ref: React.ForwardedRef<HTMLElement>,
+) {
     const [internalOpened, setInternalOpened] = React.useState(false);
-    const openerElementRef = React.useRef<HTMLElement | undefined>(undefined);
+    // The opener's DOM element. It is kept in state (rather than a ref) so
+    // that `DropdownCore` and the forwarded `ref` are updated when it changes.
+    const [openerElement, setOpenerElement] =
+        React.useState<HTMLElement | null>(null);
     const generatedUniqueOpenerId = React.useId();
     const generatedUniqueDropdownId = React.useId();
     const uniqueOpenerId = id ?? generatedUniqueOpenerId;
@@ -151,10 +159,8 @@ function ActionMenu({
         handleOpenChanged(false);
 
         // Bring focus back to the opener element.
-        if (openerElementRef.current) {
-            openerElementRef.current.focus();
-        }
-    }, [handleOpenChanged]);
+        openerElement?.focus();
+    }, [handleOpenChanged, openerElement]);
 
     const handleOptionSelected = React.useCallback(
         (selectedValue: string) => {
@@ -233,10 +239,42 @@ function ActionMenu({
         });
     }, [children, selectedValues, handleItemSelected, handleOptionSelected]);
 
-    const handleOpenerRef = React.useCallback((node?: any) => {
-        // eslint-disable-next-line import/no-deprecated
-        openerElementRef.current = ReactDOM.findDOMNode(node) as HTMLElement;
-    }, []);
+    const handleOpenerRef = React.useCallback(
+        (node: unknown) => {
+            if (node instanceof HTMLElement || node == null) {
+                // The default opener, `CustomOpener` and host elements
+                // forward the ref to their DOM element.
+                setOpenerElement(node ?? null);
+            } else {
+                // Class component openers give us their instance instead.
+                // `DropdownOpener` puts the opener id on the element, so we
+                // look it up rather than using `ReactDOM.findDOMNode` (which
+                // React 19 removes).
+                setOpenerElement(document.getElementById(uniqueOpenerId));
+            }
+        },
+        [uniqueOpenerId],
+    );
+
+    // Openers that are plain function components can't receive a ref (React
+    // 18 drops it, and React 19 passes it as a prop they ignore), so the ref
+    // callback above never runs for them. Fall back to finding the opener by
+    // its id once it is in the DOM, and again if a new `opener` has replaced
+    // it.
+    React.useEffect(() => {
+        if (openerElement?.isConnected) {
+            return;
+        }
+        setOpenerElement(document.getElementById(uniqueOpenerId));
+    }, [openerElement, opener, uniqueOpenerId]);
+
+    // Expose the opener's DOM element, e.g. so that a `Popover` can anchor to
+    // it.
+    React.useImperativeHandle<HTMLElement | null, HTMLElement | null>(
+        ref,
+        () => openerElement,
+        [openerElement],
+    );
 
     const handleClick = React.useCallback(
         (e: React.SyntheticEvent) => {
@@ -299,13 +337,13 @@ function ActionMenu({
             alignment={alignment}
             open={opened}
             items={items}
-            openerElement={openerElementRef.current}
+            openerElement={openerElement ?? undefined}
             onOpenChanged={handleOpenChanged}
             dropdownStyle={[styles.menuTopSpace, dropdownStyle]}
             aria-labelledby={uniqueOpenerId}
         />
     );
-}
+});
 
 const styles = StyleSheet.create({
     caret: {

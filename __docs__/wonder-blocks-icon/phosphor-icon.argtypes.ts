@@ -53,7 +53,18 @@ import cookie from "@phosphor-icons/core/regular/cookie.svg";
 import cookieBold from "@phosphor-icons/core/bold/cookie-bold.svg";
 import iceCream from "@phosphor-icons/core/regular/ice-cream.svg";
 import iceCreamBold from "@phosphor-icons/core/bold/ice-cream-bold.svg";
+import arrowRight from "@phosphor-icons/core/regular/arrow-right.svg";
+import arrowLeft from "@phosphor-icons/core/regular/arrow-left.svg";
+import arrowElbowDownLeft from "@phosphor-icons/core/regular/arrow-elbow-down-left.svg";
+import arrowElbowDownRight from "@phosphor-icons/core/regular/arrow-elbow-down-right.svg";
+import arrowElbowUpLeft from "@phosphor-icons/core/regular/arrow-elbow-up-left.svg";
+import arrowElbowUpRight from "@phosphor-icons/core/regular/arrow-elbow-up-right.svg";
+import arrowElbowLeftDown from "@phosphor-icons/core/regular/arrow-elbow-left-down.svg";
+import arrowElbowLeftUp from "@phosphor-icons/core/regular/arrow-elbow-left-up.svg";
+import arrowElbowRightDown from "@phosphor-icons/core/regular/arrow-elbow-right-down.svg";
+import arrowElbowRightUp from "@phosphor-icons/core/regular/arrow-elbow-right-up.svg";
 import lightningFill from "@phosphor-icons/core/fill/lightning-fill.svg";
+
 import AriaArgTypes from "../wonder-blocks-core/aria.argtypes";
 
 import {semanticColor} from "@khanacademy/wonder-blocks-tokens";
@@ -116,6 +127,16 @@ export const IconMappings = {
     cookieBold,
     iceCream,
     iceCreamBold,
+    arrowRight,
+    arrowLeft,
+    arrowElbowDownLeft,
+    arrowElbowDownRight,
+    arrowElbowUpLeft,
+    arrowElbowUpRight,
+    arrowElbowLeftDown,
+    arrowElbowLeftUp,
+    arrowElbowRightDown,
+    arrowElbowRightUp,
     lightningFill,
 } as const;
 

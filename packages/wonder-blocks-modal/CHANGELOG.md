@@ -1,5 +1,66 @@
 # @khanacademy/wonder-blocks-modal
 
+## 8.9.0
+
+### Minor Changes
+
+- c56e31b: ModalLauncher: add a `styles` prop with a `backdrop` slot so custom styles can be applied to the backdrop (the veil), matching the API DrawerLauncher already has. Useful for properties that must live on the veil element itself, such as a `viewTransitionName`.
+
+## 8.8.4
+
+### Patch Changes
+
+- Updated dependencies [66bae92]
+    - @khanacademy/wonder-blocks-styles@0.4.0
+    - @khanacademy/wonder-blocks-icon-button@12.0.1
+    - @khanacademy/wonder-blocks-announcer@1.1.2
+
+## 8.8.3
+
+### Patch Changes
+
+- Updated dependencies [849def2]
+- Updated dependencies [8ac496e]
+    - @khanacademy/wonder-blocks-icon-button@12.0.0
+    - @khanacademy/wonder-blocks-styles@0.3.0
+    - @khanacademy/wonder-blocks-announcer@1.1.2
+
+## 8.8.2
+
+### Patch Changes
+
+- Updated dependencies [04522d4]
+- Updated dependencies [5b4fed3]
+    - @khanacademy/wonder-blocks-tokens@18.0.0
+    - @khanacademy/wonder-blocks-breadcrumbs@3.2.29
+    - @khanacademy/wonder-blocks-icon-button@11.5.1
+    - @khanacademy/wonder-blocks-layout@3.1.62
+    - @khanacademy/wonder-blocks-styles@0.2.54
+    - @khanacademy/wonder-blocks-typography@5.0.5
+    - @khanacademy/wonder-blocks-core@12.5.0
+    - @khanacademy/wonder-blocks-timing@7.1.0
+    - @khanacademy/wonder-blocks-announcer@1.1.2
+
+## 8.8.1
+
+### Patch Changes
+
+- 63dcc94: Move `useDirectionDetection` from `wonder-blocks-modal` (internal-only) to `wonder-blocks-core` and export it publicly, so other packages can detect the nearest ancestor's writing direction (RTL/LTR) without depending on `wonder-blocks-modal`. `wonder-blocks-modal`'s own usage (`DrawerDialog`) now imports it from `wonder-blocks-core`; no change to `wonder-blocks-modal`'s public API.
+- Updated dependencies [63dcc94]
+- Updated dependencies [5dd4192]
+    - @khanacademy/wonder-blocks-core@12.5.0
+    - @khanacademy/wonder-blocks-icon-button@11.5.0
+    - @khanacademy/wonder-blocks-announcer@1.1.2
+    - @khanacademy/wonder-blocks-breadcrumbs@3.2.28
+    - @khanacademy/wonder-blocks-layout@3.1.61
+    - @khanacademy/wonder-blocks-typography@5.0.4
+
+## 8.8.0
+
+### Minor Changes
+
+- e11b241: DrawerLauncher: update the default animation timing, easing, and slide distance, and add an `easing` prop and a `styles.backdrop` key
+
 ## 8.7.12
 
 ### Patch Changes

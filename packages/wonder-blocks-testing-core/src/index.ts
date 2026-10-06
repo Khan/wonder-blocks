@@ -7,6 +7,8 @@ export type {MockResponse} from "./respond-with";
 export type {FetchMockFn, FetchMockOperation} from "./fetch/types";
 export type {
     GraphQLJson,
+    GraphQLPartialData,
+    GraphQLResponseError,
     MockFn,
     OperationMock,
     OperationMatcher,

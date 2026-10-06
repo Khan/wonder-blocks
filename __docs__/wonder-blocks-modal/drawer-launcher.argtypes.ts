@@ -24,19 +24,33 @@ export default {
     styles: {
         control: {type: undefined},
         table: {
-            type: {summary: "{container?: StyleType}"},
+            type: {summary: "{container?: StyleType; backdrop?: StyleType}"},
         },
-        description: "Optional styles for the DrawerLauncher container",
+        description:
+            "Optional styles for the launcher's container and its backdrop overlay. `backdrop` is applied last, so it overrides the backdrop's own styles, including its opacity animation. Use `timingDuration` rather than setting `animationDuration` there, which desyncs the backdrop from the panel; `animationName: \"none\"` removes the fade in both directions.",
     },
 
     timingDuration: {
         control: {type: "number"},
-        defaultValue: 400,
         table: {
-            defaultValue: {summary: "400"},
+            defaultValue: {summary: "300ms enter / 150ms exit"},
             type: {summary: "number"},
         },
-        description: "Duration in milliseconds for slide-in animation",
+        description:
+            "Duration in milliseconds for the slide animations, overriding both phases. Also coordinates focus timing.",
+    },
+
+    easing: {
+        control: {type: "object"},
+        table: {
+            defaultValue: {
+                summary:
+                    "cubic-bezier(0.05, 0.7, 0.1, 1) enter / cubic-bezier(0.3, 0, 0.8, 0.15) exit",
+            },
+            type: {summary: "{enter?: string; exit?: string}"},
+        },
+        description:
+            "Per-phase easing for the panel's slide. Either phase can be omitted to keep its default curve; the backdrop's fade stays linear.",
     },
 
     animated: {

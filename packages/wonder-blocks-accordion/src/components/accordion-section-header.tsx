@@ -13,6 +13,8 @@ import type {AccordionCornerKindType} from "./accordion";
 import type {TagType} from "./accordion-section";
 import {getRoundedValuesForHeader} from "../utils";
 
+const HEADING_SELECTOR = 'h1,h2,h3,h4,h5,h6,[role="heading"]';
+
 type Props = {
     // Unique ID for this section's button.
     id: string;
@@ -73,6 +75,28 @@ const AccordionSectionHeader = React.forwardRef(function AccordionSectionHeader(
 
     const headerIsString = typeof header === "string";
 
+    // Checking the DOM rather than the `header` element also catches headings
+    // rendered inside a consumer's own components, which the
+    // no-heading-in-accordion-header lint rule can't see.
+    const headerContentRef = React.useRef<HTMLElement>(null);
+    React.useEffect(() => {
+        if (process.env.NODE_ENV === "production" || headerIsString) {
+            return;
+        }
+
+        if (headerContentRef.current?.querySelector(HEADING_SELECTOR)) {
+            // eslint-disable-next-line no-console
+            console.warn(
+                "AccordionSection's header contains a heading. It is rendered " +
+                    "inside a <button> that AccordionSection already wraps in " +
+                    "a heading, which is invalid HTML. Set the heading level " +
+                    "with the `tag` prop instead, and use " +
+                    '`<BodyText tag="span">` with `font.heading.*` tokens for ' +
+                    "heading-sized text.",
+            );
+        }
+    }, [header, headerIsString]);
+
     const {roundedTop, roundedBottom} = getRoundedValuesForHeader(
         cornerKind,
         isFirstSection,
@@ -107,6 +131,7 @@ const AccordionSectionHeader = React.forwardRef(function AccordionSectionHeader(
                                 styles.headerContent,
                                 headerIsString && styles.headerString,
                             ]}
+                            ref={headerContentRef}
                         >
                             {headerIsString ? (
                                 <View

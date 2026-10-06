@@ -1,5 +1,99 @@
 # @khanacademy/wonder-blocks-dropdown
 
+## 10.13.0
+
+### Minor Changes
+
+- 4aef2da: `ActionMenu` now forwards its `ref` to the opener's DOM element.
+
+    This lets components that anchor to their trigger, like `Popover`, wrap an `ActionMenu` directly, because `ActionMenu` can now receive the ref they inject.
+
+    `ActionMenu` also no longer uses `ReactDOM.findDOMNode` (removed in React 19) to find its opener. The default opener forwards its ref to the underlying `Button`. Custom openers are resolved from the ref when it reaches a DOM element, and otherwise from the opener `id` that `DropdownOpener` puts on the element.
+
+## 10.12.7
+
+### Patch Changes
+
+- Updated dependencies [c56e31b]
+    - @khanacademy/wonder-blocks-modal@8.9.0
+
+## 10.12.6
+
+### Patch Changes
+
+- Updated dependencies [66bae92]
+    - @khanacademy/wonder-blocks-styles@0.4.0
+    - @khanacademy/wonder-blocks-clickable@8.3.1
+    - @khanacademy/wonder-blocks-cell@6.2.14
+    - @khanacademy/wonder-blocks-icon-button@12.0.1
+    - @khanacademy/wonder-blocks-modal@8.8.4
+    - @khanacademy/wonder-blocks-pill@3.1.78
+    - @khanacademy/wonder-blocks-form@7.6.15
+    - @khanacademy/wonder-blocks-announcer@1.1.2
+    - @khanacademy/wonder-blocks-search-field@5.1.85
+
+## 10.12.5
+
+### Patch Changes
+
+- Updated dependencies [849def2]
+- Updated dependencies [8ac496e]
+    - @khanacademy/wonder-blocks-icon-button@12.0.0
+    - @khanacademy/wonder-blocks-clickable@8.3.0
+    - @khanacademy/wonder-blocks-styles@0.3.0
+    - @khanacademy/wonder-blocks-cell@6.2.13
+    - @khanacademy/wonder-blocks-modal@8.8.3
+    - @khanacademy/wonder-blocks-search-field@5.1.84
+    - @khanacademy/wonder-blocks-form@7.6.14
+    - @khanacademy/wonder-blocks-pill@3.1.77
+    - @khanacademy/wonder-blocks-announcer@1.1.2
+
+## 10.12.4
+
+### Patch Changes
+
+- Updated dependencies [04522d4]
+- Updated dependencies [5b4fed3]
+    - @khanacademy/wonder-blocks-tokens@18.0.0
+    - @khanacademy/wonder-blocks-cell@6.2.12
+    - @khanacademy/wonder-blocks-clickable@8.2.11
+    - @khanacademy/wonder-blocks-form@7.6.13
+    - @khanacademy/wonder-blocks-icon@6.0.2
+    - @khanacademy/wonder-blocks-icon-button@11.5.1
+    - @khanacademy/wonder-blocks-modal@8.8.2
+    - @khanacademy/wonder-blocks-pill@3.1.76
+    - @khanacademy/wonder-blocks-search-field@5.1.83
+    - @khanacademy/wonder-blocks-styles@0.2.54
+    - @khanacademy/wonder-blocks-typography@5.0.5
+    - @khanacademy/wonder-blocks-core@12.5.0
+    - @khanacademy/wonder-blocks-timing@7.1.0
+    - @khanacademy/wonder-blocks-announcer@1.1.2
+
+## 10.12.3
+
+### Patch Changes
+
+- Updated dependencies [63dcc94]
+- Updated dependencies [5dd4192]
+    - @khanacademy/wonder-blocks-core@12.5.0
+    - @khanacademy/wonder-blocks-modal@8.8.1
+    - @khanacademy/wonder-blocks-icon-button@11.5.0
+    - @khanacademy/wonder-blocks-announcer@1.1.2
+    - @khanacademy/wonder-blocks-cell@6.2.11
+    - @khanacademy/wonder-blocks-clickable@8.2.10
+    - @khanacademy/wonder-blocks-form@7.6.12
+    - @khanacademy/wonder-blocks-icon@6.0.1
+    - @khanacademy/wonder-blocks-pill@3.1.75
+    - @khanacademy/wonder-blocks-search-field@5.1.82
+    - @khanacademy/wonder-blocks-typography@5.0.4
+
+## 10.12.2
+
+### Patch Changes
+
+- Updated dependencies [e11b241]
+    - @khanacademy/wonder-blocks-modal@8.8.0
+
 ## 10.12.1
 
 ### Patch Changes

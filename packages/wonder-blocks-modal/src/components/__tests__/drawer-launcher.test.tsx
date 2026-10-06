@@ -10,6 +10,7 @@ import Button from "@khanacademy/wonder-blocks-button";
 import {BodyText} from "@khanacademy/wonder-blocks-typography";
 import DrawerLauncher from "../drawer-launcher";
 import FlexibleDialog from "../flexible-dialog";
+import {DRAWER_EXIT_DURATION_MS} from "../../util/drawer-animation";
 
 const exampleModal = (
     <FlexibleDialog
@@ -450,6 +451,41 @@ describe("DrawerLauncher", () => {
                     expect(onCloseMock).toHaveBeenCalled();
                 },
                 {timeout: 200}, // A bit longer than animation duration
+            );
+        });
+
+        test("Modal closes after the exit duration when timingDuration is not set", async () => {
+            // Arrange
+            const onCloseMock = jest.fn();
+            render(
+                <DrawerLauncher
+                    alignment="inlineEnd"
+                    animated={true}
+                    modal={
+                        <FlexibleDialog
+                            title="Animation test"
+                            content={<div data-testid="modal-content" />}
+                        />
+                    }
+                    opened={true}
+                    onClose={onCloseMock}
+                />,
+            );
+            const closeButton = await screen.findByRole("button", {
+                name: "Close modal",
+            });
+
+            // Act
+            await userEvent.click(closeButton);
+
+            // Assert
+            await waitFor(
+                () => {
+                    expect(onCloseMock).toHaveBeenCalled();
+                },
+                // Shorter than the enter duration, so this times out if the
+                // unmount timer uses the wrong phase.
+                {timeout: DRAWER_EXIT_DURATION_MS + 50},
             );
         });
 

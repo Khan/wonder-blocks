@@ -1,5 +1,15 @@
 # @khanacademy/wonder-blocks-tokens
 
+## 18.0.0
+
+### Major Changes
+
+- 04522d4: Remove the `font.body.lineHeight.large` token. This token was originally added to provide backwards compatibility with the default theme while building the ThunderBlocks theme. Now that typography uses the new `Heading` and `BodyText` components (which reference the correct tokens), this token is no longer needed.
+
+### Patch Changes
+
+- 5b4fed3: Update graphics role background tokens (administrator, parent, teacher) to use the `60` palette value for consistency across roles
+
 ## 17.3.0
 
 ### Minor Changes

@@ -484,6 +484,8 @@ const AllFields = (
     );
 };
 
+const disabledLabeledFieldContainerTestId = "disabled-labeled-field-container";
+
 /**
  * The `LabeledField` component can be used with form field components such as:
  * - `TextField`
@@ -514,7 +516,9 @@ export const Fields: StoryComponentType = {
                 <Heading>Error</Heading>
                 <AllFields {...args} errorMessage="Message about the error" />
                 <Heading>Disabled</Heading>
-                <AllFields {...args} disabled />
+                <View testId={disabledLabeledFieldContainerTestId}>
+                    <AllFields {...args} disabled />
+                </View>
                 <Heading>Read Only</Heading>
                 <AllFields
                     {...args}
@@ -530,6 +534,20 @@ export const Fields: StoryComponentType = {
             // with LabeledField
             disableSnapshot: false,
             modes: allThemeModes,
+        },
+        a11y: {
+            config: {
+                rules: [
+                    {
+                        // Exempt color contrast rule for labeled field contents when it is related to a disabled field. This is the intended design.
+                        // Note: axe's `selector` option replaces the set of
+                        // elements the rule audits, so we audit everything
+                        // except the contents of the disabled container.
+                        id: "color-contrast",
+                        selector: `*:not([data-testid="${disabledLabeledFieldContainerTestId}"] *)`,
+                    },
+                ],
+            },
         },
     },
 };
