@@ -1,0 +1,90 @@
+/**
+ * Clickable styles.
+ *
+ * Source: https://gist.github.com/MoOx/9137295
+ *
+ * The build wraps every `*.module.css` in `@layer shared`, so this file becomes
+ * `@layer shared { @layer reset { … } }` — the sub-layer `shared.reset`, shared
+ * with `button-unstyled.module.css`. Component styles have no inner layer, so
+ * they sit directly in `shared`, and rules directly in a layer outrank that
+ * layer's named sub-layers. Everything here is a base default that consumers
+ * (Cell, Pill, AccordionSectionHeader, …) are expected to override, so the
+ * cascade is decided by the layer, not by bundle order. Overrides passed
+ * through the `style` prop are emitted unlayered and win over any `@layer`.
+ *
+ * Nesting is native CSS: every `&` is explicit and resolves to the flat
+ * selector it replaces, at the same specificity. Within the layer every rule
+ * sits at equal specificity, so source order decides — reset → link → focused
+ * → disabled.
+ */
+
+@layer reset {
+    .reset {
+        margin: 0;
+        padding: 0;
+        border: none;
+        width: auto;
+        background: var(--wb-semanticColor-core-transparent);
+        box-sizing: border-box;
+        overflow: visible;
+        text-decoration: none;
+
+        /* Inherit font & color from ancestor. `font` is a shorthand that also
+         * resets `line-height`, so the `line-height` normalization below has
+         * to stay after it. */
+        color: inherit;
+        font: inherit;
+
+        /* Normalize `line-height`. Cannot be changed from `normal` in
+         * Firefox 4+. */
+        line-height: normal;
+
+        /* This is usually frowned upon b/c of accessibility. We expect users of
+         * Clickable to define their own focus styles. */
+        outline: none;
+
+        /* This removes the 300ms click delay on mobile browsers by indicating
+         * that "double-tap to zoom" shouldn't be used on this element. */
+        touch-action: manipulation;
+        user-select: none;
+
+        /* Corrects font smoothing for webkit */
+        -webkit-font-smoothing: inherit;
+        -moz-osx-font-smoothing: inherit;
+    }
+
+    .link {
+        cursor: pointer;
+    }
+
+    /**
+     * The default focus ring, applied only when `hideDefaultFocusRing` is unset
+     * and `ClickableBehavior` reports the element as focused.
+     */
+    .focused {
+        &:focus {
+            outline: solid var(--wb-border-width-medium)
+                var(--wb-semanticColor-focus-outer);
+        }
+    }
+
+    /**
+     * Disabled. Declared last so it resets the focus ring above, and so its
+     * `color` outranks the `color: inherit` in `.reset`.
+     */
+    .disabled {
+        cursor: not-allowed;
+        color: var(--wb-semanticColor-action-secondary-disabled-foreground);
+
+        /* A disabled Clickable drops the programmatic focus ring but keeps the
+         * keyboard-only one, so `:focus-visible` follows `:focus`. */
+        &:focus {
+            outline: none;
+        }
+
+        &:focus-visible {
+            outline: solid var(--wb-border-width-medium)
+                var(--wb-semanticColor-focus-outer);
+        }
+    }
+}
