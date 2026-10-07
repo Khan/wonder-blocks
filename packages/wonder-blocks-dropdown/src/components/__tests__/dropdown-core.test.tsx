@@ -1,9 +1,11 @@
 // We allow raw buttons in this test since DropdownCore is a low-level component.
 import * as React from "react";
-import {fireEvent, render, screen, waitFor} from "@testing-library/react";
+import {act, fireEvent, render, screen, waitFor} from "@testing-library/react";
 import {userEvent} from "@testing-library/user-event";
 
+import ActionItem from "../action-item";
 import OptionItem from "../option-item";
+import SeparatorItem from "../separator-item";
 import DropdownCore from "../dropdown-core";
 
 const items = [
@@ -23,6 +25,19 @@ const items = [
         populatedProps: {},
     },
 ];
+
+/**
+ * Get a copy of `items` with one item made non-focusable (as if it were
+ * disabled).
+ *
+ * @param disabledIndex The index of the item to make non-focusable.
+ * @returns The items, with `focusable: false` on the item at `disabledIndex`.
+ */
+const itemsWithDisabled = (disabledIndex: number) =>
+    items.map((item, index) => ({
+        ...item,
+        focusable: index !== disabledIndex,
+    }));
 
 describe("DropdownCore", () => {
     it("should throw for invalid role", async () => {
@@ -903,6 +918,962 @@ describe("DropdownCore", () => {
 
             // Assert
             expect(onOpenMock).toHaveBeenCalledTimes(0);
+        });
+
+        it("should return focus to the opener element when closed with Escape", async () => {
+            // Arrange
+            const props = {
+                initialFocusedIndex: 0,
+                items,
+                role: "listbox",
+                open: true,
+                opener: <button>opener</button>,
+                onOpenChanged: jest.fn(),
+            } as const;
+            const {rerender} = render(<DropdownCore {...props} />);
+            const openerElement = await screen.findByRole("button", {
+                name: "opener",
+            });
+            rerender(<DropdownCore {...props} openerElement={openerElement} />);
+
+            // Act
+            await userEvent.keyboard("{Escape}");
+
+            // Assert
+            expect(openerElement).toHaveFocus();
+        });
+
+        it("should not be triggered when clicking on the opener while open", async () => {
+            // Arrange
+            const onOpenMock = jest.fn();
+            render(
+                <DropdownCore
+                    initialFocusedIndex={0}
+                    items={items}
+                    role="listbox"
+                    open={true}
+                    opener={<button>opener</button>}
+                    onOpenChanged={onOpenMock}
+                />,
+            );
+
+            // Act
+            await userEvent.click(
+                await screen.findByRole("button", {name: "opener"}),
+            );
+
+            // Assert
+            expect(onOpenMock).not.toHaveBeenCalled();
+        });
+
+        it("should not be triggered when clicking on an item inside the dropdown", async () => {
+            // Arrange
+            const onOpenMock = jest.fn();
+            render(
+                <DropdownCore
+                    initialFocusedIndex={0}
+                    items={items}
+                    role="listbox"
+                    open={true}
+                    opener={<button />}
+                    onOpenChanged={onOpenMock}
+                />,
+            );
+
+            // Act
+            await userEvent.click(
+                await screen.findByRole("option", {name: "item 1"}),
+            );
+
+            // Assert
+            expect(onOpenMock).not.toHaveBeenCalled();
+        });
+
+        it("should be triggered on external mouse click after the menu is opened via props", async () => {
+            // Arrange
+            const onOpenMock = jest.fn();
+            const {rerender} = render(
+                <DropdownCore
+                    initialFocusedIndex={0}
+                    items={items}
+                    role="listbox"
+                    open={false}
+                    opener={<button />}
+                    onOpenChanged={onOpenMock}
+                />,
+            );
+            rerender(
+                <DropdownCore
+                    initialFocusedIndex={0}
+                    items={items}
+                    role="listbox"
+                    open={true}
+                    opener={<button />}
+                    onOpenChanged={onOpenMock}
+                />,
+            );
+
+            // Act
+            await userEvent.click(document.body);
+
+            // Assert
+            expect(onOpenMock).toHaveBeenCalledExactlyOnceWith(false);
+        });
+
+        it("should not be triggered on external mouse click after the menu is closed via props", async () => {
+            // Arrange
+            const onOpenMock = jest.fn();
+            const {rerender} = render(
+                <DropdownCore
+                    initialFocusedIndex={0}
+                    items={items}
+                    role="listbox"
+                    open={true}
+                    opener={<button />}
+                    onOpenChanged={onOpenMock}
+                />,
+            );
+            rerender(
+                <DropdownCore
+                    initialFocusedIndex={0}
+                    items={items}
+                    role="listbox"
+                    open={false}
+                    opener={<button />}
+                    onOpenChanged={onOpenMock}
+                />,
+            );
+
+            // Act
+            await userEvent.click(document.body);
+
+            // Assert
+            expect(onOpenMock).not.toHaveBeenCalled();
+        });
+
+        it("should not be triggered on external mouse click after unmounting", async () => {
+            // Arrange
+            const onOpenMock = jest.fn();
+            const {unmount} = render(
+                <DropdownCore
+                    initialFocusedIndex={0}
+                    items={items}
+                    role="listbox"
+                    open={true}
+                    opener={<button />}
+                    onOpenChanged={onOpenMock}
+                />,
+            );
+            unmount();
+
+            // Act
+            await userEvent.click(document.body);
+
+            // Assert
+            expect(onOpenMock).not.toHaveBeenCalled();
+        });
+    });
+
+    describe("focus when opening", () => {
+        it("should focus the initial item when the menu is opened via props", async () => {
+            // Arrange
+            const {rerender} = render(
+                <DropdownCore
+                    initialFocusedIndex={1}
+                    items={items}
+                    role="listbox"
+                    open={false}
+                    opener={<button />}
+                    onOpenChanged={jest.fn()}
+                />,
+            );
+
+            // Act
+            rerender(
+                <DropdownCore
+                    initialFocusedIndex={1}
+                    items={items}
+                    role="listbox"
+                    open={true}
+                    opener={<button />}
+                    onOpenChanged={jest.fn()}
+                />,
+            );
+
+            // Assert
+            expect(
+                await screen.findByRole("option", {name: "item 1"}),
+            ).toHaveFocus();
+        });
+
+        describe("with fake timers", () => {
+            beforeEach(() => {
+                jest.useFakeTimers();
+            });
+
+            afterEach(() => {
+                jest.useRealTimers();
+            });
+
+            it("should not focus any item when autoFocus is false", async () => {
+                // Arrange
+
+                // Act
+                render(
+                    <DropdownCore
+                        autoFocus={false}
+                        initialFocusedIndex={0}
+                        items={items}
+                        role="listbox"
+                        open={true}
+                        opener={<button />}
+                        onOpenChanged={jest.fn()}
+                    />,
+                );
+                act(() => {
+                    jest.runAllTimers();
+                });
+
+                // Assert
+                expect(document.body).toHaveFocus();
+            });
+        });
+    });
+
+    describe("when the focusable items change while open", () => {
+        it("should continue keyboard navigation from the focused item when a different item stops being focusable", async () => {
+            // Arrange
+            const {rerender} = render(
+                <DropdownCore
+                    initialFocusedIndex={0}
+                    items={items}
+                    role="listbox"
+                    open={true}
+                    opener={<button />}
+                    onOpenChanged={jest.fn()}
+                />,
+            );
+            await userEvent.keyboard("{ArrowDown}"); // 0 -> 1
+            rerender(
+                <DropdownCore
+                    initialFocusedIndex={0}
+                    items={itemsWithDisabled(0)}
+                    role="listbox"
+                    open={true}
+                    opener={<button />}
+                    onOpenChanged={jest.fn()}
+                />,
+            );
+
+            // Act
+            await userEvent.keyboard("{ArrowDown}"); // 1 -> 2
+
+            // Assert
+            await waitFor(async () => {
+                expect(
+                    await screen.findByRole("option", {name: "item 2"}),
+                ).toHaveFocus();
+            });
+        });
+
+        it("should focus the first focusable item when the focused item stops being focusable", async () => {
+            // Arrange
+            const {rerender} = render(
+                <DropdownCore
+                    initialFocusedIndex={0}
+                    items={items}
+                    role="listbox"
+                    open={true}
+                    opener={<button />}
+                    onOpenChanged={jest.fn()}
+                />,
+            );
+            await userEvent.keyboard("{ArrowDown}"); // 0 -> 1
+
+            // Act
+            rerender(
+                <DropdownCore
+                    initialFocusedIndex={0}
+                    items={itemsWithDisabled(1)}
+                    role="listbox"
+                    open={true}
+                    opener={<button />}
+                    onOpenChanged={jest.fn()}
+                />,
+            );
+
+            // Assert
+            await waitFor(async () => {
+                expect(
+                    await screen.findByRole("option", {name: "item 0"}),
+                ).toHaveFocus();
+            });
+        });
+
+        it("should let keyboard navigation reach an item added while open", async () => {
+            // Arrange
+            const itemsWithExtra = [
+                ...items,
+                {
+                    component: <OptionItem label="item 3" value="3" key="3" />,
+                    focusable: true,
+                    populatedProps: {},
+                },
+            ];
+            const {rerender} = render(
+                <DropdownCore
+                    initialFocusedIndex={2}
+                    items={items}
+                    role="listbox"
+                    open={true}
+                    opener={<button />}
+                    onOpenChanged={jest.fn()}
+                />,
+            );
+            rerender(
+                <DropdownCore
+                    initialFocusedIndex={2}
+                    items={itemsWithExtra}
+                    role="listbox"
+                    open={true}
+                    opener={<button />}
+                    onOpenChanged={jest.fn()}
+                />,
+            );
+
+            // Act
+            await userEvent.keyboard("{ArrowDown}"); // 2 -> 3
+
+            // Assert
+            expect(
+                await screen.findByRole("option", {name: "item 3"}),
+            ).toHaveFocus();
+        });
+    });
+
+    describe("type-ahead", () => {
+        const fruitItems = ["apple", "banana", "cherry"].map((fruit) => ({
+            component: <OptionItem label={fruit} value={fruit} key={fruit} />,
+            focusable: true,
+            populatedProps: {},
+        }));
+
+        beforeEach(() => {
+            jest.useFakeTimers();
+        });
+
+        afterEach(() => {
+            act(() => {
+                jest.runOnlyPendingTimers();
+            });
+            jest.useRealTimers();
+        });
+
+        it("should focus the item that starts with the typed characters", async () => {
+            // Arrange
+            const user = userEvent.setup({
+                advanceTimers: jest.advanceTimersByTime,
+            });
+            render(
+                <DropdownCore
+                    initialFocusedIndex={0}
+                    items={fruitItems}
+                    role="listbox"
+                    open={true}
+                    opener={<button />}
+                    onOpenChanged={jest.fn()}
+                />,
+            );
+            await user.keyboard("ch");
+
+            // Act
+            act(() => {
+                jest.runAllTimers();
+            });
+
+            // Assert
+            expect(screen.getByRole("option", {name: "cherry"})).toHaveFocus();
+        });
+
+        it("should not move focus when no item starts with the typed characters", async () => {
+            // Arrange
+            const user = userEvent.setup({
+                advanceTimers: jest.advanceTimersByTime,
+            });
+            render(
+                <DropdownCore
+                    initialFocusedIndex={1}
+                    items={fruitItems}
+                    role="listbox"
+                    open={true}
+                    opener={<button />}
+                    onOpenChanged={jest.fn()}
+                />,
+            );
+            act(() => {
+                jest.runOnlyPendingTimers();
+            });
+            await user.keyboard("z");
+
+            // Act
+            act(() => {
+                jest.runAllTimers();
+            });
+
+            // Assert
+            expect(screen.getByRole("option", {name: "banana"})).toHaveFocus();
+        });
+
+        it("should not move focus when enableTypeAhead is false", async () => {
+            // Arrange
+            const user = userEvent.setup({
+                advanceTimers: jest.advanceTimersByTime,
+            });
+            render(
+                <DropdownCore
+                    enableTypeAhead={false}
+                    initialFocusedIndex={0}
+                    items={fruitItems}
+                    role="listbox"
+                    open={true}
+                    opener={<button />}
+                    onOpenChanged={jest.fn()}
+                />,
+            );
+            act(() => {
+                jest.runOnlyPendingTimers();
+            });
+            await user.keyboard("ch");
+
+            // Act
+            act(() => {
+                jest.runAllTimers();
+            });
+
+            // Assert
+            expect(screen.getByRole("option", {name: "apple"})).toHaveFocus();
+        });
+
+        it("should not match items that aren't options when typing", async () => {
+            // Arrange
+            const user = userEvent.setup({
+                advanceTimers: jest.advanceTimersByTime,
+            });
+            render(
+                <DropdownCore
+                    initialFocusedIndex={1}
+                    items={[
+                        {
+                            component: <ActionItem label="apple" key="apple" />,
+                            focusable: true,
+                            populatedProps: {},
+                        },
+                        ...fruitItems.slice(1),
+                    ]}
+                    role="menu"
+                    open={true}
+                    opener={<button />}
+                    onOpenChanged={jest.fn()}
+                />,
+            );
+            act(() => {
+                jest.runOnlyPendingTimers();
+            });
+            await user.keyboard("a");
+
+            // Act
+            act(() => {
+                jest.runAllTimers();
+            });
+
+            // Assert
+            expect(
+                screen.getByRole("menuitem", {name: "banana"}),
+            ).toHaveFocus();
+        });
+
+        it("should call onOpenChanged(true) when a letter matching an item is typed while closed", async () => {
+            // Arrange
+            const letterMatchingAnItem = "b";
+            const onOpenMock = jest.fn();
+            const user = userEvent.setup({
+                advanceTimers: jest.advanceTimersByTime,
+            });
+            render(
+                <DropdownCore
+                    items={fruitItems}
+                    role="listbox"
+                    open={false}
+                    opener={<button />}
+                    onOpenChanged={onOpenMock}
+                />,
+            );
+            screen.getByRole("button").focus();
+            await user.keyboard(letterMatchingAnItem);
+
+            // Act
+            act(() => {
+                jest.runAllTimers();
+            });
+
+            // Assert
+            expect(onOpenMock).toHaveBeenCalledWith(true);
+        });
+
+        it("should not call onOpenChanged when a letter matching no item is typed while closed", async () => {
+            // Arrange
+            const letterMatchingNoItem = "z";
+            const onOpenMock = jest.fn();
+            const user = userEvent.setup({
+                advanceTimers: jest.advanceTimersByTime,
+            });
+            render(
+                <DropdownCore
+                    items={fruitItems}
+                    role="listbox"
+                    open={false}
+                    opener={<button />}
+                    onOpenChanged={onOpenMock}
+                />,
+            );
+            screen.getByRole("button").focus();
+            await user.keyboard(letterMatchingNoItem);
+
+            // Act
+            act(() => {
+                jest.runAllTimers();
+            });
+
+            // Assert
+            expect(onOpenMock).not.toHaveBeenCalled();
+        });
+
+        // NOTE: This pins the current behavior. The code intends to also
+        // select the matching item for single selection, but the item refs
+        // don't exist yet while the menu is closed, so it only opens the menu.
+        it("should only open the menu and not select the matching item when typing while closed", async () => {
+            // Arrange
+            const onOpenMock = jest.fn();
+            const onItemClick = jest.fn();
+            const user = userEvent.setup({
+                advanceTimers: jest.advanceTimersByTime,
+            });
+            const ControlledDropdown = () => {
+                const [open, setOpen] = React.useState(false);
+                return (
+                    <DropdownCore
+                        items={fruitItems.map((item) => ({
+                            ...item,
+                            populatedProps: {onClick: onItemClick},
+                        }))}
+                        role="listbox"
+                        open={open}
+                        opener={<button />}
+                        onOpenChanged={(isOpen) => {
+                            onOpenMock(isOpen);
+                            setOpen(isOpen);
+                        }}
+                    />
+                );
+            };
+            render(<ControlledDropdown />);
+            screen.getByRole("button").focus();
+            await user.keyboard("b");
+
+            // Act
+            act(() => {
+                jest.runAllTimers();
+            });
+
+            // Assert
+            expect({
+                onOpenChangedCalls: onOpenMock.mock.calls,
+                itemClicked: onItemClick.mock.calls.length > 0,
+            }).toEqual({onOpenChangedCalls: [[true]], itemClicked: false});
+        });
+    });
+
+    // NOTE: These pin the current behavior. The search field labels (`filter`
+    // and `clearSearch`) are kept in state, and changes to the `labels` prop
+    // are only merged into that state when the set of focusable items also
+    // changes while the menu is open. The "No results" message reads
+    // `noResults` directly from the `labels` prop, so it always updates.
+    describe("when the labels prop changes while open", () => {
+        const labelsA = {
+            clearSearch: "Clear A",
+            filter: "Filter A",
+            noResults: "No results A",
+            someResults: (numOptions: number) => `${numOptions} results A`,
+        };
+        const labelsB = {
+            clearSearch: "Clear B",
+            filter: "Filter B",
+            noResults: "No results B",
+            someResults: (numOptions: number) => `${numOptions} results B`,
+        };
+        const baseProps = {
+            onSearchTextChanged: jest.fn(),
+            searchText: "",
+            isFilterable: true,
+            role: "listbox",
+            open: true,
+            opener: <button />,
+            onOpenChanged: jest.fn(),
+        } as const;
+
+        it("should keep the initial search field labels when the focusable items don't change", async () => {
+            // Arrange
+            const {rerender} = render(
+                <DropdownCore {...baseProps} items={items} labels={labelsA} />,
+            );
+
+            // Act
+            rerender(
+                <DropdownCore {...baseProps} items={items} labels={labelsB} />,
+            );
+
+            // Assert
+            expect(
+                await screen.findByPlaceholderText("Filter A"),
+            ).toBeInTheDocument();
+        });
+
+        it("should update the search field labels when the focusable items also change", async () => {
+            // Arrange
+            const {rerender} = render(
+                <DropdownCore {...baseProps} items={items} labels={labelsA} />,
+            );
+
+            // Act
+            rerender(
+                <DropdownCore
+                    {...baseProps}
+                    items={itemsWithDisabled(0)}
+                    labels={labelsB}
+                />,
+            );
+
+            // Assert
+            expect(
+                await screen.findByPlaceholderText("Filter B"),
+            ).toBeInTheDocument();
+        });
+
+        it("should keep the initial clear search label when the focusable items don't change", async () => {
+            // Arrange
+            const {rerender} = render(
+                <DropdownCore
+                    {...baseProps}
+                    searchText="item"
+                    items={items}
+                    labels={labelsA}
+                />,
+            );
+
+            // Act
+            rerender(
+                <DropdownCore
+                    {...baseProps}
+                    searchText="item"
+                    items={items}
+                    labels={labelsB}
+                />,
+            );
+
+            // Assert
+            expect(
+                await screen.findByRole("button", {name: "Clear A"}),
+            ).toBeInTheDocument();
+        });
+
+        it("should update the clear search label when the focusable items also change", async () => {
+            // Arrange
+            const {rerender} = render(
+                <DropdownCore
+                    {...baseProps}
+                    searchText="item"
+                    items={items}
+                    labels={labelsA}
+                />,
+            );
+
+            // Act
+            rerender(
+                <DropdownCore
+                    {...baseProps}
+                    searchText="item"
+                    items={itemsWithDisabled(0)}
+                    labels={labelsB}
+                />,
+            );
+
+            // Assert
+            expect(
+                await screen.findByRole("button", {name: "Clear B"}),
+            ).toBeInTheDocument();
+        });
+
+        it("should update the no results message", async () => {
+            // Arrange
+            const {rerender} = render(
+                <DropdownCore {...baseProps} items={[]} labels={labelsA} />,
+            );
+
+            // Act
+            rerender(
+                <DropdownCore {...baseProps} items={[]} labels={labelsB} />,
+            );
+
+            // Assert
+            expect(await screen.findByText("No results B")).toBeInTheDocument();
+        });
+    });
+
+    describe("rendering", () => {
+        it("should render the items with the menuitem role when role is menu", async () => {
+            // Arrange
+
+            // Act
+            render(
+                <DropdownCore
+                    items={items}
+                    role="menu"
+                    open={true}
+                    opener={<button />}
+                    onOpenChanged={jest.fn()}
+                />,
+            );
+
+            // Assert
+            expect(await screen.findAllByRole("menuitem")).toHaveLength(3);
+        });
+
+        describe("custom labels", () => {
+            const customLabels = {
+                clearSearch: "Clear the fruit search",
+                filter: "Search fruits",
+                noResults: "Nothing here",
+                someResults: (numOptions: number) => `${numOptions} fruits`,
+            };
+
+            it("should use the filter label as the search field placeholder", async () => {
+                // Arrange
+
+                // Act
+                render(
+                    <DropdownCore
+                        labels={customLabels}
+                        onSearchTextChanged={jest.fn()}
+                        searchText=""
+                        isFilterable={true}
+                        items={items}
+                        role="listbox"
+                        open={true}
+                        opener={<button />}
+                        onOpenChanged={jest.fn()}
+                    />,
+                );
+
+                // Assert
+                expect(
+                    await screen.findByPlaceholderText("Search fruits"),
+                ).toBeInTheDocument();
+            });
+
+            it("should use the noResults label when there are no items", async () => {
+                // Arrange
+
+                // Act
+                render(
+                    <DropdownCore
+                        labels={customLabels}
+                        onSearchTextChanged={jest.fn()}
+                        searchText="xyz"
+                        isFilterable={true}
+                        items={[]}
+                        role="listbox"
+                        open={true}
+                        opener={<button />}
+                        onOpenChanged={jest.fn()}
+                    />,
+                );
+
+                // Assert
+                expect(
+                    await screen.findByText("Nothing here"),
+                ).toBeInTheDocument();
+            });
+
+            it("should use the clearSearch label for the search field's clear button", async () => {
+                // Arrange
+
+                // Act
+                render(
+                    <DropdownCore
+                        labels={customLabels}
+                        onSearchTextChanged={jest.fn()}
+                        searchText="app"
+                        isFilterable={true}
+                        items={items}
+                        role="listbox"
+                        open={true}
+                        opener={<button />}
+                        onOpenChanged={jest.fn()}
+                    />,
+                );
+
+                // Assert
+                expect(
+                    await screen.findByRole("button", {
+                        name: "Clear the fruit search",
+                    }),
+                ).toBeInTheDocument();
+            });
+        });
+
+        it("should skip separators when navigating with the keyboard", async () => {
+            // Arrange
+            render(
+                <DropdownCore
+                    initialFocusedIndex={0}
+                    items={[
+                        items[0],
+                        {
+                            component: <SeparatorItem key="separator" />,
+                            focusable: false,
+                            populatedProps: {},
+                        },
+                        items[1],
+                    ]}
+                    role="listbox"
+                    open={true}
+                    opener={<button />}
+                    onOpenChanged={jest.fn()}
+                />,
+            );
+
+            // Act
+            await userEvent.keyboard("{ArrowDown}");
+
+            // Assert
+            await waitFor(async () => {
+                expect(
+                    await screen.findByRole("option", {name: "item 1"}),
+                ).toHaveFocus();
+            });
+        });
+
+        it("should call the populated onClick handler when an item is clicked", async () => {
+            // Arrange
+            const onClick = jest.fn();
+            render(
+                <DropdownCore
+                    items={[{...items[0], populatedProps: {onClick}}]}
+                    role="listbox"
+                    open={true}
+                    opener={<button />}
+                    onOpenChanged={jest.fn()}
+                />,
+            );
+
+            // Act
+            await userEvent.click(
+                await screen.findByRole("option", {name: "item 0"}),
+            );
+
+            // Assert
+            expect(onClick).toHaveBeenCalledTimes(1);
+        });
+    });
+
+    describe("VirtualizedList keyboard navigation", () => {
+        const optionItems = new Array(200).fill(null).map((_: any, i: any) => ({
+            component: (
+                <OptionItem
+                    key={i}
+                    value={(i + 1).toString()}
+                    label={`Fruit # ${i + 1}`}
+                />
+            ),
+            focusable: true,
+            populatedProps: {},
+        }));
+
+        beforeEach(() => {
+            // The virtualized list focuses items via animation frames and
+            // timeouts, so we use fake timers to make this deterministic.
+            jest.useFakeTimers();
+        });
+
+        afterEach(() => {
+            jest.useRealTimers();
+        });
+
+        // Advance the timers in small steps, so that the virtualized list can
+        // re-render between each of the scheduled animation frames.
+        const advanceFrames = () => {
+            for (let i = 0; i < 10; i++) {
+                act(() => {
+                    jest.advanceTimersByTime(20);
+                });
+            }
+        };
+
+        it("should focus the next item when pressing ArrowDown", async () => {
+            // Arrange
+            const user = userEvent.setup({
+                advanceTimers: jest.advanceTimersByTime,
+            });
+            render(
+                <DropdownCore
+                    initialFocusedIndex={0}
+                    items={optionItems}
+                    role="listbox"
+                    open={true}
+                    opener={<button />}
+                    onOpenChanged={jest.fn()}
+                />,
+            );
+            advanceFrames();
+
+            // Act
+            await user.keyboard("{ArrowDown}");
+            advanceFrames();
+
+            // Assert
+            expect(
+                screen.getByRole("option", {name: "Fruit # 2"}),
+            ).toHaveFocus();
+        });
+
+        it("should skip a non-focusable item when pressing ArrowDown", async () => {
+            // Arrange
+            const user = userEvent.setup({
+                advanceTimers: jest.advanceTimersByTime,
+            });
+            render(
+                <DropdownCore
+                    initialFocusedIndex={0}
+                    items={optionItems.map((item, index) => ({
+                        ...item,
+                        focusable: index !== 1,
+                    }))}
+                    role="listbox"
+                    open={true}
+                    opener={<button />}
+                    onOpenChanged={jest.fn()}
+                />,
+            );
+            advanceFrames();
+
+            // Act
+            await user.keyboard("{ArrowDown}");
+            advanceFrames();
+
+            // Assert
+            expect(
+                screen.getByRole("option", {name: "Fruit # 3"}),
+            ).toHaveFocus();
         });
     });
 });

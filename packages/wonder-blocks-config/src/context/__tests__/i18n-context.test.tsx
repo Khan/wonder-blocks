@@ -10,7 +10,10 @@ import {defaultStringsEn} from "../../strings";
 
 import type {I18nConfig} from "../i18n-context";
 
-const stringsEs = {iconAltOpensNewTab: "(se abre en una pestaña nueva)"};
+const stringsEs = {
+    ...defaultStringsEn,
+    iconAltOpensNewTab: "(se abre en una pestaña nueva)",
+};
 
 const StringsProbe = () => (
     <div>{useWonderBlocksI18n().strings.iconAltOpensNewTab}</div>
@@ -53,11 +56,17 @@ describe("WonderBlocksI18nContextProvider", () => {
             // Arrange
             render(
                 <WonderBlocksI18nContextProvider
-                    strings={{iconAltOpensNewTab: "Outer text"}}
+                    strings={{
+                        ...defaultStringsEn,
+                        iconAltOpensNewTab: "Outer text",
+                    }}
                     locale="en"
                 >
                     <WonderBlocksI18nContextProvider
-                        strings={{iconAltOpensNewTab: "Inner text"}}
+                        strings={{
+                            ...defaultStringsEn,
+                            iconAltOpensNewTab: "Inner text",
+                        }}
                         locale="es"
                     >
                         <StringsProbe />
