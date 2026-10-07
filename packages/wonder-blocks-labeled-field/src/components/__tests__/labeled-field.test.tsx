@@ -3,6 +3,10 @@ import {render, screen, within} from "@testing-library/react";
 
 import {TextField} from "@khanacademy/wonder-blocks-form";
 import {RenderStateRoot} from "@khanacademy/wonder-blocks-core";
+import {
+    WonderBlocksConfigProvider,
+    defaultStringsEn,
+} from "@khanacademy/wonder-blocks-config";
 import LabeledField from "../labeled-field";
 
 const defaultOptions = {
@@ -241,6 +245,82 @@ describe("LabeledField", () => {
             // Get the icon within the error section
             const error = screen.getByTestId("labeled-field-error");
             const errorIcon = within(error).getByRole("img");
+
+            // Assert
+            expect(errorIcon).toHaveAttribute("aria-label", "Error:");
+        });
+
+        it("should use the aria-label from the config provider on the error icon", () => {
+            // Arrange
+            render(
+                <WonderBlocksConfigProvider
+                    i18n={{
+                        strings: {
+                            ...defaultStringsEn,
+                            iconAltErrorMessagePrefix: "translated text",
+                        },
+                        locale: "es",
+                    }}
+                >
+                    <LabeledField
+                        field={<TextField value="" onChange={() => {}} />}
+                        label="Label"
+                        errorMessage="Error message"
+                    />
+                </WonderBlocksConfigProvider>,
+                defaultOptions,
+            );
+
+            // Act
+            const errorIcon = screen.getByRole("img");
+
+            // Assert
+            expect(errorIcon).toHaveAttribute("aria-label", "translated text");
+        });
+
+        it("should prefer the errorIconAriaLabel over the config provider", () => {
+            // Arrange
+            render(
+                <WonderBlocksConfigProvider
+                    i18n={{
+                        strings: {
+                            ...defaultStringsEn,
+                            iconAltErrorMessagePrefix: "translated text",
+                        },
+                        locale: "es",
+                    }}
+                >
+                    <LabeledField
+                        field={<TextField value="" onChange={() => {}} />}
+                        label="Label"
+                        errorMessage="Error message"
+                        labels={{errorIconAriaLabel: "overriding label"}}
+                    />
+                </WonderBlocksConfigProvider>,
+                defaultOptions,
+            );
+
+            // Act
+            const errorIcon = screen.getByRole("img");
+
+            // Assert
+            expect(errorIcon).toHaveAttribute("aria-label", "overriding label");
+        });
+
+        it("should use the default error icon aria-label if only readOnlyIconAriaLabel is provided", () => {
+            // Arrange
+            render(
+                <LabeledField
+                    field={<TextField value="" onChange={() => {}} />}
+                    label="Label"
+                    errorMessage="Error message"
+                    labels={{readOnlyIconAriaLabel: "Read only"}}
+                />,
+                defaultOptions,
+            );
+
+            // Act
+            const errorIcon = screen.getByRole("img");
 
             // Assert
             expect(errorIcon).toHaveAttribute("aria-label", "Error:");
