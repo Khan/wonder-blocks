@@ -18,7 +18,8 @@ type Props = AriaProps & {
      */
     closeButtonLight?: boolean;
     /**
-     * Close button label for use in screen readers
+     * Close button label for use in screen readers. This overrides the default
+     * label provided by `WonderBlocksConfigProvider`.
      */
     closeButtonLabel?: string;
     /**

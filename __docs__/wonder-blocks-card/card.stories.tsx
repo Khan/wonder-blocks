@@ -129,11 +129,21 @@ export const GemCard: StoryComponentType = {
 /**
  * Cards also have the option to display a "close" button that can dismiss the card from the DOM.
  *
+ * The dismiss button has a built-in accessible name ("Close"). It can be
+ * overridden using the `labels.dismissButtonAriaLabel` prop.
+ *
  * If a Card is removed onDismiss, focus should be moved to a wrapper or neighoring interactive element.
  */
 export const WithDismissButton: StoryComponentType = {
     render: () => {
-        const CardWithRef = () => {
+        const CardWithRef = ({
+            dismissButtonAriaLabel,
+            heading,
+        }: {
+            dismissButtonAriaLabel?: string;
+            heading: string;
+        }) => {
+            const bodyId = React.useId();
             const wrapperRef = React.useRef<HTMLDivElement>(null);
             const cardRef = React.useRef<HTMLDivElement>(null);
             const onDismiss = () => {
@@ -148,15 +158,15 @@ export const WithDismissButton: StoryComponentType = {
                 <View ref={wrapperRef} tabIndex={-1}>
                     <Card
                         labels={{
-                            dismissButtonAriaLabel: "Dismiss",
-                            dismissButtonAriaDescribedBy: "dismiss-button-body",
+                            dismissButtonAriaLabel,
+                            dismissButtonAriaDescribedBy: bodyId,
                         }}
                         onDismiss={onDismiss}
                         ref={cardRef}
                         styles={{root: styles.card}}
                     >
-                        <Heading>Dismissable Card</Heading>
-                        <BodyText id="dismiss-button-body">
+                        <Heading>{heading}</Heading>
+                        <BodyText id={bodyId}>
                             This is a card with a close button. Click the button
                             to dismiss.
                         </BodyText>
@@ -165,7 +175,15 @@ export const WithDismissButton: StoryComponentType = {
             );
         };
 
-        return <CardWithRef />;
+        return (
+            <View style={{gap: sizing.size_160}}>
+                <CardWithRef heading="Dismissable Card" />
+                <CardWithRef
+                    heading="Dismissable Card with a custom dismiss button label"
+                    dismissButtonAriaLabel="Dismiss"
+                />
+            </View>
+        );
     },
 };
 /**

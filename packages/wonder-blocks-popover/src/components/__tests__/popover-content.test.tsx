@@ -2,6 +2,11 @@ import * as React from "react";
 import {render, screen} from "@testing-library/react";
 import {userEvent} from "@testing-library/user-event";
 
+import {
+    WonderBlocksConfigProvider,
+    defaultStringsEn,
+} from "@khanacademy/wonder-blocks-config";
+
 import PopoverContent from "../popover-content";
 import PopoverContext from "../popover-context";
 
@@ -115,5 +120,62 @@ describe("PopoverContent", () => {
         expect(
             screen.getByRole("heading", {level: 2, name: "Title"}),
         ).toBeInTheDocument();
+    });
+
+    describe("closeButtonLabel", () => {
+        it("should use the close button label from the config provider", () => {
+            // Arrange
+            render(
+                <WonderBlocksConfigProvider
+                    i18n={{
+                        strings: {
+                            ...defaultStringsEn,
+                            iconAltClosePopover: "translated text",
+                        },
+                        locale: "es",
+                    }}
+                >
+                    <PopoverContent
+                        title="Title"
+                        content="content"
+                        closeButtonVisible={true}
+                    />
+                </WonderBlocksConfigProvider>,
+            );
+
+            // Act
+            const closeButton = screen.getByRole("button");
+
+            // Assert
+            expect(closeButton).toHaveAccessibleName("translated text");
+        });
+
+        it("should prefer the closeButtonLabel prop over the config provider", () => {
+            // Arrange
+            render(
+                <WonderBlocksConfigProvider
+                    i18n={{
+                        strings: {
+                            ...defaultStringsEn,
+                            iconAltClosePopover: "translated text",
+                        },
+                        locale: "es",
+                    }}
+                >
+                    <PopoverContent
+                        title="Title"
+                        content="content"
+                        closeButtonVisible={true}
+                        closeButtonLabel="overriding label"
+                    />
+                </WonderBlocksConfigProvider>,
+            );
+
+            // Act
+            const closeButton = screen.getByRole("button");
+
+            // Assert
+            expect(closeButton).toHaveAccessibleName("overriding label");
+        });
     });
 });
