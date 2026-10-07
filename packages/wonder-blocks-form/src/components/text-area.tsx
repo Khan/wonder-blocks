@@ -1,5 +1,4 @@
 import * as React from "react";
-import {StyleSheet} from "aphrodite";
 
 import {
     AriaProps,
@@ -8,12 +7,12 @@ import {
     View,
     useOnMountEffect,
 } from "@khanacademy/wonder-blocks-core";
-import {border, font, semanticColor} from "@khanacademy/wonder-blocks-tokens";
+import {border, font} from "@khanacademy/wonder-blocks-tokens";
 import {typographyClassNames} from "@khanacademy/wonder-blocks-typography";
 import {useId} from "react";
-import {focusStyles} from "@khanacademy/wonder-blocks-styles";
 import {useFieldValidation} from "../hooks/use-field-validation";
 import theme from "../theme";
+import styles from "./text-area.module.css";
 
 type TextAreaProps = AriaProps & {
     /**
@@ -436,7 +435,7 @@ const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
                     style={[
                         styles.textarea,
                         typographyClassNames.BodyTextMediumMediumWeight,
-                        resizeType && resizeStyles[resizeType],
+                        resizeType && styles[resizeType],
                         styles.default,
                         disabled && styles.disabled,
                         hasError && styles.error,
@@ -475,82 +474,5 @@ const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
         );
     },
 );
-
-const ACTIVE_BOX_SHADOW = `0 0 0 ${theme.field.border.width.press} ${semanticColor.input.default.border}`;
-
-const styles = StyleSheet.create({
-    textarea: {
-        borderRadius: theme.field.border.radius,
-        boxSizing: "border-box",
-        paddingInline: theme.field.layout.paddingInline,
-        paddingBlock: theme.field.layout.paddingBlock,
-    },
-    autoResize: {
-        // Disable the resize control
-        resize: "none",
-    },
-    readOnly: {
-        background: semanticColor.input.readOnly.background,
-        color: semanticColor.input.readOnly.text,
-    },
-    default: {
-        background: semanticColor.input.default.background,
-        border: `${border.width.thin} solid ${semanticColor.input.default.border}`,
-        color: semanticColor.input.default.foreground,
-        "::placeholder": {
-            color: semanticColor.input.default.placeholder,
-        },
-        ...focusStyles.focus,
-        // TODO(WB-2365): Use rounded corners for the active state instead
-        // Don't show active styles if field is disabled or readonly
-        [":active:not([aria-disabled='true']):not([readonly])" as any]: {
-            // Use box shadow to make the border in the press state look thicker
-            // without changing the border
-            boxShadow: ACTIVE_BOX_SHADOW,
-        },
-        // Focus + Active (and not disabled and not readonly)
-        [":focus-visible:active:not([aria-disabled='true']):not([readonly])" as any]:
-            {
-                boxShadow: `${ACTIVE_BOX_SHADOW}, ${focusStyles.focus[":focus-visible"].boxShadow}`,
-            },
-    },
-    disabled: {
-        background: semanticColor.input.disabled.background,
-        border: `${border.width.thin} solid ${semanticColor.input.disabled.border}`,
-        color: semanticColor.input.disabled.foreground,
-        "::placeholder": {
-            color: semanticColor.input.disabled.placeholder,
-        },
-        cursor: "not-allowed",
-    },
-    error: {
-        background: semanticColor.input.error.background,
-        border: `${theme.field.border.width.error} solid ${semanticColor.input.error.border}`,
-        color: semanticColor.input.error.foreground,
-        "::placeholder": {
-            color: semanticColor.input.default.placeholder,
-        },
-        // Focus + Active (and not disabled and not readonly)
-        [":focus-visible:active:not([aria-disabled='true']):not([readonly])" as any]:
-            {
-                boxShadow: `${ACTIVE_BOX_SHADOW}, ${focusStyles.focus[":focus-visible"].boxShadow}`,
-            },
-    },
-});
-
-const resizeStyles = StyleSheet.create({
-    both: {
-        resize: "both",
-    },
-    none: {
-        resize: "none",
-    },
-    horizontal: {
-        resize: "horizontal",
-    },
-    vertical: {
-        resize: "vertical",
-    },
-});
 
 export default TextArea;

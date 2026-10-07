@@ -1,0 +1,60 @@
+/**
+ * Choice styles (shared by `Checkbox`, `Radio` and `Choice`)
+ *
+ * The one value that differs between the default and thunderblocks themes is
+ * the codegen'd `--wb-c-form-description-color-foreground` token (switched on
+ * `[data-wb-theme]`); every other value is the plain `--wb-*` token.
+ *
+ * Every rule is nested inside `.root` — the marker class on the outermost
+ * element, which carries no declarations of its own — because the wrappers
+ * are `View`s and the label and description are `BodyText`s, and this
+ * component overrides properties they set in the same `@layer shared`
+ * (`display`, `flex-direction`, `align-items`, `margin`, `line-height`). At
+ * equal specificity stylesheet load order would decide the winner, so the
+ * compound selector makes it depend on specificity instead. It also puts
+ * every rule at the same specificity, so source order decides between them:
+ * `.disabledLabel` must follow `.label`.
+ *
+ * Nesting is native CSS: every `&` is explicit and resolves to the flat
+ * selector it replaces (`.root .wrapper`, at (0,2,0)). The build wraps every
+ * rule in `@layer shared { … }`.
+ */
+
+.root {
+    & .wrapper {
+        gap: var(--wb-sizing-size_080);
+        line-height: var(--wb-font-body-lineHeight-small);
+        flex-direction: row;
+        align-items: flex-start;
+        outline: none;
+    }
+
+    & .choiceWrapper {
+        display: block;
+
+        /* Account for half of the default label lineHeight difference,
+         * which is 18px (label text) - 16px (choice size).
+         * This equals 1 pixel above, and 1 pixel below to be vertically
+         * centered */
+        margin-block-start: var(--wb-sizing-size_010);
+    }
+
+    & .label {
+        color: var(--wb-semanticColor-core-foreground-neutral-strong);
+        line-height: var(--wb-font-body-lineHeight-small);
+    }
+
+    & .disabledLabel {
+        /* Match disabled text input label color */
+        color: var(--wb-semanticColor-core-foreground-disabled-subtle);
+    }
+
+    & .description {
+        /* 16 for icon + 8 for spacing strut */
+        margin-inline-start: calc(
+            var(--wb-sizing-size_160) + var(--wb-sizing-size_080)
+        );
+        margin-block-start: var(--wb-sizing-size_040);
+        color: var(--wb-c-form-description-color-foreground);
+    }
+}

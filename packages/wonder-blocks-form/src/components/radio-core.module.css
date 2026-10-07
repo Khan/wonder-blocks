@@ -1,0 +1,227 @@
+/**
+ * Radio styles
+ *
+ * The wrapper's padding and margin are the codegen'd
+ * `--wb-c-form-choice-inputWrapper-*` tokens (switched on `[data-wb-theme]`);
+ * every other value is the plain `--wb-*` token.
+ *
+ * Every rule is nested inside `.root` — the marker class on the wrapper
+ * (the outermost element), which carries no declarations of its own. The
+ * wrapper is a `View`, which ships a single-class rule in the same
+ * `@layer shared`, and this component overrides properties it sets (`margin`
+ * and `padding`). At equal specificity stylesheet load order would decide the
+ * winner, so the compound selector makes it depend on specificity instead.
+ *
+ * Colour is keyed on two axes — checked × default / disabled / error — so
+ * each cell only assigns `--wb-c-radio--*` custom properties ("component
+ * tokens"), and the rest / hover / press rules read them:
+ *
+ *   --wb-c-radio--color-background-rest
+ *   --wb-c-radio--color-border-rest
+ *   --wb-c-radio--color-background-hover    (unchecked only)
+ *   --wb-c-radio--color-outline-hover
+ *   --wb-c-radio--color-background-press
+ *   --wb-c-radio--color-border-press
+ *   --wb-c-radio--color-outline-press
+ *   --wb-c-radio--outline-offset
+ *
+ * `error` takes precedence over `disabled` (it is declared later at equal
+ * specificity). The hover and press rules exclude `[disabled]`, so a disabled
+ * radio never reads its hover or press tokens.
+ *
+ * The state rules keep the specificity relationship the Aphrodite version
+ * had: the wrapper's `:hover` rule outranks the input's `:active` rule, which
+ * follows `:focus-visible` at equal specificity. So a hovered radio shows the
+ * hover outline even while pressed, and a pressed one shows the press outline
+ * over the focus ring's outline (the ring's `box-shadow` stays).
+ *
+ * Nesting is native CSS: every `&` is explicit and resolves to the flat
+ * selector it replaces (`.root .input`, `.root.wrapper:hover .input…`). The
+ * state classes are composed through the `style` prop (`processStyleList`
+ * routes class-name strings to `className`). The build wraps every rule in
+ * `@layer shared { … }`.
+ */
+
+@import "@khanacademy/wonder-blocks-styles/focus-styles.css";
+
+.root {
+    &.wrapper {
+        padding: var(--wb-c-form-choice-inputWrapper-layout-padding);
+        margin: var(--wb-c-form-choice-inputWrapper-layout-margin);
+        position: relative;
+    }
+
+    /* Colour cells: the only rules that assign component tokens. The
+     * unchecked default cell sits on the base `.input` rule. */
+    & .input {
+        --wb-c-radio--color-background-rest: var(
+            --wb-semanticColor-input-default-background
+        );
+        --wb-c-radio--color-border-rest: var(
+            --wb-semanticColor-input-default-border
+        );
+        --wb-c-radio--color-background-hover: var(
+            --wb-semanticColor-action-secondary-progressive-hover-background
+        );
+        --wb-c-radio--color-outline-hover: var(
+            --wb-semanticColor-action-secondary-progressive-hover-border
+        );
+        --wb-c-radio--color-background-press: var(
+            --wb-semanticColor-action-secondary-progressive-press-background
+        );
+        --wb-c-radio--color-border-press: var(--wb-c-radio--color-border-rest);
+        --wb-c-radio--color-outline-press: var(
+            --wb-semanticColor-action-secondary-progressive-press-border
+        );
+        --wb-c-radio--outline-offset: -1px;
+
+        /* Reset the default styled input element */
+        appearance: none;
+        block-size: var(--wb-sizing-size_160);
+        inline-size: var(--wb-sizing-size_160);
+        min-block-size: var(--wb-sizing-size_160);
+        min-inline-size: var(--wb-sizing-size_160);
+        margin: 0;
+        outline: none;
+        box-sizing: border-box;
+        border-style: solid;
+        border-width: var(--wb-border-width-thin);
+        border-radius: var(--wb-border-radius-radius_full);
+        background-color: var(--wb-c-radio--color-background-rest);
+        border-color: var(--wb-c-radio--color-border-rest);
+    }
+
+    & .input.disabled {
+        --wb-c-radio--color-background-rest: var(
+            --wb-semanticColor-input-disabled-background
+        );
+        --wb-c-radio--color-border-rest: var(
+            --wb-semanticColor-input-disabled-border
+        );
+    }
+
+    & .input.error {
+        --wb-c-radio--color-background-rest: var(
+            --wb-semanticColor-input-error-background
+        );
+        --wb-c-radio--color-border-rest: var(
+            --wb-semanticColor-input-error-border
+        );
+        --wb-c-radio--color-background-hover: var(
+            --wb-semanticColor-input-error-background
+        );
+        --wb-c-radio--color-outline-hover: var(
+            --wb-semanticColor-input-error-border
+        );
+        --wb-c-radio--color-background-press: var(
+            --wb-semanticColor-input-error-background
+        );
+        --wb-c-radio--color-outline-press: var(
+            --wb-semanticColor-core-border-critical-strong
+        );
+    }
+
+    /* The checked state paints the dot with the background, inside a thick
+     * border. Its press state only changes the outline and border. */
+    & .input.checked {
+        --wb-c-radio--color-background-rest: var(
+            --wb-semanticColor-input-checked-foreground
+        );
+        --wb-c-radio--color-border-rest: var(
+            --wb-semanticColor-input-checked-background
+        );
+        --wb-c-radio--color-outline-hover: var(
+            --wb-semanticColor-input-checked-border
+        );
+        --wb-c-radio--color-background-press: var(
+            --wb-c-radio--color-background-rest
+        );
+        --wb-c-radio--color-border-press: var(
+            --wb-semanticColor-core-background-instructive-strong
+        );
+        --wb-c-radio--color-outline-press: var(
+            --wb-semanticColor-core-background-instructive-strong
+        );
+        --wb-c-radio--outline-offset: 1px;
+
+        /* borders need to render in pixels for consistent size */
+        border-width: calc(var(--wb-sizing-size_160) / 4);
+    }
+
+    & .input.checked.disabled {
+        --wb-c-radio--color-background-rest: var(
+            --wb-semanticColor-core-background-base-default
+        );
+        --wb-c-radio--color-border-rest: var(
+            --wb-semanticColor-core-border-disabled-default
+        );
+    }
+
+    & .input.checked.error {
+        /* Repeats the checked value so it overrides `.checked.disabled`. */
+        --wb-c-radio--color-background-rest: var(
+            --wb-semanticColor-input-checked-foreground
+        );
+        --wb-c-radio--color-border-rest: var(
+            --wb-semanticColor-input-error-border
+        );
+        --wb-c-radio--color-outline-hover: var(
+            --wb-semanticColor-input-error-border
+        );
+        --wb-c-radio--color-border-press: var(
+            --wb-semanticColor-core-border-critical-strong
+        );
+        --wb-c-radio--color-outline-press: var(
+            --wb-semanticColor-core-border-critical-strong
+        );
+    }
+
+    /* Use the global focus style */
+    & .input:focus-visible:not([disabled]) {
+        @apply --wb-focus-visible;
+    }
+
+    & .input:active:not([disabled]) {
+        background-color: var(--wb-c-radio--color-background-press);
+        border-color: var(--wb-c-radio--color-border-press);
+        outline: var(--wb-border-width-medium) solid
+            var(--wb-c-radio--color-outline-press);
+        outline-offset: var(--wb-c-radio--outline-offset);
+    }
+
+    /* TODO(WB-1864): Revisit hover, press tokens */
+    &.wrapper:hover .input:not([disabled]) {
+        outline: var(--wb-border-width-medium) solid
+            var(--wb-c-radio--color-outline-hover);
+        outline-offset: var(--wb-c-radio--outline-offset);
+    }
+
+    /* Only the unchecked hover state changes the background. */
+    &.wrapper:hover .input:not([disabled], .checked) {
+        background-color: var(--wb-c-radio--color-background-hover);
+    }
+
+    /* The dot drawn over a checked, disabled radio. It's a sibling of the
+     * input, so it can't read the input's component tokens: it repeats the
+     * checked rest background of the disabled (or, with `error`, the error)
+     * cell. */
+    & .disabledChecked {
+        position: absolute;
+        inset-block-start: calc(
+            var(--wb-sizing-size_160) * 0.25 +
+                var(--wb-c-form-choice-inputWrapper-layout-padding)
+        );
+        inset-inline-start: calc(
+            var(--wb-sizing-size_160) * 0.25 +
+                var(--wb-c-form-choice-inputWrapper-layout-padding)
+        );
+        block-size: calc(var(--wb-sizing-size_160) / 2);
+        inline-size: calc(var(--wb-sizing-size_160) / 2);
+        border-radius: var(--wb-border-radius-radius_full);
+        background-color: var(--wb-semanticColor-core-background-base-default);
+    }
+
+    & .disabledCheckedError {
+        background-color: var(--wb-semanticColor-input-checked-foreground);
+    }
+}

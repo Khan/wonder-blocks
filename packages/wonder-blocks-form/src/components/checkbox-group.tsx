@@ -4,7 +4,7 @@ import {addStyle} from "@khanacademy/wonder-blocks-core";
 import {BodyText} from "@khanacademy/wonder-blocks-typography";
 import type {StyleType} from "@khanacademy/wonder-blocks-core";
 
-import styles from "./group-styles";
+import styles from "./group-styles.module.css";
 import Choice from "./choice";
 
 // Keep synced with CheckboxGroupProps in ../util/types.js

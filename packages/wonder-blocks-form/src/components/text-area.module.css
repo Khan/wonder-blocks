@@ -1,0 +1,116 @@
+/**
+ * TextArea styles
+ *
+ * Every value that differs between the default and thunderblocks themes is a
+ * codegen'd `--wb-c-form-*` token (switched on `[data-wb-theme]`), so the
+ * rules below read those directly. Values that never varied by theme are
+ * written as the plain `--wb-*` token.
+ *
+ * The `textarea` is rendered by `addStyle`, which ships no class of its own.
+ * The only other `@layer shared` rules on it are the typography classes,
+ * which set the font, `display` and `margin` — none of which this module
+ * sets — so nothing competes. The `rows` / `autoResize` sizing objects and the consumer's
+ * `style` still go through Aphrodite (unlayered and `!important`), so they
+ * win over this module as they did before.
+ *
+ * Source order reproduces the order of the `style` array: the `resizeType`
+ * classes → `default` → `disabled` → `error` → `readOnly` → `autoResize`. The
+ * state classes are composed through the `style` prop (`processStyleList`
+ * routes class-name strings to `className`). The build wraps every rule in
+ * `@layer shared { … }`.
+ */
+
+@import "@khanacademy/wonder-blocks-styles/focus-styles.css";
+
+.textarea {
+    border-radius: var(--wb-c-form-field-border-radius);
+    box-sizing: border-box;
+    padding-inline: var(--wb-c-form-field-layout-paddingInline);
+    padding-block: var(--wb-c-form-field-layout-paddingBlock);
+}
+
+/* `resizeType` */
+.both {
+    resize: both;
+}
+
+.none {
+    resize: none;
+}
+
+.horizontal {
+    resize: horizontal;
+}
+
+.vertical {
+    resize: vertical;
+}
+
+.default {
+    background: var(--wb-semanticColor-input-default-background);
+    border: var(--wb-border-width-thin) solid
+        var(--wb-semanticColor-input-default-border);
+    color: var(--wb-semanticColor-input-default-foreground);
+
+    &::placeholder {
+        color: var(--wb-semanticColor-input-default-placeholder);
+    }
+
+    &:focus-visible {
+        @apply --wb-focus-visible;
+    }
+
+    /* TODO(WB-2365): Use rounded corners for the active state instead
+     * Don't show active styles if field is disabled or readonly */
+    &:active:not([aria-disabled="true"], [readonly]) {
+        /* Use box shadow to make the border in the press state look thicker
+         * without changing the border */
+        box-shadow: 0 0 0 var(--wb-c-form-field-border-width-press)
+            var(--wb-semanticColor-input-default-border);
+    }
+
+    /* Focus + Active (and not disabled and not readonly) */
+    &:focus-visible:active:not([aria-disabled="true"], [readonly]) {
+        box-shadow:
+            0 0 0 var(--wb-c-form-field-border-width-press)
+                var(--wb-semanticColor-input-default-border),
+            0 0 0 var(--wb-border-width-medium)
+                var(--wb-semanticColor-focus-inner);
+    }
+}
+
+.disabled {
+    background: var(--wb-semanticColor-input-disabled-background);
+    border: var(--wb-border-width-thin) solid
+        var(--wb-semanticColor-input-disabled-border);
+    color: var(--wb-semanticColor-input-disabled-foreground);
+    cursor: not-allowed;
+
+    &::placeholder {
+        color: var(--wb-semanticColor-input-disabled-placeholder);
+    }
+}
+
+/* `error` keeps the default press and focus + press styles, which `default`
+ * (always applied) already declares. */
+.error {
+    background: var(--wb-semanticColor-input-error-background);
+    border: var(--wb-c-form-field-border-width-error) solid
+        var(--wb-semanticColor-input-error-border);
+    color: var(--wb-semanticColor-input-error-foreground);
+
+    &::placeholder {
+        color: var(--wb-semanticColor-input-default-placeholder);
+    }
+}
+
+.readOnly {
+    background: var(--wb-semanticColor-input-readOnly-background);
+    color: var(--wb-semanticColor-input-readOnly-text);
+}
+
+/* Declared after the `resizeType` classes so it overrides them. */
+.autoResize {
+    /* Disable the resize control */
+    resize: none;
+}
