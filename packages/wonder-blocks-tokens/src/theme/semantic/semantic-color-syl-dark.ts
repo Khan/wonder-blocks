@@ -614,6 +614,54 @@ export const semanticColor = mergeTheme(thunderblocksSemanticColor, {
                 },
             },
         },
+        dataViz: {
+            heatmap: {
+                band0: {
+                    background: graphicsPalette.red_30,
+                    foreground: graphicsPalette.white_100,
+                },
+                band10: {
+                    background: graphicsPalette.red_20,
+                    foreground: graphicsPalette.white_100,
+                },
+                band20: {
+                    background: graphicsPalette.orange_20,
+                    foreground: graphicsPalette.white_100,
+                },
+                band30: {
+                    background: graphicsPalette.orange_30,
+                    foreground: graphicsPalette.black_100,
+                },
+                band40: {
+                    background: graphicsPalette.yellow_30,
+                    foreground: graphicsPalette.black_100,
+                },
+                band50: {
+                    background: graphicsPalette.yellow_20,
+                    foreground: graphicsPalette.black_100,
+                },
+                band60: {
+                    background: graphicsPalette.yellow_10,
+                    foreground: graphicsPalette.white_100,
+                },
+                band70: {
+                    background: graphicsPalette.green_10,
+                    foreground: graphicsPalette.white_100,
+                },
+                band80: {
+                    background: graphicsPalette.green_20,
+                    foreground: graphicsPalette.white_100,
+                },
+                band90: {
+                    background: graphicsPalette.green_30,
+                    foreground: graphicsPalette.black_100,
+                },
+                band100: {
+                    background: graphicsPalette.green_40,
+                    foreground: graphicsPalette.black_100,
+                },
+            },
+        },
         externalBrands: {
             apple: {
                 brand: "#FFFFFF",
