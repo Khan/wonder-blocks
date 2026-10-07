@@ -4,7 +4,7 @@
 export type WonderBlocksStrings = {
     // Alt text for icons / icon buttons
     iconAltClearSearch: string;
-    iconAltError: string;
+    iconAltErrorMessagePrefix: string;
     iconAltOpensNewTab: string;
 
     // Labels
@@ -25,9 +25,9 @@ export const strings = {
             "Accessible name for an icon button that clears the text in a search field.",
         message: "Clear search",
     },
-    iconAltError: {
+    iconAltErrorMessagePrefix: {
         context:
-            "Accessible name for an error icon. It is read by screen readers before an error message for a form field.",
+            "Accessible name for an error icon shown before the error message for a form field. Screen readers read it as a prefix to the error message (e.g. 'Error: This field is required.'), so use the punctuation that normally separates a label from the text that follows in this language.",
         message: "Error:",
     },
     iconAltOpensNewTab: {
@@ -60,7 +60,7 @@ export const strings = {
 export const defaultStringsEn: WonderBlocksStrings = {
     // Alt text for icons / icon buttons
     iconAltClearSearch: strings.iconAltClearSearch.message,
-    iconAltError: strings.iconAltError.message,
+    iconAltErrorMessagePrefix: strings.iconAltErrorMessagePrefix.message,
     iconAltOpensNewTab: strings.iconAltOpensNewTab.message,
 
     // Labels
