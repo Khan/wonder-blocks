@@ -2,7 +2,10 @@
  * The translated strings that are used to render Wonder Blocks.
  */
 export type WonderBlocksStrings = {
+    // Alt text for icons / icon buttons
     iconAltOpensNewTab: string;
+    // Form validation
+    requiredField: string;
 };
 
 /**
@@ -12,10 +15,17 @@ export type WonderBlocksStrings = {
  * !! Note: Ensure that all escape sequences are double-escaped. (e.g. `\\text` -> `\\\\text`)
  */
 export const strings = {
+    // Alt text for icons / icon buttons
     iconAltOpensNewTab: {
         context:
             "Accessible name for an icon marking a link that opens in a new tab.",
         message: "(opens in a new tab)",
+    },
+    // Form validation
+    requiredField: {
+        context:
+            "Error message shown when a required form field is left empty.",
+        message: "This field is required.",
     },
 } satisfies {
     [Key in keyof WonderBlocksStrings]:
@@ -28,5 +38,8 @@ export const strings = {
  * Default 'en' strings to use.
  */
 export const defaultStringsEn: WonderBlocksStrings = {
+    // Alt text for icons / icon buttons
     iconAltOpensNewTab: strings.iconAltOpensNewTab.message,
+    // Form validation
+    requiredField: strings.requiredField.message,
 };
