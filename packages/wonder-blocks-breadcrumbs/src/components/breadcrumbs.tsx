@@ -70,12 +70,7 @@ const Breadcrumbs = React.forwardRef(function Breadcrumbs(
     ref: React.ForwardedRef<HTMLElement>,
 ) {
     const {strings} = useWonderBlocksI18n();
-    const {
-        "aria-label": ariaLabel = strings.breadcrumbs,
-        children,
-        testId,
-        ...otherProps
-    } = props;
+    const {"aria-label": ariaLabel, children, testId, ...otherProps} = props;
 
     // using React.Children allows to deal with opaque data structures
     // e.g. children = 'string' vs children = []
@@ -84,7 +79,7 @@ const Breadcrumbs = React.forwardRef(function Breadcrumbs(
     return (
         <nav
             {...otherProps}
-            aria-label={ariaLabel}
+            aria-label={ariaLabel || strings.breadcrumbs}
             data-testid={testId}
             ref={ref}
         >
