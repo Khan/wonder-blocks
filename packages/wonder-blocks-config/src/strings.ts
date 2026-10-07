@@ -4,6 +4,9 @@
 export type WonderBlocksStrings = {
     // Alt text for icons / icon buttons
     iconAltClearSearch: string;
+    iconAltClose: string;
+    iconAltCloseModal: string;
+    iconAltClosePopover: string;
     iconAltErrorMessagePrefix: string;
     iconAltOpensNewTab: string;
 
@@ -27,6 +30,19 @@ export const strings = {
         context:
             "Accessible name for an icon button that clears the text in a search field.",
         message: "Clear search",
+    },
+    iconAltClose: {
+        context:
+            "Accessible name for an icon button that dismisses a piece of content, such as a card.",
+        message: "Close",
+    },
+    iconAltCloseModal: {
+        context: "Accessible name for an icon button that closes a modal.",
+        message: "Close modal",
+    },
+    iconAltClosePopover: {
+        context: "Accessible name for an icon button that closes a popover.",
+        message: "Close Popover",
     },
     iconAltErrorMessagePrefix: {
         context:
@@ -70,6 +86,9 @@ export const strings = {
 export const defaultStringsEn: WonderBlocksStrings = {
     // Alt text for icons / icon buttons
     iconAltClearSearch: strings.iconAltClearSearch.message,
+    iconAltClose: strings.iconAltClose.message,
+    iconAltCloseModal: strings.iconAltCloseModal.message,
+    iconAltClosePopover: strings.iconAltClosePopover.message,
     iconAltErrorMessagePrefix: strings.iconAltErrorMessagePrefix.message,
     iconAltOpensNewTab: strings.iconAltOpensNewTab.message,
 

@@ -2,6 +2,11 @@ import * as React from "react";
 import {render, screen} from "@testing-library/react";
 import {userEvent} from "@testing-library/user-event";
 
+import {
+    WonderBlocksConfigProvider,
+    defaultStringsEn,
+} from "@khanacademy/wonder-blocks-config";
+
 import Card from "../../components/card";
 
 describe("Card", () => {
@@ -149,6 +154,59 @@ describe("Card", () => {
 
             // Assert
             expect(dismissButton).toBeInTheDocument();
+        });
+
+        it("should use the dismiss button aria-label from the config provider", () => {
+            // Arrange
+            render(
+                <WonderBlocksConfigProvider
+                    i18n={{
+                        strings: {
+                            ...defaultStringsEn,
+                            iconAltClose: "translated text",
+                        },
+                        locale: "es",
+                    }}
+                >
+                    <Card onDismiss={jest.fn()}>
+                        <div>Content</div>
+                    </Card>
+                </WonderBlocksConfigProvider>,
+            );
+
+            // Act
+            const dismissButton = screen.getByRole("button");
+
+            // Assert
+            expect(dismissButton).toHaveAccessibleName("translated text");
+        });
+
+        it("should prefer labels.dismissButtonAriaLabel prop over the config provider", () => {
+            // Arrange
+            render(
+                <WonderBlocksConfigProvider
+                    i18n={{
+                        strings: {
+                            ...defaultStringsEn,
+                            iconAltClose: "translated text",
+                        },
+                        locale: "es",
+                    }}
+                >
+                    <Card
+                        onDismiss={() => {}}
+                        labels={{dismissButtonAriaLabel: "overriding label"}}
+                    >
+                        <div>Content</div>
+                    </Card>
+                </WonderBlocksConfigProvider>,
+            );
+
+            // Act
+            const dismissButton = screen.getByRole("button");
+
+            // Assert
+            expect(dismissButton).toHaveAccessibleName("overriding label");
         });
 
         it("should pass custom aria-describedby to dismiss button", () => {
