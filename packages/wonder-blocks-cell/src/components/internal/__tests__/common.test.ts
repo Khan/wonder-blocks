@@ -1,5 +1,8 @@
 import {getHorizontalRuleStyles} from "../common";
 
+// NOTE: `*.module.css` is mapped to `identity-obj-proxy` in the Jest config,
+// so a CSS Module class resolves to its own name here rather than the hashed
+// class name the bundler emits.
 describe("getHorizontalRuleStyles", () => {
     it("should get 'inset' styles as an array", () => {
         // Arrange
@@ -9,17 +12,10 @@ describe("getHorizontalRuleStyles", () => {
 
         // Assert
         // Verify that both classes are injected
-        expect(styles).toMatchObject([
-            {
-                _name: /horizontalRule/,
-            },
-            {
-                _name: /horizontalRuleInset/,
-            },
-        ]);
+        expect(styles).toEqual(["horizontalRule", "horizontalRuleInset"]);
     });
 
-    it("should get 'full-width' styles as an object", () => {
+    it("should get 'full-width' styles as a single class", () => {
         // Arrange
 
         // Act
@@ -27,9 +23,7 @@ describe("getHorizontalRuleStyles", () => {
 
         // Assert
         // Verify that only one class is injected
-        expect(styles).toMatchObject({
-            _name: /horizontalRule/,
-        });
+        expect(styles).toBe("horizontalRule");
     });
 
     it("should not inject styles with 'none'", () => {

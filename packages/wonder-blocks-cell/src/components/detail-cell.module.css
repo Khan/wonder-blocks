@@ -1,0 +1,16 @@
+/**
+ * `DetailCell` styles.
+ *
+ * Only the subtitle colour lives here. `BodyText`'s own CSS Module sets
+ * `font-size` / `font-weight` / `line-height` but never `color`, so this rule
+ * has nothing to compete with — whereas the subtitle's per-theme font override
+ * *would* collide with those at equal specificity across two packages, which
+ * is why it stays a React inline style in `detail-cell.tsx`.
+ *
+ * `DetailCell`'s wrapper padding lives in `cell-core.module.css` (`.detail`)
+ * so that it is guaranteed to be emitted after `.wrapper`.
+ */
+
+.subtitle {
+    color: var(--wb-semanticColor-core-foreground-neutral-default);
+}
