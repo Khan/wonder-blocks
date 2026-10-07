@@ -15,9 +15,7 @@ a design using the code components!
 
 ## Development
 
-### Installation
-
-#### Setting up Wonder Blocks
+### Setting up Wonder Blocks
 1. Install the <a href="https://github.com/Khan/wonder-blocks/blob/main/packages/wonder-blocks-core/package.json">`peerDependencies`</a> for the `wonder-blocks-core` package:
 ```shell
 pnpm install aphrodite@^1.2.5 react@18.2.0 react-dom@18.2.0 react-router@5.3.4 react-router-dom@5.3.4 react-router-dom-v5-compat@^6.30.0
@@ -34,7 +32,7 @@ and theming of the design system.
 pnpm install @khanacademy/wonder-blocks-core @khanacademy/wonder-blocks-tokens
 ```
 
-#### Importing Styles
+### Importing Styles
 1. Import the styles from the tokens package. These styles are necessary since
 they include the CSS variables used in Wonder Blocks.
 
@@ -43,7 +41,7 @@ they include the CSS variables used in Wonder Blocks.
 @import "@khanacademy/wonder-blocks-tokens/styles.css";
 ```
 
-#### Typography
+### Typography
 1. Set the root font size to `62.5%` so that `1rem` is equal to `10px`. Many of
 the Wonder Blocks components and typography use rems based on this unit.
 
@@ -55,7 +53,49 @@ html {
 
 2. More details to come on how to import fonts!
 
-#### Theming
+### Config
+
+1. Install the config package:
+```shell
+pnpm install @khanacademy/wonder-blocks-config
+```
+2. Wrap the root of your application with the <a href="./?path=/docs/packages-config-wonderblocksconfigprovider--docs">WonderBlocksConfigProvider</a>
+component. Any descendants of this that use Wonder Blocks components will use
+the config it provides.
+
+```tsx
+// App.tsx
+
+import {WonderBlocksConfigProvider} from "@khanacademy/wonder-blocks-config";
+
+export const App = () => {
+    return (
+        <WonderBlocksConfigProvider i18n={{strings: translatedStrings, locale}}>
+            {/* The application contents */}
+        </WonderBlocksConfigProvider>
+    );
+};
+```
+
+#### Internationalization
+
+For most cases, visual labels and aria-labels can be passed into Wonder Blocks
+components as props. These are usually translated strings provided by the
+application since they are related to a specific use case.
+
+Some Wonder Blocks components have built-in translated strings for things like
+accessible names for common icon buttons (like `Close` icon buttons), screen reader
+announcements, etc.
+
+These strings default to English, so components work without any set up. To
+render them in another language, pass the translated strings and the locale
+they are translated into to `WonderBlocksConfigProvider` using the `i18n` prop.
+
+Wonder Blocks components also allow you to override the built-in strings via
+a `labels` prop. This is useful for specific cases when you want to override the
+built-in component strings with a translated string from the application.
+
+### Theming
 
 1. Install the theming package:
 ```shell
@@ -81,12 +121,12 @@ export const App = () => {
 
 ```
 
-#### Icons
+### Icons
 
 We currently use icons from <a href="https://phosphoricons.com/">Phosphor Icons</a> or
 custom icons.
 
-##### Phosphor Icons
+#### Phosphor Icons
 
 1. Install Phosphor Icons and the WB Icon packages
 ```shell
@@ -121,7 +161,7 @@ const iconButton = (
 );
 ```
 
-##### Custom Icons
+#### Custom Icons
 
 1. Install the Wonder Blocks Icon package
 ```shell
@@ -167,7 +207,7 @@ const gemIconButton = (
 )
 ```
 
-#### Components
+### Components
 
 1. Install the package you need for a specific Wonder Blocks component. The
 package name can be found in the docs for a component.
