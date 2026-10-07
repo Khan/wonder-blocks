@@ -3,7 +3,7 @@ import {StyleSheet} from "aphrodite";
 
 import {Id, addStyle} from "@khanacademy/wonder-blocks-core";
 import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
-import {styles as typographyStyles} from "@khanacademy/wonder-blocks-typography";
+import {typographyClassNames} from "@khanacademy/wonder-blocks-typography";
 
 import type {StyleType, AriaProps} from "@khanacademy/wonder-blocks-core";
 import {focusStyles} from "@khanacademy/wonder-blocks-styles";
@@ -263,7 +263,7 @@ const TextField = (props: PropsWithForwardRef) => {
                 <StyledInput
                     style={[
                         styles.input,
-                        typographyStyles.BodyTextMediumMediumWeight,
+                        typographyClassNames.BodyTextMediumMediumWeight,
                         styles.default,
                         disabled && styles.disabled,
                         hasError && styles.error,

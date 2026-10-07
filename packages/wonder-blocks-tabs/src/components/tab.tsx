@@ -10,7 +10,7 @@ import {
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
-import {styles as typographyStyles} from "@khanacademy/wonder-blocks-typography";
+import {typographyClassNames} from "@khanacademy/wonder-blocks-typography";
 import {focusStyles} from "@khanacademy/wonder-blocks-styles";
 
 type Props = AriaProps & {
@@ -92,7 +92,7 @@ export const Tab = React.forwardRef(function Tab(
             onKeyDown={onKeyDown}
             data-testid={testId}
             style={[
-                typographyStyles.BodyTextMediumMediumWeight,
+                typographyClassNames.BodyTextMediumMediumWeight,
                 styles.tab,
                 selected && styles.selectedTab,
                 style,
