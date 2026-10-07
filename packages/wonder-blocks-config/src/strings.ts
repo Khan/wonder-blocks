@@ -4,6 +4,7 @@
 export type WonderBlocksStrings = {
     // Alt text for icons / icon buttons
     iconAltClearSearch: string;
+    iconAltError: string;
     iconAltOpensNewTab: string;
 
     // Labels
@@ -23,6 +24,11 @@ export const strings = {
         context:
             "Accessible name for an icon button that clears the text in a search field.",
         message: "Clear search",
+    },
+    iconAltError: {
+        context:
+            "Accessible name for an error icon. It is read by screen readers before an error message for a form field.",
+        message: "Error:",
     },
     iconAltOpensNewTab: {
         context:
@@ -54,6 +60,7 @@ export const strings = {
 export const defaultStringsEn: WonderBlocksStrings = {
     // Alt text for icons / icon buttons
     iconAltClearSearch: strings.iconAltClearSearch.message,
+    iconAltError: strings.iconAltError.message,
     iconAltOpensNewTab: strings.iconAltOpensNewTab.message,
 
     // Labels
