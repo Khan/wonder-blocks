@@ -150,7 +150,7 @@ export const NavigationTabsDropdown = React.forwardRef<
     const {strings} = useWonderBlocksI18n();
     const labels = React.useMemo(() => {
         return {
-            defaultOpenerLabel: labelsProp?.defaultOpenerLabel ?? strings.tabs,
+            defaultOpenerLabel: labelsProp?.defaultOpenerLabel || strings.tabs,
         };
     }, [labelsProp, strings.tabs]);
 
