@@ -2,6 +2,7 @@ import * as React from "react";
 import {StyleSheet} from "aphrodite";
 import WarningCircle from "@phosphor-icons/core/bold/warning-circle-bold.svg";
 import LockIcon from "@phosphor-icons/core/bold/lock-bold.svg";
+import {useWonderBlocksI18n} from "@khanacademy/wonder-blocks-config";
 import {BodyText} from "@khanacademy/wonder-blocks-typography";
 import {View, StyleType} from "@khanacademy/wonder-blocks-core";
 import {font, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
@@ -31,8 +32,9 @@ type Props = {
      * set the `error` prop on the `field` component.
      *
      * Note: Since the error icon has an aria-label, screen readers will
-     * prefix the error message with "Error:" (or the value provided to the
-     * errorIconAriaLabel in the `labels` prop)
+     * prefix the error message with the `iconAltError` string provided by
+     * `WonderBlocksConfigProvider` ("Error:" by default), or the value
+     * provided to the errorIconAriaLabel in the `labels` prop.
      *
      * If both `errorMessage` and `readOnlyMessage` are provided, the `readOnlyMessage`
      * is displayed first.
@@ -107,12 +109,12 @@ type Props = {
 };
 
 export type LabeledFieldLabels = {
+    /**
+     * The `aria-label` for the error icon. This overrides the default label
+     * provided by `WonderBlocksConfigProvider`.
+     */
     errorIconAriaLabel?: string;
     readOnlyIconAriaLabel?: string;
-};
-
-const defaultLabeledFieldLabels: LabeledFieldLabels = {
-    errorIconAriaLabel: "Error:",
 };
 
 /**
@@ -133,8 +135,10 @@ export default function LabeledField(props: Props) {
         errorMessage,
         readOnlyMessage,
         additionalHelperMessage,
-        labels = defaultLabeledFieldLabels,
+        labels,
     } = props;
+
+    const {strings} = useWonderBlocksI18n();
 
     const generatedUniqueId = React.useId();
     const uniqueId = id ?? `${generatedUniqueId}-labeled-field`;
@@ -238,7 +242,10 @@ export default function LabeledField(props: Props) {
                             icon={WarningCircle}
                             style={[styles.errorIcon, styles.error]}
                             role="img"
-                            aria-label={labels.errorIconAriaLabel}
+                            aria-label={
+                                labels?.errorIconAriaLabel ||
+                                strings.iconAltError
+                            }
                         />
                         <BodyText
                             style={[
@@ -290,7 +297,7 @@ export default function LabeledField(props: Props) {
             >
                 <PhosphorIcon
                     icon={LockIcon}
-                    aria-label={labels.readOnlyIconAriaLabel}
+                    aria-label={labels?.readOnlyIconAriaLabel}
                     color={semanticColor.core.foreground.neutral.subtle}
                 />
                 <BodyText style={styles.helperText}>{readOnlyMessage}</BodyText>
