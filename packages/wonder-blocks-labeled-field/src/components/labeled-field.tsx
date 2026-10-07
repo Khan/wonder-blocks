@@ -32,9 +32,9 @@ type Props = {
      * set the `error` prop on the `field` component.
      *
      * Note: Since the error icon has an aria-label, screen readers will
-     * prefix the error message with the `iconAltError` string provided by
-     * `WonderBlocksConfigProvider` ("Error:" by default), or the value
-     * provided to the errorIconAriaLabel in the `labels` prop.
+     * prefix the error message with the `iconAltErrorMessagePrefix` string
+     * provided by `WonderBlocksConfigProvider` ("Error:" by default), or the
+     * value provided to the errorIconAriaLabel in the `labels` prop.
      *
      * If both `errorMessage` and `readOnlyMessage` are provided, the `readOnlyMessage`
      * is displayed first.
@@ -244,7 +244,7 @@ export default function LabeledField(props: Props) {
                             role="img"
                             aria-label={
                                 labels?.errorIconAriaLabel ||
-                                strings.iconAltError
+                                strings.iconAltErrorMessagePrefix
                             }
                         />
                         <BodyText

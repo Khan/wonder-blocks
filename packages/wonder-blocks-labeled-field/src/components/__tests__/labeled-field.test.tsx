@@ -257,7 +257,7 @@ describe("LabeledField", () => {
                     i18n={{
                         strings: {
                             ...defaultStringsEn,
-                            iconAltError: "translated text",
+                            iconAltErrorMessagePrefix: "translated text",
                         },
                         locale: "es",
                     }}
@@ -285,7 +285,7 @@ describe("LabeledField", () => {
                     i18n={{
                         strings: {
                             ...defaultStringsEn,
-                            iconAltError: "translated text",
+                            iconAltErrorMessagePrefix: "translated text",
                         },
                         locale: "es",
                     }}
