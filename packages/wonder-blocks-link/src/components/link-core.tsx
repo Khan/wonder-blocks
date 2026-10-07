@@ -91,7 +91,7 @@ const LinkCore = React.forwardRef(function LinkCore(
             style={[styles.endIcon, styles.centered]}
             testId="external-icon"
             aria-label={
-                labels?.externalIconAriaLabel ?? strings.iconAltOpensNewTab
+                labels?.externalIconAriaLabel || strings.iconAltOpensNewTab
             }
         />
     );
