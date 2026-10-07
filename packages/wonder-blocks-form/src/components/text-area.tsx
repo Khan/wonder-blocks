@@ -9,7 +9,7 @@ import {
     useOnMountEffect,
 } from "@khanacademy/wonder-blocks-core";
 import {border, font, semanticColor} from "@khanacademy/wonder-blocks-tokens";
-import {styles as typographyStyles} from "@khanacademy/wonder-blocks-typography";
+import {typographyClassNames} from "@khanacademy/wonder-blocks-typography";
 import {useId} from "react";
 import {focusStyles} from "@khanacademy/wonder-blocks-styles";
 import {useFieldValidation} from "../hooks/use-field-validation";
@@ -435,7 +435,7 @@ const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
                     className={className}
                     style={[
                         styles.textarea,
-                        typographyStyles.BodyTextMediumMediumWeight,
+                        typographyClassNames.BodyTextMediumMediumWeight,
                         resizeType && resizeStyles[resizeType],
                         styles.default,
                         disabled && styles.disabled,
