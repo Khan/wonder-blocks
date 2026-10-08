@@ -174,12 +174,28 @@ const ControlledTextField = (
  * A required field will have error styling if the field is left blank. To
  * observe this, type something into the field, backspace all the way,
  * and then shift focus out of the field.
+ *
+ * When `required` is `true`, the error message is the `requiredFieldMessage`
+ * string provided by `WonderBlocksConfigProvider` ("This field is required."
+ * by default). Pass a translated string to `required` to override it.
  */
 export const Required: StoryComponentType = {
     args: {
         required: true,
     },
-    render: ControlledTextField,
+    render: (args) => (
+        <View style={{gap: sizing.size_120}}>
+            <ControlledTextField
+                {...args}
+                label="Default required message (required: true)"
+            />
+            <ControlledTextField
+                {...args}
+                label="Custom required message (required: string)"
+                required="Please fill out this field to continue."
+            />
+        </View>
+    ),
 };
 
 /**
