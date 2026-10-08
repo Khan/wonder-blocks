@@ -1,0 +1,63 @@
+/**
+ * SearchField styles
+ *
+ * SearchField has no theme of its own, so every value is the plain `--wb-*`
+ * token (switched on `[data-wb-theme]` by the tokens package).
+ *
+ * Every rule is nested inside `.root` — the marker class on the outermost
+ * element, which carries no declarations of its own. The container is a
+ * `View`, the search icon a `PhosphorIcon`, the input a `TextField` and the
+ * clear button an `IconButton`; all of them ship rules in the same
+ * `@layer shared`, and this component overrides properties they set
+ * (`flex-direction` and `align-items` on the container, `margin` and
+ * `position` on the icons, `inline-size` and `padding-inline` on the
+ * input). At equal specificity stylesheet load order would decide the
+ * winner, so the compound selector makes it depend on specificity instead.
+ * Source order decides between the rules inside it: the search icon's
+ * disabled and error colours follow its default colour.
+ *
+ * Nesting is native CSS: every `&` is explicit and resolves to the flat
+ * selector it replaces (`.root .searchIcon`, at (0,2,0)). The build wraps
+ * every rule in `@layer shared { … }`.
+ */
+
+.root {
+    &.inputContainer {
+        box-sizing: border-box;
+        flex-direction: row;
+        border-radius: var(--wb-border-radius-radius_040);
+        align-items: center;
+        block-size: 40px;
+    }
+
+    & .searchIcon {
+        margin-inline: var(--wb-sizing-size_080);
+        position: absolute;
+
+        /* `PhosphorIcon` masks its glyph with `currentColor`. */
+        color: var(--wb-semanticColor-core-foreground-neutral-subtle);
+    }
+
+    & .searchIconError {
+        color: var(--wb-semanticColor-core-foreground-critical-default);
+    }
+
+    /* Declared after `.searchIconError`: disabled takes precedence. */
+    & .searchIconDisabled {
+        color: var(--wb-semanticColor-core-foreground-disabled-strong);
+    }
+
+    & .dismissIcon {
+        margin: 0;
+        position: absolute;
+        inset-inline-end: var(--wb-sizing-size_040);
+    }
+
+    /* Applied to the `TextField` input. Makes room for the search icon and
+     * the clear button. */
+    & .inputStyleReset {
+        flex: 1;
+        inline-size: 100%;
+        padding-inline: var(--wb-sizing-size_320) var(--wb-sizing-size_400);
+    }
+}

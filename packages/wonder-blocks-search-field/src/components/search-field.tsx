@@ -1,5 +1,4 @@
 import * as React from "react";
-import {StyleSheet} from "aphrodite";
 
 import xIcon from "@phosphor-icons/core/regular/x.svg";
 import magnifyingGlassIcon from "@phosphor-icons/core/bold/magnifying-glass-bold.svg";
@@ -9,10 +8,10 @@ import {View, Id} from "@khanacademy/wonder-blocks-core";
 import IconButton from "@khanacademy/wonder-blocks-icon-button";
 import {TextField} from "@khanacademy/wonder-blocks-form";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
-import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import type {StyleType, AriaProps} from "@khanacademy/wonder-blocks-core";
 
 import {defaultLabels} from "../util/constants";
+import styles from "./search-field.module.css";
 
 type Props = AriaProps & {
     /**
@@ -200,19 +199,25 @@ const SearchField: React.ForwardRefExoticComponent<
     return (
         <Id id={id}>
             {(uniqueId) => (
-                <View onClick={onClick} style={[styles.inputContainer, style]}>
+                // The `root` class carries no styling of its own — every rule
+                // in the module is qualified with it so this component's
+                // styles outrank the rules that `View`, `PhosphorIcon`,
+                // `TextField` and `IconButton` ship in the same
+                // `@layer shared`. See `search-field.module.css`.
+                <View
+                    onClick={onClick}
+                    style={[styles.root, styles.inputContainer, style]}
+                >
                     <PhosphorIcon
                         icon={magnifyingGlassIcon}
                         size="small"
-                        color={
-                            disabled
-                                ? semanticColor.core.foreground.disabled.strong
-                                : error
-                                  ? semanticColor.core.foreground.critical
-                                        .default
-                                  : semanticColor.core.foreground.neutral.subtle
-                        }
-                        style={styles.searchIcon}
+                        // The icon masks its glyph with `currentColor`, so the
+                        // colour is set by the `searchIcon*` classes.
+                        style={[
+                            styles.searchIcon,
+                            error && styles.searchIconError,
+                            disabled && styles.searchIconDisabled,
+                        ]}
                         aria-hidden="true"
                     />
                     <TextField
@@ -250,32 +255,6 @@ const SearchField: React.ForwardRefExoticComponent<
             )}
         </Id>
     );
-});
-
-const styles = StyleSheet.create({
-    inputContainer: {
-        boxSizing: "border-box",
-        flexDirection: "row",
-        borderRadius: border.radius.radius_040,
-        alignItems: "center",
-        height: 40,
-    },
-    searchIcon: {
-        marginInlineStart: sizing.size_080,
-        marginInlineEnd: sizing.size_080,
-        position: "absolute",
-    },
-    dismissIcon: {
-        margin: 0,
-        position: "absolute",
-        insetInlineEnd: sizing.size_040,
-    },
-    inputStyleReset: {
-        flex: 1,
-        width: "100%",
-        paddingInlineStart: sizing.size_320,
-        paddingInlineEnd: sizing.size_400,
-    },
 });
 
 export default SearchField;
