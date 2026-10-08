@@ -80,13 +80,11 @@ describe("Card", () => {
         </Card>;
     });
 
-    it("should reject onDismiss when no labels prop is set", () => {
-        // @ts-expect-error Property 'labels' is missing
+    it("should accept onDismiss when no labels prop is set", () => {
         <Card onDismiss={() => {}}>Content</Card>;
     });
 
-    it("should reject onDismiss when no labels are provided", () => {
-        // @ts-expect-error Types of property 'labels' are incompatible
+    it("should accept onDismiss when no labels are provided", () => {
         <Card onDismiss={() => {}} labels={{}}>
             Content
         </Card>;

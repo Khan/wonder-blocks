@@ -767,6 +767,9 @@ importers:
 
   packages/wonder-blocks-card:
     dependencies:
+      '@khanacademy/wonder-blocks-config':
+        specifier: workspace:*
+        version: link:../wonder-blocks-config
       '@khanacademy/wonder-blocks-core':
         specifier: workspace:*
         version: link:../wonder-blocks-core
@@ -1265,6 +1268,9 @@ importers:
       '@khanacademy/wonder-blocks-breadcrumbs':
         specifier: workspace:*
         version: link:../wonder-blocks-breadcrumbs
+      '@khanacademy/wonder-blocks-config':
+        specifier: workspace:*
+        version: link:../wonder-blocks-config
       '@khanacademy/wonder-blocks-core':
         specifier: workspace:*
         version: link:../wonder-blocks-core
@@ -1336,6 +1342,9 @@ importers:
 
   packages/wonder-blocks-popover:
     dependencies:
+      '@khanacademy/wonder-blocks-config':
+        specifier: workspace:*
+        version: link:../wonder-blocks-config
       '@khanacademy/wonder-blocks-core':
         specifier: workspace:*
         version: link:../wonder-blocks-core

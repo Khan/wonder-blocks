@@ -51,16 +51,17 @@ type BaseCardProps = {
  * A callback function to handle dismissing the card. When this prop is present,
  * a dismiss button with an X icon will be rendered.
  *
- * When `onDismiss` is provided, `labels.dismissButtonAriaLabel` must also be
- * provided for accessibility and localization. `labels.dismissButtonAriaDescribedBy`
+ * The dismiss button has a built-in accessible name ("Close"), which is
+ * translated using `WonderBlocksConfigProvider`. It can be overridden using
+ * `labels.dismissButtonAriaLabel`. `labels.dismissButtonAriaDescribedBy`
  * can be provided to pass an aria-describedby attribute to the dismiss button if
  * more context is needed for the dismiss button.
  */
 type DismissProps =
     | {
           onDismiss: (e?: React.SyntheticEvent) => void;
-          labels: {
-              dismissButtonAriaLabel: string;
+          labels?: {
+              dismissButtonAriaLabel?: string;
               dismissButtonAriaDescribedBy?: string;
           } & Record<string, any>;
       }
@@ -187,8 +188,8 @@ type CardProps = BaseCardProps & TagProps & DismissProps;
  * ### Accessibility
  *
  * When the `onDismiss` prop is provided, a dismiss button will be rendered.
- * In this case, the `labels.dismissButtonAriaLabel` prop is required to provide
- * a translatable screen reader label for the dismiss button.
+ * It has a built-in, translated screen reader label ("Close"), which can be
+ * overridden using the `labels.dismissButtonAriaLabel` prop.
  *
  * See additional Accessibility docs.
  */
@@ -244,7 +245,7 @@ const Card = React.forwardRef(function Card(
         >
             {onDismiss ? (
                 <DismissButton
-                    aria-label={labels?.dismissButtonAriaLabel || "Close"}
+                    aria-label={labels?.dismissButtonAriaLabel}
                     aria-describedby={labels?.dismissButtonAriaDescribedBy}
                     onClick={(e) => onDismiss?.(e)}
                     testId={testId && `${testId}-dismiss-button`}

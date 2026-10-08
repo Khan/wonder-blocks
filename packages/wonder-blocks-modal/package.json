@@ -35,6 +35,7 @@
   "dependencies": {
     "@khanacademy/wonder-blocks-announcer": "workspace:*",
     "@khanacademy/wonder-blocks-breadcrumbs": "workspace:*",
+    "@khanacademy/wonder-blocks-config": "workspace:*",
     "@khanacademy/wonder-blocks-core": "workspace:*",
     "@khanacademy/wonder-blocks-icon-button": "workspace:*",
     "@khanacademy/wonder-blocks-layout": "workspace:*",
