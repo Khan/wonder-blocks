@@ -1,15 +1,12 @@
 import * as React from "react";
-import {StyleSheet} from "aphrodite";
 
 import {Id, addStyle} from "@khanacademy/wonder-blocks-core";
-import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {typographyClassNames} from "@khanacademy/wonder-blocks-typography";
 
 import type {StyleType, AriaProps} from "@khanacademy/wonder-blocks-core";
-import {focusStyles} from "@khanacademy/wonder-blocks-styles";
 import {OmitConstrained} from "../util/types";
 import {useFieldValidation} from "../hooks/use-field-validation";
-import theme from "../theme";
+import styles from "./text-field.module.css";
 
 export type TextFieldType =
     | "text"
@@ -294,67 +291,6 @@ const TextField = (props: PropsWithForwardRef) => {
         </Id>
     );
 };
-
-const ACTIVE_BOX_SHADOW = `0 0 0 ${theme.field.border.width.press} ${semanticColor.input.default.border}`;
-
-const styles = StyleSheet.create({
-    input: {
-        width: "100%",
-        height: theme.field.sizing.height,
-        borderRadius: theme.field.border.radius,
-        boxSizing: "border-box",
-        paddingInline: theme.field.layout.paddingInline,
-        paddingBlock: theme.field.layout.paddingBlock,
-        margin: sizing.size_0,
-    },
-    readOnly: {
-        background: semanticColor.input.readOnly.background,
-        color: semanticColor.input.readOnly.text,
-    },
-    default: {
-        background: semanticColor.input.default.background,
-        border: `${border.width.thin} solid ${semanticColor.input.default.border}`,
-        color: semanticColor.input.default.foreground,
-        "::placeholder": {
-            color: semanticColor.input.default.placeholder,
-        },
-        ...focusStyles.focus,
-        // TODO(WB-2365): Use rounded corners for the active state instead
-        // Don't show active styles if field is disabled or readonly
-        [":active:not([aria-disabled='true']):not([readonly])" as any]: {
-            // Use box shadow to make the border in the press state look thicker
-            // without changing the border
-            boxShadow: ACTIVE_BOX_SHADOW,
-        },
-        // Focus + Active (and not disabled and not readonly)
-        [":focus-visible:active:not([aria-disabled='true']):not([readonly])" as any]:
-            {
-                boxShadow: `${ACTIVE_BOX_SHADOW}, ${focusStyles.focus[":focus-visible"].boxShadow}`,
-            },
-    },
-    error: {
-        background: semanticColor.input.error.background,
-        border: `${theme.field.border.width.error} solid ${semanticColor.input.error.border}`,
-        color: semanticColor.input.error.foreground,
-        "::placeholder": {
-            color: semanticColor.input.default.placeholder,
-        },
-        // Focus + Active (and not disabled and not readonly)
-        [":focus-visible:active:not([aria-disabled='true']):not([readonly])" as any]:
-            {
-                boxShadow: `${ACTIVE_BOX_SHADOW}, ${focusStyles.focus[":focus-visible"].boxShadow}`,
-            },
-    },
-    disabled: {
-        background: semanticColor.input.disabled.background,
-        border: `${border.width.thin} solid ${semanticColor.input.disabled.border}`,
-        color: semanticColor.input.disabled.foreground,
-        "::placeholder": {
-            color: semanticColor.input.disabled.placeholder,
-        },
-        cursor: "not-allowed",
-    },
-});
 
 type ExportProps = OmitConstrained<
     JSX.LibraryManagedAttributes<
