@@ -7,6 +7,20 @@ import {BodyText, Heading} from "@khanacademy/wonder-blocks-typography";
 
 import AccordionSection from "../accordion-section";
 
+// The content panel's visibility comes from a CSS Modules class, and jest
+// maps `*.module.css` to identity-obj-proxy without loading any CSS, so
+// `toBeVisible()` can't see it. Assert on the class that drives it instead.
+const expectPanelExpanded = (element: HTMLElement | null) =>
+    // eslint-disable-next-line testing-library/no-node-access -- the panel has no accessible handle of its own; walk up from its content
+    expect(element?.closest(".contentWrapper")).toHaveClass(
+        "contentWrapperExpanded",
+    );
+const expectPanelCollapsed = (element: HTMLElement | null) =>
+    // eslint-disable-next-line testing-library/no-node-access -- the panel has no accessible handle of its own; walk up from its content
+    expect(element?.closest(".contentWrapper")).toHaveClass(
+        "contentWrapperCollapsed",
+    );
+
 describe("AccordionSection", () => {
     test("renders without open panel when expanded is false", () => {
         // Arrange
@@ -19,7 +33,7 @@ describe("AccordionSection", () => {
 
         // Assert
         expect(screen.getByText("Title")).toBeVisible();
-        expect(screen.queryByText("Section content")).not.toBeVisible();
+        expectPanelCollapsed(screen.queryByText("Section content"));
     });
 
     test("renders with open panel when expanded is true", () => {
@@ -35,7 +49,7 @@ describe("AccordionSection", () => {
 
         // Assert
         expect(screen.getByText("Title")).toBeVisible();
-        expect(screen.queryByText("Section content")).toBeVisible();
+        expectPanelExpanded(screen.queryByText("Section content"));
     });
 
     test("renders children when child is a react element", () => {
@@ -51,7 +65,7 @@ describe("AccordionSection", () => {
 
         // Assert
         expect(screen.getByText("Title")).toBeVisible();
-        expect(screen.queryByText("Section content")).toBeVisible();
+        expectPanelExpanded(screen.queryByText("Section content"));
     });
 
     test("calls onToggle when clicked (controlled)", async () => {
@@ -109,17 +123,17 @@ describe("AccordionSection", () => {
 
         // Act
         // Make sure the section is open at first
-        expect(screen.getByText("Section content")).toBeVisible();
+        expectPanelExpanded(screen.getByText("Section content"));
 
         const button = screen.getByRole("button", {name: "Title"});
         await userEvent.click(button);
 
         // Assert
         // Make sure the section has closed after clicking
-        expect(screen.queryByText("Section content")).not.toBeVisible();
+        expectPanelCollapsed(screen.queryByText("Section content"));
         // Repeat clicking to confirm behavior
         await userEvent.click(button);
-        expect(screen.getByText("Section content")).toBeVisible();
+        expectPanelExpanded(screen.getByText("Section content"));
     });
 
     test("shows/hides panel when clicked (uncontrolled: no expanded, no onToggle)", async () => {
@@ -131,17 +145,17 @@ describe("AccordionSection", () => {
 
         // Act
         // Make sure the section is closed at first
-        expect(screen.queryByText("Section content")).not.toBeVisible();
+        expectPanelCollapsed(screen.queryByText("Section content"));
 
         const button = screen.getByRole("button", {name: "Title"});
         await userEvent.click(button);
 
         // Assert
         // Make sure the section has opened after clicking
-        expect(screen.getByText("Section content")).toBeVisible();
+        expectPanelExpanded(screen.getByText("Section content"));
         // Repeat clicking to confirm behavior
         await userEvent.click(button);
-        expect(screen.queryByText("Section content")).not.toBeVisible();
+        expectPanelCollapsed(screen.queryByText("Section content"));
     });
 
     test("is h2 by default", () => {
@@ -387,7 +401,7 @@ describe("AccordionSection", () => {
         // Assert
         // Confirm the content is still visible even though the
         // header button was clicked.
-        expect(screen.queryByText("Section content")).toBeVisible();
+        expectPanelExpanded(screen.queryByText("Section content"));
     });
 
     test("includes transition when animated is true", () => {
@@ -408,12 +422,8 @@ describe("AccordionSection", () => {
         const header = screen.getByTestId("accordion-section-header");
 
         // Assert
-        expect(wrapper).toHaveStyle({
-            transition: "grid-template-rows 300ms",
-        });
-        expect(header).toHaveStyle({
-            transition: "border-radius 300ms",
-        });
+        expect(wrapper).toHaveClass("wrapperWithAnimation");
+        expect(header).toHaveClass("headerWrapperWithAnimation");
     });
 
     test("does not include transition when animated is false", () => {
@@ -434,12 +444,8 @@ describe("AccordionSection", () => {
         const header = screen.getByTestId("accordion-section-header");
 
         // Assert
-        expect(wrapper).not.toHaveStyle({
-            transition: "grid-template-rows 300ms",
-        });
-        expect(header).not.toHaveStyle({
-            transition: "border-radius 300ms",
-        });
+        expect(wrapper).not.toHaveClass("wrapperWithAnimation");
+        expect(header).not.toHaveClass("headerWrapperWithAnimation");
     });
 
     describe("data-expanded", () => {

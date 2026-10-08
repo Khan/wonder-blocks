@@ -7,6 +7,20 @@ import {RenderStateRoot} from "@khanacademy/wonder-blocks-core";
 import Accordion from "../accordion";
 import AccordionSection from "../accordion-section";
 
+// The content panel's visibility comes from a CSS Modules class, and jest
+// maps `*.module.css` to identity-obj-proxy without loading any CSS, so
+// `toBeVisible()` can't see it. Assert on the class that drives it instead.
+const expectPanelExpanded = (element: HTMLElement | null) =>
+    // eslint-disable-next-line testing-library/no-node-access -- the panel has no accessible handle of its own; walk up from its content
+    expect(element?.closest(".contentWrapper")).toHaveClass(
+        "contentWrapperExpanded",
+    );
+const expectPanelCollapsed = (element: HTMLElement | null) =>
+    // eslint-disable-next-line testing-library/no-node-access -- the panel has no accessible handle of its own; walk up from its content
+    expect(element?.closest(".contentWrapper")).toHaveClass(
+        "contentWrapperCollapsed",
+    );
+
 describe("Accordion", () => {
     test("renders", async () => {
         // Arrange
@@ -51,8 +65,8 @@ describe("Accordion", () => {
         await userEvent.click(button2);
 
         // Assert
-        expect(await screen.findByText("Section 1 content")).toBeVisible();
-        expect(await screen.findByText("Section 2 content")).toBeVisible();
+        expectPanelExpanded(await screen.findByText("Section 1 content"));
+        expectPanelExpanded(await screen.findByText("Section 2 content"));
     });
 
     test("closes sections when clicked", async () => {
@@ -81,8 +95,8 @@ describe("Accordion", () => {
         button2.click();
 
         // Assert
-        expect(screen.queryByText("Section 1 content")).not.toBeVisible();
-        expect(screen.queryByText("Section 2 content")).not.toBeVisible();
+        expectPanelCollapsed(screen.queryByText("Section 1 content"));
+        expectPanelCollapsed(screen.queryByText("Section 2 content"));
     });
 
     test("initialExpandedIndex opens the correct section", async () => {
@@ -104,9 +118,9 @@ describe("Accordion", () => {
 
         // Act
         // Assert
-        expect(screen.queryByText("Section 1 content")).not.toBeVisible();
-        expect(await screen.findByText("Section 2 content")).toBeVisible();
-        expect(screen.queryByText("Section 3 content")).not.toBeVisible();
+        expectPanelCollapsed(screen.queryByText("Section 1 content"));
+        expectPanelExpanded(await screen.findByText("Section 2 content"));
+        expectPanelCollapsed(screen.queryByText("Section 3 content"));
     });
 
     test("only allows one section to be open at a time when allowMultipleExpanded is false", async () => {
@@ -131,9 +145,9 @@ describe("Accordion", () => {
         await userEvent.click(button);
 
         // Assert
-        expect(screen.queryByText("Section 1 content")).not.toBeVisible();
-        expect(screen.queryByText("Section 2 content")).not.toBeVisible();
-        expect(await screen.findByText("Section 3 content")).toBeVisible();
+        expectPanelCollapsed(screen.queryByText("Section 1 content"));
+        expectPanelCollapsed(screen.queryByText("Section 2 content"));
+        expectPanelExpanded(await screen.findByText("Section 3 content"));
     });
 
     test("calls child's onToggle when section is clicked", async () => {
@@ -307,14 +321,14 @@ describe("Accordion", () => {
 
             // Act
             // Confirm that the section is closed.
-            expect(screen.queryByText("Section 1 content")).not.toBeVisible();
+            expectPanelCollapsed(screen.queryByText("Section 1 content"));
 
             button1.focus();
             await userEvent.keyboard("{enter}");
 
             // Assert
             // Confirm that the section is now open.
-            expect(await screen.findByText("Section 1 content")).toBeVisible();
+            expectPanelExpanded(await screen.findByText("Section 1 content"));
         });
 
         test("can open a section with the space key", async () => {
@@ -337,14 +351,14 @@ describe("Accordion", () => {
 
             // Act
             // Confirm that the section is closed.
-            expect(screen.queryByText("Section 1 content")).not.toBeVisible();
+            expectPanelCollapsed(screen.queryByText("Section 1 content"));
 
             button1.focus();
             await userEvent.keyboard(" ");
 
             // Assert
             // Confirm that the section is now open.
-            expect(await screen.findByText("Section 1 content")).toBeVisible();
+            expectPanelExpanded(await screen.findByText("Section 1 content"));
         });
 
         test("can close a section with the enter key", async () => {
@@ -368,14 +382,14 @@ describe("Accordion", () => {
             // Act
             // Confirm that the section is open.
             button1.click();
-            expect(await screen.findByText("Section 1 content")).toBeVisible();
+            expectPanelExpanded(await screen.findByText("Section 1 content"));
 
             button1.focus();
             await userEvent.keyboard("{enter}");
 
             // Assert
             // Confirm that the section is now closed.
-            expect(screen.queryByText("Section 1 content")).not.toBeVisible();
+            expectPanelCollapsed(screen.queryByText("Section 1 content"));
         });
 
         test("can close a section with the space key", async () => {
@@ -399,14 +413,14 @@ describe("Accordion", () => {
             // Act
             // Confirm that the section is open.
             button1.click();
-            expect(await screen.findByText("Section 1 content")).toBeVisible();
+            expectPanelExpanded(await screen.findByText("Section 1 content"));
 
             button1.focus();
             await userEvent.keyboard(" ");
 
             // Assert
             // Confirm that the section is now closed.
-            expect(screen.queryByText("Section 1 content")).not.toBeVisible();
+            expectPanelCollapsed(screen.queryByText("Section 1 content"));
         });
 
         test("can navigate to the next section with the tab key", async () => {
@@ -725,7 +739,7 @@ describe("Accordion", () => {
             const content = await screen.findByText("Section 3 content");
 
             // Assert
-            expect(content).toBeVisible();
+            expectPanelExpanded(content);
         });
 
         it("collapses the sections that are not listed in expandedIndices", async () => {
@@ -749,7 +763,7 @@ describe("Accordion", () => {
             const content = await screen.findByText("Section 2 content");
 
             // Assert
-            expect(content).not.toBeVisible();
+            expectPanelCollapsed(content);
         });
 
         it("keeps every section collapsed when expandedIndices is empty", async () => {
@@ -772,7 +786,7 @@ describe("Accordion", () => {
             );
 
             // Assert
-            expect(screen.getByText("Section 1 content")).not.toBeVisible();
+            expectPanelCollapsed(screen.getByText("Section 1 content"));
         });
 
         it("does not change the expanded state when a section is clicked", async () => {
@@ -795,7 +809,7 @@ describe("Accordion", () => {
             );
 
             // Assert
-            expect(screen.getByText("Section 2 content")).toBeVisible();
+            expectPanelExpanded(screen.getByText("Section 2 content"));
         });
 
         it("updates the expanded sections when expandedIndices changes", async () => {
@@ -825,7 +839,7 @@ describe("Accordion", () => {
             );
 
             // Assert
-            expect(screen.getByText("Section 2 content")).toBeVisible();
+            expectPanelExpanded(screen.getByText("Section 2 content"));
         });
 
         it("collapses a section when it is removed from expandedIndices", async () => {
@@ -855,7 +869,7 @@ describe("Accordion", () => {
             );
 
             // Assert
-            expect(screen.getByText("Section 1 content")).not.toBeVisible();
+            expectPanelCollapsed(screen.getByText("Section 1 content"));
         });
 
         it("expands the section that the consumer opens in response to onToggle", async () => {
@@ -888,7 +902,7 @@ describe("Accordion", () => {
             );
 
             // Assert
-            expect(screen.getByText("Section 2 content")).toBeVisible();
+            expectPanelExpanded(screen.getByText("Section 2 content"));
         });
     });
 

@@ -1,0 +1,126 @@
+/**
+ * AccordionSectionHeader styles
+ *
+ * The header button is a `Clickable`, whose own rules live in the nested
+ * `shared.reset` layer, so these rules — directly in `@layer shared` —
+ * outrank them regardless of specificity or stylesheet load order. The
+ * header's content wrappers are `View`s and the caret is a `PhosphorIcon`,
+ * which ship single-class rules in `@layer shared` itself (`View` sets
+ * `padding`), so those rules are nested inside `.headerWrapper` (always
+ * applied to the button) to win on specificity instead.
+ *
+ * Source order reproduces the order of the `style` array: `headerWrapper` →
+ * `headerWrapperWithAnimation` → `headerWrapperCaretStart` → `roundedTop` →
+ * `roundedBottom` → `disabled`. The consumer's `headerStyle` sits between
+ * `roundedBottom` and `disabled` in that array but still goes through
+ * Aphrodite (unlayered and `!important`), so it now wins over `disabled` too.
+ * The build wraps every rule in `@layer shared { … }`.
+ */
+
+/* The `Heading` this header renders in. */
+.heading {
+    /* As this is a grid item, it has a default minInlineSize of auto, which
+     * means it would grow to fit its content. minInlineSize 0 is necessary
+     * here to stop a custom header from overflowing out of it container when
+     * its content is too long (See AccordionSection's "React Element in
+     * Header" story). */
+    min-inline-size: 0;
+    margin-block-start: 0;
+}
+
+.headerWrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    overflow: hidden;
+    min-inline-size: auto;
+    inline-size: 100%;
+
+    /* Always make the header's outline show up in front of the content
+     * panel. */
+    position: relative;
+    z-index: 1;
+
+    &:active {
+        outline: 2px solid
+            var(--wb-semanticColor-action-secondary-progressive-press-border);
+    }
+
+    &:hover {
+        outline: 2px solid
+            var(--wb-semanticColor-action-secondary-progressive-hover-border);
+    }
+
+    &:focus-visible {
+        outline: 2px solid var(--wb-semanticColor-focus-outer);
+    }
+
+    & .headerContent {
+        flex-grow: 1;
+        text-align: start;
+    }
+
+    & .headerString {
+        padding-block: var(--wb-sizing-size_160);
+    }
+
+    & .headerStringCaretEnd {
+        padding-inline: var(--wb-sizing-size_160) var(--wb-sizing-size_120);
+    }
+
+    & .headerStringCaretStart {
+        padding-inline: var(--wb-sizing-size_120) var(--wb-sizing-size_160);
+    }
+
+    & .iconWithAnimation {
+        transition: transform 300ms;
+    }
+
+    & .iconStart {
+        margin-inline-start: var(--wb-sizing-size_160);
+    }
+
+    & .iconEnd {
+        margin-inline-end: var(--wb-sizing-size_160);
+    }
+
+    & .iconExpanded {
+        /* Turn the caret upside down */
+        transform: rotate(180deg);
+    }
+}
+
+.headerWrapperWithAnimation {
+    transition: border-radius 300ms;
+}
+
+.headerWrapperCaretStart {
+    flex-direction: row-reverse;
+}
+
+/* Even though the border radius is already set on the AccordionSection, the
+ * hover/focus outline is on the header. We need to have the same border radius
+ * here to round out the outline so it looks right over the border.
+ *
+ * The AccordionSection border radius for rounded corners is 12px. If we set
+ * the inner radius to the same value, there ends up being a 1px gap between
+ * the border and the outline. To fix this, we subtract 1 from the border
+ * radius. */
+.roundedTop {
+    border-start-start-radius: calc(var(--wb-sizing-size_120) - 1px);
+    border-start-end-radius: calc(var(--wb-sizing-size_120) - 1px);
+}
+
+.roundedBottom {
+    border-end-start-radius: calc(var(--wb-sizing-size_120) - 1px);
+    border-end-end-radius: calc(var(--wb-sizing-size_120) - 1px);
+}
+
+.disabled {
+    pointer-events: none;
+    color: inherit;
+
+    &:focus-visible {
+        outline: 2px solid var(--wb-semanticColor-focus-outer);
+    }
+}

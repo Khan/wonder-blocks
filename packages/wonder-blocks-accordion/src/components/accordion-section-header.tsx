@@ -1,17 +1,17 @@
 import * as React from "react";
-import {StyleSheet} from "aphrodite";
 import caretDown from "@phosphor-icons/core/bold/caret-down-bold.svg";
 
 import Clickable from "@khanacademy/wonder-blocks-clickable";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {Heading} from "@khanacademy/wonder-blocks-typography";
-import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
+import {semanticColor} from "@khanacademy/wonder-blocks-tokens";
 import type {StyleType} from "@khanacademy/wonder-blocks-core";
 
 import type {AccordionCornerKindType} from "./accordion";
 import type {TagType} from "./accordion-section";
 import {getRoundedValuesForHeader} from "../utils";
+import styles from "./accordion-section-header.module.css";
 
 const HEADING_SELECTOR = 'h1,h2,h3,h4,h5,h6,[role="heading"]';
 
@@ -172,104 +172,6 @@ const AccordionSectionHeader = React.forwardRef(function AccordionSectionHeader(
             </Clickable>
         </Heading>
     );
-});
-
-// The AccordionSection border radius for rounded corners is 12px.
-// If we set the inner radius to the same value, there ends up being
-// a 1px gap between the border and the outline. To fix this, we
-// subtract 1 from the border radius.
-const INNER_BORDER_RADIUS = `calc(${sizing.size_120} - 1px)`;
-const ANIMATION_LENGTH = "300ms";
-
-const styles = StyleSheet.create({
-    heading: {
-        // As this is a grid item, it has a default minInlineSize of auto,
-        // which means it would grow to fit its content. minInlineSize 0 is
-        // necessary here to stop a custom header from overflowing out of
-        // it container when its content is too long (See AccordionSection's
-        // "React Element in Header" story).
-        minInlineSize: 0,
-        marginBlockStart: 0,
-    },
-    headerWrapper: {
-        display: "flex",
-        flexDirection: "row",
-        alignItems: "center",
-        overflow: "hidden",
-        minInlineSize: "auto",
-        width: "100%",
-        // Always make the header's outline show up in front of
-        // the content panel.
-        position: "relative",
-        zIndex: 1,
-
-        ":active": {
-            outline: `2px solid ${semanticColor.action.secondary.progressive.press.border}`,
-        },
-
-        ":hover": {
-            outline: `2px solid ${semanticColor.action.secondary.progressive.hover.border}`,
-        },
-
-        ":focus-visible": {
-            outline: `2px solid ${semanticColor.focus.outer}`,
-        },
-    },
-    headerWrapperWithAnimation: {
-        transition: `border-radius ${ANIMATION_LENGTH}`,
-    },
-    headerWrapperCaretStart: {
-        flexDirection: "row-reverse",
-    },
-    // Even though the border radius is already set on the AccordionSection,
-    // the hover/focus outline is on the header. We need to have the same
-    // border radius here to round out the outline so it looks right over
-    // the border.
-    roundedTop: {
-        borderStartStartRadius: INNER_BORDER_RADIUS,
-        borderStartEndRadius: INNER_BORDER_RADIUS,
-    },
-    roundedBottom: {
-        borderEndStartRadius: INNER_BORDER_RADIUS,
-        borderEndEndRadius: INNER_BORDER_RADIUS,
-    },
-    headerContent: {
-        flexGrow: 1,
-        textAlign: "start",
-    },
-    headerString: {
-        paddingBlockStart: sizing.size_160,
-        paddingBlockEnd: sizing.size_160,
-    },
-    headerStringCaretEnd: {
-        paddingInlineEnd: sizing.size_120,
-        paddingInlineStart: sizing.size_160,
-    },
-    headerStringCaretStart: {
-        paddingInlineEnd: sizing.size_160,
-        paddingInlineStart: sizing.size_120,
-    },
-    iconWithAnimation: {
-        transition: `transform ${ANIMATION_LENGTH}`,
-    },
-    iconExpanded: {
-        // Turn the caret upside down
-        transform: "rotate(180deg)",
-    },
-    iconStart: {
-        marginInlineStart: sizing.size_160,
-    },
-    iconEnd: {
-        marginInlineEnd: sizing.size_160,
-    },
-    disabled: {
-        pointerEvents: "none",
-        color: "inherit",
-
-        ":focus-visible": {
-            outline: `2px solid ${semanticColor.focus.outer}`,
-        },
-    },
 });
 
 export default AccordionSectionHeader;
