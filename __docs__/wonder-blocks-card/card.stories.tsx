@@ -135,6 +135,9 @@ export const GemCard: StoryComponentType = {
  * If a Card is removed onDismiss, focus should be moved to a wrapper or neighoring interactive element.
  */
 export const WithDismissButton: StoryComponentType = {
+    parameters: {
+        chromatic: {disableSnapshot: true}, // disable snapshot since it is covered by the testing snapshots stories
+    },
     render: () => {
         const CardWithRef = ({
             dismissButtonAriaLabel,
