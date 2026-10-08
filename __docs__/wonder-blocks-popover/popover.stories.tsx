@@ -14,6 +14,8 @@ import {Popover, PopoverContent} from "@khanacademy/wonder-blocks-popover";
 import packageConfig from "../../packages/wonder-blocks-popover/package.json";
 
 import ComponentInfo from "../components/component-info";
+import {reallyLongText} from "../components/text-for-testing";
+import {allModes} from "../../.storybook/modes";
 import PopoverArgtypes, {ContentMappings} from "./popover.argtypes";
 
 export default {
@@ -823,6 +825,58 @@ export const WithDocumentRootBoundary: StoryComponentType = {
                 </Popover>
             </View>
         );
+    },
+};
+
+/**
+ * The popover is constrained to the space available in the viewport (or the
+ * document, when using `rootBoundary="document"`). When the content doesn't
+ * fit, e.g. on small screens or at high zoom levels (up to 400%), the content
+ * scrolls instead of being cut off. The close button stays in place, and the
+ * scrollable area becomes keyboard focusable so it can be scrolled with the
+ * keyboard.
+ *
+ * Try this example at a small viewport size or zoom in to see the content
+ * scroll.
+ */
+export const WithLongContent: StoryComponentType = {
+    render: function Render() {
+        const [opened, setOpened] = React.useState(true);
+
+        return (
+            <View style={styles.example}>
+                <Popover
+                    opened={opened}
+                    onClose={() => setOpened(false)}
+                    dismissEnabled
+                    content={
+                        <PopoverContent
+                            closeButtonVisible
+                            title="Popover with long content"
+                            content={reallyLongText}
+                            actions={
+                                <Button onClick={() => setOpened(false)}>
+                                    Got it
+                                </Button>
+                            }
+                        />
+                    }
+                    placement="top"
+                >
+                    <Button onClick={() => setOpened(true)}>
+                        Open popover with long content
+                    </Button>
+                </Popover>
+            </View>
+        );
+    },
+    parameters: {
+        chromatic: {
+            modes: {
+                small: allModes.small,
+                large: allModes.large,
+            },
+        },
     },
 };
 

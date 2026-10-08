@@ -563,6 +563,51 @@ describe("Floating", () => {
             });
         });
 
+        describe("size", () => {
+            it("should constrain the floating element to the available space by default", async () => {
+                // Arrange
+                render(
+                    <Floating content="Floating content" open={true}>
+                        <button>Trigger</button>
+                    </Floating>,
+                );
+
+                // Act
+                const floating = screen.getByText("Floating content");
+
+                // Assert
+                await waitFor(() => {
+                    expect(floating.style).toMatchObject({
+                        maxInlineSize: expect.stringMatching(/^\d+(\.\d+)?px$/),
+                        maxBlockSize: expect.stringMatching(/^\d+(\.\d+)?px$/),
+                    });
+                });
+            });
+
+            it("should not constrain the floating element when size is false", async () => {
+                // Arrange
+                render(
+                    <Floating
+                        content="Floating content"
+                        open={true}
+                        size={false}
+                    >
+                        <button>Trigger</button>
+                    </Floating>,
+                );
+                const floating = screen.getByText("Floating content");
+
+                // Act
+                // Wait for floating-ui to finish positioning the element.
+                await waitFor(() => {
+                    expect(floating.style.transform).not.toBe("");
+                });
+
+                // Assert
+                expect(floating.style.maxBlockSize).toBe("");
+            });
+        });
+
         describe("focusManagerEnabled", () => {
             it("should not move focus to the floating element when it is opened and focusManagerEnabled is false", () => {
                 // Arrange
