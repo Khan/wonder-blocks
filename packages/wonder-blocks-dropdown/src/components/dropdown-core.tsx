@@ -264,8 +264,8 @@ const DropdownCore = (props: Props) => {
     // instead of the one from the render that scheduled them.
     const openRef = useLatestRef(open);
     // Keep the latest `onOpenChanged` in a ref too, so that the outside click
-    // listeners below are only added and removed when `open` changes (like the
-    // class version did), and not every time the parent passes a new callback.
+    // listeners below are only added and removed when `open` changes, and not
+    // every time the parent passes a new callback.
     const onOpenChangedRef = useLatestRef(onOpenChanged);
 
     // The root element of the component, used to detect clicks outside of it.
@@ -297,8 +297,7 @@ const DropdownCore = (props: Props) => {
     // Refs to use for keyboard focus, contains only those for focusable items.
     // Also keeps track of the original index of the item.
     //
-    // This mirrors what `getDerivedStateFromProps` did in the class version:
-    // we avoid calling React.createRef on each rerender. Instead, we create
+    // We avoid calling React.createRef on each rerender. Instead, we create
     // the itemRefs only if it's the first time or if the set of items that are
     // focusable has changed. The committed values are stored in this ref, and
     // the values for the current render are derived from them below.
@@ -329,7 +328,7 @@ const DropdownCore = (props: Props) => {
         : {itemRefs: prevItemRefs, sameItemsFocusable: true};
 
     // Keep the latest itemRefs in a ref, so that callbacks can read them after
-    // the render has been committed (like `this.state.itemRefs`).
+    // the render has been committed.
     const itemRefsRef = React.useRef<ItemRefs>(derivedItems.itemRefs);
 
     React.useEffect(() => {
@@ -388,7 +387,7 @@ const DropdownCore = (props: Props) => {
         isSearchFieldFocused,
     ]);
 
-    // Apply our initial focus index (this used to happen in the constructor).
+    // Apply our initial focus index on the first render.
     const initializedRef = React.useRef(false);
     if (!initializedRef.current) {
         initializedRef.current = true;
@@ -543,25 +542,21 @@ const DropdownCore = (props: Props) => {
         };
     }, [open, onOpenChangedRef]);
 
-    // componentDidMount
     useOnMountEffect(() => {
         maybeFocusInitialItem();
     });
 
-    // componentDidUpdate
-    //
     // NOTE: This is kept as a single effect (instead of one per concern) so
-    // that the order and the early returns of the original componentDidUpdate
-    // are preserved exactly.
+    // that the order of the checks and the early returns below are preserved.
     const prevRenderRef = React.useRef<{
         open: boolean;
         searchText: string | null | undefined;
         labels: LabelsValues;
         derivedItems: typeof derivedItems;
     } | null>(null);
-    // This runs after every update, like componentDidUpdate. It can't cause an
-    // infinite loop: `setLabels` is only called when the `labels` prop changed
-    // since the last processed render.
+    // This runs after every update. It can't cause an infinite loop:
+    // `setLabels` is only called when the `labels` prop changed since the last
+    // processed render.
     // eslint-disable-next-line react-hooks/exhaustive-deps
     React.useEffect(() => {
         const prevProps = prevRenderRef.current;
