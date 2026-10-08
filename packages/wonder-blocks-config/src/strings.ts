@@ -5,7 +5,7 @@ export type WonderBlocksStrings = {
     // Alt text for icons / icon buttons
     iconAltOpensNewTab: string;
     // Form validation
-    requiredField: string;
+    requiredFieldMessage: string;
 };
 
 /**
@@ -22,7 +22,7 @@ export const strings = {
         message: "(opens in a new tab)",
     },
     // Form validation
-    requiredField: {
+    requiredFieldMessage: {
         context:
             "Error message shown when a required form field is left empty.",
         message: "This field is required.",
@@ -41,5 +41,5 @@ export const defaultStringsEn: WonderBlocksStrings = {
     // Alt text for icons / icon buttons
     iconAltOpensNewTab: strings.iconAltOpensNewTab.message,
     // Form validation
-    requiredField: strings.requiredField.message,
+    requiredFieldMessage: strings.requiredFieldMessage.message,
 };
