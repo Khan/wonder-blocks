@@ -1,8 +1,7 @@
 import {addStyle, AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
-import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
-import {StyleSheet} from "aphrodite";
 import * as React from "react";
 import {useTabIndicator} from "../hooks/use-tab-indicator";
+import styles from "./navigation-tabs.module.css";
 
 export type NavigationTabsProps = AriaProps & {
     /**
@@ -155,25 +154,4 @@ export const NavigationTabs = React.forwardRef(function NavigationTabs(
             </StyledDiv>
         </StyledTag>
     );
-});
-
-const styles = StyleSheet.create({
-    nav: {
-        overflowX: "auto",
-    },
-    contents: {
-        position: "relative",
-    },
-    list: {
-        // Add horizontal padding for focus outline of first/last elements
-        paddingInline: sizing.size_040,
-        paddingBlock: sizing.size_0,
-        margin: sizing.size_0,
-        display: "flex",
-        gap: sizing.size_160,
-        flexWrap: "nowrap",
-    },
-    divider: {
-        borderBlockEnd: `${border.width.thin} solid ${semanticColor.core.border.neutral.subtle}`,
-    },
 });

@@ -179,7 +179,10 @@ describe("Tabs", () => {
         );
 
         // Assert
-        expect(ref.current).toHaveStyle("overflow-x: auto");
+        // `overflow-x: auto` is set by the `tablistWrapper` class in
+        // `tabs.module.css`. Jest doesn't load CSS Modules
+        // (identity-obj-proxy), so assert on the class that carries it.
+        expect(ref.current).toHaveClass("tablistWrapper");
     });
 
     describe("Props", () => {

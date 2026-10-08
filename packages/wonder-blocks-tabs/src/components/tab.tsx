@@ -8,10 +8,8 @@ import {
     View,
 } from "@khanacademy/wonder-blocks-core";
 import * as React from "react";
-import {StyleSheet} from "aphrodite";
-import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {typographyClassNames} from "@khanacademy/wonder-blocks-typography";
-import {focusStyles} from "@khanacademy/wonder-blocks-styles";
+import styles from "./tab.module.css";
 
 type Props = AriaProps & {
     /**
@@ -91,8 +89,13 @@ export const Tab = React.forwardRef(function Tab(
             tabIndex={selected ? 0 : -1}
             onKeyDown={onKeyDown}
             data-testid={testId}
+            // The `root` class carries no styling of its own — every rule in
+            // the module is qualified with it so this component's styles
+            // outrank the typography classes, which set `display` and
+            // `margin` in the same `@layer shared`. See `tab.module.css`.
             style={[
                 typographyClassNames.BodyTextMediumMediumWeight,
+                styles.root,
                 styles.tab,
                 selected && styles.selectedTab,
                 style,
@@ -109,54 +112,4 @@ export const Tab = React.forwardRef(function Tab(
             {children}
         </StyledButton>
     );
-});
-
-const bottomSpacing = sizing.size_140;
-export const styles = StyleSheet.create({
-    tab: {
-        display: "flex",
-        alignItems: "center",
-        textWrap: "nowrap",
-        backgroundColor: semanticColor.core.transparent,
-        border: "none",
-        margin: 0,
-        padding: 0,
-        cursor: "pointer",
-        marginBlockStart: sizing.size_080,
-        marginBlockEnd: bottomSpacing,
-        gap: sizing.size_080,
-        position: "relative",
-        color: semanticColor.core.foreground.neutral.subtle,
-        ...focusStyles.focus,
-        // Using :after styling to apply the hover/pressed underline styling
-        // instead of box-shadow because we use box-shadow for the focus outline.
-        ":after": {
-            content: "''",
-            position: "absolute",
-            insetInlineStart: 0,
-            insetInlineEnd: 0,
-            insetBlockEnd: `calc(${bottomSpacing} * -1)`,
-        },
-        // Only apply hover styles to tabs that are not selected
-        [":hover:not([aria-selected='true'])" as any]: {
-            color: semanticColor.core.foreground.instructive.default,
-            [":after" as any]: {
-                height: border.width.thin,
-                backgroundColor:
-                    semanticColor.core.background.instructive.default,
-            },
-        },
-        // Only apply active styles to tabs that are not selected
-        [":active:not([aria-selected='true'])" as any]: {
-            color: semanticColor.core.foreground.instructive.default,
-            [":after" as any]: {
-                height: border.width.thick,
-                backgroundColor:
-                    semanticColor.core.background.instructive.default,
-            },
-        },
-    },
-    selectedTab: {
-        color: semanticColor.core.foreground.instructive.default,
-    },
 });
