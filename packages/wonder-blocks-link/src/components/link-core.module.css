@@ -1,0 +1,88 @@
+/**
+ * Link styles
+ *
+ * The font family and weight differ between the default and thunderblocks
+ * themes, so they read the codegen'd `--wb-c-link-*` tokens (switched on
+ * `[data-wb-theme]`). Every other value is the plain `--wb-*` token.
+ *
+ * The anchor is rendered by `addStyle` (an `a`, or React Router's `Link`),
+ * which ships no class of its own, so the single-class rules below don't
+ * compete with anything else in `@layer shared`. The consumer's `style` and
+ * the min-target-size hit area still go through Aphrodite (unlayered and
+ * `!important`), so they win over this module as they did before.
+ *
+ * Source order reproduces the order of the `style` array — `shared` → `rest`
+ * → `restInline` → `focus` — and, within `rest`, the order Aphrodite emitted
+ * the states in: `:hover` → `:focus-visible` → `:active`, all at (0,2,0). The
+ * classes are composed through the `style` prop (`processStyleList` routes
+ * class-name strings to `className`). The build wraps every rule in
+ * `@layer shared { … }`.
+ */
+
+@import "@khanacademy/wonder-blocks-styles/focus-styles.css";
+
+.shared {
+    font-family: var(--wb-c-link-root-font-family);
+    font-weight: var(--wb-c-link-root-font-weight);
+    cursor: pointer;
+    text-decoration: none;
+    outline: none;
+    align-items: center;
+
+    /* Start/end icons. Nested inside `.shared` (always applied to the anchor)
+     * because `PhosphorIcon` ships single-class rules in the same
+     * `@layer shared` — including `vertical-align` — which would otherwise
+     * win or lose on stylesheet load order. */
+    & .startIcon {
+        margin-inline-end: var(--wb-sizing-size_040);
+    }
+
+    & .endIcon {
+        margin-inline-start: var(--wb-sizing-size_040);
+    }
+
+    & .centered {
+        /* Manually align the bottom of start/end icons with the text
+         * baseline. */
+        vertical-align: -10%;
+    }
+}
+
+.rest {
+    color: var(--wb-semanticColor-link-rest);
+
+    &:hover {
+        text-decoration: underline currentcolor solid;
+        color: var(--wb-semanticColor-link-hover);
+        text-underline-offset: var(--wb-font-textDecoration-underlineOffset);
+    }
+
+    /* Focus styles only show up with keyboard navigation.
+     * Mouse users don't see focus styles. */
+    &:focus-visible {
+        @apply --wb-focus-visible;
+
+        border-radius: var(--wb-border-radius-radius_010);
+        outline-offset: var(--wb-border-width-medium);
+    }
+
+    &:active {
+        color: var(--wb-semanticColor-link-press);
+        text-decoration: underline currentcolor solid;
+        text-underline-offset: var(--wb-font-textDecoration-underlineOffset);
+    }
+}
+
+.restInline {
+    text-decoration: underline currentcolor solid;
+    text-decoration-thickness: var(--wb-font-textDecoration-thickness);
+    text-underline-offset: var(--wb-font-textDecoration-underlineOffset);
+}
+
+/* Programmatic focus (the `focused` state while not pressed). */
+.focus {
+    @apply --wb-focus-visible;
+
+    border-radius: var(--wb-border-radius-radius_010);
+    outline-offset: var(--wb-border-width-medium);
+}
