@@ -6,6 +6,7 @@ import {
     flip,
     hide,
     shift,
+    size,
     arrow,
     Placement,
     useDismiss,
@@ -139,8 +140,23 @@ type FloatingProps = {
     shiftPadding?: number;
 
     /**
+     * Whether to constrain the floating element's size to the space available
+     * within the boundary.
+     *
+     * When enabled, the floating element gets a `max-inline-size` and
+     * `max-block-size` that match the available space between the reference
+     * element and the boundary (minus `shiftPadding`). This keeps the floating
+     * element from being cut off when there isn't enough room for it, e.g. on
+     * small screens or at high zoom levels. Content that doesn't fit should
+     * scroll inside the floating element.
+     * @default true
+     * @see https://floating-ui.com/docs/size
+     */
+    size?: boolean;
+
+    /**
      * The boundary that the floating element should be kept within by the
-     * `flip` and `shift` middleware.
+     * `flip`, `shift` and `size` middleware.
      *
      * - `"viewport"`: keep the element within the user's viewport.
      * - `"document"`: keep the element within the document body.
@@ -290,6 +306,7 @@ export default function Floating({
     flip: flipProp = true,
     shift: shiftProp = true,
     shiftPadding = SHIFT_PADDING,
+    size: sizeProp = true,
     rootBoundary = "viewport",
     showArrow = true,
     styles: stylesProp,
@@ -323,6 +340,21 @@ export default function Floating({
                       padding: shiftPadding,
                       crossAxis: true,
                       rootBoundary,
+                  })
+                : undefined,
+            // Constrain the size to the available space so the floating
+            // element is never cut off (e.g. on small screens or when zoomed
+            // in). This must run after `flip` and `shift`.
+            sizeProp
+                ? size({
+                      padding: shiftPadding,
+                      rootBoundary,
+                      apply({availableWidth, availableHeight, elements}) {
+                          Object.assign(elements.floating.style, {
+                              maxInlineSize: `${Math.max(0, availableWidth)}px`,
+                              maxBlockSize: `${Math.max(0, availableHeight)}px`,
+                          });
+                      },
                   })
                 : undefined,
             showArrow ? arrow({element: arrowRef}) : undefined,
@@ -501,6 +533,10 @@ const styles = StyleSheet.create({
         // set inline size to ensure that it works with inline placements.
         minBlockSize: ARROW_SIZE_INLINE,
         boxShadow: boxShadow.mid,
+        // Lay out the content as a flex column so it can shrink (and scroll)
+        // when the `size` middleware constrains the floating element.
+        display: "flex",
+        flexDirection: "column",
         justifyContent: "center",
         // Prevent the floating element from receiving focus when it is clicked.
         outline: "none",

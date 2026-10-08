@@ -1,5 +1,11 @@
 import * as React from "react";
-import {fireEvent, render, screen, waitFor} from "@testing-library/react";
+import {
+    fireEvent,
+    render,
+    screen,
+    waitFor,
+    within,
+} from "@testing-library/react";
 import {userEvent, PointerEventsCheckLevel} from "@testing-library/user-event";
 
 import {View} from "@khanacademy/wonder-blocks-core";
@@ -919,15 +925,10 @@ describe("Popover", () => {
             await userEvent.click(openButton);
             const popover = await screen.findByRole("dialog");
 
-            // disabling this check because we need to access the popover content core
-            // in order to verify the aria-label is getting passed correctly
-            // eslint-disable-next-line testing-library/no-node-access
-            const popoverContentCore = popover.firstChild as HTMLElement;
-
             // Assert
-            expect(popoverContentCore.getAttribute("aria-label")).toBe(
-                "Popover Content Core",
-            );
+            expect(
+                within(popover).getByLabelText("Popover Content Core"),
+            ).toBeInTheDocument();
         });
     });
 

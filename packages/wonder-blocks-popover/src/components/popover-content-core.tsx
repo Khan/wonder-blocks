@@ -5,7 +5,7 @@ import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {sizing} from "@khanacademy/wonder-blocks-tokens";
 
-import {actionStyles} from "@khanacademy/wonder-blocks-styles";
+import {actionStyles, focusStyles} from "@khanacademy/wonder-blocks-styles";
 import CloseButton from "./close-button";
 
 type Props = AriaProps & {
@@ -51,6 +51,14 @@ type Props = AriaProps & {
  * no bubble around it and you need to supply your own container styling. Inside
  * a `Popover` it looks like a popover with no extra work.
  *
+ * ### Overflow
+ *
+ * Inside a `Popover`, the content is constrained to the space available in the
+ * viewport (or document). When it doesn't fit (e.g. on small screens or at
+ * high zoom levels), the content scrolls while the close button stays in
+ * place. The scrollable area becomes keyboard focusable while it overflows, so
+ * keyboard users can scroll it too.
+ *
  * ### Usage
  *
  * ```jsx
@@ -76,13 +84,13 @@ const PopoverContentCore = React.forwardRef<HTMLElement, Props>(
         }: Props,
         ref,
     ): React.ReactElement {
+        const scrollContainerRef = React.useRef<HTMLElement | null>(null);
+        const isOverflowing = useIsOverflowing(scrollContainerRef);
+
         return (
-            <View
-                testId={testId}
-                style={[styles.content, style]}
-                aria-label={ariaLabel}
-                ref={ref}
-            >
+            // The close button lives outside of the scrollable area so it
+            // stays in place when the content scrolls.
+            <View>
                 {closeButtonVisible && (
                     <CloseButton
                         aria-label={closeButtonLabel}
@@ -93,23 +101,82 @@ const PopoverContentCore = React.forwardRef<HTMLElement, Props>(
                         testId={`${testId || "popover"}-close-btn`}
                     />
                 )}
-                {children}
+                <View
+                    ref={scrollContainerRef}
+                    style={styles.scrollContainer}
+                    // Make the region keyboard scrollable only when it
+                    // actually overflows, so it doesn't add an extra tab stop
+                    // otherwise.
+                    tabIndex={isOverflowing ? 0 : undefined}
+                >
+                    <View
+                        testId={testId}
+                        style={[styles.content, style]}
+                        aria-label={ariaLabel}
+                        ref={ref}
+                    >
+                        {children}
+                    </View>
+                </View>
             </View>
         );
     },
 );
+
+/**
+ * Tracks whether the element's content overflows its block size (i.e. whether
+ * it can be scrolled).
+ */
+function useIsOverflowing(ref: React.RefObject<HTMLElement | null>): boolean {
+    const [isOverflowing, setIsOverflowing] = React.useState(false);
+
+    React.useEffect(() => {
+        const element = ref.current;
+        // ResizeObserver is supported in browsers we support, but not in jsdom
+        if (!element || !window.ResizeObserver) {
+            return;
+        }
+
+        const checkOverflow = () => {
+            setIsOverflowing(element.scrollHeight > element.clientHeight);
+        };
+
+        // Check when either the container (e.g. it gets constrained by the
+        // viewport) or its children (e.g. content changes) are resized.
+        const resizeObserver = new ResizeObserver(checkOverflow);
+        resizeObserver.observe(element);
+        Array.from(element.children).forEach((child) =>
+            resizeObserver.observe(child),
+        );
+
+        return () => {
+            resizeObserver.disconnect();
+        };
+    }, [ref]);
+
+    return isOverflowing;
+}
 
 PopoverContentCore.displayName = "PopoverContentCore";
 
 export default PopoverContentCore;
 
 const styles = StyleSheet.create({
+    scrollContainer: {
+        // Scroll the content when it doesn't fit in the available space
+        // (e.g. on small screens or at high zoom levels).
+        overflowY: "auto",
+        ...focusStyles.focus,
+    },
     content: {
         margin: 0,
         maxInlineSize: `calc(${sizing.size_160} * 18)`, // 288px
         padding: sizing.size_240,
         overflow: "hidden",
         justifyContent: "center",
+        // Keep the content at its natural size so it overflows (and scrolls)
+        // inside the scroll container instead of being squashed.
+        flexShrink: 0,
     },
 
     /**
