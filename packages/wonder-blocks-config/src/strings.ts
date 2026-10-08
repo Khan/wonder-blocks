@@ -12,7 +12,7 @@ export type WonderBlocksStrings = {
     tabs: string;
 
     // Form validation
-    requiredField: string;
+    requiredFieldMessage: string;
 };
 
 /**
@@ -52,7 +52,7 @@ export const strings = {
     },
 
     // Form validation
-    requiredField: {
+    requiredFieldMessage: {
         context:
             "Error message shown when a required form field is left empty.",
         message: "This field is required.",
@@ -78,5 +78,5 @@ export const defaultStringsEn: WonderBlocksStrings = {
     tabs: strings.tabs.message,
 
     // Form validation
-    requiredField: strings.requiredField.message,
+    requiredFieldMessage: strings.requiredFieldMessage.message,
 };

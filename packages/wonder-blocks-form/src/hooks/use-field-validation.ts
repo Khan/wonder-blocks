@@ -23,7 +23,7 @@ type FieldValidationProps = {
  * - `disabled` - If the field is disabled.
  * - `required` - Whether the field is required to continue, or the error
  * message if it is left blank. If `true`, the error message is the
- * `requiredField` string provided by `WonderBlocksConfigProvider`.
+ * `requiredFieldMessage` string provided by `WonderBlocksConfigProvider`.
  * - `instantValidation` - If the field should be validated instantly.
  * - `validate` - Validation for the field.
  * - `onValidate` - Called after the `validate` prop is called.
@@ -123,7 +123,9 @@ export const useFieldValidation = ({
             }
         } else if (required) {
             const requiredString =
-                typeof required === "string" ? required : strings.requiredField;
+                typeof required === "string"
+                    ? required
+                    : strings.requiredFieldMessage;
             const error = newValue ? null : requiredString;
             setErrorMessage(error);
             if (onValidate) {

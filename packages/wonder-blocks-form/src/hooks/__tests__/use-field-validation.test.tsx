@@ -18,7 +18,7 @@ const TranslatedConfigProvider = ({children}: {children: React.ReactNode}) => (
         i18n={{
             strings: {
                 ...defaultStringsEn,
-                requiredField: "translated text",
+                requiredFieldMessage: "translated text",
             },
             locale: "es",
         }}

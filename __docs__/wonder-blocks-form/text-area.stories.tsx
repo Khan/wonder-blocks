@@ -440,9 +440,9 @@ export const InstantValidation: StoryComponentType = {
  * observe this, type something into the field, backspace all the way,
  * and then shift focus out of the field.
  *
- * When `required` is `true`, the error message is the `requiredField` string
- * provided by `WonderBlocksConfigProvider` ("This field is required." by
- * default). Pass a translated string to `required` to override it.
+ * When `required` is `true`, the error message is the `requiredFieldMessage`
+ * string provided by `WonderBlocksConfigProvider` ("This field is required."
+ * by default). Pass a translated string to `required` to override it.
  */
 export const Required: StoryComponentType = {
     args: {

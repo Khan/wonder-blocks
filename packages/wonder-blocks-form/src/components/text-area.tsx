@@ -172,8 +172,8 @@ type TextAreaProps = AriaProps & {
      * String:
      * Please pass in a translated string to use as the error message that will
      * render if the user leaves this textarea blank. If this textarea is required,
-     * and a string is not passed in, the default `requiredField` string from
-     * `WonderBlocksConfigProvider` will render upon error.
+     * and a string is not passed in, the default `requiredFieldMessage` string
+     * from `WonderBlocksConfigProvider` will render upon error.
      * Note: The string will not be used if a `validate` prop is passed in.
      *
      * Example message: i18n._("A password is required to log in.")
@@ -182,7 +182,7 @@ type TextAreaProps = AriaProps & {
      * True/false indicating whether this textarea is required. Please do not pass
      * in `true` if possible - pass in the error string instead.
      * If `true` is passed, and a `validate` prop is not passed, that means
-     * there is no corresponding message and the default `requiredField`
+     * there is no corresponding message and the default `requiredFieldMessage`
      * string from `WonderBlocksConfigProvider` will be used.
      */
     required?: boolean | string;
