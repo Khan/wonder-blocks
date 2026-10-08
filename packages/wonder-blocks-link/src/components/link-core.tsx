@@ -1,18 +1,8 @@
 import * as React from "react";
-import {StyleSheet} from "aphrodite";
 import {Link, useInRouterContext} from "react-router-dom-v5-compat";
 
 import {addStyle} from "@khanacademy/wonder-blocks-core";
-import {
-    border,
-    font,
-    semanticColor,
-    sizing,
-} from "@khanacademy/wonder-blocks-tokens";
-import {
-    focusStyles,
-    minTargetSizeStyles,
-} from "@khanacademy/wonder-blocks-styles";
+import {minTargetSizeStyles} from "@khanacademy/wonder-blocks-styles";
 import {isClientSideUrl} from "@khanacademy/wonder-blocks-clickable";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import externalLinkIcon from "@phosphor-icons/core/bold/arrow-square-out-bold.svg";
@@ -22,7 +12,7 @@ import type {
     ClickableState,
 } from "@khanacademy/wonder-blocks-clickable";
 import type {SharedProps} from "./link";
-import theme from "../theme";
+import styles from "./link-core.module.css";
 
 type Props = SharedProps &
     ChildrenProps &
@@ -144,61 +134,6 @@ const LinkCore = React.forwardRef(function LinkCore(
             {linkContent}
         </StyledA>
     );
-});
-
-const focusStyling = {
-    ...focusStyles.focus[":focus-visible"],
-    borderRadius: border.radius.radius_010,
-    outlineOffset: border.width.medium,
-};
-
-const pressStyling = {
-    color: semanticColor.link.press,
-    textDecoration: "underline currentcolor solid",
-    textUnderlineOffset: font.textDecoration.underlineOffset,
-};
-
-const styles = StyleSheet.create({
-    shared: {
-        fontFamily: theme.root.font.family,
-        fontWeight: theme.root.font.weight,
-        cursor: "pointer",
-        textDecoration: "none",
-        outline: "none",
-        alignItems: "center",
-    },
-    rest: {
-        color: semanticColor.link.rest,
-        ":hover": {
-            textDecoration: "underline currentcolor solid",
-            color: semanticColor.link.hover,
-            textUnderlineOffset: font.textDecoration.underlineOffset,
-        },
-        // Focus styles only show up with keyboard navigation.
-        // Mouse users don't see focus styles.
-        ":focus-visible": focusStyling,
-        ":active": pressStyling,
-    },
-    restInline: {
-        textDecoration: "underline currentcolor solid",
-        textDecorationThickness: font.textDecoration.thickness,
-        textUnderlineOffset: font.textDecoration.underlineOffset,
-    },
-    focus: focusStyling,
-    press: pressStyling,
-    /**
-     * Content styles
-     */
-    startIcon: {
-        marginInlineEnd: sizing.size_040,
-    },
-    endIcon: {
-        marginInlineStart: sizing.size_040,
-    },
-    centered: {
-        // Manually align the bottom of start/end icons with the text baseline.
-        verticalAlign: "-10%",
-    },
 });
 
 export default LinkCore;
