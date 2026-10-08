@@ -1,5 +1,4 @@
 import * as React from "react";
-import {StyleSheet} from "aphrodite";
 import {StyleType, View} from "@khanacademy/wonder-blocks-core";
 import Link from "@khanacademy/wonder-blocks-link";
 import {
@@ -9,6 +8,7 @@ import {
 import {NavigationTabs, type NavigationTabsProps} from "./navigation-tabs";
 import {NavigationTabItem} from "./navigation-tab-item";
 import {useResponsiveLayout} from "../hooks/use-responsive-layout";
+import styles from "./responsive.module.css";
 
 export type ResponsiveNavigationTabItem = {
     /**
@@ -211,7 +211,7 @@ export const ResponsiveNavigationTabs = (props: Props) => {
     return (
         <View
             ref={containerRef}
-            style={[styles.container, stylesProp?.root]}
+            style={[styles.root, styles.container, stylesProp?.root]}
             id={id}
             testId={testId}
         >
@@ -266,25 +266,3 @@ export const ResponsiveNavigationTabs = (props: Props) => {
         </View>
     );
 };
-
-const fadeInKeyframes = {
-    from: {opacity: 0},
-    to: {opacity: 1},
-};
-
-const styles = StyleSheet.create({
-    // Apply fade in animation to NavigationTabs and NavigationTabsDropdown to
-    // ease into the transition between the two layouts. Since this is a fade
-    // animation to smoothen the transition, we apply it always, even if prefers
-    // reduced motion is enabled
-    fadeIn: {
-        // @ts-expect-error [FEI-5019]: `animationName` expects a string not an object.
-        animationName: fadeInKeyframes,
-        animationDuration: "150ms",
-        animationTimingFunction: "ease-in-out",
-    },
-    container: {
-        width: "100%",
-        minBlockSize: "auto", // override setting the min height: 0 style
-    },
-});

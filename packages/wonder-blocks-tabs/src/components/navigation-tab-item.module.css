@@ -1,0 +1,109 @@
+/**
+ * NavigationTabItem styles
+ *
+ * `.root` is the list item (rendered by `addStyle`, no class of its own). The
+ * link rules style the item's child — usually a Wonder Blocks `Link` — so they
+ * are nested inside `.root` to outrank `Link`'s own rules, which sit in the
+ * same `@layer shared` and are loaded *after* this package's stylesheet:
+ * `Link`'s base classes are (0,1,0) and its states (0,2,0); the rules below
+ * are (0,2,0) for the base and (0,3,0)+ for states.
+ *
+ * The link rule also declares the BodyText medium typography itself rather
+ * than applying the typography classes: those are (0,1,0) and would lose to
+ * `Link`'s `font-family` / `font-weight` (bold in thunderblocks), and the
+ * Aphrodite typography object would beat this rule's `display: flex`.
+ *
+ * The consumer's `style` still goes through Aphrodite (unlayered and
+ * `!important`), so it wins over this module as it did before. Nesting is
+ * native CSS: every `&` is explicit and resolves to the flat selector it
+ * replaces. The build wraps every rule in `@layer shared { … }`.
+ */
+
+.root {
+    list-style: none;
+    display: inline-flex;
+    padding-block: var(--wb-sizing-size_080) var(--wb-sizing-size_180);
+
+    &:has(a:hover) {
+        /* Using background token to match underline styling in Figma */
+        box-shadow: inset 0 calc(var(--wb-sizing-size_020) * -1) 0 0
+            var(--wb-semanticColor-core-background-instructive-default);
+    }
+
+    &:has(a:active) {
+        /* Using background token to match underline styling in Figma */
+        box-shadow: inset 0 calc(var(--wb-sizing-size_060) * -1) 0 0
+            var(--wb-semanticColor-core-background-instructive-default);
+    }
+
+    /* breakpoint.mediaQuery.mdOrLarger (min-width: breakpoint.width.mdMin) */
+    @media screen and (width >= 682px) {
+        padding-block: var(--wb-sizing-size_200) var(--wb-sizing-size_240);
+    }
+
+    /* Note: The current tab item underline style is provided by
+     * NavigationTabs. */
+    &.current:has(a:hover) {
+        /* If it is current, remove hover underline since the tab is already
+         * selected. */
+        box-shadow: none;
+    }
+
+    &.current:has(a:active):not([aria-disabled="true"]) {
+        /* If it is current, make sure there is no box shadow */
+        box-shadow: none;
+    }
+
+    & .link {
+        /* BodyText medium / medium weight — see the note above. */
+        font-family: var(--wb-font-family-sans);
+        font-size: var(--wb-font-body-size-medium);
+        font-weight: var(--wb-font-weight-medium);
+        line-height: var(--wb-font-body-lineHeight-medium);
+        display: flex;
+        margin: 0;
+        color: var(--wb-semanticColor-core-foreground-neutral-subtle);
+        padding-inline: 0;
+        position: relative;
+        white-space: nowrap;
+        text-decoration: none;
+    }
+
+    /* Declared before the hover / press rules (stylelint's
+     * no-descending-specificity); they only overlap on `border: none` and
+     * `outline: none`, so the order doesn't change the result. */
+    & .link:focus-visible {
+        border: none;
+        outline: none;
+        box-shadow:
+            0 0 0 var(--wb-sizing-size_020) var(--wb-semanticColor-focus-inner),
+            0 0 0 var(--wb-sizing-size_040) var(--wb-semanticColor-focus-outer);
+        border-radius: var(--wb-border-radius-radius_0);
+    }
+
+    /* NOTE: We use :not[aria-disabled] to avoid the hover styles to be
+     * applied when the interactive element is disabled. */
+    & .link:hover:not([aria-disabled="true"]) {
+        text-decoration: none;
+        border: none;
+        outline: none;
+        color: var(--wb-semanticColor-core-foreground-instructive-default);
+        background-color: var(--wb-semanticColor-core-transparent);
+    }
+
+    & .link:active:not([aria-disabled="true"]) {
+        text-decoration: none;
+        border: none;
+        outline: none;
+        color: var(--wb-semanticColor-core-foreground-instructive-default);
+    }
+
+    & .currentLink {
+        color: var(--wb-semanticColor-core-foreground-instructive-default);
+    }
+
+    & .currentLink:active:not([aria-disabled="true"]) {
+        /* Make sure the current link doesn't change color when pressed */
+        color: var(--wb-semanticColor-core-foreground-instructive-default);
+    }
+}
