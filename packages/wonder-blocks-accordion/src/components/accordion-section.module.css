@@ -1,0 +1,115 @@
+/**
+ * AccordionSection styles
+ *
+ * Every rule is nested inside `.root` — the marker class on the section's
+ * outermost element, which carries no declarations of its own. The section
+ * and its content panel are `View`s, and this component overrides properties
+ * `View` sets in the same `@layer shared` (`display`, `position`, `margin`,
+ * `padding`). At equal specificity stylesheet load order would decide the
+ * winner, so the compound selector makes it depend on specificity instead.
+ *
+ * The corner styles were a per-combination `StyleSheet.create` cache keyed on
+ * `cornerKind` × first × last section; they're now a `cornerKind` class
+ * (`square` / `rounded` / `roundedPerSection`) plus `firstSection` /
+ * `lastSection` modifiers that the compound selectors below combine. The
+ * consumer's `style` still goes through Aphrodite (unlayered and
+ * `!important`), so it wins over this module as it did before.
+ *
+ * Nesting is native CSS: every `&` is explicit and resolves to the flat
+ * selector it replaces (`.root.wrapper`, `.root .contentWrapper`, …). The
+ * build wraps every rule in `@layer shared { … }`.
+ */
+
+.root {
+    &.wrapper {
+        /* Use grid layout for clean animations. */
+        display: grid;
+        grid-template-rows: min-content 1fr;
+
+        /* Remove the View's default relative position because it creates
+         * overlap issues with the outline. In this case, it's safe to remove
+         * the stacking context beacuse accordion sections are always
+         * vertically stacked. */
+        position: static;
+        box-sizing: border-box;
+        background-color: var(--wb-semanticColor-core-background-base-default);
+    }
+
+    /* The collapsed row size keys off `data-expanded` (set on this element)
+     * rather than a separate class, as it did when Aphrodite injected rules
+     * lazily: swapping to a class whose rule didn't exist yet made the first
+     * expand snap instead of animating. */
+    &.wrapper:not([data-expanded="true"]) {
+        grid-template-rows: min-content 0fr;
+    }
+
+    &.wrapperWithAnimation {
+        transition: grid-template-rows 300ms;
+    }
+
+    /* Corner styles. */
+    &.square {
+        border: 1px solid var(--wb-semanticColor-core-border-neutral-subtle);
+        border-block-end: none;
+        border-radius: var(--wb-border-radius-radius_0);
+    }
+
+    &.rounded {
+        border: 1px solid var(--wb-semanticColor-core-border-neutral-subtle);
+        border-block-end: none;
+    }
+
+    &.rounded.firstSection {
+        border-start-start-radius: var(--wb-sizing-size_120);
+        border-start-end-radius: var(--wb-sizing-size_120);
+    }
+
+    &.square.lastSection,
+    &.rounded.lastSection {
+        border-block-end: 1px solid
+            var(--wb-semanticColor-core-border-neutral-subtle);
+    }
+
+    &.rounded.lastSection {
+        border-end-start-radius: var(--wb-sizing-size_120);
+        border-end-end-radius: var(--wb-sizing-size_120);
+    }
+
+    &.roundedPerSection {
+        border: 1px solid var(--wb-semanticColor-core-border-neutral-subtle);
+        border-radius: var(--wb-border-radius-radius_120);
+        margin-block-end: var(--wb-sizing-size_160);
+    }
+
+    & .contentWrapper {
+        overflow: hidden;
+    }
+
+    & .contentWrapperCollapsed {
+        /* Make sure screen readers don't read the content when it's
+         * collapsed. */
+        visibility: hidden;
+    }
+
+    & .contentWrapperExpanded {
+        visibility: visible;
+    }
+
+    /* Give the content panel the same bottom border radius as the section so
+     * the content doesn't overflow out the corners. This can't be solved by
+     * putting `overflow: hidden` on the overall container because that cuts
+     * off the header's focus outline. */
+    &.roundedPerSection .contentWrapper {
+        border-end-end-radius: var(--wb-sizing-size_120);
+        border-end-start-radius: var(--wb-sizing-size_120);
+    }
+
+    &.rounded.lastSection .contentWrapper {
+        border-end-end-radius: var(--wb-sizing-size_120);
+        border-end-start-radius: var(--wb-sizing-size_120);
+    }
+
+    & .stringContent {
+        padding: var(--wb-sizing-size_160);
+    }
+}
