@@ -28,7 +28,6 @@
     "@khanacademy/wonder-blocks-tokens": "workspace:*"
   },
   "peerDependencies": {
-    "aphrodite": "catalog:",
     "react": "catalog:"
   },
   "devDependencies": {

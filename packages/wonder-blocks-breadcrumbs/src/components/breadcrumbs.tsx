@@ -1,9 +1,9 @@
 import * as React from "react";
-import {StyleSheet} from "aphrodite";
 
 import type {AriaProps} from "@khanacademy/wonder-blocks-core";
 import {addStyle} from "@khanacademy/wonder-blocks-core";
 import BreadcrumbsItem from "./breadcrumbs-item";
+import styles from "./breadcrumbs.module.css";
 
 type Props = AriaProps & {
     /**
@@ -98,16 +98,6 @@ const Breadcrumbs = React.forwardRef(function Breadcrumbs(
             </StyledOl>
         </nav>
     );
-});
-
-const styles = StyleSheet.create({
-    container: {
-        display: "flex",
-        listStyle: "none",
-        margin: 0,
-        padding: 0,
-        overflow: "hidden",
-    },
 });
 
 export default Breadcrumbs;
