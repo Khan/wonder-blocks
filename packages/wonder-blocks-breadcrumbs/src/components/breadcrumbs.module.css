@@ -1,0 +1,31 @@
+/**
+ * Breadcrumbs styles
+ *
+ * Breadcrumbs has no theme of its own, so every value is the plain `--wb-*`
+ * token. The list, items and separator are rendered by `addStyle`, which ships
+ * no class of its own, so these single-class rules don't compete with anything
+ * else in `@layer shared`. The build wraps every rule in `@layer shared { … }`.
+ */
+
+.container {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+.item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-inline-end: var(--wb-sizing-size_040);
+    line-height: inherit;
+    font-family: var(--wb-font-family-sans);
+}
+
+/* The circular bullet point drawn between items. */
+.separator {
+    margin-inline-start: var(--wb-sizing-size_040);
+    fill: var(--wb-semanticColor-core-foreground-neutral-default);
+}

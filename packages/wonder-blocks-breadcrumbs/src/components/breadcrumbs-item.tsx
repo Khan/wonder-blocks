@@ -1,10 +1,9 @@
 import * as React from "react";
-import {StyleSheet} from "aphrodite";
 
 import type {AriaProps} from "@khanacademy/wonder-blocks-core";
 import {addStyle} from "@khanacademy/wonder-blocks-core";
 import Link from "@khanacademy/wonder-blocks-link";
-import {font, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
+import styles from "./breadcrumbs.module.css";
 
 type Props = AriaProps & {
     /**
@@ -64,22 +63,6 @@ const BreadcrumbsItem = React.forwardRef(function BreadcrumbsItem(
             {showSeparator && _renderSeparator()}
         </StyledLi>
     );
-});
-
-const styles = StyleSheet.create({
-    item: {
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        marginInlineEnd: sizing.size_040,
-        lineHeight: "inherit",
-        fontFamily: font.family.sans,
-    },
-
-    separator: {
-        marginInlineStart: sizing.size_040,
-        fill: semanticColor.core.foreground.neutral.default,
-    },
 });
 
 export default BreadcrumbsItem;
