@@ -392,6 +392,17 @@ const styles = StyleSheet.create({
         lineHeight: font.body.lineHeight.small,
         textDecoration: theme.link.font.decoration,
         textUnderlineOffset: theme.link.font.underlineOffset,
+        // Link's hover/press underline used to beat these overrides. Since
+        // Link moved to CSS Modules (`@layer shared`), this unlayered override
+        // applies in every state, so restate Link's interactive values here.
+        ":hover": {
+            textDecoration: "underline currentcolor solid",
+            textUnderlineOffset: font.textDecoration.underlineOffset,
+        },
+        ":active": {
+            textDecoration: "underline currentcolor solid",
+            textUnderlineOffset: font.textDecoration.underlineOffset,
+        },
     },
     button: {
         marginInline: theme.button.layout.marginInline,
