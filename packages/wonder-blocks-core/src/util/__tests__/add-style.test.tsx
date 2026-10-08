@@ -5,6 +5,7 @@ import {screen, render} from "@testing-library/react";
 import addStyle from "../add-style";
 
 const StyledDiv = addStyle("div");
+const StyledButton = addStyle("button");
 
 const styles = StyleSheet.create({
     foo: {
@@ -25,6 +26,28 @@ describe("addStyle", () => {
     afterEach(() => {
         // @ts-expect-error [FEI-5019] - TS7017 - Element implicitly has an 'any' type because type 'typeof globalThis' has no index signature.
         global.SNAPSHOT_INLINE_APHRODITE = SNAPSHOT_INLINE_APHRODITE;
+    });
+
+    it("should apply the element reset class to buttons", () => {
+        // Arrange
+        render(<StyledButton data-testid="styled-button" />);
+
+        // Act
+        const button = screen.getByTestId("styled-button");
+
+        // Assert
+        expect(button).toHaveClass("button");
+    });
+
+    it("should not apply an element reset class to other elements", () => {
+        // Arrange
+        render(<StyledDiv data-testid="styled-div" />);
+
+        // Act
+        const div = screen.getByTestId("styled-div");
+
+        // Assert
+        expect(div).not.toHaveClass("button");
     });
 
     it("should set the className if no style is provided", () => {

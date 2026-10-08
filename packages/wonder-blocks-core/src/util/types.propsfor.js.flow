@@ -5,5 +5,5 @@ import * as React from "react";
  * This is equivalent to `React.ElementConfig`.
  */
 export type PropsFor<
-  T: React.AbstractComponent<any> | React.ComponentType<any>,
+    T: React.AbstractComponent<any> | React.ComponentType<any>,
 > = React.ElementConfig<T>;

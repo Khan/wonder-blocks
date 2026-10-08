@@ -1,0 +1,25 @@
+/**
+ * Element resets for `addStyle`
+ *
+ * These override custom styles that browsers add so that elements have
+ * consistent styles across all browsers. Only add styles here if they appear
+ * in https://github.com/necolas/normalize.css/blob/master/normalize.css.
+ *
+ * Authored in `@layer reset`, which the build nests as `shared.reset`: rules
+ * directly in `@layer shared` (every component's own styles) outrank them
+ * regardless of specificity or stylesheet load order, and so do the
+ * consumer's Aphrodite styles. That reproduces the Aphrodite version, where
+ * the reset came first in the merged style list and anything after it won.
+ */
+
+@layer reset {
+    .button {
+        /* Safari adds 2px left/right margins */
+        margin: 0;
+
+        &::-moz-focus-inner {
+            /* Firefox adds an inner focus ring around text */
+            border: 0;
+        }
+    }
+}
