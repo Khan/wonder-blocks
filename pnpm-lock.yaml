@@ -634,6 +634,9 @@ importers:
       '@khanacademy/wonder-blocks-button':
         specifier: workspace:*
         version: link:../wonder-blocks-button
+      '@khanacademy/wonder-blocks-config':
+        specifier: workspace:*
+        version: link:../wonder-blocks-config
       '@khanacademy/wonder-blocks-core':
         specifier: workspace:*
         version: link:../wonder-blocks-core
