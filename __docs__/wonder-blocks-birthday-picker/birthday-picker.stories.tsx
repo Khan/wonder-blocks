@@ -89,22 +89,23 @@ export const InvalidBirthdayPicker: StoryComponentType = {
     },
 };
 
+/**
+ * The default labels are translated by the component using
+ * `WonderBlocksConfigProvider`. In English, the default labels are: `Day`,
+ * `Month`, `Year` used as placeholders and 'Please select a valid birthdate.'
+ * to indicate an `errorMessage` when the validation fails.
+ *
+ * The `labels` prop can be used to override these default labels.
+ */
 export const BirthdayPickerWithCustomLabels: StoryComponentType = {
     args: {
         onChange: () => {},
         defaultValue: "",
         labels: {
-            day: "Día",
-            month: "Mes",
-            year: "Año",
-            errorMessage: "Por favor seleccione una fecha válida.",
-        },
-    },
-    parameters: {
-        docs: {
-            description: {
-                story: "We can pass custom labels to the component. This can be helpful when we need to pass in translated strings. The default labels are: `Day`, `Month`, `Year` used as placeholders and 'Please select a valid birthdate.' to indicate an `errorMessage` when the validation fails. For more info about how to use this, refer to the `labels` prop in the Props table documentation above.",
-            },
+            day: "Custom day label",
+            month: "Custom month label",
+            year: "Custom year label",
+            errorMessage: "Custom birthdate error message",
         },
     },
 };
