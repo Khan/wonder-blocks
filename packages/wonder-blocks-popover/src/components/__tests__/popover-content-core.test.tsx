@@ -103,7 +103,7 @@ describe("PopoverContentCore", () => {
         expect(scrollContainer).not.toHaveAttribute("tabindex");
     });
 
-    it("should render the close button outside of the scroll container", () => {
+    it("should render the close button inside of the scroll container", () => {
         // Arrange
         render(
             <PopoverContentCore testId="content" closeButtonVisible={true}>
@@ -115,7 +115,7 @@ describe("PopoverContentCore", () => {
         const closeButton = screen.getByRole("button");
 
         // Assert
-        expect(getScrollContainer()).not.toContainElement(closeButton);
+        expect(getScrollContainer()).toContainElement(closeButton);
     });
 
     it("should forward the ref to the content element", () => {
