@@ -159,13 +159,13 @@ const getIconAltForKind = (
 ): string => {
     switch (kind) {
         case "success":
-            return strings.iconAltSuccess;
+            return strings.iconAltStatusSuccess;
         case "warning":
-            return strings.iconAltWarning;
+            return strings.iconAltStatusWarning;
         case "critical":
-            return strings.iconAltCritical;
+            return strings.iconAltStatusCritical;
         default:
-            return strings.iconAltInfo;
+            return strings.iconAltStatusInfo;
     }
 };
 

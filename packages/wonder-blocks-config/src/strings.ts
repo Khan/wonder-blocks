@@ -7,14 +7,14 @@ export type WonderBlocksStrings = {
     iconAltClose: string;
     iconAltCloseModal: string;
     iconAltClosePopover: string;
-    iconAltCritical: string;
     iconAltDismissBanner: string;
     iconAltErrorMessagePrefix: string;
-    iconAltInfo: string;
     iconAltOpensNewTab: string;
-    iconAltSuccess: string;
+    iconAltStatusCritical: string;
+    iconAltStatusInfo: string;
+    iconAltStatusSuccess: string;
+    iconAltStatusWarning: string;
     iconAltToggleCalendar: string;
-    iconAltWarning: string;
 
     // Labels
     breadcrumbs: string;
@@ -57,11 +57,6 @@ export const strings = {
         context: "Accessible name for an icon button that closes a popover.",
         message: "Close Popover",
     },
-    iconAltCritical: {
-        context:
-            "Accessible name for an icon indicating a critical status, such as in a banner.",
-        message: "Critical",
-    },
     iconAltDismissBanner: {
         context: "Accessible name for an icon button that dismisses a banner.",
         message: "Dismiss banner",
@@ -71,30 +66,35 @@ export const strings = {
             "Accessible name for an error icon shown before the error message for a form field. Screen readers read it as a prefix to the error message (e.g. 'Error: This field is required.'), so use the punctuation that normally separates a label from the text that follows in this language.",
         message: "Error:",
     },
-    iconAltInfo: {
-        context:
-            "Accessible name for an icon indicating an informational status, such as in a banner.",
-        message: "Info",
-    },
     iconAltOpensNewTab: {
         context:
             "Accessible name for an icon marking a link that opens in a new tab.",
         message: "(opens in a new tab)",
     },
-    iconAltSuccess: {
+    iconAltStatusCritical: {
+        context:
+            "Accessible name for an icon indicating a critical status, such as in a banner.",
+        message: "Critical",
+    },
+    iconAltStatusInfo: {
+        context:
+            "Accessible name for an icon indicating an informational status, such as in a banner.",
+        message: "Info",
+    },
+    iconAltStatusSuccess: {
         context:
             "Accessible name for an icon indicating a success status, such as in a banner.",
         message: "Success",
+    },
+    iconAltStatusWarning: {
+        context:
+            "Accessible name for an icon indicating a warning status, such as in a banner.",
+        message: "Warning",
     },
     iconAltToggleCalendar: {
         context:
             "Accessible name for an icon button in a date picker that opens and closes the calendar.",
         message: "Toggle calendar",
-    },
-    iconAltWarning: {
-        context:
-            "Accessible name for an icon indicating a warning status, such as in a banner.",
-        message: "Warning",
     },
 
     // Labels
@@ -157,14 +157,14 @@ export const defaultStringsEn: WonderBlocksStrings = {
     iconAltClose: strings.iconAltClose.message,
     iconAltCloseModal: strings.iconAltCloseModal.message,
     iconAltClosePopover: strings.iconAltClosePopover.message,
-    iconAltCritical: strings.iconAltCritical.message,
     iconAltDismissBanner: strings.iconAltDismissBanner.message,
     iconAltErrorMessagePrefix: strings.iconAltErrorMessagePrefix.message,
-    iconAltInfo: strings.iconAltInfo.message,
     iconAltOpensNewTab: strings.iconAltOpensNewTab.message,
-    iconAltSuccess: strings.iconAltSuccess.message,
+    iconAltStatusCritical: strings.iconAltStatusCritical.message,
+    iconAltStatusInfo: strings.iconAltStatusInfo.message,
+    iconAltStatusSuccess: strings.iconAltStatusSuccess.message,
+    iconAltStatusWarning: strings.iconAltStatusWarning.message,
     iconAltToggleCalendar: strings.iconAltToggleCalendar.message,
-    iconAltWarning: strings.iconAltWarning.message,
 
     // Labels
     breadcrumbs: strings.breadcrumbs.message,
