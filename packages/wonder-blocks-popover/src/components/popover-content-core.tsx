@@ -7,6 +7,7 @@ import {sizing} from "@khanacademy/wonder-blocks-tokens";
 
 import {actionStyles, focusStyles} from "@khanacademy/wonder-blocks-styles";
 import CloseButton from "./close-button";
+import {useIsOverflowing} from "../hooks/use-is-overflowing";
 
 type Props = AriaProps & {
     /**
@@ -122,40 +123,6 @@ const PopoverContentCore = React.forwardRef<HTMLElement, Props>(
         );
     },
 );
-
-/**
- * Tracks whether the element's content overflows its block size (i.e. whether
- * it can be scrolled).
- */
-function useIsOverflowing(ref: React.RefObject<HTMLElement | null>): boolean {
-    const [isOverflowing, setIsOverflowing] = React.useState(false);
-
-    React.useEffect(() => {
-        const element = ref.current;
-        // ResizeObserver is supported in browsers we support, but not in jsdom
-        if (!element || !window.ResizeObserver) {
-            return;
-        }
-
-        const checkOverflow = () => {
-            setIsOverflowing(element.scrollHeight > element.clientHeight);
-        };
-
-        // Check when either the container (e.g. it gets constrained by the
-        // viewport) or its children (e.g. content changes) are resized.
-        const resizeObserver = new ResizeObserver(checkOverflow);
-        resizeObserver.observe(element);
-        Array.from(element.children).forEach((child) =>
-            resizeObserver.observe(child),
-        );
-
-        return () => {
-            resizeObserver.disconnect();
-        };
-    }, [ref]);
-
-    return isOverflowing;
-}
 
 PopoverContentCore.displayName = "PopoverContentCore";
 
