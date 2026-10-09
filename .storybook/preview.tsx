@@ -60,6 +60,17 @@ const wbViewports = {
             height: "900px",
         },
     },
+    /**
+     * Simulates a 1280x1024 screen zoomed in to 400% (1280 / 4 x 1024 / 4).
+     * Useful for verifying WCAG 1.4.10 Reflow.
+     */
+    zoom400: {
+        name: "400% zoom",
+        styles: {
+            width: "320px",
+            height: "256px",
+        },
+    },
 };
 
 /**
