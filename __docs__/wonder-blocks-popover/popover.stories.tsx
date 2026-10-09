@@ -836,8 +836,9 @@ export const WithDocumentRootBoundary: StoryComponentType = {
  * more content to scroll to, and the scrollable area becomes keyboard
  * focusable so it can be scrolled with the keyboard.
  *
- * Try this example at a small viewport size or zoom in to see the content
- * scroll.
+ * This example is rendered in the "400% zoom" viewport (320x256, which is a
+ * 1280x1024 screen zoomed in to 400%) to show the content scrolling. You can
+ * change the viewport from the toolbar.
  */
 export const WithLongContent: StoryComponentType = {
     render: function Render() {
@@ -873,9 +874,14 @@ export const WithLongContent: StoryComponentType = {
     parameters: {
         chromatic: {
             modes: {
-                small: allModes.small,
+                zoom400: allModes.zoom400,
                 large: allModes.large,
             },
+        },
+    },
+    globals: {
+        viewport: {
+            value: "zoom400",
         },
     },
 };

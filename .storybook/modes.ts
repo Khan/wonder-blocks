@@ -12,6 +12,9 @@ export const allModes = {
     chromebook: {
         viewport: "chromebook",
     },
+    zoom400: {
+        viewport: "zoom400",
+    },
     // Theming
     themeDefault: {
         theme: "default",
