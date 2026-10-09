@@ -1,6 +1,7 @@
 import {StyleSheet} from "aphrodite";
 import * as React from "react";
 
+import {useWonderBlocksI18n} from "@khanacademy/wonder-blocks-config";
 import {useOnMountEffect, View} from "@khanacademy/wonder-blocks-core";
 import {TextField} from "@khanacademy/wonder-blocks-form";
 import IconButton from "@khanacademy/wonder-blocks-icon-button";
@@ -12,8 +13,6 @@ import {
     TemporalLocaleUtils,
 } from "../util/temporal-locale-utils";
 import type {CustomModifiers} from "../util/types";
-
-const DEFAULT_CALENDAR_BUTTON_ARIA_LABEL = "Toggle calendar";
 
 interface Props {
     /**
@@ -57,7 +56,8 @@ interface Props {
      */
     onCalendarButtonKeyDown?: (e: React.KeyboardEvent) => unknown;
     /**
-     * The aria-label for the calendar toggle button.
+     * The aria-label for the calendar toggle button. Overrides the
+     * translated string from `WonderBlocksConfigProvider`.
      */
     calendarButtonAriaLabel?: string;
     /**
@@ -174,10 +174,11 @@ const DatePickerInput = React.forwardRef<HTMLInputElement, Props>(
             expanded,
             onToggleOverlay,
             onCalendarButtonKeyDown,
-            calendarButtonAriaLabel = DEFAULT_CALENDAR_BUTTON_ARIA_LABEL,
+            calendarButtonAriaLabel,
             calendarButtonRef,
             ...restProps
         } = props;
+        const {strings} = useWonderBlocksI18n();
 
         const [value, setValue] = React.useState<string | null | undefined>(
             propValue,
@@ -501,7 +502,9 @@ const DatePickerInput = React.forwardRef<HTMLInputElement, Props>(
                     kind="tertiary"
                     actionType="neutral"
                     disabled={restProps.disabled}
-                    aria-label={calendarButtonAriaLabel}
+                    aria-label={
+                        calendarButtonAriaLabel || strings.iconAltToggleCalendar
+                    }
                     aria-expanded={expanded}
                     aria-haspopup="grid"
                     onClick={() => onToggleOverlay()}
