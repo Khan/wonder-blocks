@@ -3,6 +3,10 @@ import {render, screen} from "@testing-library/react";
 import magnifyingGlass from "@phosphor-icons/core/regular/magnifying-glass.svg";
 
 import Button from "@khanacademy/wonder-blocks-button";
+import {
+    defaultStringsEn,
+    WonderBlocksConfigProvider,
+} from "@khanacademy/wonder-blocks-config";
 import customIcon from "./custom-icon-mock.svg";
 
 import Banner from "../banner";
@@ -228,20 +232,53 @@ describe("Banner", () => {
 
         // Assert
         const icon = screen.getByTestId("banner-kind-icon");
-        expect(icon).toHaveAttribute("aria-label", "info");
+        expect(icon).toHaveAttribute("aria-label", "Info");
     });
 
-    it.each(["info", "success", "warning", "critical"])(
-        "%s kind displays %s icon",
-        (kind: any) => {
+    it.each([
+        {kind: "info", label: "Info"},
+        {kind: "success", label: "Success"},
+        {kind: "warning", label: "Warning"},
+        {kind: "critical", label: "Critical"},
+    ] as const)("$kind kind displays $label icon", ({kind, label}) => {
+        // Arrange
+
+        // Act
+        render(<Banner text="test text" kind={kind} />);
+
+        // Assert
+        const icon = screen.getByTestId("banner-kind-icon");
+        expect(icon).toHaveAttribute("aria-label", label);
+    });
+
+    it.each([
+        {kind: "info", stringKey: "iconAltInfo"},
+        {kind: "success", stringKey: "iconAltSuccess"},
+        {kind: "warning", stringKey: "iconAltWarning"},
+        {kind: "critical", stringKey: "iconAltCritical"},
+    ] as const)(
+        "$kind kind icon uses the aria-label from the config provider",
+        ({kind, stringKey}) => {
             // Arrange
 
             // Act
-            render(<Banner text="test text" kind={kind} />);
+            render(
+                <WonderBlocksConfigProvider
+                    i18n={{
+                        strings: {
+                            ...defaultStringsEn,
+                            [stringKey]: "translated text",
+                        },
+                        locale: "es",
+                    }}
+                >
+                    <Banner text="test text" kind={kind} />
+                </WonderBlocksConfigProvider>,
+            );
 
             // Assert
             const icon = screen.getByTestId("banner-kind-icon");
-            expect(icon).toHaveAttribute("aria-label", kind);
+            expect(icon).toHaveAttribute("aria-label", "translated text");
         },
     );
 
@@ -255,7 +292,7 @@ describe("Banner", () => {
 
         // Assert
         const dismissButton = screen.getByRole("button");
-        expect(dismissButton).toHaveAttribute("aria-label", "Dismiss banner.");
+        expect(dismissButton).toHaveAttribute("aria-label", "Dismiss banner");
     });
 
     test("dismiss button has the aria label that was passed in", () => {
@@ -276,6 +313,56 @@ describe("Banner", () => {
             "aria-label",
             "Test dismiss aria label",
         );
+    });
+
+    test("dismiss button uses the aria label from the config provider", () => {
+        // Arrange
+
+        // Act
+        render(
+            <WonderBlocksConfigProvider
+                i18n={{
+                    strings: {
+                        ...defaultStringsEn,
+                        iconAltDismissBanner: "translated text",
+                    },
+                    locale: "es",
+                }}
+            >
+                <Banner text="test text" onDismiss={() => {}} />
+            </WonderBlocksConfigProvider>,
+        );
+
+        // Assert
+        const dismissButton = screen.getByRole("button");
+        expect(dismissButton).toHaveAttribute("aria-label", "translated text");
+    });
+
+    test("dismiss button prefers the `dismissAriaLabel` prop over the config provider", () => {
+        // Arrange
+
+        // Act
+        render(
+            <WonderBlocksConfigProvider
+                i18n={{
+                    strings: {
+                        ...defaultStringsEn,
+                        iconAltDismissBanner: "translated text",
+                    },
+                    locale: "es",
+                }}
+            >
+                <Banner
+                    text="test text"
+                    onDismiss={() => {}}
+                    dismissAriaLabel="overriding label"
+                />
+            </WonderBlocksConfigProvider>,
+        );
+
+        // Assert
+        const dismissButton = screen.getByRole("button");
+        expect(dismissButton).toHaveAttribute("aria-label", "overriding label");
     });
 
     test("buttons have their title as the aria label by default", () => {
@@ -467,7 +554,7 @@ describe("Banner", () => {
                 `mask-image: url(${customIcon});`,
             );
         });
-        test("uses `kind` as aria-label for provided Phosphor icon", () => {
+        test("uses the `kind` label as aria-label for provided Phosphor icon", () => {
             // Arrange
 
             // Act
@@ -484,10 +571,10 @@ describe("Banner", () => {
             // Assert
             expect(screen.getByTestId("banner-kind-icon")).toHaveAttribute(
                 "aria-label",
-                "warning",
+                "Warning",
             );
         });
-        test("uses `kind` as aria-label for provided custom icon", () => {
+        test("uses the `kind` label as aria-label for provided custom icon", () => {
             // Arrange
 
             // Act
@@ -504,7 +591,7 @@ describe("Banner", () => {
             // Assert
             expect(screen.getByTestId("banner-kind-icon")).toHaveAttribute(
                 "aria-label",
-                "warning",
+                "Warning",
             );
         });
     });
