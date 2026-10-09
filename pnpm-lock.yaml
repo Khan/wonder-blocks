@@ -668,6 +668,9 @@ importers:
 
   packages/wonder-blocks-birthday-picker:
     dependencies:
+      '@khanacademy/wonder-blocks-config':
+        specifier: workspace:*
+        version: link:../wonder-blocks-config
       '@khanacademy/wonder-blocks-core':
         specifier: workspace:*
         version: link:../wonder-blocks-core
@@ -914,6 +917,9 @@ importers:
 
   packages/wonder-blocks-date-picker:
     dependencies:
+      '@khanacademy/wonder-blocks-config':
+        specifier: workspace:*
+        version: link:../wonder-blocks-config
       '@khanacademy/wonder-blocks-core':
         specifier: workspace:*
         version: link:../wonder-blocks-core
