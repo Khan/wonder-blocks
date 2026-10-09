@@ -2,4 +2,4 @@
 "@khanacademy/wonder-blocks-config": minor
 ---
 
-Adds the `iconAltInfo`, `iconAltSuccess`, `iconAltWarning`, `iconAltCritical` and `iconAltDismissBanner` strings to `WonderBlocksStrings`
+Adds the `iconAltStatusInfo`, `iconAltStatusSuccess`, `iconAltStatusWarning`, `iconAltStatusCritical` and `iconAltDismissBanner` strings to `WonderBlocksStrings`

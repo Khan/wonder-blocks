@@ -252,10 +252,10 @@ describe("Banner", () => {
     });
 
     it.each([
-        {kind: "info", stringKey: "iconAltInfo"},
-        {kind: "success", stringKey: "iconAltSuccess"},
-        {kind: "warning", stringKey: "iconAltWarning"},
-        {kind: "critical", stringKey: "iconAltCritical"},
+        {kind: "info", stringKey: "iconAltStatusInfo"},
+        {kind: "success", stringKey: "iconAltStatusSuccess"},
+        {kind: "warning", stringKey: "iconAltStatusWarning"},
+        {kind: "critical", stringKey: "iconAltStatusCritical"},
     ] as const)(
         "$kind kind icon uses the aria-label from the config provider",
         ({kind, stringKey}) => {
