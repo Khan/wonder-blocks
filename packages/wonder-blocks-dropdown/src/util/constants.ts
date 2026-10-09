@@ -1,5 +1,9 @@
+import {defaultStringsEn} from "@khanacademy/wonder-blocks-config";
 import {sizing} from "@khanacademy/wonder-blocks-tokens";
-import {ComboboxLabels} from "./types";
+
+import type {WonderBlocksStrings} from "@khanacademy/wonder-blocks-config";
+
+import type {ComboboxLabels} from "./types";
 
 export const selectDropdownStyle = {
     marginBlock: sizing.size_080,
@@ -23,26 +27,40 @@ export const MAX_VISIBLE_ITEMS = 9;
 
 export const SEPARATOR_ITEM_HEIGHT = 9;
 
-// The default labels that will be used by different components
-export const defaultLabels = {
-    clearSearch: "Clear search",
-    filter: "Filter",
-    noResults: "No results",
-    selectNoneLabel: "Select none",
-    selectAllLabel: (numOptions: number): string =>
-        `Select all (${numOptions})`,
-    noneSelected: "0 items",
-    someSelected: (numSelectedValues: number): string =>
-        numSelectedValues === 1 ? "1 item" : `${numSelectedValues} items`,
-    allSelected: "All items",
-} as const;
+/**
+ * Builds the default labels used by SingleSelect, MultiSelect and DropdownCore
+ * from the Wonder Blocks i18n strings.
+ *
+ * NOTE: The `labels` props keep their positional function args (e.g.
+ * `someSelected(n)`), so they are adapted here to the object args used by the
+ * strings (e.g. `someSelected({num})`).
+ */
+export const getDefaultLabels = (strings: WonderBlocksStrings) =>
+    ({
+        clearSearch: strings.iconAltClearSearch,
+        filter: strings.filter,
+        noResults: strings.noResults,
+        selectNoneLabel: strings.selectNone,
+        selectAllLabel: (numOptions: number): string =>
+            strings.selectAll({num: numOptions}),
+        noneSelected: strings.noneSelected,
+        someSelected: (numSelectedValues: number): string =>
+            strings.someSelected({num: numSelectedValues}),
+        allSelected: strings.allSelected,
+    }) as const;
 
-export const defaultComboboxLabels: ComboboxLabels = {
-    clearSelection: "Clear selection",
-    closedState: "Combobox is closed",
-    comboboxButton: "Toggle listbox",
-    listbox: "Options list",
-    removeSelected: (label: string) => `Remove ${label}`,
+/**
+ * Builds the default labels used by Combobox from the Wonder Blocks i18n
+ * strings.
+ */
+export const getDefaultComboboxLabels = (
+    strings: WonderBlocksStrings,
+): ComboboxLabels => ({
+    clearSelection: strings.iconAltClearSelection,
+    closedState: strings.srComboboxClosed,
+    comboboxButton: strings.iconAltToggleListbox,
+    listbox: strings.optionsList,
+    removeSelected: (label: string) => strings.removeSelected({label}),
     // Live region labels
     liveRegionCurrentItem: ({
         current,
@@ -51,14 +69,34 @@ export const defaultComboboxLabels: ComboboxLabels = {
         disabled,
         focused,
         selected,
-    }) =>
-        `${current}${focused ? " focused" : ""}${disabled ? " disabled" : ""}${
-            selected ? " selected" : ""
-        }, ${index + 1} of ${total}.`,
-    liveRegionMultipleSelectionTotal: (total) => `${total} selected options.`,
-    liveRegionListboxTotal: (total) => `${total} results available.`,
-    noItems: "No results",
-    selected: (labels: string) => `${labels} selected`,
-    selectionCleared: "Selection cleared",
-    unselected: (labels: string) => `${labels} not selected`,
-};
+    }) => {
+        // The states are separate strings so they can be translated without
+        // needing a message for each combination of them.
+        const states = [
+            focused && strings.srItemFocused,
+            disabled && strings.srItemDisabled,
+            selected && strings.srItemSelected,
+        ].filter(Boolean);
+
+        return strings.srComboboxCurrentItem({
+            current: [current, ...states].join(" "),
+            // `index` is 0-based, but the announcement is 1-based. This is
+            // done here since translated messages can't add 1 to it.
+            index: index + 1,
+            total,
+        });
+    },
+    liveRegionMultipleSelectionTotal: (total) =>
+        strings.srComboboxSelectedTotal({total}),
+    liveRegionListboxTotal: (total) => strings.srComboboxResultsTotal({total}),
+    noItems: strings.noResults,
+    selected: (labels: string) => strings.srSelected({labels}),
+    selectionCleared: strings.srSelectionCleared,
+    unselected: (labels: string) => strings.srUnselected({labels}),
+});
+
+// The default English labels that will be used by different components
+export const defaultLabels = getDefaultLabels(defaultStringsEn);
+
+export const defaultComboboxLabels: ComboboxLabels =
+    getDefaultComboboxLabels(defaultStringsEn);

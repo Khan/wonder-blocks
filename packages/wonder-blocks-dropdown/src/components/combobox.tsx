@@ -19,12 +19,12 @@ import {useId} from "react";
 import {focusStyles} from "@khanacademy/wonder-blocks-styles";
 import {useListbox} from "../hooks/use-listbox";
 import {useMultipleSelection} from "../hooks/use-multiple-selection";
+import {useDefaultComboboxLabels} from "../hooks/use-default-labels";
 import {
     ComboboxLabels,
     MaybeValueOrValues,
     OptionItemComponent,
 } from "../util/types";
-import {defaultComboboxLabels} from "../util/constants";
 import {ComboboxLiveRegion} from "./combobox-live-region";
 import {MultipleSelection} from "./combobox-multiple-selection";
 import DropdownPopper from "./dropdown-popper";
@@ -81,7 +81,8 @@ type Props = {
     /**
      * The object containing the custom labels used inside this component.
      *
-     * This is useful for internationalization. Defaults to English.
+     * This overrides the default labels provided by `WonderBlocksConfigProvider`
+     * (in English by default).
      */
     labels?: ComboboxLabels;
 
@@ -155,7 +156,7 @@ export default function Combobox({
     disabled,
     error,
     id,
-    labels = defaultComboboxLabels,
+    labels: propLabels,
     onChange,
     onToggle,
     opened,
@@ -168,6 +169,10 @@ export default function Combobox({
     style,
     ...ariaAttrs
 }: Props & AriaAttributes) {
+    const defaultLabels = useDefaultComboboxLabels();
+    // Use the labels prop if it is provided, otherwise use the labels from
+    // `WonderBlocksConfigProvider`.
+    const labels = propLabels ?? defaultLabels;
     // eslint-disable-next-line import/no-deprecated
     const generatedUniqueId = useId();
     const uniqueId = id ?? generatedUniqueId;

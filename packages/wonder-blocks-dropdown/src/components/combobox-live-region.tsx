@@ -1,7 +1,7 @@
 import {addStyle} from "@khanacademy/wonder-blocks-core";
 import {StyleSheet} from "aphrodite";
 import * as React from "react";
-import {defaultComboboxLabels} from "../util/constants";
+import {useDefaultComboboxLabels} from "../hooks/use-default-labels";
 import {getLabel} from "../util/helpers";
 import {
     ComboboxLabels,
@@ -75,17 +75,7 @@ type Props = {
 export function ComboboxLiveRegion({
     focusedIndex,
     focusedMultiSelectIndex,
-    labels = {
-        closedState: defaultComboboxLabels.closedState,
-        liveRegionCurrentItem: defaultComboboxLabels.liveRegionCurrentItem,
-        liveRegionListboxTotal: defaultComboboxLabels.liveRegionListboxTotal,
-        liveRegionMultipleSelectionTotal:
-            defaultComboboxLabels.liveRegionMultipleSelectionTotal,
-        noItems: defaultComboboxLabels.noItems,
-        selected: defaultComboboxLabels.selected,
-        selectionCleared: defaultComboboxLabels.selectionCleared,
-        unselected: defaultComboboxLabels.unselected,
-    },
+    labels: propLabels,
     selectedLabels,
     opened,
     options,
@@ -93,6 +83,10 @@ export function ComboboxLiveRegion({
     selectionType = "single",
     testId,
 }: Props) {
+    const defaultLabels = useDefaultComboboxLabels();
+    // Use the labels prop if it is provided, otherwise use the labels from
+    // `WonderBlocksConfigProvider`.
+    const labels = propLabels ?? defaultLabels;
     const lastSelectedValue = React.useRef<MaybeValueOrValues>(null);
     const [message, setMessage] = React.useState("");
 

@@ -24,7 +24,7 @@ import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
 import {Placement} from "@popperjs/core";
 import DropdownCoreVirtualized from "./dropdown-core-virtualized";
 import SeparatorItem from "./separator-item";
-import {defaultLabels} from "../util/constants";
+import {useDefaultLabels} from "../hooks/use-default-labels";
 import type {DropdownItem} from "../util/types";
 import DropdownPopper from "./dropdown-popper";
 import {debounce, getLabel, getStringForKey} from "../util/helpers";
@@ -215,19 +215,23 @@ const createItemRefs = (items: Array<DropdownItem>): ItemRefs => {
     return itemRefs;
 };
 
-const defaultPropLabels: LabelsValues = {
-    clearSearch: defaultLabels.clearSearch,
-    filter: defaultLabels.filter,
-    noResults: defaultLabels.noResults,
-    someResults: defaultLabels.someSelected,
-};
-
 /**
  * A core dropdown component that takes an opener and children to display as
  * part of the dropdown menu. Renders the dropdown as a portal to avoid clipping
  * in overflow: auto containers.
  */
 const DropdownCore = (props: Props) => {
+    const defaultLabels = useDefaultLabels();
+    const defaultPropLabels: LabelsValues = React.useMemo(
+        () => ({
+            clearSearch: defaultLabels.clearSearch,
+            filter: defaultLabels.filter,
+            noResults: defaultLabels.noResults,
+            someResults: defaultLabels.someSelected,
+        }),
+        [defaultLabels],
+    );
+
     const {
         "aria-invalid": ariaInvalid,
         "aria-label": ariaLabel,

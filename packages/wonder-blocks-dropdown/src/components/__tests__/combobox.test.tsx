@@ -5,6 +5,10 @@ import {StyleSheet} from "aphrodite";
 import magnifyingGlassIcon from "@phosphor-icons/core/regular/magnifying-glass.svg";
 
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
+import {
+    WonderBlocksConfigProvider,
+    defaultStringsEn,
+} from "@khanacademy/wonder-blocks-config";
 import {PointerEventsCheckLevel, userEvent} from "@testing-library/user-event";
 import {defaultComboboxLabels} from "../../util/constants";
 import {MaybeValueOrValues} from "../../util/types";
@@ -1137,6 +1141,101 @@ describe("Combobox", () => {
                     defaultComboboxLabels.selectionCleared,
                 );
             });
+        });
+    });
+
+    describe("i18n strings", () => {
+        const translatedStrings = {
+            ...defaultStringsEn,
+            iconAltClearSelection: "Borrar selección",
+            iconAltToggleListbox: "Alternar lista",
+            noResults: "No hay resultados",
+            optionsList: "Lista de opciones",
+            removeSelected: ({label}: {label: string}) => `Quitar ${label}`,
+        };
+
+        const renderWithConfig = (
+            props: Partial<React.ComponentProps<typeof Combobox>> = {},
+        ) =>
+            doRender(
+                <WonderBlocksConfigProvider
+                    i18n={{strings: translatedStrings, locale: "es"}}
+                >
+                    <Combobox selectionType="single" value="option2" {...props}>
+                        <OptionItem label="option 1" value="option1" />
+                        <OptionItem label="option 2" value="option2" />
+                    </Combobox>
+                </WonderBlocksConfigProvider>,
+            );
+
+        it.each(["Borrar selección", "Alternar lista"])(
+            "uses the %s button string from the config provider",
+            (name) => {
+                // Arrange
+
+                // Act
+                renderWithConfig();
+
+                // Assert
+                expect(screen.getByRole("button", {name})).toBeInTheDocument();
+            },
+        );
+
+        it("uses the options list string from the config provider", async () => {
+            // Arrange
+
+            // Act
+            renderWithConfig({opened: true});
+
+            // Assert
+            expect(
+                await screen.findByRole("listbox", {hidden: true}),
+            ).toHaveAttribute("aria-label", "Lista de opciones");
+        });
+
+        it("uses the remove selected string from the config provider", () => {
+            // Arrange
+
+            // Act
+            renderWithConfig({selectionType: "multiple", value: ["option1"]});
+
+            // Assert
+            expect(
+                screen.getByRole("button", {name: "Quitar option 1"}),
+            ).toBeInTheDocument();
+        });
+
+        it("uses the no results string from the config provider", async () => {
+            // Arrange
+            const userEvent = renderWithConfig({
+                value: "",
+                autoComplete: "list",
+            });
+
+            // Act
+            await userEvent.type(screen.getByRole("combobox"), "not-found");
+
+            // Assert
+            expect(screen.getByRole("log")).toHaveTextContent(
+                "No hay resultados",
+            );
+        });
+
+        it("uses the labels prop over the strings from the config provider", () => {
+            // Arrange
+
+            // Act
+            renderWithConfig({
+                labels: {
+                    ...defaultComboboxLabels,
+                    clearSelection: "Clear selection override",
+                },
+            });
+
+            // Assert
+            expect(
+                screen.getByRole("button", {name: "Clear selection override"}),
+            ).toBeInTheDocument();
         });
     });
 });

@@ -159,6 +159,11 @@ const styles = StyleSheet.create({
         height: "500px",
         width: "600px",
     },
+    labelsContainer: {
+        flexDirection: "row",
+        alignItems: "flex-start",
+        gap: sizing.size_200,
+    },
     centered: {
         alignItems: "center",
         justifyContent: "center",
@@ -924,11 +929,18 @@ const translatedItems = [
 ];
 
 /**
- * This example illustrates how you can pass custom labels to the `SingleSelect`
- * component.
+ * The labels used inside `SingleSelect` (e.g. the search placeholder and the
+ * clear search button) are built-in, and are translated using the strings
+ * provided by `WonderBlocksConfigProvider`.
+ *
+ * This example illustrates how you can override them by passing custom labels
+ * to the `SingleSelect` component using the `labels` prop. The first dropdown
+ * uses the built-in labels, and the second one uses custom labels.
  */
 export const CustomLabels: StoryComponentType = {
     render: function Render() {
+        const [defaultValue, setDefaultValue] = React.useState<any>(null);
+        const [defaultOpened, setDefaultOpened] = React.useState(true);
         const [value, setValue] = React.useState<any>(null);
         const [opened, setOpened] = React.useState(true);
 
@@ -940,7 +952,18 @@ export const CustomLabels: StoryComponentType = {
         };
 
         return (
-            <View style={styles.wrapper}>
+            <View style={[styles.wrapper, styles.labelsContainer]}>
+                <SingleSelect
+                    aria-label="Fruit"
+                    isFilterable={true}
+                    onChange={setDefaultValue}
+                    selectedValue={defaultValue}
+                    opened={defaultOpened}
+                    onToggle={setDefaultOpened}
+                    placeholder="Select a fruit"
+                >
+                    {translatedItems}
+                </SingleSelect>
                 <SingleSelect
                     aria-label="Fruta"
                     isFilterable={true}
