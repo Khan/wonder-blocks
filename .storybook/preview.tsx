@@ -140,6 +140,7 @@ const parameters: Preview["parameters"] = {
         // mdx pages under __docs__.
         storySort: {
             order: [
+                "Design Guidelines",
                 "Foundations",
                 "Best Practices",
                 "Packages",
