@@ -1,0 +1,89 @@
+name: Chromatic - Comment Trigger
+
+# Lets maintainers run a full Chromatic snapshot build on demand by commenting
+# `/chromatic` on a pull request. This is primarily useful for draft PRs, where
+# snapshots are skipped by default (see chromatic-pr.yml) to conserve Chromatic's
+# snapshot quota.
+on:
+    issue_comment:
+        types: [created]
+
+concurrency:
+    group: chromatic-comment-${{ github.event.issue.number }}
+    cancel-in-progress: true
+
+jobs:
+    prepare:
+        # Only run for `/chromatic` comments on a pull request, and only when the
+        # commenter has write access (OWNER/MEMBER/COLLABORATOR). This guards
+        # against running builds with repository secrets on behalf of arbitrary
+        # users.
+        if: |
+            github.event.issue.pull_request &&
+            contains(fromJSON('["OWNER", "MEMBER", "COLLABORATOR"]'), github.event.comment.author_association) &&
+            startsWith(github.event.comment.body, '/chromatic')
+        name: Resolve PR head
+        runs-on: ${{ vars.USE_GITHUB_RUNNERS == 'true' && 'ubuntu-latest' || 'ephemeral-runner' }}
+        permissions:
+            pull-requests: read
+            issues: write
+        outputs:
+            head_sha: ${{ steps.pr.outputs.head_sha }}
+        steps:
+            # Acknowledge the command so the user knows it was picked up.
+            - name: React to the command comment
+              uses: actions/github-script@v7
+              with:
+                  script: |
+                      await github.rest.reactions.createForIssueComment({
+                          owner: context.repo.owner,
+                          repo: context.repo.repo,
+                          comment_id: context.payload.comment.id,
+                          content: "eyes",
+                      });
+
+            # `issue_comment` runs against the default branch, so we need to look
+            # up the PR to find the head commit to build.
+            - name: Resolve PR head SHA
+              id: pr
+              uses: actions/github-script@v7
+              with:
+                  script: |
+                      const {data: pr} = await github.rest.pulls.get({
+                          owner: context.repo.owner,
+                          repo: context.repo.repo,
+                          pull_number: context.payload.issue.number,
+                      });
+                      core.setOutput("head_sha", pr.head.sha);
+
+    chromatic_review:
+        needs: prepare
+        name: Build on /chromatic comment
+        uses: ./.github/workflows/chromatic-build.yml
+        with:
+            target: "review"
+            ref: ${{ needs.prepare.outputs.head_sha }}
+        secrets:
+            projectToken: ${{ secrets.CHROMATIC_APP_CODE }}
+
+    feedback:
+        needs: [prepare, chromatic_review]
+        # Report the outcome back on the comment even if the build failed, as long
+        # as we got far enough to acknowledge the command.
+        if: always() && needs.prepare.result == 'success'
+        name: Report result
+        runs-on: ${{ vars.USE_GITHUB_RUNNERS == 'true' && 'ubuntu-latest' || 'ephemeral-runner' }}
+        permissions:
+            issues: write
+        steps:
+            - name: React with the build result
+              uses: actions/github-script@v7
+              with:
+                  script: |
+                      const succeeded = "${{ needs.chromatic_review.result }}" === "success";
+                      await github.rest.reactions.createForIssueComment({
+                          owner: context.repo.owner,
+                          repo: context.repo.repo,
+                          comment_id: context.payload.comment.id,
+                          content: succeeded ? "rocket" : "-1",
+                      });
