@@ -18,6 +18,9 @@
   "main": "dist/index.js",
   "module": "dist/es/index.js",
   "types": "dist/index.d.ts",
+  "sideEffects": [
+    "**/*.css"
+  ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "prepublishOnly": "../../utils/publish/package-pre-publish-check.sh"
@@ -27,7 +30,6 @@
     "@khanacademy/wonder-blocks-tokens": "workspace:*"
   },
   "peerDependencies": {
-    "aphrodite": "catalog:",
     "react": "catalog:"
   },
   "devDependencies": {
