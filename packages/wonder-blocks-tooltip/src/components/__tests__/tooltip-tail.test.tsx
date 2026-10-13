@@ -48,13 +48,13 @@ describe("TooltipTail", () => {
             expect(container).toMatchInlineSnapshot(`
 <div>
   <div
-    class="default"
+    class="default tailContainer"
     data-placement="top"
-    style="position: relative; pointer-events: none; top: -1px; width: 40px; height: 20px;"
+    style="top: -1px; width: 40px; height: 20px;"
   >
     <svg
       aria-hidden="true"
-      class="arrow_oo4scr"
+      class="arrow"
       height="12"
       style="margin-left: 8px; margin-right: 8px; padding-bottom: 8px;"
       width="24"
@@ -118,9 +118,9 @@ describe("TooltipTail", () => {
             expect(container).toMatchInlineSnapshot(`
 <div>
   <div
-    class="default"
+    class="default tailContainer"
     data-placement="top"
-    style="position: relative; pointer-events: none; top: -1px; width: 40px; height: 20px;"
+    style="top: -1px; width: 40px; height: 20px;"
   >
     <div
       aria-hidden="true"
