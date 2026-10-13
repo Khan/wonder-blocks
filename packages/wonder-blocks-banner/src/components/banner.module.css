@@ -40,31 +40,41 @@
         /* `padding` must precede `padding-inline-start`, which it resets. */
         padding: var(--wb-sizing-size_160);
         padding-inline-start: var(--wb-c-banner-root-layout-paddingInlineStart);
+
+        /* Colors, assigned per kind below. */
+        background-color: var(--wb-c-banner-color-background);
+        border-color: var(--wb-c-banner-color-border);
+        color: var(--wb-c-banner-color-foreground);
     }
 
-    /* Kinds. */
+    /* Kinds. Each kind only assigns the color variables; the rules above
+     * (root) and `.kindIcon` (default icon) read them. */
     &.success {
-        background-color: var(--wb-semanticColor-feedback-success-subtle-background);
-        border-color: var(--wb-c-banner-root-color-border-success);
-        color: var(--wb-semanticColor-feedback-success-subtle-text);
+        --wb-c-banner-color-background: var(--wb-semanticColor-feedback-success-subtle-background);
+        --wb-c-banner-color-foreground: var(--wb-semanticColor-feedback-success-subtle-text);
+        --wb-c-banner-color-border: var(--wb-c-banner-root-color-border-success);
+        --wb-c-banner-color-icon: var(--wb-c-banner-icon-color-success);
     }
 
     &.info {
-        background-color: var(--wb-semanticColor-feedback-info-subtle-background);
-        border-color: var(--wb-c-banner-root-color-border-info);
-        color: var(--wb-semanticColor-feedback-info-subtle-text);
+        --wb-c-banner-color-background: var(--wb-semanticColor-feedback-info-subtle-background);
+        --wb-c-banner-color-foreground: var(--wb-semanticColor-feedback-info-subtle-text);
+        --wb-c-banner-color-border: var(--wb-c-banner-root-color-border-info);
+        --wb-c-banner-color-icon: var(--wb-c-banner-icon-color-info);
     }
 
     &.warning {
-        background-color: var(--wb-semanticColor-feedback-warning-subtle-background);
-        border-color: var(--wb-c-banner-root-color-border-warning);
-        color: var(--wb-semanticColor-feedback-warning-subtle-text);
+        --wb-c-banner-color-background: var(--wb-semanticColor-feedback-warning-subtle-background);
+        --wb-c-banner-color-foreground: var(--wb-semanticColor-feedback-warning-subtle-text);
+        --wb-c-banner-color-border: var(--wb-c-banner-root-color-border-warning);
+        --wb-c-banner-color-icon: var(--wb-c-banner-icon-color-warning);
     }
 
     &.critical {
-        background-color: var(--wb-semanticColor-feedback-critical-subtle-background);
-        border-color: var(--wb-c-banner-root-color-border-critical);
-        color: var(--wb-semanticColor-feedback-critical-subtle-text);
+        --wb-c-banner-color-background: var(--wb-semanticColor-feedback-critical-subtle-background);
+        --wb-c-banner-color-foreground: var(--wb-semanticColor-feedback-critical-subtle-text);
+        --wb-c-banner-color-border: var(--wb-c-banner-root-color-border-critical);
+        --wb-c-banner-color-icon: var(--wb-c-banner-icon-color-critical);
     }
 
     & .containerInner {
@@ -79,20 +89,10 @@
         block-size: var(--wb-c-banner-icon-sizing-height);
     }
 
-    & .successIcon {
-        color: var(--wb-c-banner-icon-color-success);
-    }
-
-    & .infoIcon {
-        color: var(--wb-c-banner-icon-color-info);
-    }
-
-    & .warningIcon {
-        color: var(--wb-c-banner-icon-color-warning);
-    }
-
-    & .criticalIcon {
-        color: var(--wb-c-banner-icon-color-critical);
+    /* Only on the default `PhosphorIcon`: a custom icon element keeps the
+     * inherited text color, as before. */
+    & .kindIcon {
+        color: var(--wb-c-banner-color-icon);
     }
 
     & .labelAndButtonsContainer {

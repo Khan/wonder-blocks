@@ -161,19 +161,6 @@ const getBannerKindStyle = (kind: BannerKind) => {
     }
 };
 
-const getBannerIconKindStyle = (kind: BannerKind) => {
-    switch (kind) {
-        case "success":
-            return styles.successIcon;
-        case "info":
-            return styles.infoIcon;
-        case "warning":
-            return styles.warningIcon;
-        case "critical":
-            return styles.criticalIcon;
-    }
-};
-
 const StyledDiv = addStyle("div");
 
 /**
@@ -258,7 +245,6 @@ const Banner = (props: Props): React.ReactElement => {
     const valuesForKind = getValuesForKind(kind);
 
     const bannerKindStyle = getBannerKindStyle(kind);
-    const bannerIconKindStyle = getBannerIconKindStyle(kind);
 
     let iconElement = <React.Fragment />;
     // Only change the iconElement if the icon prop is not "none"
@@ -278,7 +264,7 @@ const Banner = (props: Props): React.ReactElement => {
             iconElement = (
                 <PhosphorIcon
                     icon={icon || valuesForKind.icon}
-                    style={[styles.icon, bannerIconKindStyle]}
+                    style={[styles.icon, styles.kindIcon]}
                     aria-label={kind}
                     testId="banner-kind-icon"
                     role="img"
