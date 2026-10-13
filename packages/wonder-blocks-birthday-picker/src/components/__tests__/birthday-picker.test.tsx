@@ -778,99 +778,100 @@ describe("BirthdayPicker", () => {
             ).toBeInTheDocument();
         });
 
-        it("prefers the labels prop over the config provider", async () => {
-            // Arrange
-            const labels: Labels = {
-                month: "Custom month",
-                day: "Custom day",
-                year: "Custom year",
-                errorMessage: "Custom error",
-            };
+        it.each(["Custom month", "Custom day", "Custom year", "Custom error"])(
+            "prefers the labels prop over the config provider: %s",
+            async (customLabel: string) => {
+                // Arrange
+                const labels: Labels = {
+                    month: "Custom month",
+                    day: "Custom day",
+                    year: "Custom year",
+                    errorMessage: "Custom error",
+                };
 
-            // Act
-            render(
-                <WonderBlocksConfigProvider
-                    i18n={{strings: translatedStrings, locale: "es"}}
-                >
-                    <BirthdayPicker
-                        defaultValue="2021-02-31"
-                        onChange={() => {}}
-                        labels={labels}
-                    />
-                </WonderBlocksConfigProvider>,
-            );
+                // Act
+                render(
+                    <WonderBlocksConfigProvider
+                        i18n={{strings: translatedStrings, locale: "es"}}
+                    >
+                        <BirthdayPicker
+                            defaultValue="2021-02-31"
+                            onChange={() => {}}
+                            labels={labels}
+                        />
+                    </WonderBlocksConfigProvider>,
+                );
 
-            // Assert
-            expect(await screen.findByText("Custom month")).toBeInTheDocument();
-            expect(await screen.findByText("Custom day")).toBeInTheDocument();
-            expect(await screen.findByText("Custom year")).toBeInTheDocument();
-            expect(await screen.findByText("Custom error")).toBeInTheDocument();
-        });
+                // Assert
+                expect(
+                    await screen.findByText(customLabel),
+                ).toBeInTheDocument();
+            },
+        );
 
-        it("uses the config provider for labels that are empty strings", async () => {
-            // Arrange
-            const labels: Labels = {
-                month: "",
-                day: "",
-                year: "",
-                errorMessage: "",
-            };
+        it.each([
+            translatedStrings.fieldLabelMonth,
+            translatedStrings.fieldLabelDay,
+            translatedStrings.fieldLabelYear,
+            translatedStrings.birthdateErrorMessage,
+        ])(
+            "uses the config provider for labels that are empty strings: %s",
+            async (translatedLabel: string) => {
+                // Arrange
+                const labels: Labels = {
+                    month: "",
+                    day: "",
+                    year: "",
+                    errorMessage: "",
+                };
 
-            // Act
-            render(
-                <WonderBlocksConfigProvider
-                    i18n={{strings: translatedStrings, locale: "es"}}
-                >
-                    <BirthdayPicker
-                        defaultValue="2021-02-31"
-                        onChange={() => {}}
-                        labels={labels}
-                    />
-                </WonderBlocksConfigProvider>,
-            );
+                // Act
+                render(
+                    <WonderBlocksConfigProvider
+                        i18n={{strings: translatedStrings, locale: "es"}}
+                    >
+                        <BirthdayPicker
+                            defaultValue="2021-02-31"
+                            onChange={() => {}}
+                            labels={labels}
+                        />
+                    </WonderBlocksConfigProvider>,
+                );
 
-            // Assert
-            expect(
-                await screen.findByText(translatedStrings.fieldLabelMonth),
-            ).toBeInTheDocument();
-            expect(
-                await screen.findByText(translatedStrings.fieldLabelDay),
-            ).toBeInTheDocument();
-            expect(
-                await screen.findByText(translatedStrings.fieldLabelYear),
-            ).toBeInTheDocument();
-            expect(
-                await screen.findByText(
-                    translatedStrings.birthdateErrorMessage,
-                ),
-            ).toBeInTheDocument();
-        });
+                // Assert
+                expect(
+                    await screen.findByText(translatedLabel),
+                ).toBeInTheDocument();
+            },
+        );
 
-        it("uses the config provider for labels missing from the labels prop", async () => {
-            // Arrange
-            const partialLabels: Partial<Labels> = {
-                month: "Custom month",
-            };
+        it.each(["Custom month", translatedStrings.fieldLabelDay])(
+            "uses the config provider for labels missing from the labels prop: %s",
+            async (expectedLabel: string) => {
+                // Arrange
+                const partialLabels: Partial<Labels> = {
+                    month: "Custom month",
+                };
 
-            // Act
-            render(
-                <WonderBlocksConfigProvider
-                    i18n={{strings: translatedStrings, locale: "es"}}
-                >
-                    <BirthdayPicker
-                        onChange={() => {}}
-                        // Untyped callers can pass only some of the labels.
-                        labels={partialLabels as Labels}
-                    />
-                </WonderBlocksConfigProvider>,
-            );
+                // Act
+                render(
+                    <WonderBlocksConfigProvider
+                        i18n={{strings: translatedStrings, locale: "es"}}
+                    >
+                        <BirthdayPicker
+                            onChange={() => {}}
+                            // Untyped callers can pass only some of the labels.
+                            labels={partialLabels as Labels}
+                        />
+                    </WonderBlocksConfigProvider>,
+                );
 
-            // Assert
-            expect(await screen.findByText("Custom month")).toBeInTheDocument();
-            expect(
-                await screen.findByText(translatedStrings.fieldLabelDay),
-            ).toBeInTheDocument();
-        });
+                // Assert
+                expect(
+                    await screen.findByText(expectedLabel),
+                ).toBeInTheDocument();
+            },
+        );
     });
 
     describe("keyboard", () => {
