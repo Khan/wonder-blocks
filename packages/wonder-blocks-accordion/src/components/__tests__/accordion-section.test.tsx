@@ -9,7 +9,9 @@ import AccordionSection from "../accordion-section";
 
 // The content panel's visibility comes from a CSS Modules class, and jest
 // maps `*.module.css` to identity-obj-proxy without loading any CSS, so
-// `toBeVisible()` can't see it. Assert on the class that drives it instead.
+// `toBeVisible()` can't see it. Assert on the class that drives it instead;
+// the real visibility is checked in a browser by the interaction tests in
+// `__docs__/wonder-blocks-accordion/accordion-testing-interactions.stories.tsx`.
 const expectPanelExpanded = (element: HTMLElement | null) =>
     // eslint-disable-next-line testing-library/no-node-access -- the panel has no accessible handle of its own; walk up from its content
     expect(element?.closest(".contentWrapper")).toHaveClass(
