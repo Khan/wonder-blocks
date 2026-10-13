@@ -1,8 +1,6 @@
 import * as React from "react";
 import {View} from "@khanacademy/wonder-blocks-core";
-import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
-import {StyleSheet} from "aphrodite";
-import theme from "../theme";
+import styles from "./modal-footer.module.css";
 
 type Props = {
     children: React.ReactNode;
@@ -26,7 +24,7 @@ type Props = {
  * ```
  */
 export default function ModalFooter({children}: Props) {
-    return <View style={styles.footer}>{children}</View>;
+    return <View style={[styles.root, styles.footer]}>{children}</View>;
 }
 
 ModalFooter.__IS_MODAL_FOOTER__ = true;
@@ -34,22 +32,3 @@ ModalFooter.__IS_MODAL_FOOTER__ = true;
 ModalFooter.isComponentOf = (instance: any): boolean => {
     return instance && instance.type && instance.type.__IS_MODAL_FOOTER__;
 };
-
-const styles = StyleSheet.create({
-    footer: {
-        flex: "0 0 auto",
-        boxSizing: "border-box",
-        // ensure footer stays at the bottom of modal content with scrolling
-        marginBlockStart: "auto",
-        minBlockSize: sizing.size_640,
-        paddingInline: theme.footer.layout.padding.inline,
-        paddingBlock: theme.footer.layout.padding.block,
-
-        display: "flex",
-        flexDirection: "row",
-        alignItems: "center",
-        justifyContent: "flex-end",
-
-        boxShadow: `0px -1px 0px ${semanticColor.core.border.neutral.subtle}`,
-    },
-});

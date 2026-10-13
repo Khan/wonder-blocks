@@ -1,0 +1,60 @@
+/**
+ * ModalPanel styles
+ *
+ * Every rule is nested inside `.root` — the marker class on the panel's
+ * `View`, which carries no declarations of its own. The panel overrides
+ * properties `View` sets (`flex-direction`), and the close button overrides
+ * `IconButton`'s own rules; both packages ship single-class rules in the same
+ * `@layer shared`, and the bundle loads this package's CSS before theirs, so
+ * the compound selector makes the result depend on specificity instead of
+ * load order.
+ *
+ * The close button's `:focus` ring (0,3,0) outranks every `IconButton` state
+ * rule (`.button:hover` / `:active`, (0,2,0)), so it shows whenever the
+ * button is focused, as the unlayered Aphrodite rule did.
+ *
+ * The consumer's `style` still goes through Aphrodite (unlayered and
+ * `!important`), so it wins over this module. The build wraps every rule in
+ * `@layer shared { … }`.
+ *
+ * TODO [WB-2137]: standardize media query breakpoint tokens
+ */
+
+@import "@khanacademy/wonder-blocks-styles/focus-styles.css";
+
+.root {
+    &.wrapper {
+        flex: 1 1 auto;
+        flex-direction: column;
+        background: var(--wb-semanticColor-core-background-base-default);
+        box-sizing: border-box;
+        overflow: hidden;
+        block-size: 100%;
+        inline-size: 100%;
+    }
+
+    & .closeButton {
+        position: absolute;
+
+        /* insetInlineEnd supports both RTL and LTR layouts */
+        inset-inline-end: var(--wb-c-modal-closeButton-layout-gapRight);
+        inset-block-start: var(--wb-c-modal-closeButton-layout-gapTop);
+
+        /* This is to allow the button to be tab-ordered before the modal
+         * content but still be above the header and content. */
+        z-index: 1;
+
+        /* NOTE: IconButton uses :focus-visible, which is not supported for
+         * programmatic focus. This is a workaround to make sure the focus
+         * outline is visible when this control is focused. */
+        &:focus {
+            @apply --wb-focus-visible;
+        }
+    }
+
+    @media screen and (height <= 500px) {
+        &.wrapper {
+            overflow: auto;
+        }
+    }
+}

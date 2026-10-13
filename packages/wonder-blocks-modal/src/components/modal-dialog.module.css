@@ -1,0 +1,113 @@
+/**
+ * ModalDialog styles (plus `OnePaneDialog`'s dialog size)
+ *
+ * Every rule is nested inside `.root` — the marker class on the outer padding
+ * layer `View`, which carries no declarations of its own. Every element here
+ * is a `View`, and these rules override properties `View` sets in its own
+ * single-class rule in the same `@layer shared` (`flex-direction`,
+ * `padding`, `position`, `z-index`, …). The bundle loads this package's CSS
+ * before core's, so the compound selector makes the result depend on
+ * specificity instead of load order.
+ *
+ * `OnePaneDialog` passes `.onePaneDialog` into `ModalDialog`'s `style`, which
+ * lands on the same element as `.wrapper`. Aphrodite merged that array into a
+ * single class, so its precedence is reproduced by source order here, which
+ * is why the rule lives in this file rather than its own:
+ *
+ * 1. Base declarations first: `.wrapper` → `.onePaneDialog`.
+ * 2. Then the media blocks, in the order Aphrodite emitted them. Aphrodite
+ *    moves a key to the end when a later style in the array sets it again,
+ *    and `.onePaneDialog` re-sets `midOrSmaller`, so `smMinOrSmallerHeight`
+ *    comes first and `midOrSmaller` (`.wrapper` → `.onePaneDialog`) last.
+ *    When both queries match, `.onePaneDialog`'s `overflow: hidden` beats
+ *    the wrapper's small-height `overflow: auto`. (Without `.onePaneDialog`
+ *    the two blocks set different properties on `.wrapper`, so the order
+ *    doesn't matter there.)
+ *
+ * The media queries are the modal breakpoints: `midOrSmaller`
+ * (`max-width: 767px`) and `smMinOrSmallerHeight` (`max-height: 500px`). The
+ * consumer's `style` still goes through Aphrodite (unlayered and
+ * `!important`), so it wins over this module. The build wraps every rule in
+ * `@layer shared { … }`.
+ *
+ * TODO [WB-2137]: standardize media query breakpoint tokens
+ */
+
+.root {
+    /* Pad outside of the shadow layer so the background color stays
+     * aligned. */
+    &.paddingLayer {
+        align-items: center;
+        block-size: 100%;
+        justify-content: center;
+        inline-size: 100%;
+    }
+
+    & .wrapper {
+        align-items: stretch;
+        border-radius: var(--wb-c-modal-root-border-radius);
+        box-shadow: var(--wb-c-modal-dialog-shadow-default);
+
+        /* Allows propagating the text color to all the children. */
+        color: var(--wb-semanticColor-core-foreground-neutral-strong);
+        flex-direction: row;
+        block-size: 100%;
+        position: relative;
+        inline-size: 100%;
+    }
+
+    & .onePaneDialog {
+        max-inline-size: 576px;
+        inline-size: 93.75%;
+        block-size: 81.25%;
+        max-block-size: 624px;
+    }
+
+    /* Ensures the dialog container uses the container size */
+    & .dialog {
+        inline-size: 100%;
+        block-size: 100%;
+        border-radius: var(--wb-c-modal-root-border-radius);
+        overflow: hidden;
+    }
+
+    & .above {
+        pointer-events: none;
+        position: absolute;
+        inset: 0;
+        z-index: 1;
+    }
+
+    & .below {
+        pointer-events: none;
+        position: absolute;
+        inset: 0;
+        z-index: -1;
+    }
+
+    @media screen and (height <= 500px) {
+        & .wrapper {
+            overflow: auto;
+        }
+
+        & .dialog {
+            overflow: auto;
+        }
+    }
+
+    @media screen and (width <= 767px) {
+        &.paddingLayer {
+            padding: var(--wb-c-modal-dialog-layout-padding);
+        }
+
+        & .wrapper {
+            flex-direction: column;
+        }
+
+        & .onePaneDialog {
+            inline-size: 100%;
+            block-size: 100%;
+            overflow: hidden;
+        }
+    }
+}
