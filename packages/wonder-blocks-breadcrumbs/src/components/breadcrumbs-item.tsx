@@ -3,7 +3,7 @@ import * as React from "react";
 import type {AriaProps} from "@khanacademy/wonder-blocks-core";
 import {addStyle} from "@khanacademy/wonder-blocks-core";
 import Link from "@khanacademy/wonder-blocks-link";
-import styles from "./breadcrumbs.module.css";
+import styles from "./breadcrumbs-item.module.css";
 
 type Props = AriaProps & {
     /**
