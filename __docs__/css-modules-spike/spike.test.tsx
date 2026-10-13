@@ -20,4 +20,13 @@ describe("CSS Modules Jest wiring", () => {
         expect(screen.getByRole("button")).toHaveClass("root");
         expect(screen.getByText("NEW")).toHaveClass("pill");
     });
+
+    it("renders the inverse variant using the action mixin class", () => {
+        // The visual expansion of `--wb-action-inverse` is verified by the
+        // real PostCSS pipeline in Storybook; here we only assert the wiring
+        // that selects the inverse class (identity-obj-proxy stubs CSS).
+        render(<Spike label="Inverse spike button" inverse={true} />);
+
+        expect(screen.getByRole("button")).toHaveClass("inverse");
+    });
 });
