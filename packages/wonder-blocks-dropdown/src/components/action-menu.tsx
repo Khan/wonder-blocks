@@ -1,7 +1,5 @@
 import * as React from "react";
-import {StyleSheet} from "aphrodite";
 import {type AriaProps, type StyleType} from "@khanacademy/wonder-blocks-core";
-import {sizing} from "@khanacademy/wonder-blocks-tokens";
 import {Placement} from "@popperjs/core";
 import DropdownOpener from "./dropdown-opener";
 import ActionItem from "./action-item";
@@ -10,6 +8,8 @@ import DropdownCore from "./dropdown-core";
 
 import ActionMenuOpenerCore from "./action-menu-opener-core";
 import type {Item, DropdownItem, OpenerProps} from "../util/types";
+
+import styles from "./action-menu.module.css";
 
 type Props = AriaProps &
     Readonly<{
@@ -343,23 +343,6 @@ const ActionMenu = React.forwardRef(function ActionMenu(
             aria-labelledby={uniqueOpenerId}
         />
     );
-});
-
-const styles = StyleSheet.create({
-    caret: {
-        marginInlineStart: sizing.size_040,
-    },
-    // The design calls for additional offset around the opener.
-    opener: {
-        whiteSpace: "nowrap",
-        userSelect: "none",
-        overflow: "hidden",
-        textOverflow: "ellipsis",
-    },
-    // This is to adjust the space between the menu and the opener.
-    menuTopSpace: {
-        insetBlockStart: `calc(-1 * ${sizing.size_040})`,
-    },
 });
 
 export default ActionMenu;
