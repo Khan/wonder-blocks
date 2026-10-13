@@ -2,16 +2,18 @@
  * NavigationTabItem styles
  *
  * `.root` is the list item (rendered by `addStyle`, no class of its own). The
- * link rules style the item's child — usually a Wonder Blocks `Link` — so they
- * are nested inside `.root` to outrank `Link`'s own rules, which sit in the
- * same `@layer shared` and are loaded *after* this package's stylesheet:
+ * link rules style the item's child — usually a Wonder Blocks `Link` — whose
+ * own rules sit in the same `@layer shared`. Which package's stylesheet comes
+ * first depends on the consumer's bundler and import order, so the link rules
+ * are nested inside `.root` to outrank `Link`'s on specificity alone:
  * `Link`'s base classes are (0,1,0) and its states (0,2,0); the rules below
  * are (0,2,0) for the base and (0,3,0)+ for states.
  *
  * The link rule also declares the BodyText medium typography itself rather
- * than applying the typography classes: those are (0,1,0) and would lose to
- * `Link`'s `font-family` / `font-weight` (bold in thunderblocks), and the
- * Aphrodite typography object would beat this rule's `display: flex`.
+ * than applying the typography classes: those are (0,1,0), the same as
+ * `Link`'s `font-family` / `font-weight` (bold in thunderblocks), so the winner
+ * would depend on load order; and the Aphrodite typography object would beat
+ * this rule's `display: flex`.
  *
  * The consumer's `style` still goes through Aphrodite (unlayered and
  * `!important`), so it wins over this module as it did before. Nesting is
