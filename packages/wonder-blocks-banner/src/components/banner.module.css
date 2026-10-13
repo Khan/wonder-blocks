@@ -1,0 +1,162 @@
+/**
+ * Banner styles
+ *
+ * Every value that differs between the default and thunderblocks themes is a
+ * codegen'd `--wb-c-banner-*` token (switched on `[data-wb-theme]`), so the
+ * rules below read those directly. Values that never varied by theme are
+ * written as the plain `--wb-*` token.
+ *
+ * Every rule is nested inside `.root` — the marker class on the outermost
+ * `View`, which carries no declarations of its own. Banner overrides
+ * properties set by other packages' single-class rules in the same
+ * `@layer shared` (`View`'s `padding`/`border-width`, `PhosphorIcon`'s size,
+ * `Link`'s font and hover/press underline, …). The bundle loads Banner's CSS
+ * before those packages', so at equal specificity Banner would lose; the
+ * compound selector makes the result depend on specificity instead.
+ *
+ * Nesting is native CSS: every `&` is explicit and resolves to the flat
+ * selector it replaces (`.root.containerOuter`, `.root .icon`, …).
+ *
+ * The consumer's `styles.root` still goes through Aphrodite (unlayered and
+ * `!important`), so it wins over this module as it did before. The classes
+ * are composed through the `style` prop (`processStyleList` routes class-name
+ * strings to `className`). The build wraps every rule in
+ * `@layer shared { … }`.
+ */
+
+.root {
+    &.containerOuter {
+        border-inline-start-width: var(--wb-c-banner-root-border-width-inlineStart);
+        border-inline-end-width: var(--wb-c-banner-root-border-width-inlineEnd);
+        border-block-start-width: var(--wb-c-banner-root-border-width-blockStart);
+        border-block-end-width: var(--wb-c-banner-root-border-width-blockEnd);
+        inline-size: 100%;
+        border-radius: var(--wb-c-banner-root-border-radius);
+
+        /* Stop the square corners of the inner container from
+         * flowing out of the rounded corners of the outer container. */
+        overflow: hidden;
+
+        /* `padding` must precede `padding-inline-start`, which it resets. */
+        padding: var(--wb-sizing-size_160);
+        padding-inline-start: var(--wb-c-banner-root-layout-paddingInlineStart);
+    }
+
+    /* Kinds. */
+    &.success {
+        background-color: var(--wb-semanticColor-feedback-success-subtle-background);
+        border-color: var(--wb-c-banner-root-color-border-success);
+        color: var(--wb-semanticColor-feedback-success-subtle-text);
+    }
+
+    &.info {
+        background-color: var(--wb-semanticColor-feedback-info-subtle-background);
+        border-color: var(--wb-c-banner-root-color-border-info);
+        color: var(--wb-semanticColor-feedback-info-subtle-text);
+    }
+
+    &.warning {
+        background-color: var(--wb-semanticColor-feedback-warning-subtle-background);
+        border-color: var(--wb-c-banner-root-color-border-warning);
+        color: var(--wb-semanticColor-feedback-warning-subtle-text);
+    }
+
+    &.critical {
+        background-color: var(--wb-semanticColor-feedback-critical-subtle-background);
+        border-color: var(--wb-c-banner-root-color-border-critical);
+        color: var(--wb-semanticColor-feedback-critical-subtle-text);
+    }
+
+    & .containerInner {
+        flex-direction: row;
+        gap: var(--wb-c-banner-root-layout-gap);
+    }
+
+    /* Applied to the default `PhosphorIcon` and to a custom icon element. */
+    & .icon {
+        align-self: flex-start;
+        inline-size: var(--wb-c-banner-icon-sizing-width);
+        block-size: var(--wb-c-banner-icon-sizing-height);
+    }
+
+    & .successIcon {
+        color: var(--wb-c-banner-icon-color-success);
+    }
+
+    & .infoIcon {
+        color: var(--wb-c-banner-icon-color-info);
+    }
+
+    & .warningIcon {
+        color: var(--wb-c-banner-icon-color-warning);
+    }
+
+    & .criticalIcon {
+        color: var(--wb-c-banner-icon-color-critical);
+    }
+
+    & .labelAndButtonsContainer {
+        flex: 1;
+        flex-flow: row wrap;
+        align-items: center;
+
+        /* align-content: center; justify-content: space-between */
+        place-content: center space-between;
+        gap: var(--wb-c-banner-root-layout-gap);
+    }
+
+    & .labelContainer {
+        flex-shrink: 1;
+        text-align: start;
+        overflow-wrap: break-word;
+    }
+
+    & .labelTypography {
+        font-size: var(--wb-c-banner-label-font-size);
+        font-weight: var(--wb-font-weight-semi);
+        line-height: var(--wb-font-body-lineHeight-small);
+        font-family: var(--wb-font-family-sans);
+    }
+
+    & .actionsContainer {
+        flex-direction: row;
+        justify-content: flex-start;
+
+        /* Set the height to remove the padding from buttons */
+        block-size: var(--wb-sizing-size_180);
+        align-items: center;
+        gap: var(--wb-c-banner-root-layout-gap);
+    }
+
+    & .action {
+        justify-content: center;
+    }
+
+    & .link {
+        font-family: var(--wb-font-family-sans);
+        font-size: var(--wb-font-body-size-small);
+        font-weight: var(--wb-font-weight-semi);
+        line-height: var(--wb-font-body-lineHeight-small);
+        text-decoration: var(--wb-c-banner-link-font-decoration);
+        text-underline-offset: var(--wb-c-banner-link-font-underlineOffset);
+
+        /* Restate Link's hover/press underline. `Link`'s own `.rest:hover` /
+         * `.rest:active` rules sit at the same specificity as `.root .link`,
+         * so without these the rest-state override above would win or lose
+         * on stylesheet load order. */
+        &:hover,
+        &:active {
+            text-decoration: underline currentcolor solid;
+            text-underline-offset: var(--wb-font-textDecoration-underlineOffset);
+        }
+    }
+
+    & .button {
+        margin-inline: var(--wb-c-banner-button-layout-marginInline);
+    }
+
+    & .dismiss {
+        flex-shrink: 1;
+        margin-block: var(--wb-c-banner-dismiss-layout-marginBlock);
+    }
+}
