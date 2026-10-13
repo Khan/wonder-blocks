@@ -3,9 +3,12 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 import type {Meta, StoryObj} from "@storybook/react-vite";
+import {expect, waitFor, within} from "storybook/test";
 
 import Button from "@khanacademy/wonder-blocks-button";
-import {View} from "@khanacademy/wonder-blocks-core";
+import {addStyle, View} from "@khanacademy/wonder-blocks-core";
+import {TextArea} from "@khanacademy/wonder-blocks-form";
+import {LabeledField} from "@khanacademy/wonder-blocks-labeled-field";
 import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {BodyText, Heading} from "@khanacademy/wonder-blocks-typography";
 import type {Placement} from "@khanacademy/wonder-blocks-tooltip";
@@ -42,7 +45,18 @@ export default {
     ],
 } as Meta<typeof Popover>;
 
+const StyledForm = addStyle("form");
+
 const styles = StyleSheet.create({
+    form: {
+        display: "flex",
+        flexDirection: "column",
+        flexGrow: 1,
+        gap: sizing.size_160,
+    },
+    submitButton: {
+        alignSelf: "flex-end",
+    },
     container: {
         display: "grid",
         gridTemplateColumns: "repeat(2, 1fr)",
@@ -839,10 +853,22 @@ export const WithDocumentRootBoundary: StoryComponentType = {
  * This example is rendered in the "400% zoom" viewport (320x256, which is a
  * 1280x1024 screen zoomed in to 400%) to show the content scrolling. You can
  * change the viewport from the toolbar.
+ *
+ * It also includes a form (`LabeledField` + `TextArea`) with a submit button
+ * to show how interactive content behaves when it scrolls.
+ *
+ * The interaction test scrolls the content halfway down so both the top and
+ * bottom scroll shadows are visible (and captured in the Chromatic snapshot).
  */
 export const WithLongContent: StoryComponentType = {
     render: function Render() {
         const [opened, setOpened] = React.useState(true);
+        const [feedback, setFeedback] = React.useState("");
+
+        const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+            event.preventDefault();
+            setOpened(false);
+        };
 
         return (
             <View style={styles.example}>
@@ -853,12 +879,30 @@ export const WithLongContent: StoryComponentType = {
                     content={
                         <PopoverContent
                             closeButtonVisible
+                            testId="long-content"
                             title="Popover with long content"
                             content={reallyLongText}
                             actions={
-                                <Button onClick={() => setOpened(false)}>
-                                    Got it
-                                </Button>
+                                <StyledForm
+                                    style={styles.form}
+                                    onSubmit={handleSubmit}
+                                >
+                                    <LabeledField
+                                        label="Feedback"
+                                        field={
+                                            <TextArea
+                                                value={feedback}
+                                                onChange={setFeedback}
+                                            />
+                                        }
+                                    />
+                                    <Button
+                                        type="submit"
+                                        style={styles.submitButton}
+                                    >
+                                        Submit
+                                    </Button>
+                                </StyledForm>
                             }
                         />
                     }
@@ -875,14 +919,44 @@ export const WithLongContent: StoryComponentType = {
         chromatic: {
             modes: {
                 zoom400: allModes.zoom400,
-                large: allModes.large,
             },
+            disableSnapshot: false,
         },
     },
     globals: {
         viewport: {
             value: "zoom400",
         },
+    },
+    play: async ({canvasElement}) => {
+        // The popover is portaled, so we need to query the whole document.
+        const body = within(canvasElement.ownerDocument.body);
+        const content = await body.findByTestId("long-content");
+        // We need the scroll container (the content's parent) to scroll it.
+        // eslint-disable-next-line testing-library/no-node-access
+        const scrollContainer = content.parentElement as HTMLElement;
+
+        // Wait until the popover is constrained to the viewport and the
+        // content overflows.
+        await waitFor(() =>
+            expect(scrollContainer.scrollHeight).toBeGreaterThan(
+                scrollContainer.clientHeight,
+            ),
+        );
+
+        // Wait for the initial focus to land on the close button. Focusing it
+        // scrolls the content back to the top, so we need to scroll after.
+        await waitFor(() =>
+            expect(
+                body.getByRole("button", {name: "Close Popover"}),
+            ).toHaveFocus(),
+        );
+
+        // Scroll halfway down so both scroll shadows are visible.
+        scrollContainer.scrollTop =
+            (scrollContainer.scrollHeight - scrollContainer.clientHeight) / 2;
+
+        await expect(scrollContainer.scrollTop).toBeGreaterThan(0);
     },
 };
 
