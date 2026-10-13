@@ -94,11 +94,14 @@ interface Props {
     inputAriaLabel?: string;
     /**
      * The aria-label for the calendar toggle button that opens/closes the
-     * calendar overlay. Defaults to "Toggle calendar".
+     * calendar overlay. Overrides the translated string from
+     * `WonderBlocksConfigProvider` ("Toggle calendar" in English).
      */
     calendarButtonAriaLabel?: string;
     /**
-     * The aria-label for the calendar grid region. Defaults to "Date picker calendar".
+     * The aria-label for the calendar grid region. Overrides the translated
+     * string from `WonderBlocksConfigProvider` ("Date picker calendar" in
+     * English).
      */
     calendarGridRegionAriaLabel?: string;
     /**
