@@ -6,6 +6,20 @@
  * rules below read those directly. Values that never varied by theme are
  * written as the plain `--wb-*` token.
  *
+ * The colors that change with `kind` go through `--wb-c-banner--*` custom
+ * properties ("component tokens"), as `IconButton` and `Button` do. The
+ * double dash keeps the namespace distinct from the codegen'd theme tokens
+ * these read from (`--wb-c-banner-root-*`, `--wb-semanticColor-*`).
+ *
+ *   per-kind colors (kind):
+ *   --wb-c-banner--color-background    root background
+ *   --wb-c-banner--color-foreground    root text color
+ *   --wb-c-banner--color-border        root border color
+ *   --wb-c-banner--color-icon          default icon color (`.kindIcon`)
+ *
+ * The kind classes assign tokens and nothing else; `.containerOuter` and
+ * `.kindIcon` only read them.
+ *
  * Every rule is nested inside `.root` — the marker class on the outermost
  * `View`, which carries no declarations of its own. Banner overrides
  * properties set by other packages' single-class rules in the same
@@ -42,39 +56,38 @@
         padding-inline-start: var(--wb-c-banner-root-layout-paddingInlineStart);
 
         /* Colors, assigned per kind below. */
-        background-color: var(--wb-c-banner-color-background);
-        border-color: var(--wb-c-banner-color-border);
-        color: var(--wb-c-banner-color-foreground);
+        background-color: var(--wb-c-banner--color-background);
+        border-color: var(--wb-c-banner--color-border);
+        color: var(--wb-c-banner--color-foreground);
     }
 
-    /* Kinds. Each kind only assigns the color variables; the rules above
-     * (root) and `.kindIcon` (default icon) read them. */
+    /* Kinds: the only rules that assign the component tokens. */
     &.success {
-        --wb-c-banner-color-background: var(--wb-semanticColor-feedback-success-subtle-background);
-        --wb-c-banner-color-foreground: var(--wb-semanticColor-feedback-success-subtle-text);
-        --wb-c-banner-color-border: var(--wb-c-banner-root-color-border-success);
-        --wb-c-banner-color-icon: var(--wb-c-banner-icon-color-success);
+        --wb-c-banner--color-background: var(--wb-semanticColor-feedback-success-subtle-background);
+        --wb-c-banner--color-foreground: var(--wb-semanticColor-feedback-success-subtle-text);
+        --wb-c-banner--color-border: var(--wb-c-banner-root-color-border-success);
+        --wb-c-banner--color-icon: var(--wb-c-banner-icon-color-success);
     }
 
     &.info {
-        --wb-c-banner-color-background: var(--wb-semanticColor-feedback-info-subtle-background);
-        --wb-c-banner-color-foreground: var(--wb-semanticColor-feedback-info-subtle-text);
-        --wb-c-banner-color-border: var(--wb-c-banner-root-color-border-info);
-        --wb-c-banner-color-icon: var(--wb-c-banner-icon-color-info);
+        --wb-c-banner--color-background: var(--wb-semanticColor-feedback-info-subtle-background);
+        --wb-c-banner--color-foreground: var(--wb-semanticColor-feedback-info-subtle-text);
+        --wb-c-banner--color-border: var(--wb-c-banner-root-color-border-info);
+        --wb-c-banner--color-icon: var(--wb-c-banner-icon-color-info);
     }
 
     &.warning {
-        --wb-c-banner-color-background: var(--wb-semanticColor-feedback-warning-subtle-background);
-        --wb-c-banner-color-foreground: var(--wb-semanticColor-feedback-warning-subtle-text);
-        --wb-c-banner-color-border: var(--wb-c-banner-root-color-border-warning);
-        --wb-c-banner-color-icon: var(--wb-c-banner-icon-color-warning);
+        --wb-c-banner--color-background: var(--wb-semanticColor-feedback-warning-subtle-background);
+        --wb-c-banner--color-foreground: var(--wb-semanticColor-feedback-warning-subtle-text);
+        --wb-c-banner--color-border: var(--wb-c-banner-root-color-border-warning);
+        --wb-c-banner--color-icon: var(--wb-c-banner-icon-color-warning);
     }
 
     &.critical {
-        --wb-c-banner-color-background: var(--wb-semanticColor-feedback-critical-subtle-background);
-        --wb-c-banner-color-foreground: var(--wb-semanticColor-feedback-critical-subtle-text);
-        --wb-c-banner-color-border: var(--wb-c-banner-root-color-border-critical);
-        --wb-c-banner-color-icon: var(--wb-c-banner-icon-color-critical);
+        --wb-c-banner--color-background: var(--wb-semanticColor-feedback-critical-subtle-background);
+        --wb-c-banner--color-foreground: var(--wb-semanticColor-feedback-critical-subtle-text);
+        --wb-c-banner--color-border: var(--wb-c-banner-root-color-border-critical);
+        --wb-c-banner--color-icon: var(--wb-c-banner-icon-color-critical);
     }
 
     & .containerInner {
@@ -92,7 +105,7 @@
     /* Only on the default `PhosphorIcon`: a custom icon element keeps the
      * inherited text color, as before. */
     & .kindIcon {
-        color: var(--wb-c-banner-color-icon);
+        color: var(--wb-c-banner--color-icon);
     }
 
     & .labelAndButtonsContainer {
