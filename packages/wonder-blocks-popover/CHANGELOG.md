@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-popover
 
+## 7.0.1
+
+### Patch Changes
+
+- 51600dd: Convert `CloseButton` from a class component to a functional component
+
 ## 7.0.0
 
 ### Major Changes
