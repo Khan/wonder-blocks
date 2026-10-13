@@ -17,42 +17,26 @@ type Props = AriaProps & {
     testId?: string;
 };
 
-type DefaultProps = {
-    ["aria-label"]: Props["aria-label"];
-};
-
 /**
  * This is the visual component rendering the close button that is rendered
  * inside the PopoverContentCore. It’s rendered if closeButtonVisible is set
  * true.
  */
-export default class CloseButton extends React.Component<Props> {
-    static defaultProps: DefaultProps = {
-        "aria-label": "Close Popover",
-    };
+const CloseButton = (props: Props) => {
+    const {"aria-label": ariaLabel = "Close Popover", style, testId} = props;
+    const {close} = React.useContext(PopoverContext);
 
-    render(): React.ReactNode {
-        const {
-            "aria-label": ariaLabel = "Close Popover",
-            style,
-            testId,
-        } = this.props;
-        return (
-            <PopoverContext.Consumer>
-                {({close}) => {
-                    return (
-                        <IconButton
-                            icon={xIcon}
-                            aria-label={ariaLabel}
-                            onClick={close}
-                            kind="tertiary"
-                            actionType="neutral"
-                            style={style}
-                            testId={testId}
-                        />
-                    );
-                }}
-            </PopoverContext.Consumer>
-        );
-    }
-}
+    return (
+        <IconButton
+            icon={xIcon}
+            aria-label={ariaLabel}
+            onClick={close}
+            kind="tertiary"
+            actionType="neutral"
+            style={style}
+            testId={testId}
+        />
+    );
+};
+
+export default CloseButton;
