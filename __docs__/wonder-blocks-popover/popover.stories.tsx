@@ -943,18 +943,25 @@ export const WithLongContent: StoryComponentType = {
     play: async ({canvasElement}) => {
         // The popover is portaled, so we need to query the whole document.
         const body = within(canvasElement.ownerDocument.body);
-        const content = await body.findByTestId("long-content");
-        // We need the scroll container (the content's parent) to scroll it.
-        // eslint-disable-next-line testing-library/no-node-access
-        const scrollContainer = content.parentElement as HTMLElement;
 
-        // Wait until the popover is constrained to the viewport and the
-        // content overflows.
-        await waitFor(() =>
+        // NOTE: The story can re-mount right after the first render (e.g.
+        // when the theme decorator applies the theme), so we query the
+        // elements on every check instead of keeping references to them.
+        // Otherwise we could end up scrolling a popover that is about to be
+        // replaced.
+        const getScrollContainer = () =>
+            // We need the scroll container (the content's parent) to scroll it.
+            // eslint-disable-next-line testing-library/no-node-access
+            body.getByTestId("long-content").parentElement as HTMLElement;
+
+        // Wait until the popover is constrained to the viewport (so the
+        // content overflows).
+        await waitFor(() => {
+            const scrollContainer = getScrollContainer();
             expect(scrollContainer.scrollHeight).toBeGreaterThan(
                 scrollContainer.clientHeight,
-            ),
-        );
+            );
+        });
 
         // Wait for the initial focus to land on the close button. Focusing it
         // scrolls the content back to the top, so we need to scroll after.
@@ -965,10 +972,13 @@ export const WithLongContent: StoryComponentType = {
         );
 
         // Scroll halfway down so both scroll shadows are visible.
-        scrollContainer.scrollTop =
-            (scrollContainer.scrollHeight - scrollContainer.clientHeight) / 2;
-
-        await expect(scrollContainer.scrollTop).toBeGreaterThan(0);
+        await waitFor(() => {
+            const scrollContainer = getScrollContainer();
+            scrollContainer.scrollTop =
+                (scrollContainer.scrollHeight - scrollContainer.clientHeight) /
+                2;
+            expect(scrollContainer.scrollTop).toBeGreaterThan(0);
+        });
     },
 };
 
