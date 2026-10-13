@@ -917,8 +917,20 @@ export const WithLongContent: StoryComponentType = {
     },
     parameters: {
         chromatic: {
+            // Capture the 400% zoom viewport in every theme.
             modes: {
-                zoom400: allModes.zoom400,
+                "zoom400 default": {
+                    ...allModes.zoom400,
+                    ...allModes.themeDefault,
+                },
+                "zoom400 thunderblocks": {
+                    ...allModes.zoom400,
+                    ...allModes.themeThunderBlocks,
+                },
+                "zoom400 syl-dark": {
+                    ...allModes.zoom400,
+                    ...allModes.themeSylDark,
+                },
             },
             disableSnapshot: false,
         },
