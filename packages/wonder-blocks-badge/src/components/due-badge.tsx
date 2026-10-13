@@ -1,10 +1,9 @@
 import * as React from "react";
-import {StyleSheet} from "aphrodite";
-import {semanticColor} from "@khanacademy/wonder-blocks-tokens";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import DateIcon from "@phosphor-icons/core/bold/calendar-blank-bold.svg";
 import WarningCircle from "@phosphor-icons/core/bold/warning-circle-bold.svg";
 import {Badge} from "./badge";
+import styles from "./badge.module.css";
 import {BaseBadgeProps, ShowIconProps} from "../types";
 
 type Props = BaseBadgeProps &
@@ -74,24 +73,3 @@ const DueBadge = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
 });
 
 export {DueBadge};
-
-const styles = StyleSheet.create({
-    dueBadge: {
-        backgroundColor: semanticColor.learning.background.due.subtle,
-        // Border should be the same as the background
-        borderColor: semanticColor.learning.background.due.subtle,
-        color: semanticColor.learning.foreground.due.strong,
-    },
-    dueIcon: {
-        color: semanticColor.learning.foreground.due.default,
-    },
-    overdueBadge: {
-        backgroundColor: semanticColor.core.background.critical.subtle,
-        // Border should be the same as the background
-        borderColor: semanticColor.core.background.critical.subtle,
-        color: semanticColor.feedback.critical.subtle.text,
-    },
-    overdueIcon: {
-        color: semanticColor.core.foreground.critical.default,
-    },
-});

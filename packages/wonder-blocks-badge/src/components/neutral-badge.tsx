@@ -1,7 +1,6 @@
 import * as React from "react";
-import {StyleSheet} from "aphrodite";
-import {semanticColor} from "@khanacademy/wonder-blocks-tokens";
 import {Badge} from "./badge";
+import styles from "./badge.module.css";
 import {BaseBadgeProps, IconLabelProps} from "../types";
 
 type Props = {
@@ -36,14 +35,3 @@ const NeutralBadge = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
 });
 
 export {NeutralBadge};
-
-const styles = StyleSheet.create({
-    neutral: {
-        backgroundColor: semanticColor.feedback.neutral.subtle.background,
-        color: semanticColor.feedback.neutral.subtle.text,
-        borderColor: semanticColor.feedback.neutral.subtle.border,
-    },
-    neutralIcon: {
-        color: semanticColor.feedback.neutral.subtle.icon,
-    },
-});
