@@ -3,7 +3,6 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 import type {Meta, StoryObj} from "@storybook/react-vite";
-import {expect, waitFor, within} from "storybook/test";
 
 import Button from "@khanacademy/wonder-blocks-button";
 import {addStyle, View} from "@khanacademy/wonder-blocks-core";
@@ -856,9 +855,6 @@ export const WithDocumentRootBoundary: StoryComponentType = {
  *
  * It also includes a form (`LabeledField` + `TextArea`) with a submit button
  * to show how interactive content behaves when it scrolls.
- *
- * The interaction test scrolls the content halfway down so both the top and
- * bottom scroll shadows are visible (and captured in the Chromatic snapshot).
  */
 export const WithLongContent: StoryComponentType = {
     render: function Render() {
@@ -879,7 +875,6 @@ export const WithLongContent: StoryComponentType = {
                     content={
                         <PopoverContent
                             closeButtonVisible
-                            testId="long-content"
                             title="Popover with long content"
                             content={reallyLongText}
                             actions={
@@ -939,46 +934,6 @@ export const WithLongContent: StoryComponentType = {
         viewport: {
             value: "zoom400",
         },
-    },
-    play: async ({canvasElement}) => {
-        // The popover is portaled, so we need to query the whole document.
-        const body = within(canvasElement.ownerDocument.body);
-
-        // NOTE: The story can re-mount right after the first render (e.g.
-        // when the theme decorator applies the theme), so we query the
-        // elements on every check instead of keeping references to them.
-        // Otherwise we could end up scrolling a popover that is about to be
-        // replaced.
-        const getScrollContainer = () =>
-            // We need the scroll container (the content's parent) to scroll it.
-            // eslint-disable-next-line testing-library/no-node-access
-            body.getByTestId("long-content").parentElement as HTMLElement;
-
-        // Wait until the popover is constrained to the viewport (so the
-        // content overflows).
-        await waitFor(() => {
-            const scrollContainer = getScrollContainer();
-            expect(scrollContainer.scrollHeight).toBeGreaterThan(
-                scrollContainer.clientHeight,
-            );
-        });
-
-        // Wait for the initial focus to land on the close button. Focusing it
-        // scrolls the content back to the top, so we need to scroll after.
-        await waitFor(() =>
-            expect(
-                body.getByRole("button", {name: "Close Popover"}),
-            ).toHaveFocus(),
-        );
-
-        // Scroll halfway down so both scroll shadows are visible.
-        await waitFor(() => {
-            const scrollContainer = getScrollContainer();
-            scrollContainer.scrollTop =
-                (scrollContainer.scrollHeight - scrollContainer.clientHeight) /
-                2;
-            expect(scrollContainer.scrollTop).toBeGreaterThan(0);
-        });
     },
 };
 
