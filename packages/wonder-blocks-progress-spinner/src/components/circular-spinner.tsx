@@ -1,9 +1,10 @@
 import * as React from "react";
-import {StyleSheet} from "aphrodite";
 import {View, addStyle} from "@khanacademy/wonder-blocks-core";
 import {semanticColor} from "@khanacademy/wonder-blocks-tokens";
 
 import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
+
+import styles from "./circular-spinner.module.css";
 
 const heights = {
     xsmall: 16,
@@ -90,29 +91,3 @@ export default class CircularSpinner extends React.Component<Props> {
         return <View style={[styles.spinnerContainer, style]}>{svg}</View>;
     }
 }
-
-const rotateKeyFrames = {
-    "0%": {
-        transform: "rotate(0deg)",
-    },
-    "50%": {
-        transform: "rotate(180deg)",
-    },
-    "100%": {
-        transform: "rotate(360deg)",
-    },
-} as const;
-
-const styles = StyleSheet.create({
-    spinnerContainer: {
-        justifyContent: "center",
-    },
-    loadingSpinner: {
-        transformOrigin: "50% 50%",
-        // @ts-expect-error [FEI-5019]: `animationName` expects a string not an object.
-        animationName: rotateKeyFrames,
-        animationDuration: "1.1s",
-        animationIterationCount: "infinite",
-        animationTimingFunction: "linear",
-    },
-});
