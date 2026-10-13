@@ -33,7 +33,6 @@
   },
   "peerDependencies": {
     "@phosphor-icons/core": "catalog:",
-    "aphrodite": "catalog:",
     "react": "catalog:"
   },
   "devDependencies": {
