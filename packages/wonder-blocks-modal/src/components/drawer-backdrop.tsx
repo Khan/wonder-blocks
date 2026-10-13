@@ -3,16 +3,12 @@ import * as React from "react";
 import {View} from "@khanacademy/wonder-blocks-core";
 import type {StyleType} from "@khanacademy/wonder-blocks-core";
 
-import {StyleSheet} from "aphrodite";
-import {semanticColor} from "@khanacademy/wonder-blocks-tokens";
 import {ModalLauncherPortalAttributeName} from "../util/constants";
 import {findFocusableNodes} from "../util/find-focusable-nodes";
 import type {ModalElement} from "../util/types";
 import {useDrawerContext} from "../util/drawer-context";
-import {
-    DRAWER_ENTER_DURATION_MS,
-    DRAWER_EXIT_DURATION_MS,
-} from "../util/drawer-animation";
+import {DRAWER_ENTER_DURATION_MS} from "../util/drawer-animation";
+import styles from "./drawer-backdrop.module.css";
 
 type Props = {
     children: ModalElement;
@@ -182,6 +178,7 @@ const DrawerBackdrop = ({
         <View
             ref={backdropRef}
             style={[
+                styles.root,
                 styles.drawerPositioner,
                 alignment && styles[alignment],
                 animated && fadeStyle,
@@ -198,66 +195,5 @@ const DrawerBackdrop = ({
         </View>
     );
 };
-
-const keyframes = {
-    fadeIn: {
-        "0%": {
-            opacity: 0,
-        },
-        "100%": {
-            opacity: 1,
-        },
-    },
-    fadeOut: {
-        "0%": {
-            opacity: 1,
-        },
-        "100%": {
-            opacity: 0,
-        },
-    },
-} as const;
-
-const styles = StyleSheet.create({
-    drawerPositioner: {
-        position: "fixed",
-        insetInlineStart: 0,
-        insetBlockStart: 0,
-        width: "100%",
-        height: "100%",
-        display: "flex",
-        overflow: "hidden",
-        background: semanticColor.core.background.overlay.default,
-    },
-    inlineStart: {
-        alignItems: "flex-start",
-        justifyContent: "flex-start",
-    },
-    inlineEnd: {
-        alignItems: "flex-end",
-        justifyContent: "flex-start",
-    },
-    blockEnd: {
-        alignItems: "center",
-        justifyContent: "flex-end",
-    },
-    // The backdrop's fade. Shares the panel's durations by default, so the two
-    // finish together; `timingDuration` overrides that via a plain style object
-    // appended in the component.
-    fadeIn: {
-        // @ts-expect-error [FEI-5019] - `animationName` expects a string not an object
-        animationName: keyframes.fadeIn,
-        animationDuration: `${DRAWER_ENTER_DURATION_MS}ms`,
-        animationTimingFunction: "linear",
-        animationFillMode: "forwards",
-    },
-    fadeOut: {
-        // @ts-expect-error [FEI-5019] - `animationName` expects a string not an object
-        animationName: keyframes.fadeOut,
-        animationDuration: `${DRAWER_EXIT_DURATION_MS}ms`,
-        animationTimingFunction: "linear",
-        animationFillMode: "forwards",
-    },
-});
 
 export default DrawerBackdrop;
