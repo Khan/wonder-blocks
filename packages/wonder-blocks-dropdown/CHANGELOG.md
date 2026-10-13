@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-dropdown
 
+## 10.13.1
+
+### Patch Changes
+
+- 4421914: Convert `DropdownCore` from a class component to a functional component
+
 ## 10.13.0
 
 ### Minor Changes
