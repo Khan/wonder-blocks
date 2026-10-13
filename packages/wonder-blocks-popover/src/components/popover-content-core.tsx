@@ -130,7 +130,7 @@ export default PopoverContentCore;
 // The covers match the popover background so they hide the shadows when
 // there's no more content to scroll to.
 const scrollShadowCover = semanticColor.core.background.base.default;
-const scrollShadowColor = semanticColor.core.shadow.transparent.high;
+const scrollShadowColor = semanticColor.core.shadow.transparent.color.strong;
 
 const styles = StyleSheet.create({
     scrollContainer: {
@@ -153,13 +153,15 @@ const styles = StyleSheet.create({
             // Covers
             `linear-gradient(${scrollShadowCover} 30%, transparent) center top`,
             `linear-gradient(transparent, ${scrollShadowCover} 70%) center bottom`,
-            // Shadows: full-width linear gradients so the shadow keeps the
-            // same strength along the whole edge.
-            `linear-gradient(${scrollShadowColor}, transparent) center top`,
-            `linear-gradient(transparent, ${scrollShadowColor}) center bottom`,
+            // Shadows: elliptical radial gradients that are strongest at the
+            // center of the edge. The ellipse is three times as wide as the
+            // container (and keeps its full color for the first 25%) so the
+            // shadow stays visible near the corners.
+            `radial-gradient(150% 100% at 50% 0, ${scrollShadowColor} 25%, transparent) center top`,
+            `radial-gradient(150% 100% at 50% 100%, ${scrollShadowColor} 25%, transparent) center bottom`,
         ].join(", "),
         backgroundRepeat: "no-repeat",
-        backgroundSize: `100% ${sizing.size_400}, 100% ${sizing.size_400}, 100% ${sizing.size_160}, 100% ${sizing.size_160}`,
+        backgroundSize: `100% ${sizing.size_400}, 100% ${sizing.size_400}, 100% ${sizing.size_240}, 100% ${sizing.size_240}`,
         backgroundAttachment: "local, local, scroll, scroll",
     },
     content: {
