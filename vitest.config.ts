@@ -38,9 +38,11 @@ export default mergeConfig(
                         // count, and `maxWorkers: 2` was still borderline
                         // (passed once, then died ~150 files in). One worker
                         // minimizes concurrent browser memory, leaving headroom
-                        // for the node coordinator; per-file isolation (the
-                        // vitest default) keeps that single browser near
-                        // steady-state. Trades wall-clock time for reliability.
+                        // for the node coordinator. Trades wall-clock time for
+                        // reliability. That single browser still grows over a
+                        // long run, so CI also splits the suite into
+                        // sequential shards (`pnpm test:storybook:ci`) to
+                        // restart it periodically.
                         maxWorkers: 1,
                         browser: {
                             enabled: true,
