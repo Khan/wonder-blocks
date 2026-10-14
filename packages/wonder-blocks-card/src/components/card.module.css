@@ -2,10 +2,9 @@
  * Card styles
  *
  * Every rule is nested inside `.root`, the marker class on the card's outermost
- * element, which carries no declarations of its own. The card is a `View` and
- * the dismiss button is an `IconButton`; both ship rules in the same
- * `@layer shared` that set properties overridden below (`padding`,
- * `border-*`, `position`, `outline`, …). The bundle loads this package's CSS
+ * element, which carries no declarations of its own. The card is a `View`,
+ * which ships rules in the same `@layer shared` that set properties
+ * overridden below (`padding`, `border-*`, `position`, …). The bundle loads this package's CSS
  * before its dependencies', so at equal specificity those would win; the
  * compound selector makes it depend on specificity instead.
  *
@@ -13,9 +12,9 @@
  * select one class. Their properties don't overlap, so their order doesn't
  * matter. A background image is set inline by the component. The build wraps
  * every rule in `@layer shared { … }`.
+ *
+ * The dismiss button's styles live in `dismiss-button.module.css`.
  */
-
-@import "@khanacademy/wonder-blocks-styles/focus-styles.css";
 
 .root {
     &.card {
@@ -63,26 +62,5 @@
 
     &.paddingMedium {
         padding: var(--wb-sizing-size_240);
-    }
-
-    & .dismissButton {
-        position: absolute;
-
-        /* insetInlineEnd supports both RTL and LTR layouts */
-        inset-inline-end: var(--wb-sizing-size_080);
-        inset-block-start: var(--wb-sizing-size_080);
-
-        /* This is to allow the button to be tab-ordered before the component
-         * content but still be above the content. */
-        z-index: 1;
-
-        /* NOTE: IconButton uses :focus-visible, which is not supported for
-         * programmatic focus. This is a workaround to make sure the focus
-         * outline is visible when this control is focused. At (0,3,0) it
-         * outranks IconButton's hover / press rules, as the Aphrodite
-         * version did. */
-        &:focus {
-            @apply --wb-focus-visible;
-        }
     }
 }

@@ -3,7 +3,7 @@ import xIcon from "@phosphor-icons/core/bold/x-bold.svg";
 import IconButton from "@khanacademy/wonder-blocks-icon-button";
 import type {StyleType} from "@khanacademy/wonder-blocks-core";
 
-import styles from "./card.module.css";
+import styles from "./dismiss-button.module.css";
 
 type Props = {
     /** Optional click handler */
@@ -28,7 +28,7 @@ export const DismissButton = (props: Props) => {
             onClick={onClick}
             kind="tertiary"
             actionType="neutral"
-            style={[styles.dismissButton, style]}
+            style={[styles.root, styles.dismissButton, style]}
             testId={testId}
         />
     );
