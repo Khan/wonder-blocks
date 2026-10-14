@@ -1008,6 +1008,9 @@ importers:
       '@khanacademy/wonder-blocks-announcer':
         specifier: workspace:*
         version: link:../wonder-blocks-announcer
+      '@khanacademy/wonder-blocks-button':
+        specifier: workspace:*
+        version: link:../wonder-blocks-button
       '@khanacademy/wonder-blocks-cell':
         specifier: workspace:*
         version: link:../wonder-blocks-cell
