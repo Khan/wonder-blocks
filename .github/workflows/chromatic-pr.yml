@@ -120,8 +120,14 @@ jobs:
             - name: Generate WB build artifacts
               run: pnpm build
 
+            # Run the suite in sequential shards so each vitest process (and
+            # its Chromium instance) only handles about a third of the story
+            # files. A single run was OOM-killing the 16 GB runner (exit 137)
+            # even with `maxWorkers: 1`: Chromium's memory grows over the run,
+            # with short multi-GB shared-memory spikes on top. With 3 shards,
+            # sampled usage peaked around 9 GB.
             - name: Run Storybook tests
-              run: pnpm test:storybook
+              run: pnpm test:storybook:ci
               env:
                   # Audit every story under this matrix theme.
                   VITE_WB_THEME: ${{ matrix.theme }}
@@ -129,3 +135,4 @@ jobs:
                   # Explicitly set the timezone to avoid:
                   # `Invalid time zone specified: ETC/UNKNOWN`
                   TZ: America/Los_Angeles
+
