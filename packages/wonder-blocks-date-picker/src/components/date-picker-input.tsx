@@ -1,10 +1,8 @@
-import {StyleSheet} from "aphrodite";
 import * as React from "react";
 
 import {useOnMountEffect, View} from "@khanacademy/wonder-blocks-core";
 import {TextField} from "@khanacademy/wonder-blocks-form";
 import IconButton from "@khanacademy/wonder-blocks-icon-button";
-import {sizing} from "@khanacademy/wonder-blocks-tokens";
 import calendarIcon from "@phosphor-icons/core/bold/calendar-blank-bold.svg";
 import {useDateSegmentArrowKeys} from "../hooks/use-date-segment-arrow-keys";
 import {
@@ -12,6 +10,7 @@ import {
     TemporalLocaleUtils,
 } from "../util/temporal-locale-utils";
 import type {CustomModifiers} from "../util/types";
+import styles from "./date-picker-input.module.css";
 
 const DEFAULT_CALENDAR_BUTTON_ARIA_LABEL = "Toggle calendar";
 
@@ -477,7 +476,7 @@ const DatePickerInput = React.forwardRef<HTMLInputElement, Props>(
         });
 
         return (
-            <View style={styles.container}>
+            <View style={[styles.root, styles.container]}>
                 <TextField
                     ref={innerRef}
                     {...restProps}
@@ -512,34 +511,5 @@ const DatePickerInput = React.forwardRef<HTMLInputElement, Props>(
         );
     },
 );
-
-// Match form field left padding. Inset the button's own hit target (not
-// just its icon glyph) by this amount, so the button's edges -- which
-// become visible on hover/focus/press -- line up with the text field's
-// left inline padding at every interaction state.
-const fieldPaddingInline = sizing.size_160; // match TextField theme
-const calendarButtonSize = sizing.size_320; // IconButton size="small"
-
-// Reserve enough end padding on the text field that typed text never runs
-// under the calendar button.
-const fieldPaddingInlineEnd = `calc(${fieldPaddingInline} + ${calendarButtonSize} + ${fieldPaddingInline} / 2)`;
-
-const styles = StyleSheet.create({
-    container: {
-        alignItems: "center",
-        flexDirection: "row",
-        justifyContent: "stretch",
-    },
-    icon: {
-        margin: 0,
-        position: "absolute",
-        insetInlineEnd: fieldPaddingInline,
-    },
-    textField: {
-        width: "100%",
-        paddingInlineStart: fieldPaddingInline,
-        paddingInlineEnd: fieldPaddingInlineEnd,
-    },
-});
 
 export default DatePickerInput;

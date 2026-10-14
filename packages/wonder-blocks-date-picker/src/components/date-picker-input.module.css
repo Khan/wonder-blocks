@@ -1,0 +1,46 @@
+/**
+ * DatePickerInput styles.
+ *
+ * Every rule is nested inside `.root`, the marker class on the container
+ * `View`, which carries no declarations of its own. The container is a
+ * `View`, the text field a `TextField` and the button an `IconButton`, and
+ * each ships rules in the same `@layer shared` that set properties overridden
+ * below (`flex-direction`, `align-items`, `inline-size`, `padding-inline`).
+ * The bundle loads this package's CSS before its dependencies', so the
+ * compound selectors make these win on specificity rather than load order.
+ *
+ * The build wraps every rule in `@layer shared { … }`.
+ */
+
+.root {
+    &.container {
+        align-items: center;
+        flex-direction: row;
+        justify-content: stretch;
+    }
+
+    /* Match form field left padding. Inset the button's own hit target (not
+     * just its icon glyph) by this amount, so the button's edges -- which
+     * become visible on hover/focus/press -- line up with the text field's
+     * left inline padding at every interaction state.
+     * `--wb-sizing-size_160` matches the TextField theme. */
+    & .icon {
+        margin: 0;
+        position: absolute;
+        inset-inline-end: var(--wb-sizing-size_160);
+    }
+
+    & .textField {
+        inline-size: 100%;
+
+        /* Start: match the text field's left padding. End: reserve enough
+         * padding that typed text never runs under the calendar button --
+         * field padding + the IconButton size="small" hit target
+         * (`--wb-sizing-size_320`) + half the field padding. */
+        padding-inline: var(--wb-sizing-size_160)
+            calc(
+                var(--wb-sizing-size_160) + var(--wb-sizing-size_320) +
+                    var(--wb-sizing-size_160) / 2
+            );
+    }
+}
