@@ -845,9 +845,9 @@ export const WithDocumentRootBoundary: StoryComponentType = {
  * The popover is constrained to the space available in the viewport (or the
  * document, when using `rootBoundary="document"`). When the content doesn't
  * fit, e.g. on small screens or at high zoom levels (up to 400%), the content
- * scrolls instead of being cut off. Shadows at the edges indicate that there's
- * more content to scroll to, and the scrollable area becomes keyboard
- * focusable so it can be scrolled with the keyboard.
+ * scrolls instead of being cut off. The content fades out at the edges to
+ * indicate that there's more content to scroll to, and the scrollable area
+ * becomes keyboard focusable so it can be scrolled with the keyboard.
  *
  * This example is rendered in the "400% zoom" viewport (320x256, which is a
  * 1280x1024 screen zoomed in to 400%) to show the content scrolling. You can
