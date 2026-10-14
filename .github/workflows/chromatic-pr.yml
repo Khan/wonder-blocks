@@ -120,26 +120,12 @@ jobs:
             - name: Generate WB build artifacts
               run: pnpm build
 
-            # TODO(juan): Remove the memory sampler steps once we've collected
-            # enough memory data from CI.
-            # Samples runner memory in the background so that, if the suite is
-            # OOM-killed (exit 137), we can see the runner's limit and which
-            # processes (node vs. Chromium) were growing.
-            - name: Start memory sampler
-              run: |
-                  echo "cgroup memory.max: $(cat /sys/fs/cgroup/memory.max 2>/dev/null || echo n/a)"
-                  free -m
-                  nohup bash -c 'while true; do
-                      echo "== $(date -u +%H:%M:%S) cgroup=$(cat /sys/fs/cgroup/memory.current 2>/dev/null || echo n/a)"
-                      free -m | sed -n 2p
-                      ps -eo rss,comm --sort=-rss | head -6
-                      sleep 5
-                  done' > "$RUNNER_TEMP/memory.log" 2>&1 &
-
             # Run the suite in sequential shards so each vitest process (and
             # its Chromium instance) only handles about a third of the story
-            # files. Memory grows over the course of a single run and was
-            # OOM-killing the runner (exit 137) even with `maxWorkers: 1`.
+            # files. A single run was OOM-killing the 16 GB runner (exit 137)
+            # even with `maxWorkers: 1`: Chromium's memory grows over the run,
+            # with short multi-GB shared-memory spikes on top. With 3 shards,
+            # sampled usage peaked around 9 GB.
             - name: Run Storybook tests
               run: pnpm test:storybook:ci
               env:
@@ -150,8 +136,3 @@ jobs:
                   # `Invalid time zone specified: ETC/UNKNOWN`
                   TZ: America/Los_Angeles
 
-            - name: Print memory samples
-              if: always()
-              run: |
-                  echo "cgroup memory.peak: $(cat /sys/fs/cgroup/memory.peak 2>/dev/null || echo n/a)"
-                  cat "$RUNNER_TEMP/memory.log" 2>/dev/null || echo "No memory samples collected."
