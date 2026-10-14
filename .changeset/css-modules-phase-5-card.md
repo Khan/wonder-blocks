@@ -8,9 +8,11 @@ Wave G). The public component API is unchanged: same props, DOM structure, and
 
 - Each component has its own CSS module: `card.module.css` for `Card` and
   `dismiss-button.module.css` for its dismiss button. The per-render
-  `StyleSheet.create` call is gone: `background`, `borderRadius`,
-  `paddingSize` and `elevation` each select a class. A background image is
-  still set inline.
+  `StyleSheet.create` call is gone. The `background`, `borderRadius`,
+  `elevation` and `paddingSize` props each select a class that only assigns a
+  `--wb-c-card--*` component token (background colour, border radius, box
+  shadow, padding), and the card's base rule reads those tokens, as `Banner`
+  does. A background image is still set inline.
 - Each module nests its rules inside its own `root` marker class (on the card,
   and on the dismiss button itself), so the card's padding, border and
   position beat `View`'s, and the dismiss button's position and
