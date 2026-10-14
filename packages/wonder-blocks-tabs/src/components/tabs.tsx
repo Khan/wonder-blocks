@@ -6,12 +6,12 @@ import {
     PropsFor,
     StyleType,
 } from "@khanacademy/wonder-blocks-core";
-import {StyleSheet} from "aphrodite";
 import {TabPanel} from "./tab-panel";
 import {Tab} from "./tab";
 import {Tablist} from "./tablist";
 import {useTabIndicator} from "../hooks/use-tab-indicator";
 import {AriaLabelOrAriaLabelledby} from "./types";
+import styles from "./tabs.module.css";
 
 export type TabRenderProps = Omit<PropsFor<typeof Tab>, "children">;
 
@@ -409,18 +409,4 @@ export const Tabs = React.forwardRef(function Tabs(
             })}
         </StyledDiv>
     );
-});
-
-const styles = StyleSheet.create({
-    tabs: {
-        display: "inline-flex",
-        flexDirection: "column",
-        alignItems: "stretch",
-        position: "relative",
-    },
-    tablistWrapper: {
-        position: "relative",
-        overflowX: "auto",
-        flexShrink: 0,
-    },
 });
