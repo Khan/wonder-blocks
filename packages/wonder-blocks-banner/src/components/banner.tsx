@@ -1,6 +1,4 @@
 import * as React from "react";
-import {StyleSheet} from "aphrodite";
-
 import xIcon from "@phosphor-icons/core/bold/x-bold.svg";
 
 import Button from "@khanacademy/wonder-blocks-button";
@@ -8,13 +6,12 @@ import {addStyle, StyleType, View} from "@khanacademy/wonder-blocks-core";
 import {PhosphorIcon, PhosphorIconAsset} from "@khanacademy/wonder-blocks-icon";
 import IconButton from "@khanacademy/wonder-blocks-icon-button";
 import Link from "@khanacademy/wonder-blocks-link";
-import {font, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 
 import infoIcon from "@phosphor-icons/core/bold/info-bold.svg";
 import successIcon from "@phosphor-icons/core/bold/smiley-bold.svg";
 import warningIcon from "@phosphor-icons/core/bold/warning-bold.svg";
 import criticalIcon from "@phosphor-icons/core/bold/warning-circle-bold.svg";
-import theme from "../theme";
+import styles from "./banner.module.css";
 
 type ActionTriggerBase = {
     title: string;
@@ -154,26 +151,13 @@ const getValuesForKind = (kind: BannerKind): BannerValues => {
 const getBannerKindStyle = (kind: BannerKind) => {
     switch (kind) {
         case "success":
-            return styles.successBanner;
+            return styles.success;
         case "info":
-            return styles.infoBanner;
+            return styles.info;
         case "warning":
-            return styles.warningBanner;
+            return styles.warning;
         case "critical":
-            return styles.criticalBanner;
-    }
-};
-
-const getBannerIconKindStyle = (kind: BannerKind) => {
-    switch (kind) {
-        case "success":
-            return styles.successIcon;
-        case "info":
-            return styles.infoIcon;
-        case "warning":
-            return styles.warningIcon;
-        case "critical":
-            return styles.criticalIcon;
+            return styles.critical;
     }
 };
 
@@ -261,7 +245,6 @@ const Banner = (props: Props): React.ReactElement => {
     const valuesForKind = getValuesForKind(kind);
 
     const bannerKindStyle = getBannerKindStyle(kind);
-    const bannerIconKindStyle = getBannerIconKindStyle(kind);
 
     let iconElement = <React.Fragment />;
     // Only change the iconElement if the icon prop is not "none"
@@ -281,7 +264,7 @@ const Banner = (props: Props): React.ReactElement => {
             iconElement = (
                 <PhosphorIcon
                     icon={icon || valuesForKind.icon}
-                    style={[styles.icon, bannerIconKindStyle]}
+                    style={[styles.icon, styles.kindIcon]}
                     aria-label={kind}
                     testId="banner-kind-icon"
                     role="img"
@@ -292,7 +275,12 @@ const Banner = (props: Props): React.ReactElement => {
 
     return (
         <View
-            style={[styles.containerOuter, bannerKindStyle, stylesProp?.root]}
+            style={[
+                styles.root,
+                styles.containerOuter,
+                bannerKindStyle,
+                stylesProp?.root,
+            ]}
             role={valuesForKind.role}
             aria-label={ariaLabel}
             aria-live={valuesForKind.ariaLive}
@@ -330,119 +318,5 @@ const Banner = (props: Props): React.ReactElement => {
         </View>
     );
 };
-
-const styles = StyleSheet.create({
-    containerOuter: {
-        borderInlineStartWidth: theme.root.border.width.inlineStart,
-        borderInlineEndWidth: theme.root.border.width.inlineEnd,
-        borderBlockStartWidth: theme.root.border.width.blockStart,
-        borderBlockEndWidth: theme.root.border.width.blockEnd,
-        width: "100%",
-        borderRadius: theme.root.border.radius,
-        // Stop the square corners of the inner container from
-        // flowing out of the rounded corners of the outer container.
-        overflow: "hidden",
-        padding: sizing.size_160,
-        paddingInlineStart: theme.root.layout.paddingInlineStart,
-    },
-    containerInner: {
-        flexDirection: "row",
-        gap: theme.root.layout.gap,
-    },
-    icon: {
-        alignSelf: "flex-start",
-        width: theme.icon.sizing.width,
-        height: theme.icon.sizing.height,
-    },
-    labelAndButtonsContainer: {
-        flex: 1,
-        flexDirection: "row",
-        alignItems: "center",
-        alignContent: "center",
-        flexWrap: "wrap",
-        justifyContent: "space-between",
-        gap: theme.root.layout.gap,
-    },
-    labelContainer: {
-        flexShrink: 1,
-        textAlign: "start",
-        overflowWrap: "break-word",
-    },
-    labelTypography: {
-        fontSize: theme.label.font.size,
-        fontWeight: font.weight.semi,
-        lineHeight: font.body.lineHeight.small,
-        fontFamily: font.family.sans,
-    },
-    actionsContainer: {
-        flexDirection: "row",
-        justifyContent: "flex-start",
-        // Set the height to remove the padding from buttons
-        height: sizing.size_180,
-        alignItems: "center",
-        gap: theme.root.layout.gap,
-    },
-    action: {
-        justifyContent: "center",
-    },
-    link: {
-        fontFamily: font.family.sans,
-        fontSize: font.body.size.small,
-        fontWeight: font.weight.semi,
-        lineHeight: font.body.lineHeight.small,
-        textDecoration: theme.link.font.decoration,
-        textUnderlineOffset: theme.link.font.underlineOffset,
-        // Link's hover/press underline used to beat these overrides. Since
-        // Link moved to CSS Modules (`@layer shared`), this unlayered override
-        // applies in every state, so restate Link's interactive values here.
-        ":hover": {
-            textDecoration: "underline currentcolor solid",
-            textUnderlineOffset: font.textDecoration.underlineOffset,
-        },
-        ":active": {
-            textDecoration: "underline currentcolor solid",
-            textUnderlineOffset: font.textDecoration.underlineOffset,
-        },
-    },
-    button: {
-        marginInline: theme.button.layout.marginInline,
-    },
-    dismiss: {
-        flexShrink: 1,
-        marginBlock: theme.dismiss.layout.marginBlock,
-    },
-    successBanner: {
-        backgroundColor: semanticColor.feedback.success.subtle.background,
-        borderColor: theme.root.color.border.success,
-        color: semanticColor.feedback.success.subtle.text,
-    },
-    infoBanner: {
-        backgroundColor: semanticColor.feedback.info.subtle.background,
-        borderColor: theme.root.color.border.info,
-        color: semanticColor.feedback.info.subtle.text,
-    },
-    warningBanner: {
-        backgroundColor: semanticColor.feedback.warning.subtle.background,
-        borderColor: theme.root.color.border.warning,
-        color: semanticColor.feedback.warning.subtle.text,
-    },
-    criticalBanner: {
-        backgroundColor: semanticColor.feedback.critical.subtle.background,
-        borderColor: theme.root.color.border.critical,
-        color: semanticColor.feedback.critical.subtle.text,
-    },
-    successIcon: {
-        color: theme.icon.color.success,
-    },
-    infoIcon: {
-        color: theme.icon.color.info,
-    },
-    warningIcon: {
-        color: theme.icon.color.warning,
-    },
-    criticalIcon: {
-        color: theme.icon.color.critical,
-    },
-});
 
 export default Banner;
