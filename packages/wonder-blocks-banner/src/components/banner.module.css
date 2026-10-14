@@ -18,7 +18,8 @@
  *   --wb-c-banner--color-icon          default icon color (`.kindIcon`)
  *
  * The kind classes assign tokens and nothing else; `.containerOuter` and
- * `.kindIcon` only read them.
+ * `.kindIcon` only read them. Declaring the kinds first is therefore
+ * cascade-neutral.
  *
  * Every rule is nested inside `.root` — the marker class on the outermost
  * `View`, which carries no declarations of its own. Banner overrides
@@ -39,28 +40,6 @@
  */
 
 .root {
-    &.containerOuter {
-        border-inline-start-width: var(--wb-c-banner-root-border-width-inlineStart);
-        border-inline-end-width: var(--wb-c-banner-root-border-width-inlineEnd);
-        border-block-start-width: var(--wb-c-banner-root-border-width-blockStart);
-        border-block-end-width: var(--wb-c-banner-root-border-width-blockEnd);
-        inline-size: 100%;
-        border-radius: var(--wb-c-banner-root-border-radius);
-
-        /* Stop the square corners of the inner container from
-         * flowing out of the rounded corners of the outer container. */
-        overflow: hidden;
-
-        /* `padding` must precede `padding-inline-start`, which it resets. */
-        padding: var(--wb-sizing-size_160);
-        padding-inline-start: var(--wb-c-banner-root-layout-paddingInlineStart);
-
-        /* Colors, assigned per kind below. */
-        background-color: var(--wb-c-banner--color-background);
-        border-color: var(--wb-c-banner--color-border);
-        color: var(--wb-c-banner--color-foreground);
-    }
-
     /* Kinds: the only rules that assign the component tokens. */
     &.success {
         --wb-c-banner--color-background: var(--wb-semanticColor-feedback-success-subtle-background);
@@ -88,6 +67,28 @@
         --wb-c-banner--color-foreground: var(--wb-semanticColor-feedback-critical-subtle-text);
         --wb-c-banner--color-border: var(--wb-c-banner-root-color-border-critical);
         --wb-c-banner--color-icon: var(--wb-c-banner-icon-color-critical);
+    }
+
+    &.containerOuter {
+        border-inline-start-width: var(--wb-c-banner-root-border-width-inlineStart);
+        border-inline-end-width: var(--wb-c-banner-root-border-width-inlineEnd);
+        border-block-start-width: var(--wb-c-banner-root-border-width-blockStart);
+        border-block-end-width: var(--wb-c-banner-root-border-width-blockEnd);
+        inline-size: 100%;
+        border-radius: var(--wb-c-banner-root-border-radius);
+
+        /* Stop the square corners of the inner container from
+         * flowing out of the rounded corners of the outer container. */
+        overflow: hidden;
+
+        /* `padding` must precede `padding-inline-start`, which it resets. */
+        padding: var(--wb-sizing-size_160);
+        padding-inline-start: var(--wb-c-banner-root-layout-paddingInlineStart);
+
+        /* Colors, assigned per kind below. */
+        background-color: var(--wb-c-banner--color-background);
+        border-color: var(--wb-c-banner--color-border);
+        color: var(--wb-c-banner--color-foreground);
     }
 
     & .containerInner {
