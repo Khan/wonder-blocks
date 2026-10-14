@@ -1,6 +1,10 @@
 import * as React from "react";
 import {render, screen, within} from "@testing-library/react";
 import {userEvent} from "@testing-library/user-event";
+import {
+    WonderBlocksConfigProvider,
+    defaultStringsEn,
+} from "@khanacademy/wonder-blocks-config";
 import {Icon, PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {TabsDropdown} from "../tabs-dropdown";
 
@@ -689,6 +693,63 @@ describe("TabsDropdown", () => {
                 // Assert
                 expect(screen.getByRole("button")).toHaveTextContent(
                     "Custom Tabs Label",
+                );
+            });
+
+            it("should use the opener label from the config provider when there is no selected tab", () => {
+                // Arrange
+                // Act
+                render(
+                    <WonderBlocksConfigProvider
+                        i18n={{
+                            strings: {
+                                ...defaultStringsEn,
+                                tabs: "translated text",
+                            },
+                            locale: "es",
+                        }}
+                    >
+                        <TabsDropdown
+                            aria-label="Test tabs"
+                            tabs={tabs}
+                            selectedTabId="invalid-id"
+                            onTabSelected={jest.fn()}
+                        />
+                    </WonderBlocksConfigProvider>,
+                );
+
+                // Assert
+                expect(screen.getByRole("button")).toHaveTextContent(
+                    "translated text",
+                );
+            });
+
+            it("should prefer labels.defaultOpenerLabel over the config provider", () => {
+                // Arrange
+                // Act
+                render(
+                    <WonderBlocksConfigProvider
+                        i18n={{
+                            strings: {
+                                ...defaultStringsEn,
+                                tabs: "translated text",
+                            },
+                            locale: "es",
+                        }}
+                    >
+                        <TabsDropdown
+                            aria-label="Test tabs"
+                            tabs={tabs}
+                            selectedTabId="invalid-id"
+                            onTabSelected={jest.fn()}
+                            labels={{defaultOpenerLabel: "overriding label"}}
+                        />
+                    </WonderBlocksConfigProvider>,
+                );
+
+                // Assert
+                expect(screen.getByRole("button")).toHaveTextContent(
+                    "overriding label",
                 );
             });
         });

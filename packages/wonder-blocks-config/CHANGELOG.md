@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-config
 
+## 0.3.0
+
+### Minor Changes
+
+- f7eef63: Adds the `breadcrumbs` and `tabs` strings to `WonderBlocksStrings`
+
 ## 0.2.0
 
 ### Minor Changes
