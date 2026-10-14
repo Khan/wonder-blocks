@@ -46,6 +46,8 @@
   "author": "",
   "license": "MIT",
   "devDependencies": {
+    "@argos-ci/cli": "^6.9.6",
+    "@argos-ci/storybook": "^6.4.2",
     "@changesets/cli": "^2.27.12",
     "@jest/globals": "^29.7.0",
     "@khanacademy/eslint-config": "^5.2.0",

@@ -1,0 +1,116 @@
+# SPIKE (WB-2480): Evaluate Argos for visual regression testing.
+#
+# Runs the Storybook Vitest suite once (default theme) with Argos screenshots
+# enabled, so we can compare wall-clock time and memory against the a11y-only
+# `storybook_tests (default)` job in `chromatic-pr.yml`, and inspect the
+# screenshots it produces.
+#
+# Theme/viewport/RTL coverage comes from each story's existing
+# `parameters.chromatic.modes`, which `@argos-ci/storybook` reads as a
+# fallback, so a single job produces the same set of snapshots as Chromatic.
+#
+# Uploading to Argos is opt-in: it only happens when the `ARGOS_TOKEN` secret
+# is set. Until then, screenshots are only published as a workflow artifact.
+name: Argos (spike)
+
+on:
+    pull_request:
+        types: [opened, synchronize, reopened, ready_for_review]
+    workflow_dispatch:
+        inputs:
+            stories:
+                description: "Story file filter passed to vitest (empty = all stories)"
+                required: false
+                default: ""
+
+concurrency:
+    group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+    cancel-in-progress: true
+
+permissions:
+    contents: read
+    # Lets Argos authenticate with GitHub Actions OIDC instead of a token,
+    # once the Argos GitHub app is installed on the repo.
+    id-token: write
+
+jobs:
+    argos:
+        name: Storybook tests + Argos screenshots (default)
+        runs-on: ${{ vars.USE_GITHUB_RUNNERS == 'true' && 'ubuntu-latest' || 'ephemeral-runner' }}
+        steps:
+            # Same fonts as the a11y matrix, installed before secure-network so
+            # we don't need to allowlist Ubuntu package domains.
+            - name: Install Playwright dependencies
+              timeout-minutes: 5
+              run: |
+                  sudo apt-get update
+                  sudo apt-get install -y fonts-liberation fonts-ipafont-gothic fonts-wqy-zenhei fonts-tlwg-loma-otf fonts-freefont-ttf
+
+            - name: Checking out latest commit
+              uses: actions/checkout@v5
+              with:
+                  # Argos uses git history to find the merge base and pick the
+                  # baseline build.
+                  fetch-depth: 0
+            - name: Secure Network
+              uses: Khan/actions@secure-network-v1
+              timeout-minutes: 5
+              with:
+                  # registry.npmjs.org: npm package registry for pnpm install
+                  # playwright.download.prss.microsoft.com, cdn.playwright.dev, storage.googleapis.com: Playwright browser downloads
+                  # api.argos-ci.com: Argos API (build creation, auth exchange, finalize)
+                  # *.s3.eu-west-1.amazonaws.com: presigned S3 upload URLs returned by the Argos API.
+                  #   UNVERIFIED: Argos's backend defaults to eu-west-1, but the production
+                  #   bucket host should be confirmed (and narrowed) on the first real upload.
+                  extra-domains: registry.npmjs.org playwright.download.prss.microsoft.com cdn.playwright.dev storage.googleapis.com api.argos-ci.com *.s3.eu-west-1.amazonaws.com
+
+            - name: Install & cache node_modules
+              uses: ./.github/actions/shared-node-cache
+              timeout-minutes: 5
+
+            - name: Install Playwright browsers
+              timeout-minutes: 5
+              run: pnpm exec playwright install chromium
+
+            - name: Generate WB build artifacts
+              run: pnpm build
+
+            - name: Run Storybook tests with Argos screenshots
+              id: vitest
+              run: |
+                  start=$(date +%s)
+                  # STORIES is intentionally unquoted so an empty filter runs
+                  # every story file.
+                  pnpm exec vitest run --project=storybook $STORIES
+                  echo "seconds=$(( $(date +%s) - start ))" >> "$GITHUB_OUTPUT"
+              env:
+                  STORIES: ${{ inputs.stories }}
+                  ARGOS_SCREENSHOTS: "true"
+                  ARGOS_UPLOAD: ${{ secrets.ARGOS_TOKEN != '' }}
+                  ARGOS_TOKEN: ${{ secrets.ARGOS_TOKEN }}
+                  VITE_WB_THEME: default
+                  # Explicitly set the timezone to avoid:
+                  # `Invalid time zone specified: ETC/UNKNOWN`
+                  TZ: America/Los_Angeles
+
+            - name: Summarize
+              if: always()
+              run: |
+                  count=$(find screenshots -name '*.png' 2>/dev/null | wc -l)
+                  {
+                      echo "## Argos spike"
+                      echo ""
+                      echo "| Metric | Value |"
+                      echo "|---|---|"
+                      echo "| Screenshots | ${count} |"
+                      echo "| Vitest wall-clock | ${{ steps.vitest.outputs.seconds }}s |"
+                      echo "| Uploaded to Argos | ${{ secrets.ARGOS_TOKEN != '' }} |"
+                  } >> "$GITHUB_STEP_SUMMARY"
+
+            - name: Upload screenshots
+              if: always()
+              uses: actions/upload-artifact@v6
+              with:
+                  name: argos-screenshots
+                  path: screenshots
+                  retention-days: 7
