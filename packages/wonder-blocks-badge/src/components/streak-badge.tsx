@@ -1,7 +1,7 @@
 import * as React from "react";
 import {Icon, StreakIcon} from "@khanacademy/wonder-blocks-icon";
 import {Badge} from "./badge";
-import styles from "./badge.module.css";
+import styles from "./streak-badge.module.css";
 import {BaseBadgeProps, ShowIconProps} from "../types";
 
 type Props = BaseBadgeProps & ShowIconProps;

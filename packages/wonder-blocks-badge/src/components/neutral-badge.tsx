@@ -1,6 +1,6 @@
 import * as React from "react";
 import {Badge} from "./badge";
-import styles from "./badge.module.css";
+import styles from "./neutral-badge.module.css";
 import {BaseBadgeProps, IconLabelProps} from "../types";
 
 type Props = {
@@ -28,7 +28,6 @@ const NeutralBadge = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
             styles={{
                 ...otherProps.styles,
                 root: [styles.neutral, otherProps.styles?.root],
-                icon: [styles.neutralIcon, otherProps.styles?.icon],
             }}
         />
     );

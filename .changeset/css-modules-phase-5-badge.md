@@ -7,11 +7,16 @@ Migrate `Badge`, `StatusBadge`, `NeutralBadge`, `DueBadge`, `GemBadge` and
 Wave G). The public component API is unchanged: same props, DOM structure, and
 `styles` overrides.
 
-- Every badge's styling now lives in one shared `badge.module.css`. Source
-  order reproduces the old style-array order (base → typography → default
-  colours → icon-only → variant colours), so each variant still overrides
-  `Badge`'s defaults. The focus ring uses the shared `--wb-focus-visible` CSS
-  mixin instead of the `focusStyles` JS export.
+- Each component has its own CSS module. `badge.module.css` holds `Badge`'s
+  layout, typography, icon and label styles. The variant colours go through
+  `--wb-c-badge--*` component tokens, as in `Banner`: each variant's module
+  (`status-badge`, `neutral-badge`, `due-badge`, `gem-badge`, `streak-badge`)
+  only assigns the tokens on the root, and `Badge`'s rules read them. Badge's
+  own defaults are assigned in a zero-specificity `:where(.badge)` block, so
+  results don't depend on stylesheet order. The variants no longer pass a
+  separate icon class: the icon reads the inherited `--wb-c-badge--color-icon`.
+  The focus ring uses the shared `--wb-focus-visible` CSS mixin instead of the
+  `focusStyles` JS export.
 - `showBorder={false}` is applied as an inline style object, so it still wins
   over the consumer's `styles.root`.
 - **Behavior change (edge case):** with `showBorder={false}`, a `borderColor`

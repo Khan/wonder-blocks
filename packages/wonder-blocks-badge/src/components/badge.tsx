@@ -44,8 +44,6 @@ const Badge = React.forwardRef<HTMLDivElement, Props>(function Badge(
             ref={ref}
             style={[
                 styles.badge,
-                styles.badgeTypography,
-                styles.defaultBadgeStyling,
                 icon && !label ? styles.iconOnly : {},
                 stylesProp?.root,
                 // disabling border needs to be after custom styles so it can
@@ -57,13 +55,7 @@ const Badge = React.forwardRef<HTMLDivElement, Props>(function Badge(
             {...otherProps}
         >
             {icon && (
-                <StyledSpan
-                    style={[
-                        styles.icon,
-                        styles.defaultIconStyling,
-                        stylesProp?.icon,
-                    ]}
-                >
+                <StyledSpan style={[styles.icon, stylesProp?.icon]}>
                     {icon}
                 </StyledSpan>
             )}

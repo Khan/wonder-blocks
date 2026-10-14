@@ -1,7 +1,7 @@
 import * as React from "react";
 import {GemIcon, Icon} from "@khanacademy/wonder-blocks-icon";
 import {Badge} from "./badge";
-import styles from "./badge.module.css";
+import styles from "./gem-badge.module.css";
 import {BaseBadgeProps, ShowIconProps} from "../types";
 
 type Props = BaseBadgeProps & ShowIconProps;

@@ -1,22 +1,44 @@
 /**
- * Badge styles, shared by `Badge` and every badge variant.
+ * Badge styles
  *
- * All the rules live in this one file on purpose. The variants (`StatusBadge`,
- * `DueBadge`, …) pass their classes into `Badge`'s `styles.root` /
- * `styles.icon`, and Aphrodite used to merge those after `Badge`'s own styles,
- * so later entries won. Keeping the rules in a single file at equal
- * specificity makes source order reproduce that: base → typography → default
- * colours → icon-only → variant colours. Across separate files the order
- * would depend on bundle emission order.
+ * The colors that change between the badge variants (`StatusBadge`,
+ * `NeutralBadge`, `DueBadge`, `GemBadge`, `StreakBadge`) go through
+ * `--wb-c-badge--*` custom properties ("component tokens"), as `Banner`,
+ * `IconButton` and `Button` do. The double dash keeps the namespace distinct
+ * from codegen'd theme tokens.
+ *
+ *   per-variant tokens (assigned on the root by each variant's module):
+ *   --wb-c-badge--color-background    root background
+ *   --wb-c-badge--color-foreground    root text color
+ *   --wb-c-badge--color-border        root border color
+ *   --wb-c-badge--color-icon          icon color (inherited by `.icon`)
+ *   --wb-c-badge--border-style        root border style
+ *
+ * Badge's own defaults are assigned first, in a `:where(.badge)` block.
+ * `:where()` has zero specificity, so a variant's single-class assignment
+ * always wins, whatever order the variant modules are emitted in. Apart from
+ * that, the variant modules only assign these tokens and this file only reads
+ * them.
  *
  * `showBorder={false}` is not here: `Badge` applies it as an inline style
  * object, so it still lands after the consumer's `styles.root`, as it did
  * before.
  *
- * The build wraps every rule in `@layer shared { … }`.
+ * The consumer's `styles` still go through Aphrodite (unlayered and
+ * `!important`), so they win over this module as they did before. The build
+ * wraps every rule in `@layer shared { … }`.
  */
 
 @import "@khanacademy/wonder-blocks-styles/focus-styles.css";
+
+/* Defaults: the tokens for a plain `Badge`. */
+:where(.badge) {
+    --wb-c-badge--color-background: var(--wb-semanticColor-core-background-neutral-subtle);
+    --wb-c-badge--color-foreground: var(--wb-semanticColor-core-foreground-neutral-strong);
+    --wb-c-badge--color-border: var(--wb-semanticColor-core-border-neutral-subtle);
+    --wb-c-badge--color-icon: var(--wb-semanticColor-core-foreground-neutral-default);
+    --wb-c-badge--border-style: solid;
+}
 
 /**
  * Root.
@@ -32,10 +54,21 @@
     /* Make sure the badge text doesn't wrap */
     text-wrap: nowrap;
     border-width: var(--wb-border-width-thin);
-    border-style: solid;
+    border-style: var(--wb-c-badge--border-style);
     padding-block: var(--wb-sizing-size_040);
     padding-inline: var(--wb-sizing-size_080);
     border-radius: var(--wb-border-radius-radius_080);
+
+    /* Typography */
+    font-family: var(--wb-font-family-sans);
+    font-size: var(--wb-font-body-size-xsmall);
+    font-weight: var(--wb-font-weight-bold);
+    line-height: var(--wb-font-body-lineHeight-xsmall);
+
+    /* Colors, assigned per variant. */
+    background-color: var(--wb-c-badge--color-background);
+    border-color: var(--wb-c-badge--color-border);
+    color: var(--wb-c-badge--color-foreground);
 
     /* Include focus styles in case the badge is made interactive by using it
      * with another component like `Tooltip` */
@@ -44,89 +77,8 @@
     }
 }
 
-.badgeTypography {
-    font-family: var(--wb-font-family-sans);
-    font-size: var(--wb-font-body-size-xsmall);
-    font-weight: var(--wb-font-weight-bold);
-    line-height: var(--wb-font-body-lineHeight-xsmall);
-}
-
-.defaultBadgeStyling {
-    background-color: var(--wb-semanticColor-core-background-neutral-subtle);
-    border-color: var(--wb-semanticColor-core-border-neutral-subtle);
-    color: var(--wb-semanticColor-core-foreground-neutral-strong);
-}
-
 .iconOnly {
     padding: var(--wb-sizing-size_040);
-}
-
-/**
- * Root variants.
- */
-.dueBadge {
-    background-color: var(--wb-semanticColor-learning-background-due-subtle);
-
-    /* Border should be the same as the background */
-    border-color: var(--wb-semanticColor-learning-background-due-subtle);
-    color: var(--wb-semanticColor-learning-foreground-due-strong);
-}
-
-.overdueBadge {
-    background-color: var(--wb-semanticColor-core-background-critical-subtle);
-
-    /* Border should be the same as the background */
-    border-color: var(--wb-semanticColor-core-background-critical-subtle);
-    color: var(--wb-semanticColor-feedback-critical-subtle-text);
-}
-
-.gemBadge {
-    background-color: var(--wb-semanticColor-learning-background-gems-default);
-
-    /* Border should be the same as the background. The `border` shorthand
-     * (rather than `border-color`) is carried over from the Aphrodite version
-     * as-is: it also resets `.badge`'s border width and style. */
-    border: var(--wb-semanticColor-learning-background-gems-default);
-    color: var(--wb-semanticColor-learning-foreground-gems-strong);
-}
-
-.streakBadge {
-    background-color: var(--wb-semanticColor-learning-background-streaks-subtle);
-
-    /* Border should be the same as the background. See `.gemBadge` about the
-     * `border` shorthand. */
-    border: var(--wb-semanticColor-learning-background-streaks-subtle);
-    color: var(--wb-semanticColor-learning-foreground-streaks-strong);
-}
-
-.neutral {
-    background-color: var(--wb-semanticColor-feedback-neutral-subtle-background);
-    color: var(--wb-semanticColor-feedback-neutral-subtle-text);
-    border-color: var(--wb-semanticColor-feedback-neutral-subtle-border);
-}
-
-.info {
-    background-color: var(--wb-semanticColor-feedback-info-subtle-background);
-    color: var(--wb-semanticColor-feedback-info-subtle-text);
-    border-color: var(--wb-semanticColor-feedback-info-subtle-border);
-}
-
-.success {
-    background-color: var(--wb-semanticColor-feedback-success-subtle-background);
-    color: var(--wb-semanticColor-feedback-success-subtle-text);
-    border-color: var(--wb-semanticColor-feedback-success-subtle-border);
-}
-
-.warning {
-    background-color: var(--wb-semanticColor-feedback-warning-subtle-background);
-    color: var(--wb-semanticColor-feedback-warning-subtle-text);
-    border-color: var(--wb-semanticColor-feedback-warning-subtle-border);
-}
-
-.critical {
-    background-color: var(--wb-semanticColor-feedback-critical-subtle-background);
-    color: var(--wb-semanticColor-feedback-critical-subtle-text);
-    border-color: var(--wb-semanticColor-feedback-critical-subtle-border);
 }
 
 /**
@@ -140,38 +92,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-}
-
-.defaultIconStyling {
-    color: var(--wb-semanticColor-core-foreground-neutral-default);
-}
-
-.dueIcon {
-    color: var(--wb-semanticColor-learning-foreground-due-default);
-}
-
-.overdueIcon {
-    color: var(--wb-semanticColor-core-foreground-critical-default);
-}
-
-.neutralIcon {
-    color: var(--wb-semanticColor-feedback-neutral-subtle-icon);
-}
-
-.infoIcon {
-    color: var(--wb-semanticColor-feedback-info-subtle-icon);
-}
-
-.successIcon {
-    color: var(--wb-semanticColor-feedback-success-subtle-icon);
-}
-
-.warningIcon {
-    color: var(--wb-semanticColor-feedback-warning-subtle-icon);
-}
-
-.criticalIcon {
-    color: var(--wb-semanticColor-feedback-critical-subtle-icon);
+    color: var(--wb-c-badge--color-icon);
 }
 
 /**

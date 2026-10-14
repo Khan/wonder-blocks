@@ -3,7 +3,7 @@ import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import DateIcon from "@phosphor-icons/core/bold/calendar-blank-bold.svg";
 import WarningCircle from "@phosphor-icons/core/bold/warning-circle-bold.svg";
 import {Badge} from "./badge";
-import styles from "./badge.module.css";
+import styles from "./due-badge.module.css";
 import {BaseBadgeProps, ShowIconProps} from "../types";
 
 type Props = BaseBadgeProps &
@@ -58,14 +58,9 @@ const DueBadge = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
             styles={{
                 ...otherProps.styles,
                 root: [
-                    kind === "due" && styles.dueBadge,
-                    kind === "overdue" && styles.overdueBadge,
+                    kind === "due" && styles.due,
+                    kind === "overdue" && styles.overdue,
                     otherProps.styles?.root,
-                ],
-                icon: [
-                    kind === "due" && styles.dueIcon,
-                    kind === "overdue" && styles.overdueIcon,
-                    otherProps.styles?.icon,
                 ],
             }}
         />
