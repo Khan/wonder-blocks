@@ -7,7 +7,7 @@ import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 
 import {actionStyles, focusStyles} from "@khanacademy/wonder-blocks-styles";
 import CloseButton from "./close-button";
-import {useIsOverflowing} from "../hooks/use-is-overflowing";
+import {useScrollOverflow} from "../hooks/use-scroll-overflow";
 
 type Props = AriaProps & {
     /**
@@ -57,9 +57,9 @@ type Props = AriaProps & {
  * Inside a `Popover`, the content is constrained to the space available in the
  * viewport (or document). When it doesn't fit (e.g. on small screens or at
  * high zoom levels), the content (including the close button) scrolls, and
- * shadows at the edges hint that there's more content to scroll to. The
- * scrollable area becomes keyboard focusable while it overflows, so keyboard
- * users can scroll it too.
+ * it fades out at the edges to hint that there's more content to scroll to.
+ * The scrollable area becomes keyboard focusable while it overflows, so
+ * keyboard users can scroll it too.
  *
  * ### Usage
  *
@@ -87,14 +87,16 @@ const PopoverContentCore = React.forwardRef<HTMLElement, Props>(
         ref,
     ): React.ReactElement {
         const scrollContainerRef = React.useRef<HTMLElement | null>(null);
-        const isOverflowing = useIsOverflowing(scrollContainerRef);
+        const {isOverflowing, hasContentAbove, hasContentBelow} =
+            useScrollOverflow(scrollContainerRef);
 
         return (
             <View
                 ref={scrollContainerRef}
                 style={[
                     styles.scrollContainer,
-                    isOverflowing && styles.scrollShadows,
+                    hasContentAbove && styles.fadeTop,
+                    hasContentBelow && styles.fadeBottom,
                 ]}
                 // Make the region keyboard scrollable only when it actually
                 // overflows, so it doesn't add an extra tab stop otherwise.
@@ -127,10 +129,25 @@ PopoverContentCore.displayName = "PopoverContentCore";
 
 export default PopoverContentCore;
 
-// The covers match the popover background so they hide the shadows when
-// there's no more content to scroll to.
-const scrollShadowCover = semanticColor.core.background.base.default;
-const scrollShadowColor = semanticColor.core.shadow.transparent.color.strong;
+// The fades blend the content into the popover background.
+const fadeColor = semanticColor.core.background.base.default;
+const fadeSize = sizing.size_480;
+
+/**
+ * A fade overlay that sticks to the top or bottom edge of the scroll
+ * container. It's drawn with a pseudo-element that doesn't take up space
+ * (its negative margin cancels out its size) and doesn't capture clicks.
+ */
+const fadeOverlay = {
+    content: "''",
+    display: "block",
+    position: "sticky",
+    flexShrink: 0,
+    blockSize: fadeSize,
+    pointerEvents: "none",
+    // Render the fade above the content.
+    zIndex: 1,
+} as const;
 
 const styles = StyleSheet.create({
     scrollContainer: {
@@ -140,29 +157,24 @@ const styles = StyleSheet.create({
         ...focusStyles.focus,
     },
     /**
-     * Shadows at the top and/or bottom edges that hint that there's more
-     * content to scroll to. They're drawn with "scroll" backgrounds, which
-     * stay fixed to the edges, and hidden by "local" covers that scroll with
-     * the content, so a shadow only shows when there's content past that
-     * edge.
-     *
-     * @see https://css-tricks.com/books/greatest-css-tricks/scroll-shadows/
+     * Fades at the top and/or bottom edges that hint that there's more content
+     * to scroll to. Each fade only shows when there's content past that edge.
      */
-    scrollShadows: {
-        background: [
-            // Covers
-            `linear-gradient(${scrollShadowCover} 30%, transparent) center top`,
-            `linear-gradient(transparent, ${scrollShadowCover} 70%) center bottom`,
-            // Shadows: elliptical radial gradients that are strongest at the
-            // center of the edge. The ellipse is three times as wide as the
-            // container (and keeps its full color for the first 25%) so the
-            // shadow stays visible near the corners.
-            `radial-gradient(150% 100% at 50% 0, ${scrollShadowColor} 25%, transparent) center top`,
-            `radial-gradient(150% 100% at 50% 100%, ${scrollShadowColor} 25%, transparent) center bottom`,
-        ].join(", "),
-        backgroundRepeat: "no-repeat",
-        backgroundSize: `100% ${sizing.size_400}, 100% ${sizing.size_400}, 100% ${sizing.size_240}, 100% ${sizing.size_240}`,
-        backgroundAttachment: "local, local, scroll, scroll",
+    fadeTop: {
+        "::before": {
+            ...fadeOverlay,
+            insetBlockStart: 0,
+            marginBlockEnd: `calc(-1 * ${fadeSize})`,
+            background: `linear-gradient(to bottom, ${fadeColor}, transparent)`,
+        },
+    },
+    fadeBottom: {
+        "::after": {
+            ...fadeOverlay,
+            insetBlockEnd: 0,
+            marginBlockStart: `calc(-1 * ${fadeSize})`,
+            background: `linear-gradient(to top, ${fadeColor}, transparent)`,
+        },
     },
     content: {
         margin: 0,
