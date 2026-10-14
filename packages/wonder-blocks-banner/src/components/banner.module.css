@@ -113,8 +113,6 @@
         flex: 1;
         flex-flow: row wrap;
         align-items: center;
-
-        /* align-content: center; justify-content: space-between */
         place-content: center space-between;
         gap: var(--wb-c-banner-root-layout-gap);
     }
