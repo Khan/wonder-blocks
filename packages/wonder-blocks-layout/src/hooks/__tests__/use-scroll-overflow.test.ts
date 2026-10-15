@@ -63,7 +63,7 @@ describe("useScrollOverflow", () => {
         });
     };
 
-    it("should not report any overflow before any resize is observed", () => {
+    it("should report the overflow right away, before any resize is observed", () => {
         // Arrange
         const ref = {current: createElement({overflowing: true})};
 
@@ -72,9 +72,9 @@ describe("useScrollOverflow", () => {
 
         // Assert
         expect(result.current).toEqual({
-            isOverflowing: false,
+            isOverflowing: true,
             hasContentAbove: false,
-            hasContentBelow: false,
+            hasContentBelow: true,
         });
     });
 
