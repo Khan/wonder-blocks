@@ -90,6 +90,10 @@ const ScrollableView = React.forwardRef<HTMLElement, Props>(
         // on the element. This avoids adding/removing elements or generating
         // new styles (as passing them via `style` would) in the middle of a
         // scroll, which can make it glitch.
+        // The view is only keyboard focusable (and needs a name) while its
+        // content overflows, or while it has focus.
+        const isFocusable = isOverflowing || isFocused;
+
         React.useLayoutEffect(() => {
             element?.style.setProperty(
                 FADE_TOP_OPACITY,
@@ -104,12 +108,15 @@ const ScrollableView = React.forwardRef<HTMLElement, Props>(
         return (
             <View
                 {...ariaProps}
-                // Expose a labeled view as a region, so screen readers announce
-                // its name when it's focused (an `aria-label` on an element
-                // without a role isn't reliably announced).
+                // Expose a labeled view as a region while it's focusable, so
+                // screen readers announce its name when it's focused (an
+                // `aria-label` on an element without a role isn't reliably
+                // announced). When its content fits, it isn't a tab stop, so
+                // it doesn't add an extra landmark either.
                 role={
                     role ??
-                    (ariaProps["aria-label"] || ariaProps["aria-labelledby"]
+                    (isFocusable &&
+                    (ariaProps["aria-label"] || ariaProps["aria-labelledby"])
                         ? "region"
                         : undefined)
                 }
@@ -127,7 +134,7 @@ const ScrollableView = React.forwardRef<HTMLElement, Props>(
                 // While the view itself has focus, keep it focusable even if
                 // it stops overflowing (e.g. after zooming out), so focus isn't
                 // lost to the page.
-                tabIndex={isOverflowing || isFocused ? 0 : undefined}
+                tabIndex={isFocusable ? 0 : undefined}
                 onFocus={(event: React.FocusEvent) => {
                     if (event.target === event.currentTarget) {
                         setIsFocused(true);

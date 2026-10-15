@@ -237,21 +237,44 @@ describe("ScrollableView", () => {
             screen.getByText("Some content"),
         );
     });
-    it("should be exposed as a region when it's labeled", () => {
+    it("should be exposed as a region when it's labeled and the content overflows", () => {
         // Arrange
         render(
-            <ScrollableView aria-label="Terms and conditions">
+            <ScrollableView
+                aria-label="Terms and conditions"
+                testId="scrollable-view"
+            >
                 <span>Some content</span>
             </ScrollableView>,
         );
+        mockOverflow(screen.getByTestId("scrollable-view"), true);
 
         // Act
-        const region = screen.getByRole("region", {
-            name: "Terms and conditions",
-        });
+        triggerResize();
 
         // Assert
-        expect(region).toBeInTheDocument();
+        expect(
+            screen.getByRole("region", {name: "Terms and conditions"}),
+        ).toBeInTheDocument();
+    });
+
+    it("should not be exposed as a region when it's labeled but the content fits", () => {
+        // Arrange
+        render(
+            <ScrollableView
+                aria-label="Terms and conditions"
+                testId="scrollable-view"
+            >
+                <span>Some content</span>
+            </ScrollableView>,
+        );
+        mockOverflow(screen.getByTestId("scrollable-view"), false);
+
+        // Act
+        triggerResize();
+
+        // Assert
+        expect(screen.queryByRole("region")).not.toBeInTheDocument();
     });
 
     it("should not be exposed as a region when it isn't labeled", () => {

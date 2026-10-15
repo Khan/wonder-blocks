@@ -38,9 +38,11 @@ Instead of being cut off, the content scrolls.
 
 Since the view can receive focus, give it an accessible name (e.g. with
 `aria-label` or `aria-labelledby`) that describes its content, so screen
-readers can announce what the focused region contains. A labeled view is
-exposed as a `region` (unless you pass a different `role`), since an
-`aria-label` on an element without a role isn't reliably announced.
+readers can announce what the focused region contains. While its content
+overflows, a labeled view is exposed as a `region` (unless you pass a different
+`role`), since an `aria-label` on an element without a role isn't reliably
+announced. When the content fits, the view isn't a tab stop, so it isn't
+exposed as a landmark either.
 
 ## Visual hints
 
