@@ -87,25 +87,25 @@ const PopoverContentCore = React.forwardRef<HTMLElement, Props>(
         ref,
     ): React.ReactElement {
         return (
-            // The close button is inside the scroll container, so it scrolls
-            // with the content.
             <ScrollableView style={styles.scrollableView}>
-                {closeButtonVisible && (
-                    <CloseButton
-                        aria-label={closeButtonLabel}
-                        style={[
-                            styles.closeButton,
-                            closeButtonLight && actionStyles.inverse,
-                        ]}
-                        testId={`${testId || "popover"}-close-btn`}
-                    />
-                )}
                 <View
                     testId={testId}
                     style={[styles.content, style]}
                     aria-label={ariaLabel}
                     ref={ref}
                 >
+                    {/* The close button is part of the content (inside the
+                    scroll container), so it scrolls with it. */}
+                    {closeButtonVisible && (
+                        <CloseButton
+                            aria-label={closeButtonLabel}
+                            style={[
+                                styles.closeButton,
+                                closeButtonLight && actionStyles.inverse,
+                            ]}
+                            testId={`${testId || "popover"}-close-btn`}
+                        />
+                    )}
                     {children}
                 </View>
             </ScrollableView>

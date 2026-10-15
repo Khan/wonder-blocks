@@ -82,6 +82,21 @@ describe("PopoverContentCore", () => {
         expect(getScrollContainer()).toContainElement(closeButton);
     });
 
+    it("should render the close button inside of the content element", () => {
+        // Arrange
+        render(
+            <PopoverContentCore testId="content" closeButtonVisible={true}>
+                <span>Some content</span>
+            </PopoverContentCore>,
+        );
+
+        // Act
+        const closeButton = screen.getByRole("button");
+
+        // Assert
+        expect(screen.getByTestId("content")).toContainElement(closeButton);
+    });
+
     it("should forward the ref to the content element", () => {
         // Arrange
         const ref = React.createRef<HTMLElement>();
