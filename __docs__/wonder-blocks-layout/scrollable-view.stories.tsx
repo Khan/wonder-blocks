@@ -13,6 +13,7 @@ import {BodyText, Heading} from "@khanacademy/wonder-blocks-typography";
 import packageConfig from "../../packages/wonder-blocks-layout/package.json";
 import ComponentInfo from "../components/component-info";
 import {reallyLongText} from "../components/text-for-testing";
+import ScrollableViewArgTypes from "./scrollable-view.argtypes";
 import {allThemeModes} from "../../.storybook/modes";
 
 export default {
@@ -31,9 +32,7 @@ export default {
             disableSnapshot: true,
         },
     },
-    argTypes: {
-        children: {control: false},
-    },
+    argTypes: ScrollableViewArgTypes,
 } as Meta<typeof ScrollableView>;
 
 type StoryComponentType = StoryObj<typeof ScrollableView>;
