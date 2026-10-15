@@ -59,10 +59,9 @@ jobs:
                   # registry.npmjs.org: npm package registry for pnpm install
                   # playwright.download.prss.microsoft.com, cdn.playwright.dev, storage.googleapis.com: Playwright browser downloads
                   # api.argos-ci.com: Argos API (build creation, auth exchange, finalize)
-                  # *.s3.eu-west-1.amazonaws.com: presigned S3 upload URLs returned by the Argos API.
-                  #   UNVERIFIED: Argos's backend defaults to eu-west-1, but the production
-                  #   bucket host should be confirmed (and narrowed) on the first real upload.
-                  extra-domains: registry.npmjs.org playwright.download.prss.microsoft.com cdn.playwright.dev storage.googleapis.com api.argos-ci.com *.s3.eu-west-1.amazonaws.com
+                  # argos-ci-production-us-east-1.s3.us-east-1.amazonaws.com: S3 bucket that the
+                  #   presigned upload URLs returned by the Argos API point to (seen in CI).
+                  extra-domains: registry.npmjs.org playwright.download.prss.microsoft.com cdn.playwright.dev storage.googleapis.com api.argos-ci.com argos-ci-production-us-east-1.s3.us-east-1.amazonaws.com
 
             - name: Install & cache node_modules
               uses: ./.github/actions/shared-node-cache
