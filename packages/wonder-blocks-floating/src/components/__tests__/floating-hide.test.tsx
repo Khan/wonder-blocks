@@ -89,16 +89,65 @@ describe("Floating (hide)", () => {
         });
     });
 
-    it("should keep the floating element visible when focus moves between elements inside of it", async () => {
+    it("should keep the floating element visible when focus moves between text fields inside of it", async () => {
         // Arrange
         render(
             <Floating
                 content={
                     <>
-                        <input aria-label="Feedback" />
-                        <button>Submit</button>
+                        <input aria-label="Name" />
+                        <textarea aria-label="Feedback" />
                     </>
                 }
+                open={true}
+                focusManagerEnabled={false}
+                testId="floating"
+            >
+                <button>Trigger</button>
+            </Floating>,
+        );
+        await userEvent.click(screen.getByRole("textbox", {name: "Name"}));
+
+        // Act
+        await userEvent.click(screen.getByRole("textbox", {name: "Feedback"}));
+
+        // Assert
+        await waitFor(() => {
+            expect(screen.getByTestId("floating")).toHaveStyle({
+                visibility: "visible",
+            });
+        });
+    });
+
+    it("should hide the floating element when an element that isn't a text field has focus", async () => {
+        // Arrange
+        render(
+            <Floating
+                content={<button>Submit</button>}
+                open={true}
+                focusManagerEnabled={false}
+                testId="floating"
+            >
+                <button>Trigger</button>
+            </Floating>,
+        );
+
+        // Act
+        await userEvent.click(screen.getByRole("button", {name: "Submit"}));
+
+        // Assert
+        await waitFor(() => {
+            expect(screen.getByTestId("floating")).toHaveStyle({
+                visibility: "hidden",
+            });
+        });
+    });
+
+    it("should hide the floating element when the focused text field is removed", async () => {
+        // Arrange
+        const {rerender} = render(
+            <Floating
+                content={<input aria-label="Feedback" />}
                 open={true}
                 focusManagerEnabled={false}
                 testId="floating"
@@ -109,12 +158,21 @@ describe("Floating (hide)", () => {
         await userEvent.click(screen.getByRole("textbox", {name: "Feedback"}));
 
         // Act
-        await userEvent.click(screen.getByRole("button", {name: "Submit"}));
+        rerender(
+            <Floating
+                content="Thanks for your feedback!"
+                open={true}
+                focusManagerEnabled={false}
+                testId="floating"
+            >
+                <button>Trigger</button>
+            </Floating>,
+        );
 
         // Assert
         await waitFor(() => {
             expect(screen.getByTestId("floating")).toHaveStyle({
-                visibility: "visible",
+                visibility: "hidden",
             });
         });
     });
