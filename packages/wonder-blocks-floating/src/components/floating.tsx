@@ -147,9 +147,13 @@ type FloatingProps = {
      * `max-block-size` that match the available space between the reference
      * element and the boundary (minus `shiftPadding`). This keeps the floating
      * element from being cut off when there isn't enough room for it, e.g. on
-     * small screens or at high zoom levels. Content that doesn't fit should
-     * scroll inside the floating element.
-     * @default true
+     * small screens or at high zoom levels.
+     *
+     * The floating element is also laid out as a flex column so its content
+     * can shrink. The content is responsible for scrolling when it doesn't fit
+     * (e.g. by wrapping it in a `ScrollableView` from
+     * `@khanacademy/wonder-blocks-layout`).
+     * @default false
      * @see https://floating-ui.com/docs/size
      */
     size?: boolean;
@@ -306,7 +310,7 @@ export default function Floating({
     flip: flipProp = true,
     shift: shiftProp = true,
     shiftPadding = SHIFT_PADDING,
-    size: sizeProp = true,
+    size: sizeProp = false,
     rootBoundary = "viewport",
     showArrow = true,
     styles: stylesProp,
@@ -497,6 +501,7 @@ export default function Floating({
                             ref={refs.setFloating}
                             style={[
                                 styles.floating,
+                                sizeProp && styles.constrained,
                                 floatingStyles,
                                 stylesProp?.root,
                                 {
@@ -533,12 +538,16 @@ const styles = StyleSheet.create({
         // set inline size to ensure that it works with inline placements.
         minBlockSize: ARROW_SIZE_INLINE,
         boxShadow: boxShadow.mid,
-        // Lay out the content as a flex column so it can shrink (and scroll)
-        // when the `size` middleware constrains the floating element.
-        display: "flex",
-        flexDirection: "column",
         justifyContent: "center",
         // Prevent the floating element from receiving focus when it is clicked.
         outline: "none",
+    },
+    // Lay out the content as a flex column so it can shrink (and scroll) when
+    // the `size` middleware constrains the floating element. This is only
+    // applied with `size` enabled, so other content keeps its block layout
+    // (e.g. inline text and links keep flowing on the same line).
+    constrained: {
+        display: "flex",
+        flexDirection: "column",
     },
 });
