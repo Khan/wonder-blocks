@@ -7,6 +7,7 @@ import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {ScenariosLayout} from "../components/scenarios-layout";
 import {longText} from "../components/text-for-testing";
 import {View} from "@khanacademy/wonder-blocks-core";
+import {ScrollableView} from "@khanacademy/wonder-blocks-layout";
 import {Heading} from "@khanacademy/wonder-blocks-typography";
 
 import {
@@ -25,11 +26,13 @@ const styles = StyleSheet.create({
         display: "grid",
         gridTemplateColumns: "repeat(4, 1fr)",
     },
-    // Content that scrolls when the floating element is constrained by the
-    // `size` middleware.
+    // Content that scrolls (inside a `ScrollableView`) when the floating
+    // element is constrained by the `size` middleware.
     scrollableContent: {
         padding: sizing.size_080,
-        overflowY: "auto",
+        // Keep the content at its natural size so it overflows (and scrolls)
+        // instead of being squashed.
+        flexShrink: 0,
     },
     reference: {
         display: "inline-flex",
@@ -180,9 +183,11 @@ export const Scenarios: Story = {
                         size: true,
                         placement: "bottom",
                         content: (
-                            <View style={styles.scrollableContent}>
-                                {longText}
-                            </View>
+                            <ScrollableView aria-label="Long content">
+                                <View style={styles.scrollableContent}>
+                                    {longText}
+                                </View>
+                            </ScrollableView>
                         ),
                         testId: "floating-size-enabled",
                         // Constrain it to the scrolling container only, so
@@ -197,9 +202,11 @@ export const Scenarios: Story = {
                     floating: {
                         placement: "bottom",
                         content: (
-                            <View style={styles.scrollableContent}>
-                                {longText}
-                            </View>
+                            <ScrollableView aria-label="Long content">
+                                <View style={styles.scrollableContent}>
+                                    {longText}
+                                </View>
+                            </ScrollableView>
                         ),
                         testId: "floating-size-disabled",
                         rootBoundary: "document",
