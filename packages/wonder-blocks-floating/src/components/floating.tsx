@@ -115,6 +115,11 @@ type FloatingProps = {
      * hidden.
      *
      * Allows to visually hide the floating element when it is out of bounds.
+     *
+     * NOTE: The floating element is never hidden while it contains the focused
+     * element (e.g. the user is typing in a text field inside of it). Hiding
+     * it would make the browser drop focus, which on mobile devices also
+     * closes the virtual keyboard.
      * @default true
      */
     hide?: boolean;
@@ -296,6 +301,8 @@ export default function Floating({
 }: Props) {
     const arrowRef = React.useRef(null);
     const prevOpenRef = React.useRef(open ?? false);
+    // Whether the focused element is inside of the floating element.
+    const [hasFocusWithin, setHasFocusWithin] = React.useState(false);
 
     // Calculate the floating styles and context
     const {
@@ -348,6 +355,41 @@ export default function Floating({
             prevOpenRef.current = open;
         }
     }, [onOpenChange, open]);
+
+    // The floating element unmounts when closed (without firing blur events),
+    // so reset the focus state to start fresh the next time it opens.
+    React.useEffect(() => {
+        if (!open) {
+            setHasFocusWithin(false);
+        }
+    }, [open]);
+
+    /**
+     * Tracks when focus moves into the floating element.
+     */
+    const handleFocus = React.useCallback(() => {
+        setHasFocusWithin(true);
+    }, []);
+
+    /**
+     * Tracks when focus moves out of the floating element (and not just
+     * between elements inside of it).
+     */
+    const handleBlur = React.useCallback((event: React.FocusEvent) => {
+        if (
+            !(event.relatedTarget instanceof Node) ||
+            !event.currentTarget.contains(event.relatedTarget)
+        ) {
+            setHasFocusWithin(false);
+        }
+    }, []);
+
+    // Hide the floating element when the reference element is out of view
+    // (e.g. scrolled away), unless the user is interacting with it. On mobile,
+    // opening the virtual keyboard shrinks the visual viewport, which can push
+    // the reference element out of view. Hiding the floating element then
+    // would blur the focused field and close the keyboard again.
+    const isHidden = !!middlewareData.hide?.referenceHidden && !hasFocusWithin;
 
     // Notify consumers of the resolved placement (after middleware such as
     // `flip` has run) so they can adapt their content accordingly.
@@ -468,13 +510,13 @@ export default function Floating({
                                 floatingStyles,
                                 stylesProp?.root,
                                 {
-                                    visibility: middlewareData.hide
-                                        ?.referenceHidden
-                                        ? "hidden"
-                                        : "visible",
+                                    visibility: isHidden ? "hidden" : "visible",
                                 },
                             ]}
-                            {...getFloatingProps()}
+                            {...getFloatingProps({
+                                onFocus: handleFocus,
+                                onBlur: handleBlur,
+                            })}
                         >
                             {content}
                             {showArrow && (
