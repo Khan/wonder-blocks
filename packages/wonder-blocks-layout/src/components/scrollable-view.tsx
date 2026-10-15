@@ -22,6 +22,10 @@ type Props = AriaProps & {
      *
      * The fades at the edges inherit the view's border radius, so setting a
      * `borderRadius` here also rounds the fades.
+     *
+     * NOTE: Avoid setting `gap` on the view itself, since the fades are laid
+     * out as its first and last children while the content overflows. Put the
+     * layout styles (e.g. `gap`) on a child that wraps the content instead.
      */
     style?: StyleType;
     /**
@@ -59,15 +63,20 @@ const ScrollableView = React.forwardRef<HTMLElement, Props>(
         {children, role, style, testId, ...ariaProps}: Props,
         forwardedRef,
     ) {
-        const ref = React.useRef<HTMLElement | null>(null);
+        // Store the element in state (instead of a ref) so the overflow
+        // tracking re-attaches if the element changes.
+        const [element, setElement] = React.useState<HTMLElement | null>(null);
         const {isOverflowing, hasContentAbove, hasContentBelow} =
-            useScrollOverflow(ref);
+            useScrollOverflow(element);
 
-        // Keep both the internal ref (used to track the scroll position) and
-        // the forwarded one in sync.
+        // Whether the view itself (not one of its children) has focus.
+        const [isFocused, setIsFocused] = React.useState(false);
+
+        // Keep both the internal element (used to track the scroll position)
+        // and the forwarded ref in sync.
         const handleRef = React.useCallback(
             (node: HTMLElement | null) => {
-                ref.current = node;
+                setElement(node);
                 if (typeof forwardedRef === "function") {
                     forwardedRef(node);
                 } else if (forwardedRef) {
@@ -82,7 +91,6 @@ const ScrollableView = React.forwardRef<HTMLElement, Props>(
         // new styles (as passing them via `style` would) in the middle of a
         // scroll, which can make it glitch.
         React.useLayoutEffect(() => {
-            const element = ref.current;
             element?.style.setProperty(
                 FADE_TOP_OPACITY,
                 hasContentAbove ? "1" : "0",
@@ -91,7 +99,7 @@ const ScrollableView = React.forwardRef<HTMLElement, Props>(
                 FADE_BOTTOM_OPACITY,
                 hasContentBelow ? "1" : "0",
             );
-        }, [hasContentAbove, hasContentBelow]);
+        }, [element, hasContentAbove, hasContentBelow]);
 
         return (
             <View
@@ -116,7 +124,20 @@ const ScrollableView = React.forwardRef<HTMLElement, Props>(
                 ]}
                 // Make the view keyboard scrollable only when it actually
                 // overflows, so it doesn't add an extra tab stop otherwise.
-                tabIndex={isOverflowing ? 0 : undefined}
+                // While the view itself has focus, keep it focusable even if
+                // it stops overflowing (e.g. after zooming out), so focus isn't
+                // lost to the page.
+                tabIndex={isOverflowing || isFocused ? 0 : undefined}
+                onFocus={(event: React.FocusEvent) => {
+                    if (event.target === event.currentTarget) {
+                        setIsFocused(true);
+                    }
+                }}
+                onBlur={(event: React.FocusEvent) => {
+                    if (event.target === event.currentTarget) {
+                        setIsFocused(false);
+                    }
+                }}
             >
                 {children}
             </View>
@@ -160,6 +181,9 @@ const styles = StyleSheet.create({
         // Don't let the browser adjust the scroll position when the content
         // changes (e.g. when the fades are rendered).
         overflowAnchor: "none",
+        // Keep focused elements (and anything scrolled into view) clear of the
+        // fades, so they aren't hidden under them.
+        scrollPaddingBlock: fadeSize,
         ...focusStyles.focus,
     },
     /**

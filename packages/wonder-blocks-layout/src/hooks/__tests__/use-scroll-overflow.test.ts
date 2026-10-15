@@ -1,4 +1,4 @@
-import {act, fireEvent, renderHook} from "@testing-library/react";
+import {act, fireEvent, renderHook, waitFor} from "@testing-library/react";
 
 import {useScrollOverflow} from "../use-scroll-overflow";
 
@@ -19,11 +19,18 @@ const createElement = ({
     return element;
 };
 
-const mockOverflow = (element: HTMLElement, overflowing: boolean) => {
-    jest.spyOn(element, "clientHeight", "get").mockReturnValue(100);
-    jest.spyOn(element, "scrollHeight", "get").mockReturnValue(
-        overflowing ? 200 : 100,
-    );
+const mockOverflow = (element: HTMLElement, overflowing: boolean) =>
+    mockHeights(element, {
+        clientHeight: 100,
+        scrollHeight: overflowing ? 200 : 100,
+    });
+
+const mockHeights = (
+    element: HTMLElement,
+    {clientHeight, scrollHeight}: {clientHeight: number; scrollHeight: number},
+) => {
+    jest.spyOn(element, "clientHeight", "get").mockReturnValue(clientHeight);
+    jest.spyOn(element, "scrollHeight", "get").mockReturnValue(scrollHeight);
 };
 
 /**
@@ -68,7 +75,7 @@ describe("useScrollOverflow", () => {
         const ref = {current: createElement({overflowing: true})};
 
         // Act
-        const {result} = renderHook(() => useScrollOverflow(ref));
+        const {result} = renderHook(() => useScrollOverflow(ref.current));
 
         // Assert
         expect(result.current).toEqual({
@@ -81,7 +88,7 @@ describe("useScrollOverflow", () => {
     it("should report content below when the content overflows and is scrolled to the top", () => {
         // Arrange
         const ref = {current: createElement({overflowing: true})};
-        const {result} = renderHook(() => useScrollOverflow(ref));
+        const {result} = renderHook(() => useScrollOverflow(ref.current));
 
         // Act
         triggerResize();
@@ -98,7 +105,7 @@ describe("useScrollOverflow", () => {
         // Arrange
         const element = createElement({overflowing: true});
         const ref = {current: element};
-        const {result} = renderHook(() => useScrollOverflow(ref));
+        const {result} = renderHook(() => useScrollOverflow(ref.current));
         triggerResize();
 
         // Act
@@ -116,7 +123,7 @@ describe("useScrollOverflow", () => {
         // Arrange
         const element = createElement({overflowing: true});
         const ref = {current: element};
-        const {result} = renderHook(() => useScrollOverflow(ref));
+        const {result} = renderHook(() => useScrollOverflow(ref.current));
         triggerResize();
 
         // Act
@@ -133,7 +140,7 @@ describe("useScrollOverflow", () => {
     it("should not report any overflow when the content doesn't overflow", () => {
         // Arrange
         const ref = {current: createElement({overflowing: false})};
-        const {result} = renderHook(() => useScrollOverflow(ref));
+        const {result} = renderHook(() => useScrollOverflow(ref.current));
 
         // Act
         triggerResize();
@@ -150,7 +157,7 @@ describe("useScrollOverflow", () => {
         // Arrange
         const element = createElement({overflowing: true});
         const ref = {current: element};
-        const {result} = renderHook(() => useScrollOverflow(ref));
+        const {result} = renderHook(() => useScrollOverflow(ref.current));
         triggerResize();
         mockOverflow(element, false);
 
@@ -172,7 +179,7 @@ describe("useScrollOverflow", () => {
         const ref = {current: element};
 
         // Act
-        renderHook(() => useScrollOverflow(ref));
+        renderHook(() => useScrollOverflow(ref.current));
 
         // Assert
         expect(observe.mock.calls).toEqual([
@@ -185,7 +192,7 @@ describe("useScrollOverflow", () => {
     it("should disconnect the observer on unmount", () => {
         // Arrange
         const ref = {current: createElement({overflowing: false})};
-        const {unmount} = renderHook(() => useScrollOverflow(ref));
+        const {unmount} = renderHook(() => useScrollOverflow(ref.current));
 
         // Act
         unmount();
@@ -202,7 +209,7 @@ describe("useScrollOverflow", () => {
             "removeEventListener",
         );
         const ref = {current: element};
-        const {unmount} = renderHook(() => useScrollOverflow(ref));
+        const {unmount} = renderHook(() => useScrollOverflow(ref.current));
 
         // Act
         unmount();
@@ -219,7 +226,7 @@ describe("useScrollOverflow", () => {
         const ref = {current: null};
 
         // Act
-        const {result} = renderHook(() => useScrollOverflow(ref));
+        const {result} = renderHook(() => useScrollOverflow(ref.current));
 
         // Assert
         expect(result.current.isOverflowing).toBe(false);
@@ -232,9 +239,70 @@ describe("useScrollOverflow", () => {
         const ref = {current: createElement({overflowing: true})};
 
         // Act
-        const {result} = renderHook(() => useScrollOverflow(ref));
+        const {result} = renderHook(() => useScrollOverflow(ref.current));
 
         // Assert
         expect(result.current.isOverflowing).toBe(false);
+    });
+    it("should not treat a 1px difference (subpixel rounding) as overflow", () => {
+        // Arrange
+        const element = createElement({overflowing: false});
+        mockHeights(element, {clientHeight: 100, scrollHeight: 101});
+
+        // Act
+        const {result} = renderHook(() => useScrollOverflow(element));
+
+        // Assert
+        expect(result.current.isOverflowing).toBe(false);
+    });
+
+    it("should report overflow when children are added later", async () => {
+        // Arrange
+        const element = createElement({overflowing: false});
+        const {result} = renderHook(() => useScrollOverflow(element));
+        mockOverflow(element, true);
+
+        // Act
+        act(() => {
+            element.append(document.createElement("span"));
+        });
+
+        // Assert
+        await waitFor(() => {
+            expect(result.current.isOverflowing).toBe(true);
+        });
+    });
+
+    it("should observe children that are added later", async () => {
+        // Arrange
+        const element = createElement({overflowing: false});
+        renderHook(() => useScrollOverflow(element));
+        const child = document.createElement("span");
+
+        // Act
+        act(() => {
+            element.append(child);
+        });
+
+        // Assert
+        await waitFor(() => {
+            expect(observe).toHaveBeenCalledWith(child);
+        });
+    });
+
+    it("should track the new element when the element changes", () => {
+        // Arrange
+        const first = createElement({overflowing: false});
+        const second = createElement({overflowing: true});
+        const {result, rerender} = renderHook(
+            ({element}) => useScrollOverflow(element),
+            {initialProps: {element: first}},
+        );
+
+        // Act
+        rerender({element: second});
+
+        // Assert
+        expect(result.current.isOverflowing).toBe(true);
     });
 });
