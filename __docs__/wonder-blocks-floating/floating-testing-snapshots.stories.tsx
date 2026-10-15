@@ -183,7 +183,7 @@ export const Scenarios: Story = {
                         size: true,
                         placement: "bottom",
                         content: (
-                            <ScrollableView aria-label="Long content">
+                            <ScrollableView aria-label="Long content (size enabled)">
                                 <View style={styles.scrollableContent}>
                                     {longText}
                                 </View>
@@ -202,7 +202,7 @@ export const Scenarios: Story = {
                     floating: {
                         placement: "bottom",
                         content: (
-                            <ScrollableView aria-label="Long content">
+                            <ScrollableView aria-label="Long content (size disabled)">
                                 <View style={styles.scrollableContent}>
                                     {longText}
                                 </View>
@@ -262,6 +262,18 @@ export const Scenarios: Story = {
                         .maxBlockSize,
                 ),
             ).toBeGreaterThan(0),
+        );
+
+        // So its content scrolls, and the `ScrollableView` becomes focusable
+        // (on the next frame). Waiting for it also ensures that the a11y
+        // checks audit the final state.
+        await waitFor(() =>
+            expect(
+                within(canvas.getByTestId("floating-size-enabled")).getByRole(
+                    "region",
+                    {name: "Long content (size enabled)"},
+                ),
+            ).toHaveAttribute("tabindex", "0"),
         );
 
         // Without it, the floating element isn't constrained.
