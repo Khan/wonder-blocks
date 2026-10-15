@@ -1,9 +1,11 @@
 import * as React from "react";
 import {Meta, StoryObj} from "@storybook/react-vite";
+import {expect, waitFor, within} from "storybook/test";
 import {StyleSheet} from "aphrodite";
 import {Floating} from "@khanacademy/wonder-blocks-floating";
 import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {ScenariosLayout} from "../components/scenarios-layout";
+import {longText} from "../components/text-for-testing";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {Heading} from "@khanacademy/wonder-blocks-typography";
 
@@ -22,6 +24,12 @@ const styles = StyleSheet.create({
     container: {
         display: "grid",
         gridTemplateColumns: "repeat(4, 1fr)",
+    },
+    // Content that scrolls when the floating element is constrained by the
+    // `size` middleware.
+    scrollableContent: {
+        padding: sizing.size_080,
+        overflowY: "auto",
     },
     reference: {
         display: "inline-flex",
@@ -117,6 +125,7 @@ export const Scenarios: Story = {
         hide: false,
         flip: false,
         shift: false,
+        size: false,
         offset: 0,
     },
     render(args) {
@@ -165,6 +174,39 @@ export const Scenarios: Story = {
                 },
             },
             {
+                name: "size enabled",
+                props: {
+                    floating: {
+                        size: true,
+                        placement: "bottom",
+                        content: (
+                            <View style={styles.scrollableContent}>
+                                {longText}
+                            </View>
+                        ),
+                        testId: "floating-size-enabled",
+                        // Constrain it to the scrolling container only, so
+                        // the result doesn't depend on the viewport size.
+                        rootBoundary: "document",
+                    },
+                },
+            },
+            {
+                name: "size disabled",
+                props: {
+                    floating: {
+                        placement: "bottom",
+                        content: (
+                            <View style={styles.scrollableContent}>
+                                {longText}
+                            </View>
+                        ),
+                        testId: "floating-size-disabled",
+                        rootBoundary: "document",
+                    },
+                },
+            },
+            {
                 name: "showArrow disabled",
                 props: {
                     floating: {
@@ -195,6 +237,36 @@ export const Scenarios: Story = {
                     )}
                 </ScenariosLayout>
             </View>
+        );
+    },
+    play: async ({canvasElement}) => {
+        const canvas = within(canvasElement);
+
+        // NOTE: We query the elements on every check (instead of keeping
+        // references to them) because the story can re-mount right after the
+        // first render (e.g. when the theme decorator applies the theme).
+
+        // The `size` middleware constrains the floating element to the
+        // available space within the scrolling container.
+        await waitFor(() =>
+            expect(
+                parseFloat(
+                    canvas.getByTestId("floating-size-enabled").style
+                        .maxBlockSize,
+                ),
+            ).toBeGreaterThan(0),
+        );
+
+        // Without it, the floating element isn't constrained.
+        await expect(
+            canvas.getByTestId("floating-size-disabled").style.maxBlockSize,
+        ).toBe("");
+
+        // So the constrained floating element is shorter than its content.
+        await expect(
+            canvas.getByTestId("floating-size-enabled").offsetHeight,
+        ).toBeLessThan(
+            canvas.getByTestId("floating-size-disabled").offsetHeight,
         );
     },
 };
