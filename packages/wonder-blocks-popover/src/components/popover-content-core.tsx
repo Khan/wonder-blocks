@@ -3,11 +3,11 @@ import {StyleSheet} from "aphrodite";
 
 import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
 import {View} from "@khanacademy/wonder-blocks-core";
-import {sizing} from "@khanacademy/wonder-blocks-tokens";
+import {ScrollableView} from "@khanacademy/wonder-blocks-layout";
+import {border, sizing} from "@khanacademy/wonder-blocks-tokens";
 
 import {actionStyles} from "@khanacademy/wonder-blocks-styles";
 import CloseButton from "./close-button";
-import ScrollContainer from "./scroll-container";
 
 type Props = AriaProps & {
     /**
@@ -89,7 +89,7 @@ const PopoverContentCore = React.forwardRef<HTMLElement, Props>(
         return (
             // The close button is inside the scroll container, so it scrolls
             // with the content.
-            <ScrollContainer>
+            <ScrollableView style={styles.scrollableView}>
                 {closeButtonVisible && (
                     <CloseButton
                         aria-label={closeButtonLabel}
@@ -108,7 +108,7 @@ const PopoverContentCore = React.forwardRef<HTMLElement, Props>(
                 >
                     {children}
                 </View>
-            </ScrollContainer>
+            </ScrollableView>
         );
     },
 );
@@ -118,6 +118,12 @@ PopoverContentCore.displayName = "PopoverContentCore";
 export default PopoverContentCore;
 
 const styles = StyleSheet.create({
+    scrollableView: {
+        // The scrollable view sits at the edges of the floating element (the
+        // popover "bubble"), so match its inner border radius (its border
+        // radius minus its border width). This also rounds the fades.
+        borderRadius: `calc(${border.radius.radius_040} - ${border.width.thin})`,
+    },
     content: {
         margin: 0,
         maxInlineSize: `calc(${sizing.size_160} * 18)`, // 288px
