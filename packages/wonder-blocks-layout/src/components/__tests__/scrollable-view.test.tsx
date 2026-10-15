@@ -268,4 +268,50 @@ describe("ScrollableView", () => {
         // Assert
         expect(region).not.toBeInTheDocument();
     });
+    it("should stay focusable while it has focus, even if it stops overflowing", () => {
+        // Arrange
+        render(
+            <ScrollableView testId="scrollable-view">
+                <span>Some content</span>
+            </ScrollableView>,
+        );
+        const scrollableView = screen.getByTestId("scrollable-view");
+        mockOverflow(scrollableView, true);
+        triggerResize();
+        act(() => {
+            scrollableView.focus();
+        });
+        mockOverflow(scrollableView, false);
+
+        // Act
+        triggerResize();
+
+        // Assert
+        expect(scrollableView).toHaveAttribute("tabindex", "0");
+    });
+
+    it("should stop being focusable once it loses focus after it stops overflowing", () => {
+        // Arrange
+        render(
+            <ScrollableView testId="scrollable-view">
+                <span>Some content</span>
+            </ScrollableView>,
+        );
+        const scrollableView = screen.getByTestId("scrollable-view");
+        mockOverflow(scrollableView, true);
+        triggerResize();
+        act(() => {
+            scrollableView.focus();
+        });
+        mockOverflow(scrollableView, false);
+        triggerResize();
+
+        // Act
+        act(() => {
+            scrollableView.blur();
+        });
+
+        // Assert
+        expect(scrollableView).not.toHaveAttribute("tabindex");
+    });
 });

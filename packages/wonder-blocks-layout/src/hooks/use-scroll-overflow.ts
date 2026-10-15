@@ -28,28 +28,29 @@ const initialState: ScrollOverflow = {
  * Tracks whether the element's content overflows vertically, and whether there
  * is content to scroll to above and/or below the visible area.
  *
- * The check runs right away when the hook mounts, again when the element is
- * scrolled, and whenever the element or any of its direct children (present
- * when the hook runs) are resized.
+ * The check runs right away, again when the element is scrolled, whenever the
+ * element or any of its direct children are resized, and whenever direct
+ * children are added or removed.
  *
  * NOTE: CSS scroll-driven animations (`animation-timeline: scroll()`) could
  * replace the scroll tracking, but they're not supported in all the browsers
  * we support yet (e.g. Safari < 26).
  *
- * NOTE: It only handles vertical overflow, and only observes the children
- * present when the hook runs.
+ * NOTE: It only handles vertical overflow.
  *
  * `ScrollableView` uses this hook to show fades at the edges of its content.
  *
  * ```tsx
- * const ref = React.useRef<HTMLElement>(null);
+ * // Store the element in state (e.g. via a callback ref), so the hook
+ * // re-attaches if the element mounts later or changes.
+ * const [element, setElement] = React.useState<HTMLElement | null>(null);
  * const {isOverflowing, hasContentAbove, hasContentBelow} =
- *     useScrollOverflow(ref);
+ *     useScrollOverflow(element);
+ *
+ * <View ref={setElement}>...</View>
  * ```
  */
-export function useScrollOverflow(
-    ref: React.RefObject<HTMLElement | null>,
-): ScrollOverflow {
+export function useScrollOverflow(element: HTMLElement | null): ScrollOverflow {
     const [state, setState] = React.useState<ScrollOverflow>(initialState);
 
     // NOTE: Styles might not be applied yet when this runs (e.g. Aphrodite
@@ -57,18 +58,20 @@ export function useScrollOverflow(
     // miss an overflow caused by them (e.g. a `maxBlockSize`). The
     // `ResizeObserver` catches it once they're applied, on the next frame.
     React.useEffect(() => {
-        const element = ref.current;
         // ResizeObserver is supported in browsers we support, but not in jsdom
         if (!element || !window.ResizeObserver) {
+            // Reset the state if the element was removed.
+            setState(initialState);
             return;
         }
 
         const update = () => {
             const {scrollTop, scrollHeight, clientHeight} = element;
             const next: ScrollOverflow = {
-                isOverflowing: scrollHeight > clientHeight,
+                // Allow for subpixel rounding (scroll sizes are rounded to
+                // integers), so a 1px difference isn't treated as overflow.
+                isOverflowing: scrollHeight - clientHeight > 1,
                 hasContentAbove: scrollTop > 0,
-                // Allow for subpixel rounding when scrolled to the bottom.
                 hasContentBelow: scrollTop + clientHeight < scrollHeight - 1,
             };
 
@@ -89,6 +92,22 @@ export function useScrollOverflow(
         Array.from(element.children).forEach((child) =>
             resizeObserver.observe(child),
         );
+
+        // Also check (and observe new children) when direct children are
+        // added or removed, since that changes the content size without
+        // resizing the container once it's constrained.
+        const mutationObserver = new MutationObserver((mutations) => {
+            mutations.forEach((mutation) =>
+                mutation.addedNodes.forEach((node) => {
+                    if (node instanceof Element) {
+                        resizeObserver.observe(node);
+                    }
+                }),
+            );
+            update();
+        });
+        mutationObserver.observe(element, {childList: true});
+
         element.addEventListener("scroll", update, {passive: true});
 
         // Check right away instead of waiting for the first resize
@@ -97,9 +116,10 @@ export function useScrollOverflow(
 
         return () => {
             resizeObserver.disconnect();
+            mutationObserver.disconnect();
             element.removeEventListener("scroll", update);
         };
-    }, [ref]);
+    }, [element]);
 
     return state;
 }
