@@ -1,6 +1,7 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 import type {Meta, StoryObj} from "@storybook/react-vite";
+import {expect, waitFor, within} from "storybook/test";
 
 import Button from "@khanacademy/wonder-blocks-button";
 import {View} from "@khanacademy/wonder-blocks-core";
@@ -63,6 +64,24 @@ const styles = StyleSheet.create({
     },
 });
 
+/**
+ * Waits for the view to detect that its content overflows (it becomes
+ * focusable on the next frame, once the styles that constrain it are
+ * applied), so the a11y checks audit its final state.
+ */
+const waitForOverflow: StoryComponentType["play"] = async ({canvasElement}) => {
+    const canvas = within(canvasElement);
+
+    // NOTE: We query the element on every check (instead of keeping a
+    // reference to it) because the story can re-mount right after the first
+    // render (e.g. when the theme decorator applies the theme).
+    await waitFor(() =>
+        expect(
+            canvas.getByRole("region", {name: "Terms and conditions"}),
+        ).toHaveAttribute("tabindex", "0"),
+    );
+};
+
 const LongContent = () => (
     <View style={styles.content}>
         <Heading size="medium">Terms and conditions</Heading>
@@ -87,6 +106,7 @@ export const Default: StoryComponentType = {
         style: styles.constrained,
         children: <LongContent />,
     },
+    play: waitForOverflow,
     parameters: {
         chromatic: {
             disableSnapshot: false,
@@ -122,6 +142,7 @@ export const WithRoundedCorners: StoryComponentType = {
         style: [styles.constrained, styles.rounded],
         children: <LongContent />,
     },
+    play: waitForOverflow,
     parameters: {
         chromatic: {
             disableSnapshot: false,
