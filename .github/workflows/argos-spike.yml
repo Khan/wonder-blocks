@@ -101,14 +101,12 @@ jobs:
               if: ${{ env.HAS_ARGOS_TOKEN == 'true' }}
               run: |
                   set -o pipefail
-                  # Pushes to main are production deployments; everything
-                  # else is a preview (served on a per-deployment URL and a
-                  # per-branch URL).
-                  prod_flag=""
-                  if [ "$GITHUB_REF" = "refs/heads/main" ]; then
-                      prod_flag="--prod"
-                  fi
-                  pnpm exec argos deploy ./storybook-static $prod_flag 2>&1 | tee deploy.log
+                  # Deploys are previews (a per-deployment URL plus a
+                  # per-branch URL that follows the latest deploy). Argos
+                  # promotes deploys from the production branch (main by
+                  # default) to production on its own, so no `--prod` here.
+                  # See: https://argos-ci.com/docs/learn/how-to-guides/migrate-to-argos/from-chromatic#migrate-the-published-storybook
+                  pnpm exec argos deploy ./storybook-static 2>&1 | tee deploy.log
                   # The CLI prints `✔ Deployed: <url>` once the deployment is
                   # ready; it has no machine-readable output.
                   url=$(sed 's/\x1b\[[0-9;]*m//g' deploy.log | grep -oE 'https://[^ ]+\.argos-ci\.live[^ ]*' | tail -1)
