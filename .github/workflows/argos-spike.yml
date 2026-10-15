@@ -78,11 +78,13 @@ jobs:
             - name: Run Storybook tests with Argos screenshots
               id: vitest
               run: |
+                  set -o pipefail
                   start=$(date +%s)
+                  # Record the duration even when vitest fails.
+                  trap 'echo "seconds=$(( $(date +%s) - start ))" >> "$GITHUB_OUTPUT"' EXIT
                   # STORIES is intentionally unquoted so an empty filter runs
                   # every story file.
-                  pnpm exec vitest run --project=storybook $STORIES
-                  echo "seconds=$(( $(date +%s) - start ))" >> "$GITHUB_OUTPUT"
+                  pnpm exec vitest run --project=storybook $STORIES 2>&1 | tee vitest.log
               env:
                   STORIES: ${{ inputs.stories }}
                   ARGOS_SCREENSHOTS: "true"
@@ -106,6 +108,18 @@ jobs:
                       echo "| Vitest wall-clock | ${{ steps.vitest.outputs.seconds }}s |"
                       echo "| Uploaded to Argos | ${{ secrets.ARGOS_TOKEN != '' }} |"
                   } >> "$GITHUB_STEP_SUMMARY"
+                  # Also emit the numbers (and, on failure, the error lines) as
+                  # annotations: unlike logs and step summaries, those can be
+                  # read straight from the GitHub API.
+                  echo "::notice title=Argos spike metrics::screenshots=${count} vitest_seconds=${{ steps.vitest.outputs.seconds }}"
+                  if [ "${{ steps.vitest.outcome }}" = "failure" ] && [ -f vitest.log ]; then
+                      details=$(sed 's/\x1b\[[0-9;]*m//g' vitest.log \
+                          | grep -E "Error|FAIL|×|✗|Failed|argos|Argos|Test Files|Tests " \
+                          | tail -60 \
+                          | sed -e 's/%/%25/g' -e 's/\r/%0D/g' \
+                          | awk '{printf "%s%%0A", $0}')
+                      echo "::error title=Vitest failure details::${details}"
+                  fi
 
             - name: Upload screenshots
               if: always()
