@@ -1,5 +1,13 @@
 # @khanacademy/wonder-blocks-birthday-picker
 
+## 4.1.70
+
+### Patch Changes
+
+- 0600a87: Convert `BirthdayPicker` from a class component to a functional component
+- Updated dependencies [4421914]
+    - @khanacademy/wonder-blocks-dropdown@10.13.1
+
 ## 4.1.69
 
 ### Patch Changes

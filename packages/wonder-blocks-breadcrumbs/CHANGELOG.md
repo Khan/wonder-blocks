@@ -1,5 +1,16 @@
 # @khanacademy/wonder-blocks-breadcrumbs
 
+## 3.3.0
+
+### Minor Changes
+
+- f7eef63: Breadcrumbs' default `aria-label` and the TabsDropdown and NavigationTabsDropdown default opener label now read translated strings from `WonderBlocksConfigProvider`. The `aria-label` and `labels.defaultOpenerLabel` props override the built-in translations.
+
+### Patch Changes
+
+- Updated dependencies [f7eef63]
+    - @khanacademy/wonder-blocks-config@0.3.0
+
 ## 3.2.29
 
 ### Patch Changes

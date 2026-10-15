@@ -1,8 +1,10 @@
 import * as React from "react";
 import {Meta, StoryObj} from "@storybook/react-vite";
 import {NavigationTabsDropdown} from "../../packages/wonder-blocks-tabs/src/components/navigation-tabs-dropdown";
-import {PropsFor} from "@khanacademy/wonder-blocks-core";
+import {PropsFor, View} from "@khanacademy/wonder-blocks-core";
+import {sizing} from "@khanacademy/wonder-blocks-tokens";
 import {Icon, PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
+import {BodyText} from "@khanacademy/wonder-blocks-typography";
 import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
 import navigationTabsDropdownArgTypes from "./navigation-tabs-dropdown.argtypes";
 
@@ -61,6 +63,60 @@ export const Default: Story = {
         selectedTabId: "tab-1",
     },
     render: ControlledNavigationTabsDropdown,
+};
+
+/**
+ * Normally, the label of the selected tab is displayed in the opener. However,
+ * if the selected tab id is invalid, a built-in "Tabs" label is used for the
+ * opener instead. It can be overridden using the `labels.defaultOpenerLabel`
+ * prop.
+ */
+export const InvalidSelectedTabId: Story = {
+    args: {
+        tabs: [
+            {
+                id: "tab-1",
+                label: "Navigation tab 1",
+                href: "#tab-1",
+            },
+            {
+                id: "tab-2",
+                label: "Navigation tab 2",
+                href: "#tab-2",
+            },
+        ],
+        selectedTabId: "invalid-tab-id",
+    },
+    render: function Render(args) {
+        const defaultLabelId = React.useId();
+        const customLabelId = React.useId();
+
+        return (
+            <View style={{gap: sizing.size_200}}>
+                <View style={{gap: sizing.size_080}}>
+                    <BodyText id={defaultLabelId}>
+                        Default opener label
+                    </BodyText>
+                    <ControlledNavigationTabsDropdown
+                        tabs={args.tabs}
+                        selectedTabId={args.selectedTabId}
+                        aria-labelledby={defaultLabelId}
+                    />
+                </View>
+                <View style={{gap: sizing.size_080}}>
+                    <BodyText id={customLabelId}>
+                        Custom opener label using labels.defaultOpenerLabel prop
+                    </BodyText>
+                    <ControlledNavigationTabsDropdown
+                        tabs={args.tabs}
+                        selectedTabId={args.selectedTabId}
+                        aria-labelledby={customLabelId}
+                        labels={{defaultOpenerLabel: "Custom Tabs Label"}}
+                    />
+                </View>
+            </View>
+        );
+    },
 };
 
 /**
