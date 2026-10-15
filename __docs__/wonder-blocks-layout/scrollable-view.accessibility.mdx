@@ -1,0 +1,49 @@
+import {Meta, Canvas} from "@storybook/addon-docs/blocks";
+
+import {ScrollableView} from "@khanacademy/wonder-blocks-layout";
+
+import * as ScrollableViewStories from "./scrollable-view.stories";
+
+<Meta
+    title="Packages / Layout / ScrollableView / Accessibility"
+    component={ScrollableView}
+    parameters={{
+        previewTabs: {
+            canvas: {hidden: true},
+        },
+        viewMode: "docs",
+    }}
+/>
+
+# Accessibility
+
+`ScrollableView` is meant for content that might not fit in the available
+space, e.g. on small screens or when the page is zoomed in (up to 400%, see
+[WCAG 1.4.10 Reflow](https://www.w3.org/WAI/WCAG22/Understanding/reflow.html)).
+Instead of being cut off, the content scrolls.
+
+## Keyboard interaction
+
+- While its content overflows, the view becomes keyboard focusable
+  (`tabindex="0"`), so keyboard users can focus it and scroll it with the
+  arrow keys, Page Up/Page Down, Home and End.
+- When the content fits, the view isn't focusable, so it doesn't add an extra
+  tab stop.
+- Focusable elements inside the view (e.g. form fields or buttons) stay in the
+  tab order, and the browser scrolls them into view when they're focused.
+- The view shows the Wonder Blocks focus indicator when it's focused with the
+  keyboard.
+
+## Labeling
+
+Since the view can receive focus, give it an accessible name (e.g. with
+`aria-label` or `aria-labelledby`) that describes its content, so screen
+readers can announce what the focused region contains.
+
+## Visual hints
+
+The content fades out at the top and/or bottom edges while there's more
+content to scroll to in that direction. The fades are decorative: they don't
+capture clicks and aren't announced by screen readers.
+
+<Canvas of={ScrollableViewStories.Default} />
