@@ -328,6 +328,8 @@ function Popover(props: Props) {
             value={{
                 close: handleClose,
                 placement: placement,
+                ariaLabel,
+                ariaLabelledBy,
             }}
         >
             <Floating
