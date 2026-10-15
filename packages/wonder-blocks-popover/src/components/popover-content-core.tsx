@@ -8,6 +8,7 @@ import {border, sizing} from "@khanacademy/wonder-blocks-tokens";
 
 import {actionStyles} from "@khanacademy/wonder-blocks-styles";
 import CloseButton from "./close-button";
+import PopoverContext from "./popover-context";
 
 type Props = AriaProps & {
     /**
@@ -59,7 +60,8 @@ type Props = AriaProps & {
  * high zoom levels), the content (including the close button) scrolls, and
  * it fades out at the edges to hint that there's more content to scroll to.
  * The scrollable area becomes keyboard focusable while it overflows, so
- * keyboard users can scroll it too.
+ * keyboard users can scroll it too. It's named after the popover (via its
+ * title or `aria-label`), so screen readers announce it when it's focused.
  *
  * ### Usage
  *
@@ -86,8 +88,17 @@ const PopoverContentCore = React.forwardRef<HTMLElement, Props>(
         }: Props,
         ref,
     ): React.ReactElement {
+        // Name the scrollable area after the popover, since it can receive
+        // focus while its content overflows.
+        const {ariaLabel: popoverLabel, ariaLabelledBy: popoverLabelledBy} =
+            React.useContext(PopoverContext);
+
         return (
-            <ScrollableView style={styles.scrollableView}>
+            <ScrollableView
+                aria-label={popoverLabel}
+                aria-labelledby={popoverLabelledBy}
+                style={styles.scrollableView}
+            >
                 <View
                     testId={testId}
                     style={[styles.content, style]}
