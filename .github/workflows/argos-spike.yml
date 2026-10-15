@@ -1,0 +1,196 @@
+# SPIKE (WB-2480): Evaluate Argos for visual regression testing.
+#
+# Runs the Storybook Vitest suite once (default theme) with Argos screenshots
+# enabled, so we can compare wall-clock time and memory against the a11y-only
+# `storybook_tests (default)` job in `chromatic-pr.yml`, and inspect the
+# screenshots it produces.
+#
+# Theme/viewport/RTL coverage comes from each story's existing
+# `parameters.chromatic.modes`, which `@argos-ci/storybook` reads as a
+# fallback, so a single job produces the same set of snapshots as Chromatic.
+#
+# It also builds Storybook and publishes it as an Argos deployment (the
+# equivalent of the Storybook that Chromatic hosts for each PR), and points the
+# "Click to debug" links of failing stories at it via `SB_URL`.
+# See: https://argos-ci.com/docs/learn/deployments
+#
+# Uploading to Argos is opt-in: it only happens when the `ARGOS_TOKEN` secret
+# is set. Until then, screenshots are only published as a workflow artifact
+# and Storybook isn't deployed.
+name: Argos (spike)
+
+on:
+    pull_request:
+        types: [opened, synchronize, reopened, ready_for_review]
+    # Builds on main become the visual baseline (auto-approved by Argos) and
+    # are deployed as the production Storybook.
+    push:
+        branches:
+            - main
+    workflow_dispatch:
+        inputs:
+            stories:
+                description: "Story file filter passed to vitest (empty = all stories)"
+                required: false
+                default: ""
+
+concurrency:
+    group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+    cancel-in-progress: true
+
+permissions:
+    contents: read
+    # Lets Argos authenticate with GitHub Actions OIDC instead of a token,
+    # once the Argos GitHub app is installed on the repo.
+    id-token: write
+
+jobs:
+    argos:
+        name: Storybook tests + Argos screenshots (default)
+        runs-on: ${{ vars.USE_GITHUB_RUNNERS == 'true' && 'ubuntu-latest' || 'ephemeral-runner' }}
+        env:
+            # Secrets can't be used in step `if:` conditions directly.
+            HAS_ARGOS_TOKEN: ${{ secrets.ARGOS_TOKEN != '' }}
+        steps:
+            # Same fonts as the a11y matrix, installed before secure-network so
+            # we don't need to allowlist Ubuntu package domains.
+            - name: Install Playwright dependencies
+              timeout-minutes: 5
+              run: |
+                  sudo apt-get update
+                  sudo apt-get install -y fonts-liberation fonts-ipafont-gothic fonts-wqy-zenhei fonts-tlwg-loma-otf fonts-freefont-ttf
+
+            - name: Checking out latest commit
+              uses: actions/checkout@v5
+              with:
+                  # Argos uses git history to find the merge base and pick the
+                  # baseline build.
+                  fetch-depth: 0
+            - name: Secure Network
+              uses: Khan/actions@secure-network-v1
+              timeout-minutes: 5
+              with:
+                  # registry.npmjs.org: npm package registry for pnpm install
+                  # playwright.download.prss.microsoft.com, cdn.playwright.dev, storage.googleapis.com: Playwright browser downloads
+                  # api.argos-ci.com: Argos API (build creation, auth exchange, finalize)
+                  # argos-ci-production-us-east-1.s3.us-east-1.amazonaws.com: S3 bucket that the
+                  #   presigned screenshot upload URLs returned by the Argos API point to (seen in CI).
+                  # argos-deployments-production.s3.us-east-1.amazonaws.com: S3 bucket for
+                  #   Storybook deployment uploads (from Argos's production config).
+                  extra-domains: registry.npmjs.org playwright.download.prss.microsoft.com cdn.playwright.dev storage.googleapis.com api.argos-ci.com argos-ci-production-us-east-1.s3.us-east-1.amazonaws.com argos-deployments-production.s3.us-east-1.amazonaws.com
+
+            - name: Install & cache node_modules
+              uses: ./.github/actions/shared-node-cache
+              timeout-minutes: 5
+
+            - name: Install Playwright browsers
+              timeout-minutes: 5
+              run: pnpm exec playwright install chromium
+
+            - name: Generate WB build artifacts
+              id: build
+              run: pnpm build
+
+            # Deploy before running the tests so failing stories can link to
+            # this deployment instead of a Chromatic-hosted Storybook.
+            - name: Build Storybook
+              if: ${{ env.HAS_ARGOS_TOKEN == 'true' }}
+              run: pnpm build:storybook
+
+            - name: Deploy Storybook to Argos
+              id: deploy
+              if: ${{ env.HAS_ARGOS_TOKEN == 'true' }}
+              run: |
+                  set -o pipefail
+                  # Deploys are previews (a per-deployment URL plus a
+                  # per-branch URL that follows the latest deploy). Argos
+                  # promotes deploys from the production branch (main by
+                  # default) to production on its own, so no `--prod` here.
+                  # See: https://argos-ci.com/docs/learn/how-to-guides/migrate-to-argos/from-chromatic#migrate-the-published-storybook
+                  #
+                  # The Argos API rejects zero-byte files ("files.N.size is
+                  # Too small"). The Storybook build emits empty esbuild
+                  # license files (`sb-addons/*/manager-bundle.js.LEGAL.txt`)
+                  # that the browser never requests, so drop them first.
+                  find storybook-static -type f -empty -print -delete
+                  pnpm exec argos deploy ./storybook-static 2>&1 | tee deploy.log
+                  # The CLI prints `✔ Deployed: <url>` once the deployment is
+                  # ready; it has no machine-readable output.
+                  url=$(sed 's/\x1b\[[0-9;]*m//g' deploy.log | grep -oE 'https://[^ ]+\.argos-ci\.live[^ ]*' | tail -1)
+                  if [ -z "$url" ]; then
+                      echo "::error title=Argos deploy::Couldn't find the deployment URL in the CLI output"
+                      exit 1
+                  fi
+                  echo "url=${url}" >> "$GITHUB_OUTPUT"
+                  echo "::notice title=Storybook deployed to Argos::${url}"
+              env:
+                  ARGOS_TOKEN: ${{ secrets.ARGOS_TOKEN }}
+
+            - name: Run Storybook tests with Argos screenshots
+              id: vitest
+              # Still run when the deploy fails: the tests only lose their
+              # "Click to debug" link (SB_URL falls back to localhost).
+              if: ${{ !cancelled() && steps.build.outcome == 'success' }}
+              run: |
+                  set -o pipefail
+                  start=$(date +%s)
+                  # Record the duration even when vitest fails.
+                  trap 'echo "seconds=$(( $(date +%s) - start ))" >> "$GITHUB_OUTPUT"' EXIT
+                  # STORIES is intentionally unquoted so an empty filter runs
+                  # every story file.
+                  pnpm exec vitest run --project=storybook $STORIES 2>&1 | tee vitest.log
+              env:
+                  STORIES: ${{ inputs.stories }}
+                  ARGOS_SCREENSHOTS: "true"
+                  ARGOS_UPLOAD: ${{ env.HAS_ARGOS_TOKEN }}
+                  ARGOS_TOKEN: ${{ secrets.ARGOS_TOKEN }}
+                  VITE_WB_THEME: default
+                  # "Click to debug" links in failing stories point here. When
+                  # the deploy is skipped this is empty and vitest.config.ts
+                  # falls back to localhost.
+                  SB_URL: ${{ steps.deploy.outputs.url }}
+                  # Explicitly set the timezone to avoid:
+                  # `Invalid time zone specified: ETC/UNKNOWN`
+                  TZ: America/Los_Angeles
+
+            - name: Summarize
+              if: always()
+              run: |
+                  count=$(find screenshots -name '*.png' 2>/dev/null | wc -l)
+                  {
+                      echo "## Argos spike"
+                      echo ""
+                      echo "| Metric | Value |"
+                      echo "|---|---|"
+                      echo "| Screenshots | ${count} |"
+                      echo "| Vitest wall-clock | ${{ steps.vitest.outputs.seconds }}s |"
+                      echo "| Uploaded to Argos | ${{ secrets.ARGOS_TOKEN != '' }} |"
+                      echo "| Storybook deployment | ${{ steps.deploy.outputs.url || 'not deployed' }} |"
+                  } >> "$GITHUB_STEP_SUMMARY"
+                  # Also emit the numbers (and, on failure, the error lines) as
+                  # annotations: unlike logs and step summaries, those can be
+                  # read straight from the GitHub API.
+                  echo "::notice title=Argos spike metrics::screenshots=${count} vitest_seconds=${{ steps.vitest.outputs.seconds }}"
+                  if [ "${{ steps.vitest.outcome }}" = "failure" ] && [ -f vitest.log ]; then
+                      details=$(sed 's/\x1b\[[0-9;]*m//g' vitest.log \
+                          | grep -E "Error|FAIL|×|✗|Failed|argos|Argos|Test Files|Tests " \
+                          | tail -60 \
+                          | sed -e 's/%/%25/g' -e 's/\r/%0D/g' \
+                          | awk '{printf "%s%%0A", $0}')
+                      echo "::error title=Vitest failure details::${details}"
+                  fi
+                  if [ "${{ steps.deploy.outcome }}" = "failure" ] && [ -f deploy.log ]; then
+                      details=$(sed 's/\x1b\[[0-9;]*m//g' deploy.log \
+                          | tail -40 \
+                          | sed -e 's/%/%25/g' -e 's/\r/%0D/g' \
+                          | awk '{printf "%s%%0A", $0}')
+                      echo "::error title=Argos deploy failure details::${details}"
+                  fi
+
+            - name: Upload screenshots
+              if: always()
+              uses: actions/upload-artifact@v6
+              with:
+                  name: argos-screenshots
+                  path: screenshots
+                  retention-days: 7
