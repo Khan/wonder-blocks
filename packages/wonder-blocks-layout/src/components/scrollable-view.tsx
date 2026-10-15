@@ -56,7 +56,7 @@ type Props = AriaProps & {
  */
 const ScrollableView = React.forwardRef<HTMLElement, Props>(
     function ScrollableView(
-        {children, style, testId, ...ariaProps}: Props,
+        {children, role, style, testId, ...ariaProps}: Props,
         forwardedRef,
     ) {
         const ref = React.useRef<HTMLElement | null>(null);
@@ -96,6 +96,15 @@ const ScrollableView = React.forwardRef<HTMLElement, Props>(
         return (
             <View
                 {...ariaProps}
+                // Expose a labeled view as a region, so screen readers announce
+                // its name when it's focused (an `aria-label` on an element
+                // without a role isn't reliably announced).
+                role={
+                    role ??
+                    (ariaProps["aria-label"] || ariaProps["aria-labelledby"]
+                        ? "region"
+                        : undefined)
+                }
                 ref={handleRef}
                 testId={testId}
                 style={[

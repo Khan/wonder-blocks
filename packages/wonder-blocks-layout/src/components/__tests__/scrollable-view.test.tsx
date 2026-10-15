@@ -237,4 +237,35 @@ describe("ScrollableView", () => {
             screen.getByText("Some content"),
         );
     });
+    it("should be exposed as a region when it's labeled", () => {
+        // Arrange
+        render(
+            <ScrollableView aria-label="Terms and conditions">
+                <span>Some content</span>
+            </ScrollableView>,
+        );
+
+        // Act
+        const region = screen.getByRole("region", {
+            name: "Terms and conditions",
+        });
+
+        // Assert
+        expect(region).toBeInTheDocument();
+    });
+
+    it("should not be exposed as a region when it isn't labeled", () => {
+        // Arrange
+        render(
+            <ScrollableView>
+                <span>Some content</span>
+            </ScrollableView>,
+        );
+
+        // Act
+        const region = screen.queryByRole("region");
+
+        // Assert
+        expect(region).not.toBeInTheDocument();
+    });
 });
