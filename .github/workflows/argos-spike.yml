@@ -9,13 +9,24 @@
 # `parameters.chromatic.modes`, which `@argos-ci/storybook` reads as a
 # fallback, so a single job produces the same set of snapshots as Chromatic.
 #
+# It also builds Storybook and publishes it as an Argos deployment (the
+# equivalent of the Storybook that Chromatic hosts for each PR), and points the
+# "Click to debug" links of failing stories at it via `SB_URL`.
+# See: https://argos-ci.com/docs/learn/deployments
+#
 # Uploading to Argos is opt-in: it only happens when the `ARGOS_TOKEN` secret
-# is set. Until then, screenshots are only published as a workflow artifact.
+# is set. Until then, screenshots are only published as a workflow artifact
+# and Storybook isn't deployed.
 name: Argos (spike)
 
 on:
     pull_request:
         types: [opened, synchronize, reopened, ready_for_review]
+    # Builds on main become the visual baseline (auto-approved by Argos) and
+    # are deployed as the production Storybook.
+    push:
+        branches:
+            - main
     workflow_dispatch:
         inputs:
             stories:
@@ -37,6 +48,9 @@ jobs:
     argos:
         name: Storybook tests + Argos screenshots (default)
         runs-on: ${{ vars.USE_GITHUB_RUNNERS == 'true' && 'ubuntu-latest' || 'ephemeral-runner' }}
+        env:
+            # Secrets can't be used in step `if:` conditions directly.
+            HAS_ARGOS_TOKEN: ${{ secrets.ARGOS_TOKEN != '' }}
         steps:
             # Same fonts as the a11y matrix, installed before secure-network so
             # we don't need to allowlist Ubuntu package domains.
@@ -60,8 +74,10 @@ jobs:
                   # playwright.download.prss.microsoft.com, cdn.playwright.dev, storage.googleapis.com: Playwright browser downloads
                   # api.argos-ci.com: Argos API (build creation, auth exchange, finalize)
                   # argos-ci-production-us-east-1.s3.us-east-1.amazonaws.com: S3 bucket that the
-                  #   presigned upload URLs returned by the Argos API point to (seen in CI).
-                  extra-domains: registry.npmjs.org playwright.download.prss.microsoft.com cdn.playwright.dev storage.googleapis.com api.argos-ci.com argos-ci-production-us-east-1.s3.us-east-1.amazonaws.com
+                  #   presigned screenshot upload URLs returned by the Argos API point to (seen in CI).
+                  # argos-deployments-production.s3.us-east-1.amazonaws.com: S3 bucket for
+                  #   Storybook deployment uploads (from Argos's production config).
+                  extra-domains: registry.npmjs.org playwright.download.prss.microsoft.com cdn.playwright.dev storage.googleapis.com api.argos-ci.com argos-ci-production-us-east-1.s3.us-east-1.amazonaws.com argos-deployments-production.s3.us-east-1.amazonaws.com
 
             - name: Install & cache node_modules
               uses: ./.github/actions/shared-node-cache
@@ -73,6 +89,37 @@ jobs:
 
             - name: Generate WB build artifacts
               run: pnpm build
+
+            # Deploy before running the tests so failing stories can link to
+            # this deployment instead of a Chromatic-hosted Storybook.
+            - name: Build Storybook
+              if: ${{ env.HAS_ARGOS_TOKEN == 'true' }}
+              run: pnpm build:storybook
+
+            - name: Deploy Storybook to Argos
+              id: deploy
+              if: ${{ env.HAS_ARGOS_TOKEN == 'true' }}
+              run: |
+                  set -o pipefail
+                  # Pushes to main are production deployments; everything
+                  # else is a preview (served on a per-deployment URL and a
+                  # per-branch URL).
+                  prod_flag=""
+                  if [ "$GITHUB_REF" = "refs/heads/main" ]; then
+                      prod_flag="--prod"
+                  fi
+                  pnpm exec argos deploy ./storybook-static $prod_flag 2>&1 | tee deploy.log
+                  # The CLI prints `✔ Deployed: <url>` once the deployment is
+                  # ready; it has no machine-readable output.
+                  url=$(sed 's/\x1b\[[0-9;]*m//g' deploy.log | grep -oE 'https://[^ ]+\.argos-ci\.live[^ ]*' | tail -1)
+                  if [ -z "$url" ]; then
+                      echo "::error title=Argos deploy::Couldn't find the deployment URL in the CLI output"
+                      exit 1
+                  fi
+                  echo "url=${url}" >> "$GITHUB_OUTPUT"
+                  echo "::notice title=Storybook deployed to Argos::${url}"
+              env:
+                  ARGOS_TOKEN: ${{ secrets.ARGOS_TOKEN }}
 
             - name: Run Storybook tests with Argos screenshots
               id: vitest
@@ -87,9 +134,13 @@ jobs:
               env:
                   STORIES: ${{ inputs.stories }}
                   ARGOS_SCREENSHOTS: "true"
-                  ARGOS_UPLOAD: ${{ secrets.ARGOS_TOKEN != '' }}
+                  ARGOS_UPLOAD: ${{ env.HAS_ARGOS_TOKEN }}
                   ARGOS_TOKEN: ${{ secrets.ARGOS_TOKEN }}
                   VITE_WB_THEME: default
+                  # "Click to debug" links in failing stories point here. When
+                  # the deploy is skipped this is empty and vitest.config.ts
+                  # falls back to localhost.
+                  SB_URL: ${{ steps.deploy.outputs.url }}
                   # Explicitly set the timezone to avoid:
                   # `Invalid time zone specified: ETC/UNKNOWN`
                   TZ: America/Los_Angeles
@@ -106,6 +157,7 @@ jobs:
                       echo "| Screenshots | ${count} |"
                       echo "| Vitest wall-clock | ${{ steps.vitest.outputs.seconds }}s |"
                       echo "| Uploaded to Argos | ${{ secrets.ARGOS_TOKEN != '' }} |"
+                      echo "| Storybook deployment | ${{ steps.deploy.outputs.url || 'not deployed' }} |"
                   } >> "$GITHUB_STEP_SUMMARY"
                   # Also emit the numbers (and, on failure, the error lines) as
                   # annotations: unlike logs and step summaries, those can be
@@ -118,6 +170,13 @@ jobs:
                           | sed -e 's/%/%25/g' -e 's/\r/%0D/g' \
                           | awk '{printf "%s%%0A", $0}')
                       echo "::error title=Vitest failure details::${details}"
+                  fi
+                  if [ "${{ steps.deploy.outcome }}" = "failure" ] && [ -f deploy.log ]; then
+                      details=$(sed 's/\x1b\[[0-9;]*m//g' deploy.log \
+                          | tail -40 \
+                          | sed -e 's/%/%25/g' -e 's/\r/%0D/g' \
+                          | awk '{printf "%s%%0A", $0}')
+                      echo "::error title=Argos deploy failure details::${details}"
                   fi
 
             - name: Upload screenshots
