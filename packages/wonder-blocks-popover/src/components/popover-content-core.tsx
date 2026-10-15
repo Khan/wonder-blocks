@@ -3,11 +3,11 @@ import {StyleSheet} from "aphrodite";
 
 import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
 import {View} from "@khanacademy/wonder-blocks-core";
-import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
+import {sizing} from "@khanacademy/wonder-blocks-tokens";
 
-import {actionStyles, focusStyles} from "@khanacademy/wonder-blocks-styles";
+import {actionStyles} from "@khanacademy/wonder-blocks-styles";
 import CloseButton from "./close-button";
-import {useScrollOverflow} from "../hooks/use-scroll-overflow";
+import ScrollContainer from "./scroll-container";
 
 type Props = AriaProps & {
     /**
@@ -86,22 +86,10 @@ const PopoverContentCore = React.forwardRef<HTMLElement, Props>(
         }: Props,
         ref,
     ): React.ReactElement {
-        const scrollContainerRef = React.useRef<HTMLElement | null>(null);
-        const {isOverflowing, hasContentAbove, hasContentBelow} =
-            useScrollOverflow(scrollContainerRef);
-
         return (
-            <View
-                ref={scrollContainerRef}
-                style={[
-                    styles.scrollContainer,
-                    hasContentAbove && styles.fadeTop,
-                    hasContentBelow && styles.fadeBottom,
-                ]}
-                // Make the region keyboard scrollable only when it actually
-                // overflows, so it doesn't add an extra tab stop otherwise.
-                tabIndex={isOverflowing ? 0 : undefined}
-            >
+            // The close button is inside the scroll container, so it scrolls
+            // with the content.
+            <ScrollContainer>
                 {closeButtonVisible && (
                     <CloseButton
                         aria-label={closeButtonLabel}
@@ -120,7 +108,7 @@ const PopoverContentCore = React.forwardRef<HTMLElement, Props>(
                 >
                     {children}
                 </View>
-            </View>
+            </ScrollContainer>
         );
     },
 );
@@ -129,53 +117,7 @@ PopoverContentCore.displayName = "PopoverContentCore";
 
 export default PopoverContentCore;
 
-// The fades blend the content into the popover background.
-const fadeColor = semanticColor.core.background.base.default;
-const fadeSize = sizing.size_480;
-
-/**
- * A fade overlay that sticks to the top or bottom edge of the scroll
- * container. It's drawn with a pseudo-element that doesn't take up space
- * (its negative margin cancels out its size) and doesn't capture clicks.
- */
-const fadeOverlay = {
-    content: "''",
-    display: "block",
-    position: "sticky",
-    flexShrink: 0,
-    blockSize: fadeSize,
-    pointerEvents: "none",
-    // Render the fade above the content.
-    zIndex: 1,
-} as const;
-
 const styles = StyleSheet.create({
-    scrollContainer: {
-        // Scroll the content when it doesn't fit in the available space
-        // (e.g. on small screens or at high zoom levels).
-        overflowY: "auto",
-        ...focusStyles.focus,
-    },
-    /**
-     * Fades at the top and/or bottom edges that hint that there's more content
-     * to scroll to. Each fade only shows when there's content past that edge.
-     */
-    fadeTop: {
-        "::before": {
-            ...fadeOverlay,
-            insetBlockStart: 0,
-            marginBlockEnd: `calc(-1 * ${fadeSize})`,
-            background: `linear-gradient(to bottom, ${fadeColor}, transparent)`,
-        },
-    },
-    fadeBottom: {
-        "::after": {
-            ...fadeOverlay,
-            insetBlockEnd: 0,
-            marginBlockStart: `calc(-1 * ${fadeSize})`,
-            background: `linear-gradient(to top, ${fadeColor}, transparent)`,
-        },
-    },
     content: {
         margin: 0,
         maxInlineSize: `calc(${sizing.size_160} * 18)`, // 288px
