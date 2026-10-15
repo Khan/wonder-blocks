@@ -3,7 +3,7 @@ import {StyleSheet} from "aphrodite";
 
 import type {StyleType} from "@khanacademy/wonder-blocks-core";
 import {View} from "@khanacademy/wonder-blocks-core";
-import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
+import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {focusStyles} from "@khanacademy/wonder-blocks-styles";
 
 import {useScrollOverflow} from "../hooks/use-scroll-overflow";
@@ -88,6 +88,10 @@ const FADE_BOTTOM_OPACITY = "--wb-scroll-container-fade-bottom-opacity";
 // The fades blend the content into the container background.
 const fadeColor = semanticColor.core.background.base.default;
 const fadeSize = sizing.size_480;
+// The fades sit at the edges of the floating element (the popover "bubble"),
+// so their outer corners match its inner border radius (its border radius
+// minus its border width).
+const fadeRadius = `calc(${border.radius.radius_040} - ${border.width.thin})`;
 
 /**
  * A fade overlay that sticks to the top or bottom edge of the scroll
@@ -126,6 +130,8 @@ const styles = StyleSheet.create({
             insetBlockStart: 0,
             marginBlockEnd: `calc(-1 * ${fadeSize})`,
             background: `linear-gradient(to bottom, ${fadeColor}, transparent)`,
+            borderStartStartRadius: fadeRadius,
+            borderStartEndRadius: fadeRadius,
             opacity: `var(${FADE_TOP_OPACITY}, 0)`,
         },
         "::after": {
@@ -133,6 +139,8 @@ const styles = StyleSheet.create({
             insetBlockEnd: 0,
             marginBlockStart: `calc(-1 * ${fadeSize})`,
             background: `linear-gradient(to top, ${fadeColor}, transparent)`,
+            borderEndStartRadius: fadeRadius,
+            borderEndEndRadius: fadeRadius,
             opacity: `var(${FADE_BOTTOM_OPACITY}, 0)`,
         },
     },
