@@ -88,6 +88,7 @@ jobs:
               run: pnpm exec playwright install chromium
 
             - name: Generate WB build artifacts
+              id: build
               run: pnpm build
 
             # Deploy before running the tests so failing stories can link to
@@ -106,6 +107,12 @@ jobs:
                   # promotes deploys from the production branch (main by
                   # default) to production on its own, so no `--prod` here.
                   # See: https://argos-ci.com/docs/learn/how-to-guides/migrate-to-argos/from-chromatic#migrate-the-published-storybook
+                  #
+                  # The Argos API rejects zero-byte files ("files.N.size is
+                  # Too small"). The Storybook build emits empty esbuild
+                  # license files (`sb-addons/*/manager-bundle.js.LEGAL.txt`)
+                  # that the browser never requests, so drop them first.
+                  find storybook-static -type f -empty -print -delete
                   pnpm exec argos deploy ./storybook-static 2>&1 | tee deploy.log
                   # The CLI prints `✔ Deployed: <url>` once the deployment is
                   # ready; it has no machine-readable output.
@@ -121,6 +128,9 @@ jobs:
 
             - name: Run Storybook tests with Argos screenshots
               id: vitest
+              # Still run when the deploy fails: the tests only lose their
+              # "Click to debug" link (SB_URL falls back to localhost).
+              if: ${{ !cancelled() && steps.build.outcome == 'success' }}
               run: |
                   set -o pipefail
                   start=$(date +%s)
