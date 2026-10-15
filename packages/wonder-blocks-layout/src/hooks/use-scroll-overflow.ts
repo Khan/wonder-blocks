@@ -28,8 +28,9 @@ const initialState: ScrollOverflow = {
  * Tracks whether the element's content overflows vertically, and whether there
  * is content to scroll to above and/or below the visible area.
  *
- * The check runs again when the element is scrolled, and whenever the element
- * or any of its direct children (present when the hook runs) are resized.
+ * The check runs right away (before the browser paints), again when the
+ * element is scrolled, and whenever the element or any of its direct children
+ * (present when the hook runs) are resized.
  *
  * NOTE: CSS scroll-driven animations (`animation-timeline: scroll()`) could
  * replace the scroll tracking, but they're not supported in all the browsers
@@ -51,7 +52,10 @@ export function useScrollOverflow(
 ): ScrollOverflow {
     const [state, setState] = React.useState<ScrollOverflow>(initialState);
 
-    React.useEffect(() => {
+    // NOTE: This is a layout effect so the initial check happens before the
+    // browser paints. Otherwise, the content could briefly overflow before
+    // consumers react to it (e.g. before `ScrollableView` becomes focusable).
+    React.useLayoutEffect(() => {
         const element = ref.current;
         // ResizeObserver is supported in browsers we support, but not in jsdom
         if (!element || !window.ResizeObserver) {
@@ -85,6 +89,10 @@ export function useScrollOverflow(
             resizeObserver.observe(child),
         );
         element.addEventListener("scroll", update, {passive: true});
+
+        // Check right away instead of waiting for the first resize
+        // notification.
+        update();
 
         return () => {
             resizeObserver.disconnect();
