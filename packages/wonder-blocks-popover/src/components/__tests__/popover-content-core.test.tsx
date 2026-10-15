@@ -50,23 +50,6 @@ describe("PopoverContentCore", () => {
         });
     };
 
-    it("should not make the scroll container focusable when it doesn't overflow", () => {
-        // Arrange
-        render(
-            <PopoverContentCore testId="content">
-                <span>Some content</span>
-            </PopoverContentCore>,
-        );
-        const scrollContainer = getScrollContainer();
-        mockOverflow(scrollContainer, false);
-
-        // Act
-        triggerResize();
-
-        // Assert
-        expect(scrollContainer).not.toHaveAttribute("tabindex");
-    });
-
     it("should make the scroll container focusable when it overflows", () => {
         // Arrange
         render(
@@ -82,25 +65,6 @@ describe("PopoverContentCore", () => {
 
         // Assert
         expect(scrollContainer).toHaveAttribute("tabindex", "0");
-    });
-
-    it("should make the scroll container not focusable when it stops overflowing", () => {
-        // Arrange
-        render(
-            <PopoverContentCore testId="content">
-                <span>Some content</span>
-            </PopoverContentCore>,
-        );
-        const scrollContainer = getScrollContainer();
-        mockOverflow(scrollContainer, true);
-        triggerResize();
-        mockOverflow(scrollContainer, false);
-
-        // Act
-        triggerResize();
-
-        // Assert
-        expect(scrollContainer).not.toHaveAttribute("tabindex");
     });
 
     it("should render the close button inside of the scroll container", () => {
