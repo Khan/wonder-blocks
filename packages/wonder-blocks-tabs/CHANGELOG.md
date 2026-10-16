@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-tabs
 
+## 1.0.0
+
+### Major Changes
+
+- d70c2ea: Releasing the first major version of the tabs components. Note: There are no changes from the last released version. The major version change is so we can release a 1.0.0 version for semver checks.
+
 ## 0.6.0
 
 ### Minor Changes
