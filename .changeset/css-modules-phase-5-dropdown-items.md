@@ -7,9 +7,9 @@ internal `Check` / `Checkbox` indicators) from Aphrodite to CSS Modules
 (WB-2485, CSS Modules Phase 5 / Wave H). The public API is unchanged: same
 props, same DOM structure, same `style` overrides.
 
-- `option-item.module.css`, `action-item.module.css`,
-  `separator-item.module.css` and `listbox.module.css` replace the Aphrodite
-  stylesheets. They read the same `--wb-*` / `--wb-c-dropdown-*` variables, so
+- Each component gets its own module (`option-item`, `check`, `checkbox`,
+  `action-item`, `separator-item` and `listbox` `.module.css`), replacing
+  the Aphrodite stylesheets. They read the same `--wb-*` / `--wb-c-dropdown-*` variables, so
   theming (default / thunderblocks / syl-dark) is unchanged.
 - The items override `Cell`, `View`, `PhosphorIcon` and `BodyText` classes,
   which live in the same `@layer shared`. Every rule is nested under a `.root`

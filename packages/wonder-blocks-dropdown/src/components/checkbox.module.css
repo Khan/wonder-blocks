@@ -1,0 +1,53 @@
+/**
+ * Checkbox styles (the selection indicator `OptionItem` uses for multiple
+ * selection).
+ *
+ * Every rule is nested inside `.root` — the marker class on the checkbox
+ * `View`, which carries no declarations of its own. The box is a `View`
+ * (whose `.default` class resets `border`) and the check inside it a
+ * `PhosphorIcon`; both ship rules in the same `@layer shared`. The published
+ * bundle loads this stylesheet *before* those packages', so the compound
+ * selectors make the outcome depend on specificity instead.
+ *
+ * Rules are declared in composition order: checkbox → selected → disabled.
+ *
+ * Nesting is native CSS: every `&` is explicit and resolves to the flat
+ * selector it replaces. The build wraps every rule in `@layer shared { … }`.
+ */
+
+.root {
+    &.checkbox {
+        align-self: center;
+
+        /* Semantically, this are the constants for a small-sized icon */
+        min-block-size: var(--wb-sizing-size_160);
+        min-inline-size: var(--wb-sizing-size_160);
+        block-size: var(--wb-sizing-size_160);
+        background: var(--wb-semanticColor-input-default-background);
+
+        /* TODO(WB-1864): Use the correct token once TB is updated. */
+        border-radius: 3px;
+        border-width: var(--wb-border-width-thin);
+        border-style: solid;
+        border-color: var(--wb-semanticColor-input-default-border);
+    }
+
+    &.selected {
+        border-width: 0;
+        background: var(--wb-semanticColor-input-checked-background);
+        color: var(--wb-semanticColor-input-checked-foreground);
+    }
+
+    &.disabled {
+        border-color: var(--wb-semanticColor-input-disabled-border);
+        background-color: var(--wb-semanticColor-input-disabled-background);
+    }
+
+    /* The border of 1px on the selected, disabled checkbox pushes the check
+     * out of place. Move it back. */
+    & .checkDisabled {
+        position: absolute;
+        inset-block-start: -1px;
+        inset-inline-start: -1px;
+    }
+}

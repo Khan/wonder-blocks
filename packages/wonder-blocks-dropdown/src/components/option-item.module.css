@@ -1,15 +1,14 @@
 /**
- * OptionItem styles, including its `Check` and `Checkbox` indicators (which
- * are only ever rendered inside an `OptionItem`).
+ * OptionItem styles. Its `Check` and `Checkbox` indicators have their own
+ * modules (`check.module.css`, `checkbox.module.css`).
  *
  * Every rule is nested inside `.root` — the marker class OptionItem adds to
  * the `DetailCell` root, which carries no declarations of its own. The root is
- * a `Cell` (`.wrapper`, `.detail`, `.clickable`, `.disabled`), the indicators
- * are a `PhosphorIcon` and a `View`, and the label is a `BodyText`. All of
- * them ship rules in the same `@layer shared`, and this component overrides
- * properties they set (padding, `min-block-size`, `border-radius` and the
- * focus ring on the cell; `block-size` on the icon; `border` and `margin` on
- * the view; `font-weight` and `line-height` on the label). The published
+ * a `Cell` (`.wrapper`, `.detail`, `.clickable`, `.disabled`) and the label is
+ * a `BodyText`. Both ship rules in the same `@layer shared`, and this
+ * component overrides properties they set (padding, `min-block-size`,
+ * `border-radius` and the focus ring on the cell; `font-weight` and
+ * `line-height` on the label). The published
  * bundle loads this stylesheet *before* those packages', so at equal
  * specificity they would win; the compound selector makes the outcome depend
  * on specificity instead.
@@ -109,62 +108,5 @@
         /* added to truncate strings that are longer than expected */
         overflow: hidden;
         text-overflow: ellipsis;
-    }
-
-    /**
-     * Check
-     */
-
-    & .check {
-        align-self: center;
-        block-size: var(--wb-sizing-size_160);
-
-        /* Semantically, this are the constants for a small-sized icon */
-        min-block-size: var(--wb-sizing-size_160);
-        min-inline-size: var(--wb-sizing-size_160);
-    }
-
-    & .checkHidden {
-        visibility: hidden;
-    }
-
-    /**
-     * Checkbox. Rules are declared in composition order:
-     * checkbox → selected → disabled.
-     */
-
-    & .checkbox {
-        align-self: center;
-
-        /* Semantically, this are the constants for a small-sized icon */
-        min-block-size: var(--wb-sizing-size_160);
-        min-inline-size: var(--wb-sizing-size_160);
-        block-size: var(--wb-sizing-size_160);
-        background: var(--wb-semanticColor-input-default-background);
-
-        /* TODO(WB-1864): Use the correct token once TB is updated. */
-        border-radius: 3px;
-        border-width: var(--wb-border-width-thin);
-        border-style: solid;
-        border-color: var(--wb-semanticColor-input-default-border);
-    }
-
-    & .checkboxSelected {
-        border-width: 0;
-        background: var(--wb-semanticColor-input-checked-background);
-        color: var(--wb-semanticColor-input-checked-foreground);
-    }
-
-    & .checkboxDisabled {
-        border-color: var(--wb-semanticColor-input-disabled-border);
-        background-color: var(--wb-semanticColor-input-disabled-background);
-    }
-
-    /* The border of 1px on the selected, disabled checkbox pushes the check
-     * out of place. Move it back. */
-    & .checkboxCheckDisabled {
-        position: absolute;
-        inset-block-start: -1px;
-        inset-inline-start: -1px;
     }
 }

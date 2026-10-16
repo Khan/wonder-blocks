@@ -3,7 +3,7 @@ import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {semanticColor} from "@khanacademy/wonder-blocks-tokens";
 import checkIcon from "@phosphor-icons/core/bold/check-bold.svg";
 
-import styles from "./option-item.module.css";
+import styles from "./check.module.css";
 
 /**
  * Props describing the state of the OptionItem, shared by the checkbox
@@ -31,7 +31,7 @@ const Check = function (props: CheckProps): React.ReactElement {
             color={iconColor}
             icon={checkIcon}
             size="small"
-            style={[styles.check, !selected && styles.checkHidden]}
+            style={[styles.root, styles.check, !selected && styles.hidden]}
         />
     );
 };
