@@ -1,5 +1,11 @@
 import * as React from "react";
-import {fireEvent, render, screen, waitFor} from "@testing-library/react";
+import {
+    fireEvent,
+    render,
+    screen,
+    waitFor,
+    within,
+} from "@testing-library/react";
 import {userEvent, PointerEventsCheckLevel} from "@testing-library/user-event";
 
 import {View} from "@khanacademy/wonder-blocks-core";
@@ -163,6 +169,79 @@ describe("Popover", () => {
 
         // Assert
         expect(await screen.findByText("Title")).toBeInTheDocument();
+    });
+
+    describe("when the content overflows", () => {
+        let scrollHeightSpy: jest.SpyInstance;
+        let clientHeightSpy: jest.SpyInstance;
+
+        beforeEach(() => {
+            // ResizeObserver is not available in jsdom, and it's needed to
+            // track the overflow.
+            window.ResizeObserver = jest.fn().mockImplementation(() => ({
+                observe: jest.fn(),
+                unobserve: jest.fn(),
+                disconnect: jest.fn(),
+            }));
+            // jsdom doesn't do layout, so make every element look like its
+            // content overflows.
+            scrollHeightSpy = jest
+                .spyOn(HTMLElement.prototype, "scrollHeight", "get")
+                .mockReturnValue(200);
+            clientHeightSpy = jest
+                .spyOn(HTMLElement.prototype, "clientHeight", "get")
+                .mockReturnValue(100);
+        });
+
+        afterEach(() => {
+            scrollHeightSpy.mockRestore();
+            clientHeightSpy.mockRestore();
+            // @ts-expect-error: ResizeObserver is not available in jsdom
+            delete window.ResizeObserver;
+        });
+
+        it("should name the scrollable area after the popover title", async () => {
+            // Arrange
+            render(
+                <Popover
+                    placement="top"
+                    opened={true}
+                    content={<PopoverContent title="Title" content="content" />}
+                >
+                    <Button>Open default popover</Button>
+                </Popover>,
+            );
+
+            // Act
+            const scrollableArea = await screen.findByRole("region");
+
+            // Assert
+            expect(scrollableArea).toHaveAccessibleName("Title");
+        });
+
+        it("should name the scrollable area after the popover aria-label", async () => {
+            // Arrange
+            render(
+                <Popover
+                    placement="top"
+                    opened={true}
+                    aria-label="Custom popover"
+                    content={
+                        <PopoverContentCore>
+                            <span>Custom content</span>
+                        </PopoverContentCore>
+                    }
+                >
+                    <Button>Open default popover</Button>
+                </Popover>,
+            );
+
+            // Act
+            const scrollableArea = await screen.findByRole("region");
+
+            // Assert
+            expect(scrollableArea).toHaveAccessibleName("Custom popover");
+        });
     });
 
     it("should hide the popover dialog by default", async () => {
@@ -919,15 +998,10 @@ describe("Popover", () => {
             await userEvent.click(openButton);
             const popover = await screen.findByRole("dialog");
 
-            // disabling this check because we need to access the popover content core
-            // in order to verify the aria-label is getting passed correctly
-            // eslint-disable-next-line testing-library/no-node-access
-            const popoverContentCore = popover.firstChild as HTMLElement;
-
             // Assert
-            expect(popoverContentCore.getAttribute("aria-label")).toBe(
-                "Popover Content Core",
-            );
+            expect(
+                within(popover).getByLabelText("Popover Content Core"),
+            ).toBeInTheDocument();
         });
     });
 

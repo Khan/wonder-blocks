@@ -3,10 +3,12 @@ import {StyleSheet} from "aphrodite";
 
 import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
 import {View} from "@khanacademy/wonder-blocks-core";
-import {sizing} from "@khanacademy/wonder-blocks-tokens";
+import {ScrollableView} from "@khanacademy/wonder-blocks-layout";
+import {border, sizing} from "@khanacademy/wonder-blocks-tokens";
 
 import {actionStyles} from "@khanacademy/wonder-blocks-styles";
 import CloseButton from "./close-button";
+import PopoverContext from "./popover-context";
 
 type Props = AriaProps & {
     /**
@@ -51,6 +53,16 @@ type Props = AriaProps & {
  * no bubble around it and you need to supply your own container styling. Inside
  * a `Popover` it looks like a popover with no extra work.
  *
+ * ### Overflow
+ *
+ * Inside a `Popover`, the content is constrained to the space available in the
+ * viewport (or document). When it doesn't fit (e.g. on small screens or at
+ * high zoom levels), the content (including the close button) scrolls, and
+ * it fades out at the edges to hint that there's more content to scroll to.
+ * The scrollable area becomes keyboard focusable while it overflows, so
+ * keyboard users can scroll it too. It's named after the popover (via its
+ * title or `aria-label`), so screen readers announce it when it's focused.
+ *
  * ### Usage
  *
  * ```jsx
@@ -76,25 +88,38 @@ const PopoverContentCore = React.forwardRef<HTMLElement, Props>(
         }: Props,
         ref,
     ): React.ReactElement {
+        // Name the scrollable area after the popover, since it can receive
+        // focus while its content overflows.
+        const {ariaLabel: popoverLabel, ariaLabelledBy: popoverLabelledBy} =
+            React.useContext(PopoverContext);
+
         return (
-            <View
-                testId={testId}
-                style={[styles.content, style]}
-                aria-label={ariaLabel}
-                ref={ref}
+            <ScrollableView
+                aria-label={popoverLabel}
+                aria-labelledby={popoverLabelledBy}
+                style={styles.scrollableView}
             >
-                {closeButtonVisible && (
-                    <CloseButton
-                        aria-label={closeButtonLabel}
-                        style={[
-                            styles.closeButton,
-                            closeButtonLight && actionStyles.inverse,
-                        ]}
-                        testId={`${testId || "popover"}-close-btn`}
-                    />
-                )}
-                {children}
-            </View>
+                <View
+                    testId={testId}
+                    style={[styles.content, style]}
+                    aria-label={ariaLabel}
+                    ref={ref}
+                >
+                    {/* The close button is part of the content (inside the
+                    scroll container), so it scrolls with it. */}
+                    {closeButtonVisible && (
+                        <CloseButton
+                            aria-label={closeButtonLabel}
+                            style={[
+                                styles.closeButton,
+                                closeButtonLight && actionStyles.inverse,
+                            ]}
+                            testId={`${testId || "popover"}-close-btn`}
+                        />
+                    )}
+                    {children}
+                </View>
+            </ScrollableView>
         );
     },
 );
@@ -104,12 +129,21 @@ PopoverContentCore.displayName = "PopoverContentCore";
 export default PopoverContentCore;
 
 const styles = StyleSheet.create({
+    scrollableView: {
+        // The scrollable view sits at the edges of the floating element (the
+        // popover "bubble"), so match its inner border radius (its border
+        // radius minus its border width). This also rounds the fades.
+        borderRadius: `calc(${border.radius.radius_040} - ${border.width.thin})`,
+    },
     content: {
         margin: 0,
         maxInlineSize: `calc(${sizing.size_160} * 18)`, // 288px
         padding: sizing.size_240,
         overflow: "hidden",
         justifyContent: "center",
+        // Keep the content at its natural size so it overflows (and scrolls)
+        // inside the scroll container instead of being squashed.
+        flexShrink: 0,
     },
 
     /**
