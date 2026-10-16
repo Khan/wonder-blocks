@@ -10,6 +10,9 @@ export type WonderBlocksStrings = {
     // Labels
     breadcrumbs: string;
     tabs: string;
+
+    // Form validation
+    requiredFieldMessage: string;
 };
 
 /**
@@ -47,6 +50,13 @@ export const strings = {
             "Label for the menu of tabs when no tab is selected, shown when the tabs are collapsed into a dropdown.",
         message: "Tabs",
     },
+
+    // Form validation
+    requiredFieldMessage: {
+        context:
+            "Error message shown when a required form field is left empty.",
+        message: "This field is required.",
+    },
 } satisfies {
     [Key in keyof WonderBlocksStrings]:
         | string
@@ -66,4 +76,7 @@ export const defaultStringsEn: WonderBlocksStrings = {
     // Labels
     breadcrumbs: strings.breadcrumbs.message,
     tabs: strings.tabs.message,
+
+    // Form validation
+    requiredFieldMessage: strings.requiredFieldMessage.message,
 };
