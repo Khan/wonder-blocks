@@ -115,6 +115,11 @@ type FloatingProps = {
      * hidden.
      *
      * Allows to visually hide the floating element when it is out of bounds.
+     *
+     * NOTE: The floating element is not hidden while a text field inside of it
+     * has focus (e.g. the user is typing in it). Hiding it would make the
+     * browser drop focus, which on mobile devices also closes the virtual
+     * keyboard.
      * @default true
      */
     hide?: boolean;
@@ -251,6 +256,34 @@ type Props = FloatingProps & FocusManagerProps;
  */
 const SHIFT_PADDING = 12;
 
+// Input types that don't open a virtual keyboard when focused.
+const NON_TEXT_INPUT_TYPES = new Set([
+    "button",
+    "checkbox",
+    "color",
+    "file",
+    "hidden",
+    "image",
+    "radio",
+    "range",
+    "reset",
+    "submit",
+]);
+
+/**
+ * Whether the element opens a virtual keyboard on mobile devices when focused
+ * (e.g. text fields).
+ */
+function opensVirtualKeyboard(element: Element): boolean {
+    if (element instanceof HTMLTextAreaElement) {
+        return true;
+    }
+    if (element instanceof HTMLInputElement) {
+        return !NON_TEXT_INPUT_TYPES.has(element.type);
+    }
+    return element instanceof HTMLElement && element.isContentEditable;
+}
+
 /**
  * A component that uses the Floating UI library to position a floating element
  * relative to a reference element.
@@ -296,6 +329,10 @@ export default function Floating({
 }: Props) {
     const arrowRef = React.useRef(null);
     const prevOpenRef = React.useRef(open ?? false);
+    // The focused text field inside of the floating element (if any).
+    const [focusedField, setFocusedField] = React.useState<Element | null>(
+        null,
+    );
 
     // Calculate the floating styles and context
     const {
@@ -348,6 +385,63 @@ export default function Floating({
             prevOpenRef.current = open;
         }
     }, [onOpenChange, open]);
+
+    // The floating element unmounts when closed (without firing blur events),
+    // so reset the focus state to start fresh the next time it opens.
+    React.useEffect(() => {
+        if (!open) {
+            setFocusedField(null);
+        }
+    }, [open]);
+
+    /**
+     * Tracks when focus moves to a text field inside of the floating element
+     * (or to any other element inside of it).
+     */
+    const handleFocus = React.useCallback((event: React.FocusEvent) => {
+        setFocusedField(
+            opensVirtualKeyboard(event.target) ? event.target : null,
+        );
+    }, []);
+
+    /**
+     * Tracks when focus moves out of the floating element (and not just
+     * between elements inside of it).
+     */
+    const handleBlur = React.useCallback((event: React.FocusEvent) => {
+        if (
+            !(event.relatedTarget instanceof Node) ||
+            !event.currentTarget.contains(event.relatedTarget)
+        ) {
+            setFocusedField(null);
+        }
+    }, []);
+
+    // A focused element that gets removed from the DOM doesn't fire a blur
+    // event, so watch for the focused text field being removed (e.g. when a
+    // form is replaced by a confirmation message).
+    React.useEffect(() => {
+        const floating = elements.floating;
+        if (!focusedField || !floating) {
+            return;
+        }
+
+        const observer = new MutationObserver(() => {
+            if (!focusedField.isConnected) {
+                setFocusedField(null);
+            }
+        });
+        observer.observe(floating, {childList: true, subtree: true});
+
+        return () => observer.disconnect();
+    }, [elements.floating, focusedField]);
+
+    // Hide the floating element when the reference element is out of view
+    // (e.g. scrolled away), unless the user is typing in it. On mobile,
+    // opening the virtual keyboard shrinks the visual viewport, which can push
+    // the reference element out of view. Hiding the floating element then
+    // would blur the focused field and close the keyboard again.
+    const isHidden = !!middlewareData.hide?.referenceHidden && !focusedField;
 
     // Notify consumers of the resolved placement (after middleware such as
     // `flip` has run) so they can adapt their content accordingly.
@@ -468,13 +562,13 @@ export default function Floating({
                                 floatingStyles,
                                 stylesProp?.root,
                                 {
-                                    visibility: middlewareData.hide
-                                        ?.referenceHidden
-                                        ? "hidden"
-                                        : "visible",
+                                    visibility: isHidden ? "hidden" : "visible",
                                 },
                             ]}
-                            {...getFloatingProps()}
+                            {...getFloatingProps({
+                                onFocus: handleFocus,
+                                onBlur: handleBlur,
+                            })}
                         >
                             {content}
                             {showArrow && (
