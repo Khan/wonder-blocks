@@ -2,16 +2,12 @@ import * as React from "react";
 import {PropsFor, View} from "@khanacademy/wonder-blocks-core";
 import type {StyleType} from "@khanacademy/wonder-blocks-core";
 
-import {focusStyles} from "@khanacademy/wonder-blocks-styles";
-import {StyleSheet} from "aphrodite";
-import {semanticColor} from "@khanacademy/wonder-blocks-tokens";
-// TODO [WB-2137]: standardize media query breakpoint tokens
-import {modalMediaQuery} from "../util/constants";
 import ModalContent from "./modal-content";
 import ModalHeader from "./modal-header";
 import ModalFooter from "./modal-footer";
 import CloseButton from "./close-button";
-import theme from "../theme";
+import contentStyles from "./modal-content.module.css";
+import styles from "./modal-panel.module.css";
 
 type Props = {
     /**
@@ -109,7 +105,10 @@ export default function ModalPanel({
             // it if there is a footer or close button being
             // shown. We have to do this here as the ModalContent doesn't
             // know about things being positioned around it.
-            style: [!!footer && styles.hasFooter, mainContent.props.style],
+            style: [
+                !!footer && contentStyles.hasFooter,
+                mainContent.props.style,
+            ],
         });
     }, [content, footer, scrollOverflow]);
 
@@ -117,7 +116,7 @@ export default function ModalPanel({
 
     return (
         <View
-            style={[styles.wrapper, style]}
+            style={[styles.root, styles.wrapper, style]}
             testId={testId && `${testId}-panel`}
         >
             {closeButtonVisible && (
@@ -142,38 +141,3 @@ ModalPanel.defaultProps = {
     closeButtonVisible: true,
     scrollOverflow: true,
 };
-
-const styles = StyleSheet.create({
-    wrapper: {
-        flex: "1 1 auto",
-        flexDirection: "column",
-        background: semanticColor.core.background.base.default,
-        boxSizing: "border-box",
-        overflow: "hidden",
-        height: "100%",
-        width: "100%",
-        [modalMediaQuery.smMinOrSmallerHeight as any]: {
-            overflow: "auto",
-        },
-    },
-
-    closeButton: {
-        position: "absolute",
-        // insetInlineEnd supports both RTL and LTR layouts
-        insetInlineEnd: theme.closeButton.layout.gapRight,
-        insetBlockStart: theme.closeButton.layout.gapTop,
-        // This is to allow the button to be tab-ordered before the modal
-        // content but still be above the header and content.
-        zIndex: 1,
-
-        // NOTE: IconButton uses :focus-visible, which is not supported for
-        // programmatic focus. This is a workaround to make sure the focus
-        // outline is visible when this control is focused.
-        ":focus": focusStyles.focus[":focus-visible"],
-    },
-
-    hasFooter: {
-        // The space between the content and the footer
-        paddingBlockEnd: theme.panel.layout.gap.default,
-    },
-});

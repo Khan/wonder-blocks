@@ -1,0 +1,85 @@
+/**
+ * FlexibleDialog styles (plus `DrawerDialog`'s root and dialog overrides)
+ *
+ * Every rule is nested inside `.root` — the marker class on the dialog's
+ * outer `View`, which carries no declarations of its own. Both elements are
+ * `View`s, and these rules override properties `View` sets in its own
+ * single-class rule in the same `@layer shared` (`position`,
+ * `min-block-size`, `min-inline-size`). The bundle loads this package's CSS
+ * before core's, so the compound selector makes the result depend on
+ * specificity instead of load order.
+ *
+ * `DrawerDialog` renders a `FlexibleDialog` and passes its own root / dialog
+ * classes through `styles`, so they land on the same elements as
+ * `.flexibleRoot`. Aphrodite merged those arrays into a single class, so the
+ * drawer rules live in this file and source order reproduces the merge: base
+ * declarations (`.flexibleRoot` → `.drawerRoot` → `.drawerBlockEnd`) first,
+ * then the media block.
+ *
+ * The drawer's slide/fade animation and the consumer's `styles.*` are plain
+ * style objects / Aphrodite styles, which `processStyleList` merges after
+ * every class here (unlayered and `!important`), so they win over this module
+ * as they did before. The build wraps every rule in `@layer shared { … }`.
+ *
+ * TODO [WB-2137]: standardize media query breakpoint tokens
+ */
+
+.root {
+    &.flexibleRoot {
+        box-shadow: var(--wb-c-modal-dialog-shadow-default);
+
+        /* Allows propagating the text color to all the children. */
+        color: var(--wb-semanticColor-core-foreground-neutral-strong);
+        overflow: auto; /* Prevent dialog from scrolling with background */
+        position: relative;
+        will-change: transform, opacity;
+
+        /* Default widths/heights for FlexibleDialog alone */
+        block-size: auto;
+        max-block-size: 100vh;
+        max-inline-size: 576px;
+        inline-size: 93.75%;
+    }
+
+    &.drawerRoot {
+        /* Override FlexibleDialog defaults for drawer usage */
+        block-size: 100%;
+        min-block-size: 100vh;
+
+        /* Use common widths for mininum/maximum */
+        min-inline-size: 567px; /* breakpoint.width.xsMax */
+        max-inline-size: 681px; /* breakpoint.width.smMax */
+        inline-size: 100%;
+    }
+
+    &.drawerBlockEnd {
+        block-size: auto;
+        min-block-size: unset;
+        max-inline-size: unset;
+    }
+
+    /* Override the minBlockSize and minInlineSize on View, and allow blockEnd
+     * content to provide its own height. */
+    & .drawerDialogDefault {
+        min-block-size: 100vh;
+        min-inline-size: unset;
+    }
+
+    & .drawerDialogBlockEnd {
+        min-block-size: unset;
+        min-inline-size: unset;
+    }
+
+    /* breakpoint.mediaQuery.smOrSmaller */
+    @media screen and (width <= 681px) {
+        /* Unset minimums on smaller screens */
+        &.drawerRoot {
+            min-inline-size: unset;
+            max-inline-size: unset;
+        }
+
+        &.drawerBlockEnd {
+            block-size: auto;
+        }
+    }
+}

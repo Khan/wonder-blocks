@@ -1,14 +1,12 @@
 import * as React from "react";
-import {StyleSheet} from "aphrodite";
 import {Breadcrumbs} from "@khanacademy/wonder-blocks-breadcrumbs";
 import type {StyleType} from "@khanacademy/wonder-blocks-core";
 
 import {Id} from "@khanacademy/wonder-blocks-core";
-// TODO [WB-2137]: standardize media query breakpoint tokens
-import {modalMediaQuery} from "../util/constants";
 import ModalDialog from "./modal-dialog";
 import ModalPanel from "./modal-panel";
 import ModalHeader from "./modal-header";
+import styles from "./modal-dialog.module.css";
 
 type Common = {
     /**
@@ -189,7 +187,7 @@ const OnePaneDialog = (props: Props): React.ReactElement => {
         <Id id={titleId}>
             {(uniqueId) => (
                 <ModalDialog
-                    style={[styles.dialog, style]}
+                    style={[styles.onePaneDialog, style]}
                     above={above}
                     below={below}
                     testId={testId}
@@ -212,18 +210,3 @@ const OnePaneDialog = (props: Props): React.ReactElement => {
 };
 
 export default OnePaneDialog;
-
-const styles = StyleSheet.create({
-    dialog: {
-        maxInlineSize: 576,
-        width: "93.75%",
-        height: "81.25%",
-        maxBlockSize: 624,
-
-        [modalMediaQuery.midOrSmaller as any]: {
-            width: "100%",
-            height: "100%",
-            overflow: "hidden",
-        },
-    },
-});
