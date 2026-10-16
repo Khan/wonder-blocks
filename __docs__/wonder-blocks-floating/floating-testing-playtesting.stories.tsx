@@ -4,16 +4,16 @@ import type {Meta, StoryObj} from "@storybook/react-vite";
 
 import Button from "@khanacademy/wonder-blocks-button";
 import {View} from "@khanacademy/wonder-blocks-core";
+import {Floating} from "@khanacademy/wonder-blocks-floating";
 import {TextArea} from "@khanacademy/wonder-blocks-form";
 import {LabeledField} from "@khanacademy/wonder-blocks-labeled-field";
-import {Popover, PopoverContentCore} from "@khanacademy/wonder-blocks-popover";
 import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {BodyText, Heading} from "@khanacademy/wonder-blocks-typography";
 
 import {reallyLongText} from "../components/text-for-testing";
 
 export default {
-    title: "Packages / Popover / Testing / Popover - Playtesting",
+    title: "Packages / Floating / Testing / Floating - Playtesting",
     tags: ["!autodocs", "!manifest"],
     parameters: {
         /** These stories are used for testing purposes only so we disable snapshots */
@@ -21,9 +21,9 @@ export default {
         // Render the stories edge to edge, so they behave like a real page.
         layout: "fullscreen",
     },
-} as Meta<typeof Popover>;
+} as Meta<typeof Floating>;
 
-type Story = StoryObj<typeof Popover>;
+type Story = StoryObj<typeof Floating>;
 
 const styles = StyleSheet.create({
     page: {
@@ -45,7 +45,9 @@ const styles = StyleSheet.create({
         blockSize: sizing.size_960,
     },
     form: {
+        padding: sizing.size_240,
         gap: sizing.size_160,
+        maxInlineSize: 320,
     },
     submit: {
         alignSelf: "flex-end",
@@ -53,36 +55,34 @@ const styles = StyleSheet.create({
 });
 
 /**
- * A popover with a text field, similar to the "Leave feedback" popover in
- * frontend.
+ * A floating element with a text field, similar to the "Leave feedback"
+ * popover in frontend.
  */
-const FeedbackPopover = () => {
+const FeedbackFloating = () => {
+    const [open, setOpen] = React.useState(false);
     const [feedback, setFeedback] = React.useState("");
 
     return (
-        <Popover
+        <Floating
+            open={open}
+            onOpenChange={setOpen}
             placement="top"
-            aria-label="Leave feedback"
+            dismissEnabled={true}
             content={
-                <PopoverContentCore closeButtonVisible={true}>
-                    <View style={styles.form}>
-                        <Heading size="medium">Leave feedback</Heading>
-                        <LabeledField
-                            label="Feedback"
-                            field={
-                                <TextArea
-                                    value={feedback}
-                                    onChange={setFeedback}
-                                />
-                            }
-                        />
-                        <Button style={styles.submit}>Submit</Button>
-                    </View>
-                </PopoverContentCore>
+                <View style={styles.form}>
+                    <Heading size="medium">Leave feedback</Heading>
+                    <LabeledField
+                        label="Feedback"
+                        field={
+                            <TextArea value={feedback} onChange={setFeedback} />
+                        }
+                    />
+                    <Button style={styles.submit}>Submit</Button>
+                </View>
             }
         >
-            <Button>Leave feedback</Button>
-        </Popover>
+            <Button onClick={() => setOpen(!open)}>Leave feedback</Button>
+        </Floating>
     );
 };
 
@@ -95,18 +95,19 @@ const PageContent = () => (
 );
 
 /**
- * The popover opens from a button fixed to the bottom of the screen, like the
- * "Leave feedback" popover in frontend. Open this story on a mobile device to
- * check that the virtual keyboard doesn't make the popover disappear.
+ * The floating element opens from a button fixed to the bottom of the screen,
+ * like the "Leave feedback" popover in frontend. Open this story on a mobile
+ * device to check that the virtual keyboard doesn't make the floating element
+ * disappear.
  *
  * To test it:
  * 1. Open this story on a phone (e.g. the Chromatic build of the PR), in the
  *    canvas-only view (`iframe.html`).
  * 2. Tap "Leave feedback", then tap the "Feedback" text field.
- * 3. The virtual keyboard opens and covers the button. The popover should stay
- *    visible, and the keyboard should stay open while typing. (Previously, the
- *    popover was hidden as soon as the keyboard covered the button, which also
- *    closed the keyboard.)
+ * 3. The virtual keyboard opens and covers the button. The floating element
+ *    should stay visible, and the keyboard should stay open while typing.
+ *    (Previously, it was hidden as soon as the keyboard covered the button,
+ *    which also closed the keyboard.)
  */
 export const AnchorAtTheBottomOfTheScreen: Story = {
     render: function Render() {
@@ -115,7 +116,7 @@ export const AnchorAtTheBottomOfTheScreen: Story = {
                 <PageContent />
                 <View style={styles.footerSpacer} />
                 <View style={styles.footer}>
-                    <FeedbackPopover />
+                    <FeedbackFloating />
                 </View>
             </View>
         );
@@ -123,17 +124,19 @@ export const AnchorAtTheBottomOfTheScreen: Story = {
 };
 
 /**
- * The popover opens from a button in the middle of a long page. Use this story
- * to check the same behavior on desktop, by scrolling the button out of view.
+ * The floating element opens from a button in the middle of a long page. Use
+ * this story to check the same behavior on desktop, by scrolling the button
+ * out of view.
  *
  * To test it:
- * 1. Scroll down to the "Leave feedback" button, and open the popover.
+ * 1. Scroll down to the "Leave feedback" button, and open the floating
+ *    element.
  * 2. Click the "Feedback" text field, then scroll the page until the button is
- *    out of view. The popover should stay visible while the text field has
- *    focus.
+ *    out of view. The floating element should stay visible while the text
+ *    field has focus.
  * 3. Click the "Submit" button (or press `Tab` to move focus to it), then
- *    scroll again. The popover should be hidden while the button is out of
- *    view, and shown again once it's back in view.
+ *    scroll again. The floating element should be hidden while the button is
+ *    out of view, and shown again once it's back in view.
  */
 export const ScrollAnchorOutOfView: Story = {
     render: function Render() {
@@ -141,7 +144,7 @@ export const ScrollAnchorOutOfView: Story = {
             <View style={styles.page}>
                 <PageContent />
                 <View>
-                    <FeedbackPopover />
+                    <FeedbackFloating />
                 </View>
                 <PageContent />
                 <PageContent />
