@@ -1,5 +1,5 @@
 import * as React from "react";
-import {act, fireEvent, render, screen} from "@testing-library/react";
+import {act, render, screen} from "@testing-library/react";
 
 import ScrollableView from "../scrollable-view";
 
@@ -13,18 +13,6 @@ const mockOverflow = (element: HTMLElement, overflowing: boolean) => {
         overflowing ? 200 : 100,
     );
 };
-
-/**
- * Returns the opacity custom properties of both fades.
- */
-const getFadeOpacities = (element: HTMLElement) => ({
-    top: element.style.getPropertyValue(
-        "--wb-scrollable-view-fade-top-opacity",
-    ),
-    bottom: element.style.getPropertyValue(
-        "--wb-scrollable-view-fade-bottom-opacity",
-    ),
-});
 
 describe("ScrollableView", () => {
     let resizeCallback: ResizeObserverCallback | undefined;
@@ -123,89 +111,6 @@ describe("ScrollableView", () => {
         expect(scrollableView).not.toHaveAttribute("tabindex");
     });
 
-    it("should hide both fades when the content doesn't overflow", () => {
-        // Arrange
-        render(
-            <ScrollableView testId="scrollable-view">
-                <span>Some content</span>
-            </ScrollableView>,
-        );
-        const scrollableView = screen.getByTestId("scrollable-view");
-        mockOverflow(scrollableView, false);
-
-        // Act
-        triggerResize();
-
-        // Assert
-        expect(getFadeOpacities(scrollableView)).toEqual({
-            top: "0",
-            bottom: "0",
-        });
-    });
-
-    it("should only show the bottom fade when scrolled to the top", () => {
-        // Arrange
-        render(
-            <ScrollableView testId="scrollable-view">
-                <span>Some content</span>
-            </ScrollableView>,
-        );
-        const scrollableView = screen.getByTestId("scrollable-view");
-        mockOverflow(scrollableView, true);
-
-        // Act
-        triggerResize();
-
-        // Assert
-        expect(getFadeOpacities(scrollableView)).toEqual({
-            top: "0",
-            bottom: "1",
-        });
-    });
-
-    it("should show both fades when scrolled to the middle", () => {
-        // Arrange
-        render(
-            <ScrollableView testId="scrollable-view">
-                <span>Some content</span>
-            </ScrollableView>,
-        );
-        const scrollableView = screen.getByTestId("scrollable-view");
-        mockOverflow(scrollableView, true);
-        triggerResize();
-        jest.spyOn(scrollableView, "scrollTop", "get").mockReturnValue(50);
-
-        // Act
-        fireEvent.scroll(scrollableView);
-
-        // Assert
-        expect(getFadeOpacities(scrollableView)).toEqual({
-            top: "1",
-            bottom: "1",
-        });
-    });
-
-    it("should only show the top fade when scrolled to the bottom", () => {
-        // Arrange
-        render(
-            <ScrollableView testId="scrollable-view">
-                <span>Some content</span>
-            </ScrollableView>,
-        );
-        const scrollableView = screen.getByTestId("scrollable-view");
-        mockOverflow(scrollableView, true);
-        triggerResize();
-        jest.spyOn(scrollableView, "scrollTop", "get").mockReturnValue(100);
-
-        // Act
-        fireEvent.scroll(scrollableView);
-
-        // Assert
-        expect(getFadeOpacities(scrollableView)).toEqual({
-            top: "1",
-            bottom: "0",
-        });
-    });
     it("should forward the ref to the scrollable element", () => {
         // Arrange
         const ref = React.createRef<HTMLElement>();

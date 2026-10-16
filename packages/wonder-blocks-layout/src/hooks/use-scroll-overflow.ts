@@ -5,7 +5,7 @@ export type ScrollOverflow = {
      * Whether the element's content overflows its block size (i.e. whether
      * it can be scrolled vertically).
      */
-    isOverflowing: boolean;
+    isOverflowingVertically: boolean;
     /**
      * Whether there's content above the visible area (the element is scrolled
      * down from the top).
@@ -19,7 +19,7 @@ export type ScrollOverflow = {
 };
 
 const initialState: ScrollOverflow = {
-    isOverflowing: false,
+    isOverflowingVertically: false,
     hasContentAbove: false,
     hasContentBelow: false,
 };
@@ -44,7 +44,7 @@ const initialState: ScrollOverflow = {
  * // Store the element in state (e.g. via a callback ref), so the hook
  * // re-attaches if the element mounts later or changes.
  * const [element, setElement] = React.useState<HTMLElement | null>(null);
- * const {isOverflowing, hasContentAbove, hasContentBelow} =
+ * const {isOverflowingVertically, hasContentAbove, hasContentBelow} =
  *     useScrollOverflow(element);
  *
  * <View ref={setElement}>...</View>
@@ -70,14 +70,14 @@ export function useScrollOverflow(element: HTMLElement | null): ScrollOverflow {
             const next: ScrollOverflow = {
                 // Allow for subpixel rounding (scroll sizes are rounded to
                 // integers), so a 1px difference isn't treated as overflow.
-                isOverflowing: scrollHeight - clientHeight > 1,
+                isOverflowingVertically: scrollHeight - clientHeight > 1,
                 hasContentAbove: scrollTop > 0,
                 hasContentBelow: scrollTop + clientHeight < scrollHeight - 1,
             };
 
             // Avoid re-rendering on every scroll event when nothing changed.
             setState((prev) =>
-                prev.isOverflowing === next.isOverflowing &&
+                prev.isOverflowingVertically === next.isOverflowingVertically &&
                 prev.hasContentAbove === next.hasContentAbove &&
                 prev.hasContentBelow === next.hasContentBelow
                     ? prev

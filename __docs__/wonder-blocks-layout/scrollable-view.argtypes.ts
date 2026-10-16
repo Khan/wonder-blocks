@@ -14,8 +14,6 @@ export default {
         },
     },
     "aria-label": {
-        description:
-            "An accessible name for the view. Since the view becomes focusable while its content overflows, give it a name that describes its content.",
         control: {
             type: "text",
         },
@@ -27,8 +25,6 @@ export default {
         },
     },
     "aria-labelledby": {
-        description:
-            "The id of an element that labels the view (an alternative to `aria-label`).",
         control: {
             type: "text",
         },

@@ -79,7 +79,7 @@ describe("useScrollOverflow", () => {
 
         // Assert
         expect(result.current).toEqual({
-            isOverflowing: true,
+            isOverflowingVertically: true,
             hasContentAbove: false,
             hasContentBelow: true,
         });
@@ -95,7 +95,7 @@ describe("useScrollOverflow", () => {
 
         // Assert
         expect(result.current).toEqual({
-            isOverflowing: true,
+            isOverflowingVertically: true,
             hasContentAbove: false,
             hasContentBelow: true,
         });
@@ -113,7 +113,7 @@ describe("useScrollOverflow", () => {
 
         // Assert
         expect(result.current).toEqual({
-            isOverflowing: true,
+            isOverflowingVertically: true,
             hasContentAbove: true,
             hasContentBelow: true,
         });
@@ -131,7 +131,7 @@ describe("useScrollOverflow", () => {
 
         // Assert
         expect(result.current).toEqual({
-            isOverflowing: true,
+            isOverflowingVertically: true,
             hasContentAbove: true,
             hasContentBelow: false,
         });
@@ -147,7 +147,7 @@ describe("useScrollOverflow", () => {
 
         // Assert
         expect(result.current).toEqual({
-            isOverflowing: false,
+            isOverflowingVertically: false,
             hasContentAbove: false,
             hasContentBelow: false,
         });
@@ -165,7 +165,7 @@ describe("useScrollOverflow", () => {
         triggerResize();
 
         // Assert
-        expect(result.current.isOverflowing).toBe(false);
+        expect(result.current.isOverflowingVertically).toBe(false);
     });
 
     it("should observe the element and its children", () => {
@@ -229,7 +229,7 @@ describe("useScrollOverflow", () => {
         const {result} = renderHook(() => useScrollOverflow(ref.current));
 
         // Assert
-        expect(result.current.isOverflowing).toBe(false);
+        expect(result.current.isOverflowingVertically).toBe(false);
     });
 
     it("should not report any overflow when ResizeObserver is not available", () => {
@@ -242,7 +242,7 @@ describe("useScrollOverflow", () => {
         const {result} = renderHook(() => useScrollOverflow(ref.current));
 
         // Assert
-        expect(result.current.isOverflowing).toBe(false);
+        expect(result.current.isOverflowingVertically).toBe(false);
     });
     it("should not treat a 1px difference (subpixel rounding) as overflow", () => {
         // Arrange
@@ -253,7 +253,7 @@ describe("useScrollOverflow", () => {
         const {result} = renderHook(() => useScrollOverflow(element));
 
         // Assert
-        expect(result.current.isOverflowing).toBe(false);
+        expect(result.current.isOverflowingVertically).toBe(false);
     });
 
     it("should report overflow when children are added later", async () => {
@@ -269,7 +269,7 @@ describe("useScrollOverflow", () => {
 
         // Assert
         await waitFor(() => {
-            expect(result.current.isOverflowing).toBe(true);
+            expect(result.current.isOverflowingVertically).toBe(true);
         });
     });
 
@@ -303,6 +303,6 @@ describe("useScrollOverflow", () => {
         rerender({element: second});
 
         // Assert
-        expect(result.current.isOverflowing).toBe(true);
+        expect(result.current.isOverflowingVertically).toBe(true);
     });
 });
