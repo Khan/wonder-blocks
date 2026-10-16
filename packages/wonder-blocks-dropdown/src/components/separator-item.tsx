@@ -2,12 +2,11 @@
 // Actualized as a horizontal line with surrounding whitespace. -----
 
 import * as React from "react";
-import {StyleSheet} from "aphrodite";
-
-import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {View} from "@khanacademy/wonder-blocks-core";
 
 import type {StyleType} from "@khanacademy/wonder-blocks-core";
+
+import styles from "./separator-item.module.css";
 
 /**
  * A separator used in a dropdown menu.
@@ -31,18 +30,9 @@ export default class SeparatorItem extends React.Component<{
         return (
             // pass optional styles from react-window (if applies)
             <View
-                style={[styles.separator, this.props.style]}
+                style={[styles.root, styles.separator, this.props.style]}
                 aria-hidden="true"
             />
         );
     }
 }
-
-const styles = StyleSheet.create({
-    separator: {
-        borderBlockStart: `${border.width.thin} solid ${semanticColor.core.border.neutral.subtle}`,
-        height: 1,
-        minBlockSize: 1,
-        marginBlock: sizing.size_040,
-    },
-});
