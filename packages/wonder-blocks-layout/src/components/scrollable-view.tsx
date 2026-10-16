@@ -8,7 +8,20 @@ import {focusStyles} from "@khanacademy/wonder-blocks-styles";
 
 import {useScrollOverflow} from "../hooks/use-scroll-overflow";
 
-type Props = AriaProps & {
+type Props = Omit<AriaProps, "aria-label" | "aria-labelledby"> & {
+    /**
+     * An accessible name for the view. Since the view becomes keyboard
+     * focusable while its content overflows, give it a name that describes
+     * its content, so screen readers can announce it when it's focused.
+     *
+     * While the content overflows, a labeled view is exposed as a `region`.
+     */
+    "aria-label"?: string;
+    /**
+     * The id of an element that labels the view (an alternative to
+     * `aria-label`).
+     */
+    "aria-labelledby"?: string;
     /**
      * The content to render inside the scrollable view.
      *
@@ -20,12 +33,11 @@ type Props = AriaProps & {
     /**
      * Custom styles applied to the scrollable view.
      *
-     * The fades at the edges inherit the view's border radius, so setting a
-     * `borderRadius` here also rounds the fades.
-     *
-     * NOTE: Avoid setting `gap` on the view itself, since the fades are laid
-     * out as its first and last children while the content overflows. Put the
-     * layout styles (e.g. `gap`) on a child that wraps the content instead.
+     * NOTE: Avoid setting `gap` on the view itself. The fades are drawn with
+     * `::before`/`::after` pseudo-elements, which are laid out as the view's
+     * first and last flex items, so a `gap` would also be added between them
+     * and the content. Put the layout styles (e.g. `gap`) on a child that
+     * wraps the content instead.
      */
     style?: StyleType;
     /**
@@ -66,7 +78,7 @@ const ScrollableView = React.forwardRef<HTMLElement, Props>(
         // Store the element in state (instead of a ref) so the overflow
         // tracking re-attaches if the element changes.
         const [element, setElement] = React.useState<HTMLElement | null>(null);
-        const {isOverflowing, hasContentAbove, hasContentBelow} =
+        const {isOverflowingVertically, hasContentAbove, hasContentBelow} =
             useScrollOverflow(element);
 
         // Whether the view itself (not one of its children) has focus.
@@ -92,7 +104,7 @@ const ScrollableView = React.forwardRef<HTMLElement, Props>(
         // scroll, which can make it glitch.
         // The view is only keyboard focusable (and needs a name) while its
         // content overflows, or while it has focus.
-        const isFocusable = isOverflowing || isFocused;
+        const isFocusable = isOverflowingVertically || isFocused;
 
         React.useLayoutEffect(() => {
             element?.style.setProperty(
@@ -126,7 +138,7 @@ const ScrollableView = React.forwardRef<HTMLElement, Props>(
                     styles.scrollableView,
                     // Render the fades as soon as the content overflows, and
                     // only toggle their opacity while scrolling (see above).
-                    isOverflowing && styles.fades,
+                    isOverflowingVertically && styles.fades,
                     style,
                 ]}
                 // Make the view keyboard scrollable only when it actually
