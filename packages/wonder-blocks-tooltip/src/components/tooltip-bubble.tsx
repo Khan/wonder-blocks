@@ -1,16 +1,18 @@
-import {StyleSheet} from "aphrodite";
 import * as React from "react";
 import {View} from "@khanacademy/wonder-blocks-core";
-import {
-    border,
-    color,
-    boxShadow,
-    semanticColor,
-} from "@khanacademy/wonder-blocks-tokens";
+import {color} from "@khanacademy/wonder-blocks-tokens";
 
 import TooltipContent from "./tooltip-content";
 import TooltipTail from "./tooltip-tail";
 import {PopperElementProps, TooltipVariant} from "../util/types";
+import styles from "./tooltip-bubble.module.css";
+
+const placementStyles = {
+    top: styles.contentTop,
+    right: styles.contentRight,
+    bottom: styles.contentBottom,
+    left: styles.contentLeft,
+} as const;
 
 export type Props = {
     /** The unique identifier for this component. */
@@ -72,9 +74,10 @@ export default class TooltipBubble extends React.Component<Props, State> {
                 onMouseLeave={this.handleMouseLeave}
                 ref={updateBubbleRef}
                 style={[
+                    styles.root,
                     isReferenceHidden && styles.hide,
                     styles.bubble,
-                    styles[`content-${placement}`],
+                    placementStyles[placement],
                     style,
                 ]}
             >
@@ -102,58 +105,3 @@ export default class TooltipBubble extends React.Component<Props, State> {
         );
     }
 }
-
-const styles = StyleSheet.create({
-    bubble: {
-        position: "absolute",
-    },
-
-    /**
-     * The hide style ensures that the bounds of the bubble stay unchanged.
-     * This is because popper.js calculates the bubble position based off its
-     * bounds and if we stopped rendering it entirely, it wouldn't know where to
-     * place it when it reappeared.
-     */
-    hide: {
-        pointerEvents: "none",
-        opacity: 0,
-        backgroundColor: semanticColor.core.transparent,
-        color: semanticColor.core.transparent,
-    },
-
-    /**
-     * Ensure the content and tail are properly arranged.
-     */
-    "content-top": {
-        flexDirection: "column",
-    },
-    "content-right": {
-        flexDirection: "row-reverse",
-    },
-    "content-bottom": {
-        flexDirection: "column-reverse",
-    },
-    "content-left": {
-        flexDirection: "row",
-    },
-
-    content: {
-        maxInlineSize: 472,
-        borderRadius: border.radius.radius_040,
-        border: `solid 1px ${semanticColor.core.border.neutral.subtle}`,
-        backgroundColor: semanticColor.core.background.base.default,
-        boxShadow: boxShadow.mid,
-        justifyContent: "center",
-    },
-
-    /**
-     * The strong variant uses a higher-emphasis inverse/knockout treatment.
-     * The text color is set here so it cascades to the `TooltipContent`
-     * typography, which inherits the CSS `color`.
-     */
-    contentStrong: {
-        backgroundColor: semanticColor.feedback.neutral.strong.background,
-        borderColor: semanticColor.feedback.neutral.strong.border,
-        color: semanticColor.feedback.neutral.strong.text,
-    },
-});

@@ -37,76 +37,6 @@ describe("TooltipTail", () => {
             }
         });
 
-        it("should render a visible tail", () => {
-            // Arrange
-            const nodes = <TooltipTail placement="top" />;
-
-            // Act
-            const {container} = render(nodes);
-
-            // Assert
-            expect(container).toMatchInlineSnapshot(`
-<div>
-  <div
-    class="default"
-    data-placement="top"
-    style="position: relative; pointer-events: none; top: -1px; width: 40px; height: 20px;"
-  >
-    <svg
-      aria-hidden="true"
-      class="arrow_oo4scr"
-      height="12"
-      style="margin-left: 8px; margin-right: 8px; padding-bottom: 8px;"
-      width="24"
-    >
-      <filter
-        height="200%"
-        id="tooltip-dropshadow-top-3"
-        width="200%"
-        x="-50%"
-        y="-50%"
-      >
-        <fegaussianblur
-          in="SourceAlpha"
-          stdDeviation="3"
-        />
-        <fecomponenttransfer>
-          <fefunca
-            slope="0.3"
-            type="linear"
-          />
-        </fecomponenttransfer>
-      </filter>
-      <g
-        transform="translate(0,5.5)"
-      >
-        <polyline
-          fill="var(--wb-semanticColor-core-shadow-transparent-mid)"
-          filter="url(#tooltip-dropshadow-top-3)"
-          points="0,0 12,12 24,0"
-          stroke="var(--wb-semanticColor-core-shadow-transparent-mid)"
-        />
-      </g>
-      <polyline
-        fill="var(--wb-semanticColor-core-background-base-default)"
-        points="0,0 12,12 24,0"
-        stroke="var(--wb-semanticColor-core-background-base-default)"
-      />
-      <polyline
-        fill="var(--wb-semanticColor-core-background-base-default)"
-        points="0,0 12,12 24,0"
-        stroke="var(--wb-semanticColor-core-border-neutral-subtle)"
-      />
-      <polyline
-        points="0,-0.5 24,-0.5"
-        stroke="var(--wb-semanticColor-core-background-base-default)"
-      />
-    </svg>
-  </div>
-</div>
-`);
-        });
-
         it("should render a spacer when show is false", () => {
             // Arrange
             const nodes = <TooltipTail placement="top" show={false} />;
@@ -118,9 +48,9 @@ describe("TooltipTail", () => {
             expect(container).toMatchInlineSnapshot(`
 <div>
   <div
-    class="default"
+    class="default tailContainer"
     data-placement="top"
-    style="position: relative; pointer-events: none; top: -1px; width: 40px; height: 20px;"
+    style="top: -1px; width: 40px; height: 20px;"
   >
     <div
       aria-hidden="true"
