@@ -8,7 +8,7 @@ import {View} from "@khanacademy/wonder-blocks-core";
 import {TextArea} from "@khanacademy/wonder-blocks-form";
 import {LabeledField} from "@khanacademy/wonder-blocks-labeled-field";
 import {ScrollableView} from "@khanacademy/wonder-blocks-layout";
-import {sizing} from "@khanacademy/wonder-blocks-tokens";
+import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {BodyText, Heading} from "@khanacademy/wonder-blocks-typography";
 
 import {ScenariosLayout} from "../components/scenarios-layout";
@@ -34,6 +34,10 @@ const styles = StyleSheet.create({
     constrained: {
         maxBlockSize: 200,
         maxInlineSize: 320,
+    },
+    rounded: {
+        border: `${border.width.thin} solid ${semanticColor.core.border.neutral.subtle}`,
+        borderRadius: border.radius.radius_120,
     },
     content: {
         // Keep the content at its natural size so it overflows (and scrolls)
@@ -128,6 +132,9 @@ const getVisibleFades = (element: HTMLElement): Fades => ({
  * - Only the bottom fade when scrolled to the top.
  * - Both fades when scrolled to the middle.
  * - Only the top fade when scrolled to the bottom.
+ *
+ * It also shows that the fades inherit the view's border radius, and a view
+ * with interactive content.
  */
 export const Scenarios: Story = {
     render() {
@@ -150,6 +157,14 @@ export const Scenarios: Story = {
                 props: {"aria-label": label, children: <LongContent />},
             })),
             {
+                name: "With rounded corners",
+                props: {
+                    "aria-label": "With rounded corners",
+                    style: styles.rounded,
+                    children: <LongContent />,
+                },
+            },
+            {
                 name: "With interactive content",
                 props: {
                     "aria-label": "With interactive content",
@@ -163,8 +178,11 @@ export const Scenarios: Story = {
                 scenarios={scenarios}
                 styles={{root: styles.container}}
             >
-                {(props) => (
-                    <ScrollableView {...props} style={styles.constrained} />
+                {({style, ...props}) => (
+                    <ScrollableView
+                        {...props}
+                        style={[styles.constrained, style]}
+                    />
                 )}
             </ScenariosLayout>
         );
@@ -195,12 +213,18 @@ export const Scenarios: Story = {
             "none",
         );
 
-        // The interactive content overflows too. Waiting for it also ensures
+        // The other scenarios overflow too. Waiting for them also ensures
         // that the a11y checks audit the final state.
-        await waitFor(() =>
-            expect(
-                canvas.getByRole("region", {name: "With interactive content"}),
-            ).toHaveAttribute("tabindex", "0"),
-        );
+        for (const name of [
+            "With rounded corners",
+            "With interactive content",
+        ]) {
+            await waitFor(() =>
+                expect(canvas.getByRole("region", {name})).toHaveAttribute(
+                    "tabindex",
+                    "0",
+                ),
+            );
+        }
     },
 };
