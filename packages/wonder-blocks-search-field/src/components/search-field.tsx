@@ -8,15 +8,15 @@ import {styles as typographyStyles} from "@khanacademy/wonder-blocks-typography"
 import {View, Id} from "@khanacademy/wonder-blocks-core";
 import IconButton from "@khanacademy/wonder-blocks-icon-button";
 import {TextField} from "@khanacademy/wonder-blocks-form";
+import {useWonderBlocksI18n} from "@khanacademy/wonder-blocks-config";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import type {StyleType, AriaProps} from "@khanacademy/wonder-blocks-core";
 
-import {defaultLabels} from "../util/constants";
-
 type Props = AriaProps & {
     /**
-     * ARIA label for the clear button. Defaults to "Clear search".
+     * ARIA label for the clear button. This overrides the default label
+     * provided by `WonderBlocksConfigProvider` ("Clear search" by default).
      */
     clearAriaLabel?: string;
     /**
@@ -145,7 +145,7 @@ const SearchField: React.ForwardRefExoticComponent<
     ref,
 ) {
     const {
-        clearAriaLabel = defaultLabels.clearSearch,
+        clearAriaLabel,
         autoFocus,
         disabled = false,
         id,
@@ -163,6 +163,8 @@ const SearchField: React.ForwardRefExoticComponent<
         onBlur,
         ...otherProps
     } = props;
+
+    const {strings} = useWonderBlocksI18n();
 
     // We can't just use ref.current to clear the input because ref isn't
     // always being passed in, so we use an innerRef to allow the
@@ -192,7 +194,7 @@ const SearchField: React.ForwardRefExoticComponent<
                 actionType="neutral"
                 onClick={handleClear}
                 style={styles.dismissIcon}
-                aria-label={clearAriaLabel}
+                aria-label={clearAriaLabel || strings.iconAltClearSearch}
             />
         );
     };

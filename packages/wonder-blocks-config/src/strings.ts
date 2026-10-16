@@ -3,6 +3,7 @@
  */
 export type WonderBlocksStrings = {
     // Alt text for icons / icon buttons
+    iconAltClearSearch: string;
     iconAltOpensNewTab: string;
 
     // Labels
@@ -18,6 +19,11 @@ export type WonderBlocksStrings = {
  */
 export const strings = {
     // Alt text for icons / icon buttons
+    iconAltClearSearch: {
+        context:
+            "Accessible name for an icon button that clears the text in a search field.",
+        message: "Clear search",
+    },
     iconAltOpensNewTab: {
         context:
             "Accessible name for an icon marking a link that opens in a new tab.",
@@ -47,6 +53,7 @@ export const strings = {
  */
 export const defaultStringsEn: WonderBlocksStrings = {
     // Alt text for icons / icon buttons
+    iconAltClearSearch: strings.iconAltClearSearch.message,
     iconAltOpensNewTab: strings.iconAltOpensNewTab.message,
 
     // Labels
