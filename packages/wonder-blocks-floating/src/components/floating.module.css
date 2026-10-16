@@ -1,0 +1,19 @@
+/* Styles for `Floating`. The build wraps these rules in `@layer shared { … }`
+ * via the wrap-in-layer plugin in `postcss.config.cjs`. */
+
+.floating {
+    background: var(--wb-semanticColor-core-background-base-default);
+    border: solid var(--wb-border-width-thin)
+        var(--wb-semanticColor-core-border-neutral-subtle);
+    border-radius: var(--wb-border-radius-radius_040);
+
+    /* Allow the floating element to be at least as tall as the arrow. We set
+     * inline size to ensure that it works with inline placements. Keep in sync
+     * with `ARROW_SIZE_INLINE` in `util/constants.ts`. */
+    min-block-size: 20px;
+    box-shadow: var(--wb-boxShadow-mid);
+    justify-content: center;
+
+    /* Prevent the floating element from receiving focus when it is clicked. */
+    outline: none;
+}
