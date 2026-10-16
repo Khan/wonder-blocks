@@ -971,9 +971,6 @@ importers:
       '@popperjs/core':
         specifier: 'catalog:'
         version: 2.11.8
-      aphrodite:
-        specifier: 'catalog:'
-        version: 1.2.5
       date-fns:
         specifier: 'catalog:'
         version: 4.1.0
