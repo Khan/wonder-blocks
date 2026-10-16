@@ -1,0 +1,107 @@
+/**
+ * Badge styles
+ *
+ * The colors that change between the badge variants (`StatusBadge`,
+ * `NeutralBadge`, `DueBadge`, `GemBadge`, `StreakBadge`) go through
+ * `--wb-c-badge--*` custom properties ("component tokens"), as `Banner`,
+ * `IconButton` and `Button` do. The double dash keeps the namespace distinct
+ * from codegen'd theme tokens.
+ *
+ *   per-variant tokens (assigned on the root by each variant's module):
+ *   --wb-c-badge--color-background    root background
+ *   --wb-c-badge--color-foreground    root text color
+ *   --wb-c-badge--color-border        root border color
+ *   --wb-c-badge--color-icon          icon color (inherited by `.icon`)
+ *   --wb-c-badge--border-style        root border style
+ *
+ * Badge's own defaults are assigned first, in a `:where(.badge)` block.
+ * `:where()` has zero specificity, so a variant's single-class assignment
+ * always wins, whatever order the variant modules are emitted in. Apart from
+ * that, the variant modules only assign these tokens and this file only reads
+ * them.
+ *
+ * `showBorder={false}` is not here: `Badge` applies it as an inline style
+ * object, so it still lands after the consumer's `styles.root`, as it did
+ * before.
+ *
+ * The consumer's `styles` still go through Aphrodite (unlayered and
+ * `!important`), so they win over this module as they did before. The build
+ * wraps every rule in `@layer shared { … }`.
+ */
+
+@import "@khanacademy/wonder-blocks-styles/focus-styles.css";
+
+/* Defaults: the tokens for a plain `Badge`. */
+:where(.badge) {
+    --wb-c-badge--color-background: var(--wb-semanticColor-core-background-neutral-subtle);
+    --wb-c-badge--color-foreground: var(--wb-semanticColor-core-foreground-neutral-strong);
+    --wb-c-badge--color-border: var(--wb-semanticColor-core-border-neutral-subtle);
+    --wb-c-badge--color-icon: var(--wb-semanticColor-core-foreground-neutral-default);
+    --wb-c-badge--border-style: solid;
+}
+
+/**
+ * Root.
+ */
+.badge {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--wb-sizing-size_040);
+
+    /* Make sure badge container fits the content */
+    inline-size: fit-content;
+
+    /* Make sure the badge text doesn't wrap */
+    text-wrap: nowrap;
+    border-width: var(--wb-border-width-thin);
+    border-style: var(--wb-c-badge--border-style);
+    padding-block: var(--wb-sizing-size_040);
+    padding-inline: var(--wb-sizing-size_080);
+    border-radius: var(--wb-border-radius-radius_080);
+
+    /* Typography */
+    font-family: var(--wb-font-family-sans);
+    font-size: var(--wb-font-body-size-xsmall);
+    font-weight: var(--wb-font-weight-bold);
+    line-height: var(--wb-font-body-lineHeight-xsmall);
+
+    /* Colors, assigned per variant. */
+    background-color: var(--wb-c-badge--color-background);
+    border-color: var(--wb-c-badge--color-border);
+    color: var(--wb-c-badge--color-foreground);
+
+    /* Include focus styles in case the badge is made interactive by using it
+     * with another component like `Tooltip` */
+    &:focus-visible {
+        @apply --wb-focus-visible;
+    }
+}
+
+.iconOnly {
+    padding: var(--wb-sizing-size_040);
+}
+
+/**
+ * Icon.
+ */
+.icon {
+    /* Use minInlineSize and minBlockSize to ensure custom sized icons don't
+     * overflow the badge */
+    min-inline-size: var(--wb-sizing-size_160);
+    min-block-size: var(--wb-sizing-size_160);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--wb-c-badge--color-icon);
+}
+
+/**
+ * Label.
+ */
+.label {
+    /* Truncate the label after ~30 characters */
+    max-inline-size: 30ch;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
