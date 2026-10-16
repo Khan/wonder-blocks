@@ -142,12 +142,9 @@ export const WithRoundedCorners: StoryComponentType = {
         style: [styles.constrained, styles.rounded],
         children: <LongContent />,
     },
+    // NOTE: This is covered by the snapshot scenarios in
+    // `scrollable-view-testing-snapshots.stories.tsx`.
     play: waitForOverflow,
-    parameters: {
-        chromatic: {
-            disableSnapshot: false,
-        },
-    },
 };
 
 /**
