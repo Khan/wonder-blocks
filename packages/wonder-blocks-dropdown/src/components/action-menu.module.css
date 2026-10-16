@@ -1,0 +1,13 @@
+/**
+ * ActionMenu styles
+ *
+ * Passed to `DropdownCore` as part of `dropdownStyle`. No package this menu
+ * renders sets `inset-block-start`, so the class needs no extra specificity.
+ *
+ * The build wraps every rule in `@layer shared { … }`.
+ */
+
+/* This is to adjust the space between the menu and the opener. */
+.menuTopSpace {
+    inset-block-start: calc(-1 * var(--wb-sizing-size_040));
+}

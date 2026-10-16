@@ -1135,9 +1135,10 @@ describe("SingleSelect", () => {
             const dropdownMenuWrapper = await screen.findByTestId(
                 "dropdown-core-container",
             );
-            expect(dropdownMenuWrapper).toHaveStyle(
-                "max-block-size: var(--popper-max-height)",
-            );
+            // The max height (`max-block-size: var(--popper-max-height)`)
+            // lives in the `dropdown` class of `dropdown-core.module.css`,
+            // which jest doesn't load, so we check for the class instead.
+            expect(dropdownMenuWrapper).toHaveClass("dropdown");
         });
 
         it("should apply the default maxHeight to a virtualized listbox wrapper", async () => {
@@ -1169,10 +1170,9 @@ describe("SingleSelect", () => {
             const dropdownMenuWrapper = await screen.findByTestId(
                 "dropdown-core-container",
             );
-            // Max allowed height
-            expect(dropdownMenuWrapper).toHaveStyle(
-                "max-block-size: var(--popper-max-height)",
-            );
+            // Max allowed height. It lives in the `dropdown` class of
+            // `dropdown-core.module.css`, which jest doesn't load.
+            expect(dropdownMenuWrapper).toHaveClass("dropdown");
         });
 
         it("should override the default maxHeight to the listbox if a custom dropdownStyle is set", async () => {
