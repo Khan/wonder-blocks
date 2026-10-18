@@ -247,6 +247,17 @@ character art, gems, streaks, roles, and more.
     layout="fullscreen"
 />
 
+#### Data visualization
+
+Heat map cells, in eleven bands from `band0` to `band100`. Each band is named
+for the first percentage it covers, so `band0` spans 0-9 and `band90` spans
+90-99, while `band100` is only ever an exact 100. The color encodes which band
+a value falls into, so the band is chosen by the data rather than by a UI role
+such as `critical` or `success`. Each band pairs a `background` fill with a
+`foreground` for the value shown in the cell.
+
+<Canvas of={SemanticColorGroups.GraphicsDataVizHeatmap} layout="fullscreen" />
+
 #### Gems
 
 <Canvas of={SemanticColorGroups.GraphicsGems} layout="fullscreen" />
