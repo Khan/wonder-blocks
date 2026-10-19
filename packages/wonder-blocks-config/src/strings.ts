@@ -47,12 +47,12 @@ export type WonderBlocksStrings = {
  * Untranslated strings used in Wonder Blocks. To be used by an external
  * translator to produce translated strings, passed in as `WonderBlocksStrings`.
  *
+ * `num` is a special variable name that is used to determine the plurality
+ * of the translated string.
+ *
  * !! Note: Ensure that all escape sequences are double-escaped. (e.g. `\\text` -> `\\\\text`)
  */
 export const strings = {
-    // `num` is a special variable name that is used to determine the plurality
-    // of the translated string.
-
     // Alt text for icons / icon buttons
     iconAltClearSearch: {
         context:
