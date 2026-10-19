@@ -314,7 +314,7 @@ const SingleSelect = (props: Props) => {
                 filter: strings.filter,
                 noResults: strings.noResults,
                 someResults: (numResults: number) =>
-                    strings.numItemsSelected({num: numResults}),
+                    strings.numItems({num: numResults}),
             },
         [strings, propLabels],
     );
