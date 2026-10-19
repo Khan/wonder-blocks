@@ -291,12 +291,12 @@ const MultiSelect = (props: Props) => {
             filter: strings.filter,
             noResults: strings.noResults,
             selectAllLabel: (numOptions: number) =>
-                strings.selectAll({num: numOptions}),
+                strings.selectAllWithCount({num: numOptions}),
             selectNoneLabel: strings.selectNone,
-            noneSelected: strings.noneSelected,
+            noneSelected: strings.zeroItemsSelected,
             someSelected: (numSelectedValues: number) =>
-                strings.someSelected({num: numSelectedValues}),
-            allSelected: strings.allSelected,
+                strings.numItemsSelected({num: numSelectedValues}),
+            allSelected: strings.allItemsSelected,
             ...propLabels,
         };
     }, [strings, propLabels]);

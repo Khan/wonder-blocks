@@ -10,17 +10,17 @@ export type WonderBlocksStrings = {
     iconAltToggleListbox: string;
 
     // Labels
-    allSelected: string;
+    allItemsSelected: string;
     breadcrumbs: string;
     filter: string;
-    noneSelected: string;
     noResults: string;
+    numItemsSelected: ({num}: {num: number}) => string;
     optionsList: string;
     removeSelected: ({label}: {label: string}) => string;
-    selectAll: ({num}: {num: number}) => string;
+    selectAllWithCount: ({num}: {num: number}) => string;
     selectNone: string;
-    someSelected: ({num}: {num: number}) => string;
     tabs: string;
+    zeroItemsSelected: string;
 
     // Screen reader announcements
     srComboboxClosed: string;
@@ -81,7 +81,7 @@ export const strings = {
     },
 
     // Labels
-    allSelected: {
+    allItemsSelected: {
         context:
             "Text shown in a multi-select dropdown when all of its options are selected.",
         message: "All items",
@@ -96,15 +96,16 @@ export const strings = {
             "Placeholder for the search field used to filter the options in a dropdown.",
         message: "Filter",
     },
-    noneSelected: {
-        context:
-            "Text shown in a multi-select dropdown when none of its options are selected.",
-        message: "0 items",
-    },
     noResults: {
         context:
             "Text shown in a dropdown or combobox when no options match the search text.",
         message: "No results",
+    },
+    numItemsSelected: {
+        context:
+            "Text shown in a multi-select dropdown when some of its options are selected, and announced to screen readers as the number of options that match the search text. %(num)s is the number of options.",
+        one: "%(num)s item",
+        other: "%(num)s items",
     },
     optionsList: {
         context:
@@ -116,7 +117,7 @@ export const strings = {
             "Accessible name for a button that removes a selected option from a multi-select combobox. %(label)s is the label of the option.",
         message: "Remove %(label)s",
     },
-    selectAll: {
+    selectAllWithCount: {
         context:
             "Label for the option in a multi-select dropdown that selects all of the options. %(num)s is the number of options.",
         message: "Select all (%(num)s)",
@@ -126,16 +127,15 @@ export const strings = {
             "Label for the option in a multi-select dropdown that deselects all of the options.",
         message: "Select none",
     },
-    someSelected: {
-        context:
-            "Text shown in a multi-select dropdown when some of its options are selected, and announced to screen readers as the number of options that match the search text. %(num)s is the number of options.",
-        one: "%(num)s item",
-        other: "%(num)s items",
-    },
     tabs: {
         context:
             "Label for the menu of tabs when no tab is selected, shown when the tabs are collapsed into a dropdown.",
         message: "Tabs",
+    },
+    zeroItemsSelected: {
+        context:
+            "Text shown in a multi-select dropdown when none of its options are selected.",
+        message: "0 items",
     },
 
     // Screen reader announcements
@@ -217,17 +217,17 @@ export const defaultStringsEn: WonderBlocksStrings = {
     iconAltToggleListbox: strings.iconAltToggleListbox.message,
 
     // Labels
-    allSelected: strings.allSelected.message,
+    allItemsSelected: strings.allItemsSelected.message,
     breadcrumbs: strings.breadcrumbs.message,
     filter: strings.filter.message,
-    noneSelected: strings.noneSelected.message,
     noResults: strings.noResults.message,
+    numItemsSelected: ({num}) => (num === 1 ? `${num} item` : `${num} items`),
     optionsList: strings.optionsList.message,
     removeSelected: ({label}) => `Remove ${label}`,
-    selectAll: ({num}) => `Select all (${num})`,
+    selectAllWithCount: ({num}) => `Select all (${num})`,
     selectNone: strings.selectNone.message,
-    someSelected: ({num}) => (num === 1 ? `${num} item` : `${num} items`),
     tabs: strings.tabs.message,
+    zeroItemsSelected: strings.zeroItemsSelected.message,
 
     // Screen reader announcements
     srComboboxClosed: strings.srComboboxClosed.message,

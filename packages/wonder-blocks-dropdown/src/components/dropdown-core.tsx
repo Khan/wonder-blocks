@@ -229,7 +229,7 @@ const DropdownCore = (props: Props) => {
             filter: strings.filter,
             noResults: strings.noResults,
             someResults: (numResults: number) =>
-                strings.someSelected({num: numResults}),
+                strings.numItemsSelected({num: numResults}),
         }),
         [strings],
     );

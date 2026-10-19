@@ -1697,12 +1697,13 @@ describe("MultiSelect", () => {
     describe("i18n strings", () => {
         const translatedStrings = {
             ...defaultStringsEn,
-            allSelected: "Todos los elementos",
+            allItemsSelected: "Todos los elementos",
             filter: "Filtrar",
-            noneSelected: "0 elementos",
-            selectAll: ({num}: {num: number}) => `Seleccionar todos (${num})`,
+            numItemsSelected: ({num}: {num: number}) => `${num} elementos`,
+            selectAllWithCount: ({num}: {num: number}) =>
+                `Seleccionar todos (${num})`,
             selectNone: "No seleccionar ninguno",
-            someSelected: ({num}: {num: number}) => `${num} elementos`,
+            zeroItemsSelected: "0 elementos",
         };
 
         const renderWithConfig = (
