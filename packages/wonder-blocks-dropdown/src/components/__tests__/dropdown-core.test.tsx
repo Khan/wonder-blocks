@@ -1654,99 +1654,102 @@ describe("DropdownCore", () => {
             onOpenChanged: jest.fn(),
         } as const;
 
-        it("uses the filter string from the config provider", async () => {
-            // Arrange
+        const customLabels = {
+            clearSearch: "Custom clear search",
+            filter: "Custom filter",
+            noResults: "Custom no results",
+            someResults: (numOptions: number) => `Custom ${numOptions} results`,
+        };
 
-            // Act
-            render(<DropdownCore {...baseProps} items={items} />, {
-                wrapper: ConfigProvider,
-            });
+        type LabelCase = {
+            label: "clearSearch" | "filter" | "noResults";
+            translatedString: string;
+            // The props needed to render the element that uses the label.
+            props: Pick<
+                React.ComponentProps<typeof DropdownCore>,
+                "items" | "searchText"
+            >;
+            findElement: (text: string) => Promise<HTMLElement>;
+        };
 
-            // Assert
-            expect(
-                await screen.findByPlaceholderText("Filtrar"),
-            ).toBeInTheDocument();
-        });
+        const labelCases: Array<LabelCase> = [
+            {
+                label: "clearSearch",
+                translatedString: "Limpiar búsqueda",
+                props: {items, searchText: "item"},
+                findElement: (text) =>
+                    screen.findByRole("button", {name: text}),
+            },
+            {
+                label: "filter",
+                translatedString: "Filtrar",
+                props: {items},
+                findElement: (text) => screen.findByPlaceholderText(text),
+            },
+            {
+                label: "noResults",
+                translatedString: "No hay resultados",
+                props: {items: []},
+                findElement: (text) => screen.findByText(text),
+            },
+        ];
 
-        it("uses the clear search string from the config provider", async () => {
-            // Arrange
+        it.each(labelCases)(
+            "uses the string from the config provider for $label",
+            async ({props, translatedString, findElement}) => {
+                // Arrange
 
-            // Act
-            render(
-                <DropdownCore {...baseProps} searchText="item" items={items} />,
-                {wrapper: ConfigProvider},
-            );
+                // Act
+                render(<DropdownCore {...baseProps} {...props} />, {
+                    wrapper: ConfigProvider,
+                });
 
-            // Assert
-            expect(
-                await screen.findByRole("button", {name: "Limpiar búsqueda"}),
-            ).toBeInTheDocument();
-        });
+                // Assert
+                expect(await findElement(translatedString)).toBeInTheDocument();
+            },
+        );
 
-        it("uses the no results string from the config provider", async () => {
-            // Arrange
+        it.each(labelCases)(
+            "uses the string from the config provider when $label is empty",
+            async ({label, props, translatedString, findElement}) => {
+                // Arrange
 
-            // Act
-            render(<DropdownCore {...baseProps} items={[]} />, {
-                wrapper: ConfigProvider,
-            });
+                // Act
+                render(
+                    <DropdownCore
+                        {...baseProps}
+                        {...props}
+                        labels={{...customLabels, [label]: ""}}
+                    />,
+                    {wrapper: ConfigProvider},
+                );
 
-            // Assert
-            expect(
-                await screen.findByText("No hay resultados"),
-            ).toBeInTheDocument();
-        });
+                // Assert
+                expect(await findElement(translatedString)).toBeInTheDocument();
+            },
+        );
 
-        it("uses the strings from the config provider when the labels are empty", async () => {
-            // Arrange
+        it.each(labelCases)(
+            "uses the $label label over the string from the config provider",
+            async ({label, props, findElement}) => {
+                // Arrange
 
-            // Act
-            render(
-                <DropdownCore
-                    {...baseProps}
-                    searchText="item"
-                    items={items}
-                    labels={{
-                        clearSearch: "",
-                        filter: "",
-                        noResults: "",
-                        someResults: (numOptions: number) =>
-                            `${numOptions} results`,
-                    }}
-                />,
-                {wrapper: ConfigProvider},
-            );
+                // Act
+                render(
+                    <DropdownCore
+                        {...baseProps}
+                        {...props}
+                        labels={customLabels}
+                    />,
+                    {wrapper: ConfigProvider},
+                );
 
-            // Assert
-            expect(
-                await screen.findByRole("button", {name: "Limpiar búsqueda"}),
-            ).toBeInTheDocument();
-        });
-
-        it("uses the labels prop over the strings from the config provider", async () => {
-            // Arrange
-
-            // Act
-            render(
-                <DropdownCore
-                    {...baseProps}
-                    items={[]}
-                    labels={{
-                        clearSearch: "Clear override",
-                        filter: "Filter override",
-                        noResults: "No results override",
-                        someResults: (numOptions: number) =>
-                            `${numOptions} results override`,
-                    }}
-                />,
-                {wrapper: ConfigProvider},
-            );
-
-            // Assert
-            expect(
-                await screen.findByText("No results override"),
-            ).toBeInTheDocument();
-        });
+                // Assert
+                expect(
+                    await findElement(customLabels[label]),
+                ).toBeInTheDocument();
+            },
+        );
     });
 
     describe("rendering", () => {
