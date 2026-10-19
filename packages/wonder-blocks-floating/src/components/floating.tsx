@@ -297,14 +297,20 @@ const NON_TEXT_INPUT_TYPES = new Set([
 
 /**
  * Whether the element opens a virtual keyboard on mobile devices when focused
- * (e.g. text fields).
+ * (e.g. text fields). Read-only and disabled fields don't open one.
  */
 function opensVirtualKeyboard(element: Element): boolean {
-    if (element instanceof HTMLTextAreaElement) {
-        return true;
-    }
-    if (element instanceof HTMLInputElement) {
-        return !NON_TEXT_INPUT_TYPES.has(element.type);
+    if (
+        element instanceof HTMLTextAreaElement ||
+        element instanceof HTMLInputElement
+    ) {
+        if (element.readOnly || element.disabled) {
+            return false;
+        }
+        return (
+            element instanceof HTMLTextAreaElement ||
+            !NON_TEXT_INPUT_TYPES.has(element.type)
+        );
     }
     return element instanceof HTMLElement && element.isContentEditable;
 }
@@ -435,14 +441,26 @@ export default function Floating({
         }
     }, [open]);
 
+    // Whether a pointer press started inside of the floating element (and
+    // hasn't been released yet).
+    const isPressingInsideRef = React.useRef(false);
+
     /**
-     * Tracks when focus moves to a text field inside of the floating element
-     * (or to any other element inside of it).
+     * Tracks when focus moves to a text field inside of the floating element.
+     * Once a text field has focus, moving focus to other elements inside of
+     * the floating element (e.g. a Submit button) keeps tracking it, so the
+     * floating element isn't hidden in the middle of the interaction.
      */
     const handleFocus = React.useCallback((event: React.FocusEvent) => {
-        setFocusedField(
-            opensVirtualKeyboard(event.target) ? event.target : null,
-        );
+        // NOTE: React focus events bubble through portals, so ignore elements
+        // that aren't part of the floating element in the DOM (e.g. a field in
+        // a nested, portaled popover).
+        if (
+            event.currentTarget.contains(event.target) &&
+            opensVirtualKeyboard(event.target)
+        ) {
+            setFocusedField(event.target);
+        }
     }, []);
 
     /**
@@ -450,12 +468,27 @@ export default function Floating({
      * between elements inside of it).
      */
     const handleBlur = React.useCallback((event: React.FocusEvent) => {
-        if (
-            !(event.relatedTarget instanceof Node) ||
-            !event.currentTarget.contains(event.relatedTarget)
-        ) {
+        const {relatedTarget, currentTarget} = event;
+        const movesInside =
+            relatedTarget instanceof Node
+                ? currentTarget.contains(relatedTarget)
+                : // Some browsers (e.g. Safari) don't focus buttons when
+                  // they're clicked, so focus moves to nothing. Treat it as
+                  // staying inside when the press started inside.
+                  isPressingInsideRef.current;
+        isPressingInsideRef.current = false;
+
+        if (!movesInside) {
             setFocusedField(null);
         }
+    }, []);
+
+    const handlePointerDown = React.useCallback(() => {
+        isPressingInsideRef.current = true;
+    }, []);
+
+    const handlePointerUp = React.useCallback(() => {
+        isPressingInsideRef.current = false;
     }, []);
 
     // A focused element that gets removed from the DOM doesn't fire a blur
@@ -610,6 +643,9 @@ export default function Floating({
                             {...getFloatingProps({
                                 onFocus: handleFocus,
                                 onBlur: handleBlur,
+                                onPointerDown: handlePointerDown,
+                                onPointerUp: handlePointerUp,
+                                onPointerCancel: handlePointerUp,
                             })}
                         >
                             {content}

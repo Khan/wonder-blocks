@@ -1,5 +1,6 @@
 import * as React from "react";
-import {render, screen, waitFor} from "@testing-library/react";
+import * as ReactDOM from "react-dom";
+import {fireEvent, render, screen, waitFor} from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
 import Floating from "../floating";
@@ -167,6 +168,130 @@ describe("Floating (hide)", () => {
             >
                 <button>Trigger</button>
             </Floating>,
+        );
+
+        // Assert
+        await waitFor(() => {
+            expect(screen.getByTestId("floating")).toHaveStyle({
+                visibility: "hidden",
+            });
+        });
+    });
+
+    it("should keep the floating element visible when focus moves from a text field to a button inside of it", async () => {
+        // Arrange
+        render(
+            <Floating
+                content={
+                    <>
+                        <textarea aria-label="Feedback" />
+                        <button>Submit</button>
+                    </>
+                }
+                open={true}
+                focusManagerEnabled={false}
+                testId="floating"
+            >
+                <button>Trigger</button>
+            </Floating>,
+        );
+        await userEvent.click(screen.getByRole("textbox", {name: "Feedback"}));
+
+        // Act
+        await userEvent.click(screen.getByRole("button", {name: "Submit"}));
+
+        // Assert
+        await waitFor(() => {
+            expect(screen.getByTestId("floating")).toHaveStyle({
+                visibility: "visible",
+            });
+        });
+    });
+
+    it("should keep the floating element visible when pressing a button inside of it moves focus to nothing", async () => {
+        // Arrange
+        render(
+            <Floating
+                content={
+                    <>
+                        <textarea aria-label="Feedback" />
+                        <button>Submit</button>
+                    </>
+                }
+                open={true}
+                focusManagerEnabled={false}
+                testId="floating"
+            >
+                <button>Trigger</button>
+            </Floating>,
+        );
+        const textArea = screen.getByRole("textbox", {name: "Feedback"});
+        await userEvent.click(textArea);
+
+        // Act
+        // Some browsers (e.g. Safari) don't focus buttons when they're
+        // clicked, so the text field loses focus without a related target.
+        // NOTE: userEvent would also move focus to the button (like Chrome
+        // does), so we fire the events directly.
+        // eslint-disable-next-line testing-library/prefer-user-event
+        fireEvent.pointerDown(screen.getByRole("button", {name: "Submit"}));
+        fireEvent.focusOut(textArea, {relatedTarget: null});
+
+        // Assert
+        await waitFor(() => {
+            expect(screen.getByTestId("floating")).toHaveStyle({
+                visibility: "visible",
+            });
+        });
+    });
+
+    it("should hide the floating element when a read-only text field has focus", async () => {
+        // Arrange
+        render(
+            <Floating
+                content={<input aria-label="Share link" readOnly={true} />}
+                open={true}
+                focusManagerEnabled={false}
+                testId="floating"
+            >
+                <button>Trigger</button>
+            </Floating>,
+        );
+
+        // Act
+        await userEvent.click(
+            screen.getByRole("textbox", {name: "Share link"}),
+        );
+
+        // Assert
+        await waitFor(() => {
+            expect(screen.getByTestId("floating")).toHaveStyle({
+                visibility: "hidden",
+            });
+        });
+    });
+
+    it("should hide the floating element when a text field in portaled content has focus", async () => {
+        // Arrange
+        const PortaledField = () =>
+            ReactDOM.createPortal(
+                <input aria-label="Nested field" />,
+                document.body,
+            );
+        render(
+            <Floating
+                content={<PortaledField />}
+                open={true}
+                focusManagerEnabled={false}
+                testId="floating"
+            >
+                <button>Trigger</button>
+            </Floating>,
+        );
+
+        // Act
+        await userEvent.click(
+            screen.getByRole("textbox", {name: "Nested field"}),
         );
 
         // Assert
