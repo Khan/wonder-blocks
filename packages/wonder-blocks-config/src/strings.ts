@@ -12,7 +12,6 @@ export type WonderBlocksStrings = {
     // Labels
     breadcrumbs: string;
     optionsList: string;
-    removeSelected: ({label}: {label: string}) => string;
     tabs: string;
 
     // Selection
@@ -20,6 +19,7 @@ export type WonderBlocksStrings = {
     filter: string;
     noResults: string;
     numItems: ({num}: {num: number}) => string;
+    removeSelected: ({label}: {label: string}) => string;
     selectAllWithCount: ({num}: {num: number}) => string;
     selectNone: string;
     zeroItems: string;
@@ -93,11 +93,6 @@ export const strings = {
             "Accessible name for the list of options that opens from a combobox.",
         message: "Options list",
     },
-    removeSelected: {
-        context:
-            "Accessible name for a button that removes a selected option from a multi-select combobox. %(label)s is the label of the option.",
-        message: "Remove %(label)s",
-    },
     tabs: {
         context:
             "Label for the menu of tabs when no tab is selected, shown when the tabs are collapsed into a dropdown.",
@@ -124,6 +119,11 @@ export const strings = {
             "Text shown when a number of items are selected. %(num)s is the number of options.",
         one: "%(num)s item",
         other: "%(num)s items",
+    },
+    removeSelected: {
+        context:
+            "Accessible name for a button that removes a selected option from a multi-select combobox. %(label)s is the label of the option.",
+        message: "Remove %(label)s",
     },
     selectAllWithCount: {
         context:
@@ -221,7 +221,6 @@ export const defaultStringsEn: WonderBlocksStrings = {
     // Labels
     breadcrumbs: strings.breadcrumbs.message,
     optionsList: strings.optionsList.message,
-    removeSelected: ({label}) => `Remove ${label}`,
     tabs: strings.tabs.message,
 
     // Selection
@@ -229,6 +228,7 @@ export const defaultStringsEn: WonderBlocksStrings = {
     filter: strings.filter.message,
     noResults: strings.noResults.message,
     numItems: ({num}) => (num === 1 ? `${num} item` : `${num} items`),
+    removeSelected: ({label}) => `Remove ${label}`,
     selectAllWithCount: ({num}) => `Select all (${num})`,
     selectNone: strings.selectNone.message,
     zeroItems: strings.zeroItems.message,
