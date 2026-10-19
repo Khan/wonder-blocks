@@ -5,11 +5,31 @@ import {StyleSheet} from "aphrodite";
 import magnifyingGlassIcon from "@phosphor-icons/core/regular/magnifying-glass.svg";
 
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
+import {
+    WonderBlocksConfigProvider,
+    defaultStringsEn,
+} from "@khanacademy/wonder-blocks-config";
 import {PointerEventsCheckLevel, userEvent} from "@testing-library/user-event";
-import {defaultComboboxLabels} from "../../util/constants";
-import {MaybeValueOrValues} from "../../util/types";
+import type {ComboboxLabels, MaybeValueOrValues} from "../../util/types";
 import Combobox from "../combobox";
 import OptionItem from "../option-item";
+
+// The English labels built from the default strings.
+const englishComboboxLabels: ComboboxLabels = {
+    clearSelection: "Clear selection",
+    closedState: "Combobox is closed",
+    comboboxButton: "Toggle listbox",
+    listbox: "Options list",
+    removeSelected: (label) => `Remove ${label}`,
+    liveRegionCurrentItem: ({current, index, total}) =>
+        `${current}, ${index + 1} of ${total}.`,
+    liveRegionMultipleSelectionTotal: (total) => `${total} selected options.`,
+    liveRegionListboxTotal: (total) => `${total} results available.`,
+    noItems: "No results",
+    selected: (labels) => `${labels} selected`,
+    selectionCleared: "Selection cleared",
+    unselected: (labels) => `${labels} not selected`,
+};
 
 const doRender = (element: React.ReactElement) => {
     render(element, {wrapper: RenderStateRoot});
@@ -1110,9 +1130,7 @@ describe("Combobox", () => {
                 await userEvent.type(screen.getByRole("combobox"), "not-found");
 
                 // Assert
-                expect(screen.getByRole("log")).toHaveTextContent(
-                    defaultComboboxLabels.noItems,
-                );
+                expect(screen.getByRole("log")).toHaveTextContent("No results");
             });
 
             // TODO (WB-1757.2): Enable this test once the LiveRegion component
@@ -1134,9 +1152,104 @@ describe("Combobox", () => {
 
                 // Assert
                 expect(screen.getByRole("log")).toHaveTextContent(
-                    defaultComboboxLabels.selectionCleared,
+                    "Selection cleared",
                 );
             });
+        });
+    });
+
+    describe("i18n strings", () => {
+        const translatedStrings = {
+            ...defaultStringsEn,
+            iconAltClearSelection: "Borrar selección",
+            iconAltToggleListbox: "Alternar lista",
+            noResults: "No hay resultados",
+            optionsList: "Lista de opciones",
+            removeSelected: ({label}: {label: string}) => `Quitar ${label}`,
+        };
+
+        const renderWithConfig = (
+            props: Partial<React.ComponentProps<typeof Combobox>> = {},
+        ) =>
+            doRender(
+                <WonderBlocksConfigProvider
+                    i18n={{strings: translatedStrings, locale: "es"}}
+                >
+                    <Combobox selectionType="single" value="option2" {...props}>
+                        <OptionItem label="option 1" value="option1" />
+                        <OptionItem label="option 2" value="option2" />
+                    </Combobox>
+                </WonderBlocksConfigProvider>,
+            );
+
+        it.each(["Borrar selección", "Alternar lista"])(
+            "uses the %s button string from the config provider",
+            (name) => {
+                // Arrange
+
+                // Act
+                renderWithConfig();
+
+                // Assert
+                expect(screen.getByRole("button", {name})).toBeInTheDocument();
+            },
+        );
+
+        it("uses the options list string from the config provider", async () => {
+            // Arrange
+
+            // Act
+            renderWithConfig({opened: true});
+
+            // Assert
+            expect(
+                await screen.findByRole("listbox", {hidden: true}),
+            ).toHaveAttribute("aria-label", "Lista de opciones");
+        });
+
+        it("uses the remove selected string from the config provider", () => {
+            // Arrange
+
+            // Act
+            renderWithConfig({selectionType: "multiple", value: ["option1"]});
+
+            // Assert
+            expect(
+                screen.getByRole("button", {name: "Quitar option 1"}),
+            ).toBeInTheDocument();
+        });
+
+        it("uses the no results string from the config provider", async () => {
+            // Arrange
+            const userEvent = renderWithConfig({
+                value: "",
+                autoComplete: "list",
+            });
+
+            // Act
+            await userEvent.type(screen.getByRole("combobox"), "not-found");
+
+            // Assert
+            expect(screen.getByRole("log")).toHaveTextContent(
+                "No hay resultados",
+            );
+        });
+
+        it("uses the labels prop over the strings from the config provider", () => {
+            // Arrange
+
+            // Act
+            renderWithConfig({
+                labels: {
+                    ...englishComboboxLabels,
+                    clearSelection: "Clear selection override",
+                },
+            });
+
+            // Assert
+            expect(
+                screen.getByRole("button", {name: "Clear selection override"}),
+            ).toBeInTheDocument();
         });
     });
 });
