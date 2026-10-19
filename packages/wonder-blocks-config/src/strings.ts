@@ -33,9 +33,9 @@ export type WonderBlocksStrings = {
     zeroItems: string;
     selectAllWithCount: ({num}: {num: number}) => string;
     selectNone: string;
+    removeSelected: ({label}: {label: string}) => string;
     filter: string;
     noResults: string;
-    removeSelected: ({label}: {label: string}) => string;
 
     // Screen reader announcements
     srComboboxClosed: string;
@@ -194,6 +194,11 @@ export const strings = {
         context: "Label for the option to deselect all of the options.",
         message: "Select none",
     },
+    removeSelected: {
+        context:
+            "Accessible name for a button that removes a selected option from a multi-select combobox. ${label} is the label of the option.",
+        message: "Remove ${label}",
+    },
     filter: {
         context: "Placeholder for a field used to filter items.",
         message: "Filter",
@@ -202,11 +207,6 @@ export const strings = {
         context:
             "Text shown when there are no results. For example, when no results match a filter.",
         message: "No results",
-    },
-    removeSelected: {
-        context:
-            "Accessible name for a button that removes a selected option from a multi-select combobox. %(label)s is the label of the option.",
-        message: "Remove %(label)s",
     },
 
     // Screen reader announcements
@@ -217,20 +217,20 @@ export const strings = {
     },
     srComboboxCurrentItem: {
         context:
-            "Screen reader announcement for the option that is currently focused in a combobox. %(current)s is the option's label, which can be followed by its states (e.g. 'Apple focused selected'). %(index)s is the position of the option in the list, starting at 1, and %(total)s is the number of options.",
-        message: "%(current)s, %(index)s of %(total)s.",
+            "Screen reader announcement for the option that is currently focused in a combobox. ${current} is the option's label, which can be followed by its states (e.g. 'Apple focused selected'). ${index} is the position of the option in the list, starting at 1, and ${total} is the number of options.",
+        message: "${current}, ${index} of ${total}.",
     },
     srComboboxResultsTotal: {
         context:
             "Screen reader announcement for the number of options available in a combobox.",
-        one: "%(total)s result available.",
-        other: "%(total)s results available.",
+        one: "${total} result available.",
+        other: "${total} results available.",
     },
     srComboboxSelectedTotal: {
         context:
             "Screen reader announcement for the number of options selected in a multi-select combobox.",
-        one: "%(total)s selected option.",
-        other: "%(total)s selected options.",
+        one: "${total} selected option.",
+        other: "${total} selected options.",
     },
     srItemDisabled: {
         context:
@@ -249,8 +249,8 @@ export const strings = {
     },
     srSelected: {
         context:
-            "Screen reader announcement for when options are selected in a combobox. %(labels)s is a list of the selected options' labels.",
-        message: "%(labels)s selected",
+            "Screen reader announcement for when options are selected in a combobox. ${labels} is a list of the selected options' labels.",
+        message: "${labels} selected",
     },
     srSelectionCleared: {
         context:
@@ -259,8 +259,8 @@ export const strings = {
     },
     srUnselected: {
         context:
-            "Screen reader announcement for when options are deselected in a multi-select combobox. %(labels)s is a list of the labels of the options that are still selected.",
-        message: "%(labels)s not selected",
+            "Screen reader announcement for when options are deselected in a multi-select combobox. ${labels} is a list of the labels of the options that are still selected.",
+        message: "${labels} not selected",
     },
 
     // Form field labels
@@ -329,9 +329,9 @@ export const defaultStringsEn: WonderBlocksStrings = {
     zeroItems: strings.zeroItems.message,
     selectAllWithCount: ({num}) => `Select all (${num})`,
     selectNone: strings.selectNone.message,
+    removeSelected: ({label}) => `Remove ${label}`,
     filter: strings.filter.message,
     noResults: strings.noResults.message,
-    removeSelected: ({label}) => `Remove ${label}`,
 
     // Screen reader announcements
     srComboboxClosed: strings.srComboboxClosed.message,
