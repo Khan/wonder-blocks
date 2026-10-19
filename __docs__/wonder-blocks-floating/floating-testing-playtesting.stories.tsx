@@ -67,6 +67,10 @@ const FeedbackFloating = () => {
             open={open}
             onOpenChange={setOpen}
             placement="top"
+            // Use the same positioning strategy as `Popover`, so the floating
+            // element stays attached to the button while the page scrolls
+            // (the button can be fixed to the screen).
+            strategy="fixed"
             dismissEnabled={true}
             content={
                 <View style={styles.form}>
