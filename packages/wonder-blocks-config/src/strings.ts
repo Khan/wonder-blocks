@@ -2,6 +2,9 @@
  * The translated strings that are used to render Wonder Blocks.
  */
 export type WonderBlocksStrings = {
+    // `num` is a special variable name that is used to determine the plurality
+    // of the translated string.
+
     // Alt text for icons / icon buttons
     iconAltClearSearch: string;
     iconAltErrorMessagePrefix: string;
@@ -31,6 +34,9 @@ export type WonderBlocksStrings = {
  * !! Note: Ensure that all escape sequences are double-escaped. (e.g. `\\text` -> `\\\\text`)
  */
 export const strings = {
+    // `num` is a special variable name that is used to determine the plurality
+    // of the translated string.
+
     // Alt text for icons / icon buttons
     iconAltClearSearch: {
         context:
