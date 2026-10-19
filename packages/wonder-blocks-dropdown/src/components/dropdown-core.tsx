@@ -174,7 +174,7 @@ type ExportProps = Readonly<{
      * This overrides the default labels provided by `WonderBlocksConfigProvider`
      * (in English by default).
      */
-    labels?: Partial<LabelsValues>;
+    labels?: LabelsValues;
     /**
      * Used to determine if we can automatically select an item using the keyboard.
      */
