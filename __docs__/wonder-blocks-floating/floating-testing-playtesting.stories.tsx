@@ -7,6 +7,7 @@ import {View} from "@khanacademy/wonder-blocks-core";
 import {Floating} from "@khanacademy/wonder-blocks-floating";
 import {TextArea} from "@khanacademy/wonder-blocks-form";
 import {LabeledField} from "@khanacademy/wonder-blocks-labeled-field";
+import {ScrollableView} from "@khanacademy/wonder-blocks-layout";
 import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {BodyText, Heading} from "@khanacademy/wonder-blocks-typography";
 
@@ -45,6 +46,9 @@ const styles = StyleSheet.create({
         blockSize: sizing.size_960,
     },
     form: {
+        // Keep the content at its natural size so it scrolls (inside the
+        // `ScrollableView`) instead of being squashed when it doesn't fit.
+        flexShrink: 0,
         padding: sizing.size_240,
         gap: sizing.size_160,
         maxInlineSize: 320,
@@ -71,18 +75,27 @@ const FeedbackFloating = () => {
             // element stays attached to the button while the page scrolls
             // (the button can be fixed to the screen).
             strategy="fixed"
+            // Also like `Popover`, constrain the floating element to the
+            // available space and scroll its content when it doesn't fit (e.g.
+            // when zoomed in, or when the virtual keyboard is open).
+            constrainSize={true}
             dismissEnabled={true}
             content={
-                <View style={styles.form}>
-                    <Heading size="medium">Leave feedback</Heading>
-                    <LabeledField
-                        label="Feedback"
-                        field={
-                            <TextArea value={feedback} onChange={setFeedback} />
-                        }
-                    />
-                    <Button style={styles.submit}>Submit</Button>
-                </View>
+                <ScrollableView aria-label="Leave feedback">
+                    <View style={styles.form}>
+                        <Heading size="medium">Leave feedback</Heading>
+                        <LabeledField
+                            label="Feedback"
+                            field={
+                                <TextArea
+                                    value={feedback}
+                                    onChange={setFeedback}
+                                />
+                            }
+                        />
+                        <Button style={styles.submit}>Submit</Button>
+                    </View>
+                </ScrollableView>
             }
         >
             <Button onClick={() => setOpen(!open)}>Leave feedback</Button>
