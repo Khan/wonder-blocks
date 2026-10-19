@@ -19,12 +19,12 @@ import {
 import SearchField from "@khanacademy/wonder-blocks-search-field";
 import {BodyText} from "@khanacademy/wonder-blocks-typography";
 import {useActionScheduler} from "@khanacademy/wonder-blocks-timing";
+import {useWonderBlocksI18n} from "@khanacademy/wonder-blocks-config";
 
 import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
 import {Placement} from "@popperjs/core";
 import DropdownCoreVirtualized from "./dropdown-core-virtualized";
 import SeparatorItem from "./separator-item";
-import {defaultLabels} from "../util/constants";
 import type {DropdownItem} from "../util/types";
 import DropdownPopper from "./dropdown-popper";
 import {debounce, getLabel, getStringForKey} from "../util/helpers";
@@ -215,19 +215,25 @@ const createItemRefs = (items: Array<DropdownItem>): ItemRefs => {
     return itemRefs;
 };
 
-const defaultPropLabels: LabelsValues = {
-    clearSearch: defaultLabels.clearSearch,
-    filter: defaultLabels.filter,
-    noResults: defaultLabels.noResults,
-    someResults: defaultLabels.someSelected,
-};
-
 /**
  * A core dropdown component that takes an opener and children to display as
  * part of the dropdown menu. Renders the dropdown as a portal to avoid clipping
  * in overflow: auto containers.
  */
 const DropdownCore = (props: Props) => {
+    const {strings} = useWonderBlocksI18n();
+    // The default labels use the strings from `WonderBlocksConfigProvider`.
+    const defaultPropLabels: LabelsValues = React.useMemo(
+        () => ({
+            clearSearch: strings.iconAltClearSearch,
+            filter: strings.filter,
+            noResults: strings.noResults,
+            someResults: (numResults: number) =>
+                strings.someSelected({num: numResults}),
+        }),
+        [strings],
+    );
+
     const {
         "aria-invalid": ariaInvalid,
         "aria-label": ariaLabel,
@@ -287,10 +293,10 @@ const DropdownCore = (props: Props) => {
      */
     const [labels, setLabels] = React.useState<LabelsValues>(() => ({
         // @ts-expect-error [FEI-5019] - TS2783 - 'noResults' is specified more than once, so this usage will be overwritten.
-        noResults: defaultLabels.noResults,
+        noResults: defaultPropLabels.noResults,
         // In case we are not overriding this from the caller.
         // @ts-expect-error [FEI-5019] - TS2783 - 'someResults' is specified more than once, so this usage will be overwritten.
-        someResults: defaultLabels.someSelected,
+        someResults: defaultPropLabels.someResults,
         ...propLabels,
     }));
 

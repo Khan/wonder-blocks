@@ -14,11 +14,14 @@ import {
 } from "@testing-library/user-event";
 
 import {PropsFor} from "@khanacademy/wonder-blocks-core";
+import {
+    WonderBlocksConfigProvider,
+    defaultStringsEn,
+} from "@khanacademy/wonder-blocks-config";
 import {LabeledField} from "@khanacademy/wonder-blocks-labeled-field";
 
 import OptionItem from "../option-item";
 import MultiSelect from "../multi-select";
-import {defaultLabels as builtinLabels} from "../../util/constants";
 
 import type {LabelsValues} from "../multi-select";
 
@@ -44,6 +47,19 @@ jest.mock("react-popper", () => ({
         });
     }),
 }));
+
+// The English labels built from the default strings.
+const builtinLabels: LabelsValues = {
+    clearSearch: "Clear search",
+    filter: "Filter",
+    noResults: "No results",
+    selectAllLabel: (numOptions: number) => `Select all (${numOptions})`,
+    selectNoneLabel: "Select none",
+    noneSelected: "0 items",
+    someSelected: (numSelectedValues: number) =>
+        numSelectedValues === 1 ? "1 item" : `${numSelectedValues} items`,
+    allSelected: "All items",
+};
 
 const defaultLabels: LabelsValues = {
     ...builtinLabels,
@@ -1675,6 +1691,117 @@ describe("MultiSelect", () => {
                     await screen.findByRole("listbox", {hidden: true}),
                 ).toBeInTheDocument();
             });
+        });
+    });
+
+    describe("i18n strings", () => {
+        const translatedStrings = {
+            ...defaultStringsEn,
+            allSelected: "Todos los elementos",
+            filter: "Filtrar",
+            noneSelected: "0 elementos",
+            selectAll: ({num}: {num: number}) => `Seleccionar todos (${num})`,
+            selectNone: "No seleccionar ninguno",
+            someSelected: ({num}: {num: number}) => `${num} elementos`,
+        };
+
+        const renderWithConfig = (
+            props: Partial<PropsFor<typeof MultiSelect>> = {},
+        ) =>
+            doRender(
+                <WonderBlocksConfigProvider
+                    i18n={{strings: translatedStrings, locale: "es"}}
+                >
+                    <MultiSelect onChange={jest.fn()} {...props}>
+                        <OptionItem label="Banano" value="banano" />
+                        <OptionItem label="Pera" value="pera" />
+                    </MultiSelect>
+                </WonderBlocksConfigProvider>,
+            );
+
+        it.each([
+            {selectedValues: [], expected: "0 elementos"},
+            {selectedValues: ["banano"], expected: "Banano"},
+            {
+                selectedValues: ["banano", "pera"],
+                expected: "Todos los elementos",
+            },
+        ])(
+            "uses the opener text from the config provider when $selectedValues.length items are selected",
+            async ({selectedValues, expected}) => {
+                // Arrange
+
+                // Act
+                renderWithConfig({selectedValues});
+
+                // Assert
+                expect(await screen.findByRole("combobox")).toHaveTextContent(
+                    expected,
+                );
+            },
+        );
+
+        it("uses the some selected string from the config provider", async () => {
+            // Arrange
+            doRender(
+                <WonderBlocksConfigProvider
+                    i18n={{strings: translatedStrings, locale: "es"}}
+                >
+                    <MultiSelect
+                        onChange={jest.fn()}
+                        selectedValues={["banano", "pera"]}
+                    >
+                        <OptionItem label="Banano" value="banano" />
+                        <OptionItem label="Pera" value="pera" />
+                        <OptionItem label="Uva" value="uva" />
+                    </MultiSelect>
+                </WonderBlocksConfigProvider>,
+            );
+
+            // Act
+            const opener = await screen.findByRole("combobox");
+
+            // Assert
+            expect(opener).toHaveTextContent("2 elementos");
+        });
+
+        it.each(["Seleccionar todos (2)", "No seleccionar ninguno"])(
+            "uses the %s shortcut string from the config provider",
+            async (label) => {
+                // Arrange
+
+                // Act
+                renderWithConfig({shortcuts: true, opened: true});
+
+                // Assert
+                expect(
+                    await screen.findByRole("option", {name: label}),
+                ).toBeInTheDocument();
+            },
+        );
+
+        it("uses the filter string from the config provider", async () => {
+            // Arrange
+
+            // Act
+            renderWithConfig({isFilterable: true, opened: true});
+
+            // Assert
+            expect(
+                await screen.findByPlaceholderText("Filtrar"),
+            ).toBeInTheDocument();
+        });
+
+        it("uses the labels prop over the strings from the config provider", async () => {
+            // Arrange
+
+            // Act
+            renderWithConfig({labels: {noneSelected: "None override"}});
+
+            // Assert
+            expect(await screen.findByRole("combobox")).toHaveTextContent(
+                "None override",
+            );
         });
     });
 

@@ -8,16 +8,13 @@ import {
 } from "@khanacademy/wonder-blocks-core";
 
 import {announceMessage} from "@khanacademy/wonder-blocks-announcer";
+import {useWonderBlocksI18n} from "@khanacademy/wonder-blocks-config";
 import ActionItem from "./action-item";
 import DropdownCore from "./dropdown-core";
 import DropdownOpener from "./dropdown-opener";
 import SelectOpener from "./select-opener";
 import SeparatorItem from "./separator-item";
-import {
-    defaultLabels,
-    selectDropdownStyle,
-    filterableDropdownStyle,
-} from "../util/constants";
+import {selectDropdownStyle, filterableDropdownStyle} from "../util/constants";
 
 import OptionItem from "./option-item";
 import type {
@@ -142,6 +139,9 @@ type Props = AriaProps &
         isFilterable?: boolean;
         /**
          * The object containing the custom labels and placeholder values used inside this component.
+         *
+         * Any labels set here override the default labels provided by
+         * `WonderBlocksConfigProvider` (in English by default).
          */
         labels?: Partial<LabelsValues>;
         /**
@@ -192,8 +192,8 @@ type Props = AriaProps &
          * String:
          * Please pass in a translated string to use as the error message that will
          * render if the user leaves this field blank. If this field is required,
-         * and a string is not passed in, a default untranslated string will render
-         * upon error.
+         * and a string is not passed in, the default `requiredFieldMessage` string
+         * from `WonderBlocksConfigProvider` will render upon error.
          * Note: The string will not be used if a `validate` prop is passed in.
          *
          * Example message: i18n._("A password is required to log in.")
@@ -202,8 +202,8 @@ type Props = AriaProps &
          * True/false indicating whether this field is required. Please do not pass
          * in `true` if possible - pass in the error string instead.
          * If `true` is passed, and a `validate` prop is not passed, that means
-         * there is no corresponding message and the default untranlsated message
-         * will be used.
+         * there is no corresponding message and the default `requiredFieldMessage`
+         * string from `WonderBlocksConfigProvider` will be used.
          */
         required?: boolean | string;
         /**
@@ -281,10 +281,25 @@ const MultiSelect = (props: Props) => {
         ...sharedProps
     } = props;
 
-    // Merge custom labels with the default ones
-    const labels = React.useMemo(() => {
-        return {...defaultLabels, ...propLabels};
-    }, [propLabels]);
+    const {strings} = useWonderBlocksI18n();
+
+    // Merge custom labels with the default strings from
+    // `WonderBlocksConfigProvider`.
+    const labels: LabelsValues = React.useMemo(() => {
+        return {
+            clearSearch: strings.iconAltClearSearch,
+            filter: strings.filter,
+            noResults: strings.noResults,
+            selectAllLabel: (numOptions: number) =>
+                strings.selectAll({num: numOptions}),
+            selectNoneLabel: strings.selectNone,
+            noneSelected: strings.noneSelected,
+            someSelected: (numSelectedValues: number) =>
+                strings.someSelected({num: numSelectedValues}),
+            allSelected: strings.allSelected,
+            ...propLabels,
+        };
+    }, [strings, propLabels]);
 
     // Whether or not the dropdown is open.
     const [open, setOpen] = React.useState(false);

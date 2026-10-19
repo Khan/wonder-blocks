@@ -12,6 +12,10 @@ import {
 } from "@testing-library/user-event";
 
 import {PropsFor} from "@khanacademy/wonder-blocks-core";
+import {
+    WonderBlocksConfigProvider,
+    defaultStringsEn,
+} from "@khanacademy/wonder-blocks-config";
 
 import {LabeledField} from "@khanacademy/wonder-blocks-labeled-field";
 
@@ -1433,6 +1437,120 @@ describe("SingleSelect", () => {
             // Assert
             expect(
                 await screen.findByText("No hay resultados"),
+            ).toBeInTheDocument();
+        });
+    });
+
+    describe("i18n strings", () => {
+        const translatedStrings = {
+            ...defaultStringsEn,
+            filter: "Filtrar",
+            iconAltClearSearch: "Limpiar búsqueda",
+            noResults: "No hay resultados",
+            someSelected: ({num}: {num: number}) => `${num} elementos`,
+        };
+
+        const renderWithConfig = (
+            props: Partial<PropsFor<typeof SingleSelect>> = {},
+        ) =>
+            doRender(
+                <WonderBlocksConfigProvider
+                    i18n={{strings: translatedStrings, locale: "es"}}
+                >
+                    <SingleSelect
+                        onChange={onChange}
+                        placeholder="Escoge una fruta"
+                        isFilterable={true}
+                        opened={true}
+                        {...props}
+                    >
+                        <OptionItem label="Banano" value="banano" />
+                        <OptionItem label="Pera" value="pera" />
+                    </SingleSelect>
+                </WonderBlocksConfigProvider>,
+            );
+
+        it("uses the filter string from the config provider", async () => {
+            // Arrange
+
+            // Act
+            renderWithConfig();
+
+            // Assert
+            expect(
+                await screen.findByPlaceholderText("Filtrar"),
+            ).toBeInTheDocument();
+        });
+
+        it("uses the clear search string from the config provider", async () => {
+            // Arrange
+            const {userEvent} = renderWithConfig();
+
+            // Act
+            await userEvent.type(
+                await screen.findByPlaceholderText("Filtrar"),
+                "b",
+            );
+
+            // Assert
+            expect(
+                await screen.findByRole("button", {name: "Limpiar búsqueda"}),
+            ).toBeInTheDocument();
+        });
+
+        it("uses the no results string from the config provider", async () => {
+            // Arrange
+            const {userEvent} = renderWithConfig();
+
+            // Act
+            await userEvent.type(
+                await screen.findByPlaceholderText("Filtrar"),
+                "invalid",
+            );
+
+            // Assert
+            expect(
+                await screen.findByText("No hay resultados"),
+            ).toBeInTheDocument();
+        });
+
+        it("announces the number of results using the string from the config provider", async () => {
+            // Arrange
+            const announceMessageSpy = jest.spyOn(
+                require("@khanacademy/wonder-blocks-announcer"),
+                "announceMessage",
+            );
+            const {userEvent} = renderWithConfig();
+
+            // Act
+            await userEvent.type(
+                await screen.findByPlaceholderText("Filtrar"),
+                "banano",
+            );
+
+            // Assert
+            expect(announceMessageSpy).toHaveBeenCalledWith({
+                message: "1 elementos",
+                level: "polite",
+            });
+        });
+
+        it("uses the labels prop over the strings from the config provider", async () => {
+            // Arrange
+
+            // Act
+            renderWithConfig({
+                labels: {
+                    clearSearch: "Clear search override",
+                    filter: "Filter override",
+                    noResults: "No results override",
+                    someResults: (num: number) => `${num} results override`,
+                },
+            });
+
+            // Assert
+            expect(
+                await screen.findByPlaceholderText("Filter override"),
             ).toBeInTheDocument();
         });
     });

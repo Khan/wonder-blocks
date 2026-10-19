@@ -17,8 +17,15 @@ export type WonderBlocksStrings = {
     iconAltToggleCalendar: string;
 
     // Labels
+    allSelected: string;
     breadcrumbs: string;
     datePickerCalendar: string;
+    filter: string;
+    noneSelected: string;
+    noResults: string;
+    selectAll: ({num}: {num: number}) => string;
+    selectNone: string;
+    someSelected: ({num}: {num: number}) => string;
     tabs: string;
 
     // Form field labels
@@ -98,6 +105,11 @@ export const strings = {
     },
 
     // Labels
+    allSelected: {
+        context:
+            "Text shown in a multi-select dropdown when all of its options are selected.",
+        message: "All items",
+    },
     breadcrumbs: {
         context:
             "Accessible name for the navigation landmark containing breadcrumb links.",
@@ -107,6 +119,37 @@ export const strings = {
         context:
             "Accessible name for the region containing the calendar in a date picker.",
         message: "Date picker calendar",
+    },
+    filter: {
+        context:
+            "Placeholder for the search field used to filter the options in a dropdown.",
+        message: "Filter",
+    },
+    noneSelected: {
+        context:
+            "Text shown in a multi-select dropdown when none of its options are selected.",
+        message: "0 items",
+    },
+    noResults: {
+        context:
+            "Text shown in a dropdown or combobox when no options match the search text.",
+        message: "No results",
+    },
+    selectAll: {
+        context:
+            "Label for the option in a multi-select dropdown that selects all of the options. %(num)s is the number of options.",
+        message: "Select all (%(num)s)",
+    },
+    selectNone: {
+        context:
+            "Label for the option in a multi-select dropdown that deselects all of the options.",
+        message: "Select none",
+    },
+    someSelected: {
+        context:
+            "Text shown in a multi-select dropdown when some of its options are selected, and announced to screen readers as the number of options that match the search text. %(num)s is the number of options.",
+        one: "%(num)s item",
+        other: "%(num)s items",
     },
     tabs: {
         context:
@@ -167,8 +210,15 @@ export const defaultStringsEn: WonderBlocksStrings = {
     iconAltToggleCalendar: strings.iconAltToggleCalendar.message,
 
     // Labels
+    allSelected: strings.allSelected.message,
     breadcrumbs: strings.breadcrumbs.message,
     datePickerCalendar: strings.datePickerCalendar.message,
+    filter: strings.filter.message,
+    noneSelected: strings.noneSelected.message,
+    noResults: strings.noResults.message,
+    selectAll: ({num}) => `Select all (${num})`,
+    selectNone: strings.selectNone.message,
+    someSelected: ({num}) => (num === 1 ? `${num} item` : `${num} items`),
     tabs: strings.tabs.message,
 
     // Form field labels
