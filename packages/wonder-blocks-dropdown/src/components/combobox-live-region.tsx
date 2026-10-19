@@ -1,7 +1,7 @@
 import {addStyle} from "@khanacademy/wonder-blocks-core";
+import {useWonderBlocksI18n} from "@khanacademy/wonder-blocks-config";
 import {StyleSheet} from "aphrodite";
 import * as React from "react";
-import {defaultComboboxLabels} from "../util/constants";
 import {getLabel} from "../util/helpers";
 import {
     ComboboxLabels,
@@ -75,17 +75,7 @@ type Props = {
 export function ComboboxLiveRegion({
     focusedIndex,
     focusedMultiSelectIndex,
-    labels = {
-        closedState: defaultComboboxLabels.closedState,
-        liveRegionCurrentItem: defaultComboboxLabels.liveRegionCurrentItem,
-        liveRegionListboxTotal: defaultComboboxLabels.liveRegionListboxTotal,
-        liveRegionMultipleSelectionTotal:
-            defaultComboboxLabels.liveRegionMultipleSelectionTotal,
-        noItems: defaultComboboxLabels.noItems,
-        selected: defaultComboboxLabels.selected,
-        selectionCleared: defaultComboboxLabels.selectionCleared,
-        unselected: defaultComboboxLabels.unselected,
-    },
+    labels: propLabels,
     selectedLabels,
     opened,
     options,
@@ -93,6 +83,52 @@ export function ComboboxLiveRegion({
     selectionType = "single",
     testId,
 }: Props) {
+    const {strings} = useWonderBlocksI18n();
+    // Use the labels prop if it is provided, otherwise use the strings from
+    // `WonderBlocksConfigProvider`.
+    // NOTE: The `labels` prop keeps its positional function args (e.g.
+    // `selected(labels)`), so the strings are adapted to them here.
+    const labels: NonNullable<Props["labels"]> = React.useMemo(
+        () =>
+            propLabels ?? {
+                closedState: strings.srComboboxClosed,
+                liveRegionCurrentItem: ({
+                    current,
+                    index,
+                    total,
+                    disabled,
+                    focused,
+                    selected,
+                }) => {
+                    // The states are separate strings so they can be
+                    // translated without needing a message for each
+                    // combination of them.
+                    const states = [
+                        focused && strings.srItemFocused,
+                        disabled && strings.srItemDisabled,
+                        selected && strings.srItemSelected,
+                    ].filter(Boolean);
+
+                    return strings.srComboboxCurrentItem({
+                        current: [current, ...states].join(" "),
+                        // `index` is 0-based, but the announcement is 1-based.
+                        // This is done here since translated messages can't
+                        // add 1 to it.
+                        index: index + 1,
+                        total,
+                    });
+                },
+                liveRegionListboxTotal: (total) =>
+                    strings.srComboboxResultsTotal({total}),
+                liveRegionMultipleSelectionTotal: (total) =>
+                    strings.srComboboxSelectedTotal({total}),
+                noItems: strings.noResults,
+                selected: (labels) => strings.srSelected({labels}),
+                selectionCleared: strings.srSelectionCleared,
+                unselected: (labels) => strings.srUnselected({labels}),
+            },
+        [propLabels, strings],
+    );
     const lastSelectedValue = React.useRef<MaybeValueOrValues>(null);
     const [message, setMessage] = React.useState("");
 
