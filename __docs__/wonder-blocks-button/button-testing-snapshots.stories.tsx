@@ -124,3 +124,30 @@ export const Sizes: StoryComponentType = {
         );
     },
 };
+
+/**
+ * Buttons of every size showing their spinner. This checks that the spinner
+ * fits inside the button in each theme, since the button height and the
+ * spinner size are both themed.
+ */
+export const Spinner: StoryComponentType = {
+    render: (args) => {
+        return (
+            <AllVariants rows={sizes} columns={kinds} title="Size / Kind">
+                {({props}) => (
+                    <Button
+                        {...args}
+                        {...props}
+                        spinner={true}
+                        aria-label="Loading"
+                    />
+                )}
+            </AllVariants>
+        );
+    },
+    parameters: {
+        chromatic: {
+            modes: allThemeModes,
+        },
+    },
+};

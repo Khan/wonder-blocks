@@ -5,6 +5,10 @@ import {semanticColor} from "@khanacademy/wonder-blocks-tokens";
 
 import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
 
+import theme from "../theme";
+
+// The size each path was drawn at. This sets the SVG's viewBox, so the path
+// scales to whatever size the theme renders the spinner at.
 const heights = {
     xsmall: 16,
     small: 24,
@@ -19,12 +23,16 @@ const paths = {
     large: "M88.38 46.91a3.818 3.818 0 1 1 7.602 0h.006c.008.362.012.725.012 1.09 0 26.51-21.49 48-48 48S0 74.51 0 48 21.49 0 48 0c.365 0 .728.004 1.09.012v.005a3.818 3.818 0 1 1 0 7.602v.032c-.362-.01-.725-.015-1.09-.015C25.708 7.636 7.636 25.708 7.636 48c0 22.292 18.072 40.364 40.364 40.364 22.292 0 40.364-18.072 40.364-40.364 0-.365-.005-.728-.015-1.09h.032z",
 } as const;
 
+const StyledSvg = addStyle("svg");
 const StyledPath = addStyle("path");
 
 type Props = AriaProps & {
     /**
      * The size of the spinner. (large = 96px, medium = 48px, small = 24px,
      * xsmall = 16px)
+     *
+     * In the Thunderblocks theme, `medium` is 36px so that it fits inside
+     * large buttons.
      */
     size: "xsmall" | "small" | "medium" | "large";
     /** Should a light version of the spinner be shown?
@@ -72,19 +80,20 @@ export default class CircularSpinner extends React.Component<Props> {
             : semanticColor.core.foreground.neutral.subtle;
 
         const svg = (
-            <svg
+            <StyledSvg
                 xmlns="http://www.w3.org/2000/svg"
                 width={height}
                 height={height}
                 viewBox={`0 0 ${height} ${height}`}
                 data-testid={testId}
+                style={sizeStyles[size]}
             >
                 <StyledPath
                     style={[styles.loadingSpinner, {fill: color}]}
                     fillRule="nonzero"
                     d={path}
                 />
-            </svg>
+            </StyledSvg>
         );
 
         return <View style={[styles.spinnerContainer, style]}>{svg}</View>;
@@ -102,6 +111,25 @@ const rotateKeyFrames = {
         transform: "rotate(360deg)",
     },
 } as const;
+
+const sizeStyles = StyleSheet.create({
+    xsmall: {
+        width: theme.root.sizing.xsmall,
+        height: theme.root.sizing.xsmall,
+    },
+    small: {
+        width: theme.root.sizing.small,
+        height: theme.root.sizing.small,
+    },
+    medium: {
+        width: theme.root.sizing.medium,
+        height: theme.root.sizing.medium,
+    },
+    large: {
+        width: theme.root.sizing.large,
+        height: theme.root.sizing.large,
+    },
+});
 
 const styles = StyleSheet.create({
     spinnerContainer: {
