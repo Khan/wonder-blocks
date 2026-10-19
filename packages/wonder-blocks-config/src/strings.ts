@@ -11,17 +11,17 @@ export type WonderBlocksStrings = {
 
     // Labels
     breadcrumbs: string;
-    filter: string;
-    noResults: string;
     optionsList: string;
     removeSelected: ({label}: {label: string}) => string;
-    selectAllWithCount: ({num}: {num: number}) => string;
-    selectNone: string;
     tabs: string;
 
     // Selection
     allItems: string;
+    filter: string;
+    noResults: string;
     numItems: ({num}: {num: number}) => string;
+    selectAllWithCount: ({num}: {num: number}) => string;
+    selectNone: string;
     zeroItems: string;
 
     // Screen reader announcements
@@ -88,16 +88,6 @@ export const strings = {
             "Accessible name for the navigation landmark containing breadcrumb links.",
         message: "Breadcrumbs",
     },
-    filter: {
-        context:
-            "Placeholder for the search field used to filter the options in a dropdown.",
-        message: "Filter",
-    },
-    noResults: {
-        context:
-            "Text shown in a dropdown or combobox when no options match the search text.",
-        message: "No results",
-    },
     optionsList: {
         context:
             "Accessible name for the list of options that opens from a combobox.",
@@ -108,16 +98,6 @@ export const strings = {
             "Accessible name for a button that removes a selected option from a multi-select combobox. %(label)s is the label of the option.",
         message: "Remove %(label)s",
     },
-    selectAllWithCount: {
-        context:
-            "Label for the option in a multi-select dropdown that selects all of the options. %(num)s is the number of options.",
-        message: "Select all (%(num)s)",
-    },
-    selectNone: {
-        context:
-            "Label for the option in a multi-select dropdown that deselects all of the options.",
-        message: "Select none",
-    },
     tabs: {
         context:
             "Label for the menu of tabs when no tab is selected, shown when the tabs are collapsed into a dropdown.",
@@ -127,18 +107,36 @@ export const strings = {
     // Selection
     allItems: {
         context:
-            "Text shown in a multi-select dropdown when all of its options are selected.",
+            "Text shown when all options are selected. For example, in a multi-select.",
         message: "All items",
+    },
+    filter: {
+        context: "Placeholder for a field used to filter items.",
+        message: "Filter",
+    },
+    noResults: {
+        context:
+            "Text shown when there are no results. For example, when no results match a filter.",
+        message: "No results",
     },
     numItems: {
         context:
-            "Text shown in a multi-select dropdown when some of its options are selected, and announced to screen readers as the number of options that match the search text. %(num)s is the number of options.",
+            "Text shown when a number of items are selected. %(num)s is the number of options.",
         one: "%(num)s item",
         other: "%(num)s items",
     },
+    selectAllWithCount: {
+        context:
+            "Label for an option that selects all options. %(num)s is the number of options.",
+        message: "Select all (%(num)s)",
+    },
+    selectNone: {
+        context: "Label for the option to deselect all of the options.",
+        message: "Select none",
+    },
     zeroItems: {
         context:
-            "Text shown in a multi-select dropdown when none of its options are selected.",
+            "Text shown when zero items are selected. For example, in a multi-select.",
         message: "0 items",
     },
 
@@ -222,17 +220,17 @@ export const defaultStringsEn: WonderBlocksStrings = {
 
     // Labels
     breadcrumbs: strings.breadcrumbs.message,
-    filter: strings.filter.message,
-    noResults: strings.noResults.message,
     optionsList: strings.optionsList.message,
     removeSelected: ({label}) => `Remove ${label}`,
-    selectAllWithCount: ({num}) => `Select all (${num})`,
-    selectNone: strings.selectNone.message,
     tabs: strings.tabs.message,
 
     // Selection
     allItems: strings.allItems.message,
+    filter: strings.filter.message,
+    noResults: strings.noResults.message,
     numItems: ({num}) => (num === 1 ? `${num} item` : `${num} items`),
+    selectAllWithCount: ({num}) => `Select all (${num})`,
+    selectNone: strings.selectNone.message,
     zeroItems: strings.zeroItems.message,
 
     // Screen reader announcements
