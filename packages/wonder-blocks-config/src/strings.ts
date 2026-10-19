@@ -107,9 +107,9 @@ export const strings = {
     },
     numItems: {
         context:
-            "Text shown when a number of items are selected. ${num} is the number of options.",
-        one: "${num} item",
-        other: "${num} items",
+            "Text shown when a number of items are selected. %(num)s is the number of options.",
+        one: "%(num)s item",
+        other: "%(num)s items",
     },
     zeroItems: {
         context:
@@ -118,8 +118,8 @@ export const strings = {
     },
     selectAllWithCount: {
         context:
-            "Label for an option that selects all options. ${num} is the number of options.",
-        message: "Select all (${num})",
+            "Label for an option that selects all options. %(num)s is the number of options.",
+        message: "Select all (%(num)s)",
     },
     selectNone: {
         context: "Label for the option to deselect all of the options.",
