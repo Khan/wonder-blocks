@@ -8,15 +8,17 @@ export type WonderBlocksStrings = {
     iconAltOpensNewTab: string;
 
     // Labels
-    allItemsSelected: string;
     breadcrumbs: string;
     filter: string;
     noResults: string;
-    numItemsSelected: ({num}: {num: number}) => string;
     selectAllWithCount: ({num}: {num: number}) => string;
     selectNone: string;
     tabs: string;
-    zeroItemsSelected: string;
+
+    // Selection
+    allItems: string;
+    numItems: ({num}: {num: number}) => string;
+    zeroItems: string;
 
     // Form validation
     requiredFieldMessage: string;
@@ -47,11 +49,6 @@ export const strings = {
     },
 
     // Labels
-    allItemsSelected: {
-        context:
-            "Text shown in a multi-select dropdown when all of its options are selected.",
-        message: "All items",
-    },
     breadcrumbs: {
         context:
             "Accessible name for the navigation landmark containing breadcrumb links.",
@@ -66,12 +63,6 @@ export const strings = {
         context:
             "Text shown in a dropdown or combobox when no options match the search text.",
         message: "No results",
-    },
-    numItemsSelected: {
-        context:
-            "Text shown in a multi-select dropdown when some of its options are selected, and announced to screen readers as the number of options that match the search text. %(num)s is the number of options.",
-        one: "%(num)s item",
-        other: "%(num)s items",
     },
     selectAllWithCount: {
         context:
@@ -88,7 +79,20 @@ export const strings = {
             "Label for the menu of tabs when no tab is selected, shown when the tabs are collapsed into a dropdown.",
         message: "Tabs",
     },
-    zeroItemsSelected: {
+
+    // Selection
+    allItems: {
+        context:
+            "Text shown in a multi-select dropdown when all of its options are selected.",
+        message: "All items",
+    },
+    numItems: {
+        context:
+            "Text shown in a multi-select dropdown when some of its options are selected, and announced to screen readers as the number of options that match the search text. %(num)s is the number of options.",
+        one: "%(num)s item",
+        other: "%(num)s items",
+    },
+    zeroItems: {
         context:
             "Text shown in a multi-select dropdown when none of its options are selected.",
         message: "0 items",
@@ -117,15 +121,17 @@ export const defaultStringsEn: WonderBlocksStrings = {
     iconAltOpensNewTab: strings.iconAltOpensNewTab.message,
 
     // Labels
-    allItemsSelected: strings.allItemsSelected.message,
     breadcrumbs: strings.breadcrumbs.message,
     filter: strings.filter.message,
     noResults: strings.noResults.message,
-    numItemsSelected: ({num}) => (num === 1 ? `${num} item` : `${num} items`),
     selectAllWithCount: ({num}) => `Select all (${num})`,
     selectNone: strings.selectNone.message,
     tabs: strings.tabs.message,
-    zeroItemsSelected: strings.zeroItemsSelected.message,
+
+    // Selection
+    allItems: strings.allItems.message,
+    numItems: ({num}) => (num === 1 ? `${num} item` : `${num} items`),
+    zeroItems: strings.zeroItems.message,
 
     // Form validation
     requiredFieldMessage: strings.requiredFieldMessage.message,
