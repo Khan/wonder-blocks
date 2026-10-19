@@ -1251,5 +1251,22 @@ describe("Combobox", () => {
                 screen.getByRole("button", {name: "Clear selection override"}),
             ).toBeInTheDocument();
         });
+
+        it("uses the strings from the config provider when a label is empty", () => {
+            // Arrange
+
+            // Act
+            renderWithConfig({
+                labels: {
+                    ...englishComboboxLabels,
+                    clearSelection: "",
+                },
+            });
+
+            // Assert
+            expect(
+                screen.getByRole("button", {name: "Borrar selección"}),
+            ).toBeInTheDocument();
+        });
     });
 });

@@ -84,22 +84,16 @@ export function ComboboxLiveRegion({
     testId,
 }: Props) {
     const {strings} = useWonderBlocksI18n();
-    // Use the labels prop if it is provided, otherwise use the strings from
-    // `WonderBlocksConfigProvider`.
+    // Use the labels prop if it is provided (and not empty), otherwise use the
+    // strings from `WonderBlocksConfigProvider`.
     // NOTE: The `labels` prop keeps its positional function args (e.g.
     // `selected(labels)`), so the strings are adapted to them here.
     const labels: NonNullable<Props["labels"]> = React.useMemo(
-        () =>
-            propLabels ?? {
-                closedState: strings.srComboboxClosed,
-                liveRegionCurrentItem: ({
-                    current,
-                    index,
-                    total,
-                    disabled,
-                    focused,
-                    selected,
-                }) => {
+        () => ({
+            closedState: propLabels?.closedState || strings.srComboboxClosed,
+            liveRegionCurrentItem:
+                propLabels?.liveRegionCurrentItem ||
+                (({current, index, total, disabled, focused, selected}) => {
                     // The states are separate strings so they can be
                     // translated without needing a message for each
                     // combination of them.
@@ -117,16 +111,23 @@ export function ComboboxLiveRegion({
                         index: index + 1,
                         total,
                     });
-                },
-                liveRegionListboxTotal: (total) =>
-                    strings.srComboboxResultsTotal({num: total}),
-                liveRegionMultipleSelectionTotal: (total) =>
-                    strings.srComboboxSelectedTotal({num: total}),
-                noItems: strings.noResults,
-                selected: (labels) => strings.srSelected({labels}),
-                selectionCleared: strings.srSelectionCleared,
-                unselected: (labels) => strings.srUnselected({labels}),
-            },
+                }),
+            liveRegionListboxTotal:
+                propLabels?.liveRegionListboxTotal ||
+                ((total) => strings.srComboboxResultsTotal({num: total})),
+            liveRegionMultipleSelectionTotal:
+                propLabels?.liveRegionMultipleSelectionTotal ||
+                ((total) => strings.srComboboxSelectedTotal({num: total})),
+            noItems: propLabels?.noItems || strings.noResults,
+            selected:
+                propLabels?.selected ||
+                ((labels) => strings.srSelected({labels})),
+            selectionCleared:
+                propLabels?.selectionCleared || strings.srSelectionCleared,
+            unselected:
+                propLabels?.unselected ||
+                ((labels) => strings.srUnselected({labels})),
+        }),
         [propLabels, strings],
     );
     const lastSelectedValue = React.useRef<MaybeValueOrValues>(null);
