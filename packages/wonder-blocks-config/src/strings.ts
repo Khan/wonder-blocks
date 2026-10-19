@@ -48,8 +48,8 @@ export type WonderBlocksStrings = {
         index: number;
         total: number;
     }) => string;
-    srComboboxResultsTotal: ({total}: {total: number}) => string;
-    srComboboxSelectedTotal: ({total}: {total: number}) => string;
+    srComboboxResultsTotal: ({num}: {num: number}) => string;
+    srComboboxSelectedTotal: ({num}: {num: number}) => string;
     srItemDisabled: string;
     srItemFocused: string;
     srItemSelected: string;
@@ -222,15 +222,15 @@ export const strings = {
     },
     srComboboxResultsTotal: {
         context:
-            "Screen reader announcement for the number of options available in a combobox.",
-        one: "%(total)s result available.",
-        other: "%(total)s results available.",
+            "Screen reader announcement for the number of options available in a combobox. %(num)s is the number of options.",
+        one: "%(num)s result available.",
+        other: "%(num)s results available.",
     },
     srComboboxSelectedTotal: {
         context:
-            "Screen reader announcement for the number of options selected in a multi-select combobox.",
-        one: "%(total)s selected option.",
-        other: "%(total)s selected options.",
+            "Screen reader announcement for the number of options selected in a multi-select combobox. %(num)s is the number of selected options.",
+        one: "%(num)s selected option.",
+        other: "%(num)s selected options.",
     },
     srItemDisabled: {
         context:
@@ -337,14 +337,10 @@ export const defaultStringsEn: WonderBlocksStrings = {
     srComboboxClosed: strings.srComboboxClosed.message,
     srComboboxCurrentItem: ({current, index, total}) =>
         `${current}, ${index} of ${total}.`,
-    srComboboxResultsTotal: ({total}) =>
-        total === 1
-            ? `${total} result available.`
-            : `${total} results available.`,
-    srComboboxSelectedTotal: ({total}) =>
-        total === 1
-            ? `${total} selected option.`
-            : `${total} selected options.`,
+    srComboboxResultsTotal: ({num}) =>
+        num === 1 ? `${num} result available.` : `${num} results available.`,
+    srComboboxSelectedTotal: ({num}) =>
+        num === 1 ? `${num} selected option.` : `${num} selected options.`,
     srItemDisabled: strings.srItemDisabled.message,
     srItemFocused: strings.srItemFocused.message,
     srItemSelected: strings.srItemSelected.message,

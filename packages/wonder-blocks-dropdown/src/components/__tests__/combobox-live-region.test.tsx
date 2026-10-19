@@ -271,10 +271,10 @@ describe("ComboboxLiveRegion", () => {
                 index: number;
                 total: number;
             }) => `${current}, ${index} de ${total}.`,
-            srComboboxResultsTotal: ({total}: {total: number}) =>
-                `${total} resultados disponibles.`,
-            srComboboxSelectedTotal: ({total}: {total: number}) =>
-                `${total} opciones seleccionadas.`,
+            srComboboxResultsTotal: ({num}: {num: number}) =>
+                `${num} resultados disponibles.`,
+            srComboboxSelectedTotal: ({num}: {num: number}) =>
+                `${num} opciones seleccionadas.`,
             srItemDisabled: "deshabilitado",
             srItemFocused: "enfocado",
             srItemSelected: "seleccionado",
