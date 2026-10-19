@@ -13,12 +13,12 @@ export type WonderBlocksStrings = {
 
     // Selection
     allItems: string;
-    filter: string;
-    noResults: string;
     numItems: ({num}: {num: number}) => string;
+    zeroItems: string;
     selectAllWithCount: ({num}: {num: number}) => string;
     selectNone: string;
-    zeroItems: string;
+    filter: string;
+    noResults: string;
 
     // Form validation
     requiredFieldMessage: string;
@@ -66,20 +66,16 @@ export const strings = {
             "Text shown when all options are selected. For example, in a multi-select.",
         message: "All items",
     },
-    filter: {
-        context: "Placeholder for a field used to filter items.",
-        message: "Filter",
-    },
-    noResults: {
-        context:
-            "Text shown when there are no results. For example, when no results match a filter.",
-        message: "No results",
-    },
     numItems: {
         context:
             "Text shown when a number of items are selected. %(num)s is the number of options.",
         one: "%(num)s item",
         other: "%(num)s items",
+    },
+    zeroItems: {
+        context:
+            "Text shown when zero items are selected. For example, in a multi-select.",
+        message: "0 items",
     },
     selectAllWithCount: {
         context:
@@ -90,10 +86,14 @@ export const strings = {
         context: "Label for the option to deselect all of the options.",
         message: "Select none",
     },
-    zeroItems: {
+    filter: {
+        context: "Placeholder for a field used to filter items.",
+        message: "Filter",
+    },
+    noResults: {
         context:
-            "Text shown when zero items are selected. For example, in a multi-select.",
-        message: "0 items",
+            "Text shown when there are no results. For example, when no results match a filter.",
+        message: "No results",
     },
 
     // Form validation
@@ -124,12 +124,12 @@ export const defaultStringsEn: WonderBlocksStrings = {
 
     // Selection
     allItems: strings.allItems.message,
-    filter: strings.filter.message,
-    noResults: strings.noResults.message,
     numItems: ({num}) => (num === 1 ? `${num} item` : `${num} items`),
+    zeroItems: strings.zeroItems.message,
     selectAllWithCount: ({num}) => `Select all (${num})`,
     selectNone: strings.selectNone.message,
-    zeroItems: strings.zeroItems.message,
+    filter: strings.filter.message,
+    noResults: strings.noResults.message,
 
     // Form validation
     requiredFieldMessage: strings.requiredFieldMessage.message,
