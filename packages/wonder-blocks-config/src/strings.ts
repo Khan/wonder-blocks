@@ -16,13 +16,13 @@ export type WonderBlocksStrings = {
 
     // Selection
     allItems: string;
-    filter: string;
-    noResults: string;
     numItems: ({num}: {num: number}) => string;
-    removeSelected: ({label}: {label: string}) => string;
+    zeroItems: string;
     selectAllWithCount: ({num}: {num: number}) => string;
     selectNone: string;
-    zeroItems: string;
+    removeSelected: ({label}: {label: string}) => string;
+    filter: string;
+    noResults: string;
 
     // Screen reader announcements
     srComboboxClosed: string;
@@ -105,25 +105,16 @@ export const strings = {
             "Text shown when all options are selected. For example, in a multi-select.",
         message: "All items",
     },
-    filter: {
-        context: "Placeholder for a field used to filter items.",
-        message: "Filter",
-    },
-    noResults: {
-        context:
-            "Text shown when there are no results. For example, when no results match a filter.",
-        message: "No results",
-    },
     numItems: {
         context:
             "Text shown when a number of items are selected. %(num)s is the number of options.",
         one: "%(num)s item",
         other: "%(num)s items",
     },
-    removeSelected: {
+    zeroItems: {
         context:
-            "Accessible name for a button that removes a selected option from a multi-select combobox. %(label)s is the label of the option.",
-        message: "Remove %(label)s",
+            "Text shown when zero items are selected. For example, in a multi-select.",
+        message: "0 items",
     },
     selectAllWithCount: {
         context:
@@ -134,10 +125,19 @@ export const strings = {
         context: "Label for the option to deselect all of the options.",
         message: "Select none",
     },
-    zeroItems: {
+    removeSelected: {
         context:
-            "Text shown when zero items are selected. For example, in a multi-select.",
-        message: "0 items",
+            "Accessible name for a button that removes a selected option from a multi-select combobox. %(label)s is the label of the option.",
+        message: "Remove %(label)s",
+    },
+    filter: {
+        context: "Placeholder for a field used to filter items.",
+        message: "Filter",
+    },
+    noResults: {
+        context:
+            "Text shown when there are no results. For example, when no results match a filter.",
+        message: "No results",
     },
 
     // Screen reader announcements
@@ -225,13 +225,13 @@ export const defaultStringsEn: WonderBlocksStrings = {
 
     // Selection
     allItems: strings.allItems.message,
-    filter: strings.filter.message,
-    noResults: strings.noResults.message,
     numItems: ({num}) => (num === 1 ? `${num} item` : `${num} items`),
-    removeSelected: ({label}) => `Remove ${label}`,
+    zeroItems: strings.zeroItems.message,
     selectAllWithCount: ({num}) => `Select all (${num})`,
     selectNone: strings.selectNone.message,
-    zeroItems: strings.zeroItems.message,
+    removeSelected: ({label}) => `Remove ${label}`,
+    filter: strings.filter.message,
+    noResults: strings.noResults.message,
 
     // Screen reader announcements
     srComboboxClosed: strings.srComboboxClosed.message,
