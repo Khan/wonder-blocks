@@ -1804,6 +1804,18 @@ describe("MultiSelect", () => {
                 "None override",
             );
         });
+
+        it("uses the strings from the config provider when a label is empty", async () => {
+            // Arrange
+
+            // Act
+            renderWithConfig({labels: {noneSelected: ""}});
+
+            // Assert
+            expect(await screen.findByRole("combobox")).toHaveTextContent(
+                "0 elementos",
+            );
+        });
     });
 
     describe("a11y > Live region", () => {

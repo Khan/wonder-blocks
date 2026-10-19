@@ -1697,6 +1697,32 @@ describe("DropdownCore", () => {
             ).toBeInTheDocument();
         });
 
+        it("uses the strings from the config provider when the labels are empty", async () => {
+            // Arrange
+
+            // Act
+            render(
+                <DropdownCore
+                    {...baseProps}
+                    searchText="item"
+                    items={items}
+                    labels={{
+                        clearSearch: "",
+                        filter: "",
+                        noResults: "",
+                        someResults: (numOptions: number) =>
+                            `${numOptions} results`,
+                    }}
+                />,
+                {wrapper: ConfigProvider},
+            );
+
+            // Assert
+            expect(
+                await screen.findByRole("button", {name: "Limpiar búsqueda"}),
+            ).toBeInTheDocument();
+        });
+
         it("uses the labels prop over the strings from the config provider", async () => {
             // Arrange
 
