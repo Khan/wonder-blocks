@@ -103,6 +103,10 @@ const InteractiveContent = () => {
     );
 };
 
+// The fades visible once the text field in the interactive content is
+// focused (and scrolled into view).
+const INTERACTIVE_FADES: Fades = {top: true, bottom: true};
+
 /**
  * Returns the scroll position for the given scenario.
  */
@@ -133,8 +137,9 @@ const getVisibleFades = (element: HTMLElement): Fades => ({
  * - Both fades when scrolled to the middle.
  * - Only the top fade when scrolled to the bottom.
  *
- * It also shows that the fades inherit the view's border radius, and a view
- * with interactive content.
+ * It also shows that the fades inherit the view's border radius (scrolled to
+ * the middle, so both fades are visible), and a view with interactive content
+ * (with the text field focused, so the view scrolls it into view).
  */
 export const Scenarios: Story = {
     render() {
@@ -195,7 +200,14 @@ export const Scenarios: Story = {
         // first render (e.g. when the theme decorator applies the theme). For
         // the same reason, the scroll position is re-applied on every check.
 
-        for (const {label, scrollTo, expectedFades} of scrollScenarios) {
+        for (const {label, scrollTo, expectedFades} of [
+            ...scrollScenarios,
+            {
+                label: "With rounded corners",
+                scrollTo: "middle",
+                expectedFades: {top: true, bottom: true},
+            } satisfies ScrollScenario,
+        ]) {
             await waitFor(() => {
                 // The view is only exposed as a region once its content
                 // overflows (and it becomes focusable).
@@ -213,18 +225,16 @@ export const Scenarios: Story = {
             "none",
         );
 
-        // The other scenarios overflow too. Waiting for them also ensures
-        // that the a11y checks audit the final state.
-        for (const name of [
-            "With rounded corners",
-            "With interactive content",
-        ]) {
-            await waitFor(() =>
-                expect(canvas.getByRole("region", {name})).toHaveAttribute(
-                    "tabindex",
-                    "0",
-                ),
-            );
-        }
+        // Focusing the text field scrolls it into view, so the content above
+        // it fades out at the top. Waiting for it also ensures that the a11y
+        // checks audit the final state.
+        await waitFor(() => {
+            const view = canvas.getByRole("region", {
+                name: "With interactive content",
+            });
+            within(view).getByRole("textbox", {name: "Feedback"}).focus();
+
+            expect(getVisibleFades(view)).toEqual(INTERACTIVE_FADES);
+        });
     },
 };
