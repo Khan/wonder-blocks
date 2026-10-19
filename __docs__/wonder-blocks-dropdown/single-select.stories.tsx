@@ -912,15 +912,15 @@ export const RightToLeft: StoryComponentType = {
 /**
  * Custom labels
  */
-const translatedItems = [
-    <OptionItem label="Banano" value="banano" key={0} />,
-    <OptionItem label="Fresa" value="fresa" disabled key={1} />,
-    <OptionItem label="Pera" value="pera" key={2} />,
-    <OptionItem label="Naranja" value="naranja" key={3} />,
-    <OptionItem label="Sandia" value="sandia" key={4} />,
-    <OptionItem label="Manzana" value="manzana" key={5} />,
-    <OptionItem label="Uva" value="uva" key={6} />,
-    <OptionItem label="Limon" value="limon" key={7} />,
+const customLabelsItems = [
+    <OptionItem label="Banana" value="banana" key={0} />,
+    <OptionItem label="Strawberry" value="strawberry" disabled key={1} />,
+    <OptionItem label="Pear" value="pear" key={2} />,
+    <OptionItem label="Orange" value="orange" key={3} />,
+    <OptionItem label="Watermelon" value="watermelon" key={4} />,
+    <OptionItem label="Apple" value="apple" key={5} />,
+    <OptionItem label="Grape" value="grape" key={6} />,
+    <OptionItem label="Lemon" value="lemon" key={7} />,
     <OptionItem label="Mango" value="mango" key={8} />,
 ];
 
@@ -940,11 +940,11 @@ export const CustomLabels: StoryComponentType = {
         const [value, setValue] = React.useState<any>(null);
         const [opened, setOpened] = React.useState(true);
 
-        const translatedLabels: SingleSelectLabelsValues = {
-            clearSearch: "Limpiar busqueda",
-            filter: "Filtrar",
-            noResults: "Sin resultados",
-            someResults: (numResults: number) => `${numResults} frutas`,
+        const customLabels: SingleSelectLabelsValues = {
+            clearSearch: "Custom clear search",
+            filter: "Custom filter",
+            noResults: "Custom no results",
+            someResults: (numResults: number) => `Custom ${numResults} results`,
         };
 
         return (
@@ -958,19 +958,19 @@ export const CustomLabels: StoryComponentType = {
                     onToggle={setDefaultOpened}
                     placeholder="Select a fruit"
                 >
-                    {translatedItems}
+                    {customLabelsItems}
                 </SingleSelect>
                 <SingleSelect
-                    aria-label="Fruta"
+                    aria-label="Fruit with custom labels"
                     isFilterable={true}
                     onChange={setValue}
                     selectedValue={value}
-                    labels={translatedLabels}
+                    labels={customLabels}
                     opened={opened}
                     onToggle={setOpened}
-                    placeholder="Selecciona una fruta"
+                    placeholder="Select a fruit"
                 >
-                    {translatedItems}
+                    {customLabelsItems}
                 </SingleSelect>
             </View>
         );
