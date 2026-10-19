@@ -283,23 +283,25 @@ const MultiSelect = (props: Props) => {
 
     const {strings} = useWonderBlocksI18n();
 
-    // Merge custom labels with the default strings from
-    // `WonderBlocksConfigProvider`.
-    const labels: LabelsValues = React.useMemo(() => {
-        return {
-            clearSearch: strings.iconAltClearSearch,
-            filter: strings.filter,
-            noResults: strings.noResults,
-            selectAllLabel: (numOptions: number) =>
-                strings.selectAllWithCount({num: numOptions}),
-            selectNoneLabel: strings.selectNone,
-            noneSelected: strings.zeroItems,
-            someSelected: (numSelectedValues: number) =>
-                strings.numItems({num: numSelectedValues}),
-            allSelected: strings.allItems,
-            ...propLabels,
-        };
-    }, [strings, propLabels]);
+    // Use the labels prop if it is provided (and not empty), otherwise use the
+    // strings from `WonderBlocksConfigProvider`.
+    const noneSelected = propLabels?.noneSelected || strings.zeroItems;
+    const allSelected = propLabels?.allSelected || strings.allItems;
+    const selectNoneLabel = propLabels?.selectNoneLabel || strings.selectNone;
+    const propSelectAllLabel = propLabels?.selectAllLabel;
+    const selectAllLabel = (numOptions: number) =>
+        propSelectAllLabel
+            ? propSelectAllLabel(numOptions)
+            : strings.selectAllWithCount({num: numOptions});
+    const propSomeSelected = propLabels?.someSelected;
+    // Memoized since it's a dependency of `getMenuTextOrNode`.
+    const someSelected = React.useCallback(
+        (numSelectedValues: number) =>
+            propSomeSelected
+                ? propSomeSelected(numSelectedValues)
+                : strings.numItems({num: numSelectedValues}),
+        [propSomeSelected, strings],
+    );
 
     // Whether or not the dropdown is open.
     const [open, setOpen] = React.useState(false);
@@ -401,7 +403,6 @@ const MultiSelect = (props: Props) => {
 
     const getMenuTextOrNode = React.useCallback(
         (children: OptionItemComponentArray): string | JSX.Element => {
-            const {noneSelected, someSelected, allSelected} = labels;
             const numSelectedAll = children.filter(
                 (option) => !option.props.disabled,
             ).length;
@@ -444,12 +445,17 @@ const MultiSelect = (props: Props) => {
                     return someSelected(selectedValues.length);
             }
         },
-        [implicitAllEnabled, labels, selectedValues, showOpenerLabelAsText],
+        [
+            implicitAllEnabled,
+            allSelected,
+            noneSelected,
+            someSelected,
+            selectedValues,
+            showOpenerLabelAsText,
+        ],
     );
 
     const getShortcuts = (numOptions: number): DropdownItem[] => {
-        const {selectAllLabel, selectNoneLabel} = labels;
-
         // When there's search text input to filter, shortcuts should be hidden
         if (shortcuts && !searchText) {
             const selectAllDisabled = numOptions === selectedValues.length;
@@ -668,8 +674,6 @@ const MultiSelect = (props: Props) => {
     ):
         | React.ReactElement<React.ComponentProps<typeof DropdownOpener>>
         | React.ReactElement<React.ComponentProps<typeof SelectOpener>> => {
-        const {noneSelected} = labels;
-
         const openerContent = getMenuTextOrNode(allChildren);
 
         const dropdownOpener = (
@@ -721,8 +725,6 @@ const MultiSelect = (props: Props) => {
 
         return dropdownOpener;
     };
-
-    const {clearSearch, filter, noResults, someSelected} = labels;
 
     // Label the listbox with the same name as the opener.
     const listboxLabelProps = getListboxLabelProps({
@@ -786,12 +788,7 @@ const MultiSelect = (props: Props) => {
                         isFilterable ? handleSearchTextChanged : undefined
                     }
                     searchText={isFilterable ? searchText : ""}
-                    labels={{
-                        clearSearch,
-                        filter,
-                        noResults,
-                        someResults: someSelected,
-                    }}
+                    labels={propLabels}
                     {...listboxLabelProps}
                     aria-invalid={ariaInvalid}
                     aria-required={computedRequired}

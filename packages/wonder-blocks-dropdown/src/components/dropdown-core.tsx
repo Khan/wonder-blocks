@@ -174,7 +174,7 @@ type ExportProps = Readonly<{
      * This overrides the default labels provided by `WonderBlocksConfigProvider`
      * (in English by default).
      */
-    labels?: LabelsValues;
+    labels?: Partial<LabelsValues>;
     /**
      * Used to determine if we can automatically select an item using the keyboard.
      */
@@ -833,9 +833,9 @@ const DropdownCore = (props: Props) => {
     };
 
     const maybeRenderNoResults = (): React.ReactNode => {
-        // Use the labels prop if it is provided, otherwise use the strings
-        // from `WonderBlocksConfigProvider`.
-        const noResults = labels?.noResults ?? strings.noResults;
+        // Use the labels prop if it is provided (and not empty), otherwise use
+        // the strings from `WonderBlocksConfigProvider`.
+        const noResults = labels?.noResults || strings.noResults;
 
         // Verify if there are items to be rendered or not
         const numResults = items.length;
@@ -965,10 +965,10 @@ const DropdownCore = (props: Props) => {
         return (
             <SearchField
                 clearAriaLabel={
-                    labels?.clearSearch ?? strings.iconAltClearSearch
+                    labels?.clearSearch || strings.iconAltClearSearch
                 }
                 onChange={handleSearchTextChanged}
-                placeholder={labels?.filter ?? strings.filter}
+                placeholder={labels?.filter || strings.filter}
                 ref={searchFieldRef}
                 style={styles.searchInputStyle}
                 value={searchText || ""}
