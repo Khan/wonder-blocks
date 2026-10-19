@@ -119,9 +119,9 @@ export function ComboboxLiveRegion({
                     });
                 },
                 liveRegionListboxTotal: (total) =>
-                    strings.srComboboxResultsTotal({total}),
+                    strings.srComboboxResultsTotal({num: total}),
                 liveRegionMultipleSelectionTotal: (total) =>
-                    strings.srComboboxSelectedTotal({total}),
+                    strings.srComboboxSelectedTotal({num: total}),
                 noItems: strings.noResults,
                 selected: (labels) => strings.srSelected({labels}),
                 selectionCleared: strings.srSelectionCleared,
