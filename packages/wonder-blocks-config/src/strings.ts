@@ -196,8 +196,8 @@ export const strings = {
     },
     removeSelected: {
         context:
-            "Accessible name for a button that removes a selected option from a multi-select combobox. ${label} is the label of the option.",
-        message: "Remove ${label}",
+            "Accessible name for a button that removes a selected option from a multi-select combobox. %(label)s is the label of the option.",
+        message: "Remove %(label)s",
     },
     filter: {
         context: "Placeholder for a field used to filter items.",
@@ -217,20 +217,20 @@ export const strings = {
     },
     srComboboxCurrentItem: {
         context:
-            "Screen reader announcement for the option that is currently focused in a combobox. ${current} is the option's label, which can be followed by its states (e.g. 'Apple focused selected'). ${index} is the position of the option in the list, starting at 1, and ${total} is the number of options.",
-        message: "${current}, ${index} of ${total}.",
+            "Screen reader announcement for the option that is currently focused in a combobox. %(current)s is the option's label, which can be followed by its states (e.g. 'Apple focused selected'). %(index)s is the position of the option in the list, starting at 1, and %(total)s is the number of options.",
+        message: "%(current)s, %(index)s of %(total)s.",
     },
     srComboboxResultsTotal: {
         context:
             "Screen reader announcement for the number of options available in a combobox.",
-        one: "${total} result available.",
-        other: "${total} results available.",
+        one: "%(total)s result available.",
+        other: "%(total)s results available.",
     },
     srComboboxSelectedTotal: {
         context:
             "Screen reader announcement for the number of options selected in a multi-select combobox.",
-        one: "${total} selected option.",
-        other: "${total} selected options.",
+        one: "%(total)s selected option.",
+        other: "%(total)s selected options.",
     },
     srItemDisabled: {
         context:
@@ -249,8 +249,8 @@ export const strings = {
     },
     srSelected: {
         context:
-            "Screen reader announcement for when options are selected in a combobox. ${labels} is a list of the selected options' labels.",
-        message: "${labels} selected",
+            "Screen reader announcement for when options are selected in a combobox. %(labels)s is a list of the selected options' labels.",
+        message: "%(labels)s selected",
     },
     srSelectionCleared: {
         context:
@@ -259,8 +259,8 @@ export const strings = {
     },
     srUnselected: {
         context:
-            "Screen reader announcement for when options are deselected in a multi-select combobox. ${labels} is a list of the labels of the options that are still selected.",
-        message: "${labels} not selected",
+            "Screen reader announcement for when options are deselected in a multi-select combobox. %(labels)s is a list of the labels of the options that are still selected.",
+        message: "%(labels)s not selected",
     },
 
     // Form field labels
