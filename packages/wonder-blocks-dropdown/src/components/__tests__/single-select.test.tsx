@@ -1447,7 +1447,7 @@ describe("SingleSelect", () => {
             filter: "Filtrar",
             iconAltClearSearch: "Limpiar búsqueda",
             noResults: "No hay resultados",
-            numItemsSelected: ({num}: {num: number}) => `${num} elementos`,
+            numItems: ({num}: {num: number}) => `${num} elementos`,
         };
 
         const renderWithConfig = (
