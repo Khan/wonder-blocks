@@ -170,6 +170,9 @@ type ExportProps = Readonly<{
     initialFocusedIndex?: number;
     /**
      * The object containing the custom labels used inside this component.
+     *
+     * This overrides the default labels provided by `WonderBlocksConfigProvider`
+     * (in English by default).
      */
     labels?: LabelsValues;
     /**
@@ -222,17 +225,6 @@ const createItemRefs = (items: Array<DropdownItem>): ItemRefs => {
  */
 const DropdownCore = (props: Props) => {
     const {strings} = useWonderBlocksI18n();
-    // The default labels use the strings from `WonderBlocksConfigProvider`.
-    const defaultPropLabels: LabelsValues = React.useMemo(
-        () => ({
-            clearSearch: strings.iconAltClearSearch,
-            filter: strings.filter,
-            noResults: strings.noResults,
-            someResults: (numResults: number) =>
-                strings.numItems({num: numResults}),
-        }),
-        [strings],
-    );
 
     const {
         "aria-invalid": ariaInvalid,
@@ -249,7 +241,7 @@ const DropdownCore = (props: Props) => {
         initialFocusedIndex,
         isFilterable,
         items,
-        labels: propLabels = defaultPropLabels,
+        labels,
         onOpenChanged,
         onSearchTextChanged,
         open,
@@ -287,18 +279,6 @@ const DropdownCore = (props: Props) => {
     const searchFieldRef = React.useRef<HTMLInputElement | null>(null);
 
     const textSuggestionRef = React.useRef("");
-
-    /**
-     * The object containing the custom labels used inside this component.
-     */
-    const [labels, setLabels] = React.useState<LabelsValues>(() => ({
-        // @ts-expect-error [FEI-5019] - TS2783 - 'noResults' is specified more than once, so this usage will be overwritten.
-        noResults: defaultPropLabels.noResults,
-        // In case we are not overriding this from the caller.
-        // @ts-expect-error [FEI-5019] - TS2783 - 'someResults' is specified more than once, so this usage will be overwritten.
-        someResults: defaultPropLabels.someResults,
-        ...propLabels,
-    }));
 
     // Refs to use for keyboard focus, contains only those for focusable items.
     // Also keeps track of the original index of the item.
@@ -557,19 +537,15 @@ const DropdownCore = (props: Props) => {
     const prevRenderRef = React.useRef<{
         open: boolean;
         searchText: string | null | undefined;
-        labels: LabelsValues;
         derivedItems: typeof derivedItems;
     } | null>(null);
-    // This runs after every update. It can't cause an infinite loop:
-    // `setLabels` is only called when the `labels` prop changed since the last
-    // processed render.
+    // This runs after every update.
     // eslint-disable-next-line react-hooks/exhaustive-deps
     React.useEffect(() => {
         const prevProps = prevRenderRef.current;
         prevRenderRef.current = {
             open,
             searchText,
-            labels: propLabels,
             derivedItems,
         };
 
@@ -614,10 +590,6 @@ const DropdownCore = (props: Props) => {
                 } else {
                     focusedIndexRef.current = newFocusableIndex;
                 }
-            }
-
-            if (propLabels !== prevProps.labels) {
-                setLabels((prevLabels) => ({...prevLabels, ...propLabels}));
             }
         }
     });
@@ -861,7 +833,9 @@ const DropdownCore = (props: Props) => {
     };
 
     const maybeRenderNoResults = (): React.ReactNode => {
-        const {noResults} = propLabels;
+        // Use the labels prop if it is provided, otherwise use the strings
+        // from `WonderBlocksConfigProvider`.
+        const noResults = labels?.noResults ?? strings.noResults;
 
         // Verify if there are items to be rendered or not
         const numResults = items.length;
@@ -990,9 +964,11 @@ const DropdownCore = (props: Props) => {
     const renderSearchField = (): React.ReactNode => {
         return (
             <SearchField
-                clearAriaLabel={labels.clearSearch}
+                clearAriaLabel={
+                    labels?.clearSearch ?? strings.iconAltClearSearch
+                }
                 onChange={handleSearchTextChanged}
-                placeholder={labels.filter}
+                placeholder={labels?.filter ?? strings.filter}
                 ref={searchFieldRef}
                 style={styles.searchInputStyle}
                 value={searchText || ""}
