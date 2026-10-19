@@ -841,13 +841,13 @@ export const WithCustomOpener: StoryComponentType = {
 /**
  * Custom labels
  */
-const translatedItems = new Array(10)
+const customLabelsItems = new Array(10)
     .fill(null)
     .map((_, i) => (
         <OptionItem
             key={i}
             value={(i + 1).toString()}
-            label={`Escuela # ${i + 1}`}
+            label={`School ${i + 1}`}
         />
     ));
 
@@ -871,16 +871,16 @@ export const CustomLabels: StoryComponentType = {
         const [opened, setOpened] = React.useState(true);
 
         const labels: LabelsValues = {
-            clearSearch: "Limpiar busqueda",
-            filter: "Filtrar",
-            noResults: "Sin resultados",
+            clearSearch: "Custom clear search",
+            filter: "Custom filter",
+            noResults: "Custom no results",
             selectAllLabel: (numOptions: number) =>
-                `Seleccionar todas (${numOptions})`,
-            selectNoneLabel: "No seleccionar ninguno",
-            noneSelected: "0 escuelas seleccionadas",
-            allSelected: "Todas las escuelas",
+                `Custom select all (${numOptions})`,
+            selectNoneLabel: "Custom select none",
+            noneSelected: "Custom none selected",
+            allSelected: "Custom all selected",
             someSelected: (numSelectedValues: number) =>
-                `${numSelectedValues} escuelas seleccionadas`,
+                `Custom ${numSelectedValues} selected`,
         };
 
         return (
@@ -894,10 +894,10 @@ export const CustomLabels: StoryComponentType = {
                     opened={defaultOpened}
                     onToggle={setDefaultOpened}
                 >
-                    {translatedItems}
+                    {customLabelsItems}
                 </MultiSelect>
                 <MultiSelect
-                    aria-label="Escuelas"
+                    aria-label="Schools with custom labels"
                     shortcuts={true}
                     isFilterable={true}
                     onChange={setSelectedValues}
@@ -906,7 +906,7 @@ export const CustomLabels: StoryComponentType = {
                     opened={opened}
                     onToggle={setOpened}
                 >
-                    {translatedItems}
+                    {customLabelsItems}
                 </MultiSelect>
             </View>
         );
