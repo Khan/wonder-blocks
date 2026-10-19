@@ -305,6 +305,19 @@ const SingleSelect = (props: Props) => {
     } = props;
 
     const {strings} = useWonderBlocksI18n();
+    // Use the labels prop if it is provided (and not empty), otherwise use the
+    // strings from `WonderBlocksConfigProvider`.
+    const labels: SingleSelectLabelsValues = React.useMemo(
+        () => ({
+            clearSearch: propLabels?.clearSearch || strings.iconAltClearSearch,
+            filter: propLabels?.filter || strings.filter,
+            noResults: propLabels?.noResults || strings.noResults,
+            someResults:
+                propLabels?.someResults ||
+                ((numResults: number) => strings.numItems({num: numResults})),
+        }),
+        [strings, propLabels],
+    );
 
     // Whether or not the dropdown is open.
     const [open, setOpen] = React.useState(false);
@@ -571,11 +584,7 @@ const SingleSelect = (props: Props) => {
         openerElement,
     });
 
-    // Use the labels prop if it is provided, otherwise use the strings from
-    // `WonderBlocksConfigProvider`.
-    const someResults =
-        propLabels?.someResults ||
-        ((numResults: number) => strings.numItems({num: numResults}));
+    const {someResults} = labels;
     const someResultsRef = React.useRef(someResults);
     someResultsRef.current = someResults;
     const openRef = React.useRef(open);
@@ -616,7 +625,7 @@ const SingleSelect = (props: Props) => {
                         isFilterable ? handleSearchTextChanged : undefined
                     }
                     searchText={isFilterable ? searchText : ""}
-                    labels={propLabels}
+                    labels={labels}
                     {...listboxLabelProps}
                     aria-invalid={ariaInvalid}
                     aria-required={ariaRequired}
