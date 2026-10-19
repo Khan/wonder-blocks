@@ -21,8 +21,8 @@ export type PopoverContextType = {
      * scrollable area of the popover content, so screen readers can announce
      * it when it receives focus.
      */
-    ariaLabel?: string;
-    ariaLabelledBy?: string;
+    "aria-label"?: string;
+    "aria-labelledby"?: string;
 };
 
 const defaultContext: PopoverContextType = {

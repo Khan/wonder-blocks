@@ -328,8 +328,8 @@ function Popover(props: Props) {
             value={{
                 close: handleClose,
                 placement: placement,
-                ariaLabel,
-                ariaLabelledBy,
+                "aria-label": ariaLabel,
+                "aria-labelledby": ariaLabelledBy,
             }}
         >
             <Floating
@@ -342,7 +342,7 @@ function Popover(props: Props) {
                 // Constrain the popover to the available space, so it isn't
                 // cut off on small screens or at high zoom levels (its content
                 // scrolls inside `PopoverContentCore`).
-                size={true}
+                constrainSize={true}
                 dismissEnabled={!!dismissEnabled}
                 // When dismissal is enabled, the popover should also close when
                 // focus leaves it (e.g. the user tabs past the last focusable

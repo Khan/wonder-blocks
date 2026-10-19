@@ -62,6 +62,7 @@ type Props = AriaProps & {
  * The scrollable area becomes keyboard focusable while it overflows, so
  * keyboard users can scroll it too. It's named after the popover (via its
  * title or `aria-label`), so screen readers announce it when it's focused.
+ * Pass an `aria-label` to `PopoverContentCore` to use a different name.
  *
  * ### Usage
  *
@@ -88,23 +89,20 @@ const PopoverContentCore = React.forwardRef<HTMLElement, Props>(
         }: Props,
         ref,
     ): React.ReactElement {
-        // Name the scrollable area after the popover, since it can receive
-        // focus while its content overflows.
-        const {ariaLabel: popoverLabel, ariaLabelledBy: popoverLabelledBy} =
-            React.useContext(PopoverContext);
+        // Name the scrollable area, since it can receive focus while its
+        // content overflows. A custom `aria-label` takes precedence over the
+        // popover's name.
+        const popoverContext = React.useContext(PopoverContext);
+        const labelProps = ariaLabel
+            ? {"aria-label": ariaLabel}
+            : {
+                  "aria-label": popoverContext["aria-label"],
+                  "aria-labelledby": popoverContext["aria-labelledby"],
+              };
 
         return (
-            <ScrollableView
-                aria-label={popoverLabel}
-                aria-labelledby={popoverLabelledBy}
-                style={styles.scrollableView}
-            >
-                <View
-                    testId={testId}
-                    style={[styles.content, style]}
-                    aria-label={ariaLabel}
-                    ref={ref}
-                >
+            <ScrollableView {...labelProps} style={styles.scrollableView}>
+                <View testId={testId} style={[styles.content, style]} ref={ref}>
                     {/* The close button is part of the content (inside the
                     scroll container), so it scrolls with it. */}
                     {closeButtonVisible && (

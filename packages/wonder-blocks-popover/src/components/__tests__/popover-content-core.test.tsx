@@ -67,6 +67,24 @@ describe("PopoverContentCore", () => {
         expect(scrollContainer).toHaveAttribute("tabindex", "0");
     });
 
+    it("should name the scroll container with the aria-label when it overflows", () => {
+        // Arrange
+        render(
+            <PopoverContentCore testId="content" aria-label="Custom content">
+                <span>Some content</span>
+            </PopoverContentCore>,
+        );
+        mockOverflow(getScrollContainer(), true);
+
+        // Act
+        triggerResize();
+
+        // Assert
+        expect(
+            screen.getByRole("region", {name: "Custom content"}),
+        ).toBeInTheDocument();
+    });
+
     it("should render the close button inside of the scroll container", () => {
         // Arrange
         render(

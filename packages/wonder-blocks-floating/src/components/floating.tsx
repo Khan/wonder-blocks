@@ -153,10 +153,15 @@ type FloatingProps = {
      * can shrink. The content is responsible for scrolling when it doesn't fit
      * (e.g. by wrapping it in a `ScrollableView` from
      * `@khanacademy/wonder-blocks-layout`).
+     *
+     * NOTE: Use it together with `shift`, so the floating element moves to
+     * stay in view. Without `shift`, it stays centered on the reference
+     * element and shrinks on both sides to fit instead, so it can get very
+     * narrow when the reference element is near the edge of the boundary.
      * @default false
      * @see https://floating-ui.com/docs/size
      */
-    size?: boolean;
+    constrainSize?: boolean;
 
     /**
      * The boundary that the floating element should be kept within by the
@@ -310,7 +315,7 @@ export default function Floating({
     flip: flipProp = true,
     shift: shiftProp = true,
     shiftPadding = SHIFT_PADDING,
-    size: sizeProp = false,
+    constrainSize = false,
     rootBoundary = "viewport",
     showArrow = true,
     styles: stylesProp,
@@ -349,7 +354,7 @@ export default function Floating({
             // Constrain the size to the available space so the floating
             // element is never cut off (e.g. on small screens or when zoomed
             // in). This must run after `flip` and `shift`.
-            sizeProp
+            constrainSize
                 ? size({
                       padding: shiftPadding,
                       rootBoundary,
@@ -501,7 +506,7 @@ export default function Floating({
                             ref={refs.setFloating}
                             style={[
                                 styles.floating,
-                                sizeProp && styles.constrained,
+                                constrainSize && styles.constrained,
                                 floatingStyles,
                                 stylesProp?.root,
                                 {
@@ -544,7 +549,7 @@ const styles = StyleSheet.create({
     },
     // Lay out the content as a flex column so it can shrink (and scroll) when
     // the `size` middleware constrains the floating element. This is only
-    // applied with `size` enabled, so other content keeps its block layout
+    // applied with `constrainSize` enabled, so other content keeps its block layout
     // (e.g. inline text and links keep flowing on the same line).
     constrained: {
         display: "flex",

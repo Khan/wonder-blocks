@@ -128,7 +128,7 @@ export const Scenarios: Story = {
         hide: false,
         flip: false,
         shift: false,
-        size: false,
+        constrainSize: false,
         offset: 0,
     },
     render(args) {
@@ -177,13 +177,13 @@ export const Scenarios: Story = {
                 },
             },
             {
-                name: "size enabled",
+                name: "constrainSize enabled",
                 props: {
                     floating: {
-                        size: true,
+                        constrainSize: true,
                         placement: "bottom",
                         content: (
-                            <ScrollableView aria-label="Long content (size enabled)">
+                            <ScrollableView aria-label="Long content (constrainSize enabled)">
                                 <View style={styles.scrollableContent}>
                                     {longText}
                                 </View>
@@ -197,18 +197,43 @@ export const Scenarios: Story = {
                 },
             },
             {
-                name: "size disabled",
+                name: "constrainSize disabled",
                 props: {
                     floating: {
                         placement: "bottom",
                         content: (
-                            <ScrollableView aria-label="Long content (size disabled)">
+                            <ScrollableView aria-label="Long content (constrainSize disabled)">
                                 <View style={styles.scrollableContent}>
                                     {longText}
                                 </View>
                             </ScrollableView>
                         ),
                         testId: "floating-size-disabled",
+                        rootBoundary: "document",
+                    },
+                },
+            },
+            {
+                // With `shift`, the floating element moves to stay in view
+                // when the reference element is near the edge (instead of
+                // shrinking on both sides to stay centered on it).
+                name: "constrainSize and shift enabled",
+                props: {
+                    scrollable: {
+                        x: 80,
+                    },
+                    floating: {
+                        constrainSize: true,
+                        shift: true,
+                        placement: "bottom",
+                        content: (
+                            <ScrollableView aria-label="Long content (constrainSize and shift enabled)">
+                                <View style={styles.scrollableContent}>
+                                    {longText}
+                                </View>
+                            </ScrollableView>
+                        ),
+                        testId: "floating-size-and-shift-enabled",
                         rootBoundary: "document",
                     },
                 },
@@ -271,7 +296,7 @@ export const Scenarios: Story = {
             expect(
                 within(canvas.getByTestId("floating-size-enabled")).getByRole(
                     "region",
-                    {name: "Long content (size enabled)"},
+                    {name: "Long content (constrainSize enabled)"},
                 ),
             ).toHaveAttribute("tabindex", "0"),
         );
