@@ -852,11 +852,19 @@ const translatedItems = new Array(10)
     ));
 
 /**
- * This example illustrates how you can pass custom labels to the MultiSelect
- * component.
+ * The labels used inside `MultiSelect` (e.g. the opener text, the shortcuts and
+ * the search placeholder) are built-in, and are translated using the strings
+ * provided by `WonderBlocksConfigProvider`.
+ *
+ * This example illustrates how you can override them by passing custom labels
+ * to the `MultiSelect` component using the `labels` prop. The first dropdown
+ * uses the built-in labels, and the second one uses custom labels.
  */
 export const CustomLabels: StoryComponentType = {
     render: function Render() {
+        const [defaultSelectedValues, setDefaultSelectedValues] =
+            React.useState<Array<string>>([]);
+        const [defaultOpened, setDefaultOpened] = React.useState(true);
         const [selectedValues, setSelectedValues] = React.useState<
             Array<string>
         >([]);
@@ -876,7 +884,18 @@ export const CustomLabels: StoryComponentType = {
         };
 
         return (
-            <View style={styles.wrapper}>
+            <View style={[styles.wrapper, styles.twoSelectsContainer]}>
+                <MultiSelect
+                    aria-label="Schools"
+                    shortcuts={true}
+                    isFilterable={true}
+                    onChange={setDefaultSelectedValues}
+                    selectedValues={defaultSelectedValues}
+                    opened={defaultOpened}
+                    onToggle={setDefaultOpened}
+                >
+                    {translatedItems}
+                </MultiSelect>
                 <MultiSelect
                     aria-label="Escuelas"
                     shortcuts={true}

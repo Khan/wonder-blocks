@@ -24,19 +24,6 @@ export const MAX_VISIBLE_ITEMS = 9;
 export const SEPARATOR_ITEM_HEIGHT = 9;
 
 // The default labels that will be used by different components
-export const defaultLabels = {
-    clearSearch: "Clear search",
-    filter: "Filter",
-    noResults: "No results",
-    selectNoneLabel: "Select none",
-    selectAllLabel: (numOptions: number): string =>
-        `Select all (${numOptions})`,
-    noneSelected: "0 items",
-    someSelected: (numSelectedValues: number): string =>
-        numSelectedValues === 1 ? "1 item" : `${numSelectedValues} items`,
-    allSelected: "All items",
-} as const;
-
 export const defaultComboboxLabels: ComboboxLabels = {
     clearSelection: "Clear selection",
     closedState: "Combobox is closed",
