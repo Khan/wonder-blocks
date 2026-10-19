@@ -170,14 +170,14 @@ export default function Combobox({
     ...ariaAttrs
 }: Props & AriaAttributes) {
     const {strings} = useWonderBlocksI18n();
-    // Use the labels prop if it is provided, otherwise use the strings from
-    // `WonderBlocksConfigProvider`.
+    // Use the labels prop if it is provided (and not empty), otherwise use the
+    // strings from `WonderBlocksConfigProvider`.
     const clearSelectionLabel =
-        propLabels?.clearSelection ?? strings.iconAltClearSelection;
+        propLabels?.clearSelection || strings.iconAltClearSelection;
     const comboboxButtonLabel =
-        propLabels?.comboboxButton ?? strings.iconAltToggleListbox;
-    const listboxLabel = propLabels?.listbox ?? strings.optionsList;
-    const noItemsLabel = propLabels?.noItems ?? strings.noResults;
+        propLabels?.comboboxButton || strings.iconAltToggleListbox;
+    const listboxLabel = propLabels?.listbox || strings.optionsList;
+    const noItemsLabel = propLabels?.noItems || strings.noResults;
     const propRemoveSelectedLabel = propLabels?.removeSelected;
     // Memoized since it's passed to `MultipleSelection`, which is memoized.
     const removeSelectedLabel = React.useCallback(
