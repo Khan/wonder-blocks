@@ -24,6 +24,7 @@ export type WonderBlocksStrings = {
     // Labels
     breadcrumbs: string;
     datePickerCalendar: string;
+    optionsList: string;
     tabs: string;
 
     // Selection
@@ -34,7 +35,6 @@ export type WonderBlocksStrings = {
     selectNone: string;
     filter: string;
     noResults: string;
-    optionsList: string;
     removeSelected: ({label}: {label: string}) => string;
 
     // Screen reader announcements
@@ -157,6 +157,11 @@ export const strings = {
             "Accessible name for the region containing the calendar in a date picker.",
         message: "Date picker calendar",
     },
+    optionsList: {
+        context:
+            "Accessible name for the list of options that opens from a combobox.",
+        message: "Options list",
+    },
     tabs: {
         context:
             "Label for the menu of tabs when no tab is selected, shown when the tabs are collapsed into a dropdown.",
@@ -197,11 +202,6 @@ export const strings = {
         context:
             "Text shown when there are no results. For example, when no results match a filter.",
         message: "No results",
-    },
-    optionsList: {
-        context:
-            "Accessible name for the list of options that opens from a combobox.",
-        message: "Options list",
     },
     removeSelected: {
         context:
@@ -320,6 +320,7 @@ export const defaultStringsEn: WonderBlocksStrings = {
     // Labels
     breadcrumbs: strings.breadcrumbs.message,
     datePickerCalendar: strings.datePickerCalendar.message,
+    optionsList: strings.optionsList.message,
     tabs: strings.tabs.message,
 
     // Selection
@@ -330,7 +331,6 @@ export const defaultStringsEn: WonderBlocksStrings = {
     selectNone: strings.selectNone.message,
     filter: strings.filter.message,
     noResults: strings.noResults.message,
-    optionsList: strings.optionsList.message,
     removeSelected: ({label}) => `Remove ${label}`,
 
     // Screen reader announcements
