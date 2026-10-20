@@ -1,6 +1,5 @@
 import {addStyle} from "@khanacademy/wonder-blocks-core";
 import {useWonderBlocksI18n} from "@khanacademy/wonder-blocks-config";
-import type {WonderBlocksStrings} from "@khanacademy/wonder-blocks-config";
 import {StyleSheet} from "aphrodite";
 import * as React from "react";
 import {getLabel} from "../util/helpers";
@@ -11,38 +10,6 @@ import {
 } from "../util/types";
 
 const StyledSpan = addStyle("span");
-
-/**
- * Returns the announcement for the current item, using the
- * `liveRegionCurrentItem` label if it is provided, otherwise the strings from
- * `WonderBlocksConfigProvider`.
- */
-const getCurrentItemDetails = (
-    labels: Props["labels"],
-    strings: WonderBlocksStrings,
-    item: Parameters<ComboboxLabels["liveRegionCurrentItem"]>[0],
-): string => {
-    if (labels?.liveRegionCurrentItem) {
-        return labels.liveRegionCurrentItem(item);
-    }
-
-    const {current, index, total, disabled, focused, selected} = item;
-    // The states are separate strings so they can be translated without
-    // needing a message for each combination of them.
-    const states = [
-        focused && strings.srFocused,
-        disabled && strings.srDisabled,
-        selected && strings.srSelected,
-    ].filter(Boolean);
-
-    return strings.srCurrentItemDetails({
-        current: [current, ...states].join(" "),
-        // `index` is 0-based, but the announcement is 1-based. This is done
-        // here since translated messages can't add 1 to it.
-        index: index + 1,
-        total,
-    });
-};
 
 type Props = {
     /**
@@ -110,7 +77,7 @@ type Props = {
 export function ComboboxLiveRegion({
     focusedIndex,
     focusedMultiSelectIndex,
-    labels,
+    labels: propLabels,
     selectedLabels,
     opened,
     options,
@@ -119,10 +86,52 @@ export function ComboboxLiveRegion({
     testId,
 }: Props) {
     const {strings} = useWonderBlocksI18n();
-    // NOTE: Each label below uses the labels prop if it is provided (and not
-    // empty), otherwise the strings from `WonderBlocksConfigProvider`. The
-    // `labels` prop keeps its positional function args (e.g.
-    // `selected(labels)`), so the strings are adapted to them.
+    // Use the labels prop if it is provided (and not empty), otherwise use the
+    // strings from `WonderBlocksConfigProvider`.
+    // NOTE: The `labels` prop keeps its positional function args (e.g.
+    // `selected(labels)`), so the strings are adapted to them here.
+    const labels: Required<NonNullable<Props["labels"]>> = React.useMemo(
+        () => ({
+            closedState: propLabels?.closedState || strings.srComboboxClosed,
+            liveRegionCurrentItem:
+                propLabels?.liveRegionCurrentItem ||
+                (({current, index, total, disabled, focused, selected}) => {
+                    // The states are separate strings so they can be
+                    // translated without needing a message for each
+                    // combination of them.
+                    const states = [
+                        focused && strings.srFocused,
+                        disabled && strings.srDisabled,
+                        selected && strings.srSelected,
+                    ].filter(Boolean);
+
+                    return strings.srCurrentItemDetails({
+                        current: [current, ...states].join(" "),
+                        // `index` is 0-based, but the announcement is 1-based.
+                        // This is done here since translated messages can't
+                        // add 1 to it.
+                        index: index + 1,
+                        total,
+                    });
+                }),
+            liveRegionListboxTotal:
+                propLabels?.liveRegionListboxTotal ||
+                ((total) => strings.srNumResultsAvailable({num: total})),
+            liveRegionMultipleSelectionTotal:
+                propLabels?.liveRegionMultipleSelectionTotal ||
+                ((total) => strings.srNumSelectedOptions({num: total})),
+            noItems: propLabels?.noItems || strings.noResults,
+            selected:
+                propLabels?.selected ||
+                ((labels) => strings.srItemsSelected({labels})),
+            selectionCleared:
+                propLabels?.selectionCleared || strings.srSelectionCleared,
+            unselected:
+                propLabels?.unselected ||
+                ((labels) => strings.srItemsNotSelected({labels})),
+        }),
+        [propLabels, strings],
+    );
     const lastSelectedValue = React.useRef<MaybeValueOrValues>(null);
     const [message, setMessage] = React.useState("");
 
@@ -137,23 +146,15 @@ export function ComboboxLiveRegion({
             // Multi-select combobox.
             if (Array.isArray(selected) && selected.length > 0) {
                 const currentLabels = selectedLabels.join(", ");
-                let selectedState;
-                if (selectedLength > lastSelectedLength) {
-                    selectedState = labels?.selected
+                const selectedState =
+                    selectedLength > lastSelectedLength
                         ? labels.selected(currentLabels)
-                        : strings.srItemsSelected({labels: currentLabels});
-                } else {
-                    selectedState = labels?.unselected
-                        ? labels.unselected(currentLabels)
-                        : strings.srItemsNotSelected({labels: currentLabels});
-                }
+                        : labels.unselected(currentLabels);
 
                 newMessage = selectedState;
             } else {
                 // Announces the selected item for single select combobox.
-                newMessage = labels?.selected
-                    ? labels.selected(selectedLabels[0])
-                    : strings.srItemsSelected({labels: selectedLabels[0]});
+                newMessage = labels.selected(selectedLabels[0]);
             }
             setMessage(newMessage);
         }
@@ -165,15 +166,22 @@ export function ComboboxLiveRegion({
             !selected &&
             lastSelectedValue.current
         ) {
-            setMessage(labels?.selectionCleared || strings.srSelectionCleared);
+            setMessage(labels.selectionCleared);
         }
 
         lastSelectedValue.current = selected;
 
         if (selectionType === "multiple" && !opened) {
-            setMessage(labels?.closedState || strings.srComboboxClosed);
+            setMessage(labels.closedState);
         }
-    }, [labels, selectedLabels, opened, selected, selectionType, strings]);
+    }, [
+        labels,
+        labels.closedState,
+        selectedLabels,
+        opened,
+        selected,
+        selectionType,
+    ]);
 
     const focusedElementDescription = React.useMemo(() => {
         // If there are focused items in the multi-select combobox, announce the
@@ -181,23 +189,20 @@ export function ComboboxLiveRegion({
         if (focusedMultiSelectIndex >= 0) {
             // Announces the pill group.
             const label = selectedLabels[focusedMultiSelectIndex];
-            const total = selectedLabels.length;
             return (
-                getCurrentItemDetails(labels, strings, {
+                labels.liveRegionCurrentItem({
                     current: label,
                     focused: true,
                     index: focusedMultiSelectIndex,
-                    total,
+                    total: selectedLabels.length,
                 }) +
                 " " +
-                (labels?.liveRegionMultipleSelectionTotal
-                    ? labels.liveRegionMultipleSelectionTotal(total)
-                    : strings.srNumSelectedOptions({num: total}))
+                labels.liveRegionMultipleSelectionTotal(selectedLabels.length)
             );
         }
 
         if (options.length === 0) {
-            return labels?.noItems || strings.noResults;
+            return labels.noItems;
         }
 
         // If there are no focused items, don't announce anything.
@@ -212,7 +217,7 @@ export function ComboboxLiveRegion({
         const totalResults = options.length;
 
         return (
-            getCurrentItemDetails(labels, strings, {
+            labels.liveRegionCurrentItem({
                 current: label,
                 disabled: currentItemProps.disabled,
                 focused: false,
@@ -221,9 +226,7 @@ export function ComboboxLiveRegion({
                 total: totalResults,
             }) +
             " " +
-            (labels?.liveRegionListboxTotal
-                ? labels.liveRegionListboxTotal(totalResults)
-                : strings.srNumResultsAvailable({num: totalResults}))
+            labels.liveRegionListboxTotal(totalResults)
         );
     }, [
         focusedIndex,
@@ -231,7 +234,6 @@ export function ComboboxLiveRegion({
         labels,
         options,
         selectedLabels,
-        strings,
     ]);
 
     return (
