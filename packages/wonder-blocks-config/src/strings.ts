@@ -50,12 +50,12 @@ export type WonderBlocksStrings = {
     }) => string;
     srComboboxResultsTotal: ({num}: {num: number}) => string;
     srComboboxSelectedTotal: ({num}: {num: number}) => string;
-    srItemDisabled: string;
-    srItemFocused: string;
-    srItemSelected: string;
-    srSelected: ({labels}: {labels: string}) => string;
+    srDisabled: string;
+    srFocused: string;
+    srSelected: string;
+    srItemsSelected: ({labels}: {labels: string}) => string;
     srSelectionCleared: string;
-    srUnselected: ({labels}: {labels: string}) => string;
+    srItemsNotSelected: ({labels}: {labels: string}) => string;
 
     // Form field labels
     fieldLabelDay: string;
@@ -230,22 +230,22 @@ export const strings = {
         one: "%(num)s selected option.",
         other: "%(num)s selected options.",
     },
-    srItemDisabled: {
+    srDisabled: {
         context:
             "Screen reader text announced after an option's label when the option is disabled (e.g. 'Apple disabled').",
         message: "disabled",
     },
-    srItemFocused: {
+    srFocused: {
         context:
             "Screen reader text announced after an option's label when the option is focused (e.g. 'Apple focused').",
         message: "focused",
     },
-    srItemSelected: {
+    srSelected: {
         context:
             "Screen reader text announced after an option's label when the option is selected (e.g. 'Apple selected').",
         message: "selected",
     },
-    srSelected: {
+    srItemsSelected: {
         context:
             "Screen reader announcement for when options are selected. %(labels)s is a list of the selected options' labels.",
         message: "%(labels)s selected",
@@ -255,7 +255,7 @@ export const strings = {
             "Screen reader announcement for when the selected option is cleared.",
         message: "Selection cleared",
     },
-    srUnselected: {
+    srItemsNotSelected: {
         context:
             "Screen reader announcement for when options are deselected. %(labels)s is a list of the labels of the options that are still selected.",
         message: "%(labels)s not selected",
@@ -339,12 +339,12 @@ export const defaultStringsEn: WonderBlocksStrings = {
         num === 1 ? `${num} result available.` : `${num} results available.`,
     srComboboxSelectedTotal: ({num}) =>
         num === 1 ? `${num} selected option.` : `${num} selected options.`,
-    srItemDisabled: strings.srItemDisabled.message,
-    srItemFocused: strings.srItemFocused.message,
-    srItemSelected: strings.srItemSelected.message,
-    srSelected: ({labels}) => `${labels} selected`,
+    srDisabled: strings.srDisabled.message,
+    srFocused: strings.srFocused.message,
+    srSelected: strings.srSelected.message,
+    srItemsSelected: ({labels}) => `${labels} selected`,
     srSelectionCleared: strings.srSelectionCleared.message,
-    srUnselected: ({labels}) => `${labels} not selected`,
+    srItemsNotSelected: ({labels}) => `${labels} not selected`,
 
     // Form field labels
     fieldLabelDay: strings.fieldLabelDay.message,

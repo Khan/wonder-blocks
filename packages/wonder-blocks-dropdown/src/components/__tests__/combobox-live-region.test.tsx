@@ -257,13 +257,13 @@ describe("ComboboxLiveRegion", () => {
                 `translated ${num} results available`,
             srComboboxSelectedTotal: ({num}: {num: number}) =>
                 `translated ${num} selected options`,
-            srItemDisabled: "translated disabled",
-            srItemFocused: "translated focused",
-            srItemSelected: "translated selected",
-            srSelected: ({labels}: {labels: string}) =>
+            srDisabled: "translated disabled",
+            srFocused: "translated focused",
+            srSelected: "translated selected",
+            srItemsSelected: ({labels}: {labels: string}) =>
                 `translated ${labels} selected`,
             srSelectionCleared: "translated selection cleared",
-            srUnselected: ({labels}: {labels: string}) =>
+            srItemsNotSelected: ({labels}: {labels: string}) =>
                 `translated ${labels} not selected`,
         };
 

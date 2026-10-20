@@ -100,9 +100,9 @@ export function ComboboxLiveRegion({
                     // translated without needing a message for each
                     // combination of them.
                     const states = [
-                        focused && strings.srItemFocused,
-                        disabled && strings.srItemDisabled,
-                        selected && strings.srItemSelected,
+                        focused && strings.srFocused,
+                        disabled && strings.srDisabled,
+                        selected && strings.srSelected,
                     ].filter(Boolean);
 
                     return strings.srComboboxCurrentItem({
@@ -123,12 +123,12 @@ export function ComboboxLiveRegion({
             noItems: propLabels?.noItems || strings.noResults,
             selected:
                 propLabels?.selected ||
-                ((labels) => strings.srSelected({labels})),
+                ((labels) => strings.srItemsSelected({labels})),
             selectionCleared:
                 propLabels?.selectionCleared || strings.srSelectionCleared,
             unselected:
                 propLabels?.unselected ||
-                ((labels) => strings.srUnselected({labels})),
+                ((labels) => strings.srItemsNotSelected({labels})),
         }),
         [propLabels, strings],
     );
