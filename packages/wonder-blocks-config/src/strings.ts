@@ -69,7 +69,7 @@ export const strings = {
     },
     iconAltClearSelection: {
         context:
-            "Accessible name for an icon button in a combobox that clears the selected option.",
+            "Accessible name for an icon button that clears the selected option.",
         message: "Clear selection",
     },
     iconAltErrorMessagePrefix: {
@@ -84,7 +84,7 @@ export const strings = {
     },
     iconAltToggleListbox: {
         context:
-            "Accessible name for an icon button in a combobox that opens and closes the list of options.",
+            "Accessible name for an icon button that opens and closes a list of options.",
         message: "Toggle listbox",
     },
 
@@ -95,8 +95,7 @@ export const strings = {
         message: "Breadcrumbs",
     },
     optionsList: {
-        context:
-            "Accessible name for the list of options that opens from a combobox.",
+        context: "Accessible name for a list of options.",
         message: "Options list",
     },
     tabs: {
@@ -133,7 +132,7 @@ export const strings = {
     },
     removeSelected: {
         context:
-            "Accessible name for a button that removes a selected option from a multi-select combobox. %(label)s is the label of the option.",
+            "Accessible name for a button that removes a selected option. %(label)s is the label of the option.",
         message: "Remove %(label)s",
     },
     filter: {
@@ -149,23 +148,23 @@ export const strings = {
     // Screen reader announcements
     srComboboxClosed: {
         context:
-            "Screen reader announcement for when the list of options in a combobox closes.",
+            "Screen reader announcement for when a list of options closes.",
         message: "Combobox is closed",
     },
     srComboboxCurrentItem: {
         context:
-            "Screen reader announcement for the option that is currently focused in a combobox. %(current)s is the option's label, which can be followed by its states (e.g. 'Apple focused selected'). %(index)s is the position of the option in the list, starting at 1, and %(total)s is the number of options.",
+            "Screen reader announcement for the option that is currently focused. %(current)s is the option's label, which can be followed by its states (e.g. 'Apple focused selected'). %(index)s is the position of the option in the list, starting at 1, and %(total)s is the number of options.",
         message: "%(current)s, %(index)s of %(total)s.",
     },
     srComboboxResultsTotal: {
         context:
-            "Screen reader announcement for the number of options available in a combobox. %(num)s is the number of options.",
+            "Screen reader announcement for the number of options available. %(num)s is the number of options.",
         one: "%(num)s result available.",
         other: "%(num)s results available.",
     },
     srComboboxSelectedTotal: {
         context:
-            "Screen reader announcement for the number of options selected in a multi-select combobox. %(num)s is the number of selected options.",
+            "Screen reader announcement for the number of selected options. %(num)s is the number of selected options.",
         one: "%(num)s selected option.",
         other: "%(num)s selected options.",
     },
@@ -186,17 +185,17 @@ export const strings = {
     },
     srSelected: {
         context:
-            "Screen reader announcement for when options are selected in a combobox. %(labels)s is a list of the selected options' labels.",
+            "Screen reader announcement for when options are selected. %(labels)s is a list of the selected options' labels.",
         message: "%(labels)s selected",
     },
     srSelectionCleared: {
         context:
-            "Screen reader announcement for when the selected option in a combobox is cleared.",
+            "Screen reader announcement for when the selected option is cleared.",
         message: "Selection cleared",
     },
     srUnselected: {
         context:
-            "Screen reader announcement for when options are deselected in a multi-select combobox. %(labels)s is a list of the labels of the options that are still selected.",
+            "Screen reader announcement for when options are deselected. %(labels)s is a list of the labels of the options that are still selected.",
         message: "%(labels)s not selected",
     },
 
