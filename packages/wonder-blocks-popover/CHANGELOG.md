@@ -1,5 +1,16 @@
 # @khanacademy/wonder-blocks-popover
 
+## 7.0.2
+
+### Patch Changes
+
+- 248e2f5: Make popover content scroll when it doesn't fit in the available space (e.g. on small screens or at up to 400% zoom). The content fades out at the edges to indicate there's more content, and the scrollable area becomes keyboard focusable while it overflows. It is named after the popover (its title or `aria-label`), so screen readers announce it when it receives focus.
+- Updated dependencies [7d414bb]
+- Updated dependencies [248e2f5]
+- Updated dependencies [8b93331]
+    - @khanacademy/wonder-blocks-floating@0.2.0
+    - @khanacademy/wonder-blocks-layout@3.2.0
+
 ## 7.0.1
 
 ### Patch Changes

@@ -1,5 +1,15 @@
 # @khanacademy/wonder-blocks-floating
 
+## 0.2.0
+
+### Minor Changes
+
+- 248e2f5: Add an opt-in `constrainSize` prop (disabled by default) that constrains the floating element to the space available within the boundary, so it isn't cut off on small screens or at high zoom levels. The content is responsible for scrolling when it doesn't fit (e.g. with `ScrollableView` from `@khanacademy/wonder-blocks-layout`).
+
+### Patch Changes
+
+- 7d414bb: Don't hide the floating element (via the `hide` middleware) while a text field inside of it has focus. This fixes the virtual keyboard closing right after focusing a text field inside a popover on mobile devices.
+
 ## 0.1.0
 
 ### Minor Changes
