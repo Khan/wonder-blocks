@@ -244,7 +244,7 @@ describe("ComboboxLiveRegion", () => {
             ...defaultStringsEn,
             noResults: "translated no results",
             srComboboxClosed: "translated combobox closed",
-            srComboboxCurrentItemDetails: ({
+            srCurrentItemDetails: ({
                 current,
                 index,
                 total,
@@ -253,9 +253,9 @@ describe("ComboboxLiveRegion", () => {
                 index: number;
                 total: number;
             }) => `translated ${current}, ${index} of ${total}`,
-            srComboboxResultsTotal: ({num}: {num: number}) =>
+            srNumResultsAvailable: ({num}: {num: number}) =>
                 `translated ${num} results available`,
-            srComboboxSelectedTotal: ({num}: {num: number}) =>
+            srNumSelectedOptions: ({num}: {num: number}) =>
                 `translated ${num} selected options`,
             srDisabled: "translated disabled",
             srFocused: "translated focused",
