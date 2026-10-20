@@ -1698,13 +1698,13 @@ describe("MultiSelect", () => {
     describe("i18n strings", () => {
         const translatedStrings = {
             ...defaultStringsEn,
-            allItems: "Todos los elementos",
-            filter: "Filtrar",
-            numItems: ({num}: {num: number}) => `${num} elementos`,
+            allItems: "translated all items",
+            filter: "translated filter",
+            numItems: ({num}: {num: number}) => `translated ${num} items`,
             selectAllWithCount: ({num}: {num: number}) =>
-                `Seleccionar todos (${num})`,
-            selectNone: "No seleccionar ninguno",
-            zeroItems: "0 elementos",
+                `translated select all (${num})`,
+            selectNone: "translated select none",
+            zeroItems: "translated zero items",
         };
 
         const renderWithConfig = (
@@ -1715,18 +1715,18 @@ describe("MultiSelect", () => {
                     i18n={{strings: translatedStrings, locale: "es"}}
                 >
                     <MultiSelect onChange={jest.fn()} {...props}>
-                        <OptionItem label="Banano" value="banano" />
-                        <OptionItem label="Pera" value="pera" />
+                        <OptionItem label="Banana" value="banana" />
+                        <OptionItem label="Pear" value="pear" />
                     </MultiSelect>
                 </WonderBlocksConfigProvider>,
             );
 
         it.each([
-            {selectedValues: [], expected: "0 elementos"},
-            {selectedValues: ["banano"], expected: "Banano"},
+            {selectedValues: [], expected: "translated zero items"},
+            {selectedValues: ["banana"], expected: "Banana"},
             {
-                selectedValues: ["banano", "pera"],
-                expected: "Todos los elementos",
+                selectedValues: ["banana", "pear"],
+                expected: "translated all items",
             },
         ])(
             "uses the opener text from the config provider when $selectedValues.length items are selected",
@@ -1751,11 +1751,11 @@ describe("MultiSelect", () => {
                 >
                     <MultiSelect
                         onChange={jest.fn()}
-                        selectedValues={["banano", "pera"]}
+                        selectedValues={["banana", "pear"]}
                     >
-                        <OptionItem label="Banano" value="banano" />
-                        <OptionItem label="Pera" value="pera" />
-                        <OptionItem label="Uva" value="uva" />
+                        <OptionItem label="Banana" value="banana" />
+                        <OptionItem label="Pear" value="pear" />
+                        <OptionItem label="Grape" value="grape" />
                     </MultiSelect>
                 </WonderBlocksConfigProvider>,
             );
@@ -1764,10 +1764,10 @@ describe("MultiSelect", () => {
             const opener = await screen.findByRole("combobox");
 
             // Assert
-            expect(opener).toHaveTextContent("2 elementos");
+            expect(opener).toHaveTextContent("translated 2 items");
         });
 
-        it.each(["Seleccionar todos (2)", "No seleccionar ninguno"])(
+        it.each(["translated select all (2)", "translated select none"])(
             "uses the %s shortcut string from the config provider",
             async (label) => {
                 // Arrange
@@ -1790,7 +1790,7 @@ describe("MultiSelect", () => {
 
             // Assert
             expect(
-                await screen.findByPlaceholderText("Filtrar"),
+                await screen.findByPlaceholderText("translated filter"),
             ).toBeInTheDocument();
         });
 
@@ -1798,11 +1798,11 @@ describe("MultiSelect", () => {
             // Arrange
 
             // Act
-            renderWithConfig({labels: {noneSelected: "None override"}});
+            renderWithConfig({labels: {noneSelected: "Custom none selected"}});
 
             // Assert
             expect(await screen.findByRole("combobox")).toHaveTextContent(
-                "None override",
+                "Custom none selected",
             );
         });
 
@@ -1814,7 +1814,7 @@ describe("MultiSelect", () => {
 
             // Assert
             expect(await screen.findByRole("combobox")).toHaveTextContent(
-                "0 elementos",
+                "translated zero items",
             );
         });
     });

@@ -1446,10 +1446,10 @@ describe("SingleSelect", () => {
     describe("i18n strings", () => {
         const translatedStrings = {
             ...defaultStringsEn,
-            filter: "Filtrar",
-            iconAltClearSearch: "Limpiar búsqueda",
-            noResults: "No hay resultados",
-            numItems: ({num}: {num: number}) => `${num} elementos`,
+            filter: "translated filter",
+            iconAltClearSearch: "translated clear search",
+            noResults: "translated no results",
+            numItems: ({num}: {num: number}) => `translated ${num} items`,
         };
 
         const renderWithConfig = (
@@ -1461,13 +1461,13 @@ describe("SingleSelect", () => {
                 >
                     <SingleSelect
                         onChange={onChange}
-                        placeholder="Escoge una fruta"
+                        placeholder="Select a fruit"
                         isFilterable={true}
                         opened={true}
                         {...props}
                     >
-                        <OptionItem label="Banano" value="banano" />
-                        <OptionItem label="Pera" value="pera" />
+                        <OptionItem label="Banana" value="banana" />
+                        <OptionItem label="Pear" value="pear" />
                     </SingleSelect>
                 </WonderBlocksConfigProvider>,
             );
@@ -1480,7 +1480,7 @@ describe("SingleSelect", () => {
 
             // Assert
             expect(
-                await screen.findByPlaceholderText("Filtrar"),
+                await screen.findByPlaceholderText("translated filter"),
             ).toBeInTheDocument();
         });
 
@@ -1490,13 +1490,15 @@ describe("SingleSelect", () => {
 
             // Act
             await userEvent.type(
-                await screen.findByPlaceholderText("Filtrar"),
+                await screen.findByPlaceholderText("translated filter"),
                 "b",
             );
 
             // Assert
             expect(
-                await screen.findByRole("button", {name: "Limpiar búsqueda"}),
+                await screen.findByRole("button", {
+                    name: "translated clear search",
+                }),
             ).toBeInTheDocument();
         });
 
@@ -1506,13 +1508,13 @@ describe("SingleSelect", () => {
 
             // Act
             await userEvent.type(
-                await screen.findByPlaceholderText("Filtrar"),
+                await screen.findByPlaceholderText("translated filter"),
                 "invalid",
             );
 
             // Assert
             expect(
-                await screen.findByText("No hay resultados"),
+                await screen.findByText("translated no results"),
             ).toBeInTheDocument();
         });
 
@@ -1526,13 +1528,13 @@ describe("SingleSelect", () => {
 
             // Act
             await userEvent.type(
-                await screen.findByPlaceholderText("Filtrar"),
-                "banano",
+                await screen.findByPlaceholderText("translated filter"),
+                "banana",
             );
 
             // Assert
             expect(announceMessageSpy).toHaveBeenCalledWith({
-                message: "1 elementos",
+                message: "translated 1 items",
                 level: "polite",
             });
         });
@@ -1543,16 +1545,16 @@ describe("SingleSelect", () => {
             // Act
             renderWithConfig({
                 labels: {
-                    clearSearch: "Clear search override",
-                    filter: "Filter override",
-                    noResults: "No results override",
-                    someResults: (num: number) => `${num} results override`,
+                    clearSearch: "Custom clear search",
+                    filter: "Custom filter",
+                    noResults: "Custom no results",
+                    someResults: (num: number) => `Custom ${num} results`,
                 },
             });
 
             // Assert
             expect(
-                await screen.findByPlaceholderText("Filter override"),
+                await screen.findByPlaceholderText("Custom filter"),
             ).toBeInTheDocument();
         });
     });
