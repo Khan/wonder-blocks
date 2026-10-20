@@ -147,8 +147,7 @@ export const strings = {
 
     // Screen reader announcements
     srComboboxClosed: {
-        context:
-            "Screen reader announcement for when a list of options closes.",
+        context: "Screen reader announcement for when a combobox closes.",
         message: "Combobox is closed",
     },
     srComboboxCurrentItem: {
