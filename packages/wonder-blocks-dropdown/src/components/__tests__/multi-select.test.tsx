@@ -50,15 +50,16 @@ jest.mock("react-popper", () => ({
 
 // The English labels built from the default strings.
 const builtinLabels: LabelsValues = {
-    clearSearch: "Clear search",
-    filter: "Filter",
-    noResults: "No results",
-    selectAllLabel: (numOptions: number) => `Select all (${numOptions})`,
-    selectNoneLabel: "Select none",
-    noneSelected: "0 items",
+    clearSearch: defaultStringsEn.iconAltClearSearch,
+    filter: defaultStringsEn.filter,
+    noResults: defaultStringsEn.noResults,
+    selectAllLabel: (numOptions: number) =>
+        defaultStringsEn.selectAllWithCount({num: numOptions}),
+    selectNoneLabel: defaultStringsEn.selectNone,
+    noneSelected: defaultStringsEn.zeroItems,
     someSelected: (numSelectedValues: number) =>
-        numSelectedValues === 1 ? "1 item" : `${numSelectedValues} items`,
-    allSelected: "All items",
+        defaultStringsEn.numItems({num: numSelectedValues}),
+    allSelected: defaultStringsEn.allItems,
 };
 
 const defaultLabels: LabelsValues = {
