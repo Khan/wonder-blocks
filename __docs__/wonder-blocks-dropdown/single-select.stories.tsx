@@ -160,6 +160,13 @@ const styles = StyleSheet.create({
         alignItems: "flex-start",
         gap: sizing.size_200,
     },
+    // Wide enough to fit the opened dropdown menu, so the menu doesn't
+    // overlap the select next to it.
+    customLabelsSelect: {
+        minInlineSize: 300,
+        flexShrink: 0,
+        alignItems: "flex-start",
+    },
     centered: {
         alignItems: "center",
         justifyContent: "center",
@@ -949,29 +956,33 @@ export const CustomLabels: StoryComponentType = {
 
         return (
             <View style={[styles.wrapper, styles.labelsContainer]}>
-                <SingleSelect
-                    aria-label="Fruit"
-                    isFilterable={true}
-                    onChange={setDefaultValue}
-                    selectedValue={defaultValue}
-                    opened={defaultOpened}
-                    onToggle={setDefaultOpened}
-                    placeholder="Select a fruit"
-                >
-                    {customLabelsItems}
-                </SingleSelect>
-                <SingleSelect
-                    aria-label="Fruit with custom labels"
-                    isFilterable={true}
-                    onChange={setValue}
-                    selectedValue={value}
-                    labels={customLabels}
-                    opened={opened}
-                    onToggle={setOpened}
-                    placeholder="Select a fruit"
-                >
-                    {customLabelsItems}
-                </SingleSelect>
+                <View style={styles.customLabelsSelect}>
+                    <SingleSelect
+                        aria-label="Fruit"
+                        isFilterable={true}
+                        onChange={setDefaultValue}
+                        selectedValue={defaultValue}
+                        opened={defaultOpened}
+                        onToggle={setDefaultOpened}
+                        placeholder="Select a fruit"
+                    >
+                        {customLabelsItems}
+                    </SingleSelect>
+                </View>
+                <View style={styles.customLabelsSelect}>
+                    <SingleSelect
+                        aria-label="Fruit with custom labels"
+                        isFilterable={true}
+                        onChange={setValue}
+                        selectedValue={value}
+                        labels={customLabels}
+                        opened={opened}
+                        onToggle={setOpened}
+                        placeholder="Select a fruit"
+                    >
+                        {customLabelsItems}
+                    </SingleSelect>
+                </View>
             </View>
         );
     },

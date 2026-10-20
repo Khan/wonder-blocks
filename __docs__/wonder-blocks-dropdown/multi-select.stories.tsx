@@ -106,6 +106,13 @@ const styles = StyleSheet.create({
         gap: sizing.size_080,
         alignItems: "flex-start",
     },
+    // Wide enough to fit the opened dropdown menu, so the menu doesn't
+    // overlap the select next to it.
+    customLabelsSelect: {
+        minInlineSize: 300,
+        flexShrink: 0,
+        alignItems: "flex-start",
+    },
     fullWidth: {
         inlineSize: "100%",
     },
@@ -885,29 +892,33 @@ export const CustomLabels: StoryComponentType = {
 
         return (
             <View style={[styles.wrapper, styles.twoSelectsContainer]}>
-                <MultiSelect
-                    aria-label="Schools"
-                    shortcuts={true}
-                    isFilterable={true}
-                    onChange={setDefaultSelectedValues}
-                    selectedValues={defaultSelectedValues}
-                    opened={defaultOpened}
-                    onToggle={setDefaultOpened}
-                >
-                    {customLabelsItems}
-                </MultiSelect>
-                <MultiSelect
-                    aria-label="Schools with custom labels"
-                    shortcuts={true}
-                    isFilterable={true}
-                    onChange={setSelectedValues}
-                    selectedValues={selectedValues}
-                    labels={labels}
-                    opened={opened}
-                    onToggle={setOpened}
-                >
-                    {customLabelsItems}
-                </MultiSelect>
+                <View style={styles.customLabelsSelect}>
+                    <MultiSelect
+                        aria-label="Schools"
+                        shortcuts={true}
+                        isFilterable={true}
+                        onChange={setDefaultSelectedValues}
+                        selectedValues={defaultSelectedValues}
+                        opened={defaultOpened}
+                        onToggle={setDefaultOpened}
+                    >
+                        {customLabelsItems}
+                    </MultiSelect>
+                </View>
+                <View style={styles.customLabelsSelect}>
+                    <MultiSelect
+                        aria-label="Schools with custom labels"
+                        shortcuts={true}
+                        isFilterable={true}
+                        onChange={setSelectedValues}
+                        selectedValues={selectedValues}
+                        labels={labels}
+                        opened={opened}
+                        onToggle={setOpened}
+                    >
+                        {customLabelsItems}
+                    </MultiSelect>
+                </View>
             </View>
         );
     },
