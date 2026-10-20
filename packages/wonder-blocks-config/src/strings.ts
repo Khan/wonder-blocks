@@ -33,7 +33,7 @@ export type WonderBlocksStrings = {
     zeroItems: string;
     selectAllWithCount: ({num}: {num: number}) => string;
     selectNone: string;
-    removeLabel: ({label}: {label: string}) => string;
+    removeOption: ({label}: {label: string}) => string;
     filter: string;
     noResults: string;
 
@@ -193,7 +193,7 @@ export const strings = {
         context: "Label for the option to deselect all of the options.",
         message: "Select none",
     },
-    removeLabel: {
+    removeOption: {
         context:
             "Accessible name for a button that removes a selected option. %(label)s is the label of the option.",
         message: "Remove %(label)s",
@@ -327,7 +327,7 @@ export const defaultStringsEn: WonderBlocksStrings = {
     zeroItems: strings.zeroItems.message,
     selectAllWithCount: ({num}) => `Select all (${num})`,
     selectNone: strings.selectNone.message,
-    removeLabel: ({label}) => `Remove ${label}`,
+    removeOption: ({label}) => `Remove ${label}`,
     filter: strings.filter.message,
     noResults: strings.noResults.message,
 
