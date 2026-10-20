@@ -29,7 +29,7 @@ export type WonderBlocksStrings = {
 
     // Screen reader announcements
     srComboboxClosed: string;
-    srComboboxCurrentItemDetails: ({
+    srCurrentItemDetails: ({
         current,
         index,
         total,
@@ -38,8 +38,8 @@ export type WonderBlocksStrings = {
         index: number;
         total: number;
     }) => string;
-    srComboboxResultsTotal: ({num}: {num: number}) => string;
-    srComboboxSelectedTotal: ({num}: {num: number}) => string;
+    srNumResultsAvailable: ({num}: {num: number}) => string;
+    srNumSelectedOptions: ({num}: {num: number}) => string;
     srDisabled: string;
     srFocused: string;
     srSelected: string;
@@ -150,20 +150,20 @@ export const strings = {
         context: "Screen reader announcement for when a combobox closes.",
         message: "Combobox is closed",
     },
-    srComboboxCurrentItemDetails: {
+    srCurrentItemDetails: {
         context:
-            "Screen reader announcement for the option that is currently focused. %(current)s is the option's label, which can be followed by its states (e.g. 'Apple focused selected'). %(index)s is the position of the option in the list, starting at 1, and %(total)s is the number of options.",
+            "Screen reader announcement for the currently focused item in a list. %(current)s is the item's label, which can be followed by its states (e.g. 'Apple focused selected'). %(index)s is the position of the item in the list, starting at 1, and %(total)s is the number of items.",
         message: "%(current)s, %(index)s of %(total)s.",
     },
-    srComboboxResultsTotal: {
+    srNumResultsAvailable: {
         context:
-            "Screen reader announcement for the number of options available. %(num)s is the number of options.",
+            "Screen reader announcement for the number of results available. For example, the number of options that match a search. %(num)s is the number of results.",
         one: "%(num)s result available.",
         other: "%(num)s results available.",
     },
-    srComboboxSelectedTotal: {
+    srNumSelectedOptions: {
         context:
-            "Screen reader announcement for the number of selected options. %(num)s is the number of selected options.",
+            "Screen reader announcement for the number of options that are selected. %(num)s is the number of selected options.",
         one: "%(num)s selected option.",
         other: "%(num)s selected options.",
     },
@@ -239,11 +239,11 @@ export const defaultStringsEn: WonderBlocksStrings = {
 
     // Screen reader announcements
     srComboboxClosed: strings.srComboboxClosed.message,
-    srComboboxCurrentItemDetails: ({current, index, total}) =>
+    srCurrentItemDetails: ({current, index, total}) =>
         `${current}, ${index} of ${total}.`,
-    srComboboxResultsTotal: ({num}) =>
+    srNumResultsAvailable: ({num}) =>
         num === 1 ? `${num} result available.` : `${num} results available.`,
-    srComboboxSelectedTotal: ({num}) =>
+    srNumSelectedOptions: ({num}) =>
         num === 1 ? `${num} selected option.` : `${num} selected options.`,
     srDisabled: strings.srDisabled.message,
     srFocused: strings.srFocused.message,

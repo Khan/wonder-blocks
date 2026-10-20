@@ -105,7 +105,7 @@ export function ComboboxLiveRegion({
                         selected && strings.srSelected,
                     ].filter(Boolean);
 
-                    return strings.srComboboxCurrentItemDetails({
+                    return strings.srCurrentItemDetails({
                         current: [current, ...states].join(" "),
                         // `index` is 0-based, but the announcement is 1-based.
                         // This is done here since translated messages can't
@@ -116,10 +116,10 @@ export function ComboboxLiveRegion({
                 }),
             liveRegionListboxTotal:
                 propLabels?.liveRegionListboxTotal ||
-                ((total) => strings.srComboboxResultsTotal({num: total})),
+                ((total) => strings.srNumResultsAvailable({num: total})),
             liveRegionMultipleSelectionTotal:
                 propLabels?.liveRegionMultipleSelectionTotal ||
-                ((total) => strings.srComboboxSelectedTotal({num: total})),
+                ((total) => strings.srNumSelectedOptions({num: total})),
             noItems: propLabels?.noItems || strings.noResults,
             selected:
                 propLabels?.selected ||
