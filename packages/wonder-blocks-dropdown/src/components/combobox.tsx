@@ -172,20 +172,22 @@ export default function Combobox({
     const {strings} = useWonderBlocksI18n();
     // Use the labels prop if it is provided (and not empty), otherwise use the
     // strings from `WonderBlocksConfigProvider`.
-    const clearSelectionLabel =
-        propLabels?.clearSelection || strings.iconAltClearSelection;
-    const comboboxButtonLabel =
-        propLabels?.comboboxButton || strings.iconAltToggleListbox;
-    const listboxLabel = propLabels?.listbox || strings.optionsList;
-    const noItemsLabel = propLabels?.noItems || strings.noResults;
-    const propRemoveSelectedLabel = propLabels?.removeSelected;
-    // Memoized since it's passed to `MultipleSelection`, which is memoized.
-    const removeSelectedLabel = React.useCallback(
-        (label: string) =>
-            propRemoveSelectedLabel
-                ? propRemoveSelectedLabel(label)
-                : strings.removeOption({label}),
-        [propRemoveSelectedLabel, strings],
+    // NOTE: The live region labels are passed through, since
+    // `ComboboxLiveRegion` falls back to the strings for them.
+    const labels = React.useMemo(
+        () => ({
+            ...propLabels,
+            clearSelection:
+                propLabels?.clearSelection || strings.iconAltClearSelection,
+            comboboxButton:
+                propLabels?.comboboxButton || strings.iconAltToggleListbox,
+            listbox: propLabels?.listbox || strings.optionsList,
+            noItems: propLabels?.noItems || strings.noResults,
+            removeSelected:
+                propLabels?.removeSelected ||
+                ((label: string) => strings.removeOption({label})),
+        }),
+        [propLabels, strings],
     );
     // eslint-disable-next-line import/no-deprecated
     const generatedUniqueId = useId();
@@ -581,7 +583,7 @@ export default function Combobox({
                 <ComboboxLiveRegion
                     focusedIndex={focusedIndex}
                     focusedMultiSelectIndex={focusedMultiSelectIndex}
-                    labels={propLabels}
+                    labels={labels}
                     options={renderList}
                     selectedLabels={selectedLabels}
                     testId={testId}
@@ -600,7 +602,7 @@ export default function Combobox({
                         onRemove={handleOnRemoveClick}
                         disabled={disabled}
                         testId={testId}
-                        removeSelectedLabel={removeSelectedLabel}
+                        removeSelectedLabel={labels.removeSelected}
                     />
                 )}
                 {maybeRenderStartIcon()}
@@ -643,7 +645,7 @@ export default function Combobox({
                         kind="tertiary"
                         size="medium"
                         style={[styles.button, styles.clearButton]}
-                        aria-label={clearSelectionLabel}
+                        aria-label={labels.clearSelection}
                         testId={testId ? `${testId}-clear` : undefined}
                     />
                 )}
@@ -671,7 +673,7 @@ export default function Combobox({
                     tabIndex={-1}
                     aria-controls={uniqueId}
                     aria-expanded={openState}
-                    aria-label={comboboxButtonLabel}
+                    aria-label={labels.comboboxButton}
                 />
             </View>
 
@@ -693,7 +695,7 @@ export default function Combobox({
                             {renderList.length === 0 ? (
                                 // No items to display
                                 <DetailCell
-                                    title={noItemsLabel}
+                                    title={labels.noItems}
                                     styles={{
                                         root: [
                                             styles.listbox,
@@ -727,7 +729,7 @@ export default function Combobox({
                                     testId={
                                         testId ? `${testId}-listbox` : undefined
                                     }
-                                    aria-label={listboxLabel}
+                                    aria-label={labels.listbox}
                                     aria-labelledby={textFieldId}
                                 >
                                     {renderList}
