@@ -1341,11 +1341,13 @@ describe("SingleSelect", () => {
             <OptionItem label="Mango" value="mango" />,
         ];
 
+        // The English labels built from the default strings.
         const enLabels: SingleSelectLabelsValues = {
-            clearSearch: "Clear Search",
-            filter: "Filter",
-            noResults: "No Results",
-            someResults: (numOptions: number) => "Some Results",
+            clearSearch: defaultStringsEn.iconAltClearSearch,
+            filter: defaultStringsEn.filter,
+            noResults: defaultStringsEn.noResults,
+            someResults: (numOptions: number) =>
+                defaultStringsEn.numItems({num: numOptions}),
         };
 
         it("passes the custom label to the search input field", async () => {
