@@ -523,13 +523,22 @@ export const StartIcon: Story = {
  * the strings provided by `WonderBlocksConfigProvider`.
  *
  * This example illustrates how you can override them by passing custom labels
- * to the `Combobox` component using the `labels` prop. The first combobox uses
- * the built-in labels, and the second one uses custom labels.
+ * to the `Combobox` component using the `labels` prop. For both single and
+ * multi-select, the first combobox uses the built-in labels, and the second one
+ * uses custom labels.
  */
 export const CustomLabels: Story = {
     render: function Render(args: PropsFor<typeof Combobox>) {
-        const [defaultValue, setDefaultValue] = React.useState(args.value);
-        const [value, setValue] = React.useState(args.value);
+        type Value = PropsFor<typeof Combobox>["value"];
+        const [singleDefaultValue, setSingleDefaultValue] =
+            React.useState<Value>("pear");
+        const [singleValue, setSingleValue] = React.useState<Value>("pear");
+        const [multipleDefaultValue, setMultipleDefaultValue] =
+            React.useState<Value>(["pear", "grape"]);
+        const [multipleValue, setMultipleValue] = React.useState<Value>([
+            "pear",
+            "grape",
+        ]);
 
         const customLabels: PropsFor<typeof Combobox>["labels"] = {
             clearSelection: "Custom clear selection",
@@ -550,25 +559,40 @@ export const CustomLabels: Story = {
 
         return (
             <View style={{gap: sizing.size_120}}>
-                <BodyText>Built-in labels:</BodyText>
+                <BodyText>Single select with built-in labels:</BodyText>
                 <Combobox
                     {...args}
-                    value={defaultValue}
-                    onChange={setDefaultValue}
+                    selectionType="single"
+                    value={singleDefaultValue}
+                    onChange={setSingleDefaultValue}
                 />
-                <BodyText>Custom labels:</BodyText>
+                <BodyText>Single select with custom labels:</BodyText>
                 <Combobox
                     {...args}
+                    selectionType="single"
                     labels={customLabels}
-                    value={value}
-                    onChange={setValue}
+                    value={singleValue}
+                    onChange={setSingleValue}
+                />
+                <BodyText>Multi-select with built-in labels:</BodyText>
+                <Combobox
+                    {...args}
+                    selectionType="multiple"
+                    value={multipleDefaultValue}
+                    onChange={setMultipleDefaultValue}
+                />
+                <BodyText>Multi-select with custom labels:</BodyText>
+                <Combobox
+                    {...args}
+                    selectionType="multiple"
+                    labels={customLabels}
+                    value={multipleValue}
+                    onChange={setMultipleValue}
                 />
             </View>
         );
     },
     args: {
         children: items,
-        value: ["pear", "grape"],
-        selectionType: "multiple",
     },
 };
