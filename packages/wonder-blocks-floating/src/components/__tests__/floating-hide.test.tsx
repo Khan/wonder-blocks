@@ -271,6 +271,30 @@ describe("Floating (hide)", () => {
         });
     });
 
+    it("should hide the floating element when a text field marked as disabled with aria-disabled has focus", async () => {
+        // Arrange
+        render(
+            <Floating
+                content={<input aria-label="Feedback" aria-disabled={true} />}
+                open={true}
+                focusManagerEnabled={false}
+                testId="floating"
+            >
+                <button>Trigger</button>
+            </Floating>,
+        );
+
+        // Act
+        await userEvent.click(screen.getByRole("textbox", {name: "Feedback"}));
+
+        // Assert
+        await waitFor(() => {
+            expect(screen.getByTestId("floating")).toHaveStyle({
+                visibility: "hidden",
+            });
+        });
+    });
+
     it("should hide the floating element when a text field in portaled content has focus", async () => {
         // Arrange
         const PortaledField = () =>

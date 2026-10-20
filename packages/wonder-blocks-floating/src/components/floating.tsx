@@ -298,13 +298,20 @@ const NON_TEXT_INPUT_TYPES = new Set([
 /**
  * Whether the element opens a virtual keyboard on mobile devices when focused
  * (e.g. text fields). Read-only and disabled fields don't open one.
+ *
+ * NOTE: Wonder Blocks fields are marked as disabled with `aria-disabled` (so
+ * they stay focusable), so we check for both.
  */
 function opensVirtualKeyboard(element: Element): boolean {
     if (
         element instanceof HTMLTextAreaElement ||
         element instanceof HTMLInputElement
     ) {
-        if (element.readOnly || element.disabled) {
+        if (
+            element.readOnly ||
+            element.disabled ||
+            element.getAttribute("aria-disabled") === "true"
+        ) {
             return false;
         }
         return (
