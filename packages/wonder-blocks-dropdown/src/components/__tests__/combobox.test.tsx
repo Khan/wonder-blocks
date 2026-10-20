@@ -1148,7 +1148,7 @@ describe("Combobox", () => {
             iconAltToggleListbox: "translated toggle listbox",
             noResults: "translated no results",
             optionsList: "translated options list",
-            removeSelected: ({label}: {label: string}) =>
+            removeLabel: ({label}: {label: string}) =>
                 `translated remove ${label}`,
         };
 
