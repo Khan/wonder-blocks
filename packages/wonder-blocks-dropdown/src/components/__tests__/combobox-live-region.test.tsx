@@ -244,7 +244,7 @@ describe("ComboboxLiveRegion", () => {
             ...defaultStringsEn,
             noResults: "translated no results",
             srComboboxClosed: "translated combobox closed",
-            srComboboxCurrentItem: ({
+            srComboboxCurrentItemDetails: ({
                 current,
                 index,
                 total,

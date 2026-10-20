@@ -29,7 +29,7 @@ export type WonderBlocksStrings = {
 
     // Screen reader announcements
     srComboboxClosed: string;
-    srComboboxCurrentItem: ({
+    srComboboxCurrentItemDetails: ({
         current,
         index,
         total,
@@ -150,7 +150,7 @@ export const strings = {
         context: "Screen reader announcement for when a combobox closes.",
         message: "Combobox is closed",
     },
-    srComboboxCurrentItem: {
+    srComboboxCurrentItemDetails: {
         context:
             "Screen reader announcement for the option that is currently focused. %(current)s is the option's label, which can be followed by its states (e.g. 'Apple focused selected'). %(index)s is the position of the option in the list, starting at 1, and %(total)s is the number of options.",
         message: "%(current)s, %(index)s of %(total)s.",
@@ -239,7 +239,7 @@ export const defaultStringsEn: WonderBlocksStrings = {
 
     // Screen reader announcements
     srComboboxClosed: strings.srComboboxClosed.message,
-    srComboboxCurrentItem: ({current, index, total}) =>
+    srComboboxCurrentItemDetails: ({current, index, total}) =>
         `${current}, ${index} of ${total}.`,
     srComboboxResultsTotal: ({num}) =>
         num === 1 ? `${num} result available.` : `${num} results available.`,

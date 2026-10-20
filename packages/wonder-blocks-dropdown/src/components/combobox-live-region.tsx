@@ -105,7 +105,7 @@ export function ComboboxLiveRegion({
                         selected && strings.srSelected,
                     ].filter(Boolean);
 
-                    return strings.srComboboxCurrentItem({
+                    return strings.srComboboxCurrentItemDetails({
                         current: [current, ...states].join(" "),
                         // `index` is 0-based, but the announcement is 1-based.
                         // This is done here since translated messages can't
