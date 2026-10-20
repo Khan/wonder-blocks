@@ -69,7 +69,7 @@ export const strings = {
     },
     iconAltClearSelection: {
         context:
-            "Accessible name for an icon button that clears the selected option.",
+            "Accessible name for an icon button that clears the current selection.",
         message: "Clear selection",
     },
     iconAltErrorMessagePrefix: {
@@ -84,7 +84,7 @@ export const strings = {
     },
     iconAltToggleListbox: {
         context:
-            "Accessible name for an icon button that opens and closes a list of options.",
+            "Accessible name for an icon button that opens and closes a listbox (a list of options).",
         message: "Toggle listbox",
     },
 
