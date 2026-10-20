@@ -516,3 +516,59 @@ export const StartIcon: Story = {
         children: items,
     },
 };
+
+/**
+ * The labels used inside `Combobox` (e.g. the button labels, the listbox label
+ * and the screen reader announcements) are built-in, and are translated using
+ * the strings provided by `WonderBlocksConfigProvider`.
+ *
+ * This example illustrates how you can override them by passing custom labels
+ * to the `Combobox` component using the `labels` prop. The first combobox uses
+ * the built-in labels, and the second one uses custom labels.
+ */
+export const CustomLabels: Story = {
+    render: function Render(args: PropsFor<typeof Combobox>) {
+        const [defaultValue, setDefaultValue] = React.useState(args.value);
+        const [value, setValue] = React.useState(args.value);
+
+        const customLabels: PropsFor<typeof Combobox>["labels"] = {
+            clearSelection: "Custom clear selection",
+            closedState: "Custom combobox closed",
+            comboboxButton: "Custom toggle listbox",
+            listbox: "Custom options list",
+            removeSelected: (label) => `Custom remove ${label}`,
+            liveRegionCurrentItem: ({current, index, total}) =>
+                `Custom ${current}, ${index + 1} of ${total}`,
+            liveRegionMultipleSelectionTotal: (total) =>
+                `Custom ${total} selected`,
+            liveRegionListboxTotal: (total) => `Custom ${total} results`,
+            noItems: "Custom no results",
+            selected: (labels) => `Custom ${labels} selected`,
+            selectionCleared: "Custom selection cleared",
+            unselected: (labels) => `Custom ${labels} not selected`,
+        };
+
+        return (
+            <View style={{gap: sizing.size_120}}>
+                <BodyText>Built-in labels:</BodyText>
+                <Combobox
+                    {...args}
+                    value={defaultValue}
+                    onChange={setDefaultValue}
+                />
+                <BodyText>Custom labels:</BodyText>
+                <Combobox
+                    {...args}
+                    labels={customLabels}
+                    value={value}
+                    onChange={setValue}
+                />
+            </View>
+        );
+    },
+    args: {
+        children: items,
+        value: ["pear", "grape"],
+        selectionType: "multiple",
+    },
+};

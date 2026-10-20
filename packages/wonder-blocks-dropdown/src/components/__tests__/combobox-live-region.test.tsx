@@ -9,25 +9,6 @@ import {
 import {ComboboxLiveRegion} from "../combobox-live-region";
 import OptionItem from "../option-item";
 
-import type {ComboboxLabels} from "../../util/types";
-
-// The English labels built from the default strings.
-const englishComboboxLabels: ComboboxLabels = {
-    clearSelection: "Clear selection",
-    closedState: "Combobox is closed",
-    comboboxButton: "Toggle listbox",
-    listbox: "Options list",
-    removeSelected: (label) => `Remove ${label}`,
-    liveRegionCurrentItem: ({current, index, total}) =>
-        `${current}, ${index + 1} of ${total}.`,
-    liveRegionMultipleSelectionTotal: (total) => `${total} selected options.`,
-    liveRegionListboxTotal: (total) => `${total} results available.`,
-    noItems: "No results",
-    selected: (labels) => `${labels} selected`,
-    selectionCleared: "Selection cleared",
-    unselected: (labels) => `${labels} not selected`,
-};
-
 const options = [
     <OptionItem key="1" label="Option 1" value="option1" />,
     <OptionItem key="2" label="Option 2" value="option2" />,
@@ -261,7 +242,8 @@ describe("ComboboxLiveRegion", () => {
     describe("i18n strings", () => {
         const translatedStrings = {
             ...defaultStringsEn,
-            srComboboxClosed: "El combobox está cerrado",
+            noResults: "translated no results",
+            srComboboxClosed: "translated combobox closed",
             srComboboxCurrentItem: ({
                 current,
                 index,
@@ -270,17 +252,19 @@ describe("ComboboxLiveRegion", () => {
                 current: string;
                 index: number;
                 total: number;
-            }) => `${current}, ${index} de ${total}.`,
+            }) => `translated ${current}, ${index} of ${total}`,
             srComboboxResultsTotal: ({num}: {num: number}) =>
-                `${num} resultados disponibles.`,
+                `translated ${num} results available`,
             srComboboxSelectedTotal: ({num}: {num: number}) =>
-                `${num} opciones seleccionadas.`,
-            srItemDisabled: "deshabilitado",
-            srItemFocused: "enfocado",
-            srItemSelected: "seleccionado",
+                `translated ${num} selected options`,
+            srItemDisabled: "translated disabled",
+            srItemFocused: "translated focused",
+            srItemSelected: "translated selected",
             srSelected: ({labels}: {labels: string}) =>
-                `${labels} seleccionado`,
-            srSelectionCleared: "Selección borrada",
+                `translated ${labels} selected`,
+            srSelectionCleared: "translated selection cleared",
+            srUnselected: ({labels}: {labels: string}) =>
+                `translated ${labels} not selected`,
         };
 
         const ConfigProvider = ({children}: {children: React.ReactNode}) => (
@@ -291,162 +275,369 @@ describe("ComboboxLiveRegion", () => {
             </WonderBlocksConfigProvider>
         );
 
-        it("announces the current item using the strings from the config provider", () => {
-            // Arrange
-            const options = [
-                <OptionItem
-                    key="1"
-                    label="Option 1"
-                    value="option1"
-                    disabled={true}
-                    selected={true}
-                />,
-                <OptionItem key="2" label="Option 2" value="option2" />,
-            ];
+        describe("closedState", () => {
+            it.each([
+                {
+                    case: "no label",
+                    labels: undefined,
+                    expected: "translated combobox closed",
+                },
+                {
+                    case: "an empty label",
+                    labels: {closedState: ""},
+                    expected: "translated combobox closed",
+                },
+                {
+                    case: "a custom label",
+                    labels: {closedState: "Custom combobox closed"},
+                    expected: "Custom combobox closed",
+                },
+            ])("announces $expected when given $case", ({labels, expected}) => {
+                // Arrange
 
-            // Act
-            render(
-                <ComboboxLiveRegion
-                    focusedIndex={0}
-                    focusedMultiSelectIndex={-1}
-                    options={options}
-                    selectedLabels={[]}
-                    selected={null}
-                    opened={true}
-                />,
-                {wrapper: ConfigProvider},
-            );
+                // Act
+                render(
+                    <ComboboxLiveRegion
+                        focusedIndex={-1}
+                        focusedMultiSelectIndex={-1}
+                        options={options}
+                        selectedLabels={[]}
+                        selected={null}
+                        selectionType="multiple"
+                        opened={false}
+                        labels={labels}
+                    />,
+                    {wrapper: ConfigProvider},
+                );
 
-            // Assert
-            expect(screen.getByRole("log")).toHaveTextContent(
-                "Option 1 deshabilitado seleccionado, 1 de 2. 2 resultados disponibles.",
-            );
+                // Assert
+                expect(screen.getByRole("log")).toHaveTextContent(expected);
+            });
         });
 
-        it("announces the focused pill using the strings from the config provider", () => {
-            // Arrange
+        describe("liveRegionCurrentItem", () => {
+            it.each([
+                {
+                    case: "no label",
+                    labels: undefined,
+                    expected:
+                        "translated Option 1 translated disabled translated selected, 1 of 2",
+                },
+                {
+                    case: "a custom label",
+                    labels: {
+                        liveRegionCurrentItem: ({
+                            current,
+                            index,
+                            total,
+                        }: {
+                            current: string;
+                            index: number;
+                            total: number;
+                        }) => `Custom ${current}, ${index + 1} of ${total}`,
+                    },
+                    expected: "Custom Option 1, 1 of 2",
+                },
+            ])("announces $expected when given $case", ({labels, expected}) => {
+                // Arrange
+                const options = [
+                    <OptionItem
+                        key="1"
+                        label="Option 1"
+                        value="option1"
+                        disabled={true}
+                        selected={true}
+                    />,
+                    <OptionItem key="2" label="Option 2" value="option2" />,
+                ];
 
-            // Act
-            render(
-                <ComboboxLiveRegion
-                    focusedIndex={-1}
-                    focusedMultiSelectIndex={1}
-                    options={options}
-                    selected={["option1", "option2"]}
-                    selectedLabels={["Option 1", "Option 2"]}
-                    opened={true}
-                />,
-                {wrapper: ConfigProvider},
-            );
+                // Act
+                render(
+                    <ComboboxLiveRegion
+                        focusedIndex={0}
+                        focusedMultiSelectIndex={-1}
+                        options={options}
+                        selectedLabels={[]}
+                        selected={null}
+                        opened={true}
+                        labels={labels}
+                    />,
+                    {wrapper: ConfigProvider},
+                );
 
-            // Assert
-            expect(screen.getByRole("log")).toHaveTextContent(
-                "Option 2 enfocado, 2 de 2. 2 opciones seleccionadas.",
-            );
+                // Assert
+                expect(screen.getByRole("log")).toHaveTextContent(expected);
+            });
+
+            it("announces the focused pill with the focused string from the config provider", () => {
+                // Arrange
+
+                // Act
+                render(
+                    <ComboboxLiveRegion
+                        focusedIndex={-1}
+                        focusedMultiSelectIndex={1}
+                        options={options}
+                        selected={["option1", "option2"]}
+                        selectedLabels={["Option 1", "Option 2"]}
+                        opened={true}
+                    />,
+                    {wrapper: ConfigProvider},
+                );
+
+                // Assert
+                expect(screen.getByRole("log")).toHaveTextContent(
+                    "translated Option 2 translated focused, 2 of 2",
+                );
+            });
         });
 
-        it("announces the selected item using the string from the config provider", () => {
-            // Arrange
+        describe("liveRegionListboxTotal", () => {
+            it.each([
+                {
+                    case: "no label",
+                    labels: undefined,
+                    expected: "translated 2 results available",
+                },
+                {
+                    case: "a custom label",
+                    labels: {
+                        liveRegionListboxTotal: (total: number) =>
+                            `Custom ${total} results`,
+                    },
+                    expected: "Custom 2 results",
+                },
+            ])("announces $expected when given $case", ({labels, expected}) => {
+                // Arrange
 
-            // Act
-            render(
-                <ComboboxLiveRegion
-                    focusedIndex={-1}
-                    focusedMultiSelectIndex={-1}
-                    options={options}
-                    selected="option1"
-                    selectedLabels={["Option 1"]}
-                    opened={false}
-                />,
-                {wrapper: ConfigProvider},
-            );
+                // Act
+                render(
+                    <ComboboxLiveRegion
+                        focusedIndex={0}
+                        focusedMultiSelectIndex={-1}
+                        options={options}
+                        selectedLabels={[]}
+                        selected={null}
+                        opened={true}
+                        labels={labels}
+                    />,
+                    {wrapper: ConfigProvider},
+                );
 
-            // Assert
-            expect(screen.getByRole("log")).toHaveTextContent(
-                "Option 1 seleccionado",
-            );
+                // Assert
+                expect(screen.getByRole("log")).toHaveTextContent(expected);
+            });
         });
 
-        it("announces the cleared selection using the string from the config provider", () => {
-            // Arrange
-            const {rerender} = render(
-                <ComboboxLiveRegion
-                    focusedIndex={-1}
-                    focusedMultiSelectIndex={-1}
-                    options={options}
-                    selected="option1"
-                    selectedLabels={["Option 1"]}
-                    opened={false}
-                />,
-                {wrapper: ConfigProvider},
-            );
+        describe("liveRegionMultipleSelectionTotal", () => {
+            it.each([
+                {
+                    case: "no label",
+                    labels: undefined,
+                    expected: "translated 2 selected options",
+                },
+                {
+                    case: "a custom label",
+                    labels: {
+                        liveRegionMultipleSelectionTotal: (total: number) =>
+                            `Custom ${total} selected`,
+                    },
+                    expected: "Custom 2 selected",
+                },
+            ])("announces $expected when given $case", ({labels, expected}) => {
+                // Arrange
 
-            // Act
-            rerender(
-                <ComboboxLiveRegion
-                    focusedIndex={-1}
-                    focusedMultiSelectIndex={-1}
-                    options={options}
-                    selected={null}
-                    selectedLabels={[]}
-                    opened={false}
-                />,
-            );
+                // Act
+                render(
+                    <ComboboxLiveRegion
+                        focusedIndex={-1}
+                        focusedMultiSelectIndex={1}
+                        options={options}
+                        selected={["option1", "option2"]}
+                        selectedLabels={["Option 1", "Option 2"]}
+                        opened={true}
+                        labels={labels}
+                    />,
+                    {wrapper: ConfigProvider},
+                );
 
-            // Assert
-            expect(screen.getByRole("log")).toHaveTextContent(
-                "Selección borrada",
-            );
+                // Assert
+                expect(screen.getByRole("log")).toHaveTextContent(expected);
+            });
         });
 
-        it("announces the closed state using the string from the config provider", () => {
-            // Arrange
+        describe("noItems", () => {
+            it.each([
+                {
+                    case: "no label",
+                    labels: undefined,
+                    expected: "translated no results",
+                },
+                {
+                    case: "an empty label",
+                    labels: {noItems: ""},
+                    expected: "translated no results",
+                },
+                {
+                    case: "a custom label",
+                    labels: {noItems: "Custom no results"},
+                    expected: "Custom no results",
+                },
+            ])("announces $expected when given $case", ({labels, expected}) => {
+                // Arrange
 
-            // Act
-            render(
-                <ComboboxLiveRegion
-                    focusedIndex={-1}
-                    focusedMultiSelectIndex={-1}
-                    options={options}
-                    selectedLabels={[]}
-                    selected={null}
-                    selectionType="multiple"
-                    opened={false}
-                />,
-                {wrapper: ConfigProvider},
-            );
+                // Act
+                render(
+                    <ComboboxLiveRegion
+                        focusedIndex={-1}
+                        focusedMultiSelectIndex={-1}
+                        options={[]}
+                        selectedLabels={[]}
+                        selected={null}
+                        opened={true}
+                        labels={labels}
+                    />,
+                    {wrapper: ConfigProvider},
+                );
 
-            // Assert
-            expect(screen.getByRole("log")).toHaveTextContent(
-                "El combobox está cerrado",
-            );
+                // Assert
+                expect(screen.getByRole("log")).toHaveTextContent(expected);
+            });
         });
 
-        it("uses the labels prop over the strings from the config provider", () => {
-            // Arrange
+        describe("selected", () => {
+            it.each([
+                {
+                    case: "no label",
+                    labels: undefined,
+                    expected: "translated Option 1 selected",
+                },
+                {
+                    case: "a custom label",
+                    labels: {
+                        selected: (labels: string) =>
+                            `Custom ${labels} selected`,
+                    },
+                    expected: "Custom Option 1 selected",
+                },
+            ])("announces $expected when given $case", ({labels, expected}) => {
+                // Arrange
 
-            // Act
-            render(
-                <ComboboxLiveRegion
-                    focusedIndex={-1}
-                    focusedMultiSelectIndex={-1}
-                    options={options}
-                    selectedLabels={[]}
-                    selected={null}
-                    selectionType="multiple"
-                    opened={false}
-                    labels={{
-                        ...englishComboboxLabels,
-                        closedState: "Closed override",
-                    }}
-                />,
-                {wrapper: ConfigProvider},
-            );
+                // Act
+                render(
+                    <ComboboxLiveRegion
+                        focusedIndex={-1}
+                        focusedMultiSelectIndex={-1}
+                        options={options}
+                        selected="option1"
+                        selectedLabels={["Option 1"]}
+                        opened={false}
+                        labels={labels}
+                    />,
+                    {wrapper: ConfigProvider},
+                );
 
-            // Assert
-            expect(screen.getByRole("log")).toHaveTextContent(
-                "Closed override",
-            );
+                // Assert
+                expect(screen.getByRole("log")).toHaveTextContent(expected);
+            });
+        });
+
+        describe("selectionCleared", () => {
+            it.each([
+                {
+                    case: "no label",
+                    labels: undefined,
+                    expected: "translated selection cleared",
+                },
+                {
+                    case: "an empty label",
+                    labels: {selectionCleared: ""},
+                    expected: "translated selection cleared",
+                },
+                {
+                    case: "a custom label",
+                    labels: {selectionCleared: "Custom selection cleared"},
+                    expected: "Custom selection cleared",
+                },
+            ])("announces $expected when given $case", ({labels, expected}) => {
+                // Arrange
+                const {rerender} = render(
+                    <ComboboxLiveRegion
+                        focusedIndex={-1}
+                        focusedMultiSelectIndex={-1}
+                        options={options}
+                        selected="option1"
+                        selectedLabels={["Option 1"]}
+                        opened={false}
+                        labels={labels}
+                    />,
+                    {wrapper: ConfigProvider},
+                );
+
+                // Act
+                rerender(
+                    <ComboboxLiveRegion
+                        focusedIndex={-1}
+                        focusedMultiSelectIndex={-1}
+                        options={options}
+                        selected={null}
+                        selectedLabels={[]}
+                        opened={false}
+                        labels={labels}
+                    />,
+                );
+
+                // Assert
+                expect(screen.getByRole("log")).toHaveTextContent(expected);
+            });
+        });
+
+        describe("unselected", () => {
+            it.each([
+                {
+                    case: "no label",
+                    labels: undefined,
+                    expected: "translated Option 1 not selected",
+                },
+                {
+                    case: "a custom label",
+                    labels: {
+                        unselected: (labels: string) =>
+                            `Custom ${labels} not selected`,
+                    },
+                    expected: "Custom Option 1 not selected",
+                },
+            ])("announces $expected when given $case", ({labels, expected}) => {
+                // Arrange
+                const {rerender} = render(
+                    <ComboboxLiveRegion
+                        focusedIndex={-1}
+                        focusedMultiSelectIndex={-1}
+                        options={options}
+                        selected={["option1", "option2"]}
+                        selectedLabels={["Option 1", "Option 2"]}
+                        opened={false}
+                        labels={labels}
+                    />,
+                    {wrapper: ConfigProvider},
+                );
+
+                // Act
+                rerender(
+                    <ComboboxLiveRegion
+                        focusedIndex={-1}
+                        focusedMultiSelectIndex={-1}
+                        options={options}
+                        selected={["option1"]}
+                        selectedLabels={["Option 1"]}
+                        opened={false}
+                        labels={labels}
+                    />,
+                );
+
+                // Assert
+                expect(screen.getByRole("log")).toHaveTextContent(expected);
+            });
         });
     });
 });

@@ -23,16 +23,18 @@ type Props = {
     /**
      * The labels associated with the live region.
      */
-    labels?: Pick<
-        ComboboxLabels,
-        | "closedState"
-        | "liveRegionCurrentItem"
-        | "liveRegionListboxTotal"
-        | "liveRegionMultipleSelectionTotal"
-        | "noItems"
-        | "selected"
-        | "selectionCleared"
-        | "unselected"
+    labels?: Partial<
+        Pick<
+            ComboboxLabels,
+            | "closedState"
+            | "liveRegionCurrentItem"
+            | "liveRegionListboxTotal"
+            | "liveRegionMultipleSelectionTotal"
+            | "noItems"
+            | "selected"
+            | "selectionCleared"
+            | "unselected"
+        >
     >;
 
     /**
@@ -88,7 +90,7 @@ export function ComboboxLiveRegion({
     // strings from `WonderBlocksConfigProvider`.
     // NOTE: The `labels` prop keeps its positional function args (e.g.
     // `selected(labels)`), so the strings are adapted to them here.
-    const labels: NonNullable<Props["labels"]> = React.useMemo(
+    const labels: Required<NonNullable<Props["labels"]>> = React.useMemo(
         () => ({
             closedState: propLabels?.closedState || strings.srComboboxClosed,
             liveRegionCurrentItem:

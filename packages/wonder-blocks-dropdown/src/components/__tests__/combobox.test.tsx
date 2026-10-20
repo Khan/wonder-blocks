@@ -10,26 +10,9 @@ import {
     defaultStringsEn,
 } from "@khanacademy/wonder-blocks-config";
 import {PointerEventsCheckLevel, userEvent} from "@testing-library/user-event";
-import type {ComboboxLabels, MaybeValueOrValues} from "../../util/types";
+import type {MaybeValueOrValues} from "../../util/types";
 import Combobox from "../combobox";
 import OptionItem from "../option-item";
-
-// The English labels built from the default strings.
-const englishComboboxLabels: ComboboxLabels = {
-    clearSelection: "Clear selection",
-    closedState: "Combobox is closed",
-    comboboxButton: "Toggle listbox",
-    listbox: "Options list",
-    removeSelected: (label) => `Remove ${label}`,
-    liveRegionCurrentItem: ({current, index, total}) =>
-        `${current}, ${index + 1} of ${total}.`,
-    liveRegionMultipleSelectionTotal: (total) => `${total} selected options.`,
-    liveRegionListboxTotal: (total) => `${total} results available.`,
-    noItems: "No results",
-    selected: (labels) => `${labels} selected`,
-    selectionCleared: "Selection cleared",
-    unselected: (labels) => `${labels} not selected`,
-};
 
 const doRender = (element: React.ReactElement) => {
     render(element, {wrapper: RenderStateRoot});
@@ -1161,11 +1144,12 @@ describe("Combobox", () => {
     describe("i18n strings", () => {
         const translatedStrings = {
             ...defaultStringsEn,
-            iconAltClearSelection: "Borrar selección",
-            iconAltToggleListbox: "Alternar lista",
-            noResults: "No hay resultados",
-            optionsList: "Lista de opciones",
-            removeSelected: ({label}: {label: string}) => `Quitar ${label}`,
+            iconAltClearSelection: "translated clear selection",
+            iconAltToggleListbox: "translated toggle listbox",
+            noResults: "translated no results",
+            optionsList: "translated options list",
+            removeSelected: ({label}: {label: string}) =>
+                `translated remove ${label}`,
         };
 
         const renderWithConfig = (
@@ -1182,91 +1166,168 @@ describe("Combobox", () => {
                 </WonderBlocksConfigProvider>,
             );
 
-        it.each(["Borrar selección", "Alternar lista"])(
-            "uses the %s button string from the config provider",
-            (name) => {
+        describe("clearSelection", () => {
+            it.each([
+                {
+                    case: "no label",
+                    labels: undefined,
+                    expected: "translated clear selection",
+                },
+                {
+                    case: "an empty label",
+                    labels: {clearSelection: ""},
+                    expected: "translated clear selection",
+                },
+                {
+                    case: "a custom label",
+                    labels: {clearSelection: "Custom clear selection"},
+                    expected: "Custom clear selection",
+                },
+            ])("shows $expected when given $case", ({labels, expected}) => {
                 // Arrange
 
                 // Act
-                renderWithConfig();
+                renderWithConfig({labels});
 
                 // Assert
-                expect(screen.getByRole("button", {name})).toBeInTheDocument();
-            },
-        );
-
-        it("uses the options list string from the config provider", async () => {
-            // Arrange
-
-            // Act
-            renderWithConfig({opened: true});
-
-            // Assert
-            expect(
-                await screen.findByRole("listbox", {hidden: true}),
-            ).toHaveAttribute("aria-label", "Lista de opciones");
-        });
-
-        it("uses the remove selected string from the config provider", () => {
-            // Arrange
-
-            // Act
-            renderWithConfig({selectionType: "multiple", value: ["option1"]});
-
-            // Assert
-            expect(
-                screen.getByRole("button", {name: "Quitar option 1"}),
-            ).toBeInTheDocument();
-        });
-
-        it("uses the no results string from the config provider", async () => {
-            // Arrange
-            const userEvent = renderWithConfig({
-                value: "",
-                autoComplete: "list",
+                expect(
+                    screen.getByRole("button", {name: expected}),
+                ).toBeInTheDocument();
             });
+        });
 
-            // Act
-            await userEvent.type(screen.getByRole("combobox"), "not-found");
+        describe("comboboxButton", () => {
+            it.each([
+                {
+                    case: "no label",
+                    labels: undefined,
+                    expected: "translated toggle listbox",
+                },
+                {
+                    case: "an empty label",
+                    labels: {comboboxButton: ""},
+                    expected: "translated toggle listbox",
+                },
+                {
+                    case: "a custom label",
+                    labels: {comboboxButton: "Custom toggle listbox"},
+                    expected: "Custom toggle listbox",
+                },
+            ])("shows $expected when given $case", ({labels, expected}) => {
+                // Arrange
 
-            // Assert
-            expect(screen.getByRole("log")).toHaveTextContent(
-                "No hay resultados",
+                // Act
+                renderWithConfig({labels});
+
+                // Assert
+                expect(
+                    screen.getByRole("button", {name: expected}),
+                ).toBeInTheDocument();
+            });
+        });
+
+        describe("listbox", () => {
+            it.each([
+                {
+                    case: "no label",
+                    labels: undefined,
+                    expected: "translated options list",
+                },
+                {
+                    case: "an empty label",
+                    labels: {listbox: ""},
+                    expected: "translated options list",
+                },
+                {
+                    case: "a custom label",
+                    labels: {listbox: "Custom options list"},
+                    expected: "Custom options list",
+                },
+            ])(
+                "shows $expected when given $case",
+                async ({labels, expected}) => {
+                    // Arrange
+
+                    // Act
+                    renderWithConfig({opened: true, labels});
+
+                    // Assert
+                    expect(
+                        await screen.findByRole("listbox", {hidden: true}),
+                    ).toHaveAttribute("aria-label", expected);
+                },
             );
         });
 
-        it("uses the labels prop over the strings from the config provider", () => {
-            // Arrange
-
-            // Act
-            renderWithConfig({
-                labels: {
-                    ...englishComboboxLabels,
-                    clearSelection: "Clear selection override",
+        describe("noItems", () => {
+            it.each([
+                {
+                    case: "no label",
+                    labels: undefined,
+                    expected: "translated no results",
                 },
-            });
+                {
+                    case: "an empty label",
+                    labels: {noItems: ""},
+                    expected: "translated no results",
+                },
+                {
+                    case: "a custom label",
+                    labels: {noItems: "Custom no results"},
+                    expected: "Custom no results",
+                },
+            ])(
+                "shows $expected when given $case",
+                async ({labels, expected}) => {
+                    // Arrange
+                    const userEvent = renderWithConfig({
+                        value: "",
+                        autoComplete: "list",
+                        labels,
+                    });
 
-            // Assert
-            expect(
-                screen.getByRole("button", {name: "Clear selection override"}),
-            ).toBeInTheDocument();
+                    // Act
+                    await userEvent.type(
+                        screen.getByRole("combobox"),
+                        "not-found",
+                    );
+
+                    // Assert
+                    expect(screen.getByRole("log")).toHaveTextContent(expected);
+                },
+            );
         });
 
-        it("uses the strings from the config provider when a label is empty", () => {
-            // Arrange
-
-            // Act
-            renderWithConfig({
-                labels: {
-                    ...englishComboboxLabels,
-                    clearSelection: "",
+        describe("removeSelected", () => {
+            it.each([
+                {
+                    case: "no label",
+                    labels: undefined,
+                    expected: "translated remove option 1",
                 },
-            });
+                {
+                    case: "a custom label",
+                    labels: {
+                        removeSelected: (label: string) =>
+                            `Custom remove ${label}`,
+                    },
+                    expected: "Custom remove option 1",
+                },
+            ])("shows $expected when given $case", ({labels, expected}) => {
+                // Arrange
 
-            // Assert
-            expect(
-                screen.getByRole("button", {name: "Borrar selección"}),
-            ).toBeInTheDocument();
+                // Act
+                renderWithConfig({
+                    selectionType: "multiple",
+                    value: ["option1"],
+                    labels,
+                });
+
+                // Assert
+                expect(
+                    screen.getByRole("button", {name: expected}),
+                ).toBeInTheDocument();
+            });
         });
     });
 });

@@ -81,10 +81,10 @@ type Props = {
     /**
      * The object containing the custom labels used inside this component.
      *
-     * This overrides the default labels provided by `WonderBlocksConfigProvider`
-     * (in English by default).
+     * Any labels set here override the default labels provided by
+     * `WonderBlocksConfigProvider` (in English by default).
      */
-    labels?: ComboboxLabels;
+    labels?: Partial<ComboboxLabels>;
 
     /**
      * TODO(WB-1678): Add async support to the listbox.
