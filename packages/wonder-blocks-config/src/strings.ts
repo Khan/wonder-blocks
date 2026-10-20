@@ -220,7 +220,7 @@ export const strings = {
     },
     srNumResultsAvailable: {
         context:
-            "Screen reader announcement for the number of results available. For example, the number of options that match a search. %(num)s is the number of results.",
+            "Screen reader announcement for the number of results available. %(num)s is the number of results. For example, the number of options that match a search.",
         one: "%(num)s result available.",
         other: "%(num)s results available.",
     },
