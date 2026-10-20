@@ -13,6 +13,9 @@ import {mix, fade, pxToRem, remToPx, tokenValue} from "./util";
 
 import {mapValuesToCssVars} from "./internal/map-values-to-css-vars";
 
+// graphics palette
+import {graphicsPalette} from "./theme/semantic/internal/primitive-color-thunderblocks";
+
 // theme
 import theme from "./tokens/theme";
 
@@ -40,6 +43,15 @@ export {
      * Semantic tokens.
      */
     semanticColor,
+    /**
+     * The graphics palette. These colors are static hex values that don't
+     * change based on the theme.
+     *
+     * NOTE: Only use these tokens in illustrations and other graphic assets
+     * (e.g. SVG `fill` and `stroke` attributes). For component styles, use
+     * `semanticColor` tokens instead (e.g. `semanticColor.graphics`).
+     */
+    graphicsPalette,
     /**
      * Utility functions for working with colors.
      */
