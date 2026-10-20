@@ -172,11 +172,8 @@ export default function Combobox({
     const {strings} = useWonderBlocksI18n();
     // Use the labels prop if it is provided (and not empty), otherwise use the
     // strings from `WonderBlocksConfigProvider`.
-    // NOTE: The live region labels are passed through, since
-    // `ComboboxLiveRegion` falls back to the strings for them.
     const labels = React.useMemo(
         () => ({
-            ...propLabels,
             clearSelection:
                 propLabels?.clearSelection || strings.iconAltClearSelection,
             comboboxButton:
@@ -188,6 +185,22 @@ export default function Combobox({
                 ((label: string) => strings.removeOption({label})),
         }),
         [propLabels, strings],
+    );
+    // The labels announced by the live region. `ComboboxLiveRegion` falls back
+    // to the strings from `WonderBlocksConfigProvider` for any that aren't set.
+    const liveRegionLabels = React.useMemo(
+        () => ({
+            closedState: propLabels?.closedState,
+            liveRegionCurrentItem: propLabels?.liveRegionCurrentItem,
+            liveRegionListboxTotal: propLabels?.liveRegionListboxTotal,
+            liveRegionMultipleSelectionTotal:
+                propLabels?.liveRegionMultipleSelectionTotal,
+            noItems: propLabels?.noItems,
+            selected: propLabels?.selected,
+            selectionCleared: propLabels?.selectionCleared,
+            unselected: propLabels?.unselected,
+        }),
+        [propLabels],
     );
     // eslint-disable-next-line import/no-deprecated
     const generatedUniqueId = useId();
@@ -583,7 +596,7 @@ export default function Combobox({
                 <ComboboxLiveRegion
                     focusedIndex={focusedIndex}
                     focusedMultiSelectIndex={focusedMultiSelectIndex}
-                    labels={labels}
+                    labels={liveRegionLabels}
                     options={renderList}
                     selectedLabels={selectedLabels}
                     testId={testId}
