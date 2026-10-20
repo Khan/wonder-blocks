@@ -184,7 +184,7 @@ export default function Combobox({
         (label: string) =>
             propRemoveSelectedLabel
                 ? propRemoveSelectedLabel(label)
-                : strings.removeLabel({label}),
+                : strings.removeOption({label}),
         [propRemoveSelectedLabel, strings],
     );
     // eslint-disable-next-line import/no-deprecated
