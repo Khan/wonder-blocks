@@ -1700,6 +1700,8 @@ describe("MultiSelect", () => {
             ...defaultStringsEn,
             allItems: "translated all items",
             filter: "translated filter",
+            iconAltClearSearch: "translated clear search",
+            noResults: "translated no results",
             numItems: ({num}: {num: number}) => `translated ${num} items`,
             selectAllWithCount: ({num}: {num: number}) =>
                 `translated select all (${num})`,
@@ -1717,106 +1719,167 @@ describe("MultiSelect", () => {
                     <MultiSelect onChange={jest.fn()} {...props}>
                         <OptionItem label="Banana" value="banana" />
                         <OptionItem label="Pear" value="pear" />
-                    </MultiSelect>
-                </WonderBlocksConfigProvider>,
-            );
-
-        it.each([
-            {selectedValues: [], expected: "translated zero items"},
-            {selectedValues: ["banana"], expected: "Banana"},
-            {
-                selectedValues: ["banana", "pear"],
-                expected: "translated all items",
-            },
-        ])(
-            "uses the opener text from the config provider when $selectedValues.length items are selected",
-            async ({selectedValues, expected}) => {
-                // Arrange
-
-                // Act
-                renderWithConfig({selectedValues});
-
-                // Assert
-                expect(await screen.findByRole("combobox")).toHaveTextContent(
-                    expected,
-                );
-            },
-        );
-
-        it("uses the some selected string from the config provider", async () => {
-            // Arrange
-            doRender(
-                <WonderBlocksConfigProvider
-                    i18n={{strings: translatedStrings, locale: "es"}}
-                >
-                    <MultiSelect
-                        onChange={jest.fn()}
-                        selectedValues={["banana", "pear"]}
-                    >
-                        <OptionItem label="Banana" value="banana" />
-                        <OptionItem label="Pear" value="pear" />
                         <OptionItem label="Grape" value="grape" />
                     </MultiSelect>
                 </WonderBlocksConfigProvider>,
             );
 
-            // Act
-            const opener = await screen.findByRole("combobox");
+        const customLabels: LabelsValues = {
+            clearSearch: "Custom clear search",
+            filter: "Custom filter",
+            noResults: "Custom no results",
+            selectAllLabel: (numOptions: number) =>
+                `Custom select all (${numOptions})`,
+            selectNoneLabel: "Custom select none",
+            noneSelected: "Custom none selected",
+            someSelected: (numSelectedValues: number) =>
+                `Custom ${numSelectedValues} selected`,
+            allSelected: "Custom all selected",
+        };
 
-            // Assert
-            expect(opener).toHaveTextContent("translated 2 items");
-        });
+        type LabelCase = {
+            label: keyof LabelsValues;
+            translatedText: string;
+            customText: string;
+            // The props needed to render the element that uses the label.
+            props: Partial<PropsFor<typeof MultiSelect>>;
+            // The interaction needed to show the element, if any.
+            act?: (userEvent: ReturnType<typeof ue.setup>) => Promise<void>;
+            findElement: (text: string) => Promise<HTMLElement>;
+        };
 
-        it.each(["translated select all (2)", "translated select none"])(
-            "uses the %s shortcut string from the config provider",
-            async (label) => {
+        const filterableProps = {isFilterable: true, opened: true};
+        const shortcutsProps = {shortcuts: true, opened: true};
+        // The opener text is also announced, so look for it in the opener.
+        const findOpenerText = async (text: string) =>
+            within(await screen.findByRole("combobox")).findByText(text);
+
+        const labelCases: Array<LabelCase> = [
+            {
+                label: "clearSearch",
+                translatedText: "translated clear search",
+                customText: "Custom clear search",
+                props: filterableProps,
+                act: async (userEvent) => {
+                    await userEvent.type(
+                        await screen.findByRole("textbox"),
+                        "b",
+                    );
+                },
+                findElement: (text) =>
+                    screen.findByRole("button", {name: text}),
+            },
+            {
+                label: "filter",
+                translatedText: "translated filter",
+                customText: "Custom filter",
+                props: filterableProps,
+                findElement: (text) => screen.findByPlaceholderText(text),
+            },
+            {
+                label: "noResults",
+                translatedText: "translated no results",
+                customText: "Custom no results",
+                props: filterableProps,
+                act: async (userEvent) => {
+                    await userEvent.type(
+                        await screen.findByRole("textbox"),
+                        "invalid",
+                    );
+                },
+                findElement: (text) => screen.findByText(text),
+            },
+            {
+                label: "selectAllLabel",
+                translatedText: "translated select all (3)",
+                customText: "Custom select all (3)",
+                props: shortcutsProps,
+                findElement: (text) =>
+                    screen.findByRole("option", {name: text}),
+            },
+            {
+                label: "selectNoneLabel",
+                translatedText: "translated select none",
+                customText: "Custom select none",
+                props: shortcutsProps,
+                findElement: (text) =>
+                    screen.findByRole("option", {name: text}),
+            },
+            {
+                label: "noneSelected",
+                translatedText: "translated zero items",
+                customText: "Custom none selected",
+                props: {selectedValues: []},
+                findElement: findOpenerText,
+            },
+            {
+                label: "someSelected",
+                translatedText: "translated 2 items",
+                customText: "Custom 2 selected",
+                props: {selectedValues: ["banana", "pear"]},
+                findElement: findOpenerText,
+            },
+            {
+                label: "allSelected",
+                translatedText: "translated all items",
+                customText: "Custom all selected",
+                props: {selectedValues: ["banana", "pear", "grape"]},
+                findElement: findOpenerText,
+            },
+        ];
+
+        // Only labels that are strings can be empty.
+        const stringLabelCases = labelCases.filter(
+            ({label}) => typeof customLabels[label] === "string",
+        );
+
+        it.each(labelCases)(
+            "uses the string from the config provider for $label",
+            async ({props, act, translatedText, findElement}) => {
                 // Arrange
+                const {userEvent} = renderWithConfig(props);
 
                 // Act
-                renderWithConfig({shortcuts: true, opened: true});
+                await act?.(userEvent);
 
                 // Assert
-                expect(
-                    await screen.findByRole("option", {name: label}),
-                ).toBeInTheDocument();
+                expect(await findElement(translatedText)).toBeInTheDocument();
             },
         );
 
-        it("uses the filter string from the config provider", async () => {
-            // Arrange
+        it.each(stringLabelCases)(
+            "uses the string from the config provider when $label is empty",
+            async ({label, props, act, translatedText, findElement}) => {
+                // Arrange
+                const {userEvent} = renderWithConfig({
+                    ...props,
+                    labels: {...customLabels, [label]: ""},
+                });
 
-            // Act
-            renderWithConfig({isFilterable: true, opened: true});
+                // Act
+                await act?.(userEvent);
 
-            // Assert
-            expect(
-                await screen.findByPlaceholderText("translated filter"),
-            ).toBeInTheDocument();
-        });
+                // Assert
+                expect(await findElement(translatedText)).toBeInTheDocument();
+            },
+        );
 
-        it("uses the labels prop over the strings from the config provider", async () => {
-            // Arrange
+        it.each(labelCases)(
+            "uses the $label label over the string from the config provider",
+            async ({props, act, customText, findElement}) => {
+                // Arrange
+                const {userEvent} = renderWithConfig({
+                    ...props,
+                    labels: customLabels,
+                });
 
-            // Act
-            renderWithConfig({labels: {noneSelected: "Custom none selected"}});
+                // Act
+                await act?.(userEvent);
 
-            // Assert
-            expect(await screen.findByRole("combobox")).toHaveTextContent(
-                "Custom none selected",
-            );
-        });
-
-        it("uses the strings from the config provider when a label is empty", async () => {
-            // Arrange
-
-            // Act
-            renderWithConfig({labels: {noneSelected: ""}});
-
-            // Assert
-            expect(await screen.findByRole("combobox")).toHaveTextContent(
-                "translated zero items",
-            );
-        });
+                // Assert
+                expect(await findElement(customText)).toBeInTheDocument();
+            },
+        );
     });
 
     describe("a11y > Live region", () => {
