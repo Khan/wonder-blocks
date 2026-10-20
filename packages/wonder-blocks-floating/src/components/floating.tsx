@@ -6,6 +6,7 @@ import {
     flip,
     hide,
     shift,
+    size,
     arrow,
     Placement,
     useDismiss,
@@ -139,8 +140,32 @@ type FloatingProps = {
     shiftPadding?: number;
 
     /**
+     * Whether to constrain the floating element's size to the space available
+     * within the boundary.
+     *
+     * When enabled, the floating element gets a `max-inline-size` and
+     * `max-block-size` that match the available space between the reference
+     * element and the boundary (minus `shiftPadding`). This keeps the floating
+     * element from being cut off when there isn't enough room for it, e.g. on
+     * small screens or at high zoom levels.
+     *
+     * The floating element is also laid out as a flex column so its content
+     * can shrink. The content is responsible for scrolling when it doesn't fit
+     * (e.g. by wrapping it in a `ScrollableView` from
+     * `@khanacademy/wonder-blocks-layout`).
+     *
+     * NOTE: Use it together with `shift`, so the floating element moves to
+     * stay in view. Without `shift`, it stays centered on the reference
+     * element and shrinks on both sides to fit instead, so it can get very
+     * narrow when the reference element is near the edge of the boundary.
+     * @default false
+     * @see https://floating-ui.com/docs/size
+     */
+    constrainSize?: boolean;
+
+    /**
      * The boundary that the floating element should be kept within by the
-     * `flip` and `shift` middleware.
+     * `flip`, `shift` and `size` middleware.
      *
      * - `"viewport"`: keep the element within the user's viewport.
      * - `"document"`: keep the element within the document body.
@@ -290,6 +315,7 @@ export default function Floating({
     flip: flipProp = true,
     shift: shiftProp = true,
     shiftPadding = SHIFT_PADDING,
+    constrainSize = false,
     rootBoundary = "viewport",
     showArrow = true,
     styles: stylesProp,
@@ -323,6 +349,21 @@ export default function Floating({
                       padding: shiftPadding,
                       crossAxis: true,
                       rootBoundary,
+                  })
+                : undefined,
+            // Constrain the size to the available space so the floating
+            // element is never cut off (e.g. on small screens or when zoomed
+            // in). This must run after `flip` and `shift`.
+            constrainSize
+                ? size({
+                      padding: shiftPadding,
+                      rootBoundary,
+                      apply({availableWidth, availableHeight, elements}) {
+                          Object.assign(elements.floating.style, {
+                              maxInlineSize: `${Math.max(0, availableWidth)}px`,
+                              maxBlockSize: `${Math.max(0, availableHeight)}px`,
+                          });
+                      },
                   })
                 : undefined,
             showArrow ? arrow({element: arrowRef}) : undefined,
@@ -465,6 +506,7 @@ export default function Floating({
                             ref={refs.setFloating}
                             style={[
                                 styles.floating,
+                                constrainSize && styles.constrained,
                                 floatingStyles,
                                 stylesProp?.root,
                                 {
@@ -504,5 +546,13 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         // Prevent the floating element from receiving focus when it is clicked.
         outline: "none",
+    },
+    // Lay out the content as a flex column so it can shrink (and scroll) when
+    // the `size` middleware constrains the floating element. This is only
+    // applied with `constrainSize` enabled, so other content keeps its block layout
+    // (e.g. inline text and links keep flowing on the same line).
+    constrained: {
+        display: "flex",
+        flexDirection: "column",
     },
 });
