@@ -1472,13 +1472,6 @@ describe("SingleSelect", () => {
                 </WonderBlocksConfigProvider>,
             );
 
-        const customLabels: SingleSelectLabelsValues = {
-            clearSearch: "Custom clear search",
-            filter: "Custom filter",
-            noResults: "Custom no results",
-            someResults: (numResults: number) => `Custom ${numResults} results`,
-        };
-
         describe("clearSearch", () => {
             it.each([
                 {
@@ -1488,12 +1481,12 @@ describe("SingleSelect", () => {
                 },
                 {
                     case: "an empty label",
-                    labels: {...customLabels, clearSearch: ""},
+                    labels: {clearSearch: ""},
                     expected: "translated clear search",
                 },
                 {
                     case: "a custom label",
-                    labels: customLabels,
+                    labels: {clearSearch: "Custom clear search"},
                     expected: "Custom clear search",
                 },
             ])(
@@ -1525,12 +1518,12 @@ describe("SingleSelect", () => {
                 },
                 {
                     case: "an empty label",
-                    labels: {...customLabels, filter: ""},
+                    labels: {filter: ""},
                     expected: "translated filter",
                 },
                 {
                     case: "a custom label",
-                    labels: customLabels,
+                    labels: {filter: "Custom filter"},
                     expected: "Custom filter",
                 },
             ])(
@@ -1558,12 +1551,12 @@ describe("SingleSelect", () => {
                 },
                 {
                     case: "an empty label",
-                    labels: {...customLabels, noResults: ""},
+                    labels: {noResults: ""},
                     expected: "translated no results",
                 },
                 {
                     case: "a custom label",
-                    labels: customLabels,
+                    labels: {noResults: "Custom no results"},
                     expected: "Custom no results",
                 },
             ])(
@@ -1595,7 +1588,10 @@ describe("SingleSelect", () => {
                 },
                 {
                     case: "a custom label",
-                    labels: customLabels,
+                    labels: {
+                        someResults: (numResults: number) =>
+                            `Custom ${numResults} results`,
+                    },
                     expected: "Custom 1 results",
                 },
             ])(

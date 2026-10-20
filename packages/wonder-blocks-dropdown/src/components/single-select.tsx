@@ -89,10 +89,10 @@ type DefaultProps = Readonly<{
     /**
      * The object containing the custom labels and placeholder values used inside this component.
      *
-     * This overrides the default labels provided by `WonderBlocksConfigProvider`
-     * (in English by default).
+     * Any labels set here override the default labels provided by
+     * `WonderBlocksConfigProvider` (in English by default).
      */
-    labels?: SingleSelectLabelsValues;
+    labels?: Partial<SingleSelectLabelsValues>;
     /**
      * When false, the SelectOpener can show a Node as a value. When true, the
      * SelectOpener will use a string as a value. If using custom OptionItems, a
