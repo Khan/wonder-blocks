@@ -1472,90 +1472,155 @@ describe("SingleSelect", () => {
                 </WonderBlocksConfigProvider>,
             );
 
-        it("uses the filter string from the config provider", async () => {
-            // Arrange
+        const customLabels: SingleSelectLabelsValues = {
+            clearSearch: "Custom clear search",
+            filter: "Custom filter",
+            noResults: "Custom no results",
+            someResults: (numResults: number) => `Custom ${numResults} results`,
+        };
 
-            // Act
-            renderWithConfig();
-
-            // Assert
-            expect(
-                await screen.findByPlaceholderText("translated filter"),
-            ).toBeInTheDocument();
-        });
-
-        it("uses the clear search string from the config provider", async () => {
-            // Arrange
-            const {userEvent} = renderWithConfig();
-
-            // Act
-            await userEvent.type(
-                await screen.findByPlaceholderText("translated filter"),
-                "b",
-            );
-
-            // Assert
-            expect(
-                await screen.findByRole("button", {
-                    name: "translated clear search",
-                }),
-            ).toBeInTheDocument();
-        });
-
-        it("uses the no results string from the config provider", async () => {
-            // Arrange
-            const {userEvent} = renderWithConfig();
-
-            // Act
-            await userEvent.type(
-                await screen.findByPlaceholderText("translated filter"),
-                "invalid",
-            );
-
-            // Assert
-            expect(
-                await screen.findByText("translated no results"),
-            ).toBeInTheDocument();
-        });
-
-        it("announces the number of results using the string from the config provider", async () => {
-            // Arrange
-            const announceMessageSpy = jest.spyOn(
-                require("@khanacademy/wonder-blocks-announcer"),
-                "announceMessage",
-            );
-            const {userEvent} = renderWithConfig();
-
-            // Act
-            await userEvent.type(
-                await screen.findByPlaceholderText("translated filter"),
-                "banana",
-            );
-
-            // Assert
-            expect(announceMessageSpy).toHaveBeenCalledWith({
-                message: "translated 1 items",
-                level: "polite",
-            });
-        });
-
-        it("uses the labels prop over the strings from the config provider", async () => {
-            // Arrange
-
-            // Act
-            renderWithConfig({
-                labels: {
-                    clearSearch: "Custom clear search",
-                    filter: "Custom filter",
-                    noResults: "Custom no results",
-                    someResults: (num: number) => `Custom ${num} results`,
+        describe("clearSearch", () => {
+            it.each([
+                {
+                    case: "no label",
+                    labels: undefined,
+                    expected: "translated clear search",
                 },
-            });
+                {
+                    case: "an empty label",
+                    labels: {...customLabels, clearSearch: ""},
+                    expected: "translated clear search",
+                },
+                {
+                    case: "a custom label",
+                    labels: customLabels,
+                    expected: "Custom clear search",
+                },
+            ])(
+                "shows $expected when given $case",
+                async ({labels, expected}) => {
+                    // Arrange
+                    const {userEvent} = renderWithConfig({labels});
 
-            // Assert
-            expect(
-                await screen.findByPlaceholderText("Custom filter"),
-            ).toBeInTheDocument();
+                    // Act
+                    await userEvent.type(
+                        await screen.findByRole("textbox"),
+                        "b",
+                    );
+
+                    // Assert
+                    expect(
+                        await screen.findByRole("button", {name: expected}),
+                    ).toBeInTheDocument();
+                },
+            );
+        });
+
+        describe("filter", () => {
+            it.each([
+                {
+                    case: "no label",
+                    labels: undefined,
+                    expected: "translated filter",
+                },
+                {
+                    case: "an empty label",
+                    labels: {...customLabels, filter: ""},
+                    expected: "translated filter",
+                },
+                {
+                    case: "a custom label",
+                    labels: customLabels,
+                    expected: "Custom filter",
+                },
+            ])(
+                "shows $expected when given $case",
+                async ({labels, expected}) => {
+                    // Arrange
+
+                    // Act
+                    renderWithConfig({labels});
+
+                    // Assert
+                    expect(
+                        await screen.findByPlaceholderText(expected),
+                    ).toBeInTheDocument();
+                },
+            );
+        });
+
+        describe("noResults", () => {
+            it.each([
+                {
+                    case: "no label",
+                    labels: undefined,
+                    expected: "translated no results",
+                },
+                {
+                    case: "an empty label",
+                    labels: {...customLabels, noResults: ""},
+                    expected: "translated no results",
+                },
+                {
+                    case: "a custom label",
+                    labels: customLabels,
+                    expected: "Custom no results",
+                },
+            ])(
+                "shows $expected when given $case",
+                async ({labels, expected}) => {
+                    // Arrange
+                    const {userEvent} = renderWithConfig({labels});
+
+                    // Act
+                    await userEvent.type(
+                        await screen.findByRole("textbox"),
+                        "invalid",
+                    );
+
+                    // Assert
+                    expect(
+                        await screen.findByText(expected),
+                    ).toBeInTheDocument();
+                },
+            );
+        });
+
+        describe("someResults", () => {
+            it.each([
+                {
+                    case: "no label",
+                    labels: undefined,
+                    expected: "translated 1 items",
+                },
+                {
+                    case: "a custom label",
+                    labels: customLabels,
+                    expected: "Custom 1 results",
+                },
+            ])(
+                "announces $expected when given $case",
+                async ({labels, expected}) => {
+                    // Arrange
+                    const announceMessageSpy = jest.spyOn(
+                        require("@khanacademy/wonder-blocks-announcer"),
+                        "announceMessage",
+                    );
+                    const {userEvent} = renderWithConfig({labels});
+
+                    // Act
+                    await userEvent.type(
+                        await screen.findByRole("textbox"),
+                        "banana",
+                    );
+
+                    // Assert
+                    expect(announceMessageSpy).toHaveBeenCalledWith({
+                        message: expected,
+                        level: "polite",
+                    });
+                },
+            );
         });
     });
 
