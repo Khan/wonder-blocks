@@ -276,6 +276,25 @@ those brands (e.g. third-party sign-in buttons).
 
 <Canvas of={SemanticColorGroups.GraphicsExternalBrands} layout="fullscreen" />
 
+#### Palette
+
+The graphics palette is a set of static colors for illustrations and other
+graphic assets (e.g. SVG `fill` and `stroke` attributes). Unlike semantic
+colors, these values don't change based on the theme.
+
+<Banner
+    kind="warning"
+    text="Only use graphicsPalette tokens in graphic assets. For component styles, use semanticColor tokens instead."
+/>
+
+```ts
+import {graphicsPalette} from "@khanacademy/wonder-blocks-tokens";
+
+<path fill={graphicsPalette.blue_30} />;
+```
+
+<Canvas of={SemanticColorGroups.GraphicsPalette} layout="fullscreen" />
+
 ### Khanmigo
 
 Colors to be used exclusively for Khanmigo or to communicate a relationship to

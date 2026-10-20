@@ -1,6 +1,10 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
-import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
+import {
+    graphicsPalette,
+    semanticColor,
+    sizing,
+} from "@khanacademy/wonder-blocks-tokens";
 import {ActionColorGroup, ColorGroup} from "../components/color";
 import {PropsFor, View} from "@khanacademy/wonder-blocks-core";
 import {Heading} from "@khanacademy/wonder-blocks-typography";
@@ -355,6 +359,34 @@ export const GraphicsExternalBrands = () => {
             category={semanticColor.graphics.externalBrands}
             group="graphics.externalBrands"
         />
+    );
+};
+
+// Group the graphics palette tokens by hue (e.g. `red_90` -> `red`).
+const graphicsPaletteByHue = Object.entries(graphicsPalette).reduce<
+    Record<string, Record<string, string>>
+>((acc, [tokenName, value]) => {
+    const hue = tokenName.split("_")[0];
+    acc[hue] = {...acc[hue], [tokenName]: value};
+    return acc;
+}, {});
+
+export const GraphicsPalette = () => {
+    return (
+        <View style={styles.groupOfColorGroupStory}>
+            {Object.entries(graphicsPaletteByHue).map(([hue, colors]) => (
+                <React.Fragment key={hue}>
+                    <Heading size="medium" style={styles.capitalized} tag="h5">
+                        {hue}
+                    </Heading>
+                    <ColorGroup
+                        colors={colors}
+                        group="graphicsPalette"
+                        valuePrefix=""
+                    />
+                </React.Fragment>
+            ))}
+        </View>
     );
 };
 
