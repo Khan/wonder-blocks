@@ -156,7 +156,7 @@ export default function Combobox({
     disabled,
     error,
     id,
-    labels: propLabels,
+    labels,
     onChange,
     onToggle,
     opened,
@@ -170,37 +170,16 @@ export default function Combobox({
     ...ariaAttrs
 }: Props & AriaAttributes) {
     const {strings} = useWonderBlocksI18n();
-    // Use the labels prop if it is provided (and not empty), otherwise use the
-    // strings from `WonderBlocksConfigProvider`.
-    const labels = React.useMemo(
-        () => ({
-            clearSelection:
-                propLabels?.clearSelection || strings.iconAltClearSelection,
-            comboboxButton:
-                propLabels?.comboboxButton || strings.iconAltToggleListbox,
-            listbox: propLabels?.listbox || strings.optionsList,
-            noItems: propLabels?.noItems || strings.noResults,
-            removeSelected:
-                propLabels?.removeSelected ||
-                ((label: string) => strings.removeOption({label})),
-        }),
-        [propLabels, strings],
-    );
-    // The labels announced by the live region. `ComboboxLiveRegion` falls back
-    // to the strings from `WonderBlocksConfigProvider` for any that aren't set.
-    const liveRegionLabels = React.useMemo(
-        () => ({
-            closedState: propLabels?.closedState,
-            liveRegionCurrentItem: propLabels?.liveRegionCurrentItem,
-            liveRegionListboxTotal: propLabels?.liveRegionListboxTotal,
-            liveRegionMultipleSelectionTotal:
-                propLabels?.liveRegionMultipleSelectionTotal,
-            noItems: propLabels?.noItems,
-            selected: propLabels?.selected,
-            selectionCleared: propLabels?.selectionCleared,
-            unselected: propLabels?.unselected,
-        }),
-        [propLabels],
+    const propRemoveSelected = labels?.removeSelected;
+    // Use the labels prop if it is provided, otherwise use the string from
+    // `WonderBlocksConfigProvider`. This is memoized since it's passed to
+    // `MultipleSelection`, which is memoized.
+    const removeSelectedLabel = React.useCallback(
+        (label: string) =>
+            propRemoveSelected
+                ? propRemoveSelected(label)
+                : strings.removeOption({label}),
+        [propRemoveSelected, strings],
     );
     // eslint-disable-next-line import/no-deprecated
     const generatedUniqueId = useId();
@@ -596,7 +575,7 @@ export default function Combobox({
                 <ComboboxLiveRegion
                     focusedIndex={focusedIndex}
                     focusedMultiSelectIndex={focusedMultiSelectIndex}
-                    labels={liveRegionLabels}
+                    labels={labels}
                     options={renderList}
                     selectedLabels={selectedLabels}
                     testId={testId}
@@ -615,7 +594,7 @@ export default function Combobox({
                         onRemove={handleOnRemoveClick}
                         disabled={disabled}
                         testId={testId}
-                        removeSelectedLabel={labels.removeSelected}
+                        removeSelectedLabel={removeSelectedLabel}
                     />
                 )}
                 {maybeRenderStartIcon()}
@@ -658,7 +637,10 @@ export default function Combobox({
                         kind="tertiary"
                         size="medium"
                         style={[styles.button, styles.clearButton]}
-                        aria-label={labels.clearSelection}
+                        aria-label={
+                            labels?.clearSelection ||
+                            strings.iconAltClearSelection
+                        }
                         testId={testId ? `${testId}-clear` : undefined}
                     />
                 )}
@@ -686,7 +668,9 @@ export default function Combobox({
                     tabIndex={-1}
                     aria-controls={uniqueId}
                     aria-expanded={openState}
-                    aria-label={labels.comboboxButton}
+                    aria-label={
+                        labels?.comboboxButton || strings.iconAltToggleListbox
+                    }
                 />
             </View>
 
@@ -708,7 +692,7 @@ export default function Combobox({
                             {renderList.length === 0 ? (
                                 // No items to display
                                 <DetailCell
-                                    title={labels.noItems}
+                                    title={labels?.noItems || strings.noResults}
                                     styles={{
                                         root: [
                                             styles.listbox,
@@ -742,7 +726,9 @@ export default function Combobox({
                                     testId={
                                         testId ? `${testId}-listbox` : undefined
                                     }
-                                    aria-label={labels.listbox}
+                                    aria-label={
+                                        labels?.listbox || strings.optionsList
+                                    }
                                     aria-labelledby={textFieldId}
                                 >
                                     {renderList}
