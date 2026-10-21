@@ -1,5 +1,18 @@
 # @khanacademy/wonder-blocks-modal
 
+## 8.10.0
+
+### Minor Changes
+
+- 8e11e83: The close button in OnePaneDialog, FlexibleDialog and DrawerDialog now reads its `aria-label` ("Close modal") from `WonderBlocksConfigProvider`.
+
+### Patch Changes
+
+- Updated dependencies [6bd5d0c]
+- Updated dependencies [8e11e83]
+    - @khanacademy/wonder-blocks-config@0.5.0
+    - @khanacademy/wonder-blocks-breadcrumbs@3.3.3
+
 ## 8.9.2
 
 ### Patch Changes

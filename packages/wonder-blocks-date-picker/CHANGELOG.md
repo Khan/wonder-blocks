@@ -1,5 +1,20 @@
 # @khanacademy/wonder-blocks-date-picker
 
+## 1.2.0
+
+### Minor Changes
+
+- 6bd5d0c: The default `aria-label`s for the DatePicker calendar button and calendar region now read translated strings from `WonderBlocksConfigProvider`. The `calendarButtonAriaLabel` and `calendarGridRegionAriaLabel` props override the built-in translations.
+
+### Patch Changes
+
+- Updated dependencies [6bd5d0c]
+- Updated dependencies [8e11e83]
+- Updated dependencies [8e11e83]
+    - @khanacademy/wonder-blocks-config@0.5.0
+    - @khanacademy/wonder-blocks-modal@8.10.0
+    - @khanacademy/wonder-blocks-form@7.7.3
+
 ## 1.1.7
 
 ### Patch Changes

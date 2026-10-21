@@ -1,5 +1,12 @@
 # @khanacademy/wonder-blocks-config
 
+## 0.5.0
+
+### Minor Changes
+
+- 6bd5d0c: Adds the `iconAltToggleCalendar`, `datePickerCalendar`, `birthdateErrorMessage`, `fieldLabelMonth`, `fieldLabelDay` and `fieldLabelYear` strings to `WonderBlocksStrings`
+- 8e11e83: Adds the `iconAltClose`, `iconAltCloseModal` and `iconAltClosePopover` strings to `WonderBlocksStrings`
+
 ## 0.4.0
 
 ### Minor Changes

@@ -1,5 +1,18 @@
 # @khanacademy/wonder-blocks-popover
 
+## 7.1.0
+
+### Minor Changes
+
+- 8e11e83: Popover's close button now reads its default `aria-label` ("Close Popover") from `WonderBlocksConfigProvider`. The `closeButtonLabel` prop on PopoverContent and PopoverContentCore overrides the built-in translation.
+
+### Patch Changes
+
+- Updated dependencies [6bd5d0c]
+- Updated dependencies [8e11e83]
+    - @khanacademy/wonder-blocks-config@0.5.0
+    - @khanacademy/wonder-blocks-floating@0.2.1
+
 ## 7.0.3
 
 ### Patch Changes
