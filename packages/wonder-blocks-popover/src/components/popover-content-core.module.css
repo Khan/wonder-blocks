@@ -1,0 +1,47 @@
+/**
+ * PopoverContentCore styles
+ *
+ * `.root` sits on the `ScrollableView` (still Aphrodite). Its own
+ * declaration (`border-radius`) doesn't compete with anything:
+ * `ScrollableView` and `View` don't set it, so a single class is enough.
+ *
+ * The content wrapper is a `View` and the close button is an `IconButton`;
+ * these rules override properties `View` sets in its own single-class rule in
+ * the same `@layer shared` (`padding`, `justify-content`). The bundle loads
+ * this package's CSS before core's, so they're nested under `.root`
+ * (`.root .content`, …) to win on specificity rather than load order.
+ *
+ * The consumer's `style` and the close button's `actionStyles.inverse` still
+ * go through Aphrodite (unlayered and `!important`), so they win over this
+ * module as they did before. The build wraps every rule in
+ * `@layer shared { … }`.
+ */
+
+.root {
+    /* The scrollable view sits at the edges of the floating element (the
+     * popover "bubble"), so match its inner border radius (its border radius
+     * minus its border width). This also rounds the fades. */
+    border-radius: calc(var(--wb-border-radius-radius_040) - var(--wb-border-width-thin));
+
+    & .content {
+        margin: 0;
+        max-inline-size: calc(var(--wb-sizing-size_160) * 18); /* 288px */
+        padding: var(--wb-sizing-size_240);
+        overflow: hidden;
+        justify-content: center;
+
+        /* Keep the content at its natural size so it overflows (and scrolls)
+         * inside the scroll container instead of being squashed. */
+        flex-shrink: 0;
+    }
+
+    & .closeButton {
+        margin: 0;
+        position: absolute;
+        inset-inline-end: var(--wb-sizing-size_040);
+        inset-block-start: var(--wb-sizing-size_040);
+
+        /* Allows the button to be above the title and/or custom content */
+        z-index: 1;
+    }
+}

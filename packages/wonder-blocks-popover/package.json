@@ -19,6 +19,9 @@
   "main": "dist/index.js",
   "module": "dist/es/index.js",
   "types": "dist/index.d.ts",
+  "sideEffects": [
+    "**/*.css"
+  ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "prepublishOnly": "../../utils/publish/package-pre-publish-check.sh"
@@ -34,7 +37,6 @@
   },
   "peerDependencies": {
     "@phosphor-icons/core": "catalog:",
-    "aphrodite": "catalog:",
     "react": "catalog:",
     "react-dom": "catalog:"
   },
