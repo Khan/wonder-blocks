@@ -2,6 +2,7 @@ import * as React from "react";
 import {createPortal} from "react-dom";
 import {Popper} from "react-popper";
 
+import {useWonderBlocksI18n} from "@khanacademy/wonder-blocks-config";
 import type {StyleType} from "@khanacademy/wonder-blocks-core";
 import {maybeGetPortalMountedModalHostElement} from "@khanacademy/wonder-blocks-modal";
 import {
@@ -13,8 +14,6 @@ import {
 } from "@khanacademy/wonder-blocks-tokens";
 
 import FocusManager from "./focus-manager";
-
-const DEFAULT_CALENDAR_GRID_REGION_ARIA_LABEL = "Date picker calendar";
 
 // Custom styles to display the calendar popup correctly.
 const DEFAULT_STYLE = {
@@ -69,7 +68,9 @@ interface Props {
      */
     style?: StyleType;
     /**
-     * The aria-label for the calendar grid region. Defaults to "Date picker calendar".
+     * The aria-label for the calendar grid region. Overrides the translated
+     * string from `WonderBlocksConfigProvider` ("Date picker calendar" in
+     * English).
      */
     calendarGridRegionAriaLabel?: string;
 }
@@ -89,8 +90,10 @@ const DatePickerOverlay = ({
     onClose,
     dir = "ltr",
     style = DEFAULT_STYLE,
-    calendarGridRegionAriaLabel = DEFAULT_CALENDAR_GRID_REGION_ARIA_LABEL,
+    calendarGridRegionAriaLabel,
 }: Props): React.ReactElement | null => {
+    const {strings} = useWonderBlocksI18n();
+
     if (!referenceElement) {
         return null;
     }
@@ -149,7 +152,10 @@ const DatePickerOverlay = ({
 
                     return (
                         <div
-                            aria-label={calendarGridRegionAriaLabel}
+                            aria-label={
+                                calendarGridRegionAriaLabel ||
+                                strings.datePickerCalendar
+                            }
                             ref={ref}
                             role="region"
                             style={combinedStyles}

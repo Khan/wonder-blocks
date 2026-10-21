@@ -9,12 +9,20 @@ export type WonderBlocksStrings = {
     iconAltClosePopover: string;
     iconAltErrorMessagePrefix: string;
     iconAltOpensNewTab: string;
+    iconAltToggleCalendar: string;
 
     // Labels
     breadcrumbs: string;
+    datePickerCalendar: string;
     tabs: string;
 
+    // Form field labels
+    fieldLabelDay: string;
+    fieldLabelMonth: string;
+    fieldLabelYear: string;
+
     // Form validation
+    birthdateErrorMessage: string;
     requiredFieldMessage: string;
 };
 
@@ -54,6 +62,11 @@ export const strings = {
             "Accessible name for an icon marking a link that opens in a new tab.",
         message: "(opens in a new tab)",
     },
+    iconAltToggleCalendar: {
+        context:
+            "Accessible name for an icon button in a date picker that opens and closes the calendar.",
+        message: "Toggle calendar",
+    },
 
     // Labels
     breadcrumbs: {
@@ -61,13 +74,39 @@ export const strings = {
             "Accessible name for the navigation landmark containing breadcrumb links.",
         message: "Breadcrumbs",
     },
+    datePickerCalendar: {
+        context:
+            "Accessible name for the region containing the calendar in a date picker.",
+        message: "Date picker calendar",
+    },
     tabs: {
         context:
             "Label for the menu of tabs when no tab is selected, shown when the tabs are collapsed into a dropdown.",
         message: "Tabs",
     },
 
+    // Form field labels
+    fieldLabelDay: {
+        context:
+            "Label and placeholder for a form field to select the day of a date, such as a birthdate.",
+        message: "Day",
+    },
+    fieldLabelMonth: {
+        context:
+            "Label and placeholder for a form field to select the month of a date, such as a birthdate.",
+        message: "Month",
+    },
+    fieldLabelYear: {
+        context:
+            "Label and placeholder for a form field to select the year of a date, such as a birthdate.",
+        message: "Year",
+    },
+
     // Form validation
+    birthdateErrorMessage: {
+        context: "Error message shown when the selected birthdate is invalid.",
+        message: "Please select a valid birthdate.",
+    },
     requiredFieldMessage: {
         context:
             "Error message shown when a required form field is left empty.",
@@ -91,11 +130,19 @@ export const defaultStringsEn: WonderBlocksStrings = {
     iconAltClosePopover: strings.iconAltClosePopover.message,
     iconAltErrorMessagePrefix: strings.iconAltErrorMessagePrefix.message,
     iconAltOpensNewTab: strings.iconAltOpensNewTab.message,
+    iconAltToggleCalendar: strings.iconAltToggleCalendar.message,
 
     // Labels
     breadcrumbs: strings.breadcrumbs.message,
+    datePickerCalendar: strings.datePickerCalendar.message,
     tabs: strings.tabs.message,
 
+    // Form field labels
+    fieldLabelDay: strings.fieldLabelDay.message,
+    fieldLabelMonth: strings.fieldLabelMonth.message,
+    fieldLabelYear: strings.fieldLabelYear.message,
+
     // Form validation
+    birthdateErrorMessage: strings.birthdateErrorMessage.message,
     requiredFieldMessage: strings.requiredFieldMessage.message,
 };
