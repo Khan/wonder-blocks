@@ -40,7 +40,6 @@ describe("TooltipAnchor", () => {
         // Act
         render(
             <TooltipAnchor
-                anchorRef={() => {}}
                 onActiveChanged={() => {}}
                 aria-describedby="ignore-this"
             >
@@ -76,7 +75,6 @@ describe("TooltipAnchor", () => {
         removeEventListenerSpy.mockClear();
         const wrapper = render(
             <TooltipAnchor
-                anchorRef={() => {}}
                 onActiveChanged={() => {}}
                 aria-describedby="ignore-this"
             >
@@ -106,14 +104,14 @@ describe("TooltipAnchor", () => {
         );
     });
 
-    test("ref is properly set", async () => {
+    test("forwards the ref to the anchored element", async () => {
         // Arrange
-        const anchorRef = jest.fn();
+        const ref = React.createRef<Element>();
 
         render(
             <TooltipAnchor
+                ref={ref}
                 forceAnchorFocusivity={true}
-                anchorRef={anchorRef}
                 onActiveChanged={() => {}}
                 aria-describedby="ignore-this"
             >
@@ -125,7 +123,76 @@ describe("TooltipAnchor", () => {
         const result = await screen.findByText("This is the anchor");
 
         // Assert
-        expect(anchorRef).toHaveBeenCalledWith(result);
+        expect(ref.current).toBe(result);
+    });
+
+    test("keeps the anchored element's own ref", async () => {
+        // Arrange
+        const ref = React.createRef<HTMLDivElement>();
+
+        render(
+            <TooltipAnchor
+                onActiveChanged={() => {}}
+                aria-describedby="ignore-this"
+            >
+                <View ref={ref}>This is the anchor</View>
+            </TooltipAnchor>,
+        );
+
+        // Act
+        const result = await screen.findByText("This is the anchor");
+
+        // Assert
+        expect(ref.current).toBe(result);
+    });
+
+    test("resolves anchored content that can't receive a ref from the DOM", async () => {
+        // Arrange
+        // A plain function component can't receive a ref, and this one
+        // doesn't pass any props along to its element either.
+        const Anchor = () => <span>This is the anchor</span>;
+        const ref = React.createRef<Element>();
+
+        render(
+            <TooltipAnchor
+                ref={ref}
+                onActiveChanged={() => {}}
+                aria-describedby="ignore-this"
+            >
+                <Anchor />
+            </TooltipAnchor>,
+        );
+
+        // Act
+        const result = await screen.findByText("This is the anchor");
+
+        // Assert
+        expect(ref.current).toBe(result);
+    });
+
+    test("shows the tooltip for anchored content that can't receive a ref", async () => {
+        // Arrange
+        const ue = userEvent.setup({
+            advanceTimers: jest.advanceTimersByTime,
+        });
+        const Anchor = () => <span>This is the anchor</span>;
+        const onActiveChanged = jest.fn();
+
+        render(
+            <TooltipAnchor
+                onActiveChanged={onActiveChanged}
+                aria-describedby="ignore-this"
+            >
+                <Anchor />
+            </TooltipAnchor>,
+        );
+
+        // Act
+        await ue.hover(await screen.findByText("This is the anchor"));
+        jest.runOnlyPendingTimers();
+
+        // Assert
+        expect(onActiveChanged).toHaveBeenCalledWith(true);
     });
 
     describe("forceAnchorFocusivity is true", () => {
@@ -134,7 +201,6 @@ describe("TooltipAnchor", () => {
             render(
                 <TooltipAnchor
                     forceAnchorFocusivity={true}
-                    anchorRef={jest.fn()}
                     onActiveChanged={() => {}}
                     aria-describedby="ignore-this"
                 >
@@ -154,7 +220,6 @@ describe("TooltipAnchor", () => {
             render(
                 <TooltipAnchor
                     forceAnchorFocusivity={true}
-                    anchorRef={jest.fn()}
                     onActiveChanged={() => {}}
                     aria-describedby="ignore-this"
                 >
@@ -176,7 +241,6 @@ describe("TooltipAnchor", () => {
             render(
                 <TooltipAnchor
                     forceAnchorFocusivity={false}
-                    anchorRef={jest.fn()}
                     onActiveChanged={() => {}}
                     aria-describedby="ignore-this"
                 >
@@ -196,7 +260,6 @@ describe("TooltipAnchor", () => {
             const TestFixture = (props: any) => (
                 <TooltipAnchor
                     forceAnchorFocusivity={props.force}
-                    anchorRef={jest.fn()}
                     onActiveChanged={() => {}}
                     aria-describedby="ignore-this"
                 >
@@ -223,7 +286,6 @@ describe("TooltipAnchor", () => {
             const TestFixture = (props: any) => (
                 <TooltipAnchor
                     forceAnchorFocusivity={props.force}
-                    anchorRef={jest.fn()}
                     onActiveChanged={() => {}}
                     aria-describedby="ignore-this"
                 >
@@ -263,7 +325,6 @@ describe("TooltipAnchor", () => {
 
             render(
                 <TooltipAnchor
-                    anchorRef={jest.fn()}
                     onActiveChanged={(active: any) => {
                         activeState = active;
                     }}
@@ -306,7 +367,6 @@ describe("TooltipAnchor", () => {
 
             render(
                 <TooltipAnchor
-                    anchorRef={jest.fn()}
                     onActiveChanged={(active: any) => {
                         activeState = active;
                     }}
@@ -336,7 +396,6 @@ describe("TooltipAnchor", () => {
 
             render(
                 <TooltipAnchor
-                    anchorRef={jest.fn()}
                     onActiveChanged={(active: any) => {
                         activeState = active;
                     }}
@@ -383,7 +442,6 @@ describe("TooltipAnchor", () => {
             let activeState = false;
             render(
                 <TooltipAnchor
-                    anchorRef={jest.fn()}
                     onActiveChanged={(active: any) => {
                         activeState = active;
                     }}
@@ -425,7 +483,6 @@ describe("TooltipAnchor", () => {
 
             render(
                 <TooltipAnchor
-                    anchorRef={jest.fn()}
                     onActiveChanged={(active: any) => {
                         activeState = active;
                     }}
@@ -468,7 +525,6 @@ describe("TooltipAnchor", () => {
             let activeState = false;
             render(
                 <TooltipAnchor
-                    anchorRef={jest.fn()}
                     onActiveChanged={(active: any) => {
                         activeState = active;
                     }}
@@ -503,7 +559,6 @@ describe("TooltipAnchor", () => {
             let activeState = false;
             render(
                 <TooltipAnchor
-                    anchorRef={jest.fn()}
                     onActiveChanged={(active: any) => {
                         activeState = active;
                     }}
@@ -556,7 +611,6 @@ describe("TooltipAnchor", () => {
 
             render(
                 <TooltipAnchor
-                    anchorRef={jest.fn()}
                     onActiveChanged={(active: any) => {
                         activeState = active;
                     }}
@@ -598,7 +652,6 @@ describe("TooltipAnchor", () => {
 
             render(
                 <TooltipAnchor
-                    anchorRef={jest.fn()}
                     onActiveChanged={(active: any) => {
                         activeState = active;
                     }}
@@ -627,7 +680,6 @@ describe("TooltipAnchor", () => {
 
             render(
                 <TooltipAnchor
-                    anchorRef={jest.fn()}
                     onActiveChanged={(active: any) => {
                         activeState = active;
                     }}
@@ -673,7 +725,6 @@ describe("TooltipAnchor", () => {
 
             render(
                 <TooltipAnchor
-                    anchorRef={jest.fn()}
                     onActiveChanged={(active: any) => {
                         activeState = active;
                     }}
@@ -714,7 +765,6 @@ describe("TooltipAnchor", () => {
 
             render(
                 <TooltipAnchor
-                    anchorRef={jest.fn()}
                     onActiveChanged={(active: any) => {
                         activeState = active;
                     }}
@@ -755,7 +805,6 @@ describe("TooltipAnchor", () => {
             let activeState = false;
             render(
                 <TooltipAnchor
-                    anchorRef={jest.fn()}
                     onActiveChanged={(active: any) => {
                         activeState = active;
                     }}
@@ -788,7 +837,6 @@ describe("TooltipAnchor", () => {
             let activeState = false;
             render(
                 <TooltipAnchor
-                    anchorRef={jest.fn()}
                     onActiveChanged={(active: any) => {
                         activeState = active;
                     }}
@@ -831,7 +879,6 @@ describe("TooltipAnchor", () => {
             const spy = jest.spyOn(document, "addEventListener");
             render(
                 <TooltipAnchor
-                    anchorRef={jest.fn()}
                     onActiveChanged={() => {}}
                     aria-describedby="tooltip-description"
                 >
@@ -861,7 +908,6 @@ describe("TooltipAnchor", () => {
             const spy = jest.spyOn(document, "addEventListener");
             render(
                 <TooltipAnchor
-                    anchorRef={jest.fn()}
                     onActiveChanged={() => {}}
                     aria-describedby="tooltip-description"
                 >
@@ -896,7 +942,6 @@ describe("TooltipAnchor", () => {
             const spy = jest.spyOn(document, "removeEventListener");
             render(
                 <TooltipAnchor
-                    anchorRef={jest.fn()}
                     onActiveChanged={() => {}}
                     aria-describedby="tooltip-description"
                 >
@@ -936,7 +981,6 @@ describe("TooltipAnchor", () => {
             const spy = jest.spyOn(document, "removeEventListener");
             const {unmount} = render(
                 <TooltipAnchor
-                    anchorRef={jest.fn()}
                     onActiveChanged={() => {}}
                     aria-describedby="tooltip-description"
                 >
@@ -969,7 +1013,6 @@ describe("TooltipAnchor", () => {
             let activeState = false;
             render(
                 <TooltipAnchor
-                    anchorRef={jest.fn()}
                     onActiveChanged={(active: any) => {
                         activeState = active;
                     }}
@@ -1007,7 +1050,6 @@ describe("TooltipAnchor", () => {
             const timeoutSpy = jest.spyOn(global, "setTimeout");
             render(
                 <TooltipAnchor
-                    anchorRef={jest.fn()}
                     onActiveChanged={() => {}}
                     aria-describedby="tooltip-description"
                 >

@@ -1651,6 +1651,9 @@ importers:
       '@khanacademy/wonder-blocks-core':
         specifier: workspace:*
         version: link:../wonder-blocks-core
+      '@khanacademy/wonder-blocks-floating':
+        specifier: workspace:*
+        version: link:../wonder-blocks-floating
       '@khanacademy/wonder-blocks-layout':
         specifier: workspace:*
         version: link:../wonder-blocks-layout
@@ -7677,6 +7680,7 @@ packages:
 
   typescript-coverage-report@1.1.0:
     resolution: {integrity: sha512-Ap8+AuUb5DE5kB1aqODkVJLIpwOMqo+hUY6vIoUEYFlm9F1Q1LoqHutzQ5Acgnk8y1gjELcxRwCuGOU4V4aWSg==}
+    deprecated: 'Broken package contents: the published dist requires react/semantic-ui-react. Upgrade to 2.0.0. See https://github.com/alexcanessa/typescript-coverage-report/issues/171'
     hasBin: true
     peerDependencies:
       typescript: 2 || 3 || 4 || 5
