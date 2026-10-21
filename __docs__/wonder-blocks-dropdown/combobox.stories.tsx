@@ -58,9 +58,9 @@ const styles = StyleSheet.create({
     },
     customLabelsGrid: {
         padding: sizing.size_160,
-        // Leaves room for the opened listbox (about 410px tall), so it doesn't
-        // overlap the comboboxes in the next row.
-        gap: 400,
+        // Leaves room for the opened listbox, so it doesn't overlap the
+        // comboboxes in the next row.
+        gap: `calc(${sizing.size_960} * 2)`,
     },
     customLabelsRow: {
         flexDirection: "row",
@@ -68,6 +68,7 @@ const styles = StyleSheet.create({
         gap: sizing.size_160,
     },
     customLabelsColumn: {
+        width: 300,
         gap: sizing.size_120,
     },
 });
@@ -552,10 +553,10 @@ export const CustomLabels: Story = {
             React.useState<Value>("pear");
         const [singleValue, setSingleValue] = React.useState<Value>("pear");
         const [multipleDefaultValue, setMultipleDefaultValue] =
-            React.useState<Value>(["pear", "grape"]);
+            React.useState<Value>(["banana", "pear"]);
         const [multipleValue, setMultipleValue] = React.useState<Value>([
+            "banana",
             "pear",
-            "grape",
         ]);
 
         const customLabels: PropsFor<typeof Combobox>["labels"] = {
@@ -578,7 +579,7 @@ export const CustomLabels: Story = {
         return (
             <View style={styles.customLabelsGrid}>
                 <View style={styles.customLabelsRow}>
-                    <View style={[styles.example, styles.customLabelsColumn]}>
+                    <View style={styles.customLabelsColumn}>
                         <BodyText>Single select with built-in labels:</BodyText>
                         <Combobox
                             {...args}
@@ -587,7 +588,7 @@ export const CustomLabels: Story = {
                             onChange={setSingleDefaultValue}
                         />
                     </View>
-                    <View style={[styles.example, styles.customLabelsColumn]}>
+                    <View style={styles.customLabelsColumn}>
                         <BodyText>Single select with custom labels:</BodyText>
                         <Combobox
                             {...args}
@@ -599,7 +600,7 @@ export const CustomLabels: Story = {
                     </View>
                 </View>
                 <View style={styles.customLabelsRow}>
-                    <View style={[styles.example, styles.customLabelsColumn]}>
+                    <View style={styles.customLabelsColumn}>
                         <BodyText>Multi-select with built-in labels:</BodyText>
                         <Combobox
                             {...args}
@@ -608,7 +609,7 @@ export const CustomLabels: Story = {
                             onChange={setMultipleDefaultValue}
                         />
                     </View>
-                    <View style={[styles.example, styles.customLabelsColumn]}>
+                    <View style={styles.customLabelsColumn}>
                         <BodyText>Multi-select with custom labels:</BodyText>
                         <Combobox
                             {...args}
@@ -623,7 +624,8 @@ export const CustomLabels: Story = {
         );
     },
     args: {
-        children: items,
+        // Only a few options, so the opened listbox fits between the rows.
+        children: items.slice(0, 4),
     },
     parameters: {
         layout: "fullscreen",
