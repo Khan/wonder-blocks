@@ -148,21 +148,40 @@ describe("TooltipAnchor", () => {
 
     test("resolves anchored content that can't receive a ref from the DOM", async () => {
         // Arrange
+        // A plain function component can't receive a ref, and this one
+        // doesn't pass any props along to its element either.
+        const Anchor = () => <span>This is the anchor</span>;
+        const ref = React.createRef<Element>();
+
+        render(
+            <TooltipAnchor
+                ref={ref}
+                onActiveChanged={() => {}}
+                aria-describedby="ignore-this"
+            >
+                <Anchor />
+            </TooltipAnchor>,
+        );
+
+        // Act
+        const result = await screen.findByText("This is the anchor");
+
+        // Assert
+        expect(ref.current).toBe(result);
+    });
+
+    test("shows the tooltip for anchored content that can't receive a ref", async () => {
+        // Arrange
         const ue = userEvent.setup({
             advanceTimers: jest.advanceTimersByTime,
         });
-        // A plain function component can't receive a ref, but it spreads the
-        // props it is given onto its element.
-        const Anchor = (props: React.ComponentProps<"span">) => (
-            <span {...props}>This is the anchor</span>
-        );
+        const Anchor = () => <span>This is the anchor</span>;
         const onActiveChanged = jest.fn();
 
         render(
             <TooltipAnchor
                 onActiveChanged={onActiveChanged}
                 aria-describedby="ignore-this"
-                data-wb-floating-reference="anchor-id"
             >
                 <Anchor />
             </TooltipAnchor>,

@@ -7,7 +7,6 @@ import * as React from "react";
 import {Text as WBText} from "@khanacademy/wonder-blocks-core";
 import {
     canAcceptRef,
-    FloatingReferenceAttributeName,
     getElementRef,
     useMergeRefs,
 } from "@khanacademy/wonder-blocks-floating";
@@ -58,15 +57,15 @@ type Props = {
      * is not visible.
      */
     "aria-describedby": string | undefined;
-    /**
-     * Injected by `Floating` to identify the anchor's element in the DOM. It is
-     * passed along to the anchored content so that `Floating` (and this
-     * component) can find that element when the content can't receive a ref.
-     */
-    [FloatingReferenceAttributeName]?: string;
 };
 
 const TRACKER = new ActiveTracker();
+
+/**
+ * The attribute that identifies the marker rendered before anchored content
+ * that can't receive a ref.
+ */
+const MarkerAttributeName = "data-tooltip-anchor-marker";
 
 type ActiveStateManager = {
     /**
@@ -301,11 +300,17 @@ function useAnchorFocusivity(
  * The anchored content of a tooltip. It shows the tooltip when the content is
  * hovered or focused.
  *
- * The ref it receives comes from `Floating` and resolves the element the
- * tooltip is anchored to. It is passed along to the anchored content, alongside
- * the attribute that lets `Floating` resolve that element from the DOM instead,
- * so that the content only has to do one of the two (see `Floating`'s
- * `children` prop).
+ * The ref it receives is set to the anchored content's DOM element, which is
+ * the element the tooltip is positioned against. No wrapper element is
+ * rendered around the content, so the DOM hierarchy stays as the consumer
+ * wrote it:
+ *
+ * - Content that can receive a ref (host elements and `React.forwardRef`
+ *   components) is given one. Its own ref (if any) is kept.
+ * - Content that can't (e.g. plain function components) is resolved from the
+ *   DOM instead, as the element that follows a hidden marker element rendered
+ *   right before it. This way, it doesn't need to attach a ref or pass props
+ *   along to its element.
  */
 const TooltipAnchor = React.forwardRef(function TooltipAnchor(
     props: Props,
@@ -316,54 +321,65 @@ const TooltipAnchor = React.forwardRef(function TooltipAnchor(
         forceAnchorFocusivity = true,
         onActiveChanged,
         "aria-describedby": ariaDescribedBy,
-        [FloatingReferenceAttributeName]: floatingReferenceId,
     } = props;
 
     const anchorableChildren =
         typeof children === "string" ? <WBText>{children}</WBText> : children;
+    const contentAcceptsRef = canAcceptRef(anchorableChildren);
 
     // The DOM element of the anchored content. The hover and focus listeners
     // are attached to it.
     const [anchorNode, setAnchorNode] = React.useState<Element | null>(null);
 
-    // The element the anchored content attached the ref to, if any.
-    const anchorFromRef = React.useRef<Element | null>(null);
-
     const setAnchorNodeFromRef = React.useCallback((node: unknown) => {
-        const element = node instanceof Element ? node : null;
-
-        anchorFromRef.current = element;
-        setAnchorNode(element);
+        setAnchorNode(node instanceof Element ? node : null);
     }, []);
 
     // Give the anchored content's own ref (if it has one) back to its owner,
-    // and the ref from `Floating` back to it, so that injecting ours doesn't
-    // take them away.
+    // and report the element to the ref this component was given.
     const anchorRef = useMergeRefs<Element>([
         ref,
         getElementRef<Element>(anchorableChildren),
         setAnchorNodeFromRef,
     ]);
 
-    // Resolve the element from the DOM when the anchored content can't receive
-    // a ref (or doesn't attach the one it is given), using the attribute that
-    // `Floating` injected.
+    // The marker rendered before content that can't receive a ref, and the
+    // element that was last resolved from it.
+    const markerRef = React.useRef<HTMLElement | null>(null);
+    const markedNodeRef = React.useRef<Element | null>(null);
+
+    /**
+     * Resolves the anchored element as the marker's next sibling. The marker's
+     * ref is attached once all of the elements are in the DOM, so the
+     * anchored element is already there.
+     */
+    const handleMarkerRef = React.useCallback(
+        (marker: HTMLElement | null) => {
+            const node = marker?.nextElementSibling ?? null;
+
+            markerRef.current = marker;
+            markedNodeRef.current = node;
+            anchorRef?.(node);
+        },
+        [anchorRef],
+    );
+
+    // Keep the marked element in sync if the anchored content renders a
+    // different DOM element (the marker's ref isn't attached again then).
     //
-    // NOTE: This runs after every render (no dependency array) so that the
-    // element stays in sync if the anchored content renders a different DOM
-    // element. Setting the same element again is a no-op (React bails out of
-    // state updates with the same value), so this can't loop.
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    // NOTE: This runs after every render (no dependency array). The element is
+    // only reported when it changes, so this can't loop.
     React.useLayoutEffect(() => {
-        if (anchorFromRef.current || !floatingReferenceId) {
+        const marker = markerRef.current;
+        if (!marker) {
             return;
         }
 
-        setAnchorNode(
-            document.querySelector(
-                `[${FloatingReferenceAttributeName}="${floatingReferenceId}"]`,
-            ),
-        );
+        const node = marker.nextElementSibling;
+        if (node !== markedNodeRef.current) {
+            markedNodeRef.current = node;
+            anchorRef?.(node);
+        }
     });
 
     const {handleFocusIn, handleFocusOut, handleMouseEnter, handleMouseLeave} =
@@ -403,18 +419,26 @@ const TooltipAnchor = React.forwardRef(function TooltipAnchor(
         handleMouseLeave,
     ]);
 
-    return React.cloneElement(anchorableChildren, {
-        "aria-describedby": ariaDescribedBy,
-        // Passed along so that the `Floating` component this anchor is rendered
-        // in can find the anchored element in the DOM and position the tooltip
-        // against it. This is why anchored content that doesn't attach the ref
-        // below has to spread the props it is given.
-        [FloatingReferenceAttributeName]: floatingReferenceId,
-        // Only injected when the anchored content can receive a ref: giving
-        // one to a plain function component would log a React error, and such
-        // content is resolved from the DOM instead.
-        ...(canAcceptRef(anchorableChildren) ? {ref: anchorRef} : undefined),
-    });
+    if (contentAcceptsRef) {
+        return React.cloneElement(anchorableChildren, {
+            "aria-describedby": ariaDescribedBy,
+            ref: anchorRef,
+        });
+    }
+
+    return (
+        <>
+            {/* Not displayed nor exposed to assistive technology. */}
+            <span
+                hidden
+                ref={handleMarkerRef}
+                {...{[MarkerAttributeName]: ""}}
+            />
+            {React.cloneElement(anchorableChildren, {
+                "aria-describedby": ariaDescribedBy,
+            })}
+        </>
+    );
 });
 
 TooltipAnchor.displayName = "TooltipAnchor";

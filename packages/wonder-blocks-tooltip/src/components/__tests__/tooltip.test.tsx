@@ -242,6 +242,32 @@ describe("Tooltip", () => {
         });
     });
 
+    describe("anchored content", () => {
+        it("should show the tooltip for content that can't receive a ref", async () => {
+            // Arrange
+            const ue = userEvent.setup({
+                advanceTimers: jest.advanceTimersByTimeAsync,
+            });
+            // A plain function component that doesn't pass any props along
+            // to its element (e.g. `LabeledField`).
+            const Anchor = () => <span>Anchor</span>;
+            render(
+                <Tooltip content="Content">
+                    <Anchor />
+                </Tooltip>,
+            );
+
+            // Act
+            await ue.hover(await screen.findByText("Anchor"));
+            await act(() => jest.runOnlyPendingTimersAsync());
+
+            // Assert
+            expect(
+                await screen.findByRole("tooltip", {hidden: true}),
+            ).toBeInTheDocument();
+        });
+    });
+
     describe("accessibility", () => {
         test("no id, sets identifier of TooltipBubble", async () => {
             // Arrange
