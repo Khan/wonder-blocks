@@ -1,5 +1,25 @@
 # @khanacademy/wonder-blocks-dropdown
 
+## 10.13.4
+
+### Patch Changes
+
+- cbdc909: Declare `@khanacademy/wonder-blocks-button` as a dependency. Dropdown imports `Button`, and without the dependency its build bundled its own copy of `Button`.
+- Updated dependencies [cbdc909]
+    - @khanacademy/wonder-blocks-tokens@18.1.0
+    - @khanacademy/wonder-blocks-button@11.7.13
+    - @khanacademy/wonder-blocks-cell@6.2.15
+    - @khanacademy/wonder-blocks-clickable@8.3.2
+    - @khanacademy/wonder-blocks-form@7.7.2
+    - @khanacademy/wonder-blocks-icon@6.0.3
+    - @khanacademy/wonder-blocks-icon-button@12.0.2
+    - @khanacademy/wonder-blocks-modal@8.9.2
+    - @khanacademy/wonder-blocks-pill@3.1.79
+    - @khanacademy/wonder-blocks-search-field@5.2.2
+    - @khanacademy/wonder-blocks-styles@0.4.1
+    - @khanacademy/wonder-blocks-typography@5.0.6
+    - @khanacademy/wonder-blocks-announcer@1.1.2
+
 ## 10.13.3
 
 ### Patch Changes

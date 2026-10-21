@@ -1,5 +1,16 @@
 # @khanacademy/wonder-blocks-progress-spinner
 
+## 3.2.0
+
+### Minor Changes
+
+- cbdc909: Add Thunderblocks theming to `CircularSpinner`. In Thunderblocks, the `medium` spinner is 36px instead of 48px so it fits inside large buttons.
+
+### Patch Changes
+
+- Updated dependencies [cbdc909]
+    - @khanacademy/wonder-blocks-tokens@18.1.0
+
 ## 3.1.62
 
 ### Patch Changes
