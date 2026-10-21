@@ -15,21 +15,43 @@ import type {BrowserCommand} from "vitest/node";
 const screenshotsRoot = resolve(process.cwd(), "./screenshots");
 
 /**
- * Whether a story opted out of visual snapshots.
+ * Defaults applied to every story's Argos parameters.
  *
- * Mirrors how `@argos-ci/storybook` resolves its own parameters: `argos` wins
- * over `chromatic`, and `chromatic` is only used as a fallback. This keeps the
- * existing `chromatic: {disableSnapshot: true}` stories working without
- * touching every story file.
+ * `fitToContent: false` captures the whole page (at the story's viewport)
+ * instead of cropping to the rendered component and zooming it 2x, which is
+ * closer to what Chromatic captures and keeps portaled content (popovers,
+ * tooltips, modals) in frame.
+ * See: https://argos-ci.com/docs/reference/storybook#fit-to-content-vs-page
+ *
+ * Stories can still override any of these via `parameters.argos`.
  */
-const isSnapshotDisabled = (parameters: Record<string, any>): boolean => {
-    const params = parameters.argos ?? parameters.chromatic;
-    return Boolean(params?.disableSnapshot);
+const defaultArgosParameters = {
+    fitToContent: false,
 };
 
 /**
- * Argos's Vitest plugin plus a wrapper that skips stories with
- * `disableSnapshot: true`.
+ * The Argos parameters for a story.
+ *
+ * Mirrors how `@argos-ci/storybook` resolves its own parameters: `argos` wins
+ * over `chromatic`, and `chromatic` is only used as a fallback. This keeps the
+ * existing `chromatic` parameters (`modes`, `disableSnapshot`) working without
+ * touching every story file.
+ *
+ * NOTE: This is also why the defaults above can't simply be set as
+ * `parameters.argos` in `.storybook/preview.tsx`: as soon as a story has
+ * *any* `argos` parameter, the plugin stops reading `chromatic`, and every
+ * story would silently lose its `chromatic.modes` (themes, viewports, RTL).
+ */
+const getArgosParameters = (
+    parameters: Record<string, any>,
+): Record<string, any> => ({
+    ...defaultArgosParameters,
+    ...(parameters.argos ?? parameters.chromatic),
+});
+
+/**
+ * Argos's Vitest plugin plus a wrapper that applies our default Argos
+ * parameters and skips stories with `disableSnapshot: true`.
  *
  * `argosVitestPlugin` screenshots every story Vitest runs. It reads `modes`
  * and `fitToContent` from `parameters.argos` (falling back to
@@ -49,24 +71,34 @@ export const argosPlugins = (options: ArgosVitestPluginOptions): Plugin[] => {
         root: screenshotsRoot,
     });
 
-    const skipDisabledSnapshots: BrowserCommand<
+    const screenshotWithDefaults: BrowserCommand<
         ArgosScreenshotCommandArgs
     > = async (ctx, testContext) => {
-        if (isSnapshotDisabled(testContext.story.parameters)) {
+        const argos = getArgosParameters(testContext.story.parameters);
+        if (argos.disableSnapshot) {
             return [];
         }
-        return argosScreenshot(ctx, testContext);
+        // Hand Argos the resolved parameters as `parameters.argos`, which it
+        // reads before `chromatic`, so the defaults apply while the story's
+        // modes are kept.
+        return argosScreenshot(ctx, {
+            ...testContext,
+            story: {
+                ...testContext.story,
+                parameters: {...testContext.story.parameters, argos},
+            },
+        });
     };
 
     return [
         argosVitestPlugin({...options, root: screenshotsRoot}),
         {
-            name: "wonder-blocks:argos-disable-snapshot",
+            name: "wonder-blocks:argos-defaults",
             config: () => ({
                 test: {
                     browser: {
                         commands: {
-                            argosStorybookScreenshot: skipDisabledSnapshots,
+                            argosStorybookScreenshot: screenshotWithDefaults,
                         },
                     },
                 },
