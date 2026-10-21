@@ -2,6 +2,9 @@
  * The translated strings that are used to render Wonder Blocks.
  */
 export type WonderBlocksStrings = {
+    // `num` is a special variable name that is used to determine the plurality
+    // of the translated string.
+
     // Alt text for icons / icon buttons
     iconAltClearSearch: string;
     iconAltErrorMessagePrefix: string;
@@ -11,6 +14,15 @@ export type WonderBlocksStrings = {
     breadcrumbs: string;
     tabs: string;
 
+    // Selection
+    allItems: string;
+    numItems: ({num}: {num: number}) => string;
+    zeroItems: string;
+    selectAllWithCount: ({num}: {num: number}) => string;
+    selectNone: string;
+    filter: string;
+    noResults: string;
+
     // Form validation
     requiredFieldMessage: string;
 };
@@ -18,6 +30,9 @@ export type WonderBlocksStrings = {
 /**
  * Untranslated strings used in Wonder Blocks. To be used by an external
  * translator to produce translated strings, passed in as `WonderBlocksStrings`.
+ *
+ * `num` is a special variable name that is used to determine the plurality
+ * of the translated string.
  *
  * !! Note: Ensure that all escape sequences are double-escaped. (e.g. `\\text` -> `\\\\text`)
  */
@@ -51,6 +66,42 @@ export const strings = {
         message: "Tabs",
     },
 
+    // Selection
+    allItems: {
+        context:
+            "Text shown when all options are selected. For example, in a multi-select.",
+        message: "All items",
+    },
+    numItems: {
+        context:
+            "Text shown when a number of items are selected. %(num)s is the number of options.",
+        one: "%(num)s item",
+        other: "%(num)s items",
+    },
+    zeroItems: {
+        context:
+            "Text shown when zero items are selected. For example, in a multi-select.",
+        message: "0 items",
+    },
+    selectAllWithCount: {
+        context:
+            "Label for an option that selects all options. %(num)s is the number of options.",
+        message: "Select all (%(num)s)",
+    },
+    selectNone: {
+        context: "Label for the option to deselect all of the options.",
+        message: "Select none",
+    },
+    filter: {
+        context: "Placeholder for a field used to filter items.",
+        message: "Filter",
+    },
+    noResults: {
+        context:
+            "Text shown when there are no results. For example, when no results match a filter.",
+        message: "No results",
+    },
+
     // Form validation
     requiredFieldMessage: {
         context:
@@ -76,6 +127,15 @@ export const defaultStringsEn: WonderBlocksStrings = {
     // Labels
     breadcrumbs: strings.breadcrumbs.message,
     tabs: strings.tabs.message,
+
+    // Selection
+    allItems: strings.allItems.message,
+    numItems: ({num}) => (num === 1 ? `${num} item` : `${num} items`),
+    zeroItems: strings.zeroItems.message,
+    selectAllWithCount: ({num}) => `Select all (${num})`,
+    selectNone: strings.selectNone.message,
+    filter: strings.filter.message,
+    noResults: strings.noResults.message,
 
     // Form validation
     requiredFieldMessage: strings.requiredFieldMessage.message,

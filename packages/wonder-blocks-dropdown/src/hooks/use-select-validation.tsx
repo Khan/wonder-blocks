@@ -1,7 +1,6 @@
 import {useOnMountEffect} from "@khanacademy/wonder-blocks-core";
+import {useWonderBlocksI18n} from "@khanacademy/wonder-blocks-config";
 import * as React from "react";
-
-const defaultErrorMessage = "This field is required.";
 
 type SingleSelectedValue = string | null | undefined;
 type MultiSelectedValues = string[];
@@ -49,6 +48,7 @@ export function useSelectValidation<T extends SelectValue>({
     required,
     open,
 }: SelectValidationProps<T>) {
+    const {strings} = useWonderBlocksI18n();
     const [errorMessage, setErrorMessage] = React.useState<string | null>(
         // Ensures error is updated on unmounted server-side renders
         // Pass in an initializer function so the validate prop is not called
@@ -80,7 +80,7 @@ export function useSelectValidation<T extends SelectValue>({
                 const requiredString =
                     typeof required === "string"
                         ? required
-                        : defaultErrorMessage;
+                        : strings.requiredFieldMessage;
                 const error = hasValue(newValue) ? null : requiredString;
                 setErrorMessage(error);
                 if (onValidate) {
@@ -88,7 +88,14 @@ export function useSelectValidation<T extends SelectValue>({
                 }
             }
         },
-        [disabled, validate, setErrorMessage, onValidate, required],
+        [
+            disabled,
+            validate,
+            setErrorMessage,
+            onValidate,
+            required,
+            strings.requiredFieldMessage,
+        ],
     );
 
     useOnMountEffect(() => {
