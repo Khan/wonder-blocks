@@ -1,11 +1,46 @@
 import * as React from "react";
 
-import {render, screen, fireEvent, waitFor} from "@testing-library/react";
+import {act, render, screen, fireEvent, waitFor} from "@testing-library/react";
 import {userEvent} from "@testing-library/user-event";
 
 import Tooltip from "../tooltip";
 
 describe("tooltip integration tests", () => {
+    let originalGetBoundingClientRect: typeof Element.prototype.getBoundingClientRect;
+
+    beforeEach(() => {
+        originalGetBoundingClientRect = Element.prototype.getBoundingClientRect;
+        // Provide realistic dimensions so floating-ui's `hide` middleware
+        // doesn't treat the anchor as hidden. jsdom reports zero-size rects for
+        // every element, which would otherwise cause the tooltip to render with
+        // `visibility: hidden` (making role-based queries fail).
+        Element.prototype.getBoundingClientRect = jest.fn(() => ({
+            width: 300,
+            height: 50,
+            top: 100,
+            left: 100,
+            bottom: 150,
+            right: 400,
+            x: 100,
+            y: 100,
+            toJSON: () => {},
+        }));
+        // Give the document a non-zero viewport so floating-ui's `hide`
+        // middleware doesn't consider the anchor to be outside the viewport.
+        Object.defineProperty(document.documentElement, "clientWidth", {
+            value: 1024,
+            configurable: true,
+        });
+        Object.defineProperty(document.documentElement, "clientHeight", {
+            value: 768,
+            configurable: true,
+        });
+    });
+
+    afterEach(() => {
+        Element.prototype.getBoundingClientRect = originalGetBoundingClientRect;
+    });
+
     beforeEach(() => {
         jest.useFakeTimers();
     });
@@ -42,11 +77,12 @@ describe("tooltip integration tests", () => {
 
         // Act
         await ue.unhover(anchor);
-        // There's a 100ms delay before TooltipAnchor calls _setActiveState with
+        // There's a 75ms delay before TooltipAnchor calls setActiveState with
         // instant set to true.  This second call is what actually triggers the
-        // call to this.props.onActiveChanged() which updates Tooltip's active
-        // state.
-        jest.runAllTimers();
+        // call to onActiveChanged() which updates Tooltip's active state.
+        act(() => {
+            jest.runAllTimers();
+        });
 
         // Assert
         expect(screen.queryByRole("tooltip")).toBeNull();

@@ -25,17 +25,15 @@
   },
   "dependencies": {
     "@khanacademy/wonder-blocks-core": "workspace:*",
+    "@khanacademy/wonder-blocks-floating": "workspace:*",
     "@khanacademy/wonder-blocks-layout": "workspace:*",
-    "@khanacademy/wonder-blocks-modal": "workspace:*",
     "@khanacademy/wonder-blocks-tokens": "workspace:*",
     "@khanacademy/wonder-blocks-typography": "workspace:*"
   },
   "peerDependencies": {
-    "@popperjs/core": "catalog:",
     "aphrodite": "catalog:",
     "react": "catalog:",
-    "react-dom": "catalog:",
-    "react-popper": "catalog:"
+    "react-dom": "catalog:"
   },
   "devDependencies": {
     "@khanacademy/wb-dev-build-settings": "workspace:*"

@@ -1651,21 +1651,18 @@ importers:
       '@khanacademy/wonder-blocks-core':
         specifier: workspace:*
         version: link:../wonder-blocks-core
+      '@khanacademy/wonder-blocks-floating':
+        specifier: workspace:*
+        version: link:../wonder-blocks-floating
       '@khanacademy/wonder-blocks-layout':
         specifier: workspace:*
         version: link:../wonder-blocks-layout
-      '@khanacademy/wonder-blocks-modal':
-        specifier: workspace:*
-        version: link:../wonder-blocks-modal
       '@khanacademy/wonder-blocks-tokens':
         specifier: workspace:*
         version: link:../wonder-blocks-tokens
       '@khanacademy/wonder-blocks-typography':
         specifier: workspace:*
         version: link:../wonder-blocks-typography
-      '@popperjs/core':
-        specifier: 'catalog:'
-        version: 2.11.8
       aphrodite:
         specifier: 'catalog:'
         version: 1.2.5
@@ -1675,9 +1672,6 @@ importers:
       react-dom:
         specifier: 'catalog:'
         version: 18.2.0(react@18.2.0)
-      react-popper:
-        specifier: 'catalog:'
-        version: 2.3.0(@popperjs/core@2.11.8)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
     devDependencies:
       '@khanacademy/wb-dev-build-settings':
         specifier: workspace:*
@@ -7677,6 +7671,7 @@ packages:
 
   typescript-coverage-report@1.1.0:
     resolution: {integrity: sha512-Ap8+AuUb5DE5kB1aqODkVJLIpwOMqo+hUY6vIoUEYFlm9F1Q1LoqHutzQ5Acgnk8y1gjELcxRwCuGOU4V4aWSg==}
+    deprecated: 'Broken package contents: the published dist requires react/semantic-ui-react. Upgrade to 2.0.0. See https://github.com/alexcanessa/typescript-coverage-report/issues/171'
     hasBin: true
     peerDependencies:
       typescript: 2 || 3 || 4 || 5

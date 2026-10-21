@@ -1,13 +1,48 @@
 import * as React from "react";
-import * as ReactDOM from "react-dom";
 import {act, render, screen} from "@testing-library/react";
 import {userEvent} from "@testing-library/user-event";
 
 import {View} from "@khanacademy/wonder-blocks-core";
+import {semanticColor} from "@khanacademy/wonder-blocks-tokens";
 
 import Tooltip from "../tooltip";
 
 describe("Tooltip", () => {
+    let originalGetBoundingClientRect: typeof Element.prototype.getBoundingClientRect;
+
+    beforeEach(() => {
+        originalGetBoundingClientRect = Element.prototype.getBoundingClientRect;
+        // Provide realistic dimensions so floating-ui's `hide` middleware
+        // doesn't treat the anchor as hidden. jsdom reports zero-size rects for
+        // every element, which would otherwise cause the tooltip to render with
+        // `visibility: hidden` (making role-based queries fail).
+        Element.prototype.getBoundingClientRect = jest.fn(() => ({
+            width: 300,
+            height: 50,
+            top: 100,
+            left: 100,
+            bottom: 150,
+            right: 400,
+            x: 100,
+            y: 100,
+            toJSON: () => {},
+        }));
+        // Give the document a non-zero viewport so floating-ui's `hide`
+        // middleware doesn't consider the anchor to be outside the viewport.
+        Object.defineProperty(document.documentElement, "clientWidth", {
+            value: 1024,
+            configurable: true,
+        });
+        Object.defineProperty(document.documentElement, "clientHeight", {
+            value: 768,
+            configurable: true,
+        });
+    });
+
+    afterEach(() => {
+        Element.prototype.getBoundingClientRect = originalGetBoundingClientRect;
+    });
+
     beforeEach(() => {
         jest.clearAllMocks();
         jest.clearAllTimers();
@@ -121,14 +156,89 @@ describe("Tooltip", () => {
 
             // Act
             const tooltipContent = await screen.findByRole("tooltip");
+            // The background is applied to the floating element that wraps
+            // the tooltip.
             // eslint-disable-next-line testing-library/no-node-access
-            const innerTooltipContentView = tooltipContent.firstChild;
-            expect(innerTooltipContentView).toBeInTheDocument();
+            const floatingElement = tooltipContent.parentElement;
 
             // Assert
-            expect(innerTooltipContentView).toHaveStyle(
+            expect(floatingElement).toHaveStyle(
                 "background-color: rgb(24, 101, 242)",
             );
+        });
+
+        it("should use the strong colors for the strong variant", async () => {
+            // Arrange
+            render(
+                <Tooltip content="Content" variant="strong" opened={true}>
+                    Anchor
+                </Tooltip>,
+            );
+
+            // Act
+            const tooltipContent = await screen.findByRole("tooltip");
+            // eslint-disable-next-line testing-library/no-node-access
+            const floatingElement = tooltipContent.parentElement;
+
+            // Assert
+            expect(floatingElement).toHaveStyle({
+                backgroundColor:
+                    semanticColor.feedback.neutral.strong.background,
+                color: semanticColor.feedback.neutral.strong.text,
+            });
+        });
+
+        it("should position the tooltip with the fixed strategy", async () => {
+            // Arrange
+            render(
+                <Tooltip content="Content" opened={true}>
+                    Anchor
+                </Tooltip>,
+            );
+
+            // Act
+            const tooltipContent = await screen.findByRole("tooltip");
+            // eslint-disable-next-line testing-library/no-node-access
+            const floatingElement = tooltipContent.parentElement;
+
+            // Assert
+            expect(floatingElement).toHaveStyle({position: "fixed"});
+        });
+
+        it("should render a tail pointing to the anchor", async () => {
+            // Arrange
+            render(
+                <Tooltip content="Content" opened={true}>
+                    Anchor
+                </Tooltip>,
+            );
+
+            // Act
+            const tooltipContent = await screen.findByRole("tooltip");
+            // eslint-disable-next-line testing-library/no-node-access
+            const tail = tooltipContent.parentElement?.querySelector("svg");
+
+            // Assert
+            expect(tail).toBeInTheDocument();
+        });
+
+        it("should keep the tooltip open while the bubble is hovered", async () => {
+            // Arrange
+            const ue = userEvent.setup({
+                advanceTimers: jest.advanceTimersByTimeAsync,
+            });
+            render(<Tooltip content="Content">Anchor</Tooltip>);
+            const anchor = await screen.findByText("Anchor");
+            await ue.hover(anchor);
+            await act(() => jest.runOnlyPendingTimersAsync());
+            const tooltip = await screen.findByRole("tooltip");
+
+            // Act
+            await ue.hover(tooltip);
+            await act(() => jest.runOnlyPendingTimersAsync());
+
+            // Assert
+            expect(screen.getByRole("tooltip")).toBeInTheDocument();
         });
     });
 
@@ -326,22 +436,18 @@ describe("Tooltip", () => {
             test("does not wrap", async () => {
                 // Arrange
                 const anchor = (
-                    <View>
+                    <View testId="anchor">
                         <View>Anchor</View>
                     </View>
                 );
-                const ref: Element = await new Promise((resolve: any) => {
-                    render(
-                        <View>
-                            <Tooltip ref={resolve} content="Content">
-                                {anchor}
-                            </Tooltip>
-                        </View>,
-                    );
-                });
+                render(
+                    <View>
+                        <Tooltip content="Content">{anchor}</Tooltip>
+                    </View>,
+                );
 
                 // Act
-                const result = ReactDOM.findDOMNode(ref) as any;
+                const result = screen.getByTestId("anchor");
 
                 // Assert
                 expect(result).toBeInstanceOf(HTMLDivElement);
@@ -352,24 +458,18 @@ describe("Tooltip", () => {
 
             test("id provided, does not attach aria-describedby when bubble is not displayed", async () => {
                 // Arrange
-                const ref: Element = await new Promise((resolve: any) => {
-                    render(
-                        <View>
-                            <Tooltip
-                                id="tooltip-3"
-                                ref={resolve}
-                                content="Content"
-                            >
-                                <View>
-                                    <View>Anchor</View>
-                                </View>
-                            </Tooltip>
-                        </View>,
-                    );
-                });
+                render(
+                    <View>
+                        <Tooltip id="tooltip-3" content="Content">
+                            <View testId="anchor">
+                                <View>Anchor</View>
+                            </View>
+                        </Tooltip>
+                    </View>,
+                );
 
                 // Act
-                const result = ReactDOM.findDOMNode(ref) as any;
+                const result = screen.getByTestId("anchor");
 
                 // Assert
                 expect(result).not.toHaveAttribute("aria-describedby");
@@ -380,24 +480,18 @@ describe("Tooltip", () => {
                 const ue = userEvent.setup({
                     advanceTimers: jest.advanceTimersByTimeAsync,
                 });
-                const ref: Element = await new Promise((resolve: any) => {
-                    render(
-                        <View>
-                            <Tooltip
-                                id="tooltip-3"
-                                ref={resolve}
-                                content="Content"
-                            >
-                                <View>
-                                    <View>Anchor</View>
-                                </View>
-                            </Tooltip>
-                        </View>,
-                    );
-                });
+                render(
+                    <View>
+                        <Tooltip id="tooltip-3" content="Content">
+                            <View testId="anchor">
+                                <View>Anchor</View>
+                            </View>
+                        </Tooltip>
+                    </View>,
+                );
 
                 // Act
-                const result = ReactDOM.findDOMNode(ref) as any;
+                const result = screen.getByTestId("anchor");
                 await ue.hover(result);
                 await act(() => jest.runOnlyPendingTimersAsync());
 
@@ -414,26 +508,20 @@ describe("Tooltip", () => {
                     advanceTimers: jest.advanceTimersByTimeAsync,
                 });
                 const anchor = (
-                    <View>
+                    <View testId="anchor">
                         <View>Anchor</View>
                     </View>
                 );
-                const ref: Element = await new Promise((resolve: any) => {
-                    render(
-                        <View>
-                            <Tooltip
-                                id="tooltip-3"
-                                ref={resolve}
-                                content="Content"
-                            >
-                                {anchor}
-                            </Tooltip>
-                        </View>,
-                    );
-                });
+                render(
+                    <View>
+                        <Tooltip id="tooltip-3" content="Content">
+                            {anchor}
+                        </Tooltip>
+                    </View>,
+                );
 
                 // Act
-                const result = ReactDOM.findDOMNode(ref) as any;
+                const result = screen.getByTestId("anchor");
                 await ue.hover(result);
                 await act(() => jest.runOnlyPendingTimersAsync());
                 const tooltip = await screen.findByRole("tooltip");
@@ -445,22 +533,18 @@ describe("Tooltip", () => {
             test("no id provided, does not attach aria-describedby when bubble is not displayed", async () => {
                 // Arrange
                 const anchor = (
-                    <View>
+                    <View testId="anchor">
                         <View>Anchor</View>
                     </View>
                 );
-                const ref: Element = await new Promise((resolve: any) => {
-                    render(
-                        <View>
-                            <Tooltip ref={resolve} content="Content">
-                                {anchor}
-                            </Tooltip>
-                        </View>,
-                    );
-                });
+                render(
+                    <View>
+                        <Tooltip content="Content">{anchor}</Tooltip>
+                    </View>,
+                );
 
                 // Act
-                const result = ReactDOM.findDOMNode(ref) as any;
+                const result = screen.getByTestId("anchor");
 
                 // Assert
                 expect(result).not.toHaveAttribute("aria-describedby");
@@ -472,22 +556,18 @@ describe("Tooltip", () => {
                     advanceTimers: jest.advanceTimersByTimeAsync,
                 });
                 const anchor = (
-                    <View>
+                    <View testId="anchor">
                         <View>Anchor</View>
                     </View>
                 );
-                const ref: Element = await new Promise((resolve: any) => {
-                    render(
-                        <View>
-                            <Tooltip ref={resolve} content="Content">
-                                {anchor}
-                            </Tooltip>
-                        </View>,
-                    );
-                });
+                render(
+                    <View>
+                        <Tooltip content="Content">{anchor}</Tooltip>
+                    </View>,
+                );
 
                 // Act
-                const result = ReactDOM.findDOMNode(ref) as any;
+                const result = screen.getByTestId("anchor");
                 await ue.hover(result);
                 await act(() => jest.runOnlyPendingTimersAsync());
 
@@ -504,22 +584,18 @@ describe("Tooltip", () => {
                     advanceTimers: jest.advanceTimersByTimeAsync,
                 });
                 const anchor = (
-                    <View>
+                    <View testId="anchor">
                         <View>Anchor</View>
                     </View>
                 );
-                const ref: Element = await new Promise((resolve: any) => {
-                    render(
-                        <View>
-                            <Tooltip ref={resolve} content="Content">
-                                {anchor}
-                            </Tooltip>
-                        </View>,
-                    );
-                });
+                render(
+                    <View>
+                        <Tooltip content="Content">{anchor}</Tooltip>
+                    </View>,
+                );
 
                 // Act
-                const result = ReactDOM.findDOMNode(ref) as any;
+                const result = screen.getByTestId("anchor");
                 await ue.hover(result);
                 await act(() => jest.runOnlyPendingTimersAsync());
                 const tooltip = await screen.findByRole("tooltip");

@@ -2,7 +2,7 @@ import * as React from "react";
 import {StyleSheet} from "aphrodite";
 import type {Meta, StoryObj} from "@storybook/react-vite";
 
-import {expect, within, userEvent} from "storybook/test";
+import {expect, within, userEvent, waitFor} from "storybook/test";
 
 import magnifyingGlass from "@phosphor-icons/core/regular/magnifying-glass.svg";
 import info from "@phosphor-icons/core/regular/info.svg";
@@ -80,7 +80,7 @@ export default {
             />
         ),
         chromatic: {
-            // Added to ensure that the tooltip is rendered using PopperJS.
+            // Added to ensure that the tooltip is positioned by floating-ui.
             delay: 500,
             // Visual coverage is provided by the Tooltip StateSheet snapshot.
             disableSnapshot: true,
@@ -430,15 +430,12 @@ export const Strong: StoryComponentType = {
 };
 
 /**
- * Tooltip by default (and for performance reasons) only updates its position
- * under the following conditions:
+ * Tooltip keeps its position in sync with the trigger element: it updates
+ * when the window is resized, when the scroll position changes, and when the
+ * trigger element changes size or position.
  *
- * 1. When the window is resized.
- * 2. When the scroll position changes.
- *
- * However, there are cases where you might want the tooltip to update its
- * position when the trigger element changes. This can be done by setting the
- * `autoUpdate` prop to `true`.
+ * **NOTE:** The `autoUpdate` prop is deprecated and is now a no-op, as this is
+ * always the case.
  */
 export const AutoUpdate: StoryComponentType = {
     render: function Render() {
@@ -472,7 +469,6 @@ export const AutoUpdate: StoryComponentType = {
                 <Tooltip
                     content="This is a tooltip that auto-updates its position when the trigger element changes."
                     opened={true}
-                    autoUpdate={true}
                 >
                     <View
                         style={[
@@ -505,15 +501,23 @@ export const AutoUpdate: StoryComponentType = {
             }),
         );
 
-        // Wait for the tooltip to update its position
-        const newTooltip = await canvas.findByRole("tooltip");
-        const newLeft = newTooltip.getBoundingClientRect().left;
-        const newTop = newTooltip.getBoundingClientRect().top;
-
         // Assert
-        // The tooltip should have updated its position
-        await expect(initialLeft).not.toEqual(newLeft);
-        await expect(initialTop).not.toEqual(newTop);
+        // The tooltip should have updated its position. floating-ui detects
+        // that the trigger moved asynchronously, so we wait for it.
+        // NOTE: When the trigger moves before floating-ui first observes it
+        // (as it does here, right after mounting), floating-ui retries after
+        // 1s, so we wait longer than `waitFor`'s default timeout.
+        await waitFor(
+            async () => {
+                const newTooltip = await canvas.findByRole("tooltip");
+                const {left: newLeft, top: newTop} =
+                    newTooltip.getBoundingClientRect();
+
+                await expect(initialLeft).not.toEqual(newLeft);
+                await expect(initialTop).not.toEqual(newTop);
+            },
+            {timeout: 3000},
+        );
     },
 };
 
