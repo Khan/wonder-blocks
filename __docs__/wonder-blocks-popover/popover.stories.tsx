@@ -5,7 +5,9 @@ import {StyleSheet} from "aphrodite";
 import type {Meta, StoryObj} from "@storybook/react-vite";
 
 import Button from "@khanacademy/wonder-blocks-button";
-import {View} from "@khanacademy/wonder-blocks-core";
+import {addStyle, View} from "@khanacademy/wonder-blocks-core";
+import {TextArea} from "@khanacademy/wonder-blocks-form";
+import {LabeledField} from "@khanacademy/wonder-blocks-labeled-field";
 import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {BodyText, Heading} from "@khanacademy/wonder-blocks-typography";
 import type {Placement} from "@khanacademy/wonder-blocks-tooltip";
@@ -14,6 +16,8 @@ import {Popover, PopoverContent} from "@khanacademy/wonder-blocks-popover";
 import packageConfig from "../../packages/wonder-blocks-popover/package.json";
 
 import ComponentInfo from "../components/component-info";
+import {reallyLongText} from "../components/text-for-testing";
+import {allModes} from "../../.storybook/modes";
 import PopoverArgtypes, {ContentMappings} from "./popover.argtypes";
 
 export default {
@@ -40,7 +44,18 @@ export default {
     ],
 } as Meta<typeof Popover>;
 
+const StyledForm = addStyle("form");
+
 const styles = StyleSheet.create({
+    form: {
+        display: "flex",
+        flexDirection: "column",
+        flexGrow: 1,
+        gap: sizing.size_160,
+    },
+    submitButton: {
+        alignSelf: "flex-end",
+    },
     container: {
         display: "grid",
         gridTemplateColumns: "repeat(2, 1fr)",
@@ -823,6 +838,102 @@ export const WithDocumentRootBoundary: StoryComponentType = {
                 </Popover>
             </View>
         );
+    },
+};
+
+/**
+ * The popover is constrained to the space available in the viewport (or the
+ * document, when using `rootBoundary="document"`). When the content doesn't
+ * fit, e.g. on small screens or at high zoom levels (up to 400%), the content
+ * scrolls instead of being cut off. The content fades out at the edges to
+ * indicate that there's more content to scroll to, and the scrollable area
+ * becomes keyboard focusable so it can be scrolled with the keyboard.
+ *
+ * This example is rendered in the "400% zoom" viewport (320x256, which is a
+ * 1280x1024 screen zoomed in to 400%) to show the content scrolling. You can
+ * change the viewport from the toolbar.
+ *
+ * It also includes a form (`LabeledField` + `TextArea`) with a submit button
+ * to show how interactive content behaves when it scrolls.
+ */
+export const WithLongContent: StoryComponentType = {
+    render: function Render() {
+        const [opened, setOpened] = React.useState(true);
+        const [feedback, setFeedback] = React.useState("");
+
+        const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+            event.preventDefault();
+            setOpened(false);
+        };
+
+        return (
+            <View style={styles.example}>
+                <Popover
+                    opened={opened}
+                    onClose={() => setOpened(false)}
+                    dismissEnabled
+                    content={
+                        <PopoverContent
+                            closeButtonVisible
+                            title="Popover with long content"
+                            content={reallyLongText}
+                            actions={
+                                <StyledForm
+                                    style={styles.form}
+                                    onSubmit={handleSubmit}
+                                >
+                                    <LabeledField
+                                        label="Feedback"
+                                        field={
+                                            <TextArea
+                                                value={feedback}
+                                                onChange={setFeedback}
+                                            />
+                                        }
+                                    />
+                                    <Button
+                                        type="submit"
+                                        style={styles.submitButton}
+                                    >
+                                        Submit
+                                    </Button>
+                                </StyledForm>
+                            }
+                        />
+                    }
+                    placement="top"
+                >
+                    <Button onClick={() => setOpened(true)}>
+                        Open popover with long content
+                    </Button>
+                </Popover>
+            </View>
+        );
+    },
+    parameters: {
+        chromatic: {
+            // Capture the 400% zoom viewport in every theme.
+            modes: {
+                "zoom400 default": {
+                    ...allModes.zoom400,
+                    ...allModes.themeDefault,
+                },
+                "zoom400 thunderblocks": {
+                    ...allModes.zoom400,
+                    ...allModes.themeThunderBlocks,
+                },
+                "zoom400 syl-dark": {
+                    ...allModes.zoom400,
+                    ...allModes.themeSylDark,
+                },
+            },
+            disableSnapshot: false,
+        },
+    },
+    globals: {
+        viewport: {
+            value: "zoom400",
+        },
     },
 };
 

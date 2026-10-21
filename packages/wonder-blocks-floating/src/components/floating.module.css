@@ -17,3 +17,8 @@
     /* Prevent the floating element from receiving focus when it is clicked. */
     outline: none;
 }
+
+.constrained: {
+    display: flex;
+    flex-direction: column;
+}

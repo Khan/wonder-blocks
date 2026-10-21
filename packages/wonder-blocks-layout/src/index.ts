@@ -4,6 +4,7 @@ import type {MockStyleSheet} from "./components/media-layout";
 
 export {default as MediaLayout} from "./components/media-layout";
 export {default as MediaLayoutContext} from "./components/media-layout-context";
+export {default as ScrollableView} from "./components/scrollable-view";
 export {default as Spring} from "./components/spring";
 export {default as Strut} from "./components/strut";
 export * from "./util/specs";

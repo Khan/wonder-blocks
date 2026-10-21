@@ -12,6 +12,11 @@ export const allModes = {
     chromebook: {
         viewport: "chromebook",
     },
+    // Simulates 400% browser zoom with a small viewport (320x256). It's useful
+    // for snapshots, but it doesn't replace testing with real browser zoom.
+    zoom400: {
+        viewport: "zoom400",
+    },
     // Theming
     themeDefault: {
         theme: "default",

@@ -1,10 +1,31 @@
+import * as React from "react";
 import {act, renderHook, RenderHookResult} from "@testing-library/react";
+
+import {
+    WonderBlocksConfigProvider,
+    defaultStringsEn,
+} from "@khanacademy/wonder-blocks-config";
+
 import {useFieldValidation} from "../use-field-validation";
 
 type HookResult = RenderHookResult<
     ReturnType<typeof useFieldValidation>,
     Parameters<typeof useFieldValidation>[0]
 >["result"];
+
+const TranslatedConfigProvider = ({children}: {children: React.ReactNode}) => (
+    <WonderBlocksConfigProvider
+        i18n={{
+            strings: {
+                ...defaultStringsEn,
+                requiredFieldMessage: "translated text",
+            },
+            locale: "es",
+        }}
+    >
+        {children}
+    </WonderBlocksConfigProvider>
+);
 
 describe("useFieldValidation", () => {
     const testErrorMessage = "Error message";
@@ -442,6 +463,52 @@ describe("useFieldValidation", () => {
                         // Assert
                         expect(onValidate).toHaveBeenCalledExactlyOnceWith(
                             "This field is required.",
+                        );
+                    });
+
+                    it("should have an errorMessage with the required text from the config provider if required is true", () => {
+                        // Arrange
+                        const {result} = renderHook(
+                            () =>
+                                useFieldValidation({
+                                    value: "X",
+                                    instantValidation,
+                                    required: true,
+                                }),
+                            {wrapper: TranslatedConfigProvider},
+                        );
+
+                        // Act
+                        act(() => {
+                            action(result, "");
+                        });
+
+                        // Assert
+                        expect(result.current.errorMessage).toBe(
+                            "translated text",
+                        );
+                    });
+
+                    it("should prefer the required text prop over the config provider", () => {
+                        // Arrange
+                        const {result} = renderHook(
+                            () =>
+                                useFieldValidation({
+                                    value: "X",
+                                    instantValidation,
+                                    required: "overriding text",
+                                }),
+                            {wrapper: TranslatedConfigProvider},
+                        );
+
+                        // Act
+                        act(() => {
+                            action(result, "");
+                        });
+
+                        // Assert
+                        expect(result.current.errorMessage).toBe(
+                            "overriding text",
                         );
                     });
                 });
