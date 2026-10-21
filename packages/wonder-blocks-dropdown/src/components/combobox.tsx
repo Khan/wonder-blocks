@@ -192,6 +192,7 @@ export default function Combobox({
         () => ({
             closedState: propLabels?.closedState,
             liveRegionCurrentItem: propLabels?.liveRegionCurrentItem,
+            liveRegionListboxTotal: propLabels?.liveRegionListboxTotal,
             liveRegionMultipleSelectionTotal:
                 propLabels?.liveRegionMultipleSelectionTotal,
             noItems: propLabels?.noItems,
@@ -593,6 +594,7 @@ export default function Combobox({
                 ]}
             >
                 <ComboboxLiveRegion
+                    focusedIndex={focusedIndex}
                     focusedMultiSelectIndex={focusedMultiSelectIndex}
                     labels={liveRegionLabels}
                     options={renderList}

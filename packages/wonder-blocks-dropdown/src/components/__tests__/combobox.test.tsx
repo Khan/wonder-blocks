@@ -1072,7 +1072,7 @@ describe("Combobox", () => {
             it("should announce when an item is selected", async () => {
                 // Arrange
                 doRender(
-                    <Combobox selectionType="single" value="">
+                    <Combobox selectionType="multiple" value={["option1"]}>
                         <OptionItem label="Option 1" value="option1" />
                         <OptionItem label="Option 2" value="option2" />
                         <OptionItem label="Option 3" value="option3" />
@@ -1091,7 +1091,7 @@ describe("Combobox", () => {
 
                 // Assert
                 expect(screen.getByRole("log")).toHaveTextContent(
-                    "Option 2 selected",
+                    "Option 2 selected, 2 of 3. 3 results available.",
                 );
             });
 
