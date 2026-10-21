@@ -21,7 +21,6 @@ describe("ComboboxLiveRegion", () => {
         // Act
         render(
             <ComboboxLiveRegion
-                focusedIndex={-1}
                 focusedMultiSelectIndex={-1}
                 options={options}
                 selectedLabels={[]}
@@ -41,7 +40,6 @@ describe("ComboboxLiveRegion", () => {
             // Act
             render(
                 <ComboboxLiveRegion
-                    focusedIndex={-1}
                     focusedMultiSelectIndex={0}
                     options={options}
                     selected={["option2"]}
@@ -60,7 +58,6 @@ describe("ComboboxLiveRegion", () => {
             // Arrange
             const {rerender} = render(
                 <ComboboxLiveRegion
-                    focusedIndex={-1}
                     focusedMultiSelectIndex={-1}
                     options={options}
                     selected={["option2"]}
@@ -72,7 +69,6 @@ describe("ComboboxLiveRegion", () => {
             // Act
             rerender(
                 <ComboboxLiveRegion
-                    focusedIndex={-1}
                     focusedMultiSelectIndex={-1}
                     options={options}
                     selected={null}
@@ -101,18 +97,17 @@ describe("ComboboxLiveRegion", () => {
             // select the first option
             render(
                 <ComboboxLiveRegion
-                    focusedIndex={0}
                     focusedMultiSelectIndex={-1}
                     options={options}
                     selected={["option1"]}
                     selectedLabels={["Option 1"]}
-                    opened={true}
+                    opened={false}
                 />,
             );
 
             // Assert
             expect(screen.getByRole("log")).toHaveTextContent(
-                "Option 1 selected, 1 of 2. 2 results available.",
+                "Option 1 selected",
             );
         });
 
@@ -121,7 +116,6 @@ describe("ComboboxLiveRegion", () => {
             // Focus on the first pill
             const {rerender} = render(
                 <ComboboxLiveRegion
-                    focusedIndex={-1}
                     focusedMultiSelectIndex={1}
                     options={options}
                     selected={["option1", "option2"]}
@@ -133,7 +127,6 @@ describe("ComboboxLiveRegion", () => {
             // Act
             rerender(
                 <ComboboxLiveRegion
-                    focusedIndex={-1}
                     focusedMultiSelectIndex={0}
                     options={options}
                     selected={["option1"]}
@@ -153,7 +146,6 @@ describe("ComboboxLiveRegion", () => {
             // Arrange
             const {rerender} = render(
                 <ComboboxLiveRegion
-                    focusedIndex={-1}
                     focusedMultiSelectIndex={-1}
                     options={options}
                     selectedLabels={[]}
@@ -166,7 +158,6 @@ describe("ComboboxLiveRegion", () => {
             // Act
             rerender(
                 <ComboboxLiveRegion
-                    focusedIndex={-1}
                     focusedMultiSelectIndex={-1}
                     options={options}
                     selectedLabels={[]}
@@ -184,46 +175,32 @@ describe("ComboboxLiveRegion", () => {
     });
 
     describe("announcement strings", () => {
-        it("announces a single result with singular grammar", () => {
+        it("announces a single selected option with singular grammar", () => {
             // Arrange
-            const options = [
-                <OptionItem key="1" label="Option 1" value="option1" />,
-            ];
 
             // Act
             render(
                 <ComboboxLiveRegion
-                    focusedIndex={0}
-                    focusedMultiSelectIndex={-1}
+                    focusedMultiSelectIndex={0}
                     options={options}
-                    selectedLabels={[]}
-                    selected={null}
+                    selected={["option1"]}
+                    selectedLabels={["Option 1"]}
                     opened={true}
                 />,
             );
 
             // Assert
             expect(screen.getByRole("log")).toHaveTextContent(
-                "Option 1, 1 of 1. 1 result available.",
+                "Option 1 focused, 1 of 1. 1 selected option.",
             );
         });
 
-        it("announces all of the states of the current item", () => {
+        it("doesn't announce the focused option in the listbox", () => {
             // Arrange
-            const options = [
-                <OptionItem
-                    key="1"
-                    label="Option 1"
-                    value="option1"
-                    disabled={true}
-                    selected={true}
-                />,
-            ];
 
             // Act
             render(
                 <ComboboxLiveRegion
-                    focusedIndex={0}
                     focusedMultiSelectIndex={-1}
                     options={options}
                     selectedLabels={[]}
@@ -233,9 +210,7 @@ describe("ComboboxLiveRegion", () => {
             );
 
             // Assert
-            expect(screen.getByRole("log")).toHaveTextContent(
-                "Option 1 disabled selected, 1 of 1. 1 result available.",
-            );
+            expect(screen.getByRole("log")).toHaveTextContent("");
         });
     });
 
@@ -253,13 +228,9 @@ describe("ComboboxLiveRegion", () => {
                 index: number;
                 total: number;
             }) => `translated ${current}, ${index} of ${total}`,
-            srNumResultsAvailable: ({num}: {num: number}) =>
-                `translated ${num} results available`,
             srNumSelectedOptions: ({num}: {num: number}) =>
                 `translated ${num} selected options`,
-            srDisabled: "translated disabled",
             srFocused: "translated focused",
-            srSelected: "translated selected",
             srItemsSelected: ({labels}: {labels: string}) =>
                 `translated ${labels} selected`,
             srSelectionCleared: "translated selection cleared",
@@ -298,7 +269,6 @@ describe("ComboboxLiveRegion", () => {
                 // Act
                 render(
                     <ComboboxLiveRegion
-                        focusedIndex={-1}
                         focusedMultiSelectIndex={-1}
                         options={options}
                         selectedLabels={[]}
@@ -320,8 +290,7 @@ describe("ComboboxLiveRegion", () => {
                 {
                     case: "no label",
                     labels: undefined,
-                    expected:
-                        "translated Option 1 translated disabled translated selected, 1 of 2",
+                    expected: "translated Option 1 translated focused, 1 of 2",
                 },
                 {
                     case: "a custom label",
@@ -340,84 +309,14 @@ describe("ComboboxLiveRegion", () => {
                 },
             ])("announces $expected when given $case", ({labels, expected}) => {
                 // Arrange
-                const options = [
-                    <OptionItem
-                        key="1"
-                        label="Option 1"
-                        value="option1"
-                        disabled={true}
-                        selected={true}
-                    />,
-                    <OptionItem key="2" label="Option 2" value="option2" />,
-                ];
 
                 // Act
                 render(
                     <ComboboxLiveRegion
-                        focusedIndex={0}
-                        focusedMultiSelectIndex={-1}
-                        options={options}
-                        selectedLabels={[]}
-                        selected={null}
-                        opened={true}
-                        labels={labels}
-                    />,
-                    {wrapper: ConfigProvider},
-                );
-
-                // Assert
-                expect(screen.getByRole("log")).toHaveTextContent(expected);
-            });
-
-            it("announces the focused pill with the focused string from the config provider", () => {
-                // Arrange
-
-                // Act
-                render(
-                    <ComboboxLiveRegion
-                        focusedIndex={-1}
-                        focusedMultiSelectIndex={1}
+                        focusedMultiSelectIndex={0}
                         options={options}
                         selected={["option1", "option2"]}
                         selectedLabels={["Option 1", "Option 2"]}
-                        opened={true}
-                    />,
-                    {wrapper: ConfigProvider},
-                );
-
-                // Assert
-                expect(screen.getByRole("log")).toHaveTextContent(
-                    "translated Option 2 translated focused, 2 of 2",
-                );
-            });
-        });
-
-        describe("liveRegionListboxTotal", () => {
-            it.each([
-                {
-                    case: "no label",
-                    labels: undefined,
-                    expected: "translated 2 results available",
-                },
-                {
-                    case: "a custom label",
-                    labels: {
-                        liveRegionListboxTotal: (total: number) =>
-                            `Custom ${total} results`,
-                    },
-                    expected: "Custom 2 results",
-                },
-            ])("announces $expected when given $case", ({labels, expected}) => {
-                // Arrange
-
-                // Act
-                render(
-                    <ComboboxLiveRegion
-                        focusedIndex={0}
-                        focusedMultiSelectIndex={-1}
-                        options={options}
-                        selectedLabels={[]}
-                        selected={null}
                         opened={true}
                         labels={labels}
                     />,
@@ -450,7 +349,6 @@ describe("ComboboxLiveRegion", () => {
                 // Act
                 render(
                     <ComboboxLiveRegion
-                        focusedIndex={-1}
                         focusedMultiSelectIndex={1}
                         options={options}
                         selected={["option1", "option2"]}
@@ -489,7 +387,6 @@ describe("ComboboxLiveRegion", () => {
                 // Act
                 render(
                     <ComboboxLiveRegion
-                        focusedIndex={-1}
                         focusedMultiSelectIndex={-1}
                         options={[]}
                         selectedLabels={[]}
@@ -526,7 +423,6 @@ describe("ComboboxLiveRegion", () => {
                 // Act
                 render(
                     <ComboboxLiveRegion
-                        focusedIndex={-1}
                         focusedMultiSelectIndex={-1}
                         options={options}
                         selected="option1"
@@ -563,7 +459,6 @@ describe("ComboboxLiveRegion", () => {
                 // Arrange
                 const {rerender} = render(
                     <ComboboxLiveRegion
-                        focusedIndex={-1}
                         focusedMultiSelectIndex={-1}
                         options={options}
                         selected="option1"
@@ -577,7 +472,6 @@ describe("ComboboxLiveRegion", () => {
                 // Act
                 rerender(
                     <ComboboxLiveRegion
-                        focusedIndex={-1}
                         focusedMultiSelectIndex={-1}
                         options={options}
                         selected={null}
@@ -611,7 +505,6 @@ describe("ComboboxLiveRegion", () => {
                 // Arrange
                 const {rerender} = render(
                     <ComboboxLiveRegion
-                        focusedIndex={-1}
                         focusedMultiSelectIndex={-1}
                         options={options}
                         selected={["option1", "option2"]}
@@ -625,7 +518,6 @@ describe("ComboboxLiveRegion", () => {
                 // Act
                 rerender(
                     <ComboboxLiveRegion
-                        focusedIndex={-1}
                         focusedMultiSelectIndex={-1}
                         options={options}
                         selected={["option1"]}

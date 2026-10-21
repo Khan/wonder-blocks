@@ -104,8 +104,11 @@ export type ComboboxLabels = {
     liveRegionMultipleSelectionTotal: (total: number) => string;
     /**
      * Label for the total number of items in the listbox.
+     *
+     * @deprecated This label is no longer used. Screen readers announce the
+     * focused option in the listbox, including its position, on their own.
      */
-    liveRegionListboxTotal: (total: number) => string;
+    liveRegionListboxTotal?: (total: number) => string;
 
     /**
      * Label for when there are no items associated with the combobox input

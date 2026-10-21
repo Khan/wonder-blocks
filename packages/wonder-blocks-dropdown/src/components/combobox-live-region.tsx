@@ -2,7 +2,6 @@ import {addStyle} from "@khanacademy/wonder-blocks-core";
 import {useWonderBlocksI18n} from "@khanacademy/wonder-blocks-config";
 import {StyleSheet} from "aphrodite";
 import * as React from "react";
-import {getLabel} from "../util/helpers";
 import {
     ComboboxLabels,
     MaybeValueOrValues,
@@ -12,10 +11,6 @@ import {
 const StyledSpan = addStyle("span");
 
 type Props = {
-    /**
-     * The index of the focused item in the listbox.
-     */
-    focusedIndex: number;
     /**
      * The index of the focused item in the multi-select combobox.
      */
@@ -28,7 +23,6 @@ type Props = {
             ComboboxLabels,
             | "closedState"
             | "liveRegionCurrentItem"
-            | "liveRegionListboxTotal"
             | "liveRegionMultipleSelectionTotal"
             | "noItems"
             | "selected"
@@ -75,7 +69,6 @@ type Props = {
  * @see https://bugs.webkit.org/show_bug.cgi?id=167671
  */
 export function ComboboxLiveRegion({
-    focusedIndex,
     focusedMultiSelectIndex,
     labels: propLabels,
     selectedLabels,
@@ -95,18 +88,13 @@ export function ComboboxLiveRegion({
             closedState: propLabels?.closedState || strings.srComboboxClosed,
             liveRegionCurrentItem:
                 propLabels?.liveRegionCurrentItem ||
-                (({current, index, total, disabled, focused, selected}) => {
-                    // The states are separate strings so they can be
-                    // translated without needing a message for each
-                    // combination of them.
-                    const states = [
-                        focused && strings.srFocused,
-                        disabled && strings.srDisabled,
-                        selected && strings.srSelected,
-                    ].filter(Boolean);
-
+                (({current, index, total, focused}) => {
+                    // The focused state is a separate string so it can be
+                    // translated on its own.
                     return strings.srCurrentItemDetails({
-                        current: [current, ...states].join(" "),
+                        current: focused
+                            ? `${current} ${strings.srFocused}`
+                            : current,
                         // `index` is 0-based, but the announcement is 1-based.
                         // This is done here since translated messages can't
                         // add 1 to it.
@@ -114,9 +102,6 @@ export function ComboboxLiveRegion({
                         total,
                     });
                 }),
-            liveRegionListboxTotal:
-                propLabels?.liveRegionListboxTotal ||
-                ((total) => strings.srNumResultsAvailable({num: total})),
             liveRegionMultipleSelectionTotal:
                 propLabels?.liveRegionMultipleSelectionTotal ||
                 ((total) => strings.srNumSelectedOptions({num: total})),
@@ -205,36 +190,10 @@ export function ComboboxLiveRegion({
             return labels.noItems;
         }
 
-        // If there are no focused items, don't announce anything.
-        if (focusedIndex < 0 || !options[focusedIndex]) {
-            return "";
-        }
-
-        // Announces the focused item in the listbox. This happens when the user
-        // navigates the listbox using the arrow keys.
-        const currentItemProps = options[focusedIndex].props;
-        const label = getLabel(currentItemProps);
-        const totalResults = options.length;
-
-        return (
-            labels.liveRegionCurrentItem({
-                current: label,
-                disabled: currentItemProps.disabled,
-                focused: false,
-                index: focusedIndex,
-                selected: currentItemProps.selected,
-                total: totalResults,
-            }) +
-            " " +
-            labels.liveRegionListboxTotal(totalResults)
-        );
-    }, [
-        focusedIndex,
-        focusedMultiSelectIndex,
-        labels,
-        options,
-        selectedLabels,
-    ]);
+        // NOTE: The focused option in the listbox isn't announced here, since
+        // screen readers already announce it from `aria-activedescendant`.
+        return "";
+    }, [focusedMultiSelectIndex, labels, options, selectedLabels]);
 
     return (
         <StyledSpan
