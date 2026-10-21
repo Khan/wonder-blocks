@@ -81,7 +81,8 @@ export default {
         },
     },
     closeButtonLabel: {
-        description: "Close button label for use in screen readers",
+        description:
+            "Close button label for use in screen readers. This overrides the default label provided by `WonderBlocksConfigProvider`.",
         control: {type: "text"},
     },
     style: {
