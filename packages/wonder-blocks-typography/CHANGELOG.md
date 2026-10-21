@@ -1,5 +1,12 @@
 # @khanacademy/wonder-blocks-typography
 
+## 5.0.6
+
+### Patch Changes
+
+- Updated dependencies [cbdc909]
+    - @khanacademy/wonder-blocks-tokens@18.1.0
+
 ## 5.0.5
 
 ### Patch Changes
