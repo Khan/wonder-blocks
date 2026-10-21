@@ -56,6 +56,20 @@ const styles = StyleSheet.create({
     wrapper: {
         height: 550,
     },
+    customLabelsGrid: {
+        padding: sizing.size_160,
+        // Leaves room for the opened listbox (about 410px tall), so it doesn't
+        // overlap the comboboxes in the next row.
+        gap: 400,
+    },
+    customLabelsRow: {
+        flexDirection: "row",
+        alignItems: "flex-start",
+        gap: sizing.size_160,
+    },
+    customLabelsColumn: {
+        gap: sizing.size_120,
+    },
 });
 
 const defaultArgs = {
@@ -74,11 +88,15 @@ export default {
     args: defaultArgs,
     argTypes,
     decorators: [
-        (Story): React.ReactElement<React.ComponentProps<typeof View>> => (
-            <View style={styles.example}>
+        (Story, {parameters}): React.ReactElement =>
+            // Stories with the fullscreen layout set up their own layout.
+            parameters.layout === "fullscreen" ? (
                 <Story />
-            </View>
-        ),
+            ) : (
+                <View style={styles.example}>
+                    <Story />
+                </View>
+            ),
     ],
     parameters: {
         componentSubtitle: (
@@ -558,41 +576,56 @@ export const CustomLabels: Story = {
         };
 
         return (
-            <View style={{gap: sizing.size_120}}>
-                <BodyText>Single select with built-in labels:</BodyText>
-                <Combobox
-                    {...args}
-                    selectionType="single"
-                    value={singleDefaultValue}
-                    onChange={setSingleDefaultValue}
-                />
-                <BodyText>Single select with custom labels:</BodyText>
-                <Combobox
-                    {...args}
-                    selectionType="single"
-                    labels={customLabels}
-                    value={singleValue}
-                    onChange={setSingleValue}
-                />
-                <BodyText>Multi-select with built-in labels:</BodyText>
-                <Combobox
-                    {...args}
-                    selectionType="multiple"
-                    value={multipleDefaultValue}
-                    onChange={setMultipleDefaultValue}
-                />
-                <BodyText>Multi-select with custom labels:</BodyText>
-                <Combobox
-                    {...args}
-                    selectionType="multiple"
-                    labels={customLabels}
-                    value={multipleValue}
-                    onChange={setMultipleValue}
-                />
+            <View style={styles.customLabelsGrid}>
+                <View style={styles.customLabelsRow}>
+                    <View style={[styles.example, styles.customLabelsColumn]}>
+                        <BodyText>Single select with built-in labels:</BodyText>
+                        <Combobox
+                            {...args}
+                            selectionType="single"
+                            value={singleDefaultValue}
+                            onChange={setSingleDefaultValue}
+                        />
+                    </View>
+                    <View style={[styles.example, styles.customLabelsColumn]}>
+                        <BodyText>Single select with custom labels:</BodyText>
+                        <Combobox
+                            {...args}
+                            selectionType="single"
+                            labels={customLabels}
+                            value={singleValue}
+                            onChange={setSingleValue}
+                        />
+                    </View>
+                </View>
+                <View style={styles.customLabelsRow}>
+                    <View style={[styles.example, styles.customLabelsColumn]}>
+                        <BodyText>Multi-select with built-in labels:</BodyText>
+                        <Combobox
+                            {...args}
+                            selectionType="multiple"
+                            value={multipleDefaultValue}
+                            onChange={setMultipleDefaultValue}
+                        />
+                    </View>
+                    <View style={[styles.example, styles.customLabelsColumn]}>
+                        <BodyText>Multi-select with custom labels:</BodyText>
+                        <Combobox
+                            {...args}
+                            selectionType="multiple"
+                            labels={customLabels}
+                            value={multipleValue}
+                            onChange={setMultipleValue}
+                        />
+                    </View>
+                </View>
             </View>
         );
     },
     args: {
         children: items,
+    },
+    parameters: {
+        layout: "fullscreen",
     },
 };
