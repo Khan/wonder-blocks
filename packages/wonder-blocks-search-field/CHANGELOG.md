@@ -1,5 +1,26 @@
 # @khanacademy/wonder-blocks-search-field
 
+## 5.2.1
+
+### Patch Changes
+
+- @khanacademy/wonder-blocks-form@7.7.1
+
+## 5.2.0
+
+### Minor Changes
+
+- 355f6e1: The default `aria-label` for the SearchField clear button now reads a translated string from `WonderBlocksConfigProvider`. The `clearAriaLabel` prop overrides the built-in translation.
+
+### Patch Changes
+
+- Updated dependencies [9ec3189]
+- Updated dependencies [9ec3189]
+- Updated dependencies [f070142]
+- Updated dependencies [355f6e1]
+    - @khanacademy/wonder-blocks-form@7.7.0
+    - @khanacademy/wonder-blocks-config@0.4.0
+
 ## 5.1.85
 
 ### Patch Changes

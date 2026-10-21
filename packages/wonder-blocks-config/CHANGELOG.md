@@ -1,5 +1,13 @@
 # @khanacademy/wonder-blocks-config
 
+## 0.4.0
+
+### Minor Changes
+
+- 9ec3189: Adds the `requiredFieldMessage` string to `WonderBlocksStrings`
+- f070142: Adds the `iconAltErrorMessagePrefix` string to `WonderBlocksStrings`
+- 355f6e1: Adds the `iconAltClearSearch` string to `WonderBlocksStrings`
+
 ## 0.3.0
 
 ### Minor Changes

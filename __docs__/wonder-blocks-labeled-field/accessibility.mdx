@@ -13,7 +13,9 @@ for using this component include:
   the description and error
 - An error icon for the error message so that color isn't the only way to
 communicate information. The error icon has an aria-label of `Error:` by default
-to prefix the provided error message.
+to prefix the provided error message. This label is translated using the
+`iconAltErrorMessagePrefix` string from `WonderBlocksConfigProvider`, and can be
+overridden with the `labels.errorIconAriaLabel` prop.
 - The error section which includes the icon and text has `aria-live=assertive`
 and `aria-atomic=true` so that any updates to the error message are announced to
 screen readers.

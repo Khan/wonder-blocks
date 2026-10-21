@@ -6,6 +6,7 @@ import {
     flip,
     hide,
     shift,
+    size,
     arrow,
     Placement,
     useDismiss,
@@ -115,6 +116,11 @@ type FloatingProps = {
      * hidden.
      *
      * Allows to visually hide the floating element when it is out of bounds.
+     *
+     * NOTE: The floating element is not hidden while a text field inside of it
+     * has focus (e.g. the user is typing in it). Hiding it would make the
+     * browser drop focus, which on mobile devices also closes the virtual
+     * keyboard.
      * @default true
      */
     hide?: boolean;
@@ -139,8 +145,32 @@ type FloatingProps = {
     shiftPadding?: number;
 
     /**
+     * Whether to constrain the floating element's size to the space available
+     * within the boundary.
+     *
+     * When enabled, the floating element gets a `max-inline-size` and
+     * `max-block-size` that match the available space between the reference
+     * element and the boundary (minus `shiftPadding`). This keeps the floating
+     * element from being cut off when there isn't enough room for it, e.g. on
+     * small screens or at high zoom levels.
+     *
+     * The floating element is also laid out as a flex column so its content
+     * can shrink. The content is responsible for scrolling when it doesn't fit
+     * (e.g. by wrapping it in a `ScrollableView` from
+     * `@khanacademy/wonder-blocks-layout`).
+     *
+     * NOTE: Use it together with `shift`, so the floating element moves to
+     * stay in view. Without `shift`, it stays centered on the reference
+     * element and shrinks on both sides to fit instead, so it can get very
+     * narrow when the reference element is near the edge of the boundary.
+     * @default false
+     * @see https://floating-ui.com/docs/size
+     */
+    constrainSize?: boolean;
+
+    /**
      * The boundary that the floating element should be kept within by the
-     * `flip` and `shift` middleware.
+     * `flip`, `shift` and `size` middleware.
      *
      * - `"viewport"`: keep the element within the user's viewport.
      * - `"document"`: keep the element within the document body.
@@ -251,6 +281,47 @@ type Props = FloatingProps & FocusManagerProps;
  */
 const SHIFT_PADDING = 12;
 
+// Input types that don't open a virtual keyboard when focused.
+const NON_TEXT_INPUT_TYPES = new Set([
+    "button",
+    "checkbox",
+    "color",
+    "file",
+    "hidden",
+    "image",
+    "radio",
+    "range",
+    "reset",
+    "submit",
+]);
+
+/**
+ * Whether the element opens a virtual keyboard on mobile devices when focused
+ * (e.g. text fields). Read-only and disabled fields don't open one.
+ *
+ * NOTE: Wonder Blocks fields are marked as disabled with `aria-disabled` (so
+ * they stay focusable), so we check for both.
+ */
+function opensVirtualKeyboard(element: Element): boolean {
+    if (
+        element instanceof HTMLTextAreaElement ||
+        element instanceof HTMLInputElement
+    ) {
+        if (
+            element.readOnly ||
+            element.disabled ||
+            element.getAttribute("aria-disabled") === "true"
+        ) {
+            return false;
+        }
+        return (
+            element instanceof HTMLTextAreaElement ||
+            !NON_TEXT_INPUT_TYPES.has(element.type)
+        );
+    }
+    return element instanceof HTMLElement && element.isContentEditable;
+}
+
 /**
  * A component that uses the Floating UI library to position a floating element
  * relative to a reference element.
@@ -290,12 +361,17 @@ export default function Floating({
     flip: flipProp = true,
     shift: shiftProp = true,
     shiftPadding = SHIFT_PADDING,
+    constrainSize = false,
     rootBoundary = "viewport",
     showArrow = true,
     styles: stylesProp,
 }: Props) {
     const arrowRef = React.useRef(null);
     const prevOpenRef = React.useRef(open ?? false);
+    // The focused text field inside of the floating element (if any).
+    const [focusedField, setFocusedField] = React.useState<Element | null>(
+        null,
+    );
 
     // Calculate the floating styles and context
     const {
@@ -325,6 +401,21 @@ export default function Floating({
                       rootBoundary,
                   })
                 : undefined,
+            // Constrain the size to the available space so the floating
+            // element is never cut off (e.g. on small screens or when zoomed
+            // in). This must run after `flip` and `shift`.
+            constrainSize
+                ? size({
+                      padding: shiftPadding,
+                      rootBoundary,
+                      apply({availableWidth, availableHeight, elements}) {
+                          Object.assign(elements.floating.style, {
+                              maxInlineSize: `${Math.max(0, availableWidth)}px`,
+                              maxBlockSize: `${Math.max(0, availableHeight)}px`,
+                          });
+                      },
+                  })
+                : undefined,
             showArrow ? arrow({element: arrowRef}) : undefined,
             hideProp ? hide() : undefined,
             // Mirror the floating element in RTL when placement is left/right
@@ -348,6 +439,90 @@ export default function Floating({
             prevOpenRef.current = open;
         }
     }, [onOpenChange, open]);
+
+    // The floating element unmounts when closed (without firing blur events),
+    // so reset the focus state to start fresh the next time it opens.
+    React.useEffect(() => {
+        if (!open) {
+            setFocusedField(null);
+        }
+    }, [open]);
+
+    // Whether a pointer press started inside of the floating element (and
+    // hasn't been released yet).
+    const isPressingInsideRef = React.useRef(false);
+
+    /**
+     * Tracks when focus moves to a text field inside of the floating element.
+     * Once a text field has focus, moving focus to other elements inside of
+     * the floating element (e.g. a Submit button) keeps tracking it, so the
+     * floating element isn't hidden in the middle of the interaction.
+     */
+    const handleFocus = React.useCallback((event: React.FocusEvent) => {
+        // NOTE: React focus events bubble through portals, so ignore elements
+        // that aren't part of the floating element in the DOM (e.g. a field in
+        // a nested, portaled popover).
+        if (
+            event.currentTarget.contains(event.target) &&
+            opensVirtualKeyboard(event.target)
+        ) {
+            setFocusedField(event.target);
+        }
+    }, []);
+
+    /**
+     * Tracks when focus moves out of the floating element (and not just
+     * between elements inside of it).
+     */
+    const handleBlur = React.useCallback((event: React.FocusEvent) => {
+        const {relatedTarget, currentTarget} = event;
+        const movesInside =
+            relatedTarget instanceof Node
+                ? currentTarget.contains(relatedTarget)
+                : // Some browsers (e.g. Safari) don't focus buttons when
+                  // they're clicked, so focus moves to nothing. Treat it as
+                  // staying inside when the press started inside.
+                  isPressingInsideRef.current;
+        isPressingInsideRef.current = false;
+
+        if (!movesInside) {
+            setFocusedField(null);
+        }
+    }, []);
+
+    const handlePointerDown = React.useCallback(() => {
+        isPressingInsideRef.current = true;
+    }, []);
+
+    const handlePointerUp = React.useCallback(() => {
+        isPressingInsideRef.current = false;
+    }, []);
+
+    // A focused element that gets removed from the DOM doesn't fire a blur
+    // event, so watch for the focused text field being removed (e.g. when a
+    // form is replaced by a confirmation message).
+    React.useEffect(() => {
+        const floating = elements.floating;
+        if (!focusedField || !floating) {
+            return;
+        }
+
+        const observer = new MutationObserver(() => {
+            if (!focusedField.isConnected) {
+                setFocusedField(null);
+            }
+        });
+        observer.observe(floating, {childList: true, subtree: true});
+
+        return () => observer.disconnect();
+    }, [elements.floating, focusedField]);
+
+    // Hide the floating element when the reference element is out of view
+    // (e.g. scrolled away), unless the user is typing in it. On mobile,
+    // opening the virtual keyboard shrinks the visual viewport, which can push
+    // the reference element out of view. Hiding the floating element then
+    // would blur the focused field and close the keyboard again.
+    const isHidden = !!middlewareData.hide?.referenceHidden && !focusedField;
 
     // Notify consumers of the resolved placement (after middleware such as
     // `flip` has run) so they can adapt their content accordingly.
@@ -465,16 +640,20 @@ export default function Floating({
                             ref={refs.setFloating}
                             style={[
                                 styles.floating,
+                                constrainSize && styles.constrained,
                                 floatingStyles,
                                 stylesProp?.root,
                                 {
-                                    visibility: middlewareData.hide
-                                        ?.referenceHidden
-                                        ? "hidden"
-                                        : "visible",
+                                    visibility: isHidden ? "hidden" : "visible",
                                 },
                             ]}
-                            {...getFloatingProps()}
+                            {...getFloatingProps({
+                                onFocus: handleFocus,
+                                onBlur: handleBlur,
+                                onPointerDown: handlePointerDown,
+                                onPointerUp: handlePointerUp,
+                                onPointerCancel: handlePointerUp,
+                            })}
                         >
                             {content}
                             {showArrow && (
@@ -504,5 +683,13 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         // Prevent the floating element from receiving focus when it is clicked.
         outline: "none",
+    },
+    // Lay out the content as a flex column so it can shrink (and scroll) when
+    // the `size` middleware constrains the floating element. This is only
+    // applied with `constrainSize` enabled, so other content keeps its block layout
+    // (e.g. inline text and links keep flowing on the same line).
+    constrained: {
+        display: "flex",
+        flexDirection: "column",
     },
 });

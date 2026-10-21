@@ -15,6 +15,14 @@ export type PopoverContextType = {
      * element changes its placement.
      */
     placement?: Placement;
+    /**
+     * The accessible name of the popover dialog (either an `aria-label`, or
+     * the id of the element that labels it). This is used to name the
+     * scrollable area of the popover content, so screen readers can announce
+     * it when it receives focus.
+     */
+    "aria-label"?: string;
+    "aria-labelledby"?: string;
 };
 
 const defaultContext: PopoverContextType = {
@@ -31,6 +39,9 @@ const defaultContext: PopoverContextType = {
  *
  * 2. Keeps a reference of the TooltipPopper's `placement` value. It can be one
  *    of the following values: "top", "bottom", "left" or "right".
+ *
+ * 3. Passes down the accessible name of the popover dialog, so
+ *    `PopoverContentCore` can name its scrollable area.
  */
 const PopoverContext = React.createContext<PopoverContextType>(
     defaultContext,

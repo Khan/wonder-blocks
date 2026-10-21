@@ -1,7 +1,6 @@
 import {useOnMountEffect} from "@khanacademy/wonder-blocks-core";
+import {useWonderBlocksI18n} from "@khanacademy/wonder-blocks-config";
 import * as React from "react";
-
-const defaultErrorMessage = "This field is required.";
 
 type FieldValidationProps = {
     value: string;
@@ -23,7 +22,8 @@ type FieldValidationProps = {
  * - `value` - The value of the field.
  * - `disabled` - If the field is disabled.
  * - `required` - Whether the field is required to continue, or the error
- * message if it is left blank.
+ * message if it is left blank. If `true`, the error message is the
+ * `requiredFieldMessage` string provided by `WonderBlocksConfigProvider`.
  * - `instantValidation` - If the field should be validated instantly.
  * - `validate` - Validation for the field.
  * - `onValidate` - Called after the `validate` prop is called.
@@ -72,6 +72,7 @@ export const useFieldValidation = ({
     required = false,
     instantValidation = true,
 }: FieldValidationProps) => {
+    const {strings} = useWonderBlocksI18n();
     const [errorMessage, setErrorMessage] = React.useState<string | null>(
         // Ensures error is updated on unmounted server-side renders
         // Pass in an initializer function so the validate prop is not called
@@ -122,7 +123,9 @@ export const useFieldValidation = ({
             }
         } else if (required) {
             const requiredString =
-                typeof required === "string" ? required : defaultErrorMessage;
+                typeof required === "string"
+                    ? required
+                    : strings.requiredFieldMessage;
             const error = newValue ? null : requiredString;
             setErrorMessage(error);
             if (onValidate) {

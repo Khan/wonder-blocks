@@ -3,7 +3,7 @@
   "description": "LabeledField handles accessibility and layout for associating labels with form components.",
   "author": "Khan Academy",
   "license": "MIT",
-  "version": "4.2.0",
+  "version": "4.3.1",
   "publishConfig": {
     "access": "public"
   },
@@ -33,6 +33,7 @@
     "prepublishOnly": "../../utils/publish/package-pre-publish-check.sh"
   },
   "dependencies": {
+    "@khanacademy/wonder-blocks-config": "workspace:*",
     "@khanacademy/wonder-blocks-core": "workspace:*",
     "@khanacademy/wonder-blocks-layout": "workspace:*",
     "@khanacademy/wonder-blocks-tokens": "workspace:*",
