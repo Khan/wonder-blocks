@@ -126,9 +126,8 @@ export const Sizes: StoryComponentType = {
 };
 
 /**
- * Buttons of every size showing their spinner. This checks that the spinner
- * fits inside the button in each theme, since the button height and the
- * spinner size are both themed.
+ * Button height and spinner size are both themed, so this checks that the
+ * spinner fits inside the button in every theme.
  */
 export const Spinner: StoryComponentType = {
     render: (args) => {

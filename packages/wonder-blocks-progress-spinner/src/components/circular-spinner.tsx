@@ -7,9 +7,9 @@ import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
 
 import theme from "../theme";
 
-// The size each path was drawn at. This sets the SVG's viewBox, so the path
-// scales to whatever size the theme renders the spinner at.
-const heights = {
+// CSS sets the rendered size, so the viewBox must stay at the path's size or
+// the path gets cropped instead of scaled.
+const pathSizes = {
     xsmall: 16,
     small: 24,
     medium: 48,
@@ -73,7 +73,7 @@ export default class CircularSpinner extends React.Component<Props> {
     render(): React.ReactNode {
         const {size, light, style, testId} = this.props;
 
-        const height = heights[size];
+        const pathSize = pathSizes[size];
         const path = paths[size];
         const color = light
             ? semanticColor.core.foreground.knockout.default
@@ -82,9 +82,9 @@ export default class CircularSpinner extends React.Component<Props> {
         const svg = (
             <StyledSvg
                 xmlns="http://www.w3.org/2000/svg"
-                width={height}
-                height={height}
-                viewBox={`0 0 ${height} ${height}`}
+                width={pathSize}
+                height={pathSize}
+                viewBox={`0 0 ${pathSize} ${pathSize}`}
                 data-testid={testId}
                 style={sizeStyles[size]}
             >
