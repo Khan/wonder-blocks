@@ -629,5 +629,9 @@ export const CustomLabels: Story = {
     },
     parameters: {
         layout: "fullscreen",
+        chromatic: {
+            // we don't need screenshots because this story only shows labels.
+            disableSnapshot: true,
+        },
     },
 };
