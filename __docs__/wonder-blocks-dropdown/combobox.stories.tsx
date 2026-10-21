@@ -362,9 +362,8 @@ export const ControlledMultilpleCombobox: Story = {
         await userEvent.keyboard("{Enter}");
 
         // Assert
-        expect(canvas.getByRole("option", {name: "Pineapple"})).toHaveAttribute(
-            "aria-selected",
-            "true",
+        expect(canvas.getByTestId("test-combobox-status")).toHaveTextContent(
+            "Pineapple selected, 4 of 10. 10 results available.",
         );
     },
     // Hide the story in the Docs page (useful for snapshots).
@@ -570,6 +569,7 @@ export const CustomLabels: Story = {
                 `Custom ${current}, ${index + 1} of ${total}`,
             liveRegionMultipleSelectionTotal: (total) =>
                 `Custom ${total} selected`,
+            liveRegionListboxTotal: (total) => `Custom ${total} results`,
             noItems: "Custom no results",
             selected: (labels) => `Custom ${labels} selected`,
             selectionCleared: "Custom selection cleared",

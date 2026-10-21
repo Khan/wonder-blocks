@@ -48,8 +48,11 @@ export type WonderBlocksStrings = {
         index: number;
         total: number;
     }) => string;
+    srNumResultsAvailable: ({num}: {num: number}) => string;
     srNumSelectedOptions: ({num}: {num: number}) => string;
+    srDisabled: string;
     srFocused: string;
+    srSelected: string;
     srItemsSelected: ({labels}: {labels: string}) => string;
     srSelectionCleared: string;
     srItemsNotSelected: ({labels}: {labels: string}) => string;
@@ -212,8 +215,14 @@ export const strings = {
     },
     srCurrentItemDetails: {
         context:
-            "Screen reader announcement for the currently focused item in a list. %(current)s is the item's label, which can be followed by its focused state (e.g. 'Apple focused'). %(index)s is the position of the item in the list, starting at 1, and %(total)s is the number of items.",
+            "Screen reader announcement for the currently focused item in a list. %(current)s is the item's label, which can be followed by its states (e.g. 'Apple focused selected'). %(index)s is the position of the item in the list, starting at 1, and %(total)s is the number of items.",
         message: "%(current)s, %(index)s of %(total)s.",
+    },
+    srNumResultsAvailable: {
+        context:
+            "Screen reader announcement for the number of results available. %(num)s is the number of results. For example, the number of options that match a search.",
+        one: "%(num)s result available.",
+        other: "%(num)s results available.",
     },
     srNumSelectedOptions: {
         context:
@@ -221,10 +230,20 @@ export const strings = {
         one: "%(num)s selected option.",
         other: "%(num)s selected options.",
     },
+    srDisabled: {
+        context:
+            "Screen reader text announced after an option's label when the option is disabled (e.g. 'Apple disabled').",
+        message: "disabled",
+    },
     srFocused: {
         context:
             "Screen reader text announced after an option's label when the option is focused (e.g. 'Apple focused').",
         message: "focused",
+    },
+    srSelected: {
+        context:
+            "Screen reader text announced after an option's label when the option is selected (e.g. 'Apple selected').",
+        message: "selected",
     },
     srItemsSelected: {
         context:
@@ -316,9 +335,13 @@ export const defaultStringsEn: WonderBlocksStrings = {
     srComboboxClosed: strings.srComboboxClosed.message,
     srCurrentItemDetails: ({current, index, total}) =>
         `${current}, ${index} of ${total}.`,
+    srNumResultsAvailable: ({num}) =>
+        num === 1 ? `${num} result available.` : `${num} results available.`,
     srNumSelectedOptions: ({num}) =>
         num === 1 ? `${num} selected option.` : `${num} selected options.`,
+    srDisabled: strings.srDisabled.message,
     srFocused: strings.srFocused.message,
+    srSelected: strings.srSelected.message,
     srItemsSelected: ({labels}) => `${labels} selected`,
     srSelectionCleared: strings.srSelectionCleared.message,
     srItemsNotSelected: ({labels}) => `${labels} not selected`,
