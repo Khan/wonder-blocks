@@ -20,7 +20,6 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 
-import {Id} from "@khanacademy/wonder-blocks-core";
 import {maybeGetPortalMountedModalHostElement} from "@khanacademy/wonder-blocks-modal";
 import type {Typography} from "@khanacademy/wonder-blocks-typography";
 import type {AriaProps} from "@khanacademy/wonder-blocks-core";
@@ -92,7 +91,7 @@ type Props = AriaProps &
          * Where the tooltip should appear in relation to the anchor element.
          * Defaults to "top".
          */
-        placement: Placement;
+        placement?: Placement;
         /**
          * Renders the tooltip when true, renders nothing when false.
          *
@@ -133,27 +132,6 @@ type Props = AriaProps &
         viewportPadding?: number;
     }>;
 
-type State = Readonly<{
-    /**
-     * Whether the tooltip is open by hovering/focusing on the anchor element.
-     */
-    active: boolean;
-    /**
-     * Whether the tooltip is open by hovering on the tooltip bubble.
-     */
-    activeBubble: boolean;
-    /**
-     * The element that activates the tooltip.
-     */
-    anchorElement?: HTMLElement;
-}>;
-
-type DefaultProps = {
-    forceAnchorFocusivity: Props["forceAnchorFocusivity"];
-    placement: Props["placement"];
-    variant: Props["variant"];
-};
-
 /**
  * Use a tooltip to help describe an on screen object.
  *
@@ -178,42 +156,52 @@ type DefaultProps = {
  * ```
  *
  */
-export default class Tooltip extends React.Component<Props, State> {
-    static defaultProps: DefaultProps = {
-        forceAnchorFocusivity: true,
-        placement: "top",
-        variant: "subtle",
-    };
+export default function Tooltip(props: Props) {
+    const {
+        autoUpdate,
+        backgroundColor,
+        children,
+        content,
+        contentStyle,
+        forceAnchorFocusivity = true,
+        id,
+        opened,
+        placement = "top",
+        testId,
+        title,
+        variant = "subtle",
+        viewportPadding,
+    } = props;
 
     /**
-     * Used to sync the `opened` state when Tooltip acts as a controlled
-     * component
+     * Whether the tooltip is open by hovering/focusing on the anchor element.
      */
-    static getDerivedStateFromProps(
-        props: Props,
-        state: State,
-    ): Partial<State> | null {
-        return {
-            active:
-                typeof props.opened === "boolean" ? props.opened : state.active,
-        };
-    }
+    const [anchorActive, setAnchorActive] = React.useState(false);
+    /**
+     * Whether the tooltip is open by hovering on the tooltip bubble.
+     */
+    const [bubbleActive, setBubbleActive] = React.useState(false);
+    /**
+     * The element that activates the tooltip.
+     */
+    const [anchorElement, setAnchorElement] = React.useState<HTMLElement>();
 
-    state: State = {
-        active: false,
-        activeBubble: false,
-    };
+    // The `opened` prop makes the tooltip a controlled component.
+    const active = typeof opened === "boolean" ? opened : anchorActive;
 
-    _updateAnchorElement(ref?: Element | null) {
-        if (ref && ref !== this.state.anchorElement) {
-            this.setState({anchorElement: ref as HTMLElement});
+    const generatedUniqueId = React.useId();
+    const uniqueId = id ?? generatedUniqueId;
+    const ariaContentId = `${uniqueId}-aria-content`;
+
+    const updateAnchorElement = React.useCallback((ref: Element | null) => {
+        if (ref) {
+            setAnchorElement(ref as HTMLElement);
         }
-    }
+    }, []);
 
-    _renderBubbleContent(): React.ReactElement<
+    const renderBubbleContent = (): React.ReactElement<
         React.ComponentProps<typeof TooltipContent>
-    > {
-        const {title, content, contentStyle, testId} = this.props;
+    > => {
         if (typeof content === "string") {
             return (
                 <TooltipContent
@@ -229,89 +217,59 @@ export default class Tooltip extends React.Component<Props, State> {
         } else {
             return content;
         }
-    }
+    };
 
-    _renderPopper(ariaContentId: string): React.ReactNode {
-        const {backgroundColor, placement, variant} = this.props;
+    const renderPopper = (): React.ReactNode => {
         return (
             <TooltipPopper
-                anchorElement={this.state.anchorElement}
+                anchorElement={anchorElement}
                 placement={placement}
-                autoUpdate={this.props.autoUpdate}
-                viewportPadding={this.props.viewportPadding}
+                autoUpdate={autoUpdate}
+                viewportPadding={viewportPadding}
             >
-                {(props) => (
+                {(popperProps) => (
                     <TooltipBubble
                         id={ariaContentId}
-                        style={props.style}
+                        style={popperProps.style}
                         backgroundColor={backgroundColor}
                         variant={variant}
-                        tailOffset={props.tailOffset}
-                        isReferenceHidden={props.isReferenceHidden}
-                        placement={props.placement}
-                        updateTailRef={props.updateTailRef}
-                        updateBubbleRef={props.updateBubbleRef}
-                        onActiveChanged={(active) =>
-                            this.setState({activeBubble: active})
-                        }
+                        tailOffset={popperProps.tailOffset}
+                        isReferenceHidden={popperProps.isReferenceHidden}
+                        placement={popperProps.placement}
+                        updateTailRef={popperProps.updateTailRef}
+                        updateBubbleRef={popperProps.updateBubbleRef}
+                        onActiveChanged={setBubbleActive}
                     >
-                        {this._renderBubbleContent()}
+                        {renderBubbleContent()}
                     </TooltipBubble>
                 )}
             </TooltipPopper>
         );
-    }
+    };
 
-    _getHost(): Element | null | undefined {
-        const {anchorElement} = this.state;
+    const popperHost =
+        maybeGetPortalMountedModalHostElement(anchorElement) || document.body;
 
-        return (
-            maybeGetPortalMountedModalHostElement(anchorElement) ||
-            document.body
-        );
-    }
+    // Only render the popper if the anchor element is available so that we
+    // can position the popper correctly. If autoUpdate is false, we don't
+    // need to wait for the anchor element to render the popper.
+    const shouldAnchorExist = autoUpdate ? anchorElement : true;
+    const shouldBeVisible =
+        popperHost && (active || bubbleActive) && shouldAnchorExist;
 
-    _renderTooltipAnchor(uniqueId: string): React.ReactNode {
-        const {autoUpdate, children, forceAnchorFocusivity} = this.props;
-        const {active, activeBubble} = this.state;
-
-        const popperHost = this._getHost();
-
-        // Only render the popper if the anchor element is available so that we
-        // can position the popper correctly. If autoUpdate is false, we don't
-        // need to wait for the anchor element to render the popper.
-        const shouldAnchorExist = autoUpdate ? this.state.anchorElement : true;
-        const shouldBeVisible =
-            popperHost && (active || activeBubble) && shouldAnchorExist;
-
-        const ariaContentId = `${uniqueId}-aria-content`;
-
-        // TODO(kevinb): update to use ReactPopper's React 16-friendly syntax
-        return (
-            <React.Fragment>
-                <TooltipAnchor
-                    forceAnchorFocusivity={forceAnchorFocusivity}
-                    anchorRef={(r) => this._updateAnchorElement(r)}
-                    onActiveChanged={(active) => this.setState({active})}
-                    aria-describedby={
-                        shouldBeVisible ? ariaContentId : undefined
-                    }
-                >
-                    {children}
-                </TooltipAnchor>
-                {shouldBeVisible &&
-                    ReactDOM.createPortal(
-                        this._renderPopper(ariaContentId),
-                        popperHost,
-                    )}
-            </React.Fragment>
-        );
-    }
-
-    render(): React.ReactNode {
-        const {id} = this.props;
-        return (
-            <Id id={id}>{(uniqueId) => this._renderTooltipAnchor(uniqueId)}</Id>
-        );
-    }
+    // TODO(kevinb): update to use ReactPopper's React 16-friendly syntax
+    return (
+        <React.Fragment>
+            <TooltipAnchor
+                ref={updateAnchorElement}
+                forceAnchorFocusivity={forceAnchorFocusivity}
+                onActiveChanged={setAnchorActive}
+                aria-describedby={shouldBeVisible ? ariaContentId : undefined}
+            >
+                {children}
+            </TooltipAnchor>
+            {shouldBeVisible &&
+                ReactDOM.createPortal(renderPopper(), popperHost)}
+        </React.Fragment>
+    );
 }
