@@ -9,7 +9,10 @@ import {
 import {fireEvent, render, screen, waitFor} from "@testing-library/react";
 import {userEvent} from "@testing-library/user-event";
 
-import {WonderBlocksConfigProvider} from "@khanacademy/wonder-blocks-config";
+import {
+    defaultStringsEn,
+    WonderBlocksConfigProvider,
+} from "@khanacademy/wonder-blocks-config";
 import {Icon, PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import plusIcon from "@phosphor-icons/core/bold/plus-bold.svg";
 
@@ -480,7 +483,10 @@ describe("Link", () => {
             render(
                 <WonderBlocksConfigProvider
                     i18n={{
-                        strings: {iconAltOpensNewTab: "translated text"},
+                        strings: {
+                            ...defaultStringsEn,
+                            iconAltOpensNewTab: "translated text",
+                        },
                         locale: "es",
                     }}
                 >
@@ -502,7 +508,10 @@ describe("Link", () => {
             render(
                 <WonderBlocksConfigProvider
                     i18n={{
-                        strings: {iconAltOpensNewTab: "translated text"},
+                        strings: {
+                            ...defaultStringsEn,
+                            iconAltOpensNewTab: "translated text",
+                        },
                         locale: "es",
                     }}
                 >
