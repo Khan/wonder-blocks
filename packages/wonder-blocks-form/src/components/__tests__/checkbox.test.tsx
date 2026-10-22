@@ -1,9 +1,52 @@
 import * as React from "react";
 import {render, screen} from "@testing-library/react";
 
+import {FloatingReferenceAttributeName} from "@khanacademy/wonder-blocks-core";
+
 import Checkbox from "../checkbox";
 
 describe("Checkbox", () => {
+    test("applies the floating reference attribute to its root element", () => {
+        // Arrange, Act
+        // Floating components (e.g. Tooltip) inject this attribute to find the
+        // element they are anchored to, so it should cover the label too.
+        render(
+            <Checkbox
+                label="Receive assignment reminders for Algebra"
+                checked={false}
+                onChange={() => {}}
+                {...{[FloatingReferenceAttributeName]: "anchor-id"}}
+            />,
+        );
+
+        // eslint-disable-next-line testing-library/no-node-access
+        const root = document.querySelector(
+            `[${FloatingReferenceAttributeName}="anchor-id"]`,
+        );
+
+        // Assert
+        expect(root).toHaveTextContent(
+            "Receive assignment reminders for Algebra",
+        );
+    });
+
+    test("doesn't apply the floating reference attribute to its input", () => {
+        // Arrange, Act
+        render(
+            <Checkbox
+                label="Receive assignment reminders for Algebra"
+                checked={false}
+                onChange={() => {}}
+                {...{[FloatingReferenceAttributeName]: "anchor-id"}}
+            />,
+        );
+
+        const checkbox = screen.getByRole("checkbox");
+
+        // Assert
+        expect(checkbox).not.toHaveAttribute(FloatingReferenceAttributeName);
+    });
+
     test("uses the ID prop when it is specified", () => {
         // Arrange, Act
         render(
