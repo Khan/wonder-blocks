@@ -3,11 +3,31 @@ import {render, screen} from "@testing-library/react";
 import magnifyingGlass from "@phosphor-icons/core/regular/magnifying-glass.svg";
 
 import Button from "@khanacademy/wonder-blocks-button";
+import {FloatingReferenceAttributeName} from "@khanacademy/wonder-blocks-core";
 import customIcon from "./custom-icon-mock.svg";
 
 import Banner from "../banner";
 
 describe("Banner", () => {
+    test("applies the floating reference attribute to its root element", () => {
+        // Arrange, Act
+        // Floating components (e.g. Tooltip) inject this attribute to find the
+        // element they are anchored to.
+        render(
+            <Banner
+                text="Banner text"
+                testId="banner-root"
+                {...{[FloatingReferenceAttributeName]: "anchor-id"}}
+            />,
+        );
+
+        // Assert
+        expect(screen.getByTestId("banner-root")).toHaveAttribute(
+            FloatingReferenceAttributeName,
+            "anchor-id",
+        );
+    });
+
     test("having no `onDismiss` prop causes the 'X' button NOT to appear", () => {
         // Arrange
 

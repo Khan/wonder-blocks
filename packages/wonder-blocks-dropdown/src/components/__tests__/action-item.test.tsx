@@ -3,6 +3,7 @@ import {render, screen} from "@testing-library/react";
 import * as ReactRouterDOM from "react-router-dom";
 import * as ReactRouterDOMV5Compat from "react-router-dom-v5-compat";
 
+import {FloatingReferenceAttributeName} from "@khanacademy/wonder-blocks-core";
 import {Heading} from "@khanacademy/wonder-blocks-typography";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 
@@ -16,6 +17,27 @@ jest.mock("react-router-dom", () => ({
 }));
 
 describe("ActionItem", () => {
+    it("should apply the floating reference attribute to its root element", () => {
+        // Arrange
+        // Floating components (e.g. Tooltip) inject this attribute to find the
+        // element they are anchored to.
+
+        // Act
+        render(
+            <ActionItem
+                label="Example"
+                onClick={() => {}}
+                {...{[FloatingReferenceAttributeName]: "anchor-id"}}
+            />,
+        );
+
+        // Assert
+        expect(screen.getByRole("menuitem")).toHaveAttribute(
+            FloatingReferenceAttributeName,
+            "anchor-id",
+        );
+    });
+
     it("should render with disabled styles", () => {
         // Arrange
 
