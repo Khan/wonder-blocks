@@ -195,6 +195,175 @@ describe("TooltipAnchor", () => {
         expect(onActiveChanged).toHaveBeenCalledWith(true);
     });
 
+    test("doesn't anchor to a sibling when the content renders no element", async () => {
+        // Arrange
+        const Empty = () => null;
+        const ref = React.createRef<Element>();
+
+        render(
+            <View>
+                <TooltipAnchor
+                    ref={ref}
+                    onActiveChanged={() => {}}
+                    aria-describedby="ignore-this"
+                >
+                    <Empty />
+                </TooltipAnchor>
+                <button>Unrelated sibling</button>
+            </View>,
+        );
+
+        // Act
+        const sibling = await screen.findByRole("button", {
+            name: "Unrelated sibling",
+        });
+
+        // Assert
+        expect({
+            ref: ref.current,
+            tabIndex: sibling.getAttribute("tabindex"),
+        }).toEqual({ref: null, tabIndex: null});
+    });
+
+    test("resolves forwardRef content that doesn't attach the ref to an element from the DOM", async () => {
+        // Arrange
+        type Handle = {doSomething: () => void};
+        const Anchor = React.forwardRef<Handle>(function Anchor(_, ref) {
+            React.useImperativeHandle(ref, () => ({doSomething: () => {}}));
+            return <span>This is the anchor</span>;
+        });
+        const ref = React.createRef<Element>();
+
+        render(
+            <TooltipAnchor
+                ref={ref}
+                onActiveChanged={() => {}}
+                aria-describedby="ignore-this"
+            >
+                <Anchor />
+            </TooltipAnchor>,
+        );
+
+        // Act
+        const result = await screen.findByText("This is the anchor");
+
+        // Assert
+        expect(ref.current).toBe(result);
+    });
+
+    test("keeps the imperative handle in the forwardRef content's own ref", async () => {
+        // Arrange
+        type Handle = {doSomething: () => void};
+        const Anchor = React.forwardRef<Handle>(function Anchor(_, ref) {
+            React.useImperativeHandle(ref, () => ({doSomething: () => {}}));
+            return <span>This is the anchor</span>;
+        });
+        const handleRef = React.createRef<Handle>();
+
+        render(
+            <TooltipAnchor
+                onActiveChanged={() => {}}
+                aria-describedby="ignore-this"
+            >
+                <Anchor ref={handleRef} />
+            </TooltipAnchor>,
+        );
+
+        // Act
+        await screen.findByText("This is the anchor");
+
+        // Assert
+        expect(handleRef.current).toEqual({doSomething: expect.any(Function)});
+    });
+
+    test("never reports a value that isn't an element to its ref", async () => {
+        // Arrange
+        const Anchor = React.forwardRef<{focus: () => void}>(
+            function Anchor(_, ref) {
+                React.useImperativeHandle(ref, () => ({focus: () => {}}));
+                return <span>This is the anchor</span>;
+            },
+        );
+        const ref = jest.fn();
+
+        render(
+            <TooltipAnchor
+                ref={ref}
+                onActiveChanged={() => {}}
+                aria-describedby="ignore-this"
+            >
+                <Anchor />
+            </TooltipAnchor>,
+        );
+        await screen.findByText("This is the anchor");
+
+        // Act
+        const reportedValues = ref.mock.calls.map(([value]) => value);
+
+        // Assert
+        expect(
+            reportedValues.every(
+                (value) => value === null || value instanceof Element,
+            ),
+        ).toBe(true);
+    });
+
+    test("keeps a class component's own ref pointing at its instance", async () => {
+        // Arrange
+        class Anchor extends React.Component {
+            render() {
+                return <span>This is the anchor</span>;
+            }
+        }
+        const instanceRef = React.createRef<Anchor>();
+
+        render(
+            <TooltipAnchor
+                onActiveChanged={() => {}}
+                aria-describedby="ignore-this"
+            >
+                <Anchor ref={instanceRef} />
+            </TooltipAnchor>,
+        );
+
+        // Act
+        await screen.findByText("This is the anchor");
+
+        // Assert
+        expect(instanceRef.current).toBeInstanceOf(Anchor);
+    });
+
+    test("resolves the content of a nested anchor, skipping its markers", async () => {
+        // Arrange
+        const Content = () => <span>This is the anchor</span>;
+        // A plain function component that renders another anchor.
+        const Inner = () => (
+            <TooltipAnchor
+                onActiveChanged={() => {}}
+                aria-describedby="ignore-this"
+            >
+                <Content />
+            </TooltipAnchor>
+        );
+        const ref = React.createRef<Element>();
+
+        render(
+            <TooltipAnchor
+                ref={ref}
+                onActiveChanged={() => {}}
+                aria-describedby="ignore-this"
+            >
+                <Inner />
+            </TooltipAnchor>,
+        );
+
+        // Act
+        const result = await screen.findByText("This is the anchor");
+
+        // Assert
+        expect(ref.current).toBe(result);
+    });
+
     describe("forceAnchorFocusivity is true", () => {
         test("if not set, sets tabindex on anchor target", async () => {
             // Arrange

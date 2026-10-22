@@ -62,10 +62,31 @@ type Props = {
 const TRACKER = new ActiveTracker();
 
 /**
- * The attribute that identifies the marker rendered before anchored content
+ * The attribute that identifies the markers rendered around anchored content
  * that can't receive a ref.
  */
 const MarkerAttributeName = "data-tooltip-anchor-marker";
+
+/**
+ * Finds the first element rendered between the start and end markers. The
+ * markers of nested anchors (e.g. a tooltip inside the anchored content) are
+ * skipped. Returns `null` when the anchored content renders no element.
+ */
+function findMarkedElement(
+    startMarker: Element | null,
+    endMarker: Element | null,
+): Element | null {
+    let node = startMarker?.nextElementSibling ?? null;
+
+    while (node && node !== endMarker) {
+        if (!node.hasAttribute(MarkerAttributeName)) {
+            return node;
+        }
+        node = node.nextElementSibling;
+    }
+
+    return null;
+}
 
 type ActiveStateManager = {
     /**
@@ -307,10 +328,14 @@ function useAnchorFocusivity(
  *
  * - Content that can receive a ref (host elements and `React.forwardRef`
  *   components) is given one. Its own ref (if any) is kept.
- * - Content that can't (e.g. plain function components) is resolved from the
- *   DOM instead, as the element that follows a hidden marker element rendered
- *   right before it. This way, it doesn't need to attach a ref or pass props
- *   along to its element.
+ * - Content that can't (e.g. plain function components), or that doesn't
+ *   attach the ref to a DOM element, is resolved from the DOM instead, as the
+ *   first element rendered between two marker elements. This way, it doesn't
+ *   need to attach a ref or pass props along to its element.
+ *
+ * NOTE: The markers are `<template>` elements, which are never displayed and
+ * are valid in any context (e.g. inside a `<tbody>`). They still count as
+ * siblings for selectors like `:first-child` or `:nth-child()`.
  */
 const TooltipAnchor = React.forwardRef(function TooltipAnchor(
     props: Props,
@@ -325,60 +350,92 @@ const TooltipAnchor = React.forwardRef(function TooltipAnchor(
 
     const anchorableChildren =
         typeof children === "string" ? <WBText>{children}</WBText> : children;
-    const contentAcceptsRef = canAcceptRef(anchorableChildren);
 
     // The DOM element of the anchored content. The hover and focus listeners
     // are attached to it.
     const [anchorNode, setAnchorNode] = React.useState<Element | null>(null);
 
-    const setAnchorNodeFromRef = React.useCallback((node: unknown) => {
-        setAnchorNode(node instanceof Element ? node : null);
-    }, []);
+    // Reports the anchored element to the ref this component was given. Only
+    // DOM elements (or `null`) are reported.
+    const reportAnchor = useMergeRefs<Element>([ref, setAnchorNode]);
+
+    // Whether the anchored content was given a ref that didn't resolve to a
+    // DOM element (e.g. a `forwardRef` component that exposes an imperative
+    // handle instead). Such content is resolved from the DOM instead.
+    const [refYieldedNoElement, setRefYieldedNoElement] = React.useState(false);
+    const resolveFromMarkers =
+        !canAcceptRef(anchorableChildren) || refYieldedNoElement;
+
+    // The element the anchored content attached the ref to, if any.
+    const anchorFromRef = React.useRef<Element | null>(null);
+
+    const handleContentRef = React.useCallback(
+        (node: unknown) => {
+            const element = node instanceof Element ? node : null;
+
+            anchorFromRef.current = element;
+            reportAnchor?.(element);
+        },
+        [reportAnchor],
+    );
 
     // Give the anchored content's own ref (if it has one) back to its owner,
-    // and report the element to the ref this component was given.
-    const anchorRef = useMergeRefs<Element>([
-        ref,
-        getElementRef<Element>(anchorableChildren),
-        setAnchorNodeFromRef,
+    // so that injecting ours doesn't take it away. It always gets the raw
+    // value (e.g. an imperative handle).
+    const contentRef = useMergeRefs([
+        getElementRef(anchorableChildren),
+        handleContentRef,
     ]);
 
-    // The marker rendered before content that can't receive a ref, and the
-    // element that was last resolved from it.
-    const markerRef = React.useRef<HTMLElement | null>(null);
+    // Fall back to the markers when the ref didn't resolve a DOM element.
+    // Refs are attached before this effect runs.
+    React.useLayoutEffect(() => {
+        if (!resolveFromMarkers && !anchorFromRef.current) {
+            setRefYieldedNoElement(true);
+        }
+    }, [resolveFromMarkers, anchorNode]);
+
+    // The markers rendered around content that is resolved from the DOM, and
+    // the element that was last resolved between them.
+    const startMarkerRef = React.useRef<HTMLTemplateElement | null>(null);
+    const endMarkerRef = React.useRef<HTMLTemplateElement | null>(null);
     const markedNodeRef = React.useRef<Element | null>(null);
 
     /**
-     * Resolves the anchored element as the marker's next sibling. The marker's
-     * ref is attached once all of the elements are in the DOM, so the
-     * anchored element is already there.
+     * Resolves the anchored element once the end marker is attached. Refs are
+     * attached in order and after all of the elements are in the DOM, so the
+     * start marker and the anchored content are already there.
      */
-    const handleMarkerRef = React.useCallback(
-        (marker: HTMLElement | null) => {
-            const node = marker?.nextElementSibling ?? null;
+    const handleEndMarkerRef = React.useCallback(
+        (endMarker: HTMLTemplateElement | null) => {
+            const node = endMarker
+                ? findMarkedElement(startMarkerRef.current, endMarker)
+                : null;
 
-            markerRef.current = marker;
+            endMarkerRef.current = endMarker;
             markedNodeRef.current = node;
-            anchorRef?.(node);
+            reportAnchor?.(node);
         },
-        [anchorRef],
+        [reportAnchor],
     );
 
     // Keep the marked element in sync if the anchored content renders a
-    // different DOM element (the marker's ref isn't attached again then).
+    // different DOM element (the markers' refs aren't attached again then).
     //
     // NOTE: This runs after every render (no dependency array). The element is
     // only reported when it changes, so this can't loop.
     React.useLayoutEffect(() => {
-        const marker = markerRef.current;
-        if (!marker) {
+        if (!endMarkerRef.current) {
             return;
         }
 
-        const node = marker.nextElementSibling;
+        const node = findMarkedElement(
+            startMarkerRef.current,
+            endMarkerRef.current,
+        );
         if (node !== markedNodeRef.current) {
             markedNodeRef.current = node;
-            anchorRef?.(node);
+            reportAnchor?.(node);
         }
     });
 
@@ -419,24 +476,28 @@ const TooltipAnchor = React.forwardRef(function TooltipAnchor(
         handleMouseLeave,
     ]);
 
-    if (contentAcceptsRef) {
+    if (!resolveFromMarkers) {
         return React.cloneElement(anchorableChildren, {
             "aria-describedby": ariaDescribedBy,
-            ref: anchorRef,
+            ref: contentRef,
         });
     }
 
+    // NOTE: The anchored content keeps its own ref (if any), which React
+    // attaches as usual.
     return (
         <>
-            {/* Not displayed nor exposed to assistive technology. */}
-            <span
-                hidden
-                ref={handleMarkerRef}
-                {...{[MarkerAttributeName]: ""}}
+            <template
+                ref={startMarkerRef}
+                {...{[MarkerAttributeName]: "start"}}
             />
             {React.cloneElement(anchorableChildren, {
                 "aria-describedby": ariaDescribedBy,
             })}
+            <template
+                ref={handleEndMarkerRef}
+                {...{[MarkerAttributeName]: "end"}}
+            />
         </>
     );
 });
