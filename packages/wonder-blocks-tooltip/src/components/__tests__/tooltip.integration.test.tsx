@@ -6,15 +6,12 @@ import {userEvent} from "@testing-library/user-event";
 import Tooltip from "../tooltip";
 
 describe("tooltip integration tests", () => {
-    let originalGetBoundingClientRect: typeof Element.prototype.getBoundingClientRect;
-
     beforeEach(() => {
-        originalGetBoundingClientRect = Element.prototype.getBoundingClientRect;
         // Provide realistic dimensions so floating-ui's `hide` middleware
         // doesn't treat the anchor as hidden. jsdom reports zero-size rects for
         // every element, which would otherwise cause the tooltip to render with
         // `visibility: hidden` (making role-based queries fail).
-        Element.prototype.getBoundingClientRect = jest.fn(() => ({
+        jest.spyOn(Element.prototype, "getBoundingClientRect").mockReturnValue({
             width: 300,
             height: 50,
             top: 100,
@@ -24,21 +21,23 @@ describe("tooltip integration tests", () => {
             x: 100,
             y: 100,
             toJSON: () => {},
-        }));
+        });
         // Give the document a non-zero viewport so floating-ui's `hide`
         // middleware doesn't consider the anchor to be outside the viewport.
-        Object.defineProperty(document.documentElement, "clientWidth", {
-            value: 1024,
-            configurable: true,
-        });
-        Object.defineProperty(document.documentElement, "clientHeight", {
-            value: 768,
-            configurable: true,
-        });
+        jest.spyOn(
+            document.documentElement,
+            "clientWidth",
+            "get",
+        ).mockReturnValue(1024);
+        jest.spyOn(
+            document.documentElement,
+            "clientHeight",
+            "get",
+        ).mockReturnValue(768);
     });
 
     afterEach(() => {
-        Element.prototype.getBoundingClientRect = originalGetBoundingClientRect;
+        jest.restoreAllMocks();
     });
 
     beforeEach(() => {

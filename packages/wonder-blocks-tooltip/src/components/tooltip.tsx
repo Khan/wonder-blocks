@@ -193,6 +193,24 @@ export default function Tooltip(props: Props) {
     const active = typeof opened === "boolean" ? opened : anchorActive;
     const isVisible = active || bubbleActive;
 
+    // The placement used after floating-ui's middleware ran (e.g. after
+    // flipping to the opposite side), which determines where the gap between
+    // the anchor and the bubble is.
+    const [resolvedPlacement, setResolvedPlacement] =
+        React.useState<Placement>(placement);
+
+    const handlePlacementChange = React.useCallback((nextPlacement: string) => {
+        setResolvedPlacement(nextPlacement.split("-")[0] as Placement);
+    }, []);
+
+    const handleBubbleMouseEnter = React.useCallback(() => {
+        setBubbleActive(true);
+    }, []);
+
+    const handleBubbleMouseLeave = React.useCallback(() => {
+        setBubbleActive(false);
+    }, []);
+
     const generatedUniqueId = React.useId();
     const uniqueId = id ?? generatedUniqueId;
     const ariaContentId = `${uniqueId}-aria-content`;
@@ -235,20 +253,24 @@ export default function Tooltip(props: Props) {
             // clipped by scrolling or `overflow`-clipping ancestors.
             strategy="fixed"
             placement={placement}
+            onPlacementChange={handlePlacementChange}
+            offset={BUBBLE_OFFSET}
             shiftPadding={viewportPadding}
             // Tooltips are not interactive, so focus stays on the anchor.
             focusManagerEnabled={false}
+            // Keep the tooltip open while the bubble (including its border and
+            // tail) is hovered.
+            onMouseEnter={handleBubbleMouseEnter}
+            onMouseLeave={handleBubbleMouseLeave}
             content={
-                <TooltipBubble
-                    id={ariaContentId}
-                    onActiveChanged={setBubbleActive}
-                >
+                <TooltipBubble id={ariaContentId}>
                     {renderBubbleContent()}
                 </TooltipBubble>
             }
             styles={{
                 root: [
                     styles.bubble,
+                    bridgeStyles[resolvedPlacement],
                     !!customBackgroundColor && {
                         backgroundColor: customBackgroundColor,
                     },
@@ -273,6 +295,61 @@ export default function Tooltip(props: Props) {
         </Floating>
     );
 }
+
+/**
+ * The distance (in pixels) between the anchor and the bubble, where the tail
+ * is rendered.
+ */
+const BUBBLE_OFFSET = 20;
+
+/**
+ * A transparent area that covers the gap between the bubble and the anchor,
+ * so that the tooltip stays open while the pointer moves from the anchor to
+ * the bubble.
+ */
+const bridge = {
+    content: "''",
+    position: "absolute",
+} as const;
+
+const bridgeStyles = StyleSheet.create({
+    top: {
+        "::before": {
+            ...bridge,
+            insetBlockStart: "100%",
+            insetInline: 0,
+            blockSize: BUBBLE_OFFSET,
+        },
+    },
+    bottom: {
+        "::before": {
+            ...bridge,
+            insetBlockEnd: "100%",
+            insetInline: 0,
+            blockSize: BUBBLE_OFFSET,
+        },
+    },
+    // NOTE: The left and right bridges use physical properties because the
+    // resolved placement is physical (it is already mirrored for RTL layouts).
+    left: {
+        "::before": {
+            ...bridge,
+            // eslint-disable-next-line @khanacademy/wonder-blocks/require-logical-properties-for-rtl
+            left: "100%",
+            insetBlock: 0,
+            inlineSize: BUBBLE_OFFSET,
+        },
+    },
+    right: {
+        "::before": {
+            ...bridge,
+            // eslint-disable-next-line @khanacademy/wonder-blocks/require-logical-properties-for-rtl
+            right: "100%",
+            insetBlock: 0,
+            inlineSize: BUBBLE_OFFSET,
+        },
+    },
+});
 
 const styles = StyleSheet.create({
     bubble: {

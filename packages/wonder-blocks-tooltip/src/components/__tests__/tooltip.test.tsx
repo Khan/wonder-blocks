@@ -8,15 +8,12 @@ import {semanticColor} from "@khanacademy/wonder-blocks-tokens";
 import Tooltip from "../tooltip";
 
 describe("Tooltip", () => {
-    let originalGetBoundingClientRect: typeof Element.prototype.getBoundingClientRect;
-
     beforeEach(() => {
-        originalGetBoundingClientRect = Element.prototype.getBoundingClientRect;
         // Provide realistic dimensions so floating-ui's `hide` middleware
         // doesn't treat the anchor as hidden. jsdom reports zero-size rects for
         // every element, which would otherwise cause the tooltip to render with
         // `visibility: hidden` (making role-based queries fail).
-        Element.prototype.getBoundingClientRect = jest.fn(() => ({
+        jest.spyOn(Element.prototype, "getBoundingClientRect").mockReturnValue({
             width: 300,
             height: 50,
             top: 100,
@@ -26,21 +23,23 @@ describe("Tooltip", () => {
             x: 100,
             y: 100,
             toJSON: () => {},
-        }));
+        });
         // Give the document a non-zero viewport so floating-ui's `hide`
         // middleware doesn't consider the anchor to be outside the viewport.
-        Object.defineProperty(document.documentElement, "clientWidth", {
-            value: 1024,
-            configurable: true,
-        });
-        Object.defineProperty(document.documentElement, "clientHeight", {
-            value: 768,
-            configurable: true,
-        });
+        jest.spyOn(
+            document.documentElement,
+            "clientWidth",
+            "get",
+        ).mockReturnValue(1024);
+        jest.spyOn(
+            document.documentElement,
+            "clientHeight",
+            "get",
+        ).mockReturnValue(768);
     });
 
     afterEach(() => {
-        Element.prototype.getBoundingClientRect = originalGetBoundingClientRect;
+        jest.restoreAllMocks();
     });
 
     beforeEach(() => {
@@ -220,6 +219,29 @@ describe("Tooltip", () => {
 
             // Assert
             expect(tail).toBeInTheDocument();
+        });
+
+        it("should keep the tooltip open while its border or tail is hovered", async () => {
+            // Arrange
+            const ue = userEvent.setup({
+                advanceTimers: jest.advanceTimersByTimeAsync,
+            });
+            render(<Tooltip content="Content">Anchor</Tooltip>);
+            const anchor = await screen.findByText("Anchor");
+            await ue.hover(anchor);
+            await act(() => jest.runOnlyPendingTimersAsync());
+            const tooltip = await screen.findByRole("tooltip");
+            // The floating element wraps the tooltip content and also renders
+            // the tail.
+            // eslint-disable-next-line testing-library/no-node-access
+            const floatingElement = tooltip.parentElement as HTMLElement;
+
+            // Act
+            await ue.hover(floatingElement);
+            await act(() => jest.runOnlyPendingTimersAsync());
+
+            // Assert
+            expect(screen.getByRole("tooltip")).toBeInTheDocument();
         });
 
         it("should keep the tooltip open while the bubble is hovered", async () => {
