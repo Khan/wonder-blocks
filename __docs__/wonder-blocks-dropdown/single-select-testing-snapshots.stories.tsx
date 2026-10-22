@@ -214,3 +214,37 @@ export const Scenarios: Story = {
         },
     },
 };
+
+const manyItems = Array.from({length: 30}, (_, i) => (
+    <OptionItem label={`item ${i + 1}`} value={`${i + 1}`} key={i} />
+));
+
+/**
+ * The opened menu never grows past the space available in the viewport: the
+ * popper's max-height modifier sets `--popper-max-height`, which the menu
+ * container reads as its `max-block-size`, and the list scrolls inside it.
+ * In the small viewport, 30 items are taller than the viewport, so the menu is
+ * capped.
+ *
+ * A virtualized list renders at most 9 rows, so its menu always fits this
+ * viewport and never reaches the cap (the "Virtualized (opened)" story covers
+ * that menu).
+ */
+export const MaxHeight: Story = {
+    name: "Max height",
+    render: () => (
+        <ControlledSingleSelect
+            aria-label="Max height"
+            placeholder="Placeholder"
+            opened={true}
+            onChange={() => {}}
+        >
+            {manyItems}
+        </ControlledSingleSelect>
+    ),
+    globals: {
+        viewport: {
+            value: "small",
+        },
+    },
+};

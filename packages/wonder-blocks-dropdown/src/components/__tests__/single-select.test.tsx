@@ -1114,67 +1114,6 @@ describe("SingleSelect", () => {
     });
 
     describe("Custom listbox styles", () => {
-        it("should apply the default maxHeight to the listbox wrapper", async () => {
-            // Arrange
-
-            // Act
-            doRender(
-                <SingleSelect
-                    onChange={onChange}
-                    opened={true}
-                    placeholder="Choose"
-                    selectedValue="2"
-                >
-                    <OptionItem label="item 1" value="1" />
-                    <OptionItem label="item 2" value="2" />
-                    <OptionItem label="item 3" value="3" />
-                </SingleSelect>,
-            );
-
-            // Assert
-            const dropdownMenuWrapper = await screen.findByTestId(
-                "dropdown-core-container",
-            );
-            // The max height (`max-block-size: var(--popper-max-height)`)
-            // lives in the `dropdown` class of `dropdown-core.module.css`,
-            // which jest doesn't load, so we check for the class instead.
-            expect(dropdownMenuWrapper).toHaveClass("dropdown");
-        });
-
-        it("should apply the default maxHeight to a virtualized listbox wrapper", async () => {
-            // Arrange
-            const optionItems = new Array(1000)
-                .fill(null)
-                .map((_: any, i: any) => (
-                    <OptionItem
-                        key={i}
-                        value={(i + 1).toString()}
-                        label={`item ${i + 1}`}
-                    />
-                ));
-
-            // Act
-            doRender(
-                <SingleSelect
-                    onChange={onChange}
-                    opened={true}
-                    isFilterable={true}
-                    placeholder="Choose"
-                    selectedValue="2"
-                >
-                    {optionItems}
-                </SingleSelect>,
-            );
-
-            // Assert
-            const dropdownMenuWrapper = await screen.findByTestId(
-                "dropdown-core-container",
-            );
-            // Max allowed height. It lives in the `dropdown` class of
-            // `dropdown-core.module.css`, which jest doesn't load.
-            expect(dropdownMenuWrapper).toHaveClass("dropdown");
-        });
-
         it("should override the default maxHeight to the listbox if a custom dropdownStyle is set", async () => {
             // Arrange
             const customMaxHeight = 200;
