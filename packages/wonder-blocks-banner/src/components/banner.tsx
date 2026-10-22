@@ -4,7 +4,12 @@ import {StyleSheet} from "aphrodite";
 import xIcon from "@phosphor-icons/core/bold/x-bold.svg";
 
 import Button from "@khanacademy/wonder-blocks-button";
-import {addStyle, StyleType, View} from "@khanacademy/wonder-blocks-core";
+import {
+    addStyle,
+    FloatingReferenceAttributeName,
+    StyleType,
+    View,
+} from "@khanacademy/wonder-blocks-core";
 import {PhosphorIcon, PhosphorIconAsset} from "@khanacademy/wonder-blocks-icon";
 import IconButton from "@khanacademy/wonder-blocks-icon-button";
 import Link from "@khanacademy/wonder-blocks-link";
@@ -101,6 +106,12 @@ type Props = {
      * Test ID used for e2e testing.
      */
     testId?: string;
+    /**
+     * Injected by floating components (e.g. `Tooltip`) to identify the
+     * element they are anchored to. It is applied to the root element, so that the whole banner is the anchor.
+     * @ignore
+     */
+    [FloatingReferenceAttributeName]?: string;
     /**
      * An optional icon to display. This is a reference to the icon asset (imported as a
      * static SVG file). If not provided, a default icon will be used based on
@@ -213,6 +224,7 @@ const Banner = (props: Props): React.ReactElement => {
         testId,
         icon,
         styles: stylesProp,
+        [FloatingReferenceAttributeName]: floatingReferenceId,
     } = props;
 
     const renderActions = () => {
@@ -297,6 +309,7 @@ const Banner = (props: Props): React.ReactElement => {
             aria-label={ariaLabel}
             aria-live={valuesForKind.ariaLive}
             testId={testId}
+            {...{[FloatingReferenceAttributeName]: floatingReferenceId}}
         >
             <View style={styles.containerInner}>
                 {iconElement}

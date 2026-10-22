@@ -5,6 +5,7 @@ import {DetailCell} from "@khanacademy/wonder-blocks-cell";
 import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {BodyText} from "@khanacademy/wonder-blocks-typography";
 
+import {FloatingReferenceAttributeName} from "@khanacademy/wonder-blocks-core";
 import type {StyleType} from "@khanacademy/wonder-blocks-core";
 
 import {focusStyles} from "@khanacademy/wonder-blocks-styles";
@@ -14,6 +15,12 @@ import theme from "../theme";
 import type {CellProps} from "../util/types";
 
 type ActionProps = {
+    /**
+     * Injected by floating components (e.g. `Tooltip`) to identify the
+     * element they are anchored to. It is applied to the root element (the cell), so that the whole item is the anchor.
+     * @ignore
+     */
+    [FloatingReferenceAttributeName]?: string;
     /**
      * Display text of the action item.
      */
@@ -162,6 +169,7 @@ export default class ActionItem extends React.Component<ActionProps> {
             testId,
             active,
             "aria-label": ariaLabel,
+            [FloatingReferenceAttributeName]: floatingReferenceId,
         } = this.props;
 
         const defaultStyle = [
@@ -206,6 +214,7 @@ export default class ActionItem extends React.Component<ActionProps> {
                 onClick={onClick}
                 active={active}
                 aria-label={ariaLabel}
+                {...{[FloatingReferenceAttributeName]: floatingReferenceId}}
             />
         );
     }
