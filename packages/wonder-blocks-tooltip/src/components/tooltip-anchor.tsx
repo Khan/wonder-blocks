@@ -4,7 +4,10 @@
  */
 import * as React from "react";
 
-import {Text as WBText} from "@khanacademy/wonder-blocks-core";
+import {
+    FloatingReferenceAttributeName,
+    Text as WBText,
+} from "@khanacademy/wonder-blocks-core";
 import {
     canAcceptRef,
     getElementRef,
@@ -60,33 +63,6 @@ type Props = {
 };
 
 const TRACKER = new ActiveTracker();
-
-/**
- * The attribute that identifies the markers rendered around anchored content
- * that can't receive a ref.
- */
-const MarkerAttributeName = "data-tooltip-anchor-marker";
-
-/**
- * Finds the first element rendered between the start and end markers. The
- * markers of nested anchors (e.g. a tooltip inside the anchored content) are
- * skipped. Returns `null` when the anchored content renders no element.
- */
-function findMarkedElement(
-    startMarker: Element | null,
-    endMarker: Element | null,
-): Element | null {
-    let node = startMarker?.nextElementSibling ?? null;
-
-    while (node && node !== endMarker) {
-        if (!node.hasAttribute(MarkerAttributeName)) {
-            return node;
-        }
-        node = node.nextElementSibling;
-    }
-
-    return null;
-}
 
 type ActiveStateManager = {
     /**
@@ -324,18 +300,20 @@ function useAnchorFocusivity(
  * The ref it receives is set to the anchored content's DOM element, which is
  * the element the tooltip is positioned against. No wrapper element is
  * rendered around the content, so the DOM hierarchy stays as the consumer
- * wrote it:
+ * wrote it.
  *
- * - Content that can receive a ref (host elements and `React.forwardRef`
- *   components) is given one. Its own ref (if any) is kept.
- * - Content that can't (e.g. plain function components), or that doesn't
- *   attach the ref to a DOM element, is resolved from the DOM instead, as the
- *   first element rendered between two marker elements. This way, it doesn't
- *   need to attach a ref or pass props along to its element.
+ * The anchored content has to do one of two things for the tooltip to find
+ * that element (the same contract as `Floating`'s trigger):
  *
- * NOTE: The markers are `<template>` elements, which are never displayed and
- * are valid in any context (e.g. inside a `<tbody>`). They still count as
- * siblings for selectors like `:first-child` or `:nth-child()`.
+ * - Pass the props it is given (which it needs to do anyway for
+ *   `aria-describedby`) along to its element. The element that receives the
+ *   injected `FloatingReferenceAttributeName` attribute is preferred, so a
+ *   component can point the tooltip at its root element even when its ref
+ *   points at an inner element (e.g. `Switch`).
+ * - Attach the ref it is given (host elements and `React.forwardRef`
+ *   components). Its own ref is kept.
+ *
+ * In development, a warning is logged when neither resolves an element.
  */
 const TooltipAnchor = React.forwardRef(function TooltipAnchor(
     props: Props,
@@ -351,6 +329,11 @@ const TooltipAnchor = React.forwardRef(function TooltipAnchor(
     const anchorableChildren =
         typeof children === "string" ? <WBText>{children}</WBText> : children;
 
+    // Identifies the anchored element in the DOM. `React.useId` values are
+    // unique for every component instance, so anchors (including nested ones)
+    // never resolve each other's element.
+    const referenceId = React.useId();
+
     // The DOM element of the anchored content. The hover and focus listeners
     // are attached to it.
     const [anchorNode, setAnchorNode] = React.useState<Element | null>(null);
@@ -359,83 +342,59 @@ const TooltipAnchor = React.forwardRef(function TooltipAnchor(
     // DOM elements (or `null`) are reported.
     const reportAnchor = useMergeRefs<Element>([ref, setAnchorNode]);
 
-    // Whether the anchored content was given a ref that didn't resolve to a
-    // DOM element (e.g. a `forwardRef` component that exposes an imperative
-    // handle instead). Such content is resolved from the DOM instead.
-    const [refYieldedNoElement, setRefYieldedNoElement] = React.useState(false);
-    const resolveFromMarkers =
-        !canAcceptRef(anchorableChildren) || refYieldedNoElement;
-
     // The element the anchored content attached the ref to, if any.
     const anchorFromRef = React.useRef<Element | null>(null);
 
-    const handleContentRef = React.useCallback(
-        (node: unknown) => {
-            const element = node instanceof Element ? node : null;
-
-            anchorFromRef.current = element;
-            reportAnchor?.(element);
-        },
-        [reportAnchor],
-    );
+    const setAnchorFromRef = React.useCallback((node: unknown) => {
+        anchorFromRef.current = node instanceof Element ? node : null;
+    }, []);
 
     // Give the anchored content's own ref (if it has one) back to its owner,
     // so that injecting ours doesn't take it away. It always gets the raw
     // value (e.g. an imperative handle).
     const contentRef = useMergeRefs([
         getElementRef(anchorableChildren),
-        handleContentRef,
+        setAnchorFromRef,
     ]);
 
-    // Fall back to the markers when the ref didn't resolve a DOM element.
-    // Refs are attached before this effect runs.
-    React.useLayoutEffect(() => {
-        if (!resolveFromMarkers && !anchorFromRef.current) {
-            setRefYieldedNoElement(true);
-        }
-    }, [resolveFromMarkers, anchorNode]);
+    // The element that was last reported, and whether we already warned about
+    // not finding one.
+    const reportedNodeRef = React.useRef<Element | null>(null);
+    const warnedRef = React.useRef(false);
 
-    // The markers rendered around content that is resolved from the DOM, and
-    // the element that was last resolved between them.
-    const startMarkerRef = React.useRef<HTMLTemplateElement | null>(null);
-    const endMarkerRef = React.useRef<HTMLTemplateElement | null>(null);
-    const markedNodeRef = React.useRef<Element | null>(null);
-
-    /**
-     * Resolves the anchored element once the end marker is attached. Refs are
-     * attached in order and after all of the elements are in the DOM, so the
-     * start marker and the anchored content are already there.
-     */
-    const handleEndMarkerRef = React.useCallback(
-        (endMarker: HTMLTemplateElement | null) => {
-            const node = endMarker
-                ? findMarkedElement(startMarkerRef.current, endMarker)
-                : null;
-
-            endMarkerRef.current = endMarker;
-            markedNodeRef.current = node;
-            reportAnchor?.(node);
-        },
-        [reportAnchor],
-    );
-
-    // Keep the marked element in sync if the anchored content renders a
-    // different DOM element (the markers' refs aren't attached again then).
+    // Resolve the anchored element: the element that received the attribute
+    // (preferred), or the element the ref resolved.
     //
-    // NOTE: This runs after every render (no dependency array). The element is
+    // NOTE: This runs after every render (no dependency array) so that the
+    // element stays in sync if the anchored content renders a different DOM
+    // element. Refs are attached before this effect runs, and the element is
     // only reported when it changes, so this can't loop.
     React.useLayoutEffect(() => {
-        if (!endMarkerRef.current) {
-            return;
+        const node =
+            document.querySelector(
+                `[${FloatingReferenceAttributeName}="${referenceId}"]`,
+            ) ?? anchorFromRef.current;
+
+        if (node !== reportedNodeRef.current) {
+            reportedNodeRef.current = node;
+            reportAnchor?.(node);
         }
 
-        const node = findMarkedElement(
-            startMarkerRef.current,
-            endMarkerRef.current,
-        );
-        if (node !== markedNodeRef.current) {
-            markedNodeRef.current = node;
-            reportAnchor?.(node);
+        if (process.env.NODE_ENV !== "production" && !node) {
+            if (!warnedRef.current) {
+                warnedRef.current = true;
+                // eslint-disable-next-line no-console
+                console.warn(
+                    "Tooltip: could not find the anchored element in the DOM, " +
+                        "so the tooltip can't be shown. Make sure the " +
+                        "anchored content either spreads the props it is " +
+                        "given onto its root element, or attaches the ref it " +
+                        "is given to it (e.g. with `React.forwardRef`). " +
+                        "Alternatively, wrap it in a `View`.",
+                );
+            }
+        } else {
+            warnedRef.current = false;
         }
     });
 
@@ -476,30 +435,16 @@ const TooltipAnchor = React.forwardRef(function TooltipAnchor(
         handleMouseLeave,
     ]);
 
-    if (!resolveFromMarkers) {
-        return React.cloneElement(anchorableChildren, {
-            "aria-describedby": ariaDescribedBy,
-            ref: contentRef,
-        });
-    }
-
-    // NOTE: The anchored content keeps its own ref (if any), which React
-    // attaches as usual.
-    return (
-        <>
-            <template
-                ref={startMarkerRef}
-                {...{[MarkerAttributeName]: "start"}}
-            />
-            {React.cloneElement(anchorableChildren, {
-                "aria-describedby": ariaDescribedBy,
-            })}
-            <template
-                ref={handleEndMarkerRef}
-                {...{[MarkerAttributeName]: "end"}}
-            />
-        </>
-    );
+    return React.cloneElement(anchorableChildren, {
+        "aria-describedby": ariaDescribedBy,
+        // Passed along so that the anchored element can be found in the DOM.
+        // This is why anchored content that doesn't attach the ref below has
+        // to spread the props it is given.
+        [FloatingReferenceAttributeName]: referenceId,
+        // Only injected when the anchored content can receive a ref: giving
+        // one to a plain function component would log a React error.
+        ...(canAcceptRef(anchorableChildren) ? {ref: contentRef} : undefined),
+    });
 });
 
 TooltipAnchor.displayName = "TooltipAnchor";

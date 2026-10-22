@@ -353,6 +353,26 @@ describe("LabeledField", () => {
     });
 
     describe("Attributes", () => {
+        it("should forward the ref to its root element", async () => {
+            // Arrange
+            const ref = React.createRef<HTMLElement>();
+
+            // Act
+            render(
+                <LabeledField
+                    ref={ref}
+                    label="Name"
+                    field={<TextField value="" onChange={() => {}} />}
+                    testId="labeled-field-root"
+                />,
+            );
+
+            // Assert
+            expect(ref.current).toBe(
+                await screen.findByTestId("labeled-field-root"),
+            );
+        });
+
         describe("id", () => {
             it.each([
                 ["label", `${id}-label`, getLabel],

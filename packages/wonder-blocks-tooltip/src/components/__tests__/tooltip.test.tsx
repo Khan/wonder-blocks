@@ -265,14 +265,16 @@ describe("Tooltip", () => {
     });
 
     describe("anchored content", () => {
-        it("should show the tooltip for content that can't receive a ref", async () => {
+        it("should show the tooltip for content that spreads the props it is given", async () => {
             // Arrange
             const ue = userEvent.setup({
                 advanceTimers: jest.advanceTimersByTimeAsync,
             });
-            // A plain function component that doesn't pass any props along
-            // to its element (e.g. `LabeledField`).
-            const Anchor = () => <span>Anchor</span>;
+            // A plain function component can't receive a ref, but it passes
+            // the props it is given along to its element.
+            const Anchor = (props: React.ComponentProps<"span">) => (
+                <span {...props}>Anchor</span>
+            );
             render(
                 <Tooltip content="Content">
                     <Anchor />
