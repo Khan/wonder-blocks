@@ -14,7 +14,16 @@ Wave H). The public API is unchanged.
   every combination of disabled / readOnly / error / placeholder / pressed
   resolves as before.
 - The package now ships its bundled stylesheet at `dist/index.css`, which the
-  JS entry imports automatically.
+  JS entry imports automatically. It's also exported as the
+  `@khanacademy/wonder-blocks-dropdown/css` subpath, and `sideEffects` is set
+  so bundlers keep the side-effect import.
+- Note for apps with global button CSS: Aphrodite emitted the opener styles
+  unlayered and with `!important`, whereas the CSS Modules build emits them in
+  `@layer shared`. Unlayered page CSS that targets `button` or
+  `[type="button"]` (e.g. Tailwind v3 preflight, normalize.css, legacy
+  `button {}` rules) now wins over `SelectOpener` and `CustomOpener` styles
+  such as border, background, padding and color, regardless of specificity.
+  Scope that CSS or move it into a cascade layer.
 - **Behavior change:** if a `CustomOpener` consumer's `styles.root` sets
   `outline` or `box-shadow` at rest, that value now also applies while the
   opener is focused, replacing the built-in focus ring. Before, the built-in

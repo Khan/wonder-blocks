@@ -80,6 +80,11 @@
     & .text {
         margin-inline-end: var(--wb-sizing-size_080);
         white-space: nowrap;
+
+        /* Safari only honours the prefixed form, and the CSS pipeline has no
+         * autoprefixer (Aphrodite used to add it). */
+        /* stylelint-disable-next-line property-no-vendor-prefix -- Safari needs it */
+        -webkit-user-select: none;
         user-select: none;
         overflow: hidden;
         text-overflow: ellipsis;
