@@ -1,0 +1,20 @@
+/**
+ * Combobox live region styles
+ *
+ * The live region is an `addStyle("span")`, which ships no styles of its own,
+ * so the class needs no extra specificity.
+ *
+ * The build wraps every rule in `@layer shared { … }`.
+ */
+
+.srOnly {
+    border: 0;
+    /* stylelint-disable-next-line property-no-deprecated -- the standard visually-hidden pattern; kept as-is from the Aphrodite version */
+    clip: rect(0, 0, 0, 0);
+    block-size: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    inline-size: 1px;
+}

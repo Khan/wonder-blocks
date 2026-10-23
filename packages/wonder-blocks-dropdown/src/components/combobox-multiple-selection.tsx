@@ -1,12 +1,11 @@
-import {StyleSheet} from "aphrodite";
 import * as React from "react";
 
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
-import {font, sizing} from "@khanacademy/wonder-blocks-tokens";
 import xIcon from "@phosphor-icons/core/regular/x.svg";
 import {View} from "@khanacademy/wonder-blocks-core";
-import {focusStyles} from "@khanacademy/wonder-blocks-styles";
 import Button from "@khanacademy/wonder-blocks-button";
+
+import styles from "./combobox-multiple-selection.module.css";
 
 type Props = {
     /**
@@ -58,7 +57,7 @@ export const MultipleSelection = React.memo(function SelectedPills({
     testId,
 }: Props) {
     return (
-        <View role="group" style={styles.container} id={id}>
+        <View role="group" style={[styles.root, styles.container]} id={id}>
             {selected.map((value, index) => {
                 const label = labels[index] as string;
                 const focused = index === focusedMultiSelectIndex;
@@ -88,21 +87,4 @@ export const MultipleSelection = React.memo(function SelectedPills({
             })}
         </View>
     );
-});
-
-const styles = StyleSheet.create({
-    container: {
-        flexDirection: "row",
-        flexWrap: "wrap",
-        gap: sizing.size_080,
-        paddingBlockStart: sizing.size_080,
-    },
-    item: {
-        fontSize: font.body.size.small,
-        justifyContent: "space-between",
-        alignItems: "center",
-        height: "auto",
-        paddingInline: sizing.size_080,
-    },
-    itemFocused: focusStyles.focus[":focus-visible"],
 });
