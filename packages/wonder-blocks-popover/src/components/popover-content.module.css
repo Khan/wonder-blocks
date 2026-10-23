@@ -1,0 +1,66 @@
+/**
+ * PopoverContent styles
+ *
+ * `.root` is a marker class with no declarations. `PopoverContent` passes it
+ * through `PopoverContentCore`'s `style`, so it lands on the content wrapper
+ * that contains every element below. The elements are `View`s, an `img`,
+ * and a `Heading`, and these rules override properties `View` and typography
+ * set in their own single-class rules in the same `@layer shared` (`margin`,
+ * `flex-direction`, `align-items`, …). The bundle loads this package's CSS
+ * before theirs, so the compound selector makes the result depend on
+ * specificity instead of load order.
+ *
+ * `.imageToBottom` follows `.image` because both sit on the same element and
+ * it re-sets the block margins (`margin-block` is start then end), as the
+ * Aphrodite style array did. The build wraps every rule in
+ * `@layer shared { … }`.
+ */
+
+.root {
+    /* Shared styles */
+    & .actions {
+        margin-block-start: var(--wb-sizing-size_240);
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-end;
+    }
+
+    & .text {
+        justify-content: center;
+    }
+
+    & .title {
+        margin-block-end: var(--wb-sizing-size_080);
+    }
+
+    /* Icon styles */
+    & .iconContainer {
+        align-items: center;
+        justify-content: center;
+        block-size: var(--wb-sizing-size_640);
+        inline-size: var(--wb-sizing-size_640);
+        min-inline-size: var(--wb-sizing-size_640);
+        margin-inline-end: var(--wb-sizing-size_160);
+        overflow: hidden;
+    }
+
+    & .icon {
+        inline-size: 100%;
+    }
+
+    & .withIcon {
+        flex-direction: row;
+    }
+
+    /* Illustration styles */
+    & .image {
+        margin-block: calc(-1 * var(--wb-sizing-size_240)) var(--wb-sizing-size_240);
+        margin-inline: calc(-1 * var(--wb-sizing-size_240));
+        inline-size: calc(100% + var(--wb-sizing-size_480));
+    }
+
+    & .imageToBottom {
+        margin-block: var(--wb-sizing-size_240) calc(-1 * var(--wb-sizing-size_240));
+        order: 1;
+    }
+}

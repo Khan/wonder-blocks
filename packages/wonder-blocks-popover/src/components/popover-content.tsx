@@ -1,15 +1,14 @@
 import * as React from "react";
-import {StyleSheet} from "aphrodite";
 
 import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
 import {addStyle, View} from "@khanacademy/wonder-blocks-core";
-import {sizing} from "@khanacademy/wonder-blocks-tokens";
 import {BodyText, Heading} from "@khanacademy/wonder-blocks-typography";
 
 import type {PopoverContextType} from "./popover-context";
 
 import PopoverContentCore from "./popover-content-core";
 import PopoverContext from "./popover-context";
+import styles from "./popover-content.module.css";
 
 type CommonProps = AriaProps & {
     /**
@@ -210,7 +209,7 @@ const PopoverContent = React.forwardRef<HTMLElement, Props>(
                 closeButtonLight={!!image && placement === "top"}
                 closeButtonLabel={closeButtonLabel}
                 closeButtonVisible={closeButtonVisible}
-                style={style}
+                style={[styles.root, style]}
                 testId={testId}
                 ref={ref}
             >
@@ -243,60 +242,3 @@ const PopoverContent = React.forwardRef<HTMLElement, Props>(
 PopoverContent.displayName = "PopoverContent";
 
 export default PopoverContent;
-
-const styles = StyleSheet.create({
-    /**
-     * Shared styles
-     */
-    actions: {
-        marginBlockStart: sizing.size_240,
-        flexDirection: "row",
-        alignItems: "center",
-        justifyContent: "flex-end",
-    },
-
-    text: {
-        justifyContent: "center",
-    },
-
-    title: {
-        marginBlockEnd: sizing.size_080,
-    },
-
-    /**
-     * Icon styles
-     */
-    iconContainer: {
-        alignItems: "center",
-        justifyContent: "center",
-        blockSize: sizing.size_640,
-        inlineSize: sizing.size_640,
-        minInlineSize: sizing.size_640,
-        marginInlineEnd: sizing.size_160,
-        overflow: "hidden",
-    },
-
-    icon: {
-        width: "100%",
-    },
-
-    withIcon: {
-        flexDirection: "row",
-    },
-
-    /**
-     * Illustration styles
-     */
-    image: {
-        marginBlockEnd: sizing.size_240,
-        marginBlockStart: `calc(-1 * ${sizing.size_240})`,
-        marginInline: `calc(-1 * ${sizing.size_240})`,
-        inlineSize: `calc(100% + ${sizing.size_480})`,
-    },
-
-    imageToBottom: {
-        marginBlockEnd: `calc(-1 * ${sizing.size_240})`,
-        marginBlockStart: sizing.size_240,
-        order: 1,
-    },
-});

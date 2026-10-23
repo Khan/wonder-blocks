@@ -1,14 +1,13 @@
 import * as React from "react";
-import {StyleSheet} from "aphrodite";
 
 import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {ScrollableView} from "@khanacademy/wonder-blocks-layout";
-import {border, sizing} from "@khanacademy/wonder-blocks-tokens";
 
 import {actionStyles} from "@khanacademy/wonder-blocks-styles";
 import CloseButton from "./close-button";
 import PopoverContext from "./popover-context";
+import styles from "./popover-content-core.module.css";
 
 type Props = AriaProps & {
     /**
@@ -101,7 +100,7 @@ const PopoverContentCore = React.forwardRef<HTMLElement, Props>(
               };
 
         return (
-            <ScrollableView {...labelProps} style={styles.scrollableView}>
+            <ScrollableView {...labelProps} style={styles.root}>
                 <View testId={testId} style={[styles.content, style]} ref={ref}>
                     {/* The close button is part of the content (inside the
                     scroll container), so it scrolls with it. */}
@@ -125,34 +124,3 @@ const PopoverContentCore = React.forwardRef<HTMLElement, Props>(
 PopoverContentCore.displayName = "PopoverContentCore";
 
 export default PopoverContentCore;
-
-const styles = StyleSheet.create({
-    scrollableView: {
-        // The scrollable view sits at the edges of the floating element (the
-        // popover "bubble"), so match its inner border radius (its border
-        // radius minus its border width). This also rounds the fades.
-        borderRadius: `calc(${border.radius.radius_040} - ${border.width.thin})`,
-    },
-    content: {
-        margin: 0,
-        maxInlineSize: `calc(${sizing.size_160} * 18)`, // 288px
-        padding: sizing.size_240,
-        overflow: "hidden",
-        justifyContent: "center",
-        // Keep the content at its natural size so it overflows (and scrolls)
-        // inside the scroll container instead of being squashed.
-        flexShrink: 0,
-    },
-
-    /**
-     * elements
-     */
-    closeButton: {
-        margin: 0,
-        position: "absolute",
-        insetInlineEnd: sizing.size_040,
-        insetBlockStart: sizing.size_040,
-        // Allows the button to be above the title and/or custom content
-        zIndex: 1,
-    },
-});
