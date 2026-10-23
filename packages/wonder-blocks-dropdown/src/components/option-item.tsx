@@ -1,17 +1,15 @@
 import * as React from "react";
-import {StyleSheet} from "aphrodite";
-
 import {DetailCell} from "@khanacademy/wonder-blocks-cell";
-import {semanticColor, border, sizing} from "@khanacademy/wonder-blocks-tokens";
+import {sizing} from "@khanacademy/wonder-blocks-tokens";
 import {BodyText} from "@khanacademy/wonder-blocks-typography";
 
 import {AriaProps, StyleType, View} from "@khanacademy/wonder-blocks-core";
 
-import {focusStyles} from "@khanacademy/wonder-blocks-styles";
 import Check from "./check";
 import Checkbox from "./checkbox";
 import {CellProps, OptionLabel} from "../util/types";
-import theme from "../theme";
+
+import styles from "./option-item.module.css";
 
 type OptionProps = AriaProps & {
     /**
@@ -201,6 +199,7 @@ export default class OptionItem extends React.Component<OptionProps> {
         const CheckComponent = this.getCheckComponent();
 
         const defaultStyle = [
+            styles.root,
             styles.optionItem,
             // pass optional styles from react-window (if applies)
             style,
@@ -266,73 +265,3 @@ export default class OptionItem extends React.Component<OptionProps> {
         );
     }
 }
-
-const focusedStyle = {
-    // Override the default focus state for the cell element, so that it
-    // can be added programmatically to the button element.
-    borderRadius: theme.item.border.radius.default,
-    outline: focusStyles.focus[":focus-visible"].outline,
-    outlineOffset: `calc(${border.width.medium} * -1)`,
-    // We need to use a thicker box-shadow to ensure that the inner ring
-    // is visible when the cell is focused.
-    boxShadow: `inset 0 0 0 calc(${border.width.medium}*2) ${semanticColor.focus.inner}`,
-};
-
-const resetFocusStyle = {
-    // Reset the focus style for the cell element, so that it doesn't interfere
-    // with the button element's focus state.
-    outline: "none",
-    boxShadow: "none",
-};
-
-const styles = StyleSheet.create({
-    optionItem: {
-        paddingBlock: theme.item.layout.padding.block,
-        paddingInlineStart: theme.item.layout.padding.inlineStart,
-        paddingInlineEnd: theme.item.layout.padding.inlineEnd,
-        whiteSpace: "nowrap",
-        // Make sure that the item is always at least as tall as 40px.
-        minBlockSize: sizing.size_400,
-
-        /**
-         * States
-         */
-        ":active": {
-            borderRadius: theme.item.border.radius.press,
-        },
-
-        [":is([aria-disabled=true])" as any]: {
-            ":focus": resetFocusStyle,
-        },
-    },
-    // Specific styles for Listbox and Combobox
-    listboxOptionItem: {
-        // This does not apply here as we use visual focus (instead of real DOM
-        // focus).
-        // @see https://www.w3.org/WAI/ARIA/apg/practices/keyboard-interface/#kbd_focus_activedescendant
-        ":focus-visible": resetFocusStyle,
-    },
-    listboxOptionItemFocused: {
-        ...focusedStyle,
-        ":focus-visible": focusedStyle,
-    },
-    // Specific styles for MultiSelect and SingleSelect
-    selectOptionItem: {
-        // Allows programmatic focus to be applied to the item
-        ":focus": focusedStyle,
-    },
-
-    label: {
-        fontWeight: theme.item.font.weight,
-        lineHeight: sizing.size_200,
-        whiteSpace: "nowrap",
-        userSelect: "none",
-        // added to truncate strings that are longer than expected
-        overflow: "hidden",
-        textOverflow: "ellipsis",
-    },
-
-    hide: {
-        visibility: "hidden",
-    },
-});

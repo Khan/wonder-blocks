@@ -1,0 +1,21 @@
+/**
+ * SeparatorItem styles
+ *
+ * The separator is a `View`, whose own `.default` class (same
+ * `@layer shared`) resets `border`, `margin` and `min-block-size`. The
+ * published bundle loads this stylesheet *before* core's, so the rule is
+ * qualified with the `.root` marker class (applied to the same element) to
+ * win on specificity rather than load order.
+ *
+ * The build wraps every rule in `@layer shared { … }`.
+ */
+
+.root {
+    &.separator {
+        border-block-start: var(--wb-border-width-thin) solid
+            var(--wb-semanticColor-core-border-neutral-subtle);
+        block-size: 1px;
+        min-block-size: 1px;
+        margin-block: var(--wb-sizing-size_040);
+    }
+}

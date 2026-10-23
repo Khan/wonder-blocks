@@ -1,0 +1,117 @@
+/**
+ * OptionItem styles. Its `Check` and `Checkbox` indicators have their own
+ * modules (`check.module.css`, `checkbox.module.css`).
+ *
+ * Every rule is nested inside `.root` — the marker class OptionItem adds to
+ * the `DetailCell` root, which carries no declarations of its own. The root is
+ * a `Cell` (`.wrapper`, `.detail`, `.clickable`, `.disabled`) and the label is
+ * a `BodyText`. Both ship rules in the same `@layer shared`, and this
+ * component overrides properties they set (padding, `min-block-size`,
+ * `border-radius` and the focus ring on the cell; `font-weight` and
+ * `line-height` on the label). The published
+ * bundle loads this stylesheet *before* those packages', so at equal
+ * specificity they would win; the compound selector makes the outcome depend
+ * on specificity instead.
+ *
+ * The Aphrodite version was unlayered `!important`, so it beat every Cell
+ * state rule. Cell's most specific `border-radius` rule is
+ * `.clickable:focus-visible:active` (0,3,0), so each state rule that sets
+ * `border-radius` also lists its `:focus-visible:active` / `:focus:active`
+ * combination (0,4,0) to keep winning in that state.
+ *
+ * Between the rules in this file, source order reproduces the Aphrodite
+ * merge order:
+ *
+ *   optionItem → (press) → listbox / select variants → disabled focus reset
+ *
+ * Nesting is native CSS: every `&` is explicit and resolves to the flat
+ * selector it replaces. The build wraps every rule in `@layer shared { … }`.
+ */
+
+.root {
+    &.optionItem {
+        padding-block: var(--wb-c-dropdown-item-layout-padding-block);
+        padding-inline: var(--wb-c-dropdown-item-layout-padding-inlineStart)
+            var(--wb-c-dropdown-item-layout-padding-inlineEnd);
+        white-space: nowrap;
+
+        /* Make sure that the item is always at least as tall as 40px. */
+        min-block-size: var(--wb-sizing-size_400);
+    }
+
+    &.optionItem:active,
+    &.optionItem:focus-visible:active {
+        border-radius: var(--wb-c-dropdown-item-border-radius-press);
+    }
+
+    /**
+     * Specific styles for Listbox and Combobox.
+     */
+
+    /* This does not apply here as we use visual focus (instead of real DOM
+     * focus).
+     * @see https://www.w3.org/WAI/ARIA/apg/practices/keyboard-interface/#kbd_focus_activedescendant */
+    &.listboxOptionItem:focus-visible {
+        outline: none;
+        box-shadow: none;
+    }
+
+    /* Override the default focus state for the cell element, so that it can
+     * be added programmatically to the button element. Declared after the
+     * reset above, which it overrides at equal specificity. The plain
+     * `.listboxOptionItemFocused` selector (0,2,0) still loses to the press
+     * rule above, so a pressed item gets the press radius unless it is also
+     * focus-visible. */
+    &.listboxOptionItemFocused,
+    &.listboxOptionItemFocused:focus-visible,
+    &.listboxOptionItemFocused:focus-visible:active {
+        border-radius: var(--wb-c-dropdown-item-border-radius-default);
+        outline: var(--wb-border-width-medium) solid
+            var(--wb-semanticColor-focus-outer);
+        outline-offset: calc(var(--wb-border-width-medium) * -1);
+
+        /* We need to use a thicker box-shadow to ensure that the inner ring
+         * is visible when the cell is focused. */
+        box-shadow: inset 0 0 0 calc(var(--wb-border-width-medium) * 2)
+            var(--wb-semanticColor-focus-inner);
+    }
+
+    /**
+     * Specific styles for MultiSelect and SingleSelect.
+     */
+
+    /* Allows programmatic focus to be applied to the item. Declared after the
+     * press rule: a focused item keeps its focus radius while pressed. */
+    &.selectOptionItem:focus,
+    &.selectOptionItem:focus:active {
+        border-radius: var(--wb-c-dropdown-item-border-radius-default);
+        outline: var(--wb-border-width-medium) solid
+            var(--wb-semanticColor-focus-outer);
+        outline-offset: calc(var(--wb-border-width-medium) * -1);
+        box-shadow: inset 0 0 0 calc(var(--wb-border-width-medium) * 2)
+            var(--wb-semanticColor-focus-inner);
+    }
+
+    /* A disabled item never shows the focus ring. (0,4,0): outranks every
+     * focus rule above. */
+    &.optionItem[aria-disabled="true"]:focus {
+        outline: none;
+        box-shadow: none;
+    }
+
+    & .label {
+        font-weight: var(--wb-c-dropdown-item-font-weight);
+        line-height: var(--wb-sizing-size_200);
+        white-space: nowrap;
+
+        /* Safari only honours the prefixed form, and the CSS pipeline has no
+         * autoprefixer (Aphrodite used to add it). */
+        /* stylelint-disable-next-line property-no-vendor-prefix -- Safari needs it */
+        -webkit-user-select: none;
+        user-select: none;
+
+        /* added to truncate strings that are longer than expected */
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+}
