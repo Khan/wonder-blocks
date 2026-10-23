@@ -2,7 +2,7 @@ import * as React from "react";
 import type {Meta, StoryObj} from "@storybook/react-vite";
 
 import {SingleSelect, OptionItem} from "@khanacademy/wonder-blocks-dropdown";
-import {allThemeModes} from "../../.storybook/modes";
+import {allModes, allThemeModes} from "../../.storybook/modes";
 import {defaultPseudoStates, StateSheet} from "../components/state-sheet";
 import {ScenariosLayout} from "../components/scenarios-layout";
 import {
@@ -242,6 +242,18 @@ export const MaxHeight: Story = {
             {manyItems}
         </ControlledSingleSelect>
     ),
+    parameters: {
+        chromatic: {
+            // The cap doesn't vary by theme, so one theme is enough. Story
+            // modes merge with the file's `allThemeModes`, so the other two
+            // are disabled explicitly.
+            modes: {
+                default: {disable: true},
+                thunderblocks: allModes.themeThunderBlocks,
+                sylDark: {disable: true},
+            },
+        },
+    },
     globals: {
         viewport: {
             value: "small",
