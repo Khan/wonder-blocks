@@ -94,6 +94,35 @@ describe("ActionItem", () => {
         expect(screen.getByRole("heading")).toBeInTheDocument();
     });
 
+    it("should allow passing a DOM element as a custom label", () => {
+        // Arrange
+
+        // Act
+        render(<ActionItem label={<span>A span as an item</span>} />);
+
+        // Assert
+        expect(screen.getByText("A span as an item")).toBeInTheDocument();
+    });
+
+    it("should apply the label styles to a DOM element label as a class", () => {
+        // Arrange
+
+        // Act
+        render(
+            <ActionItem
+                label={<span className="custom">A span as an item</span>}
+            />,
+        );
+
+        // Assert
+        // `action-item.module.css` is mapped by `identity-obj-proxy`, so the
+        // label class is `label`.
+        expect(screen.getByText("A span as an item")).toHaveClass(
+            "label",
+            "custom",
+        );
+    });
+
     it("should apply aria-current if active is true", () => {
         // Arrange
 

@@ -103,6 +103,11 @@
         font-weight: var(--wb-c-dropdown-item-font-weight);
         line-height: var(--wb-sizing-size_200);
         white-space: nowrap;
+
+        /* Safari only honours the prefixed form, and the CSS pipeline has no
+         * autoprefixer (Aphrodite used to add it). */
+        /* stylelint-disable-next-line property-no-vendor-prefix -- Safari needs it */
+        -webkit-user-select: none;
         user-select: none;
 
         /* added to truncate strings that are longer than expected */

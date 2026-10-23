@@ -172,6 +172,17 @@ export default class ActionItem extends React.Component<ActionProps> {
                 <BodyText tag="div" lang={lang} style={styles.label}>
                     {label}
                 </BodyText>
+            ) : typeof label.type === "string" ? (
+                // A host element (e.g. `<span>`) only accepts a style
+                // object in `style`, so the label class goes on `className`
+                // instead, alongside any class the label already has.
+                React.cloneElement(label, {
+                    lang,
+                    ...label.props,
+                    className: [styles.label, label.props.className]
+                        .filter(Boolean)
+                        .join(" "),
+                })
             ) : (
                 React.cloneElement(label, {
                     lang,
