@@ -1,0 +1,71 @@
+/**
+ * ModalContent styles (plus `ModalPanel`'s `hasFooter` spacing)
+ *
+ * Every rule is nested inside `.root` — the marker class on the outer
+ * wrapper `View`, which carries no declarations of its own. Both elements are
+ * `View`s, and these rules override properties `View` sets in its own
+ * single-class rule in the same `@layer shared` (`display`, `padding`,
+ * `min-block-size`). The bundle loads this package's CSS before core's, so
+ * the compound selector makes the result depend on specificity instead.
+ *
+ * `ModalPanel` passes `.hasFooter` into the content's `style`, which lands on
+ * the same element as `.content`. Aphrodite merged that array into a single
+ * class, so the rule lives in this file and source order reproduces it: base
+ * declarations (`.content` → `.hasFooter`) first, then the media blocks.
+ *
+ * The `*SmallHeight` classes only carry a media query; they're applied unless
+ * `applySmallHeightStyles` is false (`FlexibleDialog` / `DrawerDialog`). The
+ * media queries are the modal breakpoints: `midOrSmaller`
+ * (`max-width: 767px`) and `smMinOrSmallerHeight` (`max-height: 500px`). The
+ * consumer's `style` still goes through Aphrodite (unlayered and
+ * `!important`), so it wins over this module. The build wraps every rule in
+ * `@layer shared { … }`.
+ *
+ * TODO [WB-2137]: standardize media query breakpoint tokens
+ */
+
+.root {
+    &.wrapper {
+        flex: 1;
+
+        /* This helps to ensure that the paddingBottom is preserved when the
+         * contents start to overflow, this goes away on display: flex */
+        display: block;
+    }
+
+    &.scrollOverflow {
+        overflow: auto;
+    }
+
+    & .content {
+        flex: 1;
+        min-block-size: 100%;
+        padding: var(--wb-c-modal-panel-layout-gap-default);
+        box-sizing: border-box;
+    }
+
+    /* The space between the content and the footer */
+    & .hasFooter {
+        padding-block-end: var(--wb-c-modal-panel-layout-gap-default);
+    }
+
+    @media screen and (width <= 767px) {
+        & .content {
+            padding-inline: var(--wb-c-modal-panel-layout-gap-small);
+        }
+    }
+
+    @media screen and (height <= 500px) {
+        &.wrapperSmallHeight {
+            flex: unset;
+            min-block-size: unset;
+            overflow: unset;
+        }
+
+        & .contentSmallHeight {
+            flex: unset;
+            min-block-size: unset;
+            overflow: unset;
+        }
+    }
+}
