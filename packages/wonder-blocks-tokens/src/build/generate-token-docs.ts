@@ -140,9 +140,9 @@ export const groups: ReadonlyArray<Group> = [
         heading: "Graphics palette tokens map",
         tokenPrefix: "graphicsPalette",
         description:
-            "Static colors for illustrations and other graphic assets (e.g. SVG `fill` and `stroke` attributes). These don't change based on the theme. Use `semanticColor` for component styles.",
+            "Colors that don't change based on the theme, for cases like illustrations. Prefer `semanticColor`, which supports themes, and explain why when a color must use the graphics palette.",
         tokens: graphicsPalette,
-        includeCssVar: false,
+        includeCssVar: true,
     },
     {
         id: "sizing",

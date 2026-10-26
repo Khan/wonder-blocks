@@ -219,7 +219,7 @@ exports[`renderMdx should render the expected content for the graphics-palette g
 
 import {Meta} from "@storybook/addon-docs/blocks";
 
-<Meta title="References / Tokens Map / Graphics Palette" summary="Static colors for illustrations and other graphic assets (e.g. SVG \`fill\` and \`stroke\` attributes). These don't change based on the theme. Use \`semanticColor\` for component styles." />
+<Meta title="References / Tokens Map / Graphics Palette" summary="Colors that don't change based on the theme, for cases like illustrations. Prefer \`semanticColor\`, which supports themes, and explain why when a color must use the graphics palette." />
 
 {/*
   Constrain wide token tables to the docs content width and let them scroll
@@ -236,104 +236,104 @@ import {Meta} from "@storybook/addon-docs/blocks";
 
 # Graphics palette tokens map
 
-Static colors for illustrations and other graphic assets (e.g. SVG \`fill\` and \`stroke\` attributes). These don't change based on the theme. Use \`semanticColor\` for component styles.
+Colors that don't change based on the theme, for cases like illustrations. Prefer \`semanticColor\`, which supports themes, and explain why when a color must use the graphics palette.
 
 \`\`\`ts
 import {graphicsPalette} from "@khanacademy/wonder-blocks-tokens";
 \`\`\`
 
-| Token | Value |
-| --- | --- |
-| \`graphicsPalette.red_90\` | \`#FEF4F4\` |
-| \`graphicsPalette.red_80\` | \`#FFEBEB\` |
-| \`graphicsPalette.red_70\` | \`#FDDFDF\` |
-| \`graphicsPalette.red_60\` | \`#FBB1B1\` |
-| \`graphicsPalette.red_50\` | \`#F97F7F\` |
-| \`graphicsPalette.red_40\` | \`#ED5656\` |
-| \`graphicsPalette.red_30\` | \`#E22D2D\` |
-| \`graphicsPalette.red_20\` | \`#BE2626\` |
-| \`graphicsPalette.red_10\` | \`#8E1C1C\` |
-| \`graphicsPalette.red_05\` | \`#621414\` |
-| \`graphicsPalette.red_01\` | \`#3B141A\` |
-| \`graphicsPalette.orange_90\` | \`#FEF4F2\` |
-| \`graphicsPalette.orange_80\` | \`#FEE9E5\` |
-| \`graphicsPalette.orange_70\` | \`#FEDFD8\` |
-| \`graphicsPalette.orange_60\` | \`#FEBFB1\` |
-| \`graphicsPalette.orange_50\` | \`#FAA185\` |
-| \`graphicsPalette.orange_40\` | \`#F97B4F\` |
-| \`graphicsPalette.orange_30\` | \`#F8551A\` |
-| \`graphicsPalette.orange_20\` | \`#C8481A\` |
-| \`graphicsPalette.orange_10\` | \`#983C1A\` |
-| \`graphicsPalette.orange_05\` | \`#672912\` |
-| \`graphicsPalette.orange_01\` | \`#3E1F19\` |
-| \`graphicsPalette.yellow_90\` | \`#FEF8E7\` |
-| \`graphicsPalette.yellow_80\` | \`#FEF1D0\` |
-| \`graphicsPalette.yellow_70\` | \`#FEEAB8\` |
-| \`graphicsPalette.yellow_60\` | \`#FEE7AD\` |
-| \`graphicsPalette.yellow_50\` | \`#FDD673\` |
-| \`graphicsPalette.yellow_40\` | \`#FCC539\` |
-| \`graphicsPalette.yellow_30\` | \`#FCB706\` |
-| \`graphicsPalette.yellow_20\` | \`#D69900\` |
-| \`graphicsPalette.yellow_10\` | \`#966B00\` |
-| \`graphicsPalette.yellow_05\` | \`#5F4500\` |
-| \`graphicsPalette.yellow_01\` | \`#312405\` |
-| \`graphicsPalette.green_90\` | \`#F1FBF1\` |
-| \`graphicsPalette.green_80\` | \`#E3F7E3\` |
-| \`graphicsPalette.green_70\` | \`#D5F3D5\` |
-| \`graphicsPalette.green_60\` | \`#BCEBBB\` |
-| \`graphicsPalette.green_50\` | \`#97D39E\` |
-| \`graphicsPalette.green_40\` | \`#72BB82\` |
-| \`graphicsPalette.green_30\` | \`#579F6C\` |
-| \`graphicsPalette.green_20\` | \`#3C6D4A\` |
-| \`graphicsPalette.green_10\` | \`#2C5037\` |
-| \`graphicsPalette.green_05\` | \`#24432D\` |
-| \`graphicsPalette.green_01\` | \`#1A2924\` |
-| \`graphicsPalette.cyan_90\` | \`#EEF7FE\` |
-| \`graphicsPalette.cyan_80\` | \`#DDF0FE\` |
-| \`graphicsPalette.cyan_70\` | \`#CCE9FE\` |
-| \`graphicsPalette.cyan_60\` | \`#A9DAFD\` |
-| \`graphicsPalette.cyan_50\` | \`#87CBFC\` |
-| \`graphicsPalette.cyan_40\` | \`#57BAFD\` |
-| \`graphicsPalette.cyan_30\` | \`#28A9FF\` |
-| \`graphicsPalette.cyan_20\` | \`#2485C7\` |
-| \`graphicsPalette.cyan_10\` | \`#20628F\` |
-| \`graphicsPalette.cyan_05\` | \`#1D3F58\` |
-| \`graphicsPalette.cyan_01\` | \`#192A3C\` |
-| \`graphicsPalette.blue_90\` | \`#F8F9FB\` |
-| \`graphicsPalette.blue_80\` | \`#EBF1FD\` |
-| \`graphicsPalette.blue_70\` | \`#DFEAFF\` |
-| \`graphicsPalette.blue_60\` | \`#BFCAFF\` |
-| \`graphicsPalette.blue_50\` | \`#8DA2FF\` |
-| \`graphicsPalette.blue_40\` | \`#6C82FF\` |
-| \`graphicsPalette.blue_30\` | \`#5753FA\` |
-| \`graphicsPalette.blue_20\` | \`#4340D0\` |
-| \`graphicsPalette.blue_10\` | \`#363498\` |
-| \`graphicsPalette.blue_05\` | \`#252368\` |
-| \`graphicsPalette.blue_01\` | \`#222149\` |
-| \`graphicsPalette.magenta_90\` | \`#FCEEF7\` |
-| \`graphicsPalette.magenta_80\` | \`#FFE3F4\` |
-| \`graphicsPalette.magenta_70\` | \`#FAD4EC\` |
-| \`graphicsPalette.magenta_60\` | \`#F9BBE1\` |
-| \`graphicsPalette.magenta_50\` | \`#F8A2D6\` |
-| \`graphicsPalette.magenta_40\` | \`#F670C1\` |
-| \`graphicsPalette.magenta_30\` | \`#E83FA4\` |
-| \`graphicsPalette.magenta_20\` | \`#BB3183\` |
-| \`graphicsPalette.magenta_10\` | \`#84275E\` |
-| \`graphicsPalette.magenta_05\` | \`#521B3C\` |
-| \`graphicsPalette.magenta_01\` | \`#33182E\` |
-| \`graphicsPalette.gray_90\` | \`#F6F6F6\` |
-| \`graphicsPalette.gray_80\` | \`#EDEDEE\` |
-| \`graphicsPalette.gray_70\` | \`#E0E0E1\` |
-| \`graphicsPalette.gray_60\` | \`#CBCBCD\` |
-| \`graphicsPalette.gray_50\` | \`#B5B6B9\` |
-| \`graphicsPalette.gray_40\` | \`#A0A1A4\` |
-| \`graphicsPalette.gray_30\` | \`#8A8B90\` |
-| \`graphicsPalette.gray_20\` | \`#717279\` |
-| \`graphicsPalette.gray_10\` | \`#4A4C53\` |
-| \`graphicsPalette.gray_05\` | \`#252531\` |
-| \`graphicsPalette.gray_01\` | \`#1D1D29\` |
-| \`graphicsPalette.black_100\` | \`#151521\` |
-| \`graphicsPalette.white_100\` | \`#FFFFFF\` |
+| Token | CSS Variable | Value |
+| --- | --- | --- |
+| \`graphicsPalette.red_90\` | \`--wb-graphicsPalette-red_90\` | \`#FEF4F4\` |
+| \`graphicsPalette.red_80\` | \`--wb-graphicsPalette-red_80\` | \`#FFEBEB\` |
+| \`graphicsPalette.red_70\` | \`--wb-graphicsPalette-red_70\` | \`#FDDFDF\` |
+| \`graphicsPalette.red_60\` | \`--wb-graphicsPalette-red_60\` | \`#FBB1B1\` |
+| \`graphicsPalette.red_50\` | \`--wb-graphicsPalette-red_50\` | \`#F97F7F\` |
+| \`graphicsPalette.red_40\` | \`--wb-graphicsPalette-red_40\` | \`#ED5656\` |
+| \`graphicsPalette.red_30\` | \`--wb-graphicsPalette-red_30\` | \`#E22D2D\` |
+| \`graphicsPalette.red_20\` | \`--wb-graphicsPalette-red_20\` | \`#BE2626\` |
+| \`graphicsPalette.red_10\` | \`--wb-graphicsPalette-red_10\` | \`#8E1C1C\` |
+| \`graphicsPalette.red_05\` | \`--wb-graphicsPalette-red_05\` | \`#621414\` |
+| \`graphicsPalette.red_01\` | \`--wb-graphicsPalette-red_01\` | \`#3B141A\` |
+| \`graphicsPalette.orange_90\` | \`--wb-graphicsPalette-orange_90\` | \`#FEF4F2\` |
+| \`graphicsPalette.orange_80\` | \`--wb-graphicsPalette-orange_80\` | \`#FEE9E5\` |
+| \`graphicsPalette.orange_70\` | \`--wb-graphicsPalette-orange_70\` | \`#FEDFD8\` |
+| \`graphicsPalette.orange_60\` | \`--wb-graphicsPalette-orange_60\` | \`#FEBFB1\` |
+| \`graphicsPalette.orange_50\` | \`--wb-graphicsPalette-orange_50\` | \`#FAA185\` |
+| \`graphicsPalette.orange_40\` | \`--wb-graphicsPalette-orange_40\` | \`#F97B4F\` |
+| \`graphicsPalette.orange_30\` | \`--wb-graphicsPalette-orange_30\` | \`#F8551A\` |
+| \`graphicsPalette.orange_20\` | \`--wb-graphicsPalette-orange_20\` | \`#C8481A\` |
+| \`graphicsPalette.orange_10\` | \`--wb-graphicsPalette-orange_10\` | \`#983C1A\` |
+| \`graphicsPalette.orange_05\` | \`--wb-graphicsPalette-orange_05\` | \`#672912\` |
+| \`graphicsPalette.orange_01\` | \`--wb-graphicsPalette-orange_01\` | \`#3E1F19\` |
+| \`graphicsPalette.yellow_90\` | \`--wb-graphicsPalette-yellow_90\` | \`#FEF8E7\` |
+| \`graphicsPalette.yellow_80\` | \`--wb-graphicsPalette-yellow_80\` | \`#FEF1D0\` |
+| \`graphicsPalette.yellow_70\` | \`--wb-graphicsPalette-yellow_70\` | \`#FEEAB8\` |
+| \`graphicsPalette.yellow_60\` | \`--wb-graphicsPalette-yellow_60\` | \`#FEE7AD\` |
+| \`graphicsPalette.yellow_50\` | \`--wb-graphicsPalette-yellow_50\` | \`#FDD673\` |
+| \`graphicsPalette.yellow_40\` | \`--wb-graphicsPalette-yellow_40\` | \`#FCC539\` |
+| \`graphicsPalette.yellow_30\` | \`--wb-graphicsPalette-yellow_30\` | \`#FCB706\` |
+| \`graphicsPalette.yellow_20\` | \`--wb-graphicsPalette-yellow_20\` | \`#D69900\` |
+| \`graphicsPalette.yellow_10\` | \`--wb-graphicsPalette-yellow_10\` | \`#966B00\` |
+| \`graphicsPalette.yellow_05\` | \`--wb-graphicsPalette-yellow_05\` | \`#5F4500\` |
+| \`graphicsPalette.yellow_01\` | \`--wb-graphicsPalette-yellow_01\` | \`#312405\` |
+| \`graphicsPalette.green_90\` | \`--wb-graphicsPalette-green_90\` | \`#F1FBF1\` |
+| \`graphicsPalette.green_80\` | \`--wb-graphicsPalette-green_80\` | \`#E3F7E3\` |
+| \`graphicsPalette.green_70\` | \`--wb-graphicsPalette-green_70\` | \`#D5F3D5\` |
+| \`graphicsPalette.green_60\` | \`--wb-graphicsPalette-green_60\` | \`#BCEBBB\` |
+| \`graphicsPalette.green_50\` | \`--wb-graphicsPalette-green_50\` | \`#97D39E\` |
+| \`graphicsPalette.green_40\` | \`--wb-graphicsPalette-green_40\` | \`#72BB82\` |
+| \`graphicsPalette.green_30\` | \`--wb-graphicsPalette-green_30\` | \`#579F6C\` |
+| \`graphicsPalette.green_20\` | \`--wb-graphicsPalette-green_20\` | \`#3C6D4A\` |
+| \`graphicsPalette.green_10\` | \`--wb-graphicsPalette-green_10\` | \`#2C5037\` |
+| \`graphicsPalette.green_05\` | \`--wb-graphicsPalette-green_05\` | \`#24432D\` |
+| \`graphicsPalette.green_01\` | \`--wb-graphicsPalette-green_01\` | \`#1A2924\` |
+| \`graphicsPalette.cyan_90\` | \`--wb-graphicsPalette-cyan_90\` | \`#EEF7FE\` |
+| \`graphicsPalette.cyan_80\` | \`--wb-graphicsPalette-cyan_80\` | \`#DDF0FE\` |
+| \`graphicsPalette.cyan_70\` | \`--wb-graphicsPalette-cyan_70\` | \`#CCE9FE\` |
+| \`graphicsPalette.cyan_60\` | \`--wb-graphicsPalette-cyan_60\` | \`#A9DAFD\` |
+| \`graphicsPalette.cyan_50\` | \`--wb-graphicsPalette-cyan_50\` | \`#87CBFC\` |
+| \`graphicsPalette.cyan_40\` | \`--wb-graphicsPalette-cyan_40\` | \`#57BAFD\` |
+| \`graphicsPalette.cyan_30\` | \`--wb-graphicsPalette-cyan_30\` | \`#28A9FF\` |
+| \`graphicsPalette.cyan_20\` | \`--wb-graphicsPalette-cyan_20\` | \`#2485C7\` |
+| \`graphicsPalette.cyan_10\` | \`--wb-graphicsPalette-cyan_10\` | \`#20628F\` |
+| \`graphicsPalette.cyan_05\` | \`--wb-graphicsPalette-cyan_05\` | \`#1D3F58\` |
+| \`graphicsPalette.cyan_01\` | \`--wb-graphicsPalette-cyan_01\` | \`#192A3C\` |
+| \`graphicsPalette.blue_90\` | \`--wb-graphicsPalette-blue_90\` | \`#F8F9FB\` |
+| \`graphicsPalette.blue_80\` | \`--wb-graphicsPalette-blue_80\` | \`#EBF1FD\` |
+| \`graphicsPalette.blue_70\` | \`--wb-graphicsPalette-blue_70\` | \`#DFEAFF\` |
+| \`graphicsPalette.blue_60\` | \`--wb-graphicsPalette-blue_60\` | \`#BFCAFF\` |
+| \`graphicsPalette.blue_50\` | \`--wb-graphicsPalette-blue_50\` | \`#8DA2FF\` |
+| \`graphicsPalette.blue_40\` | \`--wb-graphicsPalette-blue_40\` | \`#6C82FF\` |
+| \`graphicsPalette.blue_30\` | \`--wb-graphicsPalette-blue_30\` | \`#5753FA\` |
+| \`graphicsPalette.blue_20\` | \`--wb-graphicsPalette-blue_20\` | \`#4340D0\` |
+| \`graphicsPalette.blue_10\` | \`--wb-graphicsPalette-blue_10\` | \`#363498\` |
+| \`graphicsPalette.blue_05\` | \`--wb-graphicsPalette-blue_05\` | \`#252368\` |
+| \`graphicsPalette.blue_01\` | \`--wb-graphicsPalette-blue_01\` | \`#222149\` |
+| \`graphicsPalette.magenta_90\` | \`--wb-graphicsPalette-magenta_90\` | \`#FCEEF7\` |
+| \`graphicsPalette.magenta_80\` | \`--wb-graphicsPalette-magenta_80\` | \`#FFE3F4\` |
+| \`graphicsPalette.magenta_70\` | \`--wb-graphicsPalette-magenta_70\` | \`#FAD4EC\` |
+| \`graphicsPalette.magenta_60\` | \`--wb-graphicsPalette-magenta_60\` | \`#F9BBE1\` |
+| \`graphicsPalette.magenta_50\` | \`--wb-graphicsPalette-magenta_50\` | \`#F8A2D6\` |
+| \`graphicsPalette.magenta_40\` | \`--wb-graphicsPalette-magenta_40\` | \`#F670C1\` |
+| \`graphicsPalette.magenta_30\` | \`--wb-graphicsPalette-magenta_30\` | \`#E83FA4\` |
+| \`graphicsPalette.magenta_20\` | \`--wb-graphicsPalette-magenta_20\` | \`#BB3183\` |
+| \`graphicsPalette.magenta_10\` | \`--wb-graphicsPalette-magenta_10\` | \`#84275E\` |
+| \`graphicsPalette.magenta_05\` | \`--wb-graphicsPalette-magenta_05\` | \`#521B3C\` |
+| \`graphicsPalette.magenta_01\` | \`--wb-graphicsPalette-magenta_01\` | \`#33182E\` |
+| \`graphicsPalette.gray_90\` | \`--wb-graphicsPalette-gray_90\` | \`#F6F6F6\` |
+| \`graphicsPalette.gray_80\` | \`--wb-graphicsPalette-gray_80\` | \`#EDEDEE\` |
+| \`graphicsPalette.gray_70\` | \`--wb-graphicsPalette-gray_70\` | \`#E0E0E1\` |
+| \`graphicsPalette.gray_60\` | \`--wb-graphicsPalette-gray_60\` | \`#CBCBCD\` |
+| \`graphicsPalette.gray_50\` | \`--wb-graphicsPalette-gray_50\` | \`#B5B6B9\` |
+| \`graphicsPalette.gray_40\` | \`--wb-graphicsPalette-gray_40\` | \`#A0A1A4\` |
+| \`graphicsPalette.gray_30\` | \`--wb-graphicsPalette-gray_30\` | \`#8A8B90\` |
+| \`graphicsPalette.gray_20\` | \`--wb-graphicsPalette-gray_20\` | \`#717279\` |
+| \`graphicsPalette.gray_10\` | \`--wb-graphicsPalette-gray_10\` | \`#4A4C53\` |
+| \`graphicsPalette.gray_05\` | \`--wb-graphicsPalette-gray_05\` | \`#252531\` |
+| \`graphicsPalette.gray_01\` | \`--wb-graphicsPalette-gray_01\` | \`#1D1D29\` |
+| \`graphicsPalette.black_100\` | \`--wb-graphicsPalette-black_100\` | \`#151521\` |
+| \`graphicsPalette.white_100\` | \`--wb-graphicsPalette-white_100\` | \`#FFFFFF\` |
 "
 `;
 

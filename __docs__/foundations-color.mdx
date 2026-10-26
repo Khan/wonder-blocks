@@ -278,13 +278,14 @@ those brands (e.g. third-party sign-in buttons).
 
 #### Palette
 
-The graphics palette is a set of static colors for illustrations and other
-graphic assets (e.g. SVG `fill` and `stroke` attributes). Unlike semantic
-colors, these values don't change based on the theme.
+The graphics palette is a set of colors that don't change based on the theme,
+for cases like illustrations. Like semantic colors, these tokens are CSS
+variables (e.g. `var(--wb-graphicsPalette-blue_30)`), but their values are the
+same in every theme.
 
 <Banner
     kind="warning"
-    text="Only use graphicsPalette tokens in graphic assets. For component styles, use semanticColor tokens instead."
+    text="Prefer semanticColor tokens, which support themes. Only use graphicsPalette tokens when a color must stay the same in every theme (e.g. illustrations), and explain why."
 />
 
 ```ts
@@ -292,6 +293,9 @@ import {graphicsPalette} from "@khanacademy/wonder-blocks-tokens";
 
 <path fill={graphicsPalette.blue_30} />;
 ```
+
+When a literal color value is needed (e.g. drawing on a canvas), resolve the
+token with `tokenValue()` when it's used, not at module scope.
 
 <Canvas of={SemanticColorGroups.GraphicsPalette} layout="fullscreen" />
 
