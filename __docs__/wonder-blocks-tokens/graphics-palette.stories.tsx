@@ -13,6 +13,7 @@ import ComponentInfo from "../components/component-info";
 import packageConfig from "../../packages/wonder-blocks-tokens/package.json";
 import {Code} from "../components/code";
 import {ColorSwatch} from "../components/color-swatch";
+import {GraphicsPaletteGrid} from "../components/graphics-palette-grid";
 
 /**
  * The graphics palette contains colors that don't change based on the theme,
@@ -101,6 +102,14 @@ export default {
 } as Meta;
 
 type Row = {label: string; css: string; value: string};
+
+/**
+ * The palette by hue and step, matching its layout in Figma. Use the copy
+ * button on a swatch to copy its token name.
+ */
+export const Palette = {
+    render: () => <GraphicsPaletteGrid />,
+};
 
 export const Default = {
     render: () => (
