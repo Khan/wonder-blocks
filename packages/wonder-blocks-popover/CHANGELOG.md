@@ -1,5 +1,14 @@
 # @khanacademy/wonder-blocks-popover
 
+## 7.1.2
+
+### Patch Changes
+
+- Updated dependencies [a2504f1]
+- Updated dependencies [63e8d90]
+    - @khanacademy/wonder-blocks-config@0.7.0
+    - @khanacademy/wonder-blocks-floating@0.2.1
+
 ## 7.1.1
 
 ### Patch Changes

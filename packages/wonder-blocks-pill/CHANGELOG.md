@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-pill
 
+## 3.1.82
+
+### Patch Changes
+
+- @khanacademy/wonder-blocks-link@10.5.2
+
 ## 3.1.81
 
 ### Patch Changes
