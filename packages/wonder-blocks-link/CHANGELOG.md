@@ -1,5 +1,13 @@
 # @khanacademy/wonder-blocks-link
 
+## 10.5.2
+
+### Patch Changes
+
+- Updated dependencies [a2504f1]
+- Updated dependencies [63e8d90]
+    - @khanacademy/wonder-blocks-config@0.7.0
+
 ## 10.5.1
 
 ### Patch Changes
