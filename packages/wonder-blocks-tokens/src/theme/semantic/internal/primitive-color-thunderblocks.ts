@@ -146,6 +146,13 @@ export const color = {
 
 /**
  * The tokens for the graphics palette.
+ *
+ * These map to the `5 - Graphics / Palette` tokens in Figma (e.g.
+ * `Palette/Red/30` -> `red_30`). These are the raw hex values. They are
+ * exported publicly as `graphicsPalette` CSS variables, which are defined once
+ * on `:root` and not per theme, so they don't change based on the theme.
+ *
+ * NOTE: Prefer `semanticColor` tokens, which support themes.
  */
 export const graphicsPalette = {
     red_90: color.red_90,

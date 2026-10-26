@@ -2,6 +2,7 @@ import * as React from "react";
 import {StyleSheet} from "aphrodite";
 import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {ActionColorGroup, ColorGroup} from "../components/color";
+import {GraphicsPaletteGrid} from "../components/graphics-palette-grid";
 import {PropsFor, View} from "@khanacademy/wonder-blocks-core";
 import {Heading} from "@khanacademy/wonder-blocks-typography";
 
@@ -356,6 +357,11 @@ export const GraphicsExternalBrands = () => {
             group="graphics.externalBrands"
         />
     );
+};
+
+// Group the graphics palette tokens by hue (e.g. `red_90` -> `red`).
+export const GraphicsPalette = () => {
+    return <GraphicsPaletteGrid />;
 };
 
 const styles = StyleSheet.create({

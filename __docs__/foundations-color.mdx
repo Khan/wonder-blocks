@@ -276,6 +276,29 @@ those brands (e.g. third-party sign-in buttons).
 
 <Canvas of={SemanticColorGroups.GraphicsExternalBrands} layout="fullscreen" />
 
+#### Palette
+
+The graphics palette is a set of colors that don't change based on the theme,
+for cases like illustrations. Like semantic colors, these tokens are CSS
+variables (e.g. `var(--wb-graphicsPalette-blue_30)`), but their values are the
+same in every theme.
+
+<Banner
+    kind="warning"
+    text="Prefer semanticColor tokens, which support themes. Only use graphicsPalette tokens when a color must stay the same in every theme (e.g. illustrations), and explain why."
+/>
+
+```ts
+import {graphicsPalette} from "@khanacademy/wonder-blocks-tokens";
+
+<path fill={graphicsPalette.blue_30} />;
+```
+
+When a literal color value is needed (e.g. drawing on a canvas), resolve the
+token with `tokenValue()` when it's used, not at module scope.
+
+<Canvas of={SemanticColorGroups.GraphicsPalette} layout="fullscreen" />
+
 ### Khanmigo
 
 Colors to be used exclusively for Khanmigo or to communicate a relationship to
