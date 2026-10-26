@@ -15,14 +15,15 @@ import {Code} from "../components/code";
 import {ColorSwatch} from "../components/color-swatch";
 
 /**
- * The graphics palette contains the colors used for illustrations and other
- * graphic assets.
+ * The graphics palette contains colors that don't change based on the theme,
+ * for cases like illustrations.
  *
  * These tokens map to the `5 - Graphics / Palette` tokens in Figma (e.g.
  * `Palette/Red/30` -> `graphicsPalette.red_30`).
  *
- * Unlike `semanticColor`, these colors are static hex values that don't change
- * based on the theme.
+ * Like `semanticColor`, these tokens are CSS variables (e.g.
+ * `var(--wb-graphicsPalette-red_30)`). Unlike `semanticColor`, the variables
+ * are defined once on `:root`, so their values are the same in every theme.
  *
  * ## Usage
  *
@@ -34,6 +35,23 @@ import {ColorSwatch} from "../components/color-swatch";
  *         <circle cx="12" cy="12" r="10" fill={graphicsPalette.blue_30} />
  *     </svg>
  * );
+ * ```
+ *
+ * In CSS, use the variable directly:
+ *
+ * ```css
+ * .illustration {
+ *     fill: var(--wb-graphicsPalette-blue_30);
+ * }
+ * ```
+ *
+ * When a literal color value is needed (e.g. drawing on a canvas), resolve the
+ * token with `tokenValue()` when it's used, not at module scope:
+ *
+ * ```ts
+ * import {graphicsPalette, tokenValue} from "@khanacademy/wonder-blocks-tokens";
+ *
+ * context.fillStyle = tokenValue(graphicsPalette.blue_30);
  * ```
  */
 export default {
@@ -57,10 +75,11 @@ export default {
                         kind="warning"
                         text={
                             <>
-                                Only use <code>graphicsPalette</code> tokens in
-                                illustrations and other graphic assets. For
-                                component styles, use <code>semanticColor</code>{" "}
-                                tokens instead.
+                                Prefer <code>semanticColor</code> tokens, which
+                                support themes. Only use{" "}
+                                <code>graphicsPalette</code> tokens when a color
+                                must stay the same in every theme (e.g.
+                                illustrations), and explain why.
                             </>
                         }
                     />
