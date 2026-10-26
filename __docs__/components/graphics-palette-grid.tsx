@@ -14,8 +14,10 @@ import {maybeGetCssVariableInfo} from "./tokens-util";
 
 type PaletteName = keyof typeof graphicsPalette;
 
-const BLACK: PaletteName = "black_100";
-const WHITE: PaletteName = "white_100";
+/**
+ * Tokens that aren't part of a hue's scale, shown after the hue rows.
+ */
+const standaloneNames: Array<PaletteName> = ["black_100", "white_100"];
 
 /**
  * Get the numeric step of a palette token (e.g. `red_05` -> 5).
@@ -24,10 +26,13 @@ const getStep = (name: PaletteName) => Number(name.split("_")[1]);
 
 /**
  * The palette's hues (red, orange, …) with their tokens, ordered from dark to
- * light. Black and white are shown separately, as their own columns.
+ * light.
  */
 const hueRows = Object.keys(graphicsPalette)
-    .filter((name): name is PaletteName => name !== BLACK && name !== WHITE)
+    .filter(
+        (name): name is PaletteName =>
+            !standaloneNames.includes(name as PaletteName),
+    )
     .reduce<Array<[string, Array<PaletteName>]>>((rows, name) => {
         const hue = name.split("_")[0];
         const row = rows.find(([rowHue]) => rowHue === hue);
@@ -45,74 +50,70 @@ const hueRows = Object.keys(graphicsPalette)
 
 const steps = hueRows[0][1].map(getStep);
 
-// Black and white are the ends of every hue's scale, labeled like Figma.
-const columnLabels = ["0", ...steps.map(String), "100"];
-
 type SwatchProps = {
     name: PaletteName;
+    /**
+     * Text shown above the swatch, for tokens that aren't in the hue grid.
+     */
+    label?: string;
     style?: StyleType;
 };
 
 /**
- * A palette color with its hex value and a button to copy its token name.
+ * A palette color, with its hex value and a button to copy its token name.
  */
-function PaletteSwatch({name, style}: SwatchProps) {
+function PaletteSwatch({name, label, style}: SwatchProps) {
     const value = graphicsPalette[name];
     const hex = maybeGetCssVariableInfo(value).value;
 
     return (
         <View style={[styles.cell, style]}>
-            <View style={[styles.swatch, {backgroundColor: value}]}>
-                <CopyButton
-                    value={`graphicsPalette.${name}`}
-                    kind="secondary"
-                    style={styles.copyButton}
-                />
+            {label && (
+                <BodyText size="small" style={styles.swatchLabel}>
+                    {label}
+                </BodyText>
+            )}
+            <View style={[styles.swatch, {backgroundColor: value}]} />
+            <View style={styles.details}>
+                <BodyText size="xsmall" style={styles.hex}>
+                    {hex}
+                </BodyText>
+                <CopyButton value={`graphicsPalette.${name}`} />
             </View>
-            <BodyText size="xsmall" style={styles.hex}>
-                {hex}
-            </BodyText>
         </View>
     );
 }
 
 /**
- * Show the graphics palette as a grid of hues (rows) by steps (columns), with
- * black and white at the ends, matching the palette's layout in Figma.
+ * Show the graphics palette as a grid of hues (rows) by steps (columns),
+ * matching the palette's layout in Figma, followed by black and white.
  *
  * Each swatch has a button that copies its token name (e.g.
  * `graphicsPalette.red_30`).
  */
 export function GraphicsPaletteGrid() {
-    const rowSpan = `2 / span ${hueRows.length}`;
-
     return (
         <View style={styles.scrollContainer}>
             <View
                 style={[
                     styles.grid,
                     {
-                        gridTemplateColumns: `max-content repeat(${columnLabels.length}, minmax(${CELL_MIN_WIDTH}px, 1fr))`,
+                        gridTemplateColumns: `max-content repeat(${steps.length}, minmax(${CELL_MIN_WIDTH}px, 1fr))`,
                     },
                 ]}
             >
-                {columnLabels.map((label, index) => (
+                {steps.map((step, index) => (
                     <BodyText
-                        key={label}
+                        key={step}
                         size="small"
                         style={[
                             styles.columnLabel,
                             {gridColumn: index + 2, gridRow: 1},
                         ]}
                     >
-                        {label}
+                        {step}
                     </BodyText>
                 ))}
-
-                <PaletteSwatch
-                    name={BLACK}
-                    style={{gridColumn: 2, gridRow: rowSpan}}
-                />
 
                 {hueRows.map(([hue, names], rowIndex) => (
                     <React.Fragment key={hue}>
@@ -130,7 +131,7 @@ export function GraphicsPaletteGrid() {
                                 key={name}
                                 name={name}
                                 style={{
-                                    gridColumn: columnIndex + 3,
+                                    gridColumn: columnIndex + 2,
                                     gridRow: rowIndex + 2,
                                 }}
                             />
@@ -138,19 +139,26 @@ export function GraphicsPaletteGrid() {
                     </React.Fragment>
                 ))}
 
-                <PaletteSwatch
-                    name={WHITE}
-                    style={{
-                        gridColumn: columnLabels.length + 1,
-                        gridRow: rowSpan,
-                    }}
-                />
+                {standaloneNames.map((name, index) => (
+                    <PaletteSwatch
+                        key={name}
+                        name={name}
+                        label={name}
+                        style={[
+                            styles.standalone,
+                            {
+                                gridColumn: index + 2,
+                                gridRow: hueRows.length + 2,
+                            },
+                        ]}
+                    />
+                ))}
             </View>
         </View>
     );
 }
 
-const CELL_MIN_WIDTH = 56;
+const CELL_MIN_WIDTH = 72;
 
 const styles = StyleSheet.create({
     scrollContainer: {
@@ -161,37 +169,40 @@ const styles = StyleSheet.create({
         display: "grid",
         columnGap: sizing.size_060,
         rowGap: sizing.size_120,
-        alignItems: "stretch",
         minInlineSize: "fit-content",
     },
     columnLabel: {
         textAlign: "center",
     },
     rowLabel: {
-        alignSelf: "center",
+        alignSelf: "start",
+        // Center the label on the swatch, not the whole cell.
+        paddingBlockStart: sizing.size_160,
+        paddingInlineEnd: sizing.size_080,
         textAlign: "end",
         textTransform: "capitalize",
-        paddingInlineEnd: sizing.size_080,
     },
     cell: {
         gap: sizing.size_040,
     },
+    standalone: {
+        marginBlockStart: sizing.size_160,
+    },
+    swatchLabel: {
+        whiteSpace: "nowrap",
+    },
     swatch: {
-        position: "relative",
-        flexGrow: 1,
-        minBlockSize: sizing.size_560,
+        blockSize: sizing.size_480,
         borderRadius: border.radius.radius_040,
         boxShadow: `inset 0 0 0 1px ${semanticColor.core.border.neutral.subtle}`,
     },
-    copyButton: {
-        position: "absolute",
-        insetBlockStart: sizing.size_040,
-        insetInlineEnd: sizing.size_040,
-        // Keep the button readable on any swatch color.
-        backgroundColor: semanticColor.core.background.base.default,
+    details: {
+        flexDirection: "row",
+        alignItems: "center",
+        justifyContent: "space-between",
+        gap: sizing.size_020,
     },
     hex: {
-        textAlign: "center",
         fontFamily: "monospace",
         color: semanticColor.core.foreground.neutral.subtle,
     },
