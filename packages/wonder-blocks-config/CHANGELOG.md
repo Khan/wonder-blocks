@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-config
 
+## 0.6.0
+
+### Minor Changes
+
+- 88c9897: Adds the `iconAltStatusInfo`, `iconAltStatusSuccess`, `iconAltStatusWarning`, `iconAltStatusCritical` and `iconAltDismissBanner` strings to `WonderBlocksStrings`
+
 ## 0.5.0
 
 ### Minor Changes

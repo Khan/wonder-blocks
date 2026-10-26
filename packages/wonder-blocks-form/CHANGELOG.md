@@ -1,5 +1,12 @@
 # @khanacademy/wonder-blocks-form
 
+## 7.7.4
+
+### Patch Changes
+
+- Updated dependencies [88c9897]
+    - @khanacademy/wonder-blocks-config@0.6.0
+
 ## 7.7.3
 
 ### Patch Changes
