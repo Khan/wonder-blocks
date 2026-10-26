@@ -1,5 +1,12 @@
 # @khanacademy/wonder-blocks-card
 
+## 1.5.1
+
+### Patch Changes
+
+- Updated dependencies [88c9897]
+    - @khanacademy/wonder-blocks-config@0.6.0
+
 ## 1.5.0
 
 ### Minor Changes

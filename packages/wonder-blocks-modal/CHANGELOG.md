@@ -1,5 +1,13 @@
 # @khanacademy/wonder-blocks-modal
 
+## 8.10.1
+
+### Patch Changes
+
+- Updated dependencies [88c9897]
+    - @khanacademy/wonder-blocks-config@0.6.0
+    - @khanacademy/wonder-blocks-breadcrumbs@3.3.4
+
 ## 8.10.0
 
 ### Minor Changes
