@@ -3,7 +3,7 @@
   "description": "",
   "author": "Khan Academy",
   "license": "MIT",
-  "version": "4.1.72",
+  "version": "4.2.2",
   "publishConfig": {
     "access": "public"
   },
@@ -24,6 +24,7 @@
     "prepublishOnly": "../../utils/publish/package-pre-publish-check.sh"
   },
   "dependencies": {
+    "@khanacademy/wonder-blocks-config": "workspace:*",
     "@khanacademy/wonder-blocks-core": "workspace:*",
     "@khanacademy/wonder-blocks-dropdown": "workspace:*",
     "@khanacademy/wonder-blocks-icon": "workspace:*",

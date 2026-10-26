@@ -3,7 +3,7 @@
   "description": "Link component for Wonder Blocks design system.",
   "author": "Khan Academy",
   "license": "MIT",
-  "version": "10.4.1",
+  "version": "10.5.1",
   "publishConfig": {
     "access": "public"
   },
@@ -34,6 +34,7 @@
   },
   "dependencies": {
     "@khanacademy/wonder-blocks-clickable": "workspace:*",
+    "@khanacademy/wonder-blocks-config": "workspace:*",
     "@khanacademy/wonder-blocks-core": "workspace:*",
     "@khanacademy/wonder-blocks-icon": "workspace:*",
     "@khanacademy/wonder-blocks-tokens": "workspace:*",

@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-tokens
 
+## 18.1.0
+
+### Minor Changes
+
+- cbdc909: Include CSS variables for the progress spinner component
+
 ## 18.0.0
 
 ### Major Changes

@@ -1,5 +1,28 @@
 # @khanacademy/wonder-blocks-tooltip
 
+## 4.2.12
+
+### Patch Changes
+
+- @khanacademy/wonder-blocks-modal@8.10.1
+
+## 4.2.11
+
+### Patch Changes
+
+- Updated dependencies [8e11e83]
+    - @khanacademy/wonder-blocks-modal@8.10.0
+
+## 4.2.10
+
+### Patch Changes
+
+- Updated dependencies [cbdc909]
+    - @khanacademy/wonder-blocks-tokens@18.1.0
+    - @khanacademy/wonder-blocks-layout@3.2.1
+    - @khanacademy/wonder-blocks-modal@8.9.2
+    - @khanacademy/wonder-blocks-typography@5.0.6
+
 ## 4.2.9
 
 ### Patch Changes

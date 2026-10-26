@@ -1,8 +1,23 @@
-import {defaultLabels} from "../../packages/wonder-blocks-birthday-picker/src/components/birthday-picker";
+import type {ArgTypes} from "@storybook/react-vite";
 
-export default {
+const argTypes: ArgTypes = {
     labels: {
-        defaultValue: defaultLabels,
+        control: {type: "object"},
+        table: {
+            type: {
+                summary: "Labels",
+                detail: `{
+    // Label for displaying a validation error.
+    errorMessage: string;
+    // Label for the month placeholder.
+    month: string;
+    // Label for the year placeholder.
+    year: string;
+    // Label for the day placeholder.
+    day: string;
+}`,
+            },
+        },
     },
     onChange: {
         action: "onChanged",
@@ -28,3 +43,5 @@ export default {
         },
     },
 };
+
+export default argTypes;

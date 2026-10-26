@@ -1,5 +1,44 @@
 # @khanacademy/wonder-blocks-birthday-picker
 
+## 4.2.2
+
+### Patch Changes
+
+- Updated dependencies [88c9897]
+    - @khanacademy/wonder-blocks-config@0.6.0
+    - @khanacademy/wonder-blocks-dropdown@10.13.7
+
+## 4.2.1
+
+### Patch Changes
+
+- @khanacademy/wonder-blocks-dropdown@10.13.6
+
+## 4.2.0
+
+### Minor Changes
+
+- 6bd5d0c: The default month, day and year placeholders and the error message in BirthdayPicker now read translated strings from `WonderBlocksConfigProvider`. The `labels` prop overrides the built-in translations.
+
+### Patch Changes
+
+- Updated dependencies [6bd5d0c]
+- Updated dependencies [8e11e83]
+    - @khanacademy/wonder-blocks-config@0.5.0
+    - @khanacademy/wonder-blocks-dropdown@10.13.5
+
+## 4.1.73
+
+### Patch Changes
+
+- Updated dependencies [cbdc909]
+- Updated dependencies [cbdc909]
+    - @khanacademy/wonder-blocks-dropdown@10.13.4
+    - @khanacademy/wonder-blocks-tokens@18.1.0
+    - @khanacademy/wonder-blocks-icon@6.0.3
+    - @khanacademy/wonder-blocks-layout@3.2.1
+    - @khanacademy/wonder-blocks-typography@5.0.6
+
 ## 4.1.72
 
 ### Patch Changes

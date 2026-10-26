@@ -129,7 +129,9 @@ Sizes.parameters = {
         description: {
             story: `The available sizes for progress spinner are
             \`"xsmall"\`, \`"small"\`, \`"medium"\`, and \`"large"\`.
-            This is set with the \`size\` prop.`,
+            This is set with the \`size\` prop. In the Thunderblocks theme,
+            \`"medium"\` renders at 36px instead of 48px so that it fits
+            inside large buttons.`,
         },
     },
 };

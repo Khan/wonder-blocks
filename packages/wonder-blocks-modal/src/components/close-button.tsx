@@ -1,6 +1,7 @@
 import * as React from "react";
 import xIcon from "@phosphor-icons/core/bold/x-bold.svg";
 import IconButton from "@khanacademy/wonder-blocks-icon-button";
+import {useWonderBlocksI18n} from "@khanacademy/wonder-blocks-config";
 import type {StyleType} from "@khanacademy/wonder-blocks-core";
 
 import ModalContext from "./modal-context";
@@ -25,6 +26,8 @@ type Props = {
 };
 
 const CloseButton = ({onClick, style, testId}: Props): React.ReactElement => {
+    const {strings} = useWonderBlocksI18n();
+
     return (
         <ModalContext.Consumer>
             {({closeModal}) => {
@@ -37,9 +40,8 @@ const CloseButton = ({onClick, style, testId}: Props): React.ReactElement => {
                 return (
                     <IconButton
                         icon={xIcon}
-                        // TODO(mdr): Translate this string for i18n.
                         // TODO(kevinb): provide a way to set this label
-                        aria-label="Close modal"
+                        aria-label={strings.iconAltCloseModal}
                         onClick={onClick || closeModal}
                         kind="tertiary"
                         actionType="neutral"
