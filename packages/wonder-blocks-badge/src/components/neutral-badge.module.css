@@ -1,0 +1,12 @@
+/**
+ * NeutralBadge colors. Only assigns `Badge`'s `--wb-c-badge--*` component
+ * tokens (see `badge.module.css`), which `Badge`'s rules read. The build wraps
+ * every rule in `@layer shared { … }`.
+ */
+
+.neutral {
+    --wb-c-badge--color-background: var(--wb-semanticColor-feedback-neutral-subtle-background);
+    --wb-c-badge--color-foreground: var(--wb-semanticColor-feedback-neutral-subtle-text);
+    --wb-c-badge--color-border: var(--wb-semanticColor-feedback-neutral-subtle-border);
+    --wb-c-badge--color-icon: var(--wb-semanticColor-feedback-neutral-subtle-icon);
+}

@@ -1,5 +1,57 @@
 # @khanacademy/wonder-blocks-labeled-field
 
+## 4.3.5
+
+### Patch Changes
+
+- Updated dependencies [a2504f1]
+- Updated dependencies [63e8d90]
+    - @khanacademy/wonder-blocks-config@0.7.0
+
+## 4.3.4
+
+### Patch Changes
+
+- Updated dependencies [88c9897]
+    - @khanacademy/wonder-blocks-config@0.6.0
+
+## 4.3.3
+
+### Patch Changes
+
+- Updated dependencies [6bd5d0c]
+- Updated dependencies [8e11e83]
+    - @khanacademy/wonder-blocks-config@0.5.0
+
+## 4.3.2
+
+### Patch Changes
+
+- Updated dependencies [cbdc909]
+    - @khanacademy/wonder-blocks-tokens@18.1.0
+    - @khanacademy/wonder-blocks-layout@3.2.1
+    - @khanacademy/wonder-blocks-typography@5.0.6
+
+## 4.3.1
+
+### Patch Changes
+
+- Updated dependencies [8b93331]
+    - @khanacademy/wonder-blocks-layout@3.2.0
+
+## 4.3.0
+
+### Minor Changes
+
+- f070142: The default `aria-label` for the LabeledField error icon now reads a translated string from `WonderBlocksConfigProvider`. The `labels.errorIconAriaLabel` prop overrides the built-in translation.
+
+### Patch Changes
+
+- Updated dependencies [9ec3189]
+- Updated dependencies [f070142]
+- Updated dependencies [355f6e1]
+    - @khanacademy/wonder-blocks-config@0.4.0
+
 ## 4.2.0
 
 ### Minor Changes

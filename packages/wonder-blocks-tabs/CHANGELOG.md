@@ -1,5 +1,89 @@
 # @khanacademy/wonder-blocks-tabs
 
+## 1.0.7
+
+### Patch Changes
+
+- Updated dependencies [a2504f1]
+- Updated dependencies [a2504f1]
+- Updated dependencies [63e8d90]
+- Updated dependencies [63e8d90]
+    - @khanacademy/wonder-blocks-config@0.7.0
+    - @khanacademy/wonder-blocks-dropdown@10.14.0
+    - @khanacademy/wonder-blocks-link@10.5.2
+
+## 1.0.6
+
+### Patch Changes
+
+- Updated dependencies [88c9897]
+    - @khanacademy/wonder-blocks-config@0.6.0
+    - @khanacademy/wonder-blocks-link@10.5.1
+    - @khanacademy/wonder-blocks-dropdown@10.13.7
+
+## 1.0.5
+
+### Patch Changes
+
+- Updated dependencies [ace2d2b]
+    - @khanacademy/wonder-blocks-link@10.5.0
+    - @khanacademy/wonder-blocks-dropdown@10.13.6
+
+## 1.0.4
+
+### Patch Changes
+
+- Updated dependencies [6bd5d0c]
+- Updated dependencies [8e11e83]
+    - @khanacademy/wonder-blocks-config@0.5.0
+    - @khanacademy/wonder-blocks-dropdown@10.13.5
+
+## 1.0.3
+
+### Patch Changes
+
+- Updated dependencies [cbdc909]
+- Updated dependencies [cbdc909]
+    - @khanacademy/wonder-blocks-dropdown@10.13.4
+    - @khanacademy/wonder-blocks-tokens@18.1.0
+    - @khanacademy/wonder-blocks-button@11.7.13
+    - @khanacademy/wonder-blocks-icon@6.0.3
+    - @khanacademy/wonder-blocks-link@10.4.2
+    - @khanacademy/wonder-blocks-typography@5.0.6
+
+## 1.0.2
+
+### Patch Changes
+
+- @khanacademy/wonder-blocks-dropdown@10.13.3
+
+## 1.0.1
+
+### Patch Changes
+
+- Updated dependencies [9ec3189]
+- Updated dependencies [f070142]
+- Updated dependencies [355f6e1]
+    - @khanacademy/wonder-blocks-config@0.4.0
+    - @khanacademy/wonder-blocks-dropdown@10.13.2
+
+## 1.0.0
+
+### Major Changes
+
+- d70c2ea: Releasing the first major version of the tabs components. Note: There are no changes from the last released version. The major version change is so we can release a 1.0.0 version for semver checks.
+
+## 0.6.0
+
+### Minor Changes
+
+- f7eef63: Breadcrumbs' default `aria-label` and the TabsDropdown and NavigationTabsDropdown default opener label now read translated strings from `WonderBlocksConfigProvider`. The `aria-label` and `labels.defaultOpenerLabel` props override the built-in translations.
+
+### Patch Changes
+
+- Updated dependencies [f7eef63]
+    - @khanacademy/wonder-blocks-config@0.3.0
+
 ## 0.5.36
 
 ### Patch Changes

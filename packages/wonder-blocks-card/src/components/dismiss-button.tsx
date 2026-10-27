@@ -1,15 +1,18 @@
 import * as React from "react";
-import {StyleSheet} from "aphrodite";
 import xIcon from "@phosphor-icons/core/bold/x-bold.svg";
+import {useWonderBlocksI18n} from "@khanacademy/wonder-blocks-config";
 import IconButton from "@khanacademy/wonder-blocks-icon-button";
 import type {StyleType} from "@khanacademy/wonder-blocks-core";
-import {focusStyles} from "@khanacademy/wonder-blocks-styles";
-import {sizing} from "@khanacademy/wonder-blocks-tokens";
+
+import styles from "./dismiss-button.module.css";
 
 type Props = {
     /** Optional click handler */
     onClick?: (e?: React.SyntheticEvent) => unknown;
-    /** Screen reader label for close button */
+    /**
+     * Screen reader label for close button. This overrides the default label
+     * provided by `WonderBlocksConfigProvider`.
+     */
     "aria-label"?: string;
     /** Optional aria-describedby attribute */
     "aria-describedby"?: string;
@@ -21,33 +24,18 @@ type Props = {
 
 export const DismissButton = (props: Props) => {
     const {onClick, style, testId, "aria-describedby": ariaDescribedBy} = props;
+    const {strings} = useWonderBlocksI18n();
+
     return (
         <IconButton
             icon={xIcon}
-            aria-label={props["aria-label"] || "Close"}
+            aria-label={props["aria-label"] || strings.iconAltClose}
             aria-describedby={ariaDescribedBy}
             onClick={onClick}
             kind="tertiary"
             actionType="neutral"
-            style={[componentStyles.root, style]}
+            style={[styles.root, styles.dismissButton, style]}
             testId={testId}
         />
     );
 };
-
-const componentStyles = StyleSheet.create({
-    root: {
-        position: "absolute",
-        // insetInlineEnd supports both RTL and LTR layouts
-        insetInlineEnd: sizing.size_080,
-        insetBlockStart: sizing.size_080,
-        // This is to allow the button to be tab-ordered before the component
-        // content but still be above the content.
-        zIndex: 1,
-
-        // NOTE: IconButton uses :focus-visible, which is not supported for
-        // programmatic focus. This is a workaround to make sure the focus
-        // outline is visible when this control is focused.
-        ":focus": focusStyles.focus[":focus-visible"],
-    },
-});

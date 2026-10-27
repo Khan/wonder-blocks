@@ -4,6 +4,10 @@ import {userEvent} from "@testing-library/user-event";
 
 import {PropsFor, View} from "@khanacademy/wonder-blocks-core";
 import Button from "@khanacademy/wonder-blocks-button";
+import {
+    WonderBlocksConfigProvider,
+    defaultStringsEn,
+} from "@khanacademy/wonder-blocks-config";
 
 import SearchField from "../search-field";
 
@@ -313,6 +317,67 @@ describe("SearchField", () => {
 
         // Assert
         expect(clearButton).toHaveAttribute("aria-label", "test-clear-label");
+    });
+
+    test("the clear button uses the default aria label", () => {
+        // Arrange
+        render(<SearchField value="a" onChange={() => {}} />);
+
+        // Act
+        const clearButton = screen.getByRole("button");
+
+        // Assert
+        expect(clearButton).toHaveAccessibleName("Clear search");
+    });
+
+    test("the clear button uses the aria label from the config provider", () => {
+        // Arrange
+        render(
+            <WonderBlocksConfigProvider
+                i18n={{
+                    strings: {
+                        ...defaultStringsEn,
+                        iconAltClearSearch: "translated text",
+                    },
+                    locale: "es",
+                }}
+            >
+                <SearchField value="a" onChange={() => {}} />
+            </WonderBlocksConfigProvider>,
+        );
+
+        // Act
+        const clearButton = screen.getByRole("button");
+
+        // Assert
+        expect(clearButton).toHaveAccessibleName("translated text");
+    });
+
+    test("clearAriaLabel overrides the aria label from the config provider", () => {
+        // Arrange
+        render(
+            <WonderBlocksConfigProvider
+                i18n={{
+                    strings: {
+                        ...defaultStringsEn,
+                        iconAltClearSearch: "translated text",
+                    },
+                    locale: "es",
+                }}
+            >
+                <SearchField
+                    value="a"
+                    onChange={() => {}}
+                    clearAriaLabel="overriding label"
+                />
+            </WonderBlocksConfigProvider>,
+        );
+
+        // Act
+        const clearButton = screen.getByRole("button");
+
+        // Assert
+        expect(clearButton).toHaveAccessibleName("overriding label");
     });
 
     test("forwards the ref to the input element", async () => {

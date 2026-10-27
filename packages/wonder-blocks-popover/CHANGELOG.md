@@ -1,5 +1,58 @@
 # @khanacademy/wonder-blocks-popover
 
+## 7.1.2
+
+### Patch Changes
+
+- Updated dependencies [a2504f1]
+- Updated dependencies [63e8d90]
+    - @khanacademy/wonder-blocks-config@0.7.0
+    - @khanacademy/wonder-blocks-floating@0.2.1
+
+## 7.1.1
+
+### Patch Changes
+
+- Updated dependencies [88c9897]
+    - @khanacademy/wonder-blocks-config@0.6.0
+    - @khanacademy/wonder-blocks-floating@0.2.1
+
+## 7.1.0
+
+### Minor Changes
+
+- 8e11e83: Popover's close button now reads its default `aria-label` ("Close Popover") from `WonderBlocksConfigProvider`. The `closeButtonLabel` prop on PopoverContent and PopoverContentCore overrides the built-in translation.
+
+### Patch Changes
+
+- Updated dependencies [6bd5d0c]
+- Updated dependencies [8e11e83]
+    - @khanacademy/wonder-blocks-config@0.5.0
+    - @khanacademy/wonder-blocks-floating@0.2.1
+
+## 7.0.3
+
+### Patch Changes
+
+- Updated dependencies [cbdc909]
+    - @khanacademy/wonder-blocks-tokens@18.1.0
+    - @khanacademy/wonder-blocks-floating@0.2.1
+    - @khanacademy/wonder-blocks-icon-button@12.0.2
+    - @khanacademy/wonder-blocks-layout@3.2.1
+    - @khanacademy/wonder-blocks-styles@0.4.1
+    - @khanacademy/wonder-blocks-typography@5.0.6
+
+## 7.0.2
+
+### Patch Changes
+
+- 248e2f5: Make popover content scroll when it doesn't fit in the available space (e.g. on small screens or at up to 400% zoom). The content fades out at the edges to indicate there's more content, and the scrollable area becomes keyboard focusable while it overflows. It is named after the popover (its title or `aria-label`), so screen readers announce it when it receives focus.
+- Updated dependencies [7d414bb]
+- Updated dependencies [248e2f5]
+- Updated dependencies [8b93331]
+    - @khanacademy/wonder-blocks-floating@0.2.0
+    - @khanacademy/wonder-blocks-layout@3.2.0
+
 ## 7.0.1
 
 ### Patch Changes

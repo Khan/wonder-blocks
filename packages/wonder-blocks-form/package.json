@@ -3,7 +3,7 @@
   "description": "Form components for Wonder Blocks.",
   "author": "Khan Academy",
   "license": "MIT",
-  "version": "7.6.15",
+  "version": "7.7.5",
   "publishConfig": {
     "access": "public"
   },
@@ -38,6 +38,7 @@
   },
   "dependencies": {
     "@khanacademy/wonder-blocks-clickable": "workspace:*",
+    "@khanacademy/wonder-blocks-config": "workspace:*",
     "@khanacademy/wonder-blocks-core": "workspace:*",
     "@khanacademy/wonder-blocks-icon": "workspace:*",
     "@khanacademy/wonder-blocks-layout": "workspace:*",

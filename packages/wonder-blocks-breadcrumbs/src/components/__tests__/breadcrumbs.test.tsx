@@ -1,5 +1,11 @@
 import * as React from "react";
 import {render, screen} from "@testing-library/react";
+
+import {
+    WonderBlocksConfigProvider,
+    defaultStringsEn,
+} from "@khanacademy/wonder-blocks-config";
+
 import Breadcrumbs from "../breadcrumbs";
 import BreadcrumbsItem from "../breadcrumbs-item";
 
@@ -34,5 +40,72 @@ describe("Breadcrumbs", () => {
             "data-testid",
             "test",
         );
+    });
+
+    describe("aria-label", () => {
+        it("should use the default aria-label", () => {
+            // Arrange
+            render(
+                <Breadcrumbs>
+                    <BreadcrumbsItem>First</BreadcrumbsItem>
+                </Breadcrumbs>,
+            );
+
+            // Act
+            const nav = screen.getByRole("navigation");
+
+            // Assert
+            expect(nav).toHaveAttribute("aria-label", "Breadcrumbs");
+        });
+
+        it("should use the aria-label from the config provider", () => {
+            // Arrange
+            render(
+                <WonderBlocksConfigProvider
+                    i18n={{
+                        strings: {
+                            ...defaultStringsEn,
+                            breadcrumbs: "translated text",
+                        },
+                        locale: "es",
+                    }}
+                >
+                    <Breadcrumbs>
+                        <BreadcrumbsItem>First</BreadcrumbsItem>
+                    </Breadcrumbs>
+                </WonderBlocksConfigProvider>,
+            );
+
+            // Act
+            const nav = screen.getByRole("navigation");
+
+            // Assert
+            expect(nav).toHaveAttribute("aria-label", "translated text");
+        });
+
+        it("should prefer the aria-label prop over the config provider", () => {
+            // Arrange
+            render(
+                <WonderBlocksConfigProvider
+                    i18n={{
+                        strings: {
+                            ...defaultStringsEn,
+                            breadcrumbs: "translated text",
+                        },
+                        locale: "es",
+                    }}
+                >
+                    <Breadcrumbs aria-label="overriding label">
+                        <BreadcrumbsItem>First</BreadcrumbsItem>
+                    </Breadcrumbs>
+                </WonderBlocksConfigProvider>,
+            );
+
+            // Act
+            const nav = screen.getByRole("navigation");
+
+            // Assert
+            expect(nav).toHaveAttribute("aria-label", "overriding label");
+        });
     });
 });

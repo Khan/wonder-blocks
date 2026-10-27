@@ -138,7 +138,10 @@ describe("NavigationTabs", () => {
             render(<NavigationTabs ref={ref}>{children}</NavigationTabs>);
 
             // Assert
-            expect(ref.current).toHaveStyle("overflow-x: auto");
+            // `overflow-x: auto` is set by the `nav` class in
+            // `navigation-tabs.module.css`. Jest doesn't load CSS Modules
+            // (identity-obj-proxy), so assert on the class that carries it.
+            expect(ref.current).toHaveClass("nav");
         });
     });
 

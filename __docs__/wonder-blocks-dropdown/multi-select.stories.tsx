@@ -106,6 +106,13 @@ const styles = StyleSheet.create({
         gap: sizing.size_080,
         alignItems: "flex-start",
     },
+    // Wide enough to fit the opened dropdown menu, so the menu doesn't
+    // overlap the select next to it.
+    customLabelsSelect: {
+        minInlineSize: 300,
+        flexShrink: 0,
+        alignItems: "flex-start",
+    },
     fullWidth: {
         inlineSize: "100%",
     },
@@ -841,54 +848,77 @@ export const WithCustomOpener: StoryComponentType = {
 /**
  * Custom labels
  */
-const translatedItems = new Array(10)
+const customLabelsItems = new Array(10)
     .fill(null)
     .map((_, i) => (
         <OptionItem
             key={i}
             value={(i + 1).toString()}
-            label={`Escuela # ${i + 1}`}
+            label={`School ${i + 1}`}
         />
     ));
 
 /**
- * This example illustrates how you can pass custom labels to the MultiSelect
- * component.
+ * The labels used inside `MultiSelect` (e.g. the opener text, the shortcuts and
+ * the search placeholder) are built-in, and are translated using the strings
+ * provided by `WonderBlocksConfigProvider`.
+ *
+ * This example illustrates how you can override them by passing custom labels
+ * to the `MultiSelect` component using the `labels` prop. The first dropdown
+ * uses the built-in labels, and the second one uses custom labels.
  */
 export const CustomLabels: StoryComponentType = {
     render: function Render() {
+        const [defaultSelectedValues, setDefaultSelectedValues] =
+            React.useState<Array<string>>([]);
+        const [defaultOpened, setDefaultOpened] = React.useState(true);
         const [selectedValues, setSelectedValues] = React.useState<
             Array<string>
         >([]);
         const [opened, setOpened] = React.useState(true);
 
         const labels: LabelsValues = {
-            clearSearch: "Limpiar busqueda",
-            filter: "Filtrar",
-            noResults: "Sin resultados",
+            clearSearch: "Custom clear search",
+            filter: "Custom filter",
+            noResults: "Custom no results",
             selectAllLabel: (numOptions: number) =>
-                `Seleccionar todas (${numOptions})`,
-            selectNoneLabel: "No seleccionar ninguno",
-            noneSelected: "0 escuelas seleccionadas",
-            allSelected: "Todas las escuelas",
+                `Custom select all (${numOptions})`,
+            selectNoneLabel: "Custom select none",
+            noneSelected: "Custom none selected",
+            allSelected: "Custom all selected",
             someSelected: (numSelectedValues: number) =>
-                `${numSelectedValues} escuelas seleccionadas`,
+                `Custom ${numSelectedValues} selected`,
         };
 
         return (
-            <View style={styles.wrapper}>
-                <MultiSelect
-                    aria-label="Escuelas"
-                    shortcuts={true}
-                    isFilterable={true}
-                    onChange={setSelectedValues}
-                    selectedValues={selectedValues}
-                    labels={labels}
-                    opened={opened}
-                    onToggle={setOpened}
-                >
-                    {translatedItems}
-                </MultiSelect>
+            <View style={[styles.wrapper, styles.twoSelectsContainer]}>
+                <View style={styles.customLabelsSelect}>
+                    <MultiSelect
+                        aria-label="Schools"
+                        shortcuts={true}
+                        isFilterable={true}
+                        onChange={setDefaultSelectedValues}
+                        selectedValues={defaultSelectedValues}
+                        opened={defaultOpened}
+                        onToggle={setDefaultOpened}
+                    >
+                        {customLabelsItems}
+                    </MultiSelect>
+                </View>
+                <View style={styles.customLabelsSelect}>
+                    <MultiSelect
+                        aria-label="Schools with custom labels"
+                        shortcuts={true}
+                        isFilterable={true}
+                        onChange={setSelectedValues}
+                        selectedValues={selectedValues}
+                        labels={labels}
+                        opened={opened}
+                        onToggle={setOpened}
+                    >
+                        {customLabelsItems}
+                    </MultiSelect>
+                </View>
             </View>
         );
     },

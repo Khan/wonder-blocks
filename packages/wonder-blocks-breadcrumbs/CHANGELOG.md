@@ -1,5 +1,55 @@
 # @khanacademy/wonder-blocks-breadcrumbs
 
+## 3.3.5
+
+### Patch Changes
+
+- Updated dependencies [a2504f1]
+- Updated dependencies [63e8d90]
+    - @khanacademy/wonder-blocks-config@0.7.0
+
+## 3.3.4
+
+### Patch Changes
+
+- Updated dependencies [88c9897]
+    - @khanacademy/wonder-blocks-config@0.6.0
+
+## 3.3.3
+
+### Patch Changes
+
+- Updated dependencies [6bd5d0c]
+- Updated dependencies [8e11e83]
+    - @khanacademy/wonder-blocks-config@0.5.0
+
+## 3.3.2
+
+### Patch Changes
+
+- Updated dependencies [cbdc909]
+    - @khanacademy/wonder-blocks-tokens@18.1.0
+
+## 3.3.1
+
+### Patch Changes
+
+- Updated dependencies [9ec3189]
+- Updated dependencies [f070142]
+- Updated dependencies [355f6e1]
+    - @khanacademy/wonder-blocks-config@0.4.0
+
+## 3.3.0
+
+### Minor Changes
+
+- f7eef63: Breadcrumbs' default `aria-label` and the TabsDropdown and NavigationTabsDropdown default opener label now read translated strings from `WonderBlocksConfigProvider`. The `aria-label` and `labels.defaultOpenerLabel` props override the built-in translations.
+
+### Patch Changes
+
+- Updated dependencies [f7eef63]
+    - @khanacademy/wonder-blocks-config@0.3.0
+
 ## 3.2.29
 
 ### Patch Changes
