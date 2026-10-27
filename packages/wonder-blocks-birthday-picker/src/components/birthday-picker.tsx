@@ -1,6 +1,7 @@
 import {Temporal} from "temporal-polyfill";
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
+import {useWonderBlocksI18n} from "@khanacademy/wonder-blocks-config";
 import {StyleType, View} from "@khanacademy/wonder-blocks-core";
 import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {BodyText} from "@khanacademy/wonder-blocks-typography";
@@ -43,6 +44,9 @@ type Props = {
     disabled?: boolean;
     /**
      * The object containing the custom labels used inside this component.
+     *
+     * Each label overrides the translated string from
+     * `WonderBlocksConfigProvider`.
      */
     labels?: Labels;
     /**
@@ -95,14 +99,6 @@ type State = {
 
 // @ts-expect-error [FEI-5019] - TS2339 - Property 'getYear' does not exist on type 'Date'.
 const CUR_YEAR = new Date().getYear() + 1900;
-
-// Only exported internally for testing/documentation purposes.
-export const defaultLabels: Labels = Object.freeze({
-    errorMessage: "Please select a valid birthdate.",
-    month: "Month",
-    year: "Year",
-    day: "Day",
-});
 
 // Default minWidth value when we include the full DOB.
 const FIELD_MIN_WIDTH_FULL = 110;
@@ -249,10 +245,14 @@ const BirthdayPicker = (props: Props) => {
      * entire component. Also, we don't need to use state because these strings
      * are only needed on mount.
      */
-    // merge custom labels with the default ones
+    // merge custom labels with the translated ones
+    const {strings} = useWonderBlocksI18n();
     const labelsRef = React.useRef<Labels>({
-        ...defaultLabels,
-        ...props.labels,
+        errorMessage:
+            props.labels?.errorMessage || strings.birthdateErrorMessage,
+        month: props.labels?.month || strings.fieldLabelMonth,
+        year: props.labels?.year || strings.fieldLabelYear,
+        day: props.labels?.day || strings.fieldLabelDay,
     });
     const labels = labelsRef.current;
 

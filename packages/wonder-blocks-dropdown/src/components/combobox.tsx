@@ -14,6 +14,7 @@ import IconButton from "@khanacademy/wonder-blocks-icon-button";
 import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 
 import {DetailCell} from "@khanacademy/wonder-blocks-cell";
+import {useWonderBlocksI18n} from "@khanacademy/wonder-blocks-config";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {useId} from "react";
 import {focusStyles} from "@khanacademy/wonder-blocks-styles";
@@ -24,7 +25,6 @@ import {
     MaybeValueOrValues,
     OptionItemComponent,
 } from "../util/types";
-import {defaultComboboxLabels} from "../util/constants";
 import {ComboboxLiveRegion} from "./combobox-live-region";
 import {MultipleSelection} from "./combobox-multiple-selection";
 import DropdownPopper from "./dropdown-popper";
@@ -81,9 +81,10 @@ type Props = {
     /**
      * The object containing the custom labels used inside this component.
      *
-     * This is useful for internationalization. Defaults to English.
+     * Any labels set here override the default labels provided by
+     * `WonderBlocksConfigProvider` (in English by default).
      */
-    labels?: ComboboxLabels;
+    labels?: Partial<ComboboxLabels>;
 
     /**
      * TODO(WB-1678): Add async support to the listbox.
@@ -155,7 +156,7 @@ export default function Combobox({
     disabled,
     error,
     id,
-    labels = defaultComboboxLabels,
+    labels: propLabels,
     onChange,
     onToggle,
     opened,
@@ -168,6 +169,39 @@ export default function Combobox({
     style,
     ...ariaAttrs
 }: Props & AriaAttributes) {
+    const {strings} = useWonderBlocksI18n();
+    // Use the labels prop if it is provided (and not empty), otherwise use the
+    // strings from `WonderBlocksConfigProvider`.
+    const labels = React.useMemo(
+        () => ({
+            clearSelection:
+                propLabels?.clearSelection || strings.iconAltClearSelection,
+            comboboxButton:
+                propLabels?.comboboxButton || strings.iconAltToggleListbox,
+            listbox: propLabels?.listbox || strings.optionsList,
+            noItems: propLabels?.noItems || strings.noResults,
+            removeSelected:
+                propLabels?.removeSelected ||
+                ((label: string) => strings.removeOption({label})),
+        }),
+        [propLabels, strings],
+    );
+    // The labels announced by the live region. `ComboboxLiveRegion` falls back
+    // to the strings from `WonderBlocksConfigProvider` for any that aren't set.
+    const liveRegionLabels = React.useMemo(
+        () => ({
+            closedState: propLabels?.closedState,
+            liveRegionCurrentItem: propLabels?.liveRegionCurrentItem,
+            liveRegionListboxTotal: propLabels?.liveRegionListboxTotal,
+            liveRegionMultipleSelectionTotal:
+                propLabels?.liveRegionMultipleSelectionTotal,
+            noItems: propLabels?.noItems,
+            selected: propLabels?.selected,
+            selectionCleared: propLabels?.selectionCleared,
+            unselected: propLabels?.unselected,
+        }),
+        [propLabels],
+    );
     // eslint-disable-next-line import/no-deprecated
     const generatedUniqueId = useId();
     const uniqueId = id ?? generatedUniqueId;
@@ -562,7 +596,7 @@ export default function Combobox({
                 <ComboboxLiveRegion
                     focusedIndex={focusedIndex}
                     focusedMultiSelectIndex={focusedMultiSelectIndex}
-                    labels={labels}
+                    labels={liveRegionLabels}
                     options={renderList}
                     selectedLabels={selectedLabels}
                     testId={testId}

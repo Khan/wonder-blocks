@@ -1,5 +1,4 @@
 import {sizing} from "@khanacademy/wonder-blocks-tokens";
-import {ComboboxLabels} from "./types";
 
 export const selectDropdownStyle = {
     marginBlock: sizing.size_080,
@@ -22,43 +21,3 @@ export const DROPDOWN_ITEM_HEIGHT = 40;
 export const MAX_VISIBLE_ITEMS = 9;
 
 export const SEPARATOR_ITEM_HEIGHT = 9;
-
-// The default labels that will be used by different components
-export const defaultLabels = {
-    clearSearch: "Clear search",
-    filter: "Filter",
-    noResults: "No results",
-    selectNoneLabel: "Select none",
-    selectAllLabel: (numOptions: number): string =>
-        `Select all (${numOptions})`,
-    noneSelected: "0 items",
-    someSelected: (numSelectedValues: number): string =>
-        numSelectedValues === 1 ? "1 item" : `${numSelectedValues} items`,
-    allSelected: "All items",
-} as const;
-
-export const defaultComboboxLabels: ComboboxLabels = {
-    clearSelection: "Clear selection",
-    closedState: "Combobox is closed",
-    comboboxButton: "Toggle listbox",
-    listbox: "Options list",
-    removeSelected: (label: string) => `Remove ${label}`,
-    // Live region labels
-    liveRegionCurrentItem: ({
-        current,
-        index,
-        total,
-        disabled,
-        focused,
-        selected,
-    }) =>
-        `${current}${focused ? " focused" : ""}${disabled ? " disabled" : ""}${
-            selected ? " selected" : ""
-        }, ${index + 1} of ${total}.`,
-    liveRegionMultipleSelectionTotal: (total) => `${total} selected options.`,
-    liveRegionListboxTotal: (total) => `${total} results available.`,
-    noItems: "No results",
-    selected: (labels: string) => `${labels} selected`,
-    selectionCleared: "Selection cleared",
-    unselected: (labels: string) => `${labels} not selected`,
-};

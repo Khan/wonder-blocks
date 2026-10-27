@@ -8,14 +8,11 @@ import {
 } from "@khanacademy/wonder-blocks-core";
 
 import {announceMessage} from "@khanacademy/wonder-blocks-announcer";
+import {useWonderBlocksI18n} from "@khanacademy/wonder-blocks-config";
 import DropdownCore from "./dropdown-core";
 import DropdownOpener from "./dropdown-opener";
 import SelectOpener from "./select-opener";
-import {
-    defaultLabels,
-    selectDropdownStyle,
-    filterableDropdownStyle,
-} from "../util/constants";
+import {selectDropdownStyle, filterableDropdownStyle} from "../util/constants";
 
 import OptionItem from "./option-item";
 import type {
@@ -91,8 +88,11 @@ type DefaultProps = Readonly<{
     error?: boolean;
     /**
      * The object containing the custom labels and placeholder values used inside this component.
+     *
+     * Any labels set here override the default labels provided by
+     * `WonderBlocksConfigProvider` (in English by default).
      */
-    labels?: SingleSelectLabelsValues;
+    labels?: Partial<SingleSelectLabelsValues>;
     /**
      * When false, the SelectOpener can show a Node as a value. When true, the
      * SelectOpener will use a string as a value. If using custom OptionItems, a
@@ -186,8 +186,8 @@ type Props = AriaProps &
          * String:
          * Please pass in a translated string to use as the error message that will
          * render if the user leaves this field blank. If this field is required,
-         * and a string is not passed in, a default untranslated string will render
-         * upon error.
+         * and a string is not passed in, the default `requiredFieldMessage` string
+         * from `WonderBlocksConfigProvider` will render upon error.
          * Note: The string will not be used if a `validate` prop is passed in.
          *
          * Example message: i18n._("A password is required to log in.")
@@ -196,8 +196,8 @@ type Props = AriaProps &
          * True/false indicating whether this field is required. Please do not pass
          * in `true` if possible - pass in the error string instead.
          * If `true` is passed, and a `validate` prop is not passed, that means
-         * there is no corresponding message and the default untranlsated message
-         * will be used.
+         * there is no corresponding message and the default `requiredFieldMessage`
+         * string from `WonderBlocksConfigProvider` will be used.
          */
         required?: boolean | string;
         /**
@@ -284,12 +284,7 @@ const SingleSelect = (props: Props) => {
         dropdownStyle,
         enableTypeAhead = true,
         isFilterable,
-        labels = {
-            clearSearch: defaultLabels.clearSearch,
-            filter: defaultLabels.filter,
-            noResults: defaultLabels.noResults,
-            someResults: defaultLabels.someSelected,
-        },
+        labels: propLabels,
         onChange,
         onToggle,
         opened,
@@ -308,6 +303,21 @@ const SingleSelect = (props: Props) => {
         showOpenerLabelAsText = true,
         ...sharedProps
     } = props;
+
+    const {strings} = useWonderBlocksI18n();
+    // Use the labels prop if it is provided (and not empty), otherwise use the
+    // strings from `WonderBlocksConfigProvider`.
+    const labels: SingleSelectLabelsValues = React.useMemo(
+        () => ({
+            clearSearch: propLabels?.clearSearch || strings.iconAltClearSearch,
+            filter: propLabels?.filter || strings.filter,
+            noResults: propLabels?.noResults || strings.noResults,
+            someResults:
+                propLabels?.someResults ||
+                ((numResults: number) => strings.numItems({num: numResults})),
+        }),
+        [strings, propLabels],
+    );
 
     // Whether or not the dropdown is open.
     const [open, setOpen] = React.useState(false);

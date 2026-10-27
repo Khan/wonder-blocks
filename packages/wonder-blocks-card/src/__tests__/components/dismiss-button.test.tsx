@@ -2,6 +2,11 @@ import * as React from "react";
 import {render, screen} from "@testing-library/react";
 import {userEvent} from "@testing-library/user-event";
 
+import {
+    WonderBlocksConfigProvider,
+    defaultStringsEn,
+} from "@khanacademy/wonder-blocks-config";
+
 import {DismissButton} from "../../components/dismiss-button";
 
 describe("DismissButton", () => {
@@ -26,6 +31,16 @@ describe("DismissButton", () => {
             ).toBeInTheDocument();
         });
 
+        it("should use the default aria-label when aria-label is an empty string", () => {
+            // Arrange & Act
+            render(<DismissButton aria-label="" />);
+
+            // Assert
+            expect(
+                screen.getByRole("button", {name: "Close"}),
+            ).toBeInTheDocument();
+        });
+
         it("should use custom aria-label when provided", () => {
             // Arrange & Act
             render(<DismissButton aria-label="Dismiss notification" />);
@@ -33,6 +48,50 @@ describe("DismissButton", () => {
             // Assert
             expect(
                 screen.getByRole("button", {name: "Dismiss notification"}),
+            ).toBeInTheDocument();
+        });
+
+        it("should use the aria-label from the config provider", () => {
+            // Arrange & Act
+            render(
+                <WonderBlocksConfigProvider
+                    i18n={{
+                        strings: {
+                            ...defaultStringsEn,
+                            iconAltClose: "translated text",
+                        },
+                        locale: "es",
+                    }}
+                >
+                    <DismissButton />
+                </WonderBlocksConfigProvider>,
+            );
+
+            // Assert
+            expect(
+                screen.getByRole("button", {name: "translated text"}),
+            ).toBeInTheDocument();
+        });
+
+        it("should prefer the aria-label prop over the config provider", () => {
+            // Arrange & Act
+            render(
+                <WonderBlocksConfigProvider
+                    i18n={{
+                        strings: {
+                            ...defaultStringsEn,
+                            iconAltClose: "translated text",
+                        },
+                        locale: "es",
+                    }}
+                >
+                    <DismissButton aria-label="overriding label" />
+                </WonderBlocksConfigProvider>,
+            );
+
+            // Assert
+            expect(
+                screen.getByRole("button", {name: "overriding label"}),
             ).toBeInTheDocument();
         });
 
