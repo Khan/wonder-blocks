@@ -303,12 +303,7 @@ prop so consumers can pass in the user's reduced motion preference.
   `labels` prop is only an override, not the way translations reach the
   component.
 - Consider whether a string needs an override before adding one to `labels`.
-  It's useful when the right wording depends on how the component is used,
-  e.g. the accessible name of a close button ("Close" vs. "Remove filter") or
-  a dropdown opener's label. It usually isn't needed for strings whose meaning
-  is the same everywhere, e.g. screen reader announcements like "selected" or
-  "No results". Adding an override later is backward compatible; removing one
-  is a breaking change, so leave it out when in doubt.
+  It's useful when the right wording depends on how the component is used.
 - When a string can be overridden, resolve it as `labels?.x || strings.y` so
   the prop wins and an empty string falls back to the provider.
 - To add a new built-in string, edit `packages/wonder-blocks-config/src/strings.ts`:

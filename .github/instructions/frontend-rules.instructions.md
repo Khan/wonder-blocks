@@ -204,7 +204,7 @@ Use CSS pseudo-classes (`:hover`, `:focus-visible`, `:active`) for state styling
 - The consuming app provides translations and locale via the provider; defaults to English (`defaultStringsEn`)
 - Don't hard-code English strings; add new built-in labels to `packages/wonder-blocks-config/src/strings.ts` (`WonderBlocksStrings` type, `strings` with translator `context`, `defaultStringsEn`)
 - Defaults always come from the provider; `labels` is only an override
-- Consider whether each label needs an override: add one when wording depends on usage (e.g. a close button's accessible name), not for labels that mean the same everywhere (e.g. "No results"). Resolve as `labels?.x || strings.y`
+- Consider whether each label needs an override: add one when wording depends on usage. Resolve as `labels?.x || strings.y`
 - Use logical CSS properties for RTL layouts
 
 ## Theming

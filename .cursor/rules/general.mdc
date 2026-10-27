@@ -257,7 +257,7 @@ Wonder Blocks components often support the following states:
 * ✅ The consuming app renders `WonderBlocksConfigProvider` with translated strings and its locale. Without a provider, the strings default to English (`defaultStringsEn`)
 * ✅ To add a new built-in label, add it to `packages/wonder-blocks-config/src/strings.ts`: the `WonderBlocksStrings` type, the `strings` object (with a `context` for translators), and `defaultStringsEn`
 * ✅ Defaults always come from the provider; a `labels` prop is only an override, not the way translations reach the component
-* ✅ Consider whether each label needs an override. Add one to `labels` when the wording depends on how the component is used (e.g. the accessible name of a close button: "Close" vs. "Remove filter"). It usually isn't needed for labels that mean the same everywhere (e.g. "No results"). Adding an override later is backward compatible; removing one is breaking
+* ✅ Consider whether each label needs an override. Add one to `labels` when the wording depends on how the component is used
 * ✅ Resolve overridable labels as `labels?.x || strings.y` so the prop wins
 * ❌ Don't hard-code English strings in a component
 * ✅ Use logical CSS properties to support RTL layouts
