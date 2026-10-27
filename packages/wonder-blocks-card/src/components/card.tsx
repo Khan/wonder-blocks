@@ -1,18 +1,10 @@
 import * as React from "react";
 
-import {StyleSheet} from "aphrodite";
 import {StyleType, View} from "@khanacademy/wonder-blocks-core";
 import type {AriaProps} from "@khanacademy/wonder-blocks-core";
 
-import {
-    boxShadow,
-    border,
-    semanticColor,
-    sizing,
-    font,
-} from "@khanacademy/wonder-blocks-tokens";
-
 import {DismissButton} from "./dismiss-button";
+import styles from "./card.module.css";
 
 /**
  * Base props that are shared across all Card configurations
@@ -51,16 +43,17 @@ type BaseCardProps = {
  * A callback function to handle dismissing the card. When this prop is present,
  * a dismiss button with an X icon will be rendered.
  *
- * When `onDismiss` is provided, `labels.dismissButtonAriaLabel` must also be
- * provided for accessibility and localization. `labels.dismissButtonAriaDescribedBy`
+ * The dismiss button has a built-in accessible name ("Close"), which is
+ * translated using `WonderBlocksConfigProvider`. It can be overridden using
+ * `labels.dismissButtonAriaLabel`. `labels.dismissButtonAriaDescribedBy`
  * can be provided to pass an aria-describedby attribute to the dismiss button if
  * more context is needed for the dismiss button.
  */
 type DismissProps =
     | {
           onDismiss: (e?: React.SyntheticEvent) => void;
-          labels: {
-              dismissButtonAriaLabel: string;
+          labels?: {
+              dismissButtonAriaLabel?: string;
               dismissButtonAriaDescribedBy?: string;
           } & Record<string, any>;
       }
@@ -187,8 +180,8 @@ type CardProps = BaseCardProps & TagProps & DismissProps;
  * ### Accessibility
  *
  * When the `onDismiss` prop is provided, a dismiss button will be rendered.
- * In this case, the `labels.dismissButtonAriaLabel` prop is required to provide
- * a translatable screen reader label for the dismiss button.
+ * It has a built-in, translated screen reader label ("Close"), which can be
+ * overridden using the `labels.dismissButtonAriaLabel` prop.
  *
  * See additional Accessibility docs.
  */
@@ -198,7 +191,7 @@ const Card = React.forwardRef(function Card(
     ref: React.ForwardedRef<HTMLElement>,
 ) {
     const {
-        styles,
+        styles: customStyles,
         labels,
         tag,
         testId,
@@ -216,12 +209,6 @@ const Card = React.forwardRef(function Card(
 
     const isBackgroundToken =
         background === "base-default" || background === "base-subtle";
-    const componentStyles = getComponentStyles({
-        background: isBackgroundToken ? background : null,
-        borderRadius,
-        paddingSize,
-        elevation,
-    });
 
     return (
         <View
@@ -229,12 +216,18 @@ const Card = React.forwardRef(function Card(
             aria-label={labels?.cardAriaLabel}
             aria-labelledby={ariaLabelledBy}
             style={[
-                componentStyles.root,
+                styles.root,
+                styles.card,
+                background === "base-subtle" && styles.backgroundBaseSubtle,
+                background === "base-default" && styles.backgroundBaseDefault,
+                borderRadiusStyles[borderRadius],
+                elevationStyles[elevation],
+                paddingStyles[paddingSize],
                 !isBackgroundToken && {
                     background: `url(${background})`,
                     backgroundSize: "cover",
                 },
-                styles?.root,
+                customStyles?.root,
             ]}
             ref={ref}
             role={role}
@@ -244,7 +237,7 @@ const Card = React.forwardRef(function Card(
         >
             {onDismiss ? (
                 <DismissButton
-                    aria-label={labels?.dismissButtonAriaLabel || "Close"}
+                    aria-label={labels?.dismissButtonAriaLabel}
                     aria-describedby={labels?.dismissButtonAriaDescribedBy}
                     onClick={(e) => onDismiss?.(e)}
                     testId={testId && `${testId}-dismiss-button`}
@@ -255,54 +248,21 @@ const Card = React.forwardRef(function Card(
     );
 });
 
-// Map prop values to tokens
-const styleMap = {
-    backgroundColor: {
-        "base-subtle": semanticColor.core.background.base.subtle,
-        "base-default": semanticColor.core.background.base.default,
-    },
-    borderRadius: {
-        small: border.radius.radius_080,
-        medium: border.radius.radius_120,
-    },
-    padding: {
-        none: sizing.size_0,
-        small: sizing.size_160,
-        medium: sizing.size_240,
-    },
-    elevation: {
-        none: "none",
-        low: boxShadow.low,
-    },
+// Map prop values to classes
+const borderRadiusStyles = {
+    small: styles.borderRadiusSmall,
+    medium: styles.borderRadiusMedium,
 } as const;
 
-/**
- * Gets the styles for the card based on its props
- */
-const getComponentStyles = ({
-    background = "base-default",
-    borderRadius = "small",
-    paddingSize = "small",
-    elevation = "none",
-}: StyleProps) => {
-    const bgColor = background as keyof typeof styleMap.backgroundColor;
-    return StyleSheet.create({
-        root: {
-            backgroundColor: bgColor && styleMap.backgroundColor[bgColor],
-            // Common styles
-            borderColor: semanticColor.core.border.neutral.subtle,
-            borderStyle: "solid",
-            borderWidth: border.width.thin,
-            // Apply the system font to cards by default
-            fontFamily: font.family.sans,
-            minInlineSize: sizing.size_280,
-            position: "relative",
-            // Optional styles based on props
-            borderRadius: styleMap.borderRadius[borderRadius],
-            boxShadow: styleMap.elevation[elevation],
-            padding: styleMap.padding[paddingSize],
-        },
-    });
-};
+const elevationStyles = {
+    none: styles.elevationNone,
+    low: styles.elevationLow,
+} as const;
+
+const paddingStyles = {
+    none: styles.paddingNone,
+    small: styles.paddingSmall,
+    medium: styles.paddingMedium,
+} as const;
 
 export default Card;

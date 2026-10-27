@@ -1,4 +1,3 @@
-import {css, StyleSheet} from "aphrodite";
 import {Temporal} from "temporal-polyfill";
 import * as React from "react";
 import {DayPicker, getDefaultClassNames, UI} from "react-day-picker";
@@ -9,8 +8,7 @@ import {
     View,
     type StyleType,
 } from "@khanacademy/wonder-blocks-core";
-import {font, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
-import {focusStyles} from "@khanacademy/wonder-blocks-styles";
+import {font, semanticColor} from "@khanacademy/wonder-blocks-tokens";
 import {useCloseOnOutsideClick} from "../hooks/use-close-on-outside-click";
 import {useDatePickerModifiers} from "../hooks/use-date-picker-modifiers";
 import {useDisplayMonth} from "../hooks/use-display-month";
@@ -23,6 +21,7 @@ import type {CustomModifiers} from "../util/types";
 
 import DatePickerInput from "./date-picker-input";
 import DatePickerOverlay from "./date-picker-overlay";
+import styles from "./date-picker.module.css";
 
 // eslint-disable-next-line import/no-unassigned-import
 import "react-day-picker/style.css";
@@ -94,11 +93,14 @@ interface Props {
     inputAriaLabel?: string;
     /**
      * The aria-label for the calendar toggle button that opens/closes the
-     * calendar overlay. Defaults to "Toggle calendar".
+     * calendar overlay. Overrides the translated string from
+     * `WonderBlocksConfigProvider` ("Toggle calendar" in English).
      */
     calendarButtonAriaLabel?: string;
     /**
-     * The aria-label for the calendar grid region. Defaults to "Date picker calendar".
+     * The aria-label for the calendar grid region. Overrides the translated
+     * string from `WonderBlocksConfigProvider` ("Date picker calendar" in
+     * English).
      */
     calendarGridRegionAriaLabel?: string;
     /**
@@ -154,13 +156,8 @@ const customRootStyle = {
 // React Day Picker's own day buttons don't use the Wonder Blocks focus
 // style, so we add it as an extra class alongside the default one (classNames
 // entries replace, rather than merge with, the default per UI element).
-const dayButtonFocusStyles = StyleSheet.create({
-    focus: focusStyles.focus,
-});
 const dayPickerClassNames = {
-    [UI.DayButton]: `${getDefaultClassNames()[UI.DayButton]} ${css(
-        dayButtonFocusStyles.focus,
-    )}`,
+    [UI.DayButton]: `${getDefaultClassNames()[UI.DayButton]} ${styles.dayButton}`,
 };
 
 /**
@@ -639,7 +636,7 @@ const DatePicker = (props: Props) => {
                     dir={dir === "rtl" ? "rtl" : "ltr"}
                     calendarGridRegionAriaLabel={calendarGridRegionAriaLabel}
                 >
-                    <View ref={datePickerRef}>
+                    <View ref={datePickerRef} style={styles.overlayRoot}>
                         <DayPicker
                             key={pickerKey}
                             mode="single"
@@ -669,10 +666,3 @@ DatePicker.defaultProps = {
 };
 
 export default DatePicker;
-
-const styles = StyleSheet.create({
-    footer: {
-        margin: sizing.size_120,
-        marginBlockStart: 0,
-    },
-});

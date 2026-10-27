@@ -1,0 +1,20 @@
+/**
+ * TooltipTail styles
+ *
+ * `.tailContainer` sits on a `View`, but neither of its declarations
+ * competes with core's `View` rule (`position: relative` matches the value
+ * `View` already sets), so a single class is enough. `.arrow` sits on a
+ * plain `svg`. The placement-specific container size/offset and the arrow
+ * margins stay plain style objects in the component. The build wraps every
+ * rule in `@layer shared { … }`.
+ */
+
+.tailContainer {
+    position: relative;
+    pointer-events: none;
+}
+
+.arrow {
+    /* Ensure the dropshadow bleeds outside our bounds. */
+    overflow: visible;
+}

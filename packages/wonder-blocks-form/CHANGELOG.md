@@ -1,5 +1,59 @@
 # @khanacademy/wonder-blocks-form
 
+## 7.7.5
+
+### Patch Changes
+
+- Updated dependencies [a2504f1]
+- Updated dependencies [63e8d90]
+    - @khanacademy/wonder-blocks-config@0.7.0
+
+## 7.7.4
+
+### Patch Changes
+
+- Updated dependencies [88c9897]
+    - @khanacademy/wonder-blocks-config@0.6.0
+
+## 7.7.3
+
+### Patch Changes
+
+- Updated dependencies [6bd5d0c]
+- Updated dependencies [8e11e83]
+    - @khanacademy/wonder-blocks-config@0.5.0
+
+## 7.7.2
+
+### Patch Changes
+
+- Updated dependencies [cbdc909]
+    - @khanacademy/wonder-blocks-tokens@18.1.0
+    - @khanacademy/wonder-blocks-clickable@8.3.2
+    - @khanacademy/wonder-blocks-icon@6.0.3
+    - @khanacademy/wonder-blocks-layout@3.2.1
+    - @khanacademy/wonder-blocks-typography@5.0.6
+
+## 7.7.1
+
+### Patch Changes
+
+- Updated dependencies [8b93331]
+    - @khanacademy/wonder-blocks-layout@3.2.0
+
+## 7.7.0
+
+### Minor Changes
+
+- 9ec3189: The default required field error message in TextField and TextArea now reads a translated string from `WonderBlocksConfigProvider`. Passing a string to the `required` prop overrides the built-in translation.
+
+### Patch Changes
+
+- Updated dependencies [9ec3189]
+- Updated dependencies [f070142]
+- Updated dependencies [355f6e1]
+    - @khanacademy/wonder-blocks-config@0.4.0
+
 ## 7.6.15
 
 ### Patch Changes

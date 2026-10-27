@@ -1,0 +1,28 @@
+/**
+ * DatePicker calendar overlay styles.
+ *
+ * `.overlayRoot` is a marker class on the `View` that wraps the calendar and
+ * footer; it carries no declarations of its own. The footer is a `View`, whose
+ * own rule (same `@layer shared`) sets `margin`, and the bundle loads this
+ * package's CSS before core's, so nesting the footer rule under the marker
+ * makes it win on specificity rather than load order.
+ *
+ * The build wraps every rule in `@layer shared { … }`.
+ */
+
+@import "@khanacademy/wonder-blocks-styles/focus-styles.css";
+
+.overlayRoot {
+    & .footer {
+        margin: var(--wb-sizing-size_120);
+        margin-block-start: 0;
+    }
+}
+
+/* React Day Picker's own day buttons don't use the Wonder Blocks focus style,
+ * so we add this as an extra class alongside the default one. React Day
+ * Picker's stylesheet is unlayered, but it never sets `outline` or
+ * `box-shadow` on day buttons, so this layered rule doesn't compete with it. */
+.dayButton:focus-visible {
+    @apply --wb-focus-visible;
+}

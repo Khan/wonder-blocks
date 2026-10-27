@@ -2,18 +2,17 @@ import * as React from "react";
 
 import type {StyleType} from "@khanacademy/wonder-blocks-core";
 import type {State as PopperState} from "@popperjs/core";
-import type {CSSProperties} from "aphrodite";
 
 export type getRefFn = (
     arg1?: React.Component<any> | Element | null | undefined,
 ) => void;
 
 export type Offset = {
-    bottom: CSSProperties["bottom"];
-    top: CSSProperties["top"];
-    left: CSSProperties["left"];
-    right: CSSProperties["right"];
-    transform: CSSProperties["transform"];
+    bottom: React.CSSProperties["bottom"];
+    top: React.CSSProperties["top"];
+    left: React.CSSProperties["left"];
+    right: React.CSSProperties["right"];
+    transform: React.CSSProperties["transform"];
 };
 
 export type Placement = "top" | "bottom" | "right" | "left";
@@ -32,8 +31,8 @@ export type TooltipVariant = "subtle" | "strong";
  * Subset of CSS properties to allow overriding some of the default styles
  */
 export type ContentStyle = {
-    color?: CSSProperties["color"];
-    padding?: CSSProperties["padding"];
+    color?: React.CSSProperties["color"];
+    padding?: React.CSSProperties["padding"];
 };
 
 export type PopperUpdateFn = () => Promise<null | Partial<PopperState>>;

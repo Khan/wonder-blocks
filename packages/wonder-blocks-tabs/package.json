@@ -3,7 +3,7 @@
   "description": "Tabs are used to control what content is shown",
   "author": "Khan Academy",
   "license": "MIT",
-  "version": "0.5.36",
+  "version": "1.0.7",
   "publishConfig": {
     "access": "public"
   },
@@ -25,6 +25,7 @@
   },
   "dependencies": {
     "@khanacademy/wonder-blocks-button": "workspace:*",
+    "@khanacademy/wonder-blocks-config": "workspace:*",
     "@khanacademy/wonder-blocks-core": "workspace:*",
     "@khanacademy/wonder-blocks-dropdown": "workspace:*",
     "@khanacademy/wonder-blocks-icon": "workspace:*",

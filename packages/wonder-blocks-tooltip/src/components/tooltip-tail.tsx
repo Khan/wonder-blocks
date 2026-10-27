@@ -1,11 +1,11 @@
 import * as React from "react";
-import {css, StyleSheet} from "aphrodite";
 
 import {View} from "@khanacademy/wonder-blocks-core";
 import {color, semanticColor} from "@khanacademy/wonder-blocks-tokens";
 
 import type {StyleType} from "@khanacademy/wonder-blocks-core";
 import type {getRefFn, Placement, Offset, TooltipVariant} from "../util/types";
+import styles from "./tooltip-tail.module.css";
 
 export type Props = {
     /**
@@ -388,7 +388,7 @@ export default class TooltipTail extends React.Component<Props> {
 
         return (
             <svg
-                className={css(styles.arrow)}
+                className={styles.arrow}
                 style={this._getArrowStyle()}
                 width={width}
                 height={height}
@@ -453,21 +453,3 @@ const DISTANCE_FROM_ANCHOR = 8; // sizing.size_080
 const MIN_DISTANCE_FROM_CORNERS = 8; // sizing.size_080
 const ARROW_WIDTH = 24; // sizing.size_240
 const ARROW_HEIGHT = 12; // sizing.size_120
-
-const styles = StyleSheet.create({
-    /**
-     * Container
-     */
-    tailContainer: {
-        position: "relative",
-        pointerEvents: "none",
-    },
-
-    /**
-     * Arrow
-     */
-    arrow: {
-        // Ensure the dropshadow bleeds outside our bounds.
-        overflow: "visible",
-    },
-});

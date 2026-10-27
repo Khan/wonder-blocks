@@ -1,0 +1,42 @@
+/**
+ * Shared styles for `ResponsiveTabs` and `ResponsiveNavigationTabs`
+ *
+ * Every rule is nested inside `.root` — the marker class on the container,
+ * which carries no declarations of its own — because the container is a
+ * `View`, and this component overrides `View`'s `min-block-size` in the same
+ * `@layer shared`. At equal specificity stylesheet load order would decide the
+ * winner, so the compound selector makes it depend on specificity instead.
+ *
+ * `fadeIn` is applied to the tabs / dropdown rendered inside (through their
+ * `styles.root`), not to the container. CSS Modules scopes the keyframes name
+ * to this file. The build wraps every rule in `@layer shared { … }`.
+ */
+
+@keyframes fade-in {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.root {
+    &.container {
+        inline-size: 100%;
+
+        /* override setting the min height: 0 style */
+        min-block-size: auto;
+    }
+}
+
+/* Apply fade in animation to the tabs and the dropdown to ease into the
+ * transition between the two layouts. Since this is a fade animation to
+ * smoothen the transition, we apply it always, even if prefers reduced motion
+ * is enabled */
+.fadeIn {
+    animation-name: fade-in;
+    animation-duration: 150ms;
+    animation-timing-function: ease-in-out;
+}

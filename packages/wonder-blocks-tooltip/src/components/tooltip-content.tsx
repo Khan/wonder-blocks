@@ -1,12 +1,11 @@
 import * as React from "react";
-import {StyleSheet} from "aphrodite";
 
 import {View} from "@khanacademy/wonder-blocks-core";
-import {sizing} from "@khanacademy/wonder-blocks-tokens";
 import {Heading, BodyText} from "@khanacademy/wonder-blocks-typography";
 import type {Typography} from "@khanacademy/wonder-blocks-typography";
 
 import {ContentStyle} from "../util/types";
+import styles from "./tooltip-content.module.css";
 
 type Props = {
     /**
@@ -73,7 +72,7 @@ export default class TooltipContent extends React.Component<Props> {
         const containerStyle = title ? styles.withTitle : styles.withoutTitle;
         return (
             <View
-                style={[containerStyle, this.props.contentStyle]}
+                style={[styles.root, containerStyle, this.props.contentStyle]}
                 testId={this.props.testId}
             >
                 {title}
@@ -82,15 +81,3 @@ export default class TooltipContent extends React.Component<Props> {
         );
     }
 }
-
-const styles = StyleSheet.create({
-    withoutTitle: {
-        padding: `${sizing.size_100} ${sizing.size_160}`,
-    },
-
-    withTitle: {
-        padding: sizing.size_160,
-        // gap between the title and its children when both are present.
-        gap: sizing.size_040,
-    },
-});

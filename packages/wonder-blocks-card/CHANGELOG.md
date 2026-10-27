@@ -1,5 +1,40 @@
 # @khanacademy/wonder-blocks-card
 
+## 1.5.2
+
+### Patch Changes
+
+- Updated dependencies [a2504f1]
+- Updated dependencies [63e8d90]
+    - @khanacademy/wonder-blocks-config@0.7.0
+
+## 1.5.1
+
+### Patch Changes
+
+- Updated dependencies [88c9897]
+    - @khanacademy/wonder-blocks-config@0.6.0
+
+## 1.5.0
+
+### Minor Changes
+
+- 8e11e83: Card's dismiss button now reads its default `aria-label` ("Close") from `WonderBlocksConfigProvider`. The `labels.dismissButtonAriaLabel` prop overrides the built-in translation, and is now optional when `onDismiss` is set.
+
+### Patch Changes
+
+- Updated dependencies [6bd5d0c]
+- Updated dependencies [8e11e83]
+    - @khanacademy/wonder-blocks-config@0.5.0
+
+## 1.4.30
+
+### Patch Changes
+
+- Updated dependencies [cbdc909]
+    - @khanacademy/wonder-blocks-tokens@18.1.0
+    - @khanacademy/wonder-blocks-icon-button@12.0.2
+
 ## 1.4.29
 
 ### Patch Changes

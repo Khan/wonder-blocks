@@ -1,12 +1,13 @@
 import * as React from "react";
-import {StyleSheet} from "aphrodite";
 
 import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
 import {View} from "@khanacademy/wonder-blocks-core";
-import {sizing} from "@khanacademy/wonder-blocks-tokens";
+import {ScrollableView} from "@khanacademy/wonder-blocks-layout";
 
 import {actionStyles} from "@khanacademy/wonder-blocks-styles";
 import CloseButton from "./close-button";
+import PopoverContext from "./popover-context";
+import styles from "./popover-content-core.module.css";
 
 type Props = AriaProps & {
     /**
@@ -18,7 +19,8 @@ type Props = AriaProps & {
      */
     closeButtonLight?: boolean;
     /**
-     * Close button label for use in screen readers
+     * Close button label for use in screen readers. This overrides the default
+     * label provided by `WonderBlocksConfigProvider`.
      */
     closeButtonLabel?: string;
     /**
@@ -51,6 +53,17 @@ type Props = AriaProps & {
  * no bubble around it and you need to supply your own container styling. Inside
  * a `Popover` it looks like a popover with no extra work.
  *
+ * ### Overflow
+ *
+ * Inside a `Popover`, the content is constrained to the space available in the
+ * viewport (or document). When it doesn't fit (e.g. on small screens or at
+ * high zoom levels), the content (including the close button) scrolls, and
+ * it fades out at the edges to hint that there's more content to scroll to.
+ * The scrollable area becomes keyboard focusable while it overflows, so
+ * keyboard users can scroll it too. It's named after the popover (via its
+ * title or `aria-label`), so screen readers announce it when it's focused.
+ * Pass an `aria-label` to `PopoverContentCore` to use a different name.
+ *
  * ### Usage
  *
  * ```jsx
@@ -76,25 +89,35 @@ const PopoverContentCore = React.forwardRef<HTMLElement, Props>(
         }: Props,
         ref,
     ): React.ReactElement {
+        // Name the scrollable area, since it can receive focus while its
+        // content overflows. A custom `aria-label` takes precedence over the
+        // popover's name.
+        const popoverContext = React.useContext(PopoverContext);
+        const labelProps = ariaLabel
+            ? {"aria-label": ariaLabel}
+            : {
+                  "aria-label": popoverContext["aria-label"],
+                  "aria-labelledby": popoverContext["aria-labelledby"],
+              };
+
         return (
-            <View
-                testId={testId}
-                style={[styles.content, style]}
-                aria-label={ariaLabel}
-                ref={ref}
-            >
-                {closeButtonVisible && (
-                    <CloseButton
-                        aria-label={closeButtonLabel}
-                        style={[
-                            styles.closeButton,
-                            closeButtonLight && actionStyles.inverse,
-                        ]}
-                        testId={`${testId || "popover"}-close-btn`}
-                    />
-                )}
-                {children}
-            </View>
+            <ScrollableView {...labelProps} style={styles.root}>
+                <View testId={testId} style={[styles.content, style]} ref={ref}>
+                    {/* The close button is part of the content (inside the
+                    scroll container), so it scrolls with it. */}
+                    {closeButtonVisible && (
+                        <CloseButton
+                            aria-label={closeButtonLabel}
+                            style={[
+                                styles.closeButton,
+                                closeButtonLight && actionStyles.inverse,
+                            ]}
+                            testId={`${testId || "popover"}-close-btn`}
+                        />
+                    )}
+                    {children}
+                </View>
+            </ScrollableView>
         );
     },
 );
@@ -102,25 +125,3 @@ const PopoverContentCore = React.forwardRef<HTMLElement, Props>(
 PopoverContentCore.displayName = "PopoverContentCore";
 
 export default PopoverContentCore;
-
-const styles = StyleSheet.create({
-    content: {
-        margin: 0,
-        maxInlineSize: `calc(${sizing.size_160} * 18)`, // 288px
-        padding: sizing.size_240,
-        overflow: "hidden",
-        justifyContent: "center",
-    },
-
-    /**
-     * elements
-     */
-    closeButton: {
-        margin: 0,
-        position: "absolute",
-        insetInlineEnd: sizing.size_040,
-        insetBlockStart: sizing.size_040,
-        // Allows the button to be above the title and/or custom content
-        zIndex: 1,
-    },
-});

@@ -1,0 +1,18 @@
+/**
+ * Accordion styles
+ *
+ * The list is rendered by `addStyle`, which ships no class of its own, so this
+ * single-class rule doesn't compete with anything else in `@layer shared`. The
+ * consumer's `style` still goes through Aphrodite (unlayered and
+ * `!important`), so it wins over this module as it did before. The build wraps
+ * every rule in `@layer shared { … }`.
+ */
+
+.wrapper {
+    box-sizing: border-box;
+    list-style: none;
+
+    /* Reset the default padding for lists. */
+    padding: 0;
+    inline-size: 100%;
+}
