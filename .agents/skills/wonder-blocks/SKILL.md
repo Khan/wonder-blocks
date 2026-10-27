@@ -317,7 +317,9 @@ prop so consumers can pass in the user's reduced motion preference.
      package if it isn't one already.
 
   Consumers pick up new strings by regenerating their translated strings after
-  upgrading (in the frontend repo: `pnpm i18n:extract-external-strings`).
+  upgrading (in the frontend repo: `pnpm i18n:extract-external-strings`). The
+  frontend repo's `deploy_wonder_blocks` script runs this automatically when it
+  updates the Wonder Blocks packages.
 
 ## Patterns
 
