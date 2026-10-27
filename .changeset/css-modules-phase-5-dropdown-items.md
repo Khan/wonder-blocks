@@ -17,6 +17,10 @@ props, same DOM structure, same `style` overrides.
   Aphrodite version was unlayered `!important` and beat every Cell state rule,
   so the item focus/press rules also cover Cell's `:focus-visible:active`
   combination.
+- The dropdown theme adds `item.sizing.height` (40px), exposed to CSS as
+  `--wb-c-dropdown-item-sizing-height`. `ActionItem` reads its minimum height
+  from it, and `DROPDOWN_ITEM_HEIGHT` in JS comes from the same value, so the
+  two can't drift apart.
 - The package now ships its bundled stylesheet at `dist/index.css`, which the
   JS entry imports automatically.
 - **Behavior change:** a consumer `style` passed to `Listbox` that sets `color`

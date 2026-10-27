@@ -1,5 +1,6 @@
 import {sizing} from "@khanacademy/wonder-blocks-tokens";
 import {ComboboxLabels} from "./types";
+import {ITEM_HEIGHT} from "../theme/default";
 
 export const selectDropdownStyle = {
     marginBlock: sizing.size_080,
@@ -11,8 +12,9 @@ export const filterableDropdownStyle = {
     minHeight: 100,
 } as const;
 
-// The default item height
-export const DROPDOWN_ITEM_HEIGHT = 40;
+// The default item height. Defined in the theme, which also exposes it to CSS
+// as `--wb-c-dropdown-item-sizing-height`.
+export const DROPDOWN_ITEM_HEIGHT = ITEM_HEIGHT;
 
 /**
  * Maximum visible items inside the dropdown list. Based on the defined height

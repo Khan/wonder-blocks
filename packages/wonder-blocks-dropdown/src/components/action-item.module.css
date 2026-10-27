@@ -24,10 +24,8 @@
 
 .root {
     &.actionItem {
-        /* `DROPDOWN_ITEM_HEIGHT` (util/constants.ts). It's a px constant
-         * rather than a sizing token because the virtualized list measures
-         * rows with it. */
-        min-block-size: 40px;
+        /* The dropdown item height (`DROPDOWN_ITEM_HEIGHT` in JS). */
+        min-block-size: var(--wb-c-dropdown-item-sizing-height);
 
         /* This removes the 300ms click delay on mobile browsers by indicating
          * that "double-tap to zoom" shouldn't be used on this element. */
@@ -57,7 +55,7 @@
     }
 
     &.shared {
-        min-block-size: 40px;
+        min-block-size: var(--wb-c-dropdown-item-sizing-height);
 
         /* Make sure that the item is always at least as tall as 40px. */
         padding-block: var(--wb-c-dropdown-item-layout-padding-block);
