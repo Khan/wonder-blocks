@@ -289,9 +289,6 @@ prop so consumers can pass in the user's reduced motion preference.
   `@khanacademy/wonder-blocks-config`. The consuming app renders the provider
   with translated strings and its locale; without one, components fall back
   to `defaultStringsEn`. Never hard-code English strings in a component.
-  See the `WonderBlocksConfigProvider` docs in the WB Storybook
-  (Packages / Config / WonderBlocksConfigProvider) and the Config section of
-  its Get Started page.
 - Read the strings in a component with the `useWonderBlocksI18n` hook:
 
   ```tsx
