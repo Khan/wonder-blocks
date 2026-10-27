@@ -171,7 +171,7 @@ Use CSS pseudo-classes (`:hover`, `:focus-visible`, `:active`) for state styling
 - Components may have built-in strings for error messages, aria-labels, or screen reader announcements
 - Built-in strings come from `WonderBlocksConfigProvider` (`@khanacademy/wonder-blocks-config`); read them with `useWonderBlocksI18n()`. The consuming app provides the translations and locale; without a provider, they default to English (`defaultStringsEn`)
 - **Never hard-code English strings in a component**; add new built-in strings to `packages/wonder-blocks-config/src/strings.ts` (the `WonderBlocksStrings` type, `strings` with translator `context`, and `defaultStringsEn`)
-- Every built-in string should still be overridable via a `labels` prop; resolve as `labels?.x || strings.y`
+- Defaults always come from the provider; a `labels` prop is only an override. Consider whether each string needs one: add it when the wording depends on how the component is used (e.g. a close button's accessible name), not for strings that mean the same everywhere (e.g. "No results"). Resolve overrides as `labels?.x || strings.y`
 - Use logical CSS properties to support RTL layouts
 
 ## Documentation
