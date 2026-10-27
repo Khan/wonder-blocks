@@ -3,6 +3,10 @@ import {describe, it} from "@jest/globals";
 import {render, screen} from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import {Temporal} from "temporal-polyfill";
+import {
+    WonderBlocksConfigProvider,
+    defaultStringsEn,
+} from "@khanacademy/wonder-blocks-config";
 import {TemporalLocaleUtils} from "@khanacademy/wonder-blocks-date-picker";
 import DatePickerInput from "../date-picker-input";
 
@@ -325,6 +329,84 @@ describe("DatePickerInput", () => {
         expect(
             screen.getByRole("button", {name: "Toggle calendar"}),
         ).toHaveAttribute("aria-expanded", "true");
+    });
+
+    describe("calendar button aria-label", () => {
+        it("uses the aria-label from the config provider", () => {
+            // Arrange
+
+            // Act
+            render(
+                <WonderBlocksConfigProvider
+                    i18n={{
+                        strings: {
+                            ...defaultStringsEn,
+                            iconAltToggleCalendar: "translated text",
+                        },
+                        locale: "es",
+                    }}
+                >
+                    <DatePickerInput
+                        value="2021-05-12"
+                        expanded={false}
+                        onToggleOverlay={() => {}}
+                    />
+                </WonderBlocksConfigProvider>,
+            );
+
+            // Assert
+            expect(
+                screen.getByRole("button", {name: "translated text"}),
+            ).toBeInTheDocument();
+        });
+
+        it("uses the default aria-label when calendarButtonAriaLabel is an empty string", () => {
+            // Arrange
+
+            // Act
+            render(
+                <DatePickerInput
+                    value="2021-05-12"
+                    expanded={false}
+                    onToggleOverlay={() => {}}
+                    calendarButtonAriaLabel=""
+                />,
+            );
+
+            // Assert
+            expect(
+                screen.getByRole("button", {name: "Toggle calendar"}),
+            ).toBeInTheDocument();
+        });
+
+        it("prefers the calendarButtonAriaLabel prop over the config provider", () => {
+            // Arrange
+
+            // Act
+            render(
+                <WonderBlocksConfigProvider
+                    i18n={{
+                        strings: {
+                            ...defaultStringsEn,
+                            iconAltToggleCalendar: "translated text",
+                        },
+                        locale: "es",
+                    }}
+                >
+                    <DatePickerInput
+                        value="2021-05-12"
+                        expanded={false}
+                        onToggleOverlay={() => {}}
+                        calendarButtonAriaLabel="overriding label"
+                    />
+                </WonderBlocksConfigProvider>,
+            );
+
+            // Assert
+            expect(
+                screen.getByRole("button", {name: "overriding label"}),
+            ).toBeInTheDocument();
+        });
     });
 
     it("onBlur: reverts back to the latest valid input if the current one is invalid", async () => {

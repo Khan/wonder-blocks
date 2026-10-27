@@ -634,6 +634,9 @@ importers:
       '@khanacademy/wonder-blocks-button':
         specifier: workspace:*
         version: link:../wonder-blocks-button
+      '@khanacademy/wonder-blocks-config':
+        specifier: workspace:*
+        version: link:../wonder-blocks-config
       '@khanacademy/wonder-blocks-core':
         specifier: workspace:*
         version: link:../wonder-blocks-core
@@ -668,6 +671,9 @@ importers:
 
   packages/wonder-blocks-birthday-picker:
     dependencies:
+      '@khanacademy/wonder-blocks-config':
+        specifier: workspace:*
+        version: link:../wonder-blocks-config
       '@khanacademy/wonder-blocks-core':
         specifier: workspace:*
         version: link:../wonder-blocks-core
@@ -770,6 +776,9 @@ importers:
 
   packages/wonder-blocks-card:
     dependencies:
+      '@khanacademy/wonder-blocks-config':
+        specifier: workspace:*
+        version: link:../wonder-blocks-config
       '@khanacademy/wonder-blocks-core':
         specifier: workspace:*
         version: link:../wonder-blocks-core
@@ -917,6 +926,9 @@ importers:
 
   packages/wonder-blocks-date-picker:
     dependencies:
+      '@khanacademy/wonder-blocks-config':
+        specifier: workspace:*
+        version: link:../wonder-blocks-config
       '@khanacademy/wonder-blocks-core':
         specifier: workspace:*
         version: link:../wonder-blocks-core
@@ -972,12 +984,18 @@ importers:
       '@khanacademy/wonder-blocks-announcer':
         specifier: workspace:*
         version: link:../wonder-blocks-announcer
+      '@khanacademy/wonder-blocks-button':
+        specifier: workspace:*
+        version: link:../wonder-blocks-button
       '@khanacademy/wonder-blocks-cell':
         specifier: workspace:*
         version: link:../wonder-blocks-cell
       '@khanacademy/wonder-blocks-clickable':
         specifier: workspace:*
         version: link:../wonder-blocks-clickable
+      '@khanacademy/wonder-blocks-config':
+        specifier: workspace:*
+        version: link:../wonder-blocks-config
       '@khanacademy/wonder-blocks-core':
         specifier: workspace:*
         version: link:../wonder-blocks-core
@@ -1234,6 +1252,9 @@ importers:
       '@khanacademy/wonder-blocks-clickable':
         specifier: workspace:*
         version: link:../wonder-blocks-clickable
+      '@khanacademy/wonder-blocks-config':
+        specifier: workspace:*
+        version: link:../wonder-blocks-config
       '@khanacademy/wonder-blocks-core':
         specifier: workspace:*
         version: link:../wonder-blocks-core
@@ -1280,6 +1301,9 @@ importers:
       '@khanacademy/wonder-blocks-breadcrumbs':
         specifier: workspace:*
         version: link:../wonder-blocks-breadcrumbs
+      '@khanacademy/wonder-blocks-config':
+        specifier: workspace:*
+        version: link:../wonder-blocks-config
       '@khanacademy/wonder-blocks-core':
         specifier: workspace:*
         version: link:../wonder-blocks-core
@@ -1351,6 +1375,9 @@ importers:
 
   packages/wonder-blocks-popover:
     dependencies:
+      '@khanacademy/wonder-blocks-config':
+        specifier: workspace:*
+        version: link:../wonder-blocks-config
       '@khanacademy/wonder-blocks-core':
         specifier: workspace:*
         version: link:../wonder-blocks-core
@@ -1394,6 +1421,9 @@ importers:
       '@khanacademy/wonder-blocks-core':
         specifier: workspace:*
         version: link:../wonder-blocks-core
+      '@khanacademy/wonder-blocks-theming':
+        specifier: workspace:*
+        version: link:../wonder-blocks-theming
       '@khanacademy/wonder-blocks-tokens':
         specifier: workspace:*
         version: link:../wonder-blocks-tokens

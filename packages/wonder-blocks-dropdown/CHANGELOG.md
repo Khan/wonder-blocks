@@ -1,5 +1,71 @@
 # @khanacademy/wonder-blocks-dropdown
 
+## 10.14.0
+
+### Minor Changes
+
+- a2504f1: The default labels and screen reader announcements in `Combobox` now read translated strings from `WonderBlocksConfigProvider`. The `labels` prop overrides the built-in translations. An empty label falls back to the built-in translation. The `labels` prop now accepts a partial object, so you only need to pass the labels you want to override.
+
+    Combobox announcements now use the correct singular grammar: "1 selected option." and "1 result available." instead of "1 selected options." and "1 results available.".
+
+- 63e8d90: The default labels, screen reader announcements and required field error message in `SingleSelect` and `MultiSelect` now read translated strings from `WonderBlocksConfigProvider`. The `labels` and `required` props override the built-in translations. An empty label falls back to the built-in translation. The `labels` prop of `SingleSelect` now accepts a partial object, so you only need to pass the labels you want to override.
+
+    Changes to the `labels` prop of `SingleSelect` and `MultiSelect` now always update the search field's placeholder and clear button label. Before, they only updated when the set of focusable options also changed while the menu was open.
+
+### Patch Changes
+
+- Updated dependencies [a2504f1]
+- Updated dependencies [63e8d90]
+    - @khanacademy/wonder-blocks-config@0.7.0
+    - @khanacademy/wonder-blocks-form@7.7.5
+    - @khanacademy/wonder-blocks-modal@8.10.2
+    - @khanacademy/wonder-blocks-search-field@5.2.5
+    - @khanacademy/wonder-blocks-pill@3.1.82
+
+## 10.13.7
+
+### Patch Changes
+
+- @khanacademy/wonder-blocks-form@7.7.4
+- @khanacademy/wonder-blocks-modal@8.10.1
+- @khanacademy/wonder-blocks-search-field@5.2.4
+- @khanacademy/wonder-blocks-pill@3.1.81
+
+## 10.13.6
+
+### Patch Changes
+
+- @khanacademy/wonder-blocks-pill@3.1.80
+
+## 10.13.5
+
+### Patch Changes
+
+- Updated dependencies [8e11e83]
+    - @khanacademy/wonder-blocks-modal@8.10.0
+    - @khanacademy/wonder-blocks-form@7.7.3
+    - @khanacademy/wonder-blocks-search-field@5.2.3
+
+## 10.13.4
+
+### Patch Changes
+
+- cbdc909: Declare `@khanacademy/wonder-blocks-button` as a dependency. Dropdown imports `Button`, and without the dependency its build bundled its own copy of `Button`.
+- Updated dependencies [cbdc909]
+    - @khanacademy/wonder-blocks-tokens@18.1.0
+    - @khanacademy/wonder-blocks-button@11.7.13
+    - @khanacademy/wonder-blocks-cell@6.2.15
+    - @khanacademy/wonder-blocks-clickable@8.3.2
+    - @khanacademy/wonder-blocks-form@7.7.2
+    - @khanacademy/wonder-blocks-icon@6.0.3
+    - @khanacademy/wonder-blocks-icon-button@12.0.2
+    - @khanacademy/wonder-blocks-modal@8.9.2
+    - @khanacademy/wonder-blocks-pill@3.1.79
+    - @khanacademy/wonder-blocks-search-field@5.2.2
+    - @khanacademy/wonder-blocks-styles@0.4.1
+    - @khanacademy/wonder-blocks-typography@5.0.6
+    - @khanacademy/wonder-blocks-announcer@1.1.2
+
 ## 10.13.3
 
 ### Patch Changes
