@@ -285,8 +285,7 @@ prop so consumers can pass in the user's reduced motion preference.
   | `width` / `height` (when directional) | `inlineSize` / `blockSize` |
 
 - Built-in strings (accessible names for icon buttons, alt text, screen reader
-  announcements, default validation messages) come from
-  `WonderBlocksConfigProvider` in `@khanacademy/wonder-blocks-config`. The
+  announcements) come from `WonderBlocksConfigProvider` in `@khanacademy/wonder-blocks-config`. The
   consuming app renders the provider with translated strings and its locale;
   without one, components fall back to `defaultStringsEn`. Never hard-code
   English strings in a component.
