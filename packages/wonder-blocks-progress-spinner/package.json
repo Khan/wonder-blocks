@@ -16,6 +16,9 @@
   "bugs": {
     "url": "https://github.com/Khan/wonder-blocks/issues"
   },
+  "main": "dist/index.js",
+  "module": "dist/es/index.js",
+  "types": "dist/index.d.ts",
   "sideEffects": [
     "**/*.css"
   ],
