@@ -287,9 +287,8 @@ prop so consumers can pass in the user's reduced motion preference.
 - Built-in strings (accessible names for icon buttons, alt text, screen reader
   announcements) come from `WonderBlocksConfigProvider` in
   `@khanacademy/wonder-blocks-config`. The consuming app renders the provider
-  with translated strings and its locale;
-  without one, components fall back to `defaultStringsEn`. Never hard-code
-  English strings in a component.
+  with translated strings and its locale; without one, components fall back
+  to `defaultStringsEn`. Never hard-code English strings in a component.
 - Read the strings in a component with the `useWonderBlocksI18n` hook:
 
   ```tsx
