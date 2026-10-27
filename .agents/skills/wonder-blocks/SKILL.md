@@ -284,8 +284,39 @@ prop so consumers can pass in the user's reduced motion preference.
   | `maxHeight` / `minHeight` | `maxBlockSize` / `minBlockSize` |
   | `width` / `height` (when directional) | `inlineSize` / `blockSize` |
 
-- Components with built-in labels should accept a `labels` prop so consumers
-can pass in translated strings.
+- Built-in strings (accessible names for icon buttons, alt text, screen reader
+  announcements, default validation messages) come from
+  `WonderBlocksConfigProvider` in `@khanacademy/wonder-blocks-config`. The
+  consuming app renders the provider with translated strings and its locale;
+  without one, components fall back to `defaultStringsEn`. Never hard-code
+  English strings in a component.
+- Read the strings in a component with the `useWonderBlocksI18n` hook:
+
+  ```tsx
+  import {useWonderBlocksI18n} from "@khanacademy/wonder-blocks-config";
+
+  const {strings} = useWonderBlocksI18n();
+  const clearLabel = labels?.clearSearch || strings.iconAltClearSearch;
+  ```
+
+- Components with built-in strings should still accept a `labels` prop so
+  consumers can override a string for a specific context. Resolve each one as
+  `labels?.x || strings.y` so the prop wins and an empty string falls back to
+  the provider. Don't use the `labels` prop as the only source of translated
+  strings.
+- To add a new built-in string, edit `packages/wonder-blocks-config/src/strings.ts`:
+  1. Add the key to the `WonderBlocksStrings` type, under the matching group
+     (icon alt text, labels, selection, screen reader announcements, ...).
+  2. Add an entry to `strings` with a `message` and a `context` that tells
+     translators where and how the string is used.
+  3. Add the English value to `defaultStringsEn`. Strings with interpolated
+     values are functions (e.g. `({label}) => \`Remove ${label}\``); name the
+     count variable `num` for strings that need pluralization.
+  4. Add `@khanacademy/wonder-blocks-config` as a dependency of the component's
+     package if it isn't one already.
+
+  Consumers pick up new strings by regenerating their translated strings after
+  upgrading (in the frontend repo: `pnpm i18n:extract-external-strings`).
 
 ## Patterns
 

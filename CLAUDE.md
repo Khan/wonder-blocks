@@ -104,7 +104,7 @@ This file provides instructions for Claude when working on the Wonder Blocks des
 - `value?: T` - The value of the component (for form components)
 - `disabled?: boolean` - Disabled state
 - `autoFocus?: boolean` - Focus on page load
-- `labels?: CustomLabelsType` - Custom labels for i18n
+- `labels?: CustomLabelsType` - Custom labels that override the built-in strings from `WonderBlocksConfigProvider` (see Internationalization)
 - `initialFocusRef?: Ref | null` - Element to receive initial focus (prefer refs over element ids)
 
 **ARIA-related Props:**
@@ -165,6 +165,14 @@ Use CSS pseudo-classes (`:hover`, `:focus-visible`, `:active`) for state styling
 - [Inclusive Components](https://inclusive-components.design/)
 - [A11Y Style Guide](https://a11y-style-guide.com/)
 - [MagentaA11y](https://www.magentaa11y.com/)
+
+## Internationalization (i18n)
+
+- Components may have built-in strings for error messages, aria-labels, or screen reader announcements
+- Built-in strings come from `WonderBlocksConfigProvider` (`@khanacademy/wonder-blocks-config`); read them with `useWonderBlocksI18n()`. The consuming app provides the translations and locale; without a provider, they default to English (`defaultStringsEn`)
+- **Never hard-code English strings in a component**; add new built-in strings to `packages/wonder-blocks-config/src/strings.ts` (the `WonderBlocksStrings` type, `strings` with translator `context`, and `defaultStringsEn`)
+- Every built-in string should still be overridable via a `labels` prop; resolve as `labels?.x || strings.y`
+- Use logical CSS properties to support RTL layouts
 
 ## Documentation
 

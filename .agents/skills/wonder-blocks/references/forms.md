@@ -1,5 +1,8 @@
 # Wonder Blocks: Forms
 
+Examples mark user-facing strings with Lingui's `t` macro to show that consumers
+must pass in translated strings. Wonder Blocks itself doesn't depend on Lingui.
+
 ## Choosing form components
 
 | Input type | Component |

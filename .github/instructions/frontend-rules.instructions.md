@@ -109,7 +109,7 @@ This file provides frontend development instructions for the Wonder Blocks desig
 - `value?: T` - The value of the component (for form components)
 - `disabled?: boolean` - Disabled state
 - `autoFocus?: boolean` - Focus on page load
-- `labels?: CustomLabelsType` - Custom labels for i18n
+- `labels?: CustomLabelsType` - Custom labels that override the built-in strings from `WonderBlocksConfigProvider`
 - `initialFocusRef?: Ref | null` - Element to receive initial focus (prefer refs over element ids)
 
 **ARIA-related Props:**
@@ -200,8 +200,10 @@ Use CSS pseudo-classes (`:hover`, `:focus-visible`, `:active`) for state styling
 ## Internationalization (i18n)
 
 - Components may have built-in labels for error messages, aria-labels, or screen reader announcements
-- Default labels in English (`en-us`), overridable via `labels` prop
-- Parent component provides translations
+- Built-in labels come from `WonderBlocksConfigProvider` (`@khanacademy/wonder-blocks-config`); read them with `useWonderBlocksI18n()`
+- The consuming app provides translations and locale via the provider; defaults to English (`defaultStringsEn`)
+- Don't hard-code English strings; add new built-in labels to `packages/wonder-blocks-config/src/strings.ts` (`WonderBlocksStrings` type, `strings` with translator `context`, `defaultStringsEn`)
+- All labels overridable via `labels` prop; resolve as `labels?.x || strings.y`
 - Use logical CSS properties for RTL layouts
 
 ## Theming
