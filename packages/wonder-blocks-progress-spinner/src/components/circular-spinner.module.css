@@ -26,3 +26,25 @@
         transform: rotate(360deg);
     }
 }
+
+/* Rendered size per `size`. These read the theme tokens so that `medium`
+ * shrinks to 36px in Thunderblocks. */
+.xsmall {
+    width: var(--wb-c-progress-spinner-root-sizing-xsmall);
+    height: var(--wb-c-progress-spinner-root-sizing-xsmall);
+}
+
+.small {
+    width: var(--wb-c-progress-spinner-root-sizing-small);
+    height: var(--wb-c-progress-spinner-root-sizing-small);
+}
+
+.medium {
+    width: var(--wb-c-progress-spinner-root-sizing-medium);
+    height: var(--wb-c-progress-spinner-root-sizing-medium);
+}
+
+.large {
+    width: var(--wb-c-progress-spinner-root-sizing-large);
+    height: var(--wb-c-progress-spinner-root-sizing-large);
+}

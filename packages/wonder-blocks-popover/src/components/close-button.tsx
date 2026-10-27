@@ -3,6 +3,7 @@ import * as React from "react";
 import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
 import xIcon from "@phosphor-icons/core/regular/x.svg";
 import IconButton from "@khanacademy/wonder-blocks-icon-button";
+import {useWonderBlocksI18n} from "@khanacademy/wonder-blocks-config";
 
 import PopoverContext from "./popover-context";
 
@@ -23,13 +24,14 @@ type Props = AriaProps & {
  * true.
  */
 const CloseButton = (props: Props) => {
-    const {"aria-label": ariaLabel = "Close Popover", style, testId} = props;
+    const {strings} = useWonderBlocksI18n();
+    const {"aria-label": ariaLabel, style, testId} = props;
     const {close} = React.useContext(PopoverContext);
 
     return (
         <IconButton
             icon={xIcon}
-            aria-label={ariaLabel}
+            aria-label={ariaLabel || strings.iconAltClosePopover}
             onClick={close}
             kind="tertiary"
             actionType="neutral"

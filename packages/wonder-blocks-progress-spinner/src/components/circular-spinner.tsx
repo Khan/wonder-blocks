@@ -6,7 +6,9 @@ import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
 
 import styles from "./circular-spinner.module.css";
 
-const heights = {
+// CSS sets the rendered size, so the viewBox must stay at the path's size or
+// the path gets cropped instead of scaled.
+const pathSizes = {
     xsmall: 16,
     small: 24,
     medium: 48,
@@ -20,12 +22,16 @@ const paths = {
     large: "M88.38 46.91a3.818 3.818 0 1 1 7.602 0h.006c.008.362.012.725.012 1.09 0 26.51-21.49 48-48 48S0 74.51 0 48 21.49 0 48 0c.365 0 .728.004 1.09.012v.005a3.818 3.818 0 1 1 0 7.602v.032c-.362-.01-.725-.015-1.09-.015C25.708 7.636 7.636 25.708 7.636 48c0 22.292 18.072 40.364 40.364 40.364 22.292 0 40.364-18.072 40.364-40.364 0-.365-.005-.728-.015-1.09h.032z",
 } as const;
 
+const StyledSvg = addStyle("svg");
 const StyledPath = addStyle("path");
 
 type Props = AriaProps & {
     /**
      * The size of the spinner. (large = 96px, medium = 48px, small = 24px,
      * xsmall = 16px)
+     *
+     * In the Thunderblocks theme, `medium` is 36px so that it fits inside
+     * large buttons.
      */
     size: "xsmall" | "small" | "medium" | "large";
     /** Should a light version of the spinner be shown?
@@ -66,26 +72,27 @@ export default class CircularSpinner extends React.Component<Props> {
     render(): React.ReactNode {
         const {size, light, style, testId} = this.props;
 
-        const height = heights[size];
+        const pathSize = pathSizes[size];
         const path = paths[size];
         const color = light
             ? semanticColor.core.foreground.knockout.default
             : semanticColor.core.foreground.neutral.subtle;
 
         const svg = (
-            <svg
+            <StyledSvg
                 xmlns="http://www.w3.org/2000/svg"
-                width={height}
-                height={height}
-                viewBox={`0 0 ${height} ${height}`}
+                width={pathSize}
+                height={pathSize}
+                viewBox={`0 0 ${pathSize} ${pathSize}`}
                 data-testid={testId}
+                style={styles[size]}
             >
                 <StyledPath
                     style={[styles.loadingSpinner, {fill: color}]}
                     fillRule="nonzero"
                     d={path}
                 />
-            </svg>
+            </StyledSvg>
         );
 
         return <View style={[styles.spinnerContainer, style]}>{svg}</View>;

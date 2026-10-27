@@ -5,9 +5,12 @@ import {StyleSheet} from "aphrodite";
 import magnifyingGlassIcon from "@phosphor-icons/core/regular/magnifying-glass.svg";
 
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
+import {
+    WonderBlocksConfigProvider,
+    defaultStringsEn,
+} from "@khanacademy/wonder-blocks-config";
 import {PointerEventsCheckLevel, userEvent} from "@testing-library/user-event";
-import {defaultComboboxLabels} from "../../util/constants";
-import {MaybeValueOrValues} from "../../util/types";
+import type {MaybeValueOrValues} from "../../util/types";
 import Combobox from "../combobox";
 import OptionItem from "../option-item";
 
@@ -1110,9 +1113,7 @@ describe("Combobox", () => {
                 await userEvent.type(screen.getByRole("combobox"), "not-found");
 
                 // Assert
-                expect(screen.getByRole("log")).toHaveTextContent(
-                    defaultComboboxLabels.noItems,
-                );
+                expect(screen.getByRole("log")).toHaveTextContent("No results");
             });
 
             // TODO (WB-1757.2): Enable this test once the LiveRegion component
@@ -1134,8 +1135,198 @@ describe("Combobox", () => {
 
                 // Assert
                 expect(screen.getByRole("log")).toHaveTextContent(
-                    defaultComboboxLabels.selectionCleared,
+                    "Selection cleared",
                 );
+            });
+        });
+    });
+
+    describe("i18n strings", () => {
+        const translatedStrings = {
+            ...defaultStringsEn,
+            iconAltClearSelection: "translated clear selection",
+            iconAltToggleListbox: "translated toggle listbox",
+            noResults: "translated no results",
+            optionsList: "translated options list",
+            removeOption: ({label}: {label: string}) =>
+                `translated remove ${label}`,
+        };
+
+        const renderWithConfig = (
+            props: Partial<React.ComponentProps<typeof Combobox>> = {},
+        ) =>
+            doRender(
+                <WonderBlocksConfigProvider
+                    i18n={{strings: translatedStrings, locale: "es"}}
+                >
+                    <Combobox selectionType="single" value="option2" {...props}>
+                        <OptionItem label="option 1" value="option1" />
+                        <OptionItem label="option 2" value="option2" />
+                    </Combobox>
+                </WonderBlocksConfigProvider>,
+            );
+
+        describe("clearSelection", () => {
+            it.each([
+                {
+                    case: "no label",
+                    labels: undefined,
+                    expected: "translated clear selection",
+                },
+                {
+                    case: "an empty label",
+                    labels: {clearSelection: ""},
+                    expected: "translated clear selection",
+                },
+                {
+                    case: "a custom label",
+                    labels: {clearSelection: "Custom clear selection"},
+                    expected: "Custom clear selection",
+                },
+            ])("shows $expected when given $case", ({labels, expected}) => {
+                // Arrange
+
+                // Act
+                renderWithConfig({labels});
+
+                // Assert
+                expect(
+                    screen.getByRole("button", {name: expected}),
+                ).toBeInTheDocument();
+            });
+        });
+
+        describe("comboboxButton", () => {
+            it.each([
+                {
+                    case: "no label",
+                    labels: undefined,
+                    expected: "translated toggle listbox",
+                },
+                {
+                    case: "an empty label",
+                    labels: {comboboxButton: ""},
+                    expected: "translated toggle listbox",
+                },
+                {
+                    case: "a custom label",
+                    labels: {comboboxButton: "Custom toggle listbox"},
+                    expected: "Custom toggle listbox",
+                },
+            ])("shows $expected when given $case", ({labels, expected}) => {
+                // Arrange
+
+                // Act
+                renderWithConfig({labels});
+
+                // Assert
+                expect(
+                    screen.getByRole("button", {name: expected}),
+                ).toBeInTheDocument();
+            });
+        });
+
+        describe("listbox", () => {
+            it.each([
+                {
+                    case: "no label",
+                    labels: undefined,
+                    expected: "translated options list",
+                },
+                {
+                    case: "an empty label",
+                    labels: {listbox: ""},
+                    expected: "translated options list",
+                },
+                {
+                    case: "a custom label",
+                    labels: {listbox: "Custom options list"},
+                    expected: "Custom options list",
+                },
+            ])(
+                "shows $expected when given $case",
+                async ({labels, expected}) => {
+                    // Arrange
+
+                    // Act
+                    renderWithConfig({opened: true, labels});
+
+                    // Assert
+                    expect(
+                        await screen.findByRole("listbox", {hidden: true}),
+                    ).toHaveAttribute("aria-label", expected);
+                },
+            );
+        });
+
+        describe("noItems", () => {
+            it.each([
+                {
+                    case: "no label",
+                    labels: undefined,
+                    expected: "translated no results",
+                },
+                {
+                    case: "an empty label",
+                    labels: {noItems: ""},
+                    expected: "translated no results",
+                },
+                {
+                    case: "a custom label",
+                    labels: {noItems: "Custom no results"},
+                    expected: "Custom no results",
+                },
+            ])(
+                "shows $expected when given $case",
+                async ({labels, expected}) => {
+                    // Arrange
+                    const userEvent = renderWithConfig({
+                        value: "",
+                        autoComplete: "list",
+                        labels,
+                    });
+
+                    // Act
+                    await userEvent.type(
+                        screen.getByRole("combobox"),
+                        "not-found",
+                    );
+
+                    // Assert
+                    expect(screen.getByRole("log")).toHaveTextContent(expected);
+                },
+            );
+        });
+
+        describe("removeSelected", () => {
+            it.each([
+                {
+                    case: "no label",
+                    labels: undefined,
+                    expected: "translated remove option 1",
+                },
+                {
+                    case: "a custom label",
+                    labels: {
+                        removeSelected: (label: string) =>
+                            `Custom remove ${label}`,
+                    },
+                    expected: "Custom remove option 1",
+                },
+            ])("shows $expected when given $case", ({labels, expected}) => {
+                // Arrange
+
+                // Act
+                renderWithConfig({
+                    selectionType: "multiple",
+                    value: ["option1"],
+                    labels,
+                });
+
+                // Assert
+                expect(
+                    screen.getByRole("button", {name: expected}),
+                ).toBeInTheDocument();
             });
         });
     });

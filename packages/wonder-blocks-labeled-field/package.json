@@ -3,7 +3,7 @@
   "description": "LabeledField handles accessibility and layout for associating labels with form components.",
   "author": "Khan Academy",
   "license": "MIT",
-  "version": "4.3.1",
+  "version": "4.3.5",
   "publishConfig": {
     "access": "public"
   },

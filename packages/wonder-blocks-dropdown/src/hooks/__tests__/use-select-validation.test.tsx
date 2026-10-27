@@ -1,4 +1,11 @@
+import * as React from "react";
 import {act, renderHook} from "@testing-library/react";
+
+import {
+    WonderBlocksConfigProvider,
+    defaultStringsEn,
+} from "@khanacademy/wonder-blocks-config";
+
 import {
     SelectValidationProps,
     SelectValue,
@@ -7,6 +14,20 @@ import {
 
 const emptyValueCases = ["", [], undefined, null];
 const valueCases = ["Test", ["Test"]];
+
+const TranslatedConfigProvider = ({children}: {children: React.ReactNode}) => (
+    <WonderBlocksConfigProvider
+        i18n={{
+            strings: {
+                ...defaultStringsEn,
+                requiredFieldMessage: "translated text",
+            },
+            locale: "es",
+        }}
+    >
+        {children}
+    </WonderBlocksConfigProvider>
+);
 
 describe("useSelectValidation", () => {
     const testErrorMessage = "Error message";
@@ -862,6 +883,50 @@ describe("useSelectValidation", () => {
 
             // Assert
             expect(onValidate).toHaveBeenCalledExactlyOnceWith(null);
+        });
+    });
+
+    describe("i18n strings", () => {
+        it("should use the required message from the config provider if required=true", () => {
+            // Arrange
+            const {result} = renderHook(
+                () =>
+                    useSelectValidation({
+                        value: "",
+                        required: true,
+                        open: false,
+                    }),
+                {wrapper: TranslatedConfigProvider},
+            );
+
+            // Act
+            act(() => {
+                result.current.onOpenerBlurValidation();
+            });
+
+            // Assert
+            expect(result.current.errorMessage).toBe("translated text");
+        });
+
+        it("should prefer the required prop message over the config provider", () => {
+            // Arrange
+            const {result} = renderHook(
+                () =>
+                    useSelectValidation({
+                        value: "",
+                        required: testRequiredErrorMessage,
+                        open: false,
+                    }),
+                {wrapper: TranslatedConfigProvider},
+            );
+
+            // Act
+            act(() => {
+                result.current.onOpenerBlurValidation();
+            });
+
+            // Assert
+            expect(result.current.errorMessage).toBe(testRequiredErrorMessage);
         });
     });
 });
