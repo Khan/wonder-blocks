@@ -13,7 +13,20 @@ type Props = React.PropsWithChildren<{
 }>;
 
 /**
- * Configures the Wonder Blocks components rendered beneath it.
+ * `WonderBlocksConfigProvider` configures the Wonder Blocks components rendered
+ * within it. Render it once near the root of your app.
+ *
+ * Right now it provides i18n: the translated strings that Wonder Blocks
+ * components render and the locale they are translated into. Components
+ * rendered outside of a provider fall back to the default English strings.
+ *
+ * ```tsx
+ * import {WonderBlocksConfigProvider} from "@khanacademy/wonder-blocks-config";
+ *
+ * <WonderBlocksConfigProvider i18n={{strings: translatedStrings, locale}}>
+ *     <App />
+ * </WonderBlocksConfigProvider>
+ * ```
  */
 export function WonderBlocksConfigProvider({children, i18n}: Props) {
     const {strings, locale} = i18n;
