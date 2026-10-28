@@ -1,17 +1,13 @@
 import * as React from "react";
-import {StyleSheet} from "aphrodite";
 
 import {DetailCell} from "@khanacademy/wonder-blocks-cell";
-import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {BodyText} from "@khanacademy/wonder-blocks-typography";
 
 import type {StyleType} from "@khanacademy/wonder-blocks-core";
 
-import {focusStyles} from "@khanacademy/wonder-blocks-styles";
-import {DROPDOWN_ITEM_HEIGHT} from "../util/constants";
-import theme from "../theme";
-
 import type {CellProps} from "../util/types";
+
+import styles from "./action-item.module.css";
 
 type ActionProps = {
     /**
@@ -165,7 +161,8 @@ export default class ActionItem extends React.Component<ActionProps> {
         } = this.props;
 
         const defaultStyle = [
-            styles.wrapper,
+            styles.root,
+            styles.actionItem,
             // pass optional styles from react-window (if applies)
             style,
         ];
@@ -175,6 +172,17 @@ export default class ActionItem extends React.Component<ActionProps> {
                 <BodyText tag="div" lang={lang} style={styles.label}>
                     {label}
                 </BodyText>
+            ) : typeof label.type === "string" ? (
+                // A host element (e.g. `<span>`) only accepts a style
+                // object in `style`, so the label class goes on `className`
+                // instead, alongside any class the label already has.
+                React.cloneElement(label, {
+                    lang,
+                    ...label.props,
+                    className: [styles.label, label.props.className]
+                        .filter(Boolean)
+                        .join(" "),
+                })
             ) : (
                 React.cloneElement(label, {
                     lang,
@@ -210,51 +218,3 @@ export default class ActionItem extends React.Component<ActionProps> {
         );
     }
 }
-
-const styles = StyleSheet.create({
-    wrapper: {
-        minBlockSize: DROPDOWN_ITEM_HEIGHT,
-        // This removes the 300ms click delay on mobile browsers by indicating
-        // that "double-tap to zoom" shouldn't be used on this element.
-        touchAction: "manipulation",
-
-        /**
-         * States
-         */
-        ":focus": {
-            // Override the default focus state for the cell element, so that it
-            // can be added programmatically to the button element.
-            borderRadius: theme.item.border.radius.default,
-            outline: focusStyles.focus[":focus-visible"].outline,
-            outlineOffset: `calc(${border.width.medium} * -1)`,
-            // We need to use a thicker box-shadow to ensure that the inner ring
-            // is visible when the cell is focused.
-            boxShadow: `inset 0 0 0 calc(${border.width.medium}*2) ${semanticColor.focus.inner}`,
-            // Hide the left bar indicator when focused, so the focus ring
-            // doesn't overlap with it.
-            // @see cell-core.tsx
-            [":after" as any]: {
-                content: "unset",
-            },
-        },
-    },
-    shared: {
-        minBlockSize: DROPDOWN_ITEM_HEIGHT,
-        // Make sure that the item is always at least as tall as 40px.
-        paddingBlock: theme.item.layout.padding.block,
-    },
-
-    label: {
-        fontWeight: theme.item.font.weight,
-        lineHeight: sizing.size_200,
-        whiteSpace: "nowrap",
-        userSelect: "none",
-        overflow: "hidden",
-        textOverflow: "ellipsis",
-    },
-
-    indent: {
-        // Cell's internal padding + checkbox width + checkbox margin
-        paddingInlineStart: sizing.size_320,
-    },
-});

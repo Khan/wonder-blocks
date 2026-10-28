@@ -1,0 +1,82 @@
+/**
+ * ActionItem styles
+ *
+ * Every rule is nested inside `.root` — the marker class ActionItem adds to
+ * the `DetailCell` root, which carries no declarations of its own. The root is
+ * a `Cell` and the label a `BodyText`; both ship rules in the same
+ * `@layer shared`, and this component overrides properties they set
+ * (`min-block-size`, padding, `border-radius`, the focus ring and the
+ * horizontal rule's `::after` on the cell; `font-weight` and `line-height` on
+ * the label). The published bundle loads this stylesheet *before* those
+ * packages', so at equal specificity they would win; the compound selector
+ * makes the outcome depend on specificity instead.
+ *
+ * The Aphrodite version was unlayered `!important`, so it beat every Cell
+ * state rule. Cell's most specific `border-radius` rule is
+ * `.clickable:focus-visible:active` (0,3,0), so the focus rule also lists
+ * `:focus:active` (0,4,0) to keep its radius while pressed.
+ *
+ * Rules are declared in composition order: actionItem → shared → indent.
+ *
+ * Nesting is native CSS: every `&` is explicit and resolves to the flat
+ * selector it replaces. The build wraps every rule in `@layer shared { … }`.
+ */
+
+.root {
+    &.actionItem {
+        /* The dropdown item height (`DROPDOWN_ITEM_HEIGHT` in JS). */
+        min-block-size: var(--wb-c-dropdown-item-sizing-height);
+
+        /* This removes the 300ms click delay on mobile browsers by indicating
+         * that "double-tap to zoom" shouldn't be used on this element. */
+        touch-action: manipulation;
+    }
+
+    /* Override the default focus state for the cell element, so that it can
+     * be added programmatically to the button element. */
+    &.actionItem:focus,
+    &.actionItem:focus:active {
+        border-radius: var(--wb-c-dropdown-item-border-radius-default);
+        outline: var(--wb-border-width-medium) solid
+            var(--wb-semanticColor-focus-outer);
+        outline-offset: calc(var(--wb-border-width-medium) * -1);
+
+        /* We need to use a thicker box-shadow to ensure that the inner ring
+         * is visible when the cell is focused. */
+        box-shadow: inset 0 0 0 calc(var(--wb-border-width-medium) * 2)
+            var(--wb-semanticColor-focus-inner);
+    }
+
+    /* Hide the left bar indicator when focused, so the focus ring doesn't
+     * overlap with it.
+     * @see cell-core.module.css */
+    &.actionItem:focus::after {
+        content: unset;
+    }
+
+    &.shared {
+        min-block-size: var(--wb-c-dropdown-item-sizing-height);
+
+        /* Make sure that the item is always at least as tall as 40px. */
+        padding-block: var(--wb-c-dropdown-item-layout-padding-block);
+    }
+
+    &.indent {
+        /* Cell's internal padding + checkbox width + checkbox margin */
+        padding-inline-start: var(--wb-sizing-size_320);
+    }
+
+    & .label {
+        font-weight: var(--wb-c-dropdown-item-font-weight);
+        line-height: var(--wb-sizing-size_200);
+        white-space: nowrap;
+
+        /* Safari only honours the prefixed form, and the CSS pipeline has no
+         * autoprefixer (Aphrodite used to add it). */
+        /* stylelint-disable-next-line property-no-vendor-prefix -- Safari needs it */
+        -webkit-user-select: none;
+        user-select: none;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+}

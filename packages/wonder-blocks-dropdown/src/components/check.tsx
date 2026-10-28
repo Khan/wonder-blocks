@@ -1,9 +1,9 @@
 import * as React from "react";
-import {StyleSheet} from "aphrodite";
-
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
-import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
+import {semanticColor} from "@khanacademy/wonder-blocks-tokens";
 import checkIcon from "@phosphor-icons/core/bold/check-bold.svg";
+
+import styles from "./check.module.css";
 
 /**
  * Props describing the state of the OptionItem, shared by the checkbox
@@ -31,23 +31,9 @@ const Check = function (props: CheckProps): React.ReactElement {
             color={iconColor}
             icon={checkIcon}
             size="small"
-            style={[styles.bounds, !selected && styles.hide]}
+            style={[styles.root, styles.check, !selected && styles.hidden]}
         />
     );
 };
 
 export default Check;
-
-const styles = StyleSheet.create({
-    bounds: {
-        alignSelf: "center",
-        height: sizing.size_160,
-        // Semantically, this are the constants for a small-sized icon
-        minBlockSize: sizing.size_160,
-        minInlineSize: sizing.size_160,
-    },
-
-    hide: {
-        visibility: "hidden",
-    },
-});
