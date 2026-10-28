@@ -1,4 +1,3 @@
-import {StyleSheet} from "aphrodite";
 import * as React from "react";
 
 import caretDownIcon from "@phosphor-icons/core/regular/caret-down.svg";
@@ -11,13 +10,12 @@ import {
 } from "@khanacademy/wonder-blocks-core";
 import {TextField} from "@khanacademy/wonder-blocks-form";
 import IconButton from "@khanacademy/wonder-blocks-icon-button";
-import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
+import {semanticColor} from "@khanacademy/wonder-blocks-tokens";
 
 import {DetailCell} from "@khanacademy/wonder-blocks-cell";
 import {useWonderBlocksI18n} from "@khanacademy/wonder-blocks-config";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {useId} from "react";
-import {focusStyles} from "@khanacademy/wonder-blocks-styles";
 import {useListbox} from "../hooks/use-listbox";
 import {useMultipleSelection} from "../hooks/use-multiple-selection";
 import {
@@ -30,7 +28,8 @@ import {MultipleSelection} from "./combobox-multiple-selection";
 import DropdownPopper from "./dropdown-popper";
 import Listbox from "./listbox";
 import {getLabel} from "../util/helpers";
-import theme from "../theme";
+
+import styles from "./combobox.module.css";
 
 type Props = {
     /**
@@ -587,6 +586,7 @@ export default function Combobox({
                 }}
                 ref={rootNodeRef}
                 style={[
+                    styles.root,
                     styles.wrapper,
                     isListboxFocused && styles.focused,
                     disabled && styles.disabled,
@@ -711,6 +711,7 @@ export default function Combobox({
                                     title={labels.noItems}
                                     styles={{
                                         root: [
+                                            styles.menu,
                                             styles.listbox,
                                             // The listbox width is at least the
                                             // width of the combobox.
@@ -729,6 +730,7 @@ export default function Combobox({
                                     tabIndex={-1}
                                     selectionType={selectionType}
                                     style={[
+                                        styles.menu,
                                         styles.listbox,
                                         isReferenceHidden && styles.hidden,
                                         // The listbox width is at least the
@@ -755,128 +757,3 @@ export default function Combobox({
         </>
     );
 }
-
-const styles = StyleSheet.create({
-    // TODO(WB-2007): Adopt design specs
-    wrapper: {
-        flexDirection: "row",
-        alignItems: "center",
-        width: "100%",
-        maxInlineSize: "100%",
-        flexWrap: "wrap",
-        // The following styles are to emulate the input styles
-        background: semanticColor.core.background.base.default,
-        borderRadius: theme.opener.border.radius.rest,
-        border: `${border.width.thin} solid ${semanticColor.core.border.neutral.subtle}`,
-        paddingInline: theme.opener.layout.padding.inline,
-        overflow: "hidden",
-    },
-    focused: focusStyles.focus[":focus-visible"],
-    disabled: {
-        background: semanticColor.input.disabled.background,
-        border: `${border.width.thin} solid ${semanticColor.input.disabled.border}`,
-        color: semanticColor.input.disabled.foreground,
-    },
-    error: {
-        background: semanticColor.input.error.background,
-        border: `${theme.opener.border.width.error} solid ${semanticColor.input.error.border}`,
-        color: semanticColor.input.error.foreground,
-    },
-    /**
-     * Combobox input styles
-     */
-    combobox: {
-        // reset input styles
-        appearance: "none",
-        background: "none",
-        border: "none",
-        outline: "none",
-        padding: 0,
-        minInlineSize: sizing.size_040,
-        width: "auto",
-        display: "inline-grid",
-        gridArea: "1 / 2",
-        // The combobox wrapper handles the focus and press indicators, so we
-        // reset the TextField's own focus and press states to avoid showing a
-        // duplicate focus ring / press border on the inner input.
-        ":focus-visible": {
-            outline: "none",
-            border: "none",
-            boxShadow: "none",
-        },
-        // Matches the TextField's press selector so this reset takes
-        // precedence over the press box shadow it applies.
-        [":active:not([aria-disabled='true']):not([readonly])" as any]: {
-            boxShadow: "none",
-        },
-        // Matches the TextField's selector so this reset takes precedence over
-        // the box shadow it applies.
-        [":focus-visible:active:not([aria-disabled='true']):not([readonly])" as any]:
-            {
-                boxShadow: "none",
-            },
-    },
-    /**
-     * Listbox custom styles
-     */
-    listbox: {
-        backgroundColor: semanticColor.core.background.base.default,
-        borderRadius: theme.listbox.border.radius,
-        border: `solid ${border.width.thin} ${semanticColor.core.border.neutral.subtle}`,
-        boxShadow: theme.listbox.shadow.default,
-        // We use a custom property to set the max height of the dropdown.
-        // This comes from the maxHeight custom modifier.
-        // @see ../util/popper-max-height-modifier.ts
-        maxBlockSize: "var(--popper-max-height)",
-        overflowY: "auto",
-    },
-    hidden: {
-        pointerEvents: "none",
-        visibility: "hidden",
-    },
-    /**
-     * Arrow button styles
-     */
-    button: {
-        position: "absolute",
-        insetInlineEnd: sizing.size_0,
-        margin: 0,
-    },
-    buttonOpen: {
-        transform: "rotate(180deg)",
-    },
-    /**
-     * The dropdown toggle button is not directly focusable (`tabIndex={-1}`)
-     * and its state is already communicated by the combobox input, so we
-     * remove the IconButton's hover, focus, and press styles to keep it
-     * visually static. Values are reset to match the tertiary/neutral rest
-     * state.
-     */
-    openButtonResetStates: {
-        ":hover": {
-            borderColor: semanticColor.core.transparent,
-        },
-        ":active": {
-            borderColor: semanticColor.core.transparent,
-        },
-        ":focus-visible": {
-            outline: "none",
-            boxShadow: "none",
-        },
-    },
-    /**
-     * Clear selection button
-     */
-    clearButton: {
-        // The clear button is positioned to the left of the arrow button.
-        // This is calculated based on the padding + width of the arrow button.
-        insetInlineEnd: sizing.size_360,
-    },
-    iconWrapper: {
-        padding: sizing.size_040,
-        // View has a default minInlineSize of 0, which causes the label text
-        // to encroach on the icon when it needs to truncate. We can fix
-        // this by setting the minInlineSize to auto.
-        minInlineSize: "auto",
-    },
-});
