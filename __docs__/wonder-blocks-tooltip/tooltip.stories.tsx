@@ -218,6 +218,116 @@ export const WithLinkAnchor: StoryComponentType = {
     },
 };
 
+// The custom anchors below render their own text, so they don't take
+// `children`.
+type CustomAnchorProps = Omit<PropsFor<typeof BodyText>, "children">;
+
+/**
+ * An anchor that spreads the props it is given onto its element. It is a plain
+ * function component, so it can't receive a ref, and `Tooltip` finds its
+ * element in the DOM instead.
+ */
+function SpreadPropsAnchor(props: CustomAnchorProps) {
+    return (
+        <BodyText {...props} tag="span">
+            Plain function component
+        </BodyText>
+    );
+}
+
+/**
+ * An anchor that forwards the ref it is given to its element, and spreads the
+ * props it is given onto it too.
+ */
+const ForwardRefAnchor = React.forwardRef(function ForwardRefAnchor(
+    props: CustomAnchorProps,
+    ref: React.ForwardedRef<HTMLElement>,
+) {
+    return (
+        <BodyText {...props} tag="span" ref={ref}>
+            forwardRef component
+        </BodyText>
+    );
+});
+
+/**
+ * The anchor (`children`) is the element the tooltip is positioned against,
+ * so `Tooltip` needs to know which DOM element it renders. It also listens to
+ * that element's hover and focus events to show and hide the tooltip. The
+ * anchor can be a string or any component type (a host element like `<span>`,
+ * a `React.forwardRef` component, a class component or a plain function
+ * component), as long as it does **at least one** of the following:
+ *
+ * 1. **Attach the ref it is given** to its element. `Tooltip` only passes a ref
+ *    to anchors that can receive one (host elements and `React.forwardRef`
+ *    components).
+ * 2. **Spread the props it is given** onto its element. `Tooltip` injects the
+ *    `aria-describedby` prop, plus an attribute it uses to find the element in
+ *    the DOM.
+ *
+ * Strings are wrapped in an element that does both. Wonder Blocks components
+ * such as `Button`, `IconButton`, `Link`, `View` and the typography components
+ * do too, so they can be used as anchors directly.
+ *
+ * For custom anchors, we recommend spreading the props even if the ref is
+ * forwarded: the `aria-describedby` prop is what links the anchor to the
+ * tooltip for screen readers. An anchor's own `ref` keeps working, since
+ * `Tooltip` merges it with its own instead of replacing it.
+ *
+ * If the anchor does neither (e.g. a `React.Fragment`, or a function component
+ * that ignores its props), the tooltip has nothing to anchor to, and a warning
+ * is logged in development. Wrapping that content in a `View` (or another
+ * element) fixes it, as in the last example below, where the content would
+ * otherwise be a `React.Fragment` of several elements.
+ *
+ * **NOTES:**
+ * - When the anchor renders several elements, the tooltip is anchored to the
+ *   one that receives the props (preferred) or the ref. This lets a component
+ *   anchor the tooltip to its root element even when its ref points at an
+ *   inner element (e.g. `Switch`).
+ * - By default, the anchor is made focusable (`tabindex="0"`) so that keyboard
+ *   users can reach the tooltip. If the anchor is (or contains) an element
+ *   that is already focusable, set `forceAnchorFocusivity={false}` to avoid an
+ *   extra tab stop.
+ */
+export const CustomAnchors: StoryComponentType = {
+    render: function Render() {
+        return (
+            <View style={[styles.row, {gap: sizing.size_320}]}>
+                <Tooltip content="Anchored through the props it spreads onto its element.">
+                    <SpreadPropsAnchor />
+                </Tooltip>
+                <Tooltip content="Anchored through the ref it forwards to its element.">
+                    <ForwardRefAnchor />
+                </Tooltip>
+                <Tooltip content="Anchored to the View that wraps the elements.">
+                    <View style={[styles.row, {gap: sizing.size_040}]}>
+                        <BodyText tag="span">Several elements</BodyText>
+                        <BodyText tag="span">wrapped in a View</BodyText>
+                    </View>
+                </Tooltip>
+            </View>
+        );
+    },
+    play: async ({canvasElement}) => {
+        // Arrange
+        // NOTE: Using `body` here to work with React Portals.
+        const canvas = within(canvasElement.ownerDocument.body);
+
+        // Act
+        await userEvent.hover(
+            await canvas.findByText("Plain function component"),
+        );
+
+        // Assert
+        await expect(
+            await canvas.findByText(
+                "Anchored through the props it spreads onto its element.",
+            ),
+        ).toBeInTheDocument();
+    },
+};
+
 /**
  * To render rich text in tooltip content, pass a React element as the `content`
  * prop instead of a plain string. When a string is passed it is rendered as
