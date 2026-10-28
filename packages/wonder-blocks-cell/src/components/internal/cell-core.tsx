@@ -167,6 +167,7 @@ const CellCore = (props: CellCoreProps): React.ReactElement => {
         "aria-label": ariaLabel,
         "aria-selected": ariaSelected,
         "aria-checked": ariaChecked,
+        "aria-haspopup": ariaHasPopup,
         target,
         role,
         tabIndex,
@@ -201,6 +202,7 @@ const CellCore = (props: CellCoreProps): React.ReactElement => {
                 aria-label={ariaLabel ? ariaLabel : undefined}
                 aria-selected={ariaSelected ? ariaSelected : undefined}
                 aria-checked={ariaChecked}
+                aria-haspopup={ariaHasPopup}
                 role={role}
                 target={target}
                 style={[
