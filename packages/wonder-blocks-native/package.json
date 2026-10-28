@@ -1,0 +1,31 @@
+{
+  "name": "@khanacademy/wonder-blocks-native",
+  "description": "SPIKE (FEI-8331): React Native implementations of Wonder Blocks components, styled from the web CSS Modules.",
+  "author": "Khan Academy",
+  "license": "MIT",
+  "version": "0.0.0",
+  "private": true,
+  "main": "dist/index.js",
+  "module": "dist/es/index.js",
+  "types": "dist/index.d.ts",
+  "source": "src/index.ts",
+  "scripts": {
+    "gen:native-styles": "node -r @swc-node/register ./build/compile-css-to-native.ts && prettier --write --log-level warn src/generated"
+  },
+  "dependencies": {
+    "@khanacademy/wonder-blocks-button": "workspace:*",
+    "@khanacademy/wonder-blocks-tokens": "workspace:*",
+    "css-to-react-native": "^3.2.0"
+  },
+  "peerDependencies": {
+    "react": "catalog:",
+    "react-native": ">=0.77"
+  },
+  "devDependencies": {
+    "@khanacademy/wb-dev-build-settings": "workspace:*",
+    "postcss": "^8.5.14",
+    "postcss-selector-parser": "^7.1.1",
+    "react-native": "0.77.3",
+    "react-native-web": "^0.21.0"
+  }
+}
