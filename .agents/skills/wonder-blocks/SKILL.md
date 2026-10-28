@@ -284,8 +284,44 @@ prop so consumers can pass in the user's reduced motion preference.
   | `maxHeight` / `minHeight` | `maxBlockSize` / `minBlockSize` |
   | `width` / `height` (when directional) | `inlineSize` / `blockSize` |
 
-- Components with built-in labels should accept a `labels` prop so consumers
-can pass in translated strings.
+- Built-in strings (accessible names for icon buttons, alt text, screen reader
+  announcements) come from `WonderBlocksConfigProvider` in
+  `@khanacademy/wonder-blocks-config`. The consuming app renders the provider
+  with translated strings and its locale; without one, components fall back
+  to `defaultStringsEn`. Never hard-code English strings in a component.
+- Read the strings in a component with the `useWonderBlocksI18n` hook:
+
+  ```tsx
+  import {useWonderBlocksI18n} from "@khanacademy/wonder-blocks-config";
+
+  const {strings} = useWonderBlocksI18n();
+  const clearLabel = labels?.clearSearch || strings.iconAltClearSearch;
+  ```
+
+- The default for a built-in string must always come from the provider. A
+  `labels` prop is only an override, not the way translations reach the
+  component.
+- Consider whether a string needs an override before adding one to `labels`.
+  It's useful when the right wording depends on how the component is used.
+- When a string can be overridden, resolve it as `labels?.x || strings.y` so
+  the prop wins and an empty string falls back to the provider.
+- To add a new built-in string, edit `packages/wonder-blocks-config/src/strings.ts`:
+  1. Add the key to the `WonderBlocksStrings` type, under the matching group
+     (icon alt text, labels, selection, screen reader announcements, ...).
+  2. Add an entry to `strings` with a `message` and a `context` that tells
+     translators where and how the string is used.
+  3. Add the English value to `defaultStringsEn`. Strings with interpolated
+     values are functions (e.g. `({label}) => \`Remove ${label}\``); name the
+     count variable `num` for strings that need pluralization.
+  4. If the component's package doesn't use `@khanacademy/wonder-blocks-config`
+     yet, add it as a dependency in the package's `package.json` and add
+     `{"path": "../wonder-blocks-config/tsconfig-build.json"}` to the
+     `references` in its `tsconfig-build.json`.
+
+  Consumers pick up new strings by regenerating their translated strings after
+  upgrading (in the frontend repo: `pnpm i18n:extract-external-strings`). The
+  frontend repo's `deploy_wonder_blocks` script runs this automatically when it
+  updates the Wonder Blocks packages.
 
 ## Patterns
 
