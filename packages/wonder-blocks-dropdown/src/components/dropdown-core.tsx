@@ -4,10 +4,7 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 
-import {StyleSheet} from "aphrodite";
 import {VariableSizeList as List} from "react-window";
-
-import {semanticColor, border, sizing} from "@khanacademy/wonder-blocks-tokens";
 
 import {
     PropsFor,
@@ -29,7 +26,8 @@ import type {DropdownItem} from "../util/types";
 import DropdownPopper from "./dropdown-popper";
 import {debounce, getLabel, getStringForKey} from "../util/helpers";
 import OptionItem from "./option-item";
-import theme from "../theme";
+
+import styles from "./dropdown-core.module.css";
 
 /**
  * The number of options to apply the virtualized list to.
@@ -970,7 +968,7 @@ const DropdownCore = (props: Props) => {
                 onChange={handleSearchTextChanged}
                 placeholder={labels?.filter || strings.filter}
                 ref={searchFieldRef}
-                style={styles.searchInputStyle}
+                style={styles.searchField}
                 value={searchText || ""}
             />
         );
@@ -994,6 +992,7 @@ const DropdownCore = (props: Props) => {
                 // document from closing the menu.
                 onMouseUp={handleDropdownMouseUp}
                 style={[
+                    styles.menu,
                     styles.dropdown,
                     isReferenceHidden && styles.hidden,
                     dropdownStyle,
@@ -1064,60 +1063,5 @@ const DropdownCore = (props: Props) => {
         </View>
     );
 };
-
-const styles = StyleSheet.create({
-    menuWrapper: {
-        width: "fit-content",
-        maxInlineSize: "100%",
-    },
-
-    dropdown: {
-        backgroundColor: semanticColor.core.background.base.default,
-        borderRadius: theme.listbox.border.radius,
-        paddingBlock: theme.listbox.layout.padding.block,
-        paddingInline: theme.listbox.layout.padding.inline,
-        border: `solid ${border.width.thin} ${semanticColor.core.border.neutral.subtle}`,
-        boxShadow: theme.listbox.shadow.default,
-        // We use a custom property to set the max height of the dropdown.
-        // This comes from the maxHeight custom modifier.
-        // @see ../util/popper-max-height-modifier.ts
-        maxBlockSize: "var(--popper-max-height)",
-    },
-
-    listboxOrMenu: {
-        overflowY: "auto",
-    },
-
-    hidden: {
-        pointerEvents: "none",
-        visibility: "hidden",
-    },
-
-    noResult: {
-        color: semanticColor.core.foreground.neutral.default,
-        alignSelf: "center",
-        marginBlockStart: sizing.size_060,
-    },
-
-    searchInputStyle: {
-        margin: sizing.size_080,
-        marginBlockStart: sizing.size_040,
-        // Set `minBlockSize` to "auto" to stop the search field from having
-        // a height of 0 and being cut off.
-        minBlockSize: "auto",
-        position: "sticky",
-    },
-
-    srOnly: {
-        border: 0,
-        clip: "rect(0,0,0,0)",
-        height: 1,
-        margin: -1,
-        overflow: "hidden",
-        padding: 0,
-        position: "absolute",
-        width: 1,
-    },
-});
 
 export default DropdownCore;
