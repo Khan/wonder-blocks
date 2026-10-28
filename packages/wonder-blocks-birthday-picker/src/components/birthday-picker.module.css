@@ -12,16 +12,14 @@
  * specificity rather than load order.
  *
  * The small-screen `@media` block comes last and its declarations are
- * `!important`. Aphrodite emitted the media rules after the base declarations
- * of the same merged class, so on small screens the full-width, stacked
- * layout won over the consumer's `style` / `dropdownStyle` (and over the
- * selects' minimum widths), while on larger screens the consumer's overrides
- * won. The consumer's overrides are unlayered `!important` (Aphrodite), and
- * only an `!important` declaration inside a cascade layer outranks those, so
- * this is the one place `!important` reproduces the old behavior.
+ * `!important`. On small screens the full-width, stacked layout must win over
+ * the consumer's `style` / `dropdownStyle` (and over the selects' minimum
+ * widths), while on larger screens the consumer's overrides win. The
+ * consumer's overrides are unlayered and `!important`, and only an
+ * `!important` declaration inside a cascade layer outranks those.
  *
- * The consumer's `style` and `dropdownStyle` still go through Aphrodite
- * (unlayered and `!important`), so they win over this module. The build wraps
+ * Outside that block, the consumer's `style` and `dropdownStyle` (unlayered
+ * and `!important`) win over this module. The build wraps
  * every rule in `@layer shared { … }`.
  */
 
