@@ -1,13 +1,14 @@
 import {Temporal} from "temporal-polyfill";
 import * as React from "react";
-import {StyleSheet} from "aphrodite";
 import {useWonderBlocksI18n} from "@khanacademy/wonder-blocks-config";
 import {StyleType, View} from "@khanacademy/wonder-blocks-core";
-import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
+import {semanticColor} from "@khanacademy/wonder-blocks-tokens";
 import {BodyText} from "@khanacademy/wonder-blocks-typography";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {SingleSelect, OptionItem} from "@khanacademy/wonder-blocks-dropdown";
 import infoIcon from "@phosphor-icons/core/bold/info-bold.svg";
+
+import styles from "./birthday-picker.module.css";
 
 export type Labels = {
     /**
@@ -100,15 +101,6 @@ type State = {
 // @ts-expect-error [FEI-5019] - TS2339 - Property 'getYear' does not exist on type 'Date'.
 const CUR_YEAR = new Date().getYear() + 1900;
 
-// Default minWidth value when we include the full DOB.
-const FIELD_MIN_WIDTH_FULL = 110;
-
-// Alternative minWidth value when we hide the day field.
-// See: https://www.figma.com/file/uJZi9ZvuEz5N8GJ3HqKFAa/(2021)-Account-records?node-id=20%3A398
-const FIELD_MIN_WIDTH_MONTH_YEAR = 167;
-
-const FIELD_MIN_WIDTH_DAY = 100;
-
 /**
  * Birthday Picker. Similar to a datepicker, but specifically for birthdates.
  * We don't want to show a calendar in this case as it can be quite tedious to
@@ -136,36 +128,6 @@ const FIELD_MIN_WIDTH_DAY = 100;
  * ```
  */
 
-/* [WB-1655] Update with media query tokens */
-const xsMin = "520px";
-
-const screenSizes = {
-    small: `@media (max-width: ${xsMin})`,
-};
-
-const defaultStyles = StyleSheet.create({
-    wrapper: {
-        flexDirection: "row",
-        gap: sizing.size_080,
-        [screenSizes.small]: {
-            flexDirection: "column",
-        },
-    },
-    input: {
-        [screenSizes.small]: {
-            minInlineSize: "100%",
-        },
-    },
-    errorRow: {
-        flexDirection: "row",
-        placeItems: "center",
-        gap: sizing.size_040,
-        marginBlockStart: sizing.size_040,
-    },
-    errorText: {
-        color: semanticColor.core.foreground.critical.default,
-    },
-});
 /**
  * Determines whether a given date is in the future.
  *
@@ -223,9 +185,9 @@ const getStateFromDefault = (
     return initialState;
 };
 
-const getMonthYearWidth = (monthYearOnly: boolean | undefined): number => {
-    return monthYearOnly ? FIELD_MIN_WIDTH_MONTH_YEAR : FIELD_MIN_WIDTH_FULL;
-};
+// The month and year selects are wider when the day field is hidden.
+const getMonthYearStyle = (monthYearOnly: boolean | undefined): string =>
+    monthYearOnly ? styles.fieldMonthYear : styles.fieldFull;
 
 const BirthdayPicker = (props: Props) => {
     const {
@@ -388,14 +350,14 @@ const BirthdayPicker = (props: Props) => {
         }
 
         return (
-            <View style={defaultStyles.errorRow} role="alert">
+            <View style={[styles.root, styles.errorRow]} role="alert">
                 <PhosphorIcon
                     size="small"
                     icon={infoIcon}
                     color={semanticColor.core.foreground.critical.default}
                     aria-hidden="true"
                 />
-                <BodyText tag="span" style={defaultStyles.errorText}>
+                <BodyText tag="span" style={styles.errorText}>
                     {error}
                 </BodyText>
             </View>
@@ -415,7 +377,6 @@ const BirthdayPicker = (props: Props) => {
     }, [locale]);
 
     const renderMonth = (): React.ReactNode => {
-        const minWidth = getMonthYearWidth(monthYearOnly);
         return (
             <SingleSelect
                 aria-label={labels.month}
@@ -425,7 +386,11 @@ const BirthdayPicker = (props: Props) => {
                 placeholder={labels.month}
                 onChange={handleMonthChange}
                 selectedValue={month}
-                style={[{minWidth}, defaultStyles.input, dropdownStyle]}
+                style={[
+                    getMonthYearStyle(monthYearOnly),
+                    styles.input,
+                    dropdownStyle,
+                ]}
                 testId="birthday-picker-month"
             >
                 {monthsShort.map((monthShort, i) => (
@@ -455,13 +420,7 @@ const BirthdayPicker = (props: Props) => {
                 placeholder={labels.day}
                 onChange={handleDayChange}
                 selectedValue={day}
-                style={[
-                    {
-                        minInlineSize: FIELD_MIN_WIDTH_DAY,
-                    },
-                    defaultStyles.input,
-                    dropdownStyle,
-                ]}
+                style={[styles.fieldDay, styles.input, dropdownStyle]}
                 testId="birthday-picker-day"
             >
                 {Array.from(Array(31)).map((_, day) => (
@@ -476,8 +435,6 @@ const BirthdayPicker = (props: Props) => {
     };
 
     const renderYear = (): React.ReactNode => {
-        const minWidth = getMonthYearWidth(monthYearOnly);
-
         return (
             <SingleSelect
                 aria-label={labels.year}
@@ -487,7 +444,11 @@ const BirthdayPicker = (props: Props) => {
                 placeholder={labels.year}
                 onChange={handleYearChange}
                 selectedValue={year}
-                style={[{minWidth}, defaultStyles.input, dropdownStyle]}
+                style={[
+                    getMonthYearStyle(monthYearOnly),
+                    styles.input,
+                    dropdownStyle,
+                ]}
                 // Allows displaying the dropdown options without truncating
                 // them when the user zooms in the browser.
                 dropdownStyle={{minWidth: 150}}
@@ -508,7 +469,7 @@ const BirthdayPicker = (props: Props) => {
         <>
             <View
                 testId="birthday-picker"
-                style={[defaultStyles.wrapper, style]}
+                style={[styles.root, styles.wrapper, style]}
             >
                 {renderMonth()}
 
