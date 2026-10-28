@@ -1,0 +1,73 @@
+/**
+ * BirthdayPicker styles
+ *
+ * Every rule is nested inside `.root`, a marker class that carries no
+ * declarations of its own. It sits on both top-level elements (the row of
+ * selects and the error row), which are `View`s. The selects' `style` lands
+ * on `SingleSelect`'s wrapper `View` (`DropdownCore`'s `menuWrapper`), and the
+ * error text is a `BodyText`. All of those ship rules in the same
+ * `@layer shared` that set properties overridden below (`flex-direction`,
+ * `min-inline-size`, `margin`, …). The bundle loads this package's CSS before
+ * its dependencies', so the compound selectors make these rules win on
+ * specificity rather than load order.
+ *
+ * The small-screen `@media` block comes last and its declarations are
+ * `!important`. Aphrodite emitted the media rules after the base declarations
+ * of the same merged class, so on small screens the full-width, stacked
+ * layout won over the consumer's `style` / `dropdownStyle` (and over the
+ * selects' minimum widths), while on larger screens the consumer's overrides
+ * won. The consumer's overrides are unlayered `!important` (Aphrodite), and
+ * only an `!important` declaration inside a cascade layer outranks those, so
+ * this is the one place `!important` reproduces the old behavior.
+ *
+ * The consumer's `style` and `dropdownStyle` still go through Aphrodite
+ * (unlayered and `!important`), so they win over this module. The build wraps
+ * every rule in `@layer shared { … }`.
+ */
+
+.root {
+    &.wrapper {
+        flex-direction: row;
+        gap: var(--wb-sizing-size_080);
+    }
+
+    /* Minimum widths of the selects. */
+
+    /* Month and year when the full date of birth is shown. */
+    & .fieldFull {
+        min-inline-size: 110px;
+    }
+
+    /* Month and year when the day field is hidden (`monthYearOnly`).
+     * See: https://www.figma.com/file/uJZi9ZvuEz5N8GJ3HqKFAa/(2021)-Account-records?node-id=20%3A398 */
+    & .fieldMonthYear {
+        min-inline-size: 167px;
+    }
+
+    & .fieldDay {
+        min-inline-size: 100px;
+    }
+
+    &.errorRow {
+        flex-direction: row;
+        place-items: center;
+        gap: var(--wb-sizing-size_040);
+        margin-block-start: var(--wb-sizing-size_040);
+    }
+
+    & .errorText {
+        color: var(--wb-semanticColor-core-foreground-critical-default);
+    }
+
+    /* [WB-1655] Update with media query tokens */
+    /* stylelint-disable-next-line media-feature-range-notation -- range syntax (`width <= 520px`) needs Safari 16.4+; older browsers would drop the whole block. */
+    @media (max-width: 520px) {
+        &.wrapper {
+            flex-direction: column !important;
+        }
+
+        & .input {
+            min-inline-size: 100% !important;
+        }
+    }
+}
