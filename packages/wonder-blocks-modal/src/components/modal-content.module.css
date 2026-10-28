@@ -11,15 +11,16 @@
  * `ModalPanel` passes `.hasFooter` into the content's `style`, which lands on
  * the same element as `.content`. Aphrodite merged that array into a single
  * class, so the rule lives in this file and source order reproduces it: base
- * declarations (`.content` → `.hasFooter`) first, then the media blocks.
+ * declarations (`.content` → `.hasFooter`).
  *
- * The `*SmallHeight` classes only carry a media query; they're applied unless
- * `applySmallHeightStyles` is false (`FlexibleDialog` / `DrawerDialog`). The
- * media queries are the modal breakpoints: `midOrSmaller`
- * (`max-width: 767px`) and `smMinOrSmallerHeight` (`max-height: 500px`). The
- * consumer's `style` still goes through Aphrodite (unlayered and
- * `!important`), so it wins over this module. The build wraps every rule in
- * `@layer shared { … }`.
+ * The small-screen overrides for elements a consumer can style live in
+ * `util/small-screen-styles.ts` as plain style objects, not here: the
+ * consumer's `style` goes through Aphrodite (unlayered and `!important`), so a
+ * rule in `@layer shared` would lose to it even inside a media query. That covers `.content`'s small-screen rules.
+ * `.wrapperSmallHeight` stays here because consumers can't style the outer
+ * wrapper; it only carries a media query (`max-height: 500px`) and is applied
+ * unless `applySmallHeightStyles` is false (`FlexibleDialog` /
+ * `DrawerDialog`). The build wraps every rule in `@layer shared { … }`.
  *
  * TODO [WB-2137]: standardize media query breakpoint tokens
  */
@@ -49,20 +50,8 @@
         padding-block-end: var(--wb-c-modal-panel-layout-gap-default);
     }
 
-    @media screen and (width <= 767px) {
-        & .content {
-            padding-inline: var(--wb-c-modal-panel-layout-gap-small);
-        }
-    }
-
     @media screen and (height <= 500px) {
         &.wrapperSmallHeight {
-            flex: unset;
-            min-block-size: unset;
-            overflow: unset;
-        }
-
-        & .contentSmallHeight {
             flex: unset;
             min-block-size: unset;
             overflow: unset;

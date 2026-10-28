@@ -13,8 +13,10 @@
  * classes through `styles`, so they land on the same elements as
  * `.flexibleRoot`. Aphrodite merged those arrays into a single class, so the
  * drawer rules live in this file and source order reproduces the merge: base
- * declarations (`.flexibleRoot` → `.drawerRoot` → `.drawerBlockEnd`) first,
- * then the media block.
+ * declarations `.flexibleRoot` → `.drawerRoot` → `.drawerBlockEnd`. The
+ * drawer's small-screen rules (`breakpoint.mediaQuery.smOrSmaller`) live in
+ * `util/small-screen-styles.ts`, because the consumer's `styles.root` would
+ * otherwise beat them.
  *
  * The drawer's slide/fade animation and the consumer's `styles.*` are plain
  * style objects / Aphrodite styles, which `processStyleList` merges after
@@ -68,18 +70,5 @@
     & .drawerDialogBlockEnd {
         min-block-size: unset;
         min-inline-size: unset;
-    }
-
-    /* breakpoint.mediaQuery.smOrSmaller */
-    @media screen and (width <= 681px) {
-        /* Unset minimums on smaller screens */
-        &.drawerRoot {
-            min-inline-size: unset;
-            max-inline-size: unset;
-        }
-
-        &.drawerBlockEnd {
-            block-size: auto;
-        }
     }
 }

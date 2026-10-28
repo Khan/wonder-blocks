@@ -18,16 +18,17 @@ same DOM structure, and the same `style` / `styles` overrides.
   reproduces the old Aphrodite merge order.
 - `DrawerBackdrop`'s fade is now a CSS `@keyframes` animation. The `animated`
   prop still gates it, and the drawer panel's slide animation is unchanged.
-- **Behavior change for `style` / `styles` overrides at small viewports:** the
-  responsive rules (screens ≤ 767px wide or ≤ 500px tall, and ≤ 681px for
-  `DrawerDialog`) now sit in `@layer shared`, while a consumer's `style` still
-  goes through Aphrodite (unlayered and `!important`). A consumer override of a
-  property those rules also set now applies at every viewport. Previously the
-  responsive value replaced it on small screens. Affected properties: `width`,
-  `height` and `overflow` on `OnePaneDialog` / `ModalDialog`; `padding-inline`
-  on `ModalContent` (including `FlexibleDialog`'s `styles.content`);
-  `min-inline-size` / `max-inline-size` on `DrawerDialog`'s `styles.root`. To
-  keep a responsive value, pass it in the override's own media query.
+- The small-screen rules for elements a consumer can style (screens ≤ 767px
+  wide or ≤ 500px tall, and ≤ 681px for `DrawerDialog`) stay plain style
+  objects in `util/small-screen-styles.ts`. A consumer's `style` still goes
+  through Aphrodite, which would outrank any `@layer shared` rule, so this keeps
+  today's behavior: those rules still beat a consumer's base `width`, `height`,
+  `overflow`, `flex-direction`, `padding-inline` and min/max inline size on
+  small screens.
+- **Behavior change:** a consumer override that sets one of those properties
+  inside its *own* media query (as an Aphrodite `StyleSheet` style) no longer
+  wins on small screens; Modal's small-screen rule does. Plain-object
+  overrides are unaffected.
 - The package now ships `dist/index.css` (auto side-effect import) and exposes
   it via the new `@khanacademy/wonder-blocks-modal/css` subpath. `aphrodite` is
   dropped from `peerDependencies`.

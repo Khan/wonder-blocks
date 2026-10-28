@@ -12,23 +12,17 @@
  * `OnePaneDialog` passes `.onePaneDialog` into `ModalDialog`'s `style`, which
  * lands on the same element as `.wrapper`. Aphrodite merged that array into a
  * single class, so its precedence is reproduced by source order here, which
- * is why the rule lives in this file rather than its own:
+ * is why the rule lives in this file rather than its own: `.wrapper` first,
+ * then `.onePaneDialog`.
  *
- * 1. Base declarations first: `.wrapper` → `.onePaneDialog`.
- * 2. Then the media blocks, in the order Aphrodite emitted them. Aphrodite
- *    moves a key to the end when a later style in the array sets it again,
- *    and `.onePaneDialog` re-sets `midOrSmaller`, so `smMinOrSmallerHeight`
- *    comes first and `midOrSmaller` (`.wrapper` → `.onePaneDialog`) last.
- *    When both queries match, `.onePaneDialog`'s `overflow: hidden` beats
- *    the wrapper's small-height `overflow: auto`. (Without `.onePaneDialog`
- *    the two blocks set different properties on `.wrapper`, so the order
- *    doesn't matter there.)
- *
- * The media queries are the modal breakpoints: `midOrSmaller`
- * (`max-width: 767px`) and `smMinOrSmallerHeight` (`max-height: 500px`). The
- * consumer's `style` still goes through Aphrodite (unlayered and
- * `!important`), so it wins over this module. The build wraps every rule in
- * `@layer shared { … }`.
+ * The small-screen overrides for elements a consumer can style live in
+ * `util/small-screen-styles.ts` as plain style objects, not here: the
+ * consumer's `style` goes through Aphrodite (unlayered and `!important`), so a
+ * rule in `@layer shared` would lose to it even inside a media query. That covers the wrapper's and
+ * `.onePaneDialog`'s small-screen rules; the media blocks below only target
+ * elements consumers can't style. The media queries are the modal
+ * breakpoints: `midOrSmaller` (`max-width: 767px`) and `smMinOrSmallerHeight`
+ * (`max-height: 500px`). The build wraps every rule in `@layer shared { … }`.
  *
  * TODO [WB-2137]: standardize media query breakpoint tokens
  */
@@ -86,10 +80,6 @@
     }
 
     @media screen and (height <= 500px) {
-        & .wrapper {
-            overflow: auto;
-        }
-
         & .dialog {
             overflow: auto;
         }
@@ -98,16 +88,6 @@
     @media screen and (width <= 767px) {
         &.paddingLayer {
             padding: var(--wb-c-modal-dialog-layout-padding);
-        }
-
-        & .wrapper {
-            flex-direction: column;
-        }
-
-        & .onePaneDialog {
-            inline-size: 100%;
-            block-size: 100%;
-            overflow: hidden;
         }
     }
 }

@@ -14,7 +14,9 @@
  * button is focused, as the unlayered Aphrodite rule did.
  *
  * The consumer's `style` still goes through Aphrodite (unlayered and
- * `!important`), so it wins over this module. The build wraps every rule in
+ * `!important`), so it wins over this module. The wrapper's small-height
+ * `overflow` rule lives in `util/small-screen-styles.ts` so it keeps beating
+ * the consumer's base `overflow`. The build wraps every rule in
  * `@layer shared { … }`.
  *
  * TODO [WB-2137]: standardize media query breakpoint tokens
@@ -49,12 +51,6 @@
          * outline is visible when this control is focused. */
         &:focus {
             @apply --wb-focus-visible;
-        }
-    }
-
-    @media screen and (height <= 500px) {
-        &.wrapper {
-            overflow: auto;
         }
     }
 }

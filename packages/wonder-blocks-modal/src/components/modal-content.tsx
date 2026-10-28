@@ -3,6 +3,10 @@ import {View} from "@khanacademy/wonder-blocks-core";
 
 import type {StyleType} from "@khanacademy/wonder-blocks-core";
 import styles from "./modal-content.module.css";
+import {
+    contentSmallHeightStyles,
+    contentSmallScreenStyles,
+} from "../util/small-screen-styles";
 
 type Props = {
     /** Should the content scroll on overflow, or just expand. */
@@ -43,7 +47,8 @@ function ModalContent(props: Props) {
             <View
                 style={[
                     styles.content,
-                    applySmallHeightStyles && styles.contentSmallHeight,
+                    contentSmallScreenStyles,
+                    applySmallHeightStyles && contentSmallHeightStyles,
                     style,
                 ]}
             >

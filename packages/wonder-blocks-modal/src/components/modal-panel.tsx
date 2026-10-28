@@ -6,6 +6,7 @@ import ModalContent from "./modal-content";
 import ModalHeader from "./modal-header";
 import ModalFooter from "./modal-footer";
 import CloseButton from "./close-button";
+import {panelSmallScreenStyles} from "../util/small-screen-styles";
 import contentStyles from "./modal-content.module.css";
 import styles from "./modal-panel.module.css";
 
@@ -116,7 +117,7 @@ export default function ModalPanel({
 
     return (
         <View
-            style={[styles.root, styles.wrapper, style]}
+            style={[styles.root, styles.wrapper, panelSmallScreenStyles, style]}
             testId={testId && `${testId}-panel`}
         >
             {closeButtonVisible && (

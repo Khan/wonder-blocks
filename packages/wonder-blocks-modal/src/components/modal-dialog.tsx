@@ -2,6 +2,7 @@ import * as React from "react";
 import {View} from "@khanacademy/wonder-blocks-core";
 import type {StyleType} from "@khanacademy/wonder-blocks-core";
 import {useModalAnnouncer} from "../hooks/use-modal-announcer";
+import {wrapperSmallScreenStyles} from "../util/small-screen-styles";
 import styles from "./modal-dialog.module.css";
 
 type Props = {
@@ -85,7 +86,7 @@ const ModalDialog = React.forwardRef(function ModalDialog(
             data-modal-padding-layer
         >
             {/* WB-2197: We add a data attribute for identifying this layer on backdrop clicks */}
-            <View style={[styles.wrapper, style]}>
+            <View style={[styles.wrapper, wrapperSmallScreenStyles, style]}>
                 {below && <View style={styles.below}>{below}</View>}
                 <View
                     role={role}

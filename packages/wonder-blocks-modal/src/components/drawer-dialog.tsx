@@ -17,6 +17,10 @@ import {
     DRAWER_SLIDE_OFFSET,
 } from "../util/drawer-animation";
 import FlexibleDialog from "./flexible-dialog";
+import {
+    drawerBlockEndSmallScreenStyles,
+    drawerSmallScreenStyles,
+} from "../util/small-screen-styles";
 import componentStyles from "./flexible-dialog.module.css";
 
 // One of these three props is required for labeling the dialog:
@@ -177,6 +181,11 @@ const DrawerDialog = React.forwardRef(function DrawerDialog(
                     componentStyles.drawerRoot, // CSS Modules class
                     alignmentStyles[alignment], // CSS Modules class
                     animationStyle, // plain object
+                    // Plain object, so it keeps beating a consumer's base
+                    // styles on small screens (see small-screen-styles.ts).
+                    alignment === "blockEnd"
+                        ? drawerBlockEndSmallScreenStyles
+                        : drawerSmallScreenStyles,
                     styles?.root, // consumer-provided override
                 ].filter(Boolean),
                 dialog: [

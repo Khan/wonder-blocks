@@ -6,6 +6,7 @@ import {Id} from "@khanacademy/wonder-blocks-core";
 import ModalDialog from "./modal-dialog";
 import ModalPanel from "./modal-panel";
 import ModalHeader from "./modal-header";
+import {onePaneDialogSmallScreenStyles} from "../util/small-screen-styles";
 import styles from "./modal-dialog.module.css";
 
 type Common = {
@@ -187,7 +188,11 @@ const OnePaneDialog = (props: Props): React.ReactElement => {
         <Id id={titleId}>
             {(uniqueId) => (
                 <ModalDialog
-                    style={[styles.onePaneDialog, style]}
+                    style={[
+                        styles.onePaneDialog,
+                        onePaneDialogSmallScreenStyles,
+                        style,
+                    ]}
                     above={above}
                     below={below}
                     testId={testId}
