@@ -5,7 +5,12 @@ import {DetailCell} from "@khanacademy/wonder-blocks-cell";
 import {semanticColor, border, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {BodyText} from "@khanacademy/wonder-blocks-typography";
 
-import {AriaProps, StyleType, View} from "@khanacademy/wonder-blocks-core";
+import {
+    AriaProps,
+    PropsFor,
+    StyleType,
+    View,
+} from "@khanacademy/wonder-blocks-core";
 
 import {focusStyles} from "@khanacademy/wonder-blocks-styles";
 import Check from "./check";
@@ -137,16 +142,19 @@ type DefaultProps = {
     selected: OptionProps["selected"];
 };
 
+type OptionItemInnerProps = OptionProps & {
+    /**
+     * The ref passed to `OptionItem`, forwarded to the root DOM element of
+     * the item (the `DetailCell`).
+     */
+    forwardedRef?: React.Ref<HTMLElement>;
+};
+
 /**
- * For option items that can be selected in a dropdown, selection denoted either
- * with a check ✔️ or a checkbox ☑️. Use as children in SingleSelect or
- * MultiSelect.
+ * The class implementation of `OptionItem`. It's wrapped by the exported
+ * `OptionItem` so that refs are forwarded to the root DOM element.
  */
-export default class OptionItem extends React.Component<OptionProps> {
-    static isClassOf(instance: React.ReactElement<any>): boolean {
-        // @ts-expect-error [FEI-5019] - TS2339 - Property '__IS_OPTION_ITEM__' does not exist on type 'string | JSXElementConstructor<any>'.
-        return instance && instance.type && instance.type.__IS_OPTION_ITEM__;
-    }
+class OptionItemInner extends React.Component<OptionItemInnerProps> {
     static defaultProps: DefaultProps = {
         disabled: false,
         focused: false,
@@ -155,7 +163,6 @@ export default class OptionItem extends React.Component<OptionProps> {
         role: "option",
         selected: false,
     };
-    static __IS_OPTION_ITEM__ = true;
 
     getCheckComponent(): typeof Check | typeof Checkbox {
         if (this.props.variant === "check") {
@@ -195,6 +202,7 @@ export default class OptionItem extends React.Component<OptionProps> {
             variant,
             role,
             /* eslint-enable @typescript-eslint/no-unused-vars */
+            forwardedRef,
             ...sharedProps
         } = this.props;
 
@@ -262,10 +270,51 @@ export default class OptionItem extends React.Component<OptionProps> {
                 onClick={this.handleClick}
                 tabIndex={parentComponent === "listbox" ? -1 : undefined}
                 {...sharedProps}
+                ref={forwardedRef}
             />
         );
     }
 }
+
+type OptionItemProps = Omit<PropsFor<typeof OptionItemInner>, "forwardedRef">;
+
+/**
+ * Check whether the given element is an `OptionItem` element.
+ *
+ * @param instance The element to check.
+ * @returns `true` if the element's type is `OptionItem`.
+ */
+const isClassOf = (instance: React.ReactElement<unknown>): boolean => {
+    const type: unknown = instance?.type;
+    return (
+        typeof type === "object" &&
+        type !== null &&
+        "__IS_OPTION_ITEM__" in type &&
+        type.__IS_OPTION_ITEM__ === true
+    );
+};
+
+/**
+ * For option items that can be selected in a dropdown, selection denoted either
+ * with a check ✔️ or a checkbox ☑️. Use as children in SingleSelect or
+ * MultiSelect.
+ *
+ * The ref is forwarded to the root DOM element of the item.
+ */
+const OptionItem = Object.assign(
+    React.forwardRef(function OptionItem(
+        props: OptionItemProps,
+        ref: React.ForwardedRef<HTMLElement>,
+    ): React.ReactElement {
+        return <OptionItemInner {...props} forwardedRef={ref} />;
+    }),
+    {
+        isClassOf,
+        __IS_OPTION_ITEM__: true as const,
+    },
+);
+
+export default OptionItem;
 
 const focusedStyle = {
     // Override the default focus state for the cell element, so that it

@@ -91,4 +91,39 @@ describe("DetailCell", () => {
             screen.getByRole("heading", {name: "Detail cell subtitle 2"}),
         ).toBeInTheDocument();
     });
+
+    describe("ref", () => {
+        it("should forward the ref to the root element when clickable", () => {
+            // Arrange
+            const ref = React.createRef<HTMLElement>();
+
+            // Act
+            render(<DetailCell title="Cell" onClick={() => {}} ref={ref} />);
+
+            // Assert
+            expect(ref.current).toBe(screen.getByRole("button"));
+        });
+
+        it("should forward the ref to the root element when it's a link", () => {
+            // Arrange
+            const ref = React.createRef<HTMLElement>();
+
+            // Act
+            render(<DetailCell title="Cell" href="/foo" ref={ref} />);
+
+            // Assert
+            expect(ref.current).toBe(screen.getByRole("link"));
+        });
+
+        it("should forward the ref to the root element when not clickable", () => {
+            // Arrange
+            const ref = React.createRef<HTMLElement>();
+
+            // Act
+            render(<DetailCell title="Cell" id="cell-root" ref={ref} />);
+
+            // Assert
+            expect(ref.current).toHaveAttribute("id", "cell-root");
+        });
+    });
 });
