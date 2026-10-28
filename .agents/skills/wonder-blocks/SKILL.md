@@ -313,8 +313,10 @@ prop so consumers can pass in the user's reduced motion preference.
   3. Add the English value to `defaultStringsEn`. Strings with interpolated
      values are functions (e.g. `({label}) => \`Remove ${label}\``); name the
      count variable `num` for strings that need pluralization.
-  4. Add `@khanacademy/wonder-blocks-config` as a dependency of the component's
-     package if it isn't one already.
+  4. If the component's package doesn't use `@khanacademy/wonder-blocks-config`
+     yet, add it as a dependency in the package's `package.json` and add
+     `{"path": "../wonder-blocks-config/tsconfig-build.json"}` to the
+     `references` in its `tsconfig-build.json`.
 
   Consumers pick up new strings by regenerating their translated strings after
   upgrading (in the frontend repo: `pnpm i18n:extract-external-strings`). The
