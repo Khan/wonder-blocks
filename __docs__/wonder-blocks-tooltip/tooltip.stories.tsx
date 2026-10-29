@@ -18,6 +18,7 @@ import {BodyText} from "@khanacademy/wonder-blocks-typography";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 
 import Tooltip from "@khanacademy/wonder-blocks-tooltip";
+import type {TooltipAnchorProps} from "@khanacademy/wonder-blocks-tooltip";
 import packageConfig from "../../packages/wonder-blocks-tooltip/package.json";
 
 import ComponentInfo from "../components/component-info";
@@ -218,34 +219,39 @@ export const WithLinkAnchor: StoryComponentType = {
     },
 };
 
-// The custom anchors below render their own text, so they don't take
-// `children`.
-type CustomAnchorProps = Omit<PropsFor<typeof BodyText>, "children">;
+// The custom anchors below declare the props `Tooltip` gives them
+// (`TooltipAnchorProps`), next to their own props.
+type CustomAnchorProps = TooltipAnchorProps & {
+    /**
+     * The text to display in the anchor.
+     */
+    label: string;
+};
 
 /**
- * An anchor that spreads the props it is given onto its element. It is a plain
- * function component, so it can't receive a ref, and `Tooltip` finds its
- * element in the DOM instead.
+ * An anchor that passes the props it is given (`TooltipAnchorProps`) along to
+ * its element. It is a plain function component, so it can't receive a ref,
+ * and `Tooltip` finds its element in the DOM instead.
  */
-function SpreadPropsAnchor(props: CustomAnchorProps) {
+function PropsAnchor({label, ...anchorProps}: CustomAnchorProps) {
     return (
-        <BodyText {...props} tag="span">
-            Plain function component
+        <BodyText {...anchorProps} tag="span">
+            {label}
         </BodyText>
     );
 }
 
 /**
- * An anchor that forwards the ref it is given to its element, and spreads the
- * props it is given onto it too.
+ * An anchor that forwards the ref it is given to its element, and passes the
+ * props it is given (`TooltipAnchorProps`) along to it too.
  */
 const ForwardRefAnchor = React.forwardRef(function ForwardRefAnchor(
-    props: CustomAnchorProps,
+    {label, ...anchorProps}: CustomAnchorProps,
     ref: React.ForwardedRef<HTMLElement>,
 ) {
     return (
-        <BodyText {...props} tag="span" ref={ref}>
-            forwardRef component
+        <BodyText {...anchorProps} tag="span" ref={ref}>
+            {label}
         </BodyText>
     );
 });
@@ -261,22 +267,49 @@ const ForwardRefAnchor = React.forwardRef(function ForwardRefAnchor(
  * 1. **Attach the ref it is given** to its element. `Tooltip` only passes a ref
  *    to anchors that can receive one (host elements and `React.forwardRef`
  *    components).
- * 2. **Spread the props it is given** onto its element. `Tooltip` injects the
- *    `aria-describedby` prop, plus an attribute it uses to find the element in
- *    the DOM.
+ * 2. **Pass the props it is given along** to its element. `Tooltip` injects
+ *    the `aria-describedby` prop, plus an attribute it uses to find the
+ *    element in the DOM. Both are typed by `TooltipAnchorProps`.
  *
  * Strings are wrapped in an element that does both. Wonder Blocks components
  * such as `Button`, `IconButton`, `Link`, `View` and the typography components
  * do too, so they can be used as anchors directly.
  *
- * For custom anchors, we recommend spreading the props even if the ref is
- * forwarded: the `aria-describedby` prop is what links the anchor to the
- * tooltip for screen readers. An anchor's own `ref` keeps working, since
- * `Tooltip` merges it with its own instead of replacing it.
+ * **Typing custom anchors:**
  *
- * If the anchor does neither (e.g. a `React.Fragment`, or a function component
- * that ignores its props), the tooltip has nothing to anchor to, and a warning
- * is logged in development. Wrapping that content in a `View` (or another
+ * For custom anchors, add `TooltipAnchorProps` to the component's props type,
+ * and pass those props along to the root element:
+ *
+ * ```tsx
+ * import type {TooltipAnchorProps} from "@khanacademy/wonder-blocks-tooltip";
+ *
+ * type Props = TooltipAnchorProps & {
+ *     label: string;
+ * };
+ *
+ * function Badge({label, ...anchorProps}: Props) {
+ *     return <View {...anchorProps}>{label}</View>;
+ * }
+ * ```
+ *
+ * This documents that the component can be used as an anchor, and lets
+ * TypeScript check that only those props are passed along. Avoid spreading
+ * untyped rest props (e.g. `{...rest}` with no matching type): it is easy to
+ * pass other props along by accident, and nothing tells whether the component
+ * can be used as an anchor.
+ *
+ * We recommend passing these props along even if the ref is forwarded: the
+ * `aria-describedby` prop is what links the anchor to the tooltip for screen
+ * readers. An anchor's own `ref` keeps working, since `Tooltip` merges it with
+ * its own instead of replacing it.
+ *
+ * **Anchors that don't cooperate:**
+ *
+ * TypeScript can't check which component an element passed as `children`
+ * renders, so it won't catch an anchor that does neither (e.g. a
+ * `React.Fragment`, or a function component that ignores the props it is
+ * given). In that case, the tooltip has nothing to anchor to, and a warning is
+ * logged in development. Wrapping that content in a `View` (or another
  * element) fixes it, as in the last example below, where the content would
  * otherwise be a `React.Fragment` of several elements.
  *
@@ -294,11 +327,11 @@ export const CustomAnchors: StoryComponentType = {
     render: function Render() {
         return (
             <View style={[styles.row, {gap: sizing.size_320}]}>
-                <Tooltip content="Anchored through the props it spreads onto its element.">
-                    <SpreadPropsAnchor />
+                <Tooltip content="Anchored through the props it passes along to its element.">
+                    <PropsAnchor label="Plain function component" />
                 </Tooltip>
                 <Tooltip content="Anchored through the ref it forwards to its element.">
-                    <ForwardRefAnchor />
+                    <ForwardRefAnchor label="forwardRef component" />
                 </Tooltip>
                 <Tooltip content="Anchored to the View that wraps the elements.">
                     <View style={[styles.row, {gap: sizing.size_040}]}>
@@ -322,7 +355,7 @@ export const CustomAnchors: StoryComponentType = {
         // Assert
         await expect(
             await canvas.findByText(
-                "Anchored through the props it spreads onto its element.",
+                "Anchored through the props it passes along to its element.",
             ),
         ).toBeInTheDocument();
     },
