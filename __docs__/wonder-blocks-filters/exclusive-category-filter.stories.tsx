@@ -1,14 +1,13 @@
 import * as React from "react";
 import type {Meta, StoryObj} from "@storybook/react-vite";
 import {action} from "storybook/actions";
+import {useArgs} from "storybook/preview-api";
 import {StyleSheet} from "aphrodite";
 
 import {announceMessage} from "@khanacademy/wonder-blocks-announcer";
 import {View} from "@khanacademy/wonder-blocks-core";
-import {
-    ExclusiveCategoryFilter,
-    ExclusiveCategoryFilterOption,
-} from "@khanacademy/wonder-blocks-filters";
+import {ExclusiveCategoryFilter} from "@khanacademy/wonder-blocks-filters";
+import type {ExclusiveCategoryFilterOption} from "@khanacademy/wonder-blocks-filters";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {sizing} from "@khanacademy/wonder-blocks-tokens";
 import {BodyText} from "@khanacademy/wonder-blocks-typography";
@@ -28,21 +27,20 @@ const subjectOptions: ReadonlyArray<ExclusiveCategoryFilterOption> = [
 type StoryComponentType = StoryObj<typeof ExclusiveCategoryFilter>;
 
 /**
- * A controlled wrapper so the stories respond to clicks and arrow keys.
+ * A controlled wrapper so the stories respond to clicks and arrow keys. The
+ * selection is kept in the Storybook args, so the `selectedValue` control
+ * and the rendered selection stay in sync.
  */
 function ControlledFilter(
     args: React.ComponentProps<typeof ExclusiveCategoryFilter>,
 ) {
-    const [selectedValue, setSelectedValue] = React.useState(
-        args.selectedValue,
-    );
+    const [, updateArgs] = useArgs();
 
     return (
         <ExclusiveCategoryFilter
             {...args}
-            selectedValue={selectedValue}
             onChange={(value) => {
-                setSelectedValue(value);
+                updateArgs({selectedValue: value});
                 args.onChange(value);
             }}
         />
