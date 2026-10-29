@@ -2,7 +2,6 @@
 // A menu that consists of action items
 
 import * as React from "react";
-import * as ReactDOM from "react-dom";
 
 import {StyleSheet} from "aphrodite";
 import {VariableSizeList as List} from "react-window";
@@ -184,11 +183,32 @@ type ExportProps = Readonly<{
 type Props = ExportProps & DropdownAriaProps;
 
 type ItemRefs = Array<{
-    ref: {
-        current: any;
-    };
+    /**
+     * The ref attached to the focusable item. `OptionItem` and `ActionItem`
+     * forward it to their root DOM element.
+     */
+    ref: React.RefObject<HTMLElement>;
     originalIndex: number;
 }>;
+
+/**
+ * Check whether a value is a DOM element that can receive focus.
+ *
+ * Items are expected to forward their ref to a DOM element, but a custom item
+ * could attach the ref to something else (e.g. a class component instance).
+ * We check `nodeType` instead of using `instanceof` so that elements from
+ * other realms (e.g. iframes) are also recognized.
+ *
+ * @param value The value attached to an item ref.
+ * @returns `true` if the value is a DOM element.
+ */
+const isFocusableElement = (value: unknown): value is HTMLElement =>
+    typeof value === "object" &&
+    value !== null &&
+    "nodeType" in value &&
+    value.nodeType === 1 &&
+    "focus" in value &&
+    typeof value.focus === "function";
 
 // Figure out if the same items are focusable. If an item has been added or
 // removed, this method will return false.
@@ -211,7 +231,7 @@ const createItemRefs = (items: Array<DropdownItem>): ItemRefs => {
     const itemRefs: ItemRefs = [];
     for (let i = 0; i < items.length; i++) {
         if (items[i].focusable) {
-            const ref = React.createRef<null | HTMLDivElement>();
+            const ref = React.createRef<HTMLElement>();
             itemRefs.push({ref, originalIndex: i});
         }
     }
@@ -422,16 +442,19 @@ const DropdownCore = (props: Props) => {
                 const currentFocusedItemRef =
                     itemRefsRef.current[focusedIndexRef.current];
 
-                // eslint-disable-next-line import/no-deprecated
-                const node = ReactDOM.findDOMNode(
-                    currentFocusedItemRef.ref.current,
-                ) as HTMLElement;
+                // Focusable items (OptionItem, ActionItem) forward their ref
+                // to their root DOM element.
+                const refValue: unknown = currentFocusedItemRef.ref.current;
+                const node = isFocusableElement(refValue) ? refValue : null;
 
-                if (!node && shouldVirtualizeList()) {
+                if (refValue == null && shouldVirtualizeList()) {
                     // Wait for the next animation frame to focus the item,
                     // that way the virtualized list has time to render the
                     // item in the DOM. We do this in a recursive way as
                     // occasionally, one frame is not enough.
+                    // An item whose ref holds something other than a DOM
+                    // element (e.g. a class component instance) can't be
+                    // focused, so we only retry while the ref is still empty.
                     schedule.animationFrame(focusNode);
                     return;
                 }
