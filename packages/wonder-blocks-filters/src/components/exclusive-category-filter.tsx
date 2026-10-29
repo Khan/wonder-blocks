@@ -6,6 +6,7 @@ import * as React from "react";
 import {StyleSheet} from "aphrodite";
 import {addStyle, keys, StyleType, View} from "@khanacademy/wonder-blocks-core";
 import {sizing} from "@khanacademy/wonder-blocks-tokens";
+import {BodyText} from "@khanacademy/wonder-blocks-typography";
 
 export type ExclusiveCategoryFilterOption = {
     /**
@@ -34,7 +35,7 @@ type Props = {
      * Here is how the id is used for the different elements in the component:
      * - The root will have an id of `${id}`
      * - The label will have an id formatted as `${id}-label`
-     * - Each option will have an id formatted as `${id}-${value}`
+     * - Each option will have an id formatted as `${id}-option-${index}`
      */
     id?: string;
     /**
@@ -59,7 +60,7 @@ type Props = {
      * selected.
      *
      * If it doesn't match any option, the first option is selected by
-     * default. `onChange` is not called in that case.
+     * default. `onChange` is not called until the user chooses an option.
      */
     selectedValue: string;
     /**
@@ -84,7 +85,6 @@ type Props = {
 };
 
 const StyledButton = addStyle("button");
-const StyledSpan = addStyle("span");
 
 /**
  * A group of options for filtering a list by one category at a time. Exactly
@@ -127,16 +127,18 @@ export const ExclusiveCategoryFilter = React.forwardRef(
         // If the selected value doesn't match any option, the first option is
         // selected by default so there is always exactly one selected option.
         const selectedIndex = matchingIndex === -1 ? 0 : matchingIndex;
-        const effectiveSelectedValue = options[selectedIndex]?.value;
 
         const selectOption = React.useCallback(
             (value: string) => {
                 optionRefs.current[value]?.focus();
-                if (value !== effectiveSelectedValue) {
+                // Compare with the `selectedValue` prop rather than the
+                // option shown as selected: when the prop matches no option,
+                // choosing the first option still tells the parent.
+                if (value !== selectedValue) {
                     onChange(value);
                 }
             },
-            [onChange, effectiveSelectedValue],
+            [onChange, selectedValue],
         );
 
         const handleKeyDown = React.useCallback(
@@ -144,7 +146,12 @@ export const ExclusiveCategoryFilter = React.forwardRef(
                 const currentIndex = options.findIndex(
                     (option) => option.value === event.currentTarget.value,
                 );
-                const isRtl = !!event.currentTarget.closest("[dir=rtl]");
+                // Use the nearest element with a `dir` attribute, so a
+                // `dir="ltr"` container inside an RTL page is respected.
+                const isRtl =
+                    event.currentTarget
+                        .closest("[dir]")
+                        ?.getAttribute("dir") === "rtl";
 
                 let nextIndex: number;
                 switch (event.key) {
@@ -185,9 +192,9 @@ export const ExclusiveCategoryFilter = React.forwardRef(
                 testId={testId}
                 style={[styles.root, stylesProp?.root]}
             >
-                <StyledSpan id={labelId} style={stylesProp?.label}>
+                <BodyText tag="span" id={labelId} style={stylesProp?.label}>
                     {label}
-                </StyledSpan>
+                </BodyText>
                 <View
                     role="radiogroup"
                     aria-labelledby={labelId}
@@ -205,7 +212,7 @@ export const ExclusiveCategoryFilter = React.forwardRef(
                                 ref={(element: HTMLButtonElement | null) => {
                                     optionRefs.current[option.value] = element;
                                 }}
-                                id={`${uniqueId}-${option.value}`}
+                                id={`${uniqueId}-option-${index}`}
                                 data-testid={optionTestId}
                                 type="button"
                                 role="radio"

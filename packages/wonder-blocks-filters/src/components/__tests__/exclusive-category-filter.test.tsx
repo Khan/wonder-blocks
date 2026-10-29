@@ -143,7 +143,7 @@ describe("ExclusiveCategoryFilter", () => {
             const radio = await screen.findByRole("radio", {name: "Math"});
 
             // Assert
-            expect(radio).toHaveAttribute("id", "filter-math");
+            expect(radio).toHaveAttribute("id", "filter-option-1");
         });
 
         it("should base the option test ids on the testId", async () => {
@@ -235,6 +235,25 @@ describe("ExclusiveCategoryFilter", () => {
 
             // Assert
             expect(radio).toBeChecked();
+        });
+
+        it("should call onChange when the first option is clicked and selectedValue matches no option", async () => {
+            // Arrange
+            const onChange = jest.fn();
+            render(
+                <ControlledFilter
+                    selectedValue="unknown"
+                    onChange={onChange}
+                />,
+            );
+
+            // Act
+            await userEvent.click(
+                await screen.findByRole("radio", {name: "All"}),
+            );
+
+            // Assert
+            expect(onChange).toHaveBeenCalledExactlyOnceWith("all");
         });
 
         it("should not call onChange when selectedValue matches no option", async () => {
@@ -412,6 +431,26 @@ describe("ExclusiveCategoryFilter", () => {
                 ).toHaveFocus();
             },
         );
+
+        it("should use the nearest dir attribute for arrow key direction", async () => {
+            // Arrange
+            render(
+                <div dir="rtl">
+                    <div dir="ltr">
+                        <ControlledFilter selectedValue="all" />
+                    </div>
+                </div>,
+            );
+            await userEvent.tab();
+
+            // Act
+            await userEvent.keyboard("{ArrowRight}");
+
+            // Assert
+            expect(
+                await screen.findByRole("radio", {name: "Math"}),
+            ).toHaveFocus();
+        });
 
         it.each(["{Enter}", " ", "{Home}", "{End}"])(
             "should not call onChange when pressing %s",

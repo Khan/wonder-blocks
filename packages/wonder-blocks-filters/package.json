@@ -25,7 +25,8 @@
   },
   "dependencies": {
     "@khanacademy/wonder-blocks-core": "workspace:*",
-    "@khanacademy/wonder-blocks-tokens": "workspace:*"
+    "@khanacademy/wonder-blocks-tokens": "workspace:*",
+    "@khanacademy/wonder-blocks-typography": "workspace:*"
   },
   "peerDependencies": {
     "aphrodite": "catalog:",
