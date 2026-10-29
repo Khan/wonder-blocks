@@ -189,9 +189,6 @@ importers:
       '@khanacademy/wonder-blocks-modal':
         specifier: workspace:*
         version: link:packages/wonder-blocks-modal
-      '@khanacademy/wonder-blocks-pill':
-        specifier: workspace:*
-        version: link:packages/wonder-blocks-pill
       '@khanacademy/wonder-blocks-popover':
         specifier: workspace:*
         version: link:packages/wonder-blocks-popover
@@ -1011,9 +1008,6 @@ importers:
       '@khanacademy/wonder-blocks-modal':
         specifier: workspace:*
         version: link:../wonder-blocks-modal
-      '@khanacademy/wonder-blocks-pill':
-        specifier: workspace:*
-        version: link:../wonder-blocks-pill
       '@khanacademy/wonder-blocks-search-field':
         specifier: workspace:*
         version: link:../wonder-blocks-search-field
@@ -1334,37 +1328,6 @@ importers:
       react-dom:
         specifier: 'catalog:'
         version: 18.2.0(react@18.2.0)
-    devDependencies:
-      '@khanacademy/wb-dev-build-settings':
-        specifier: workspace:*
-        version: link:../../build-settings
-
-  packages/wonder-blocks-pill:
-    dependencies:
-      '@khanacademy/wonder-blocks-clickable':
-        specifier: workspace:*
-        version: link:../wonder-blocks-clickable
-      '@khanacademy/wonder-blocks-core':
-        specifier: workspace:*
-        version: link:../wonder-blocks-core
-      '@khanacademy/wonder-blocks-link':
-        specifier: workspace:*
-        version: link:../wonder-blocks-link
-      '@khanacademy/wonder-blocks-styles':
-        specifier: workspace:*
-        version: link:../wonder-blocks-styles
-      '@khanacademy/wonder-blocks-tokens':
-        specifier: workspace:*
-        version: link:../wonder-blocks-tokens
-      '@khanacademy/wonder-blocks-typography':
-        specifier: workspace:*
-        version: link:../wonder-blocks-typography
-      aphrodite:
-        specifier: 'catalog:'
-        version: 1.2.5
-      react:
-        specifier: 'catalog:'
-        version: 18.2.0
     devDependencies:
       '@khanacademy/wb-dev-build-settings':
         specifier: workspace:*

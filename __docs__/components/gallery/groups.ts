@@ -1,5 +1,6 @@
 import AccordionTile from "./tiles/accordion-tile";
 import AccordionSectionTile from "./tiles/accordion-section-tile";
+import BadgeTile from "./tiles/badge-tile";
 import BannerTile from "./tiles/banner-tile";
 import BirthdayPickerTile from "./tiles/birthday-picker-tile";
 import BreadcrumbsTile from "./tiles/breadcrumbs-tile";
@@ -21,7 +22,6 @@ import IconButtonTile from "./tiles/icon-button-tile";
 import LinkTile from "./tiles/link-tile";
 import OnePaneDialogTile from "./tiles/one-pane-dialog-tile";
 import PhosphorIconTile from "./tiles/phosphor-icon-tile";
-import PillTile from "./tiles/pill-tile";
 import PopoverTile from "./tiles/popover-tile";
 import CircularSpinnerTile from "./tiles/circular-spinner-tile";
 import SearchFieldTile from "./tiles/search-field-tile";
@@ -44,6 +44,7 @@ export const alphabetGroups: Array<GroupMap> = [
     {
         name: "B",
         components: [
+            BadgeTile,
             BannerTile,
             BirthdayPickerTile,
             BreadcrumbsTile,
@@ -65,10 +66,7 @@ export const alphabetGroups: Array<GroupMap> = [
     {name: "L", components: [LabeledTextFieldTile, LinkTile, ListboxTile]},
     {name: "M", components: [MultiSelectTile]},
     {name: "O", components: [OnePaneDialogTile]},
-    {
-        name: "P",
-        components: [PhosphorIconTile, PillTile, PopoverTile],
-    },
+    {name: "P", components: [PhosphorIconTile, PopoverTile]},
     {name: "R", components: [RadioGroupTile]},
     {name: "S", components: [SearchFieldTile, SingleSelectTile, SwitchTile]},
     {
@@ -84,7 +82,6 @@ export const functionGroups: Array<GroupMap> = [
             ButtonTile,
             IconButtonTile,
             LinkTile,
-            PillTile,
             CompactCellTile,
             DetailCellTile,
         ],
@@ -108,7 +105,7 @@ export const functionGroups: Array<GroupMap> = [
         name: "Indicators",
         components: [
             PhosphorIconTile,
-            PillTile,
+            BadgeTile,
             BannerTile,
             CircularSpinnerTile,
         ],
@@ -148,6 +145,7 @@ export const functionGroups: Array<GroupMap> = [
 
 export const packageGroups: Array<GroupMap> = [
     {name: "Accordion", components: [AccordionTile, AccordionSectionTile]},
+    {name: "Badge", components: [BadgeTile]},
     {name: "Banner", components: [BannerTile]},
     {name: "Birthday Picker", components: [BirthdayPickerTile]},
     {name: "Breadcrumbs", components: [BreadcrumbsTile]},
@@ -178,7 +176,6 @@ export const packageGroups: Array<GroupMap> = [
     {name: "Icon", components: [PhosphorIconTile]},
     {name: "Link", components: [LinkTile]},
     {name: "Modal", components: [OnePaneDialogTile]},
-    {name: "Pill", components: [PillTile]},
     {name: "Popover", components: [PopoverTile]},
     {name: "Progress Spinner", components: [CircularSpinnerTile]},
     {name: "Search Field", components: [SearchFieldTile]},
