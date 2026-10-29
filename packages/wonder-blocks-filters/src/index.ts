@@ -1,2 +1,2 @@
-// The package is being set up. ExclusiveCategoryFilter will be exported here.
+// ExclusiveCategoryFilter will be exported from here.
 export {};

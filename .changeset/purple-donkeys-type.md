@@ -1,4 +1,5 @@
 ---
+"@khanacademy/wonder-blocks-filters": minor
 ---
 
-Set up the `@khanacademy/wonder-blocks-filters` package (private until `ExclusiveCategoryFilter` is ready to release)
+Add new `@khanacademy/wonder-blocks-filters` package
