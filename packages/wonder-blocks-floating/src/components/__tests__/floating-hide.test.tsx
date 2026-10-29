@@ -20,6 +20,10 @@ jest.mock("@floating-ui/react", () => {
 });
 
 describe("Floating (hide)", () => {
+    afterEach(() => {
+        jest.restoreAllMocks();
+    });
+
     it("should hide the floating element when the reference element is hidden", async () => {
         // Arrange
         render(
@@ -38,6 +42,45 @@ describe("Floating (hide)", () => {
         // Assert
         await waitFor(() => {
             expect(floating).toHaveStyle({visibility: "hidden"});
+        });
+    });
+
+    it("should keep the floating element visible when it and the reference element are taller than the viewport", async () => {
+        // Arrange
+        // The floating and reference elements are 50px tall each, so they
+        // don't fit in a 80px tall viewport together.
+        jest.spyOn(Element.prototype, "getBoundingClientRect").mockReturnValue({
+            x: 0,
+            y: 0,
+            top: 0,
+            left: 0,
+            right: 100,
+            bottom: 50,
+            width: 100,
+            height: 50,
+            toJSON: () => {},
+        });
+        jest.spyOn(
+            document.documentElement,
+            "clientHeight",
+            "get",
+        ).mockReturnValue(80);
+        render(
+            <Floating
+                content="Floating content"
+                open={true}
+                focusManagerEnabled={false}
+            >
+                <button>Trigger</button>
+            </Floating>,
+        );
+
+        // Act
+        const floating = screen.getByText("Floating content");
+
+        // Assert
+        await waitFor(() => {
+            expect(floating).toHaveStyle({visibility: "visible"});
         });
     });
 

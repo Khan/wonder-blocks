@@ -2,7 +2,7 @@ import * as React from "react";
 import {StyleSheet} from "aphrodite";
 import type {Meta, StoryObj} from "@storybook/react-vite";
 
-import {expect, within, userEvent} from "storybook/test";
+import {expect, within, userEvent, waitFor} from "storybook/test";
 
 import magnifyingGlass from "@phosphor-icons/core/regular/magnifying-glass.svg";
 import info from "@phosphor-icons/core/regular/info.svg";
@@ -18,6 +18,7 @@ import {BodyText} from "@khanacademy/wonder-blocks-typography";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 
 import Tooltip from "@khanacademy/wonder-blocks-tooltip";
+import type {TooltipAnchorProps} from "@khanacademy/wonder-blocks-tooltip";
 import packageConfig from "../../packages/wonder-blocks-tooltip/package.json";
 
 import ComponentInfo from "../components/component-info";
@@ -80,7 +81,7 @@ export default {
             />
         ),
         chromatic: {
-            // Added to ensure that the tooltip is rendered using PopperJS.
+            // Added to ensure that the tooltip is positioned by floating-ui.
             delay: 500,
             // Visual coverage is provided by the Tooltip StateSheet snapshot.
             disableSnapshot: true,
@@ -215,6 +216,148 @@ export const WithLinkAnchor: StoryComponentType = {
             // Snapshot to confirm tooltip with link anchor
             disableSnapshot: false,
         },
+    },
+};
+
+// The custom anchors below declare the props `Tooltip` gives them
+// (`TooltipAnchorProps`), next to their own props.
+type CustomAnchorProps = TooltipAnchorProps & {
+    /**
+     * The text to display in the anchor.
+     */
+    label: string;
+};
+
+/**
+ * An anchor that passes the props it is given (`TooltipAnchorProps`) along to
+ * its element. It is a plain function component, so it can't receive a ref,
+ * and `Tooltip` finds its element in the DOM instead.
+ */
+function PropsAnchor({label, ...anchorProps}: CustomAnchorProps) {
+    return (
+        <BodyText {...anchorProps} tag="span">
+            {label}
+        </BodyText>
+    );
+}
+
+/**
+ * An anchor that forwards the ref it is given to its element, and passes the
+ * props it is given (`TooltipAnchorProps`) along to it too.
+ */
+const ForwardRefAnchor = React.forwardRef(function ForwardRefAnchor(
+    {label, ...anchorProps}: CustomAnchorProps,
+    ref: React.ForwardedRef<HTMLElement>,
+) {
+    return (
+        <BodyText {...anchorProps} tag="span" ref={ref}>
+            {label}
+        </BodyText>
+    );
+});
+
+/**
+ * The anchor (`children`) is the element the tooltip is positioned against,
+ * so `Tooltip` needs to know which DOM element it renders. It also listens to
+ * that element's hover and focus events to show and hide the tooltip. The
+ * anchor can be a string or any component type (a host element like `<span>`,
+ * a `React.forwardRef` component, a class component or a plain function
+ * component), as long as it does **at least one** of the following:
+ *
+ * 1. **Attach the ref it is given** to its element. `Tooltip` only passes a ref
+ *    to anchors that can receive one (host elements and `React.forwardRef`
+ *    components).
+ * 2. **Pass the props it is given along** to its element. `Tooltip` injects
+ *    the `aria-describedby` prop, plus an attribute it uses to find the
+ *    element in the DOM. Both are typed by `TooltipAnchorProps`.
+ *
+ * Strings are wrapped in an element that does both. Wonder Blocks components
+ * such as `Button`, `IconButton`, `Link`, `View` and the typography components
+ * do too, so they can be used as anchors directly.
+ *
+ * **Typing custom anchors:**
+ *
+ * For custom anchors, add `TooltipAnchorProps` to the component's props type,
+ * and pass those props along to the root element:
+ *
+ * ```tsx
+ * import type {TooltipAnchorProps} from "@khanacademy/wonder-blocks-tooltip";
+ *
+ * type Props = TooltipAnchorProps & {
+ *     label: string;
+ * };
+ *
+ * function Badge({label, ...anchorProps}: Props) {
+ *     return <View {...anchorProps}>{label}</View>;
+ * }
+ * ```
+ *
+ * This documents that the component can be used as an anchor, and lets
+ * TypeScript check that only those props are passed along. Avoid spreading
+ * untyped rest props (e.g. `{...rest}` with no matching type): it is easy to
+ * pass other props along by accident, and nothing tells whether the component
+ * can be used as an anchor.
+ *
+ * We recommend passing these props along even if the ref is forwarded: the
+ * `aria-describedby` prop is what links the anchor to the tooltip for screen
+ * readers. An anchor's own `ref` keeps working, since `Tooltip` merges it with
+ * its own instead of replacing it.
+ *
+ * **Anchors that don't cooperate:**
+ *
+ * TypeScript can't check which component an element passed as `children`
+ * renders, so it won't catch an anchor that does neither (e.g. a
+ * `React.Fragment`, or a function component that ignores the props it is
+ * given). In that case, the tooltip has nothing to anchor to, and a warning is
+ * logged in development. Wrapping that content in a `View` (or another
+ * element) fixes it, as in the last example below, where the content would
+ * otherwise be a `React.Fragment` of several elements.
+ *
+ * **NOTES:**
+ * - When the anchor renders several elements, the tooltip is anchored to the
+ *   one that receives the props (preferred) or the ref. This lets a component
+ *   anchor the tooltip to its root element even when its ref points at an
+ *   inner element (e.g. `Switch`).
+ * - By default, the anchor is made focusable (`tabindex="0"`) so that keyboard
+ *   users can reach the tooltip. If the anchor is (or contains) an element
+ *   that is already focusable, set `forceAnchorFocusivity={false}` to avoid an
+ *   extra tab stop.
+ */
+export const CustomAnchors: StoryComponentType = {
+    render: function Render() {
+        return (
+            <View style={[styles.row, {gap: sizing.size_320}]}>
+                <Tooltip content="Anchored through the props it passes along to its element.">
+                    <PropsAnchor label="Plain function component" />
+                </Tooltip>
+                <Tooltip content="Anchored through the ref it forwards to its element.">
+                    <ForwardRefAnchor label="forwardRef component" />
+                </Tooltip>
+                <Tooltip content="Anchored to the View that wraps the elements.">
+                    <View style={[styles.row, {gap: sizing.size_040}]}>
+                        <BodyText tag="span">Several elements</BodyText>
+                        <BodyText tag="span">wrapped in a View</BodyText>
+                    </View>
+                </Tooltip>
+            </View>
+        );
+    },
+    play: async ({canvasElement}) => {
+        // Arrange
+        // NOTE: Using `body` here to work with React Portals.
+        const canvas = within(canvasElement.ownerDocument.body);
+
+        // Act
+        await userEvent.hover(
+            await canvas.findByText("Plain function component"),
+        );
+
+        // Assert
+        await expect(
+            await canvas.findByText(
+                "Anchored through the props it passes along to its element.",
+            ),
+        ).toBeInTheDocument();
     },
 };
 
@@ -430,15 +573,12 @@ export const Strong: StoryComponentType = {
 };
 
 /**
- * Tooltip by default (and for performance reasons) only updates its position
- * under the following conditions:
+ * Tooltip keeps its position in sync with the trigger element: it updates
+ * when the window is resized, when the scroll position changes, and when the
+ * trigger element changes size or position.
  *
- * 1. When the window is resized.
- * 2. When the scroll position changes.
- *
- * However, there are cases where you might want the tooltip to update its
- * position when the trigger element changes. This can be done by setting the
- * `autoUpdate` prop to `true`.
+ * **NOTE:** The `autoUpdate` prop is deprecated and is now a no-op, as this is
+ * always the case.
  */
 export const AutoUpdate: StoryComponentType = {
     render: function Render() {
@@ -472,7 +612,6 @@ export const AutoUpdate: StoryComponentType = {
                 <Tooltip
                     content="This is a tooltip that auto-updates its position when the trigger element changes."
                     opened={true}
-                    autoUpdate={true}
                 >
                     <View
                         style={[
@@ -505,15 +644,23 @@ export const AutoUpdate: StoryComponentType = {
             }),
         );
 
-        // Wait for the tooltip to update its position
-        const newTooltip = await canvas.findByRole("tooltip");
-        const newLeft = newTooltip.getBoundingClientRect().left;
-        const newTop = newTooltip.getBoundingClientRect().top;
-
         // Assert
-        // The tooltip should have updated its position
-        await expect(initialLeft).not.toEqual(newLeft);
-        await expect(initialTop).not.toEqual(newTop);
+        // The tooltip should have updated its position. floating-ui detects
+        // that the trigger moved asynchronously, so we wait for it.
+        // NOTE: When the trigger moves before floating-ui first observes it
+        // (as it does here, right after mounting), floating-ui retries after
+        // 1s, so we wait longer than `waitFor`'s default timeout.
+        await waitFor(
+            async () => {
+                const newTooltip = await canvas.findByRole("tooltip");
+                const {left: newLeft, top: newTop} =
+                    newTooltip.getBoundingClientRect();
+
+                await expect(initialLeft).not.toEqual(newLeft);
+                await expect(initialTop).not.toEqual(newTop);
+            },
+            {timeout: 3000},
+        );
     },
 };
 

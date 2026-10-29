@@ -3,10 +3,45 @@ import {act, render, screen} from "@testing-library/react";
 import {userEvent} from "@testing-library/user-event";
 
 import {View} from "@khanacademy/wonder-blocks-core";
+import {semanticColor} from "@khanacademy/wonder-blocks-tokens";
 
 import Tooltip from "../tooltip";
 
 describe("Tooltip", () => {
+    beforeEach(() => {
+        // Provide realistic dimensions so floating-ui's `hide` middleware
+        // doesn't treat the anchor as hidden. jsdom reports zero-size rects for
+        // every element, which would otherwise cause the tooltip to render with
+        // `visibility: hidden` (making role-based queries fail).
+        jest.spyOn(Element.prototype, "getBoundingClientRect").mockReturnValue({
+            width: 300,
+            height: 50,
+            top: 100,
+            left: 100,
+            bottom: 150,
+            right: 400,
+            x: 100,
+            y: 100,
+            toJSON: () => {},
+        });
+        // Give the document a non-zero viewport so floating-ui's `hide`
+        // middleware doesn't consider the anchor to be outside the viewport.
+        jest.spyOn(
+            document.documentElement,
+            "clientWidth",
+            "get",
+        ).mockReturnValue(1024);
+        jest.spyOn(
+            document.documentElement,
+            "clientHeight",
+            "get",
+        ).mockReturnValue(768);
+    });
+
+    afterEach(() => {
+        jest.restoreAllMocks();
+    });
+
     beforeEach(() => {
         jest.clearAllMocks();
         jest.clearAllTimers();
@@ -120,14 +155,112 @@ describe("Tooltip", () => {
 
             // Act
             const tooltipContent = await screen.findByRole("tooltip");
+            // The background is applied to the floating element that wraps
+            // the tooltip.
             // eslint-disable-next-line testing-library/no-node-access
-            const innerTooltipContentView = tooltipContent.firstChild;
-            expect(innerTooltipContentView).toBeInTheDocument();
+            const floatingElement = tooltipContent.parentElement;
 
             // Assert
-            expect(innerTooltipContentView).toHaveStyle(
+            expect(floatingElement).toHaveStyle(
                 "background-color: rgb(24, 101, 242)",
             );
+        });
+
+        it("should use the strong colors for the strong variant", async () => {
+            // Arrange
+            render(
+                <Tooltip content="Content" variant="strong" opened={true}>
+                    Anchor
+                </Tooltip>,
+            );
+
+            // Act
+            const tooltipContent = await screen.findByRole("tooltip");
+            // eslint-disable-next-line testing-library/no-node-access
+            const floatingElement = tooltipContent.parentElement;
+
+            // Assert
+            expect(floatingElement).toHaveStyle({
+                backgroundColor:
+                    semanticColor.feedback.neutral.strong.background,
+                color: semanticColor.feedback.neutral.strong.text,
+            });
+        });
+
+        it("should position the tooltip with the fixed strategy", async () => {
+            // Arrange
+            render(
+                <Tooltip content="Content" opened={true}>
+                    Anchor
+                </Tooltip>,
+            );
+
+            // Act
+            const tooltipContent = await screen.findByRole("tooltip");
+            // eslint-disable-next-line testing-library/no-node-access
+            const floatingElement = tooltipContent.parentElement;
+
+            // Assert
+            expect(floatingElement).toHaveStyle({position: "fixed"});
+        });
+
+        it("should render a tail pointing to the anchor", async () => {
+            // Arrange
+            render(
+                <Tooltip content="Content" opened={true}>
+                    Anchor
+                </Tooltip>,
+            );
+
+            // Act
+            const tooltipContent = await screen.findByRole("tooltip");
+            // eslint-disable-next-line testing-library/no-node-access
+            const tail = tooltipContent.parentElement?.querySelector("svg");
+
+            // Assert
+            expect(tail).toBeInTheDocument();
+        });
+
+        it("should keep the tooltip open while its border or tail is hovered", async () => {
+            // Arrange
+            const ue = userEvent.setup({
+                advanceTimers: jest.advanceTimersByTimeAsync,
+            });
+            render(<Tooltip content="Content">Anchor</Tooltip>);
+            const anchor = await screen.findByText("Anchor");
+            await ue.hover(anchor);
+            await act(() => jest.runOnlyPendingTimersAsync());
+            const tooltip = await screen.findByRole("tooltip");
+            // The floating element wraps the tooltip content and also renders
+            // the tail.
+            // eslint-disable-next-line testing-library/no-node-access
+            const floatingElement = tooltip.parentElement as HTMLElement;
+
+            // Act
+            await ue.hover(floatingElement);
+            await act(() => jest.runOnlyPendingTimersAsync());
+
+            // Assert
+            expect(screen.getByRole("tooltip")).toBeInTheDocument();
+        });
+
+        it("should keep the tooltip open while the bubble is hovered", async () => {
+            // Arrange
+            const ue = userEvent.setup({
+                advanceTimers: jest.advanceTimersByTimeAsync,
+            });
+            render(<Tooltip content="Content">Anchor</Tooltip>);
+            const anchor = await screen.findByText("Anchor");
+            await ue.hover(anchor);
+            await act(() => jest.runOnlyPendingTimersAsync());
+            const tooltip = await screen.findByRole("tooltip");
+
+            // Act
+            await ue.hover(tooltip);
+            await act(() => jest.runOnlyPendingTimersAsync());
+
+            // Assert
+            expect(screen.getByRole("tooltip")).toBeInTheDocument();
         });
     });
 
