@@ -5,11 +5,11 @@ import {DetailCell} from "@khanacademy/wonder-blocks-cell";
 import {semanticColor, border, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {BodyText} from "@khanacademy/wonder-blocks-typography";
 
-import {
+import {View} from "@khanacademy/wonder-blocks-core";
+import type {
     AriaProps,
     PropsFor,
     StyleType,
-    View,
 } from "@khanacademy/wonder-blocks-core";
 
 import {focusStyles} from "@khanacademy/wonder-blocks-styles";

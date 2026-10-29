@@ -447,11 +447,14 @@ const DropdownCore = (props: Props) => {
                 const refValue: unknown = currentFocusedItemRef.ref.current;
                 const node = isFocusableElement(refValue) ? refValue : null;
 
-                if (!node && shouldVirtualizeList()) {
+                if (refValue == null && shouldVirtualizeList()) {
                     // Wait for the next animation frame to focus the item,
                     // that way the virtualized list has time to render the
                     // item in the DOM. We do this in a recursive way as
                     // occasionally, one frame is not enough.
+                    // An item whose ref holds something other than a DOM
+                    // element (e.g. a class component instance) can't be
+                    // focused, so we only retry while the ref is still empty.
                     schedule.animationFrame(focusNode);
                     return;
                 }
