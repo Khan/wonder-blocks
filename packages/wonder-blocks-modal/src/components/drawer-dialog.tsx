@@ -21,7 +21,7 @@ import {
     drawerBlockEndSmallScreenStyles,
     drawerSmallScreenStyles,
 } from "../util/small-screen-styles";
-import componentStyles from "./flexible-dialog.module.css";
+import componentStyles from "./drawer-dialog.module.css";
 
 // One of these three props is required for labeling the dialog:
 // `title`, `aria-label`, or `aria-labelledby`.
@@ -178,6 +178,7 @@ const DrawerDialog = React.forwardRef(function DrawerDialog(
             ref={ref}
             styles={{
                 root: [
+                    componentStyles.root, // CSS Modules class
                     componentStyles.drawerRoot, // CSS Modules class
                     alignmentStyles[alignment], // CSS Modules class
                     animationStyle, // plain object
@@ -190,8 +191,8 @@ const DrawerDialog = React.forwardRef(function DrawerDialog(
                 ].filter(Boolean),
                 dialog: [
                     alignment === "blockEnd"
-                        ? componentStyles.drawerDialogBlockEnd // CSS Modules class
-                        : componentStyles.drawerDialogDefault, // CSS Modules class
+                        ? componentStyles.dialogBlockEnd // CSS Modules class
+                        : componentStyles.dialogDefault, // CSS Modules class
                     styles?.dialog, // consumer-provided override
                 ].filter(Boolean),
                 panel: styles?.panel, // consumer-provided override
@@ -207,7 +208,7 @@ const DrawerDialog = React.forwardRef(function DrawerDialog(
 const alignmentStyles: Record<DrawerAlignment, string | undefined> = {
     inlineStart: undefined,
     inlineEnd: undefined,
-    blockEnd: componentStyles.drawerBlockEnd,
+    blockEnd: componentStyles.blockEnd,
 };
 
 /** The resting transform, shared by all alignments. */

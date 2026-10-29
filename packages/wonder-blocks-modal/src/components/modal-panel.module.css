@@ -13,6 +13,10 @@
  * rule (`.button:hover` / `:active`, (0,2,0)), so it shows whenever the
  * button is focused, as the unlayered Aphrodite rule did.
  *
+ * `.hasFooter` is passed into `ModalContent`'s `style`, so it lands on the
+ * same element as `ModalContent`'s `.content` (0,2,0). Nesting it under
+ * `.root.wrapper` (0,3,0) makes it win regardless of load order.
+ *
  * The consumer's `style` still goes through Aphrodite (unlayered and
  * `!important`), so it wins over this module. The wrapper's small-height
  * `overflow` rule lives in `util/small-screen-styles.ts` so it keeps beating
@@ -33,6 +37,11 @@
         overflow: hidden;
         block-size: 100%;
         inline-size: 100%;
+
+        /* The space between the content and the footer */
+        & .hasFooter {
+            padding-block-end: var(--wb-c-modal-panel-layout-gap-default);
+        }
     }
 
     & .closeButton {

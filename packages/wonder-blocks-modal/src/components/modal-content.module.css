@@ -1,5 +1,5 @@
 /**
- * ModalContent styles (plus `ModalPanel`'s `hasFooter` spacing)
+ * ModalContent styles
  *
  * Every rule is nested inside `.root` — the marker class on the outer
  * wrapper `View`, which carries no declarations of its own. Both elements are
@@ -8,15 +8,11 @@
  * `min-block-size`). The bundle loads this package's CSS before core's, so
  * the compound selector makes the result depend on specificity instead.
  *
- * `ModalPanel` passes `.hasFooter` into the content's `style`, which lands on
- * the same element as `.content`. Aphrodite merged that array into a single
- * class, so the rule lives in this file and source order reproduces it: base
- * declarations (`.content` → `.hasFooter`).
- *
  * The small-screen overrides for elements a consumer can style live in
  * `util/small-screen-styles.ts` as plain style objects, not here: the
  * consumer's `style` goes through Aphrodite (unlayered and `!important`), so a
- * rule in `@layer shared` would lose to it even inside a media query. That covers `.content`'s small-screen rules.
+ * rule in `@layer shared` would lose to it even inside a media query. That
+ * covers `.content`'s small-screen rules.
  * `.wrapperSmallHeight` stays here because consumers can't style the outer
  * wrapper; it only carries a media query (`max-height: 500px`) and is applied
  * unless `applySmallHeightStyles` is false (`FlexibleDialog` /
@@ -43,11 +39,6 @@
         min-block-size: 100%;
         padding: var(--wb-c-modal-panel-layout-gap-default);
         box-sizing: border-box;
-    }
-
-    /* The space between the content and the footer */
-    & .hasFooter {
-        padding-block-end: var(--wb-c-modal-panel-layout-gap-default);
     }
 
     @media screen and (height <= 500px) {

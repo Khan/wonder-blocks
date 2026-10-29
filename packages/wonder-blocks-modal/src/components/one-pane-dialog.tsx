@@ -7,7 +7,7 @@ import ModalDialog from "./modal-dialog";
 import ModalPanel from "./modal-panel";
 import ModalHeader from "./modal-header";
 import {onePaneDialogSmallScreenStyles} from "../util/small-screen-styles";
-import styles from "./modal-dialog.module.css";
+import styles from "./one-pane-dialog.module.css";
 
 type Common = {
     /**

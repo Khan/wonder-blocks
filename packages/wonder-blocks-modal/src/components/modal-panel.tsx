@@ -7,7 +7,6 @@ import ModalHeader from "./modal-header";
 import ModalFooter from "./modal-footer";
 import CloseButton from "./close-button";
 import {panelSmallScreenStyles} from "../util/small-screen-styles";
-import contentStyles from "./modal-content.module.css";
 import styles from "./modal-panel.module.css";
 
 type Props = {
@@ -106,10 +105,7 @@ export default function ModalPanel({
             // it if there is a footer or close button being
             // shown. We have to do this here as the ModalContent doesn't
             // know about things being positioned around it.
-            style: [
-                !!footer && contentStyles.hasFooter,
-                mainContent.props.style,
-            ],
+            style: [!!footer && styles.hasFooter, mainContent.props.style],
         });
     }, [content, footer, scrollOverflow]);
 

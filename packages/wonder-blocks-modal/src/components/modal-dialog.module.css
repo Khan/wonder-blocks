@@ -1,5 +1,5 @@
 /**
- * ModalDialog styles (plus `OnePaneDialog`'s dialog size)
+ * ModalDialog styles
  *
  * Every rule is nested inside `.root` — the marker class on the outer padding
  * layer `View`, which carries no declarations of its own. Every element here
@@ -9,17 +9,15 @@
  * before core's, so the compound selector makes the result depend on
  * specificity instead of load order.
  *
- * `OnePaneDialog` passes `.onePaneDialog` into `ModalDialog`'s `style`, which
- * lands on the same element as `.wrapper`. Aphrodite merged that array into a
- * single class, so its precedence is reproduced by source order here, which
- * is why the rule lives in this file rather than its own: `.wrapper` first,
- * then `.onePaneDialog`.
+ * The wrapper's full-size defaults are assigned inside `:where()`, which has
+ * zero specificity, so `OnePaneDialog`'s module (passed through `style`)
+ * overrides them regardless of load order. `View` sets neither property.
  *
  * The small-screen overrides for elements a consumer can style live in
  * `util/small-screen-styles.ts` as plain style objects, not here: the
  * consumer's `style` goes through Aphrodite (unlayered and `!important`), so a
- * rule in `@layer shared` would lose to it even inside a media query. That covers the wrapper's and
- * `.onePaneDialog`'s small-screen rules; the media blocks below only target
+ * rule in `@layer shared` would lose to it even inside a media query. That
+ * covers the wrapper's small-screen rules; the media blocks below only target
  * elements consumers can't style. The media queries are the modal
  * breakpoints: `midOrSmaller` (`max-width: 767px`) and `smMinOrSmallerHeight`
  * (`max-height: 500px`). The build wraps every rule in `@layer shared { … }`.
@@ -45,16 +43,7 @@
         /* Allows propagating the text color to all the children. */
         color: var(--wb-semanticColor-core-foreground-neutral-strong);
         flex-direction: row;
-        block-size: 100%;
         position: relative;
-        inline-size: 100%;
-    }
-
-    & .onePaneDialog {
-        max-inline-size: 576px;
-        inline-size: 93.75%;
-        block-size: 81.25%;
-        max-block-size: 624px;
     }
 
     /* Ensures the dialog container uses the container size */
@@ -90,4 +79,9 @@
             padding: var(--wb-c-modal-dialog-layout-padding);
         }
     }
+}
+
+:where(.wrapper) {
+    block-size: 100%;
+    inline-size: 100%;
 }
