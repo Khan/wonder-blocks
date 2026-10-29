@@ -23,6 +23,10 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "prepublishOnly": "../../utils/publish/package-pre-publish-check.sh"
   },
+  "dependencies": {
+    "@khanacademy/wonder-blocks-core": "workspace:*",
+    "@khanacademy/wonder-blocks-tokens": "workspace:*"
+  },
   "peerDependencies": {
     "aphrodite": "catalog:",
     "react": "catalog:"
