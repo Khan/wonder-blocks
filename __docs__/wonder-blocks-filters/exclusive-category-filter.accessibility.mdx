@@ -1,0 +1,75 @@
+import {Meta} from "@storybook/addon-docs/blocks";
+
+<Meta title="Packages / Filters / ExclusiveCategoryFilter / Accessibility" />
+
+# Accessibility for ExclusiveCategoryFilter
+
+## Guidelines
+
+- Set a `label` that says what is filtered (for example, "Filter by subject"),
+  not just "Filters". The label is visible and is also the accessible name of the
+  radio group, so voice control users can say it to target the group.
+- Announce the filtered results after a change (for example, "Showing 8
+  activities") with `announceMessage` from `@khanacademy/wonder-blocks-announcer`.
+  Debounce the announcement so arrowing across options only reads the final
+  result. See the "Announcing Results" story.
+- Render the filtered results right after the filter in the DOM, so `Tab` moves
+  from the filter to the results.
+- When an icon conveys meaning the label doesn't, pass a `PhosphorIcon` or
+  `Icon` element with an `aria-label` as the option's `startIcon`. Icons without
+  an `aria-label` are decorative.
+- Keep the work done in `onChange` cheap, or debounce it: `onChange` is called
+  on every arrow key press.
+
+## About the Implementation
+
+The ExclusiveCategoryFilter component follows the [ARIA Authoring Practices
+Guide (APG) Radio Group Pattern](https://www.w3.org/WAI/ARIA/apg/patterns/radio/).
+
+### HTML Semantics and Attributes
+
+The following semantics are used:
+
+- An element with `role=radiogroup` holds the options
+- Each option is a `button` element with `role=radio`
+
+The following attributes are implemented:
+
+- `aria-labelledby` on the `radiogroup` element is set to the id of the visible
+  label
+- `aria-checked` is `true` on the selected option and `false` on the others
+- Only the selected option has `tabIndex=0`; the others have `tabIndex=-1`
+
+### Keyboard Navigation
+
+Focus and selection move together, as with native radio buttons:
+
+- `Tab` / `Shift+Tab`
+    - Moves focus into the group, onto the selected option, and then out of
+      the group. The group has a single tab stop.
+- `Right Arrow` / `Down Arrow`
+    - Moves focus to the next option and selects it
+    - If focus is on the last option, focus moves to the first option
+- `Left Arrow` / `Up Arrow`
+    - Moves focus to the previous option and selects it
+    - If focus is on the first option, focus moves to the last option
+- In right-to-left layouts, `Left Arrow` and `Right Arrow` follow the visual
+  order, so `Left Arrow` moves to the next option
+- `Space` / `Enter`
+    - No action, since the focused option is always the selected one
+
+`Home` and `End` are not supported because they aren't part of the APG radio
+group pattern.
+
+### Selection
+
+- Exactly one option is always selected. Clicking the selected option again
+  doesn't call `onChange`.
+- If `selectedValue` doesn't match any option, the first option is selected.
+
+### Visual
+
+- The selected option differs by background, border width and text color, not
+  by color alone.
+- Focus is shown with the Wonder Blocks focus ring on `:focus-visible`.
+- Options are 40px tall, above the WCAG 2.5.8 minimum target size of 24px.
