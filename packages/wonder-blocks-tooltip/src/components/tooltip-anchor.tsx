@@ -21,6 +21,7 @@ import {
 } from "../util/constants";
 
 import type {IActiveTrackerSubscriber} from "../util/active-tracker";
+import type {TooltipAnchorProps} from "../util/types";
 
 type Props = {
     /**
@@ -30,7 +31,7 @@ type Props = {
      * We allow children to be a string so that we can add tooltips to
      * words within a large block of text easily.
      */
-    children: React.ReactElement<any> | string;
+    children: React.ReactElement<TooltipAnchorProps> | string;
     /**
      * When true, if a tabindex attribute is not already present on the element
      * wrapped by the anchor, the element will be given tabindex=0 to make it
@@ -305,8 +306,8 @@ function useAnchorFocusivity(
  * The anchored content has to do one of two things for the tooltip to find
  * that element (the same contract as `Floating`'s trigger):
  *
- * - Pass the props it is given (which it needs to do anyway for
- *   `aria-describedby`) along to its element. The element that receives the
+ * - Pass the props it is given (`TooltipAnchorProps`, which it needs to do
+ *   anyway for `aria-describedby`) along to its element. The element that receives the
  *   injected `FloatingReferenceAttributeName` attribute is preferred, so a
  *   component can point the tooltip at its root element even when its ref
  *   points at an inner element (e.g. `Switch`).
@@ -387,9 +388,10 @@ const TooltipAnchor = React.forwardRef(function TooltipAnchor(
                 console.warn(
                     "Tooltip: could not find the anchored element in the DOM, " +
                         "so the tooltip can't be shown. Make sure the " +
-                        "anchored content either spreads the props it is " +
-                        "given onto its root element, or attaches the ref it " +
-                        "is given to it (e.g. with `React.forwardRef`). " +
+                        "anchored content either passes the props it is " +
+                        "given (`TooltipAnchorProps`) along to its root " +
+                        "element, or attaches the ref it is given to it " +
+                        "(e.g. with `React.forwardRef`). " +
                         "Alternatively, wrap it in a `View`.",
                 );
             }

@@ -9,6 +9,8 @@ import {
     TooltipDisappearanceDelay,
 } from "../../util/constants";
 
+import type {TooltipAnchorProps} from "../../util/types";
+
 jest.mock("../../util/active-tracker");
 
 describe("TooltipAnchor", () => {
@@ -203,6 +205,56 @@ describe("TooltipAnchor", () => {
 
         // Assert
         expect(onActiveChanged).toHaveBeenCalledWith(true);
+    });
+
+    test("resolves content that passes its TooltipAnchorProps along", async () => {
+        // Arrange
+        // The anchor declares the props it is given, instead of spreading
+        // untyped props.
+        type AnchorProps = TooltipAnchorProps & {label: string};
+        const Anchor = ({label, ...anchorProps}: AnchorProps) => (
+            <span {...anchorProps}>{label}</span>
+        );
+        const ref = React.createRef<Element>();
+
+        render(
+            <TooltipAnchor
+                ref={ref}
+                onActiveChanged={() => {}}
+                aria-describedby="tooltip-id"
+            >
+                <Anchor label="This is the anchor" />
+            </TooltipAnchor>,
+        );
+
+        // Act
+        const result = await screen.findByText("This is the anchor");
+
+        // Assert
+        expect(ref.current).toBe(result);
+    });
+
+    test("passes aria-describedby to content that passes its TooltipAnchorProps along", async () => {
+        // Arrange
+        type AnchorProps = TooltipAnchorProps & {label: string};
+        const Anchor = ({label, ...anchorProps}: AnchorProps) => (
+            <span {...anchorProps}>{label}</span>
+        );
+
+        render(
+            <TooltipAnchor
+                onActiveChanged={() => {}}
+                aria-describedby="tooltip-id"
+            >
+                <Anchor label="This is the anchor" />
+            </TooltipAnchor>,
+        );
+
+        // Act
+        const result = await screen.findByText("This is the anchor");
+
+        // Assert
+        expect(result).toHaveAttribute("aria-describedby", "tooltip-id");
     });
 
     test("prefers the element that receives the props over the element the ref points at", async () => {

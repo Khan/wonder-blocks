@@ -27,7 +27,12 @@ import {color, semanticColor} from "@khanacademy/wonder-blocks-tokens";
 import TooltipAnchor from "./tooltip-anchor";
 import TooltipBubble from "./tooltip-bubble";
 import TooltipContent from "./tooltip-content";
-import type {ContentStyle, Placement, TooltipVariant} from "../util/types";
+import type {
+    ContentStyle,
+    Placement,
+    TooltipAnchorProps,
+    TooltipVariant,
+} from "../util/types";
 
 type Props = AriaProps &
     Readonly<{
@@ -36,10 +41,15 @@ type Props = AriaProps &
          * This component will be used to position the tooltip.
          *
          * The anchored content has to either attach the ref it is given to its
-         * element, or spread the props it is given onto it, for the tooltip to
-         * be anchored to it. Strings are wrapped in an element that does both.
+         * element, or pass the props it is given (`TooltipAnchorProps`) along
+         * to it, for the tooltip to be anchored to it. Strings are wrapped in
+         * an element that does both.
+         *
+         * NOTE: TypeScript can't check which component an element passed as
+         * `children` renders, so declare `TooltipAnchorProps` in the props of
+         * custom anchors to make that contract explicit.
          */
-        children: React.ReactElement<any> | string;
+        children: React.ReactElement<TooltipAnchorProps> | string;
         /**
          * Optional title for the tooltip content.
          */
