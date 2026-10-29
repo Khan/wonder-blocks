@@ -1,12 +1,9 @@
 import * as React from "react";
 import {View} from "@khanacademy/wonder-blocks-core";
 import type {StyleType} from "@khanacademy/wonder-blocks-core";
-import {StyleSheet} from "aphrodite";
-import {semanticColor} from "@khanacademy/wonder-blocks-tokens";
-// TODO [WB-2137]: standardize media query breakpoint tokens
 import {useModalAnnouncer} from "../hooks/use-modal-announcer";
-import {modalMediaQuery} from "../util/constants";
-import theme from "../theme";
+import {wrapperSmallScreenStyles} from "../util/small-screen-styles";
+import styles from "./modal-dialog.module.css";
 
 type Props = {
     /**
@@ -84,10 +81,13 @@ const ModalDialog = React.forwardRef(function ModalDialog(
     const {ariaModalRef} = useModalAnnouncer(ref);
 
     return (
-        <View style={componentStyles.paddingLayer} data-modal-padding-layer>
+        <View
+            style={[styles.root, styles.paddingLayer]}
+            data-modal-padding-layer
+        >
             {/* WB-2197: We add a data attribute for identifying this layer on backdrop clicks */}
-            <View style={[componentStyles.wrapper, style]}>
-                {below && <View style={componentStyles.below}>{below}</View>}
+            <View style={[styles.wrapper, wrapperSmallScreenStyles, style]}>
+                {below && <View style={styles.below}>{below}</View>}
                 <View
                     role={role}
                     aria-modal="true"
@@ -95,78 +95,15 @@ const ModalDialog = React.forwardRef(function ModalDialog(
                     aria-labelledby={ariaLabelledBy}
                     aria-describedby={ariaDescribedBy}
                     ref={ariaModalRef}
-                    style={componentStyles.dialog}
+                    style={styles.dialog}
                     testId={testId}
                 >
                     {children}
                 </View>
-                {above && <View style={componentStyles.above}>{above}</View>}
+                {above && <View style={styles.above}>{above}</View>}
             </View>
         </View>
     );
-});
-
-const componentStyles = StyleSheet.create({
-    // pad outside of the shadow layer so the background color stays aligned
-    paddingLayer: {
-        alignItems: "center",
-        height: "100%",
-        justifyContent: "center",
-        width: "100%",
-        [modalMediaQuery.midOrSmaller as any]: {
-            padding: theme.dialog.layout.padding,
-        },
-    },
-    wrapper: {
-        alignItems: "stretch",
-        borderRadius: theme.root.border.radius,
-        boxShadow: theme.dialog.shadow.default,
-        // Allows propagating the text color to all the children.
-        color: semanticColor.core.foreground.neutral.strong,
-        flexDirection: "row",
-        height: "100%",
-        position: "relative",
-        width: "100%",
-        [modalMediaQuery.midOrSmaller as any]: {
-            flexDirection: "column",
-        },
-        [modalMediaQuery.smMinOrSmallerHeight as any]: {
-            overflow: "auto",
-        },
-    },
-
-    /**
-     * Ensures the dialog container uses the container size
-     */
-    dialog: {
-        width: "100%",
-        height: "100%",
-        borderRadius: theme.root.border.radius,
-        overflow: "hidden",
-        [modalMediaQuery.smMinOrSmallerHeight as any]: {
-            overflow: "auto",
-        },
-    },
-
-    above: {
-        pointerEvents: "none",
-        position: "absolute",
-        insetBlockStart: 0,
-        insetInlineStart: 0,
-        insetBlockEnd: 0,
-        insetInlineEnd: 0,
-        zIndex: 1,
-    },
-
-    below: {
-        pointerEvents: "none",
-        position: "absolute",
-        insetBlockStart: 0,
-        insetInlineStart: 0,
-        insetBlockEnd: 0,
-        insetInlineEnd: 0,
-        zIndex: -1,
-    },
 });
 
 ModalDialog.displayName = "ModalDialog";

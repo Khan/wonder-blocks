@@ -1,0 +1,39 @@
+/**
+ * FlexibleDialog styles
+ *
+ * The root rule is nested inside `.root` — the marker class on the dialog's
+ * outer `View`, which carries no declarations of its own. It overrides a
+ * property `View` sets in its own single-class rule in the same
+ * `@layer shared` (`position`), and the bundle loads this package's CSS
+ * before core's, so the compound selector makes the result depend on
+ * specificity instead of load order.
+ *
+ * The default sizes are assigned inside `:where()`, which has zero
+ * specificity, so `DrawerDialog`'s own module (passed through `styles.root`)
+ * overrides them regardless of load order. `View` sets none of them.
+ *
+ * The consumer's `styles.*` are Aphrodite styles, which `processStyleList`
+ * merges after every class here (unlayered and `!important`), so they win
+ * over this module as they did before. The build wraps every rule in
+ * `@layer shared { … }`.
+ */
+
+.root {
+    &.flexibleRoot {
+        box-shadow: var(--wb-c-modal-dialog-shadow-default);
+
+        /* Allows propagating the text color to all the children. */
+        color: var(--wb-semanticColor-core-foreground-neutral-strong);
+        overflow: auto; /* Prevent dialog from scrolling with background */
+        position: relative;
+        will-change: transform, opacity;
+    }
+}
+
+/* Default widths/heights for FlexibleDialog alone */
+:where(.flexibleRoot) {
+    block-size: auto;
+    max-block-size: 100vh;
+    max-inline-size: 576px;
+    inline-size: 93.75%;
+}

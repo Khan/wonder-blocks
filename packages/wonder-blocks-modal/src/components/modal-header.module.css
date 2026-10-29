@@ -1,0 +1,62 @@
+/**
+ * ModalHeader styles
+ *
+ * Every rule is nested inside `.root` — the marker class on the header
+ * `View`, which carries no declarations of its own. The header and
+ * breadcrumbs are `View`s and the title/subtitle are `Heading`/`BodyText`;
+ * these rules override properties those components set in single-class rules
+ * in the same `@layer shared` (`padding`, `margin`, `min-block-size`, …). The
+ * bundle loads this package's CSS before theirs, so the compound selector
+ * makes the result depend on specificity instead of load order.
+ *
+ * Base declarations come first and the media blocks after them, the order
+ * Aphrodite emitted them in. The media queries are the modal breakpoints:
+ * `midOrSmaller` (`max-width: 767px`) and `smMinOrSmallerHeight`
+ * (`max-height: 500px`). The build wraps every rule in `@layer shared { … }`.
+ *
+ * TODO [WB-2137]: standardize media query breakpoint tokens
+ */
+
+.root {
+    &.header {
+        box-shadow: 0 1px 0 var(--wb-semanticColor-core-border-neutral-subtle);
+        display: flex;
+        flex-direction: column;
+        min-block-size: 66px;
+        padding-block: var(--wb-c-modal-header-layout-padding-block);
+        padding-inline: var(--wb-c-modal-header-layout-padding-inline-default);
+        position: relative;
+        inline-size: 100%;
+    }
+
+    & .breadcrumbs {
+        color: var(--wb-semanticColor-core-foreground-neutral-default);
+        margin-block-end: var(--wb-c-modal-header-layout-gap-default);
+    }
+
+    & .title {
+        /* Prevent title from overlapping the close button */
+        padding-inline-end: var(--wb-c-modal-header-layout-gap-title-default);
+    }
+
+    & .subtitle {
+        color: var(--wb-semanticColor-core-foreground-neutral-default);
+        margin-block-start: var(--wb-c-modal-header-layout-gap-default);
+    }
+
+    @media screen and (width <= 767px) {
+        &.header {
+            padding-inline: var(--wb-c-modal-header-layout-padding-inline-small);
+        }
+
+        & .title {
+            padding-inline-end: var(--wb-c-modal-header-layout-gap-title-small);
+        }
+    }
+
+    @media screen and (height <= 500px) {
+        &.header {
+            min-block-size: unset;
+        }
+    }
+}

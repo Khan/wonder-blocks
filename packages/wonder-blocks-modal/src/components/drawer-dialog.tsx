@@ -1,10 +1,8 @@
 import * as React from "react";
-import {StyleSheet} from "aphrodite";
 import {
     useDirectionDetection,
     type StyleType,
 } from "@khanacademy/wonder-blocks-core";
-import {breakpoint, semanticColor} from "@khanacademy/wonder-blocks-tokens";
 import type {DrawerAlignment} from "../util/types";
 import {
     useDrawerContext,
@@ -19,7 +17,11 @@ import {
     DRAWER_SLIDE_OFFSET,
 } from "../util/drawer-animation";
 import FlexibleDialog from "./flexible-dialog";
-import theme from "../theme";
+import {
+    drawerBlockEndSmallScreenStyles,
+    drawerSmallScreenStyles,
+} from "../util/small-screen-styles";
+import componentStyles from "./drawer-dialog.module.css";
 
 // One of these three props is required for labeling the dialog:
 // `title`, `aria-label`, or `aria-labelledby`.
@@ -176,15 +178,21 @@ const DrawerDialog = React.forwardRef(function DrawerDialog(
             ref={ref}
             styles={{
                 root: [
-                    componentStyles.root, // Aphrodite class
-                    componentStyles[alignment], // Aphrodite class
+                    componentStyles.root, // CSS Modules class
+                    componentStyles.drawerRoot, // CSS Modules class
+                    alignmentStyles[alignment], // CSS Modules class
                     animationStyle, // plain object
+                    // Plain object, so it keeps beating a consumer's base
+                    // styles on small screens (see small-screen-styles.ts).
+                    alignment === "blockEnd"
+                        ? drawerBlockEndSmallScreenStyles
+                        : drawerSmallScreenStyles,
                     styles?.root, // consumer-provided override
                 ].filter(Boolean),
                 dialog: [
                     alignment === "blockEnd"
-                        ? componentStyles.dialogBlockEnd // Aphrodite class
-                        : componentStyles.dialogDefault, // Aphrodite class
+                        ? componentStyles.dialogBlockEnd // CSS Modules class
+                        : componentStyles.dialogDefault, // CSS Modules class
                     styles?.dialog, // consumer-provided override
                 ].filter(Boolean),
                 panel: styles?.panel, // consumer-provided override
@@ -194,6 +202,14 @@ const DrawerDialog = React.forwardRef(function DrawerDialog(
         />
     );
 });
+
+// Per-alignment root overrides. Only `blockEnd` changes the root; the inline
+// alignments keep the drawer defaults.
+const alignmentStyles: Record<DrawerAlignment, string | undefined> = {
+    inlineStart: undefined,
+    inlineEnd: undefined,
+    blockEnd: componentStyles.blockEnd,
+};
 
 /** The resting transform, shared by all alignments. */
 const REST_TRANSFORM = "translate3d(0, 0, 0)";
@@ -307,52 +323,6 @@ const DEFAULT_ANIMATION_STYLES: Record<
 // Positioning only — independent of animation state, so this is computed once
 // rather than per render. Aphrodite classes (StyleSheet.create), unlike the
 // animation styles above.
-const componentStyles = StyleSheet.create({
-    root: {
-        boxShadow: theme.dialog.shadow.default,
-        // Allows propagating the text color to all the children.
-        color: semanticColor.core.foreground.neutral.strong,
-        overflow: "auto", // Prevent dialog from scrolling with background
-        position: "relative",
-        willChange: "transform, opacity",
-
-        // Override FlexibleDialog defaults for drawer usage
-        height: "100%",
-        minBlockSize: "100vh",
-
-        // Use common widths for mininum/maximum
-        minInlineSize: breakpoint.width.xsMax,
-        maxInlineSize: breakpoint.width.smMax,
-        width: "100%",
-
-        // Unset minimums on smaller screens
-        [breakpoint.mediaQuery.smOrSmaller]: {
-            minInlineSize: "unset",
-            maxInlineSize: "unset",
-        },
-    },
-    // Override the minBlockSize and minInlineSize on View, and allow blockEnd
-    // content to provide its own height.
-    dialogDefault: {
-        minBlockSize: "100vh",
-        minInlineSize: "unset",
-    },
-    dialogBlockEnd: {
-        minBlockSize: "unset",
-        minInlineSize: "unset",
-    },
-    inlineStart: {},
-    inlineEnd: {},
-    blockEnd: {
-        height: "auto",
-        minBlockSize: "unset",
-        maxInlineSize: "unset",
-
-        [breakpoint.mediaQuery.smOrSmaller]: {
-            height: "auto",
-        },
-    },
-});
 
 DrawerDialog.displayName = "DrawerDialog";
 
