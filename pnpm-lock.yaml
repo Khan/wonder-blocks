@@ -1011,9 +1011,6 @@ importers:
       '@khanacademy/wonder-blocks-modal':
         specifier: workspace:*
         version: link:../wonder-blocks-modal
-      '@khanacademy/wonder-blocks-pill':
-        specifier: workspace:*
-        version: link:../wonder-blocks-pill
       '@khanacademy/wonder-blocks-search-field':
         specifier: workspace:*
         version: link:../wonder-blocks-search-field
