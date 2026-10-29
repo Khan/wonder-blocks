@@ -9,7 +9,10 @@ import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import type {PhosphorIconAsset} from "@khanacademy/wonder-blocks-icon";
 import {focusStyles} from "@khanacademy/wonder-blocks-styles";
 import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
-import {styles as typographyStyles} from "@khanacademy/wonder-blocks-typography";
+import {
+    BodyText,
+    styles as typographyStyles,
+} from "@khanacademy/wonder-blocks-typography";
 
 export type ExclusiveCategoryFilterOption = {
     /**
@@ -48,7 +51,7 @@ type Props = {
      * Here is how the id is used for the different elements in the component:
      * - The root will have an id of `${id}`
      * - The label will have an id formatted as `${id}-label`
-     * - Each option will have an id formatted as `${id}-${value}`
+     * - Each option will have an id formatted as `${id}-option-${index}`
      */
     id?: string;
     /**
@@ -73,7 +76,7 @@ type Props = {
      * selected.
      *
      * If it doesn't match any option, the first option is selected by
-     * default. `onChange` is not called in that case.
+     * default. `onChange` is not called until the user chooses an option.
      */
     selectedValue: string;
     /**
@@ -98,7 +101,6 @@ type Props = {
 };
 
 const StyledButton = addStyle("button");
-const StyledSpan = addStyle("span");
 
 /**
  * Render the icon for an option. Icon assets are rendered with
@@ -157,16 +159,18 @@ export const ExclusiveCategoryFilter = React.forwardRef(
         // If the selected value doesn't match any option, the first option is
         // selected by default so there is always exactly one selected option.
         const selectedIndex = matchingIndex === -1 ? 0 : matchingIndex;
-        const effectiveSelectedValue = options[selectedIndex]?.value;
 
         const selectOption = React.useCallback(
             (value: string) => {
                 optionRefs.current[value]?.focus();
-                if (value !== effectiveSelectedValue) {
+                // Compare with the `selectedValue` prop rather than the
+                // option shown as selected: when the prop matches no option,
+                // choosing the first option still tells the parent.
+                if (value !== selectedValue) {
                     onChange(value);
                 }
             },
-            [onChange, effectiveSelectedValue],
+            [onChange, selectedValue],
         );
 
         const handleKeyDown = React.useCallback(
@@ -174,7 +178,12 @@ export const ExclusiveCategoryFilter = React.forwardRef(
                 const currentIndex = options.findIndex(
                     (option) => option.value === event.currentTarget.value,
                 );
-                const isRtl = !!event.currentTarget.closest("[dir=rtl]");
+                // Use the nearest element with a `dir` attribute, so a
+                // `dir="ltr"` container inside an RTL page is respected.
+                const isRtl =
+                    event.currentTarget
+                        .closest("[dir]")
+                        ?.getAttribute("dir") === "rtl";
 
                 let nextIndex: number;
                 switch (event.key) {
@@ -215,12 +224,14 @@ export const ExclusiveCategoryFilter = React.forwardRef(
                 testId={testId}
                 style={[styles.root, stylesProp?.root]}
             >
-                <StyledSpan
+                <BodyText
+                    tag="span"
+                    weight="semi"
                     id={labelId}
                     style={[styles.label, stylesProp?.label]}
                 >
                     {label}
-                </StyledSpan>
+                </BodyText>
                 <View
                     role="radiogroup"
                     aria-labelledby={labelId}
@@ -238,7 +249,7 @@ export const ExclusiveCategoryFilter = React.forwardRef(
                                 ref={(element: HTMLButtonElement | null) => {
                                     optionRefs.current[option.value] = element;
                                 }}
-                                id={`${uniqueId}-${option.value}`}
+                                id={`${uniqueId}-option-${index}`}
                                 data-testid={optionTestId}
                                 type="button"
                                 role="radio"
@@ -280,7 +291,6 @@ const styles = StyleSheet.create({
         gap: sizing.size_080,
     },
     label: {
-        ...typographyStyles.BodyTextMediumSemiWeight,
         color: semanticColor.core.foreground.neutral.default,
     },
     options: {
