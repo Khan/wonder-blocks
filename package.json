@@ -72,7 +72,6 @@
     "@khanacademy/wonder-blocks-labeled-field": "workspace:*",
     "@khanacademy/wonder-blocks-link": "workspace:*",
     "@khanacademy/wonder-blocks-modal": "workspace:*",
-    "@khanacademy/wonder-blocks-pill": "workspace:*",
     "@khanacademy/wonder-blocks-popover": "workspace:*",
     "@khanacademy/wonder-blocks-progress-spinner": "workspace:*",
     "@khanacademy/wonder-blocks-search-field": "workspace:*",

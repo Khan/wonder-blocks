@@ -51,7 +51,6 @@ import {
     GemIcon,
     StreakIcon,
 } from "@khanacademy/wonder-blocks-icon";
-import Pill from "@khanacademy/wonder-blocks-pill";
 import {Popover, PopoverContent} from "@khanacademy/wonder-blocks-popover";
 import {DatePicker} from "@khanacademy/wonder-blocks-date-picker";
 import {CircularSpinner} from "@khanacademy/wonder-blocks-progress-spinner";
@@ -375,7 +374,7 @@ export const typographyAndIconsComponents = [
 ];
 
 /**
- * Feedback components (Banner, badges, CircularSpinner, Pill)
+ * Feedback components (Banner, badges, CircularSpinner)
  */
 export const feedbackComponents = [
     createComponentConfig({
@@ -550,40 +549,6 @@ export const feedbackComponents = [
         defaultProps: {},
         states: [],
         package: "wonder-blocks-progress-spinner",
-    }),
-    createComponentConfig({
-        name: "Pill",
-        Component: Pill,
-        variantProps: [
-            {
-                propName: "size",
-                options: ["small", "medium", "large"],
-            },
-            {
-                propName: "kind",
-                options: [
-                    "neutral",
-                    "accent",
-                    "info",
-                    "success",
-                    "warning",
-                    "critical",
-                    "transparent",
-                ],
-            },
-        ],
-        defaultProps: {
-            children: "Pill",
-        },
-        states: [
-            {
-                name: "Clickable",
-                props: {
-                    onClick: () => {},
-                },
-            },
-        ],
-        package: "wonder-blocks-pill",
     }),
 ];
 
