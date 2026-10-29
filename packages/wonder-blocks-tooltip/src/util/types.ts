@@ -1,9 +1,11 @@
 import * as React from "react";
 
-import type {StyleType} from "@khanacademy/wonder-blocks-core";
+import type {
+    FloatingReferenceProps,
+    StyleType,
+} from "@khanacademy/wonder-blocks-core";
 import type {State as PopperState} from "@popperjs/core";
 import type {CSSProperties} from "aphrodite";
-import type {FloatingReferenceProps} from "@khanacademy/wonder-blocks-core";
 
 export type getRefFn = (
     arg1?: React.Component<any> | Element | null | undefined,
