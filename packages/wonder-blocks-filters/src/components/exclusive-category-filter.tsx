@@ -262,6 +262,7 @@ export const ExclusiveCategoryFilter = React.forwardRef(
                                 onClick={() => selectOption(option.value)}
                                 onKeyDown={handleKeyDown}
                                 style={[
+                                    typographyStyles.BodyTextMediumSemiWeight,
                                     styles.option,
                                     checked && styles.selected,
                                     stylesProp?.option,
@@ -299,16 +300,19 @@ const styles = StyleSheet.create({
         gap: sizing.size_080,
     },
     option: {
-        ...typographyStyles.BodyTextMediumSemiWeight,
         display: "inline-flex",
         alignItems: "center",
         gap: sizing.size_080,
         boxSizing: "border-box",
-        blockSize: sizing.size_400,
+        // A minimum height (rather than a fixed one) and a maximum width
+        // let a label wider than the container wrap inside the pill instead
+        // of overflowing sideways.
+        minBlockSize: sizing.size_400,
+        maxInlineSize: "100%",
         margin: 0,
-        paddingBlock: 0,
+        paddingBlock: sizing.size_080,
         paddingInline: sizing.size_160,
-        whiteSpace: "nowrap",
+        textAlign: "start",
         cursor: "pointer",
         color: semanticColor.core.foreground.neutral.subtle,
         backgroundColor: semanticColor.core.transparent,
