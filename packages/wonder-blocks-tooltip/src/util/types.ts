@@ -3,6 +3,7 @@ import * as React from "react";
 import type {StyleType} from "@khanacademy/wonder-blocks-core";
 import type {State as PopperState} from "@popperjs/core";
 import type {CSSProperties} from "aphrodite";
+import type {FloatingReferenceProps} from "@khanacademy/wonder-blocks-core";
 
 export type getRefFn = (
     arg1?: React.Component<any> | Element | null | undefined,
@@ -17,6 +18,32 @@ export type Offset = {
 };
 
 export type Placement = "top" | "bottom" | "right" | "left";
+
+/**
+ * The props that `Tooltip` injects into its anchored content (`children`).
+ *
+ * A custom component used as a tooltip anchor should include these in its
+ * props and pass them along to its root element (unless it attaches the ref it
+ * is given to that element instead), e.g.:
+ *
+ * ```tsx
+ * type Props = TooltipAnchorProps & {label: string};
+ *
+ * function Badge({label, ...anchorProps}: Props) {
+ *     return <View {...anchorProps}>{label}</View>;
+ * }
+ * ```
+ *
+ * Declaring them (rather than spreading untyped props) documents that the
+ * component can be used as an anchor, and lets TypeScript check that only
+ * these props are passed along.
+ */
+export type TooltipAnchorProps = FloatingReferenceProps & {
+    /**
+     * Links the anchored element to the tooltip bubble for screen readers.
+     */
+    "aria-describedby"?: string;
+};
 
 /**
  * The visual style of the tooltip.
