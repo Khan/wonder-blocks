@@ -2,6 +2,8 @@ import * as React from "react";
 import {render, screen} from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import {PropsFor} from "@khanacademy/wonder-blocks-core";
+import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
+import starIcon from "@phosphor-icons/core/fill/star-fill.svg";
 import {
     ExclusiveCategoryFilter,
     ExclusiveCategoryFilterOption,
@@ -433,5 +435,64 @@ describe("ExclusiveCategoryFilter", () => {
                 expect(onChange).not.toHaveBeenCalled();
             },
         );
+    });
+
+    describe("Icons", () => {
+        it("should keep the label as the name when the icon is an asset", async () => {
+            // Arrange
+            render(
+                <ExclusiveCategoryFilter
+                    label="Filter tools"
+                    options={[
+                        {value: "all", label: "All"},
+                        {
+                            value: "favorites",
+                            label: "Favorites",
+                            startIcon: starIcon,
+                        },
+                    ]}
+                    selectedValue="all"
+                    onChange={jest.fn()}
+                />,
+            );
+
+            // Act
+            const radio = await screen.findByRole("radio", {name: "Favorites"});
+
+            // Assert
+            expect(radio).toBeInTheDocument();
+        });
+
+        it("should include a labeled icon element in the option's name", async () => {
+            // Arrange
+            render(
+                <ExclusiveCategoryFilter
+                    label="Filter tools"
+                    options={[
+                        {value: "all", label: "All"},
+                        {
+                            value: "starred",
+                            label: "Tools",
+                            startIcon: (
+                                <PhosphorIcon
+                                    icon={starIcon}
+                                    aria-label="Starred"
+                                />
+                            ),
+                        },
+                    ]}
+                    selectedValue="all"
+                    onChange={jest.fn()}
+                />,
+            );
+
+            // Act
+            const radio = await screen.findByRole("radio", {
+                name: "Starred Tools",
+            });
+
+            // Assert
+            expect(radio).toBeInTheDocument();
+        });
     });
 });

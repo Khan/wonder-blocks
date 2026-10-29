@@ -5,7 +5,11 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 import {addStyle, keys, StyleType, View} from "@khanacademy/wonder-blocks-core";
-import {sizing} from "@khanacademy/wonder-blocks-tokens";
+import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
+import type {PhosphorIconAsset} from "@khanacademy/wonder-blocks-icon";
+import {focusStyles} from "@khanacademy/wonder-blocks-styles";
+import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
+import {styles as typographyStyles} from "@khanacademy/wonder-blocks-typography";
 
 export type ExclusiveCategoryFilterOption = {
     /**
@@ -18,6 +22,16 @@ export type ExclusiveCategoryFilterOption = {
      * name.
      */
     label: string;
+    /**
+     * Optional icon shown before the label.
+     *
+     * - A Phosphor icon asset (e.g. an import from `@phosphor-icons/core`) is
+     *   rendered as a decorative `PhosphorIcon`.
+     * - A `PhosphorIcon` or `Icon` element is rendered as passed. Give it an
+     *   `aria-label` when the icon adds meaning the label doesn't; it then
+     *   becomes part of the option's accessible name.
+     */
+    startIcon?: PhosphorIconAsset | React.ReactElement;
     /**
      * Optional test ID for e2e testing. If not set, the option uses
      * `${testId}-${value}` when the component has a `testId`.
@@ -85,6 +99,22 @@ type Props = {
 
 const StyledButton = addStyle("button");
 const StyledSpan = addStyle("span");
+
+/**
+ * Render the icon for an option. Icon assets are rendered with
+ * `PhosphorIcon`; icon elements are rendered as passed, with the small size
+ * as the default.
+ */
+function renderStartIcon(
+    startIcon: PhosphorIconAsset | React.ReactElement,
+): React.ReactNode {
+    if (typeof startIcon === "string") {
+        return <PhosphorIcon icon={startIcon} size="small" />;
+    }
+    return React.cloneElement(startIcon, {
+        size: startIcon.props.size ?? "small",
+    });
+}
 
 /**
  * A group of options for filtering a list by one category at a time. Exactly
@@ -185,7 +215,10 @@ export const ExclusiveCategoryFilter = React.forwardRef(
                 testId={testId}
                 style={[styles.root, stylesProp?.root]}
             >
-                <StyledSpan id={labelId} style={stylesProp?.label}>
+                <StyledSpan
+                    id={labelId}
+                    style={[styles.label, stylesProp?.label]}
+                >
                     {label}
                 </StyledSpan>
                 <View
@@ -217,8 +250,14 @@ export const ExclusiveCategoryFilter = React.forwardRef(
                                 value={option.value}
                                 onClick={() => selectOption(option.value)}
                                 onKeyDown={handleKeyDown}
-                                style={stylesProp?.option}
+                                style={[
+                                    styles.option,
+                                    checked && styles.selected,
+                                    stylesProp?.option,
+                                ]}
                             >
+                                {option.startIcon &&
+                                    renderStartIcon(option.startIcon)}
                                 {option.label}
                             </StyledButton>
                         );
@@ -229,13 +268,58 @@ export const ExclusiveCategoryFilter = React.forwardRef(
     },
 );
 
+/**
+ * Inline padding for options with a medium border. The extra border width is
+ * taken off the padding so every state keeps the same size and the row
+ * doesn't reflow on hover, press or selection.
+ */
+const mediumBorderPaddingInline = `calc(${sizing.size_160} - (${border.width.medium} - ${border.width.thin}))`;
+
 const styles = StyleSheet.create({
     root: {
         gap: sizing.size_080,
+    },
+    label: {
+        ...typographyStyles.BodyTextMediumSemiWeight,
+        color: semanticColor.core.foreground.neutral.default,
     },
     options: {
         flexDirection: "row",
         flexWrap: "wrap",
         gap: sizing.size_080,
+    },
+    option: {
+        ...typographyStyles.BodyTextMediumSemiWeight,
+        display: "inline-flex",
+        alignItems: "center",
+        gap: sizing.size_080,
+        boxSizing: "border-box",
+        blockSize: sizing.size_400,
+        margin: 0,
+        paddingBlock: 0,
+        paddingInline: sizing.size_160,
+        whiteSpace: "nowrap",
+        cursor: "pointer",
+        color: semanticColor.core.foreground.neutral.subtle,
+        backgroundColor: semanticColor.core.transparent,
+        border: `${border.width.thin} solid ${semanticColor.core.border.neutral.subtle}`,
+        borderRadius: border.radius.radius_240,
+        ...focusStyles.focus,
+        // Hover and press styles only apply to options that aren't selected.
+        [":hover:not([aria-checked='true'])" as any]: {
+            borderColor: semanticColor.core.border.neutral.default,
+        },
+        [":active:not([aria-checked='true'])" as any]: {
+            borderWidth: border.width.medium,
+            borderColor: semanticColor.core.border.neutral.default,
+            paddingInline: mediumBorderPaddingInline,
+        },
+    },
+    selected: {
+        color: semanticColor.core.foreground.instructive.default,
+        backgroundColor: semanticColor.core.background.instructive.subtle,
+        borderWidth: border.width.medium,
+        borderColor: semanticColor.core.border.instructive.default,
+        paddingInline: mediumBorderPaddingInline,
     },
 });
