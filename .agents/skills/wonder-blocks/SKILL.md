@@ -121,7 +121,7 @@ Always reach for tokens rather than hardcoded values. The two main namespaces:
 
 **`semanticColor`** — the right choice for most UI work. Tokens like
 `semanticColor.core.background.base.default`, `semanticColor.core.foreground.neutral.strong`,
-`semanticColor.core.border.neutral.default`, `semanticColor.feedback.success.background`.
+`semanticColor.core.border.neutral.default`, `semanticColor.feedback.success.subtle.background`.
 These automatically adapt to themes. Use these values with the appropriate CSS properties.
 
 **`sizing`** — Use `sizing` tokens for spacing. These values use `rem` values so
@@ -146,13 +146,13 @@ borderRadius: 4,
 
 **`font`** — Always use font tokens instead of hardcoded values for weight, size, and line-height.
 
-- Weight: `font.body.weight.regular`, `font.body.weight.bold`
+- Weight: `font.weight.regular`, `font.weight.bold`
 - Size: `font.body.size.medium`, `font.heading.size.large`, etc.
 - Line height: `font.body.lineHeight.medium`, etc.
 
 ```ts
 // ✅ correct
-fontWeight: font.body.weight.bold,
+fontWeight: font.weight.bold,
 
 // ❌ avoid
 fontWeight: "700",
