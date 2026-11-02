@@ -296,6 +296,8 @@ const styles = StyleSheet.create({
     },
     label: {
         color: semanticColor.core.foreground.neutral.default,
+        // Break long words so they don't overflow the container.
+        overflowWrap: "anywhere",
     },
     options: {
         flexDirection: "row",
@@ -307,6 +309,8 @@ const styles = StyleSheet.create({
         alignItems: "center",
         gap: sizing.size_080,
         boxSizing: "border-box",
+        // Break long words so they stay inside the pill.
+        overflowWrap: "anywhere",
         // A minimum height (rather than a fixed one) and a maximum width
         // let a label wider than the container wrap inside the pill instead
         // of overflowing sideways.
