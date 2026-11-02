@@ -15,6 +15,7 @@ export default {
     value: string;
     label: string;
     startIcon?: PhosphorIconAsset | React.ReactElement;
+    id?: string;
     testId?: string;
 }`,
             },
