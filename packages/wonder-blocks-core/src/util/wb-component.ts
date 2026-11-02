@@ -48,7 +48,7 @@ export type WBComponentProps = {
  */
 export function getWBComponentProps(
     name: string,
-    props?: WBComponentProps | null,
+    props?: WBComponentProps,
 ): Required<WBComponentProps> {
     return {
         [WB_COMPONENT_ATTRIBUTE]: props?.[WB_COMPONENT_ATTRIBUTE] || name,
