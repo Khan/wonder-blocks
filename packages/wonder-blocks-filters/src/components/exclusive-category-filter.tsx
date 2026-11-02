@@ -1,7 +1,3 @@
-/* eslint-disable @khanacademy/wonder-blocks/no-raw-button */
-// ExclusiveCategoryFilter options are radio buttons rendered with
-// addStyle("button") so the component controls the radio group semantics and
-// keyboard interactions.
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 import {addStyle, keys, StyleType, View} from "@khanacademy/wonder-blocks-core";
@@ -36,6 +32,11 @@ export type ExclusiveCategoryFilterOption = {
      */
     startIcon?: PhosphorIconAsset | React.ReactElement;
     /**
+     * Optional id for the option. If not set, the option uses
+     * `${id}-option-${index}`.
+     */
+    id?: string;
+    /**
      * Optional test ID for e2e testing. If not set, the option uses
      * `${testId}-${value}` when the component has a `testId`.
      */
@@ -51,7 +52,8 @@ type Props = {
      * Here is how the id is used for the different elements in the component:
      * - The root will have an id of `${id}`
      * - The label will have an id formatted as `${id}-label`
-     * - Each option will have an id formatted as `${id}-option-${index}`
+     * - Each option will have an id formatted as `${id}-option-${index}`,
+     *   unless the option sets its own `id`.
      */
     id?: string;
     /**
@@ -244,12 +246,16 @@ export const ExclusiveCategoryFilter = React.forwardRef(
                             (testId ? `${testId}-${option.value}` : undefined);
 
                         return (
+                            // The options are radio buttons, so the component
+                            // controls the radio group semantics and keyboard
+                            // interactions instead of using a WB button.
+                            // eslint-disable-next-line @khanacademy/wonder-blocks/no-raw-button
                             <StyledButton
                                 key={option.value}
                                 ref={(element: HTMLButtonElement | null) => {
                                     optionRefs.current[option.value] = element;
                                 }}
-                                id={`${uniqueId}-option-${index}`}
+                                id={option.id ?? `${uniqueId}-option-${index}`}
                                 data-testid={optionTestId}
                                 type="button"
                                 role="radio"
