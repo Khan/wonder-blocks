@@ -119,6 +119,29 @@ describe("ExclusiveCategoryFilter", () => {
         });
     });
 
+    describe("Ref", () => {
+        it("should forward the ref to the root element", async () => {
+            // Arrange
+            const ref = React.createRef<HTMLDivElement>();
+            render(
+                <ExclusiveCategoryFilter
+                    ref={ref}
+                    testId="filter-root"
+                    label="Filter by subject"
+                    options={options}
+                    selectedValue="all"
+                    onChange={jest.fn()}
+                />,
+            );
+
+            // Act
+            const root = await screen.findByTestId("filter-root");
+
+            // Assert
+            expect(ref.current).toBe(root);
+        });
+    });
+
     describe("Ids and test ids", () => {
         it("should use the id for the root", async () => {
             // Arrange
@@ -146,6 +169,28 @@ describe("ExclusiveCategoryFilter", () => {
 
             // Assert
             expect(radio).toHaveAttribute("id", "filter-option-1");
+        });
+
+        it("should use the option's own id when set", async () => {
+            // Arrange
+            render(
+                <ExclusiveCategoryFilter
+                    id="filter"
+                    label="Filter by subject"
+                    options={[
+                        {value: "all", label: "All"},
+                        {value: "math", label: "Math", id: "custom-math"},
+                    ]}
+                    selectedValue="all"
+                    onChange={jest.fn()}
+                />,
+            );
+
+            // Act
+            const radio = await screen.findByRole("radio", {name: "Math"});
+
+            // Assert
+            expect(radio).toHaveAttribute("id", "custom-math");
         });
 
         it("should base the option test ids on the testId", async () => {
