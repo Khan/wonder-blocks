@@ -89,18 +89,22 @@ export default {
 export const Default: StoryComponentType = {};
 
 /**
- * Options can show an icon before the label with `startIcon`.
+ * Options can show an icon before the label with `startIcon`: a
+ * `PhosphorIcon` or `Icon` element, rendered as passed.
  *
- * - A Phosphor icon asset is rendered as a decorative icon.
- * - An icon element (`PhosphorIcon` or `Icon`) is rendered as passed. Give it
- *   an `aria-label` when it adds meaning the label doesn't; it then becomes
- *   part of the option's accessible name.
+ * Icons are decorative unless they have an `aria-label`. Give the icon one
+ * when it adds meaning the label doesn't; it then becomes part of the option's
+ * accessible name.
  */
 export const WithIcons: StoryComponentType = {
     args: {
         label: "Filter tools by category",
         options: [
-            {value: "all", label: "All", startIcon: IconMappings.cookie},
+            {
+                value: "all",
+                label: "All",
+                startIcon: <PhosphorIcon icon={IconMappings.cookie} />,
+            },
             {
                 value: "favorites",
                 label: "Tools",

@@ -14,7 +14,7 @@ export default {
                 detail: `{
     value: string;
     label: string;
-    startIcon?: PhosphorIconAsset | React.ReactElement;
+    startIcon?: React.ReactElement;
     id?: string;
     testId?: string;
 }`,
