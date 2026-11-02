@@ -209,10 +209,7 @@ export const ExclusiveCategoryFilter = React.forwardRef(
                             (testId ? `${testId}-${option.value}` : undefined);
 
                         return (
-                            // The options are radio buttons, so the component
-                            // controls the radio group semantics and keyboard
-                            // interactions instead of using a WB button.
-                            // eslint-disable-next-line @khanacademy/wonder-blocks/no-raw-button
+                            // eslint-disable-next-line @khanacademy/wonder-blocks/no-raw-button -- The options are radio buttons, so the component controls the radio group semantics and keyboard interactions instead of using a WB button.
                             <StyledButton
                                 key={option.value}
                                 ref={(element: HTMLButtonElement | null) => {
