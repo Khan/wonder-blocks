@@ -33,7 +33,7 @@ const generateRows = (rtl: boolean = false) => [
                 {
                     value: "all",
                     label: rtl ? rtlText : "All",
-                    startIcon: IconMappings.cookie,
+                    startIcon: <PhosphorIcon icon={IconMappings.cookie} />,
                 },
                 {
                     value: "math",

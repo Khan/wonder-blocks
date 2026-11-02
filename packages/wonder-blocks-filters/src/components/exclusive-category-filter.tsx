@@ -1,8 +1,6 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 import {addStyle, keys, StyleType, View} from "@khanacademy/wonder-blocks-core";
-import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
-import type {PhosphorIconAsset} from "@khanacademy/wonder-blocks-icon";
 import {focusStyles} from "@khanacademy/wonder-blocks-styles";
 import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {
@@ -22,15 +20,14 @@ export type ExclusiveCategoryFilterOption = {
      */
     label: string;
     /**
-     * Optional icon shown before the label.
+     * Optional icon shown before the label: a `PhosphorIcon` or `Icon`
+     * element, rendered as passed with the small size as the default.
      *
-     * - A Phosphor icon asset (e.g. an import from `@phosphor-icons/core`) is
-     *   rendered as a decorative `PhosphorIcon`.
-     * - A `PhosphorIcon` or `Icon` element is rendered as passed. Give it an
-     *   `aria-label` when the icon adds meaning the label doesn't; it then
-     *   becomes part of the option's accessible name.
+     * The icon is decorative unless it has an `aria-label`. Give it one when
+     * the icon adds meaning the label doesn't; it then becomes part of the
+     * option's accessible name.
      */
-    startIcon?: PhosphorIconAsset | React.ReactElement;
+    startIcon?: React.ReactElement;
     /**
      * Optional id for the option. If not set, the option uses
      * `${id}-option-${index}`.
@@ -105,16 +102,10 @@ type Props = {
 const StyledButton = addStyle("button");
 
 /**
- * Render the icon for an option. Icon assets are rendered with
- * `PhosphorIcon`; icon elements are rendered as passed, with the small size
- * as the default.
+ * Render the icon for an option as passed, with the small size as the
+ * default.
  */
-function renderStartIcon(
-    startIcon: PhosphorIconAsset | React.ReactElement,
-): React.ReactNode {
-    if (typeof startIcon === "string") {
-        return <PhosphorIcon icon={startIcon} size="small" />;
-    }
+function renderStartIcon(startIcon: React.ReactElement): React.ReactNode {
     return React.cloneElement(startIcon, {
         size: startIcon.props.size ?? "small",
     });

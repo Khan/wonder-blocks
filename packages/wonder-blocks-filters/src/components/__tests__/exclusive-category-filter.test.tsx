@@ -522,7 +522,7 @@ describe("ExclusiveCategoryFilter", () => {
     });
 
     describe("Icons", () => {
-        it("should keep the label as the name when the icon is an asset", async () => {
+        it("should keep the label as the name when the icon has no label", async () => {
             // Arrange
             render(
                 <ExclusiveCategoryFilter
@@ -532,7 +532,7 @@ describe("ExclusiveCategoryFilter", () => {
                         {
                             value: "favorites",
                             label: "Favorites",
-                            startIcon: starIcon,
+                            startIcon: <PhosphorIcon icon={starIcon} />,
                         },
                     ]}
                     selectedValue="all"
