@@ -86,7 +86,14 @@ export default {
  * together. The component is controlled: keep the selected value in state
  * and update it in `onChange`.
  */
-export const Default: StoryComponentType = {};
+export const Default: StoryComponentType = {
+    parameters: {
+        chromatic: {
+            // The snapshot state sheet covers the default options.
+            disableSnapshot: true,
+        },
+    },
+};
 
 /**
  * Options can show an icon before the label with `startIcon`: a

@@ -23,6 +23,8 @@ const generateRows = (rtl: boolean = false) => [
             options: [
                 {value: "all", label: rtl ? rtlText : "All"},
                 {value: "math", label: rtl ? rtlText : "Math"},
+                {value: "science", label: rtl ? rtlText : "Science"},
+                {value: "reading", label: rtl ? rtlText : "Reading & vocab"},
             ],
         },
     },
@@ -82,7 +84,7 @@ const generateRows = (rtl: boolean = false) => [
 const rows = generateRows();
 const rtlRows = generateRows(true);
 
-// Each cell shows one selected option ("All") and one unselected option.
+// Each cell shows the selected option ("All") next to unselected options.
 const columns = [
     {
         name: "Selected + unselected",
