@@ -19,6 +19,7 @@ import {
 import SearchField from "@khanacademy/wonder-blocks-search-field";
 import {BodyText} from "@khanacademy/wonder-blocks-typography";
 import {useActionScheduler} from "@khanacademy/wonder-blocks-timing";
+import {useWonderBlocksI18n} from "@khanacademy/wonder-blocks-config";
 
 import type {
     AriaProps,
@@ -28,7 +29,6 @@ import type {
 import {Placement} from "@popperjs/core";
 import DropdownCoreVirtualized from "./dropdown-core-virtualized";
 import SeparatorItem from "./separator-item";
-import {defaultLabels} from "../util/constants";
 import type {DropdownItem} from "../util/types";
 import DropdownPopper from "./dropdown-popper";
 import {debounce, getLabel, getStringForKey} from "../util/helpers";
@@ -174,6 +174,9 @@ type ExportProps = Readonly<{
     initialFocusedIndex?: number;
     /**
      * The object containing the custom labels used inside this component.
+     *
+     * This overrides the default labels provided by `WonderBlocksConfigProvider`
+     * (in English by default).
      */
     labels?: LabelsValues;
     /**
@@ -223,19 +226,14 @@ const createItemRefs = (items: Array<DropdownItem>): ItemRefs => {
     return itemRefs;
 };
 
-const defaultPropLabels: LabelsValues = {
-    clearSearch: defaultLabels.clearSearch,
-    filter: defaultLabels.filter,
-    noResults: defaultLabels.noResults,
-    someResults: defaultLabels.someSelected,
-};
-
 /**
  * A core dropdown component that takes an opener and children to display as
  * part of the dropdown menu. Renders the dropdown as a portal to avoid clipping
  * in overflow: auto containers.
  */
 const DropdownCore = (props: Props) => {
+    const {strings} = useWonderBlocksI18n();
+
     const {
         "aria-invalid": ariaInvalid,
         "aria-label": ariaLabel,
@@ -252,7 +250,7 @@ const DropdownCore = (props: Props) => {
         initialFocusedIndex,
         isFilterable,
         items,
-        labels: propLabels = defaultPropLabels,
+        labels,
         onOpenChanged,
         onSearchTextChanged,
         open,
@@ -290,18 +288,6 @@ const DropdownCore = (props: Props) => {
     const searchFieldRef = React.useRef<HTMLInputElement | null>(null);
 
     const textSuggestionRef = React.useRef("");
-
-    /**
-     * The object containing the custom labels used inside this component.
-     */
-    const [labels, setLabels] = React.useState<LabelsValues>(() => ({
-        // @ts-expect-error [FEI-5019] - TS2783 - 'noResults' is specified more than once, so this usage will be overwritten.
-        noResults: defaultLabels.noResults,
-        // In case we are not overriding this from the caller.
-        // @ts-expect-error [FEI-5019] - TS2783 - 'someResults' is specified more than once, so this usage will be overwritten.
-        someResults: defaultLabels.someSelected,
-        ...propLabels,
-    }));
 
     // Refs to use for keyboard focus, contains only those for focusable items.
     // Also keeps track of the original index of the item.
@@ -560,19 +546,15 @@ const DropdownCore = (props: Props) => {
     const prevRenderRef = React.useRef<{
         open: boolean;
         searchText: string | null | undefined;
-        labels: LabelsValues;
         derivedItems: typeof derivedItems;
     } | null>(null);
-    // This runs after every update. It can't cause an infinite loop:
-    // `setLabels` is only called when the `labels` prop changed since the last
-    // processed render.
+    // This runs after every update.
     // eslint-disable-next-line react-hooks/exhaustive-deps
     React.useEffect(() => {
         const prevProps = prevRenderRef.current;
         prevRenderRef.current = {
             open,
             searchText,
-            labels: propLabels,
             derivedItems,
         };
 
@@ -617,10 +599,6 @@ const DropdownCore = (props: Props) => {
                 } else {
                     focusedIndexRef.current = newFocusableIndex;
                 }
-            }
-
-            if (propLabels !== prevProps.labels) {
-                setLabels((prevLabels) => ({...prevLabels, ...propLabels}));
             }
         }
     });
@@ -864,7 +842,9 @@ const DropdownCore = (props: Props) => {
     };
 
     const maybeRenderNoResults = (): React.ReactNode => {
-        const {noResults} = propLabels;
+        // Use the labels prop if it is provided (and not empty), otherwise use
+        // the strings from `WonderBlocksConfigProvider`.
+        const noResults = labels?.noResults || strings.noResults;
 
         // Verify if there are items to be rendered or not
         const numResults = items.length;
@@ -993,9 +973,11 @@ const DropdownCore = (props: Props) => {
     const renderSearchField = (): React.ReactNode => {
         return (
             <SearchField
-                clearAriaLabel={labels.clearSearch}
+                clearAriaLabel={
+                    labels?.clearSearch || strings.iconAltClearSearch
+                }
                 onChange={handleSearchTextChanged}
-                placeholder={labels.filter}
+                placeholder={labels?.filter || strings.filter}
                 ref={searchFieldRef}
                 style={styles.searchInputStyle}
                 value={searchText || ""}

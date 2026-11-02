@@ -25,7 +25,6 @@ import packageConfig from "../../packages/wonder-blocks-dropdown/package.json";
 import ComponentInfo from "../components/component-info";
 import singleSelectArgtypes from "./single-select.argtypes";
 import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
-import {defaultLabels} from "../../packages/wonder-blocks-dropdown/src/util/constants";
 import {
     allCountries,
     allProfilesWithPictures,
@@ -79,9 +78,6 @@ export default {
     subcomponents: {OptionItem, SeparatorItem},
     argTypes: {
         ...singleSelectArgtypes,
-        labels: {
-            defaultValue: defaultLabels,
-        },
     },
     args: {
         error: false,
@@ -158,6 +154,18 @@ const styles = StyleSheet.create({
     wrapper: {
         height: "500px",
         width: "600px",
+    },
+    labelsContainer: {
+        flexDirection: "row",
+        alignItems: "flex-start",
+        gap: sizing.size_200,
+    },
+    // Wide enough to fit the opened dropdown menu, so the menu doesn't
+    // overlap the select next to it.
+    customLabelsSelect: {
+        minInlineSize: 300,
+        flexShrink: 0,
+        alignItems: "flex-start",
     },
     centered: {
         alignItems: "center",
@@ -911,48 +919,70 @@ export const RightToLeft: StoryComponentType = {
 /**
  * Custom labels
  */
-const translatedItems = [
-    <OptionItem label="Banano" value="banano" key={0} />,
-    <OptionItem label="Fresa" value="fresa" disabled key={1} />,
-    <OptionItem label="Pera" value="pera" key={2} />,
-    <OptionItem label="Naranja" value="naranja" key={3} />,
-    <OptionItem label="Sandia" value="sandia" key={4} />,
-    <OptionItem label="Manzana" value="manzana" key={5} />,
-    <OptionItem label="Uva" value="uva" key={6} />,
-    <OptionItem label="Limon" value="limon" key={7} />,
+const customLabelsItems = [
+    <OptionItem label="Banana" value="banana" key={0} />,
+    <OptionItem label="Strawberry" value="strawberry" disabled key={1} />,
+    <OptionItem label="Pear" value="pear" key={2} />,
+    <OptionItem label="Orange" value="orange" key={3} />,
+    <OptionItem label="Watermelon" value="watermelon" key={4} />,
+    <OptionItem label="Apple" value="apple" key={5} />,
+    <OptionItem label="Grape" value="grape" key={6} />,
+    <OptionItem label="Lemon" value="lemon" key={7} />,
     <OptionItem label="Mango" value="mango" key={8} />,
 ];
 
 /**
- * This example illustrates how you can pass custom labels to the `SingleSelect`
- * component.
+ * The labels used inside `SingleSelect` (e.g. the search placeholder and the
+ * clear search button) are built-in, and are translated using the strings
+ * provided by `WonderBlocksConfigProvider`.
+ *
+ * This example illustrates how you can override them by passing custom labels
+ * to the `SingleSelect` component using the `labels` prop. The first dropdown
+ * uses the built-in labels, and the second one uses custom labels.
  */
 export const CustomLabels: StoryComponentType = {
     render: function Render() {
+        const [defaultValue, setDefaultValue] = React.useState<any>(null);
+        const [defaultOpened, setDefaultOpened] = React.useState(true);
         const [value, setValue] = React.useState<any>(null);
         const [opened, setOpened] = React.useState(true);
 
-        const translatedLabels: SingleSelectLabelsValues = {
-            clearSearch: "Limpiar busqueda",
-            filter: "Filtrar",
-            noResults: "Sin resultados",
-            someResults: (numResults: number) => `${numResults} frutas`,
+        const customLabels: SingleSelectLabelsValues = {
+            clearSearch: "Custom clear search",
+            filter: "Custom filter",
+            noResults: "Custom no results",
+            someResults: (numResults: number) => `Custom ${numResults} results`,
         };
 
         return (
-            <View style={styles.wrapper}>
-                <SingleSelect
-                    aria-label="Fruta"
-                    isFilterable={true}
-                    onChange={setValue}
-                    selectedValue={value}
-                    labels={translatedLabels}
-                    opened={opened}
-                    onToggle={setOpened}
-                    placeholder="Selecciona una fruta"
-                >
-                    {translatedItems}
-                </SingleSelect>
+            <View style={[styles.wrapper, styles.labelsContainer]}>
+                <View style={styles.customLabelsSelect}>
+                    <SingleSelect
+                        aria-label="Fruit"
+                        isFilterable={true}
+                        onChange={setDefaultValue}
+                        selectedValue={defaultValue}
+                        opened={defaultOpened}
+                        onToggle={setDefaultOpened}
+                        placeholder="Select a fruit"
+                    >
+                        {customLabelsItems}
+                    </SingleSelect>
+                </View>
+                <View style={styles.customLabelsSelect}>
+                    <SingleSelect
+                        aria-label="Fruit with custom labels"
+                        isFilterable={true}
+                        onChange={setValue}
+                        selectedValue={value}
+                        labels={customLabels}
+                        opened={opened}
+                        onToggle={setOpened}
+                        placeholder="Select a fruit"
+                    >
+                        {customLabelsItems}
+                    </SingleSelect>
+                </View>
             </View>
         );
     },

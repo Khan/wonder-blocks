@@ -1,5 +1,41 @@
 # @khanacademy/wonder-blocks-banner
 
+## 5.2.2
+
+### Patch Changes
+
+- Updated dependencies [53fee3b]
+    - @khanacademy/wonder-blocks-config@0.7.1
+    - @khanacademy/wonder-blocks-link@10.5.3
+
+## 5.2.1
+
+### Patch Changes
+
+- Updated dependencies [a2504f1]
+- Updated dependencies [63e8d90]
+    - @khanacademy/wonder-blocks-config@0.7.0
+    - @khanacademy/wonder-blocks-link@10.5.2
+
+## 5.2.0
+
+### Minor Changes
+
+- 88c9897: Banner now reads its default strings from `WonderBlocksConfigProvider`. The `dismissAriaLabel` prop overrides the built-in translation for the dismiss button. Note: the kind icon's accessible name changes from the raw `kind` value (e.g. "info") to a capitalized, translated string (e.g. "Info"), and the default dismiss button label changes from "Dismiss banner." to "Dismiss banner".
+
+### Patch Changes
+
+- Updated dependencies [88c9897]
+    - @khanacademy/wonder-blocks-config@0.6.0
+    - @khanacademy/wonder-blocks-link@10.5.1
+
+## 5.1.18
+
+### Patch Changes
+
+- Updated dependencies [ace2d2b]
+    - @khanacademy/wonder-blocks-link@10.5.0
+
 ## 5.1.17
 
 ### Patch Changes

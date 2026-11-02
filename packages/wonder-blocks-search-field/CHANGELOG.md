@@ -1,5 +1,30 @@
 # @khanacademy/wonder-blocks-search-field
 
+## 5.2.6
+
+### Patch Changes
+
+- Updated dependencies [53fee3b]
+    - @khanacademy/wonder-blocks-config@0.7.1
+    - @khanacademy/wonder-blocks-form@7.7.6
+
+## 5.2.5
+
+### Patch Changes
+
+- Updated dependencies [a2504f1]
+- Updated dependencies [63e8d90]
+    - @khanacademy/wonder-blocks-config@0.7.0
+    - @khanacademy/wonder-blocks-form@7.7.5
+
+## 5.2.4
+
+### Patch Changes
+
+- Updated dependencies [88c9897]
+    - @khanacademy/wonder-blocks-config@0.6.0
+    - @khanacademy/wonder-blocks-form@7.7.4
+
 ## 5.2.3
 
 ### Patch Changes

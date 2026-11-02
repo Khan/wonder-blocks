@@ -12,6 +12,10 @@ import {
 } from "@testing-library/user-event";
 
 import {PropsFor} from "@khanacademy/wonder-blocks-core";
+import {
+    WonderBlocksConfigProvider,
+    defaultStringsEn,
+} from "@khanacademy/wonder-blocks-config";
 
 import {LabeledField} from "@khanacademy/wonder-blocks-labeled-field";
 
@@ -1337,11 +1341,13 @@ describe("SingleSelect", () => {
             <OptionItem label="Mango" value="mango" />,
         ];
 
+        // The English labels built from the default strings.
         const enLabels: SingleSelectLabelsValues = {
-            clearSearch: "Clear Search",
-            filter: "Filter",
-            noResults: "No Results",
-            someResults: (numOptions: number) => "Some Results",
+            clearSearch: defaultStringsEn.iconAltClearSearch,
+            filter: defaultStringsEn.filter,
+            noResults: defaultStringsEn.noResults,
+            someResults: (numOptions: number) =>
+                defaultStringsEn.numItems({num: numOptions}),
         };
 
         it("passes the custom label to the search input field", async () => {
@@ -1434,6 +1440,183 @@ describe("SingleSelect", () => {
             expect(
                 await screen.findByText("No hay resultados"),
             ).toBeInTheDocument();
+        });
+    });
+
+    describe("i18n strings", () => {
+        const translatedStrings = {
+            ...defaultStringsEn,
+            filter: "translated filter",
+            iconAltClearSearch: "translated clear search",
+            noResults: "translated no results",
+            numItems: ({num}: {num: number}) => `translated ${num} items`,
+        };
+
+        const renderWithConfig = (
+            props: Partial<PropsFor<typeof SingleSelect>> = {},
+        ) =>
+            doRender(
+                <WonderBlocksConfigProvider
+                    i18n={{strings: translatedStrings, locale: "es"}}
+                >
+                    <SingleSelect
+                        onChange={onChange}
+                        placeholder="Select a fruit"
+                        isFilterable={true}
+                        opened={true}
+                        {...props}
+                    >
+                        <OptionItem label="Banana" value="banana" />
+                        <OptionItem label="Pear" value="pear" />
+                    </SingleSelect>
+                </WonderBlocksConfigProvider>,
+            );
+
+        describe("clearSearch", () => {
+            it.each([
+                {
+                    case: "no label",
+                    labels: undefined,
+                    expected: "translated clear search",
+                },
+                {
+                    case: "an empty label",
+                    labels: {clearSearch: ""},
+                    expected: "translated clear search",
+                },
+                {
+                    case: "a custom label",
+                    labels: {clearSearch: "Custom clear search"},
+                    expected: "Custom clear search",
+                },
+            ])(
+                "shows $expected when given $case",
+                async ({labels, expected}) => {
+                    // Arrange
+                    const {userEvent} = renderWithConfig({labels});
+
+                    // Act
+                    await userEvent.type(
+                        await screen.findByRole("textbox"),
+                        "b",
+                    );
+
+                    // Assert
+                    expect(
+                        await screen.findByRole("button", {name: expected}),
+                    ).toBeInTheDocument();
+                },
+            );
+        });
+
+        describe("filter", () => {
+            it.each([
+                {
+                    case: "no label",
+                    labels: undefined,
+                    expected: "translated filter",
+                },
+                {
+                    case: "an empty label",
+                    labels: {filter: ""},
+                    expected: "translated filter",
+                },
+                {
+                    case: "a custom label",
+                    labels: {filter: "Custom filter"},
+                    expected: "Custom filter",
+                },
+            ])(
+                "shows $expected when given $case",
+                async ({labels, expected}) => {
+                    // Arrange
+
+                    // Act
+                    renderWithConfig({labels});
+
+                    // Assert
+                    expect(
+                        await screen.findByPlaceholderText(expected),
+                    ).toBeInTheDocument();
+                },
+            );
+        });
+
+        describe("noResults", () => {
+            it.each([
+                {
+                    case: "no label",
+                    labels: undefined,
+                    expected: "translated no results",
+                },
+                {
+                    case: "an empty label",
+                    labels: {noResults: ""},
+                    expected: "translated no results",
+                },
+                {
+                    case: "a custom label",
+                    labels: {noResults: "Custom no results"},
+                    expected: "Custom no results",
+                },
+            ])(
+                "shows $expected when given $case",
+                async ({labels, expected}) => {
+                    // Arrange
+                    const {userEvent} = renderWithConfig({labels});
+
+                    // Act
+                    await userEvent.type(
+                        await screen.findByRole("textbox"),
+                        "invalid",
+                    );
+
+                    // Assert
+                    expect(
+                        await screen.findByText(expected),
+                    ).toBeInTheDocument();
+                },
+            );
+        });
+
+        describe("someResults", () => {
+            it.each([
+                {
+                    case: "no label",
+                    labels: undefined,
+                    expected: "translated 1 items",
+                },
+                {
+                    case: "a custom label",
+                    labels: {
+                        someResults: (numResults: number) =>
+                            `Custom ${numResults} results`,
+                    },
+                    expected: "Custom 1 results",
+                },
+            ])(
+                "announces $expected when given $case",
+                async ({labels, expected}) => {
+                    // Arrange
+                    const announceMessageSpy = jest.spyOn(
+                        require("@khanacademy/wonder-blocks-announcer"),
+                        "announceMessage",
+                    );
+                    const {userEvent} = renderWithConfig({labels});
+
+                    // Act
+                    await userEvent.type(
+                        await screen.findByRole("textbox"),
+                        "banana",
+                    );
+
+                    // Assert
+                    expect(announceMessageSpy).toHaveBeenCalledWith({
+                        message: expected,
+                        level: "polite",
+                    });
+                },
+            );
         });
     });
 

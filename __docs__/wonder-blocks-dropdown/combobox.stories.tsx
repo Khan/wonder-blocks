@@ -56,6 +56,21 @@ const styles = StyleSheet.create({
     wrapper: {
         height: 550,
     },
+    customLabelsGrid: {
+        padding: sizing.size_160,
+        // Leaves room for the opened listbox, so it doesn't overlap the
+        // comboboxes in the next row.
+        gap: `calc(${sizing.size_960} * 2)`,
+    },
+    customLabelsRow: {
+        flexDirection: "row",
+        alignItems: "flex-start",
+        gap: sizing.size_160,
+    },
+    customLabelsColumn: {
+        width: 300,
+        gap: sizing.size_120,
+    },
 });
 
 const defaultArgs = {
@@ -74,11 +89,15 @@ export default {
     args: defaultArgs,
     argTypes,
     decorators: [
-        (Story): React.ReactElement<React.ComponentProps<typeof View>> => (
-            <View style={styles.example}>
+        (Story, {parameters}): React.ReactElement =>
+            // Stories with the fullscreen layout set up their own layout.
+            parameters.layout === "fullscreen" ? (
                 <Story />
-            </View>
-        ),
+            ) : (
+                <View style={styles.example}>
+                    <Story />
+                </View>
+            ),
     ],
     parameters: {
         componentSubtitle: (
@@ -514,5 +533,105 @@ export const StartIcon: Story = {
     },
     args: {
         children: items,
+    },
+};
+
+/**
+ * The labels used inside `Combobox` (e.g. the button labels, the listbox label
+ * and the screen reader announcements) are built-in, and are translated using
+ * the strings provided by `WonderBlocksConfigProvider`.
+ *
+ * This example illustrates how you can override them by passing custom labels
+ * to the `Combobox` component using the `labels` prop. For both single and
+ * multi-select, the first combobox uses the built-in labels, and the second one
+ * uses custom labels.
+ */
+export const CustomLabels: Story = {
+    render: function Render(args: PropsFor<typeof Combobox>) {
+        type Value = PropsFor<typeof Combobox>["value"];
+        const [singleDefaultValue, setSingleDefaultValue] =
+            React.useState<Value>("pear");
+        const [singleValue, setSingleValue] = React.useState<Value>("pear");
+        const [multipleDefaultValue, setMultipleDefaultValue] =
+            React.useState<Value>(["banana", "pear"]);
+        const [multipleValue, setMultipleValue] = React.useState<Value>([
+            "banana",
+            "pear",
+        ]);
+
+        const customLabels: PropsFor<typeof Combobox>["labels"] = {
+            clearSelection: "Custom clear selection",
+            closedState: "Custom combobox closed",
+            comboboxButton: "Custom toggle listbox",
+            listbox: "Custom options list",
+            removeSelected: (label) => `Custom remove ${label}`,
+            liveRegionCurrentItem: ({current, index, total}) =>
+                `Custom ${current}, ${index + 1} of ${total}`,
+            liveRegionMultipleSelectionTotal: (total) =>
+                `Custom ${total} selected`,
+            liveRegionListboxTotal: (total) => `Custom ${total} results`,
+            noItems: "Custom no results",
+            selected: (labels) => `Custom ${labels} selected`,
+            selectionCleared: "Custom selection cleared",
+            unselected: (labels) => `Custom ${labels} not selected`,
+        };
+
+        return (
+            <View style={styles.customLabelsGrid}>
+                <View style={styles.customLabelsRow}>
+                    <View style={styles.customLabelsColumn}>
+                        <BodyText>Single select with built-in labels:</BodyText>
+                        <Combobox
+                            {...args}
+                            selectionType="single"
+                            value={singleDefaultValue}
+                            onChange={setSingleDefaultValue}
+                        />
+                    </View>
+                    <View style={styles.customLabelsColumn}>
+                        <BodyText>Single select with custom labels:</BodyText>
+                        <Combobox
+                            {...args}
+                            selectionType="single"
+                            labels={customLabels}
+                            value={singleValue}
+                            onChange={setSingleValue}
+                        />
+                    </View>
+                </View>
+                <View style={styles.customLabelsRow}>
+                    <View style={styles.customLabelsColumn}>
+                        <BodyText>Multi-select with built-in labels:</BodyText>
+                        <Combobox
+                            {...args}
+                            selectionType="multiple"
+                            value={multipleDefaultValue}
+                            onChange={setMultipleDefaultValue}
+                        />
+                    </View>
+                    <View style={styles.customLabelsColumn}>
+                        <BodyText>Multi-select with custom labels:</BodyText>
+                        <Combobox
+                            {...args}
+                            selectionType="multiple"
+                            labels={customLabels}
+                            value={multipleValue}
+                            onChange={setMultipleValue}
+                        />
+                    </View>
+                </View>
+            </View>
+        );
+    },
+    args: {
+        // Only a few options, so the opened listbox fits between the rows.
+        children: items.slice(0, 4),
+    },
+    parameters: {
+        layout: "fullscreen",
+        chromatic: {
+            // we don't need screenshots because this story only shows labels.
+            disableSnapshot: true,
+        },
     },
 };

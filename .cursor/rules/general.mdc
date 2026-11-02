@@ -139,7 +139,7 @@ Here are the props that Wonder Blocks components commonly have:
 * `value?: T` - The value of the component. Only included if it makes sense for the component (i.e., form components).
 * `disabled?: boolean` - If the component should be disabled. Only included if the component is interactive. See the Disabled State section for implementation details.
 * `autoFocus?: boolean` - If true, this element should have input focus when the page loads. Only included if the component is interactive.
-* `labels?: CustomLabelsType` - The object containing custom labels used inside this component. Useful for internationalization. Defaults to English (en-us). See the Internationalization section for details.
+* `labels?: CustomLabelsType` - The object containing custom labels used inside this component. Overrides the built-in strings provided by `WonderBlocksConfigProvider`. See the Internationalization section for details.
 * `initialFocusRef?: Ref | null` - The element that should receive focus initially. Prefer passing a reference to an element rather than an element id (i.e., avoid `initialFocusId` props).
 
 #### ARIA-related Props
@@ -253,9 +253,13 @@ Wonder Blocks components often support the following states:
 ## Internationalization (i18n)
 
 * ✅ Components may have built-in labels used for error messages, aria-labels, or screen reader announcements
-* ✅ By default, these labels are in English (`en-us`) and can be overridden using a `labels` prop
-* ✅ All instances of visual or non-visual labels (visible text, aria-label, alt text, etc.) should have the option to be overridden via the `labels` prop
-* ✅ It is up to the parent component to provide translations for the component
+* ✅ Built-in labels come from `WonderBlocksConfigProvider` (`@khanacademy/wonder-blocks-config`). Read them with the `useWonderBlocksI18n()` hook
+* ✅ The consuming app renders `WonderBlocksConfigProvider` with translated strings and its locale. Without a provider, the strings default to English (`defaultStringsEn`)
+* ✅ To add a new built-in label, add it to `packages/wonder-blocks-config/src/strings.ts`: the `WonderBlocksStrings` type, the `strings` object (with a `context` for translators), and `defaultStringsEn`
+* ✅ Defaults always come from the provider; a `labels` prop is only an override, not the way translations reach the component
+* ✅ Consider whether each label needs an override. Add one to `labels` when the wording depends on how the component is used
+* ✅ Resolve overridable labels as `labels?.x || strings.y` so the prop wins
+* ❌ Don't hard-code English strings in a component
 * ✅ Use logical CSS properties to support RTL layouts
 
 ## Theming

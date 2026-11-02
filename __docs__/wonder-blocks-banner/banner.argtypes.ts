@@ -80,10 +80,11 @@ export default {
     },
     dismissAriaLabel: {
         control: {type: "text"},
-        defaultValue: "Dismiss banner.",
+        description:
+            "The accessible label for the dismiss button. This overrides the default label provided by `WonderBlocksConfigProvider`.",
         table: {
             type: {summary: "string"},
-            defaultValue: {summary: `"Dismiss banner."`},
+            defaultValue: {summary: `"Dismiss banner"`},
         },
         type: {name: "string", required: false},
     },

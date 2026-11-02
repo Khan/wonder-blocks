@@ -3,6 +3,11 @@ import * as React from "react";
 import {act, fireEvent, render, screen, waitFor} from "@testing-library/react";
 import {userEvent} from "@testing-library/user-event";
 
+import {
+    WonderBlocksConfigProvider,
+    defaultStringsEn,
+} from "@khanacademy/wonder-blocks-config";
+
 import ActionItem from "../action-item";
 import OptionItem from "../option-item";
 import SeparatorItem from "../separator-item";
@@ -1493,11 +1498,6 @@ describe("DropdownCore", () => {
         });
     });
 
-    // NOTE: These pin the current behavior. The search field labels (`filter`
-    // and `clearSearch`) are kept in state, and changes to the `labels` prop
-    // are only merged into that state when the set of focusable items also
-    // changes while the menu is open. The "No results" message reads
-    // `noResults` directly from the `labels` prop, so it always updates.
     describe("when the labels prop changes while open", () => {
         const labelsA = {
             clearSearch: "Clear A",
@@ -1521,7 +1521,7 @@ describe("DropdownCore", () => {
             onOpenChanged: jest.fn(),
         } as const;
 
-        it("should keep the initial search field labels when the focusable items don't change", async () => {
+        it("should update the search field labels when the focusable items don't change", async () => {
             // Arrange
             const {rerender} = render(
                 <DropdownCore {...baseProps} items={items} labels={labelsA} />,
@@ -1534,7 +1534,7 @@ describe("DropdownCore", () => {
 
             // Assert
             expect(
-                await screen.findByPlaceholderText("Filter A"),
+                await screen.findByPlaceholderText("Filter B"),
             ).toBeInTheDocument();
         });
 
@@ -1559,7 +1559,7 @@ describe("DropdownCore", () => {
             ).toBeInTheDocument();
         });
 
-        it("should keep the initial clear search label when the focusable items don't change", async () => {
+        it("should update the clear search label when the focusable items don't change", async () => {
             // Arrange
             const {rerender} = render(
                 <DropdownCore
@@ -1582,7 +1582,7 @@ describe("DropdownCore", () => {
 
             // Assert
             expect(
-                await screen.findByRole("button", {name: "Clear A"}),
+                await screen.findByRole("button", {name: "Clear B"}),
             ).toBeInTheDocument();
         });
 
@@ -1627,6 +1627,129 @@ describe("DropdownCore", () => {
             // Assert
             expect(await screen.findByText("No results B")).toBeInTheDocument();
         });
+    });
+
+    describe("i18n strings", () => {
+        const translatedStrings = {
+            ...defaultStringsEn,
+            filter: "Filtrar",
+            iconAltClearSearch: "Limpiar búsqueda",
+            noResults: "No hay resultados",
+        };
+
+        const ConfigProvider = ({children}: {children: React.ReactNode}) => (
+            <WonderBlocksConfigProvider
+                i18n={{strings: translatedStrings, locale: "es"}}
+            >
+                {children}
+            </WonderBlocksConfigProvider>
+        );
+
+        const baseProps = {
+            onSearchTextChanged: jest.fn(),
+            isFilterable: true,
+            role: "listbox",
+            open: true,
+            opener: <button />,
+            onOpenChanged: jest.fn(),
+        } as const;
+
+        const customLabels = {
+            clearSearch: "Custom clear search",
+            filter: "Custom filter",
+            noResults: "Custom no results",
+            someResults: (numOptions: number) => `Custom ${numOptions} results`,
+        };
+
+        type LabelCase = {
+            label: "clearSearch" | "filter" | "noResults";
+            translatedString: string;
+            // The props needed to render the element that uses the label.
+            props: Pick<
+                React.ComponentProps<typeof DropdownCore>,
+                "items" | "searchText"
+            >;
+            findElement: (text: string) => Promise<HTMLElement>;
+        };
+
+        const labelCases: Array<LabelCase> = [
+            {
+                label: "clearSearch",
+                translatedString: "Limpiar búsqueda",
+                props: {items, searchText: "item"},
+                findElement: (text) =>
+                    screen.findByRole("button", {name: text}),
+            },
+            {
+                label: "filter",
+                translatedString: "Filtrar",
+                props: {items},
+                findElement: (text) => screen.findByPlaceholderText(text),
+            },
+            {
+                label: "noResults",
+                translatedString: "No hay resultados",
+                props: {items: []},
+                findElement: (text) => screen.findByText(text),
+            },
+        ];
+
+        it.each(labelCases)(
+            "uses the string from the config provider for $label",
+            async ({props, translatedString, findElement}) => {
+                // Arrange
+
+                // Act
+                render(<DropdownCore {...baseProps} {...props} />, {
+                    wrapper: ConfigProvider,
+                });
+
+                // Assert
+                expect(await findElement(translatedString)).toBeInTheDocument();
+            },
+        );
+
+        it.each(labelCases)(
+            "uses the string from the config provider when $label is empty",
+            async ({label, props, translatedString, findElement}) => {
+                // Arrange
+
+                // Act
+                render(
+                    <DropdownCore
+                        {...baseProps}
+                        {...props}
+                        labels={{...customLabels, [label]: ""}}
+                    />,
+                    {wrapper: ConfigProvider},
+                );
+
+                // Assert
+                expect(await findElement(translatedString)).toBeInTheDocument();
+            },
+        );
+
+        it.each(labelCases)(
+            "uses the $label label over the string from the config provider",
+            async ({label, props, findElement}) => {
+                // Arrange
+
+                // Act
+                render(
+                    <DropdownCore
+                        {...baseProps}
+                        {...props}
+                        labels={customLabels}
+                    />,
+                    {wrapper: ConfigProvider},
+                );
+
+                // Assert
+                expect(
+                    await findElement(customLabels[label]),
+                ).toBeInTheDocument();
+            },
+        );
     });
 
     describe("rendering", () => {

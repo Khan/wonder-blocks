@@ -1,5 +1,33 @@
 # @khanacademy/wonder-blocks-link
 
+## 10.5.3
+
+### Patch Changes
+
+- Updated dependencies [53fee3b]
+    - @khanacademy/wonder-blocks-config@0.7.1
+
+## 10.5.2
+
+### Patch Changes
+
+- Updated dependencies [a2504f1]
+- Updated dependencies [63e8d90]
+    - @khanacademy/wonder-blocks-config@0.7.0
+
+## 10.5.1
+
+### Patch Changes
+
+- Updated dependencies [88c9897]
+    - @khanacademy/wonder-blocks-config@0.6.0
+
+## 10.5.0
+
+### Minor Changes
+
+- ace2d2b: Link's external-link icon now has an accessible name by default: "(opens in a new tab)", and reads a translated one from `WonderBlocksConfigProvider`. `labels.externalIconAriaLabel` will override the built-in translation.
+
 ## 10.4.2
 
 ### Patch Changes

@@ -4,6 +4,8 @@ import {StyleSheet} from "aphrodite";
 import xIcon from "@phosphor-icons/core/bold/x-bold.svg";
 
 import Button from "@khanacademy/wonder-blocks-button";
+import {useWonderBlocksI18n} from "@khanacademy/wonder-blocks-config";
+import type {WonderBlocksStrings} from "@khanacademy/wonder-blocks-config";
 import {
     addStyle,
     StyleType,
@@ -98,8 +100,8 @@ type Props = {
      */
     onDismiss?: () => void | null | undefined;
     /**
-     * The accessible label for the dismiss button.
-     * Please pass in a translated string.
+     * The accessible label for the dismiss button. This overrides the default
+     * label provided by `WonderBlocksConfigProvider`.
      */
     dismissAriaLabel?: string;
     /**
@@ -153,6 +155,22 @@ const getValuesForKind = (kind: BannerKind): BannerValues => {
                 icon: infoIcon,
                 role: "status",
             };
+    }
+};
+
+const getIconAltForKind = (
+    kind: BannerKind,
+    strings: WonderBlocksStrings,
+): string => {
+    switch (kind) {
+        case "success":
+            return strings.iconAltStatusSuccess;
+        case "warning":
+            return strings.iconAltStatusWarning;
+        case "critical":
+            return strings.iconAltStatusCritical;
+        default:
+            return strings.iconAltStatusInfo;
     }
 };
 
@@ -211,7 +229,7 @@ const Banner = (props: Props): React.ReactElement => {
         // is missing in props validation when it's not.
         // eslint-disable-next-line react/prop-types
         "aria-label": ariaLabel,
-        dismissAriaLabel = "Dismiss banner.", // default prop
+        dismissAriaLabel,
         onDismiss,
         kind = "info", // default prop
         text,
@@ -219,6 +237,7 @@ const Banner = (props: Props): React.ReactElement => {
         icon,
         styles: stylesProp,
     } = props;
+    const {strings} = useWonderBlocksI18n();
 
     const renderActions = () => {
         return actions?.filter(Boolean).map((action, i) => {
@@ -287,7 +306,7 @@ const Banner = (props: Props): React.ReactElement => {
                 <PhosphorIcon
                     icon={icon || valuesForKind.icon}
                     style={[styles.icon, bannerIconKindStyle]}
-                    aria-label={kind}
+                    aria-label={getIconAltForKind(kind, strings)}
                     testId="banner-kind-icon"
                     role="img"
                 />
@@ -327,7 +346,9 @@ const Banner = (props: Props): React.ReactElement => {
                             actionType="neutral"
                             onClick={onDismiss}
                             style={styles.dismiss}
-                            aria-label={dismissAriaLabel}
+                            aria-label={
+                                dismissAriaLabel || strings.iconAltDismissBanner
+                            }
                             size="xsmall"
                         />
                     </View>

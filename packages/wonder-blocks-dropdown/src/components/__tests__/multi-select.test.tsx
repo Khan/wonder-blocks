@@ -14,11 +14,14 @@ import {
 } from "@testing-library/user-event";
 
 import {PropsFor} from "@khanacademy/wonder-blocks-core";
+import {
+    WonderBlocksConfigProvider,
+    defaultStringsEn,
+} from "@khanacademy/wonder-blocks-config";
 import {LabeledField} from "@khanacademy/wonder-blocks-labeled-field";
 
 import OptionItem from "../option-item";
 import MultiSelect from "../multi-select";
-import {defaultLabels as builtinLabels} from "../../util/constants";
 
 import type {LabelsValues} from "../multi-select";
 
@@ -44,6 +47,20 @@ jest.mock("react-popper", () => ({
         });
     }),
 }));
+
+// The English labels built from the default strings.
+const builtinLabels: LabelsValues = {
+    clearSearch: defaultStringsEn.iconAltClearSearch,
+    filter: defaultStringsEn.filter,
+    noResults: defaultStringsEn.noResults,
+    selectAllLabel: (numOptions: number) =>
+        defaultStringsEn.selectAllWithCount({num: numOptions}),
+    selectNoneLabel: defaultStringsEn.selectNone,
+    noneSelected: defaultStringsEn.zeroItems,
+    someSelected: (numSelectedValues: number) =>
+        defaultStringsEn.numItems({num: numSelectedValues}),
+    allSelected: defaultStringsEn.allItems,
+};
 
 const defaultLabels: LabelsValues = {
     ...builtinLabels,
@@ -1675,6 +1692,322 @@ describe("MultiSelect", () => {
                     await screen.findByRole("listbox", {hidden: true}),
                 ).toBeInTheDocument();
             });
+        });
+    });
+
+    describe("i18n strings", () => {
+        const translatedStrings = {
+            ...defaultStringsEn,
+            allItems: "translated all items",
+            filter: "translated filter",
+            iconAltClearSearch: "translated clear search",
+            noResults: "translated no results",
+            numItems: ({num}: {num: number}) => `translated ${num} items`,
+            selectAllWithCount: ({num}: {num: number}) =>
+                `translated select all (${num})`,
+            selectNone: "translated select none",
+            zeroItems: "translated zero items",
+        };
+
+        const renderWithConfig = (
+            props: Partial<PropsFor<typeof MultiSelect>> = {},
+        ) =>
+            doRender(
+                <WonderBlocksConfigProvider
+                    i18n={{strings: translatedStrings, locale: "es"}}
+                >
+                    <MultiSelect onChange={jest.fn()} {...props}>
+                        <OptionItem label="Banana" value="banana" />
+                        <OptionItem label="Pear" value="pear" />
+                        <OptionItem label="Grape" value="grape" />
+                    </MultiSelect>
+                </WonderBlocksConfigProvider>,
+            );
+
+        describe("clearSearch", () => {
+            it.each([
+                {
+                    case: "no label",
+                    labels: undefined,
+                    expected: "translated clear search",
+                },
+                {
+                    case: "an empty label",
+                    labels: {clearSearch: ""},
+                    expected: "translated clear search",
+                },
+                {
+                    case: "a custom label",
+                    labels: {clearSearch: "Custom clear search"},
+                    expected: "Custom clear search",
+                },
+            ])(
+                "shows $expected when given $case",
+                async ({labels, expected}) => {
+                    // Arrange
+                    const {userEvent} = renderWithConfig({
+                        isFilterable: true,
+                        opened: true,
+                        labels,
+                    });
+
+                    // Act
+                    await userEvent.type(
+                        await screen.findByRole("textbox"),
+                        "b",
+                    );
+
+                    // Assert
+                    expect(
+                        await screen.findByRole("button", {name: expected}),
+                    ).toBeInTheDocument();
+                },
+            );
+        });
+
+        describe("filter", () => {
+            it.each([
+                {
+                    case: "no label",
+                    labels: undefined,
+                    expected: "translated filter",
+                },
+                {
+                    case: "an empty label",
+                    labels: {filter: ""},
+                    expected: "translated filter",
+                },
+                {
+                    case: "a custom label",
+                    labels: {filter: "Custom filter"},
+                    expected: "Custom filter",
+                },
+            ])(
+                "shows $expected when given $case",
+                async ({labels, expected}) => {
+                    // Arrange
+
+                    // Act
+                    renderWithConfig({
+                        isFilterable: true,
+                        opened: true,
+                        labels,
+                    });
+
+                    // Assert
+                    expect(
+                        await screen.findByPlaceholderText(expected),
+                    ).toBeInTheDocument();
+                },
+            );
+        });
+
+        describe("noResults", () => {
+            it.each([
+                {
+                    case: "no label",
+                    labels: undefined,
+                    expected: "translated no results",
+                },
+                {
+                    case: "an empty label",
+                    labels: {noResults: ""},
+                    expected: "translated no results",
+                },
+                {
+                    case: "a custom label",
+                    labels: {noResults: "Custom no results"},
+                    expected: "Custom no results",
+                },
+            ])(
+                "shows $expected when given $case",
+                async ({labels, expected}) => {
+                    // Arrange
+                    const {userEvent} = renderWithConfig({
+                        isFilterable: true,
+                        opened: true,
+                        labels,
+                    });
+
+                    // Act
+                    await userEvent.type(
+                        await screen.findByRole("textbox"),
+                        "invalid",
+                    );
+
+                    // Assert
+                    expect(
+                        await screen.findByText(expected),
+                    ).toBeInTheDocument();
+                },
+            );
+        });
+
+        describe("selectAllLabel", () => {
+            it.each([
+                {
+                    case: "no label",
+                    labels: undefined,
+                    expected: "translated select all (3)",
+                },
+                {
+                    case: "a custom label",
+                    labels: {
+                        selectAllLabel: (numOptions: number) =>
+                            `Custom select all (${numOptions})`,
+                    },
+                    expected: "Custom select all (3)",
+                },
+            ])(
+                "shows $expected when given $case",
+                async ({labels, expected}) => {
+                    // Arrange
+
+                    // Act
+                    renderWithConfig({shortcuts: true, opened: true, labels});
+
+                    // Assert
+                    expect(
+                        await screen.findByRole("option", {name: expected}),
+                    ).toBeInTheDocument();
+                },
+            );
+        });
+
+        describe("selectNoneLabel", () => {
+            it.each([
+                {
+                    case: "no label",
+                    labels: undefined,
+                    expected: "translated select none",
+                },
+                {
+                    case: "an empty label",
+                    labels: {selectNoneLabel: ""},
+                    expected: "translated select none",
+                },
+                {
+                    case: "a custom label",
+                    labels: {selectNoneLabel: "Custom select none"},
+                    expected: "Custom select none",
+                },
+            ])(
+                "shows $expected when given $case",
+                async ({labels, expected}) => {
+                    // Arrange
+
+                    // Act
+                    renderWithConfig({shortcuts: true, opened: true, labels});
+
+                    // Assert
+                    expect(
+                        await screen.findByRole("option", {name: expected}),
+                    ).toBeInTheDocument();
+                },
+            );
+        });
+
+        describe("noneSelected", () => {
+            it.each([
+                {
+                    case: "no label",
+                    labels: undefined,
+                    expected: "translated zero items",
+                },
+                {
+                    case: "an empty label",
+                    labels: {noneSelected: ""},
+                    expected: "translated zero items",
+                },
+                {
+                    case: "a custom label",
+                    labels: {noneSelected: "Custom none selected"},
+                    expected: "Custom none selected",
+                },
+            ])(
+                "shows $expected when given $case",
+                async ({labels, expected}) => {
+                    // Arrange
+
+                    // Act
+                    renderWithConfig({selectedValues: [], labels});
+
+                    // Assert
+                    expect(
+                        await screen.findByRole("combobox"),
+                    ).toHaveTextContent(expected);
+                },
+            );
+        });
+
+        describe("someSelected", () => {
+            it.each([
+                {
+                    case: "no label",
+                    labels: undefined,
+                    expected: "translated 2 items",
+                },
+                {
+                    case: "a custom label",
+                    labels: {
+                        someSelected: (numSelectedValues: number) =>
+                            `Custom ${numSelectedValues} selected`,
+                    },
+                    expected: "Custom 2 selected",
+                },
+            ])(
+                "shows $expected when given $case",
+                async ({labels, expected}) => {
+                    // Arrange
+
+                    // Act
+                    renderWithConfig({
+                        selectedValues: ["banana", "pear"],
+                        labels,
+                    });
+
+                    // Assert
+                    expect(
+                        await screen.findByRole("combobox"),
+                    ).toHaveTextContent(expected);
+                },
+            );
+        });
+
+        describe("allSelected", () => {
+            it.each([
+                {
+                    case: "no label",
+                    labels: undefined,
+                    expected: "translated all items",
+                },
+                {
+                    case: "an empty label",
+                    labels: {allSelected: ""},
+                    expected: "translated all items",
+                },
+                {
+                    case: "a custom label",
+                    labels: {allSelected: "Custom all selected"},
+                    expected: "Custom all selected",
+                },
+            ])(
+                "shows $expected when given $case",
+                async ({labels, expected}) => {
+                    // Arrange
+
+                    // Act
+                    renderWithConfig({
+                        selectedValues: ["banana", "pear", "grape"],
+                        labels,
+                    });
+
+                    // Assert
+                    expect(
+                        await screen.findByRole("combobox"),
+                    ).toHaveTextContent(expected);
+                },
+            );
         });
     });
 

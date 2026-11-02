@@ -1,5 +1,27 @@
 # @khanacademy/wonder-blocks-breadcrumbs
 
+## 3.3.6
+
+### Patch Changes
+
+- Updated dependencies [53fee3b]
+    - @khanacademy/wonder-blocks-config@0.7.1
+
+## 3.3.5
+
+### Patch Changes
+
+- Updated dependencies [a2504f1]
+- Updated dependencies [63e8d90]
+    - @khanacademy/wonder-blocks-config@0.7.0
+
+## 3.3.4
+
+### Patch Changes
+
+- Updated dependencies [88c9897]
+    - @khanacademy/wonder-blocks-config@0.6.0
+
 ## 3.3.3
 
 ### Patch Changes
