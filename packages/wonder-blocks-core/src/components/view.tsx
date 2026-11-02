@@ -4,6 +4,7 @@ import {StyleSheet} from "aphrodite";
 
 import {useMemo} from "react";
 import addStyle from "../util/add-style";
+import {getWBComponentProps} from "../util/wb-component";
 
 import type {TextViewSharedProps} from "../util/types";
 
@@ -66,6 +67,7 @@ const View: React.ForwardRefExoticComponent<
     const {testId, tag = "div", ...restProps} = props;
     const commonProps = {
         ...restProps,
+        ...getWBComponentProps("View", restProps),
         // Note: this matches the default test id that Testing Library uses!
         "data-testid": testId,
     } as const;

@@ -4,6 +4,7 @@ exports[`View Should set the tag to be article 1`] = `
 <div>
   <article
     class=""
+    data-wb-component="View"
     style="align-items: stretch; border-width: 0px; border-style: solid; box-sizing: border-box; display: flex; flex-direction: column; margin: 0px; padding: 0px; position: relative; z-index: 0; min-block-size: 0; min-inline-size: 0;"
   />
 </div>
@@ -13,6 +14,7 @@ exports[`View Should set the tag to be aside 1`] = `
 <div>
   <aside
     class=""
+    data-wb-component="View"
     style="align-items: stretch; border-width: 0px; border-style: solid; box-sizing: border-box; display: flex; flex-direction: column; margin: 0px; padding: 0px; position: relative; z-index: 0; min-block-size: 0; min-inline-size: 0;"
   />
 </div>
@@ -22,6 +24,7 @@ exports[`View Should set the tag to be div 1`] = `
 <div>
   <div
     class=""
+    data-wb-component="View"
     style="align-items: stretch; border-width: 0px; border-style: solid; box-sizing: border-box; display: flex; flex-direction: column; margin: 0px; padding: 0px; position: relative; z-index: 0; min-block-size: 0; min-inline-size: 0;"
   />
 </div>
@@ -31,6 +34,7 @@ exports[`View Should set the tag to be main 1`] = `
 <div>
   <main
     class=""
+    data-wb-component="View"
     style="align-items: stretch; border-width: 0px; border-style: solid; box-sizing: border-box; display: flex; flex-direction: column; margin: 0px; padding: 0px; position: relative; z-index: 0; min-block-size: 0; min-inline-size: 0;"
   />
 </div>
@@ -40,6 +44,7 @@ exports[`View Should set the tag to be nav 1`] = `
 <div>
   <nav
     class=""
+    data-wb-component="View"
     style="align-items: stretch; border-width: 0px; border-style: solid; box-sizing: border-box; display: flex; flex-direction: column; margin: 0px; padding: 0px; position: relative; z-index: 0; min-block-size: 0; min-inline-size: 0;"
   />
 </div>
@@ -49,6 +54,7 @@ exports[`View Should set the tag to be section 1`] = `
 <div>
   <section
     class=""
+    data-wb-component="View"
     style="align-items: stretch; border-width: 0px; border-style: solid; box-sizing: border-box; display: flex; flex-direction: column; margin: 0px; padding: 0px; position: relative; z-index: 0; min-block-size: 0; min-inline-size: 0;"
   />
 </div>

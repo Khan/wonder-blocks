@@ -3,6 +3,7 @@ import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
 import {processStyleList} from "../util/util";
+import {getWBComponentProps} from "../util/wb-component";
 
 import type {TextViewSharedProps} from "../util/types";
 
@@ -63,6 +64,7 @@ const Text = React.forwardRef(function Text(
     return (
         <Tag
             {...otherProps}
+            {...getWBComponentProps("Text", otherProps)}
             style={styleAttributes.style}
             className={classNames}
             data-testid={testId}

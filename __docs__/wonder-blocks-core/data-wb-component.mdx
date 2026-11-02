@@ -1,0 +1,65 @@
+import {Meta} from "@storybook/addon-docs/blocks";
+
+<Meta title="Packages / Core / data-wb-component" />
+
+# data-wb-component
+
+Every public Wonder Blocks component that renders DOM adds a
+`data-wb-component` attribute to its root element. The value is the
+component's public export name, exactly as it is imported:
+
+```html
+<button data-wb-component="Button">...</button>
+<h2 data-wb-component="Heading">...</h2>
+<div data-wb-component="SingleSelect">...</div>
+```
+
+## Purpose
+
+The attribute exists so that **tooling** (e.g. page inspectors or browser
+extensions) can find Wonder Blocks components in the rendered DOM without
+reading React internals.
+
+- It is **always rendered**, including in production builds, so tooling also
+  works on deployed pages. The cost is a short, static attribute (similar to a
+  test id).
+- It is **not** meant for styling or as a test selector. Use `testId`,
+  accessible roles or labels in tests, and the `style`/`styles` props for
+  styling. The attribute value is not part of the public API contract and may
+  change if a component is renamed.
+- It is additive: it never replaces a consumer-provided `testId` or any other
+  attribute.
+
+## Composition
+
+When a public component renders another public component as its root element
+(e.g. `Heading` renders `Text`, a clickable `DetailCell` renders `Clickable`,
+and many components render `View`), the **outermost** component's name wins
+on that shared element. Nested components that render their own, separate DOM
+elements keep their own names (e.g. a `PhosphorIcon` inside a `Button`).
+
+For portal/floating components, the attribute is also added to the rendered
+popover, tooltip, dialog or dropdown menu root (e.g. the dropdown menu of a
+`SingleSelect` has `data-wb-component="SingleSelect"`).
+
+## Implementing it in a component
+
+`wonder-blocks-core` exports a small helper for this:
+
+```ts
+import {getWBComponentProps} from "@khanacademy/wonder-blocks-core";
+import type {WBComponentProps} from "@khanacademy/wonder-blocks-core";
+
+// A leaf component (renders DOM directly):
+<div {...getWBComponentProps("MyComponent")} />;
+
+// A component that can be rendered as the root of another public component
+// accepts `WBComponentProps` and lets the outer name win:
+<View {...getWBComponentProps("MyComponent", props)} />;
+
+// The outer component passes its own name down:
+<MyComponent {...getWBComponentProps("OuterComponent")} />;
+```
+
+`View` and `Text` already honor a `data-wb-component` value passed down to them.
+The attribute name is also exported as `WB_COMPONENT_ATTRIBUTE`.
