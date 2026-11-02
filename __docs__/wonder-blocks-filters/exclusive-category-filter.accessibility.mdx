@@ -13,8 +13,9 @@ import {Meta} from "@storybook/addon-docs/blocks";
   activities") with `announceMessage` from `@khanacademy/wonder-blocks-announcer`.
   Debounce the announcement so arrowing across options only reads the final
   result. See the "Announcing Results" story.
-- Render the filtered results right after the filter in the DOM, so `Tab` moves
-  from the filter to the results.
+- Keep the DOM order the same as the visual order, so `Tab` moves from the
+  filter to whatever comes next on screen. That might be the results, or other
+  controls that narrow them first, like a search field.
 - When an icon conveys meaning the label doesn't, pass a `PhosphorIcon` or
   `Icon` element with an `aria-label` as the option's `startIcon`. Icons without
   an `aria-label` are decorative.
