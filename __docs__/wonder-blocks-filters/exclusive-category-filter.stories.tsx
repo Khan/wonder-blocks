@@ -123,33 +123,6 @@ export const WithIcons: StoryComponentType = {
     },
 };
 
-/**
- * Options wrap onto more lines when there isn't enough horizontal space.
- * There is no horizontal scrolling.
- */
-export const Wrapping: StoryComponentType = {
-    args: {
-        label: "Filter activities by category",
-        options: [
-            {value: "all", label: "All"},
-            {value: "general", label: "General"},
-            {value: "grammar", label: "Grammar & writing"},
-            {value: "reading", label: "Reading & vocab"},
-            {value: "math", label: "Math"},
-            {value: "science", label: "Science"},
-            {value: "social", label: "Social studies"},
-            {value: "career", label: "College & career"},
-        ],
-    },
-    decorators: [
-        (Story) => (
-            <View style={styles.narrow}>
-                <Story />
-            </View>
-        ),
-    ],
-};
-
 type Activity = {id: string; title: string; subject: string};
 
 const activities: ReadonlyArray<Activity> = [
@@ -253,9 +226,6 @@ export const UnknownSelectedValue: StoryComponentType = {
 };
 
 const styles = StyleSheet.create({
-    narrow: {
-        maxInlineSize: 360,
-    },
     example: {
         gap: sizing.size_160,
     },
