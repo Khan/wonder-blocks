@@ -182,6 +182,17 @@ export const Scenarios: Story = {
                 decorator: <View style={styles.narrow} />,
             },
             {
+                name: "Mixed label lengths",
+                props: {
+                    options: [
+                        {value: "all", label: "All"},
+                        {value: "long", label: longText},
+                        {value: "math", label: "Math"},
+                    ],
+                },
+                decorator: <View style={styles.narrow} />,
+            },
+            {
                 name: "Long text (no word break)",
                 props: {
                     label: longTextWithNoWordBreak,
