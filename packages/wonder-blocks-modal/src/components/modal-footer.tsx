@@ -1,5 +1,5 @@
 import * as React from "react";
-import {View} from "@khanacademy/wonder-blocks-core";
+import {View, getWBComponentProps} from "@khanacademy/wonder-blocks-core";
 import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {StyleSheet} from "aphrodite";
 import theme from "../theme";
@@ -26,7 +26,11 @@ type Props = {
  * ```
  */
 export default function ModalFooter({children}: Props) {
-    return <View style={styles.footer}>{children}</View>;
+    return (
+        <View style={styles.footer} {...getWBComponentProps("ModalFooter")}>
+            {children}
+        </View>
+    );
 }
 
 ModalFooter.__IS_MODAL_FOOTER__ = true;

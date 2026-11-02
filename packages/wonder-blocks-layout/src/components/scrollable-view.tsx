@@ -1,8 +1,12 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
-import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
-import {View} from "@khanacademy/wonder-blocks-core";
+import type {
+    AriaProps,
+    StyleType,
+    WBComponentProps,
+} from "@khanacademy/wonder-blocks-core";
+import {View, getWBComponentProps} from "@khanacademy/wonder-blocks-core";
 import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {focusStyles} from "@khanacademy/wonder-blocks-styles";
 
@@ -44,7 +48,7 @@ type Props = Omit<AriaProps, "aria-label" | "aria-labelledby"> & {
      * Test ID used for e2e testing.
      */
     testId?: string;
-};
+} & WBComponentProps;
 
 /**
  * A view that scrolls its content vertically when it doesn't fit in the
@@ -120,6 +124,7 @@ const ScrollableView = React.forwardRef<HTMLElement, Props>(
         return (
             <View
                 {...ariaProps}
+                {...getWBComponentProps("ScrollableView", ariaProps)}
                 // Expose a labeled view as a region while it's focusable, so
                 // screen readers announce its name when it's focused (an
                 // `aria-label` on an element without a role isn't reliably

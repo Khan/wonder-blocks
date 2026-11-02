@@ -4,7 +4,12 @@ import {StyleSheet} from "aphrodite";
 import xIcon from "@phosphor-icons/core/bold/x-bold.svg";
 
 import Button from "@khanacademy/wonder-blocks-button";
-import {addStyle, StyleType, View} from "@khanacademy/wonder-blocks-core";
+import {
+    addStyle,
+    StyleType,
+    View,
+    getWBComponentProps,
+} from "@khanacademy/wonder-blocks-core";
 import {PhosphorIcon, PhosphorIconAsset} from "@khanacademy/wonder-blocks-icon";
 import IconButton from "@khanacademy/wonder-blocks-icon-button";
 import Link from "@khanacademy/wonder-blocks-link";
@@ -292,6 +297,7 @@ const Banner = (props: Props): React.ReactElement => {
 
     return (
         <View
+            {...getWBComponentProps("Banner")}
             style={[styles.containerOuter, bannerKindStyle, stylesProp?.root]}
             role={valuesForKind.role}
             aria-label={ariaLabel}

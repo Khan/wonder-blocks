@@ -1,6 +1,10 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
-import {type AriaProps, type StyleType} from "@khanacademy/wonder-blocks-core";
+import {
+    type AriaProps,
+    type StyleType,
+    getWBComponentProps,
+} from "@khanacademy/wonder-blocks-core";
 import {sizing} from "@khanacademy/wonder-blocks-tokens";
 import {Placement} from "@popperjs/core";
 import DropdownOpener from "./dropdown-opener";
@@ -329,6 +333,7 @@ const ActionMenu = React.forwardRef(function ActionMenu(
 
     return (
         <DropdownCore
+            {...getWBComponentProps("ActionMenu")}
             id={uniqueDropdownId}
             role="menu"
             style={style}

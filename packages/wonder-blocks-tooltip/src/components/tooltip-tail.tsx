@@ -1,7 +1,7 @@
 import * as React from "react";
 import {css, StyleSheet} from "aphrodite";
 
-import {View} from "@khanacademy/wonder-blocks-core";
+import {View, getWBComponentProps} from "@khanacademy/wonder-blocks-core";
 import {color, semanticColor} from "@khanacademy/wonder-blocks-tokens";
 
 import type {StyleType} from "@khanacademy/wonder-blocks-core";
@@ -432,6 +432,7 @@ export default class TooltipTail extends React.Component<Props> {
                 ]}
                 data-placement={placement}
                 ref={updateRef}
+                {...getWBComponentProps("TooltipTail")}
             >
                 {this._renderArrow()}
             </View>

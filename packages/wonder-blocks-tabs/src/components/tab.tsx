@@ -6,6 +6,7 @@ import {
     AriaProps,
     StyleType,
     View,
+    getWBComponentProps,
 } from "@khanacademy/wonder-blocks-core";
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
@@ -78,6 +79,7 @@ export const Tab = React.forwardRef(function Tab(
     return (
         <StyledButton
             {...otherProps}
+            {...getWBComponentProps("Tab")}
             type="button" // this prevents form submissions if the tab is inside a form
             // eslint-disable-next-line @khanacademy/wonder-blocks/no-custom-tab-role -- This is the element with role="tab" in ResponsiveTabs
             role="tab"

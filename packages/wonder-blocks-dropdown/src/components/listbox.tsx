@@ -1,6 +1,10 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
-import {StyleType, View} from "@khanacademy/wonder-blocks-core";
+import {
+    StyleType,
+    View,
+    getWBComponentProps,
+} from "@khanacademy/wonder-blocks-core";
 import {semanticColor} from "@khanacademy/wonder-blocks-tokens";
 
 import {useId} from "react";
@@ -126,6 +130,7 @@ function StandaloneListbox(props: Props) {
     return (
         <View
             role="listbox"
+            {...getWBComponentProps("Listbox")}
             id={uniqueId}
             style={[styles.listbox, style, disabled && styles.disabled]}
             tabIndex={tabIndex}
@@ -194,6 +199,7 @@ export default function Listbox(props: Props) {
     return (
         <View
             role="listbox"
+            {...getWBComponentProps("Listbox")}
             id={id}
             style={[styles.listbox, style, disabled && styles.disabled]}
             tabIndex={tabIndex}

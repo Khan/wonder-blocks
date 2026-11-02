@@ -4,7 +4,7 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
-import {View} from "@khanacademy/wonder-blocks-core";
+import {View, getWBComponentProps} from "@khanacademy/wonder-blocks-core";
 import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {Heading, BodyText} from "@khanacademy/wonder-blocks-typography";
 import type {AriaProps} from "@khanacademy/wonder-blocks-core";
@@ -85,6 +85,7 @@ export default function Toolbar({
                 color === "dark" && sharedStyles.dark,
                 size === "small" && sharedStyles.small,
             ]}
+            {...getWBComponentProps("Toolbar")}
         >
             <View style={sharedStyles.leftColumn}>{leftContent}</View>
 

@@ -1,6 +1,6 @@
 import {StyleSheet} from "aphrodite";
 import * as React from "react";
-import {View} from "@khanacademy/wonder-blocks-core";
+import {View, getWBComponentProps} from "@khanacademy/wonder-blocks-core";
 import {
     border,
     color,
@@ -68,6 +68,7 @@ export default class TooltipBubble extends React.Component<Props, State> {
                 id={id}
                 role="tooltip"
                 data-placement={placement}
+                {...getWBComponentProps("Tooltip")}
                 onMouseEnter={this.handleMouseEnter}
                 onMouseLeave={this.handleMouseLeave}
                 ref={updateBubbleRef}

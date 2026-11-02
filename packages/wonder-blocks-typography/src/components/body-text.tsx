@@ -1,5 +1,9 @@
 import * as React from "react";
-import {PropsFor, Text} from "@khanacademy/wonder-blocks-core";
+import {
+    PropsFor,
+    Text,
+    getWBComponentProps,
+} from "@khanacademy/wonder-blocks-core";
 import styles from "../util/styles";
 
 type Props = PropsFor<typeof Text> & {
@@ -36,6 +40,7 @@ const BodyText = React.forwardRef(function BodyText(
     return (
         <Text
             {...otherProps}
+            {...getWBComponentProps("BodyText", otherProps)}
             tag={tag}
             style={[styles.BodyText, themeBodyText, style]}
             ref={ref}

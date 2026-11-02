@@ -5,6 +5,7 @@ import {
     keys,
     PropsFor,
     StyleType,
+    getWBComponentProps,
 } from "@khanacademy/wonder-blocks-core";
 import {StyleSheet} from "aphrodite";
 import {TabPanel} from "./tab-panel";
@@ -336,6 +337,7 @@ export const Tabs = React.forwardRef(function Tabs(
             id={uniqueId}
             data-testid={testId}
             style={[styles.tabs, stylesProp?.root]}
+            {...getWBComponentProps("Tabs")}
         >
             {/* Wrap the tablist so we can set relative positioning for the tab indicator */}
             <StyledDiv ref={scrollableElementRef} style={styles.tablistWrapper}>

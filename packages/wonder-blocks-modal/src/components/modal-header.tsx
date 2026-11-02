@@ -1,6 +1,6 @@
 import * as React from "react";
 import {Breadcrumbs} from "@khanacademy/wonder-blocks-breadcrumbs";
-import {View} from "@khanacademy/wonder-blocks-core";
+import {View, getWBComponentProps} from "@khanacademy/wonder-blocks-core";
 import {Heading, BodyText} from "@khanacademy/wonder-blocks-typography";
 import {StyleSheet} from "aphrodite";
 import {semanticColor} from "@khanacademy/wonder-blocks-tokens";
@@ -103,7 +103,11 @@ export default function ModalHeader(props: Props) {
         throw new Error("'subtitle' and 'breadcrumbs' can't be used together");
     }
     return (
-        <View style={[styles.header]} testId={testId}>
+        <View
+            style={[styles.header]}
+            testId={testId}
+            {...getWBComponentProps("ModalHeader")}
+        >
             {breadcrumbs && (
                 <View style={styles.breadcrumbs}>{breadcrumbs}</View>
             )}

@@ -1,6 +1,11 @@
 import * as React from "react";
 
-import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
+import {getWBComponentProps} from "@khanacademy/wonder-blocks-core";
+import type {
+    AriaProps,
+    StyleType,
+    WBComponentProps,
+} from "@khanacademy/wonder-blocks-core";
 import type {Checked} from "../util/types";
 
 import ChoiceInternal from "./choice-internal";
@@ -56,7 +61,7 @@ type ChoiceComponentProps = AriaProps & {
      * @ignore
      */
     groupName?: string;
-};
+} & WBComponentProps;
 
 /**
  * ☑️ A nicely styled checkbox for all your checking needs. Can optionally take
@@ -88,6 +93,7 @@ const Checkbox = React.forwardRef(function Checkbox(
     return (
         <ChoiceInternal
             {...props}
+            {...getWBComponentProps("Checkbox", props)}
             variant="checkbox"
             disabled={disabled}
             error={error}

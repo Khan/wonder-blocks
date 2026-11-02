@@ -1,6 +1,10 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
-import {View, addStyle} from "@khanacademy/wonder-blocks-core";
+import {
+    View,
+    addStyle,
+    getWBComponentProps,
+} from "@khanacademy/wonder-blocks-core";
 import {semanticColor} from "@khanacademy/wonder-blocks-tokens";
 
 import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
@@ -96,7 +100,14 @@ export default class CircularSpinner extends React.Component<Props> {
             </StyledSvg>
         );
 
-        return <View style={[styles.spinnerContainer, style]}>{svg}</View>;
+        return (
+            <View
+                style={[styles.spinnerContainer, style]}
+                {...getWBComponentProps("CircularSpinner")}
+            >
+                {svg}
+            </View>
+        );
     }
 }
 

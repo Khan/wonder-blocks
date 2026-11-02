@@ -20,7 +20,12 @@ import {
     boxShadow,
     semanticColor,
 } from "@khanacademy/wonder-blocks-tokens";
-import {addStyle, StyleType} from "@khanacademy/wonder-blocks-core";
+import {
+    addStyle,
+    getWBComponentProps,
+    StyleType,
+} from "@khanacademy/wonder-blocks-core";
+import type {WBComponentProps} from "@khanacademy/wonder-blocks-core";
 import {
     ARROW_SIZE_INLINE,
     FloatingReferenceAttributeName,
@@ -273,7 +278,7 @@ type FocusManagerProps =
           initialFocusRef?: never;
       };
 
-type Props = FloatingProps & FocusManagerProps;
+type Props = FloatingProps & FocusManagerProps & WBComponentProps;
 
 /**
  * The padding to use for the shift middleware. This is useful to avoid the
@@ -365,6 +370,7 @@ export default function Floating({
     rootBoundary = "viewport",
     showArrow = true,
     styles: stylesProp,
+    ...wbComponentProps
 }: Props) {
     const arrowRef = React.useRef(null);
     const prevOpenRef = React.useRef(open ?? false);
@@ -635,6 +641,10 @@ export default function Floating({
                         visuallyHiddenDismiss={dismissEnabled}
                     >
                         <StyledDiv
+                            {...getWBComponentProps(
+                                "Floating",
+                                wbComponentProps,
+                            )}
                             data-testid={testId}
                             data-placement={placement}
                             ref={refs.setFloating}

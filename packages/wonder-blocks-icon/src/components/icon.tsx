@@ -1,5 +1,10 @@
 import * as React from "react";
-import {addStyle, AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
+import {
+    addStyle,
+    AriaProps,
+    StyleType,
+    getWBComponentProps,
+} from "@khanacademy/wonder-blocks-core";
 import {CSSProperties, StyleSheet} from "aphrodite";
 import {sizing} from "@khanacademy/wonder-blocks-tokens";
 import {IconSize} from "../types";
@@ -84,6 +89,7 @@ const Icon = React.forwardRef(
                 data-testid={testId}
                 ref={ref}
                 {...otherProps}
+                {...getWBComponentProps("Icon")}
             >
                 {childrenElement}
             </StyledDiv>

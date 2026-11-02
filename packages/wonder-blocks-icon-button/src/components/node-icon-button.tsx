@@ -2,7 +2,11 @@ import * as React from "react";
 import {StyleSheet} from "aphrodite";
 import {Link} from "react-router-dom-v5-compat";
 
-import {StyleType, View} from "@khanacademy/wonder-blocks-core";
+import {
+    StyleType,
+    View,
+    getWBComponentProps,
+} from "@khanacademy/wonder-blocks-core";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {focusStyles} from "@khanacademy/wonder-blocks-styles";
 import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
@@ -184,6 +188,7 @@ export const NodeIconButton: React.ForwardRefExoticComponent<
     return (
         <IconButtonUnstyled
             {...restProps}
+            {...getWBComponentProps("NodeIconButton")}
             disabled={disabled}
             onPress={handlePress}
             ref={ref}

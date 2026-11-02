@@ -1,7 +1,7 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
-import {View} from "@khanacademy/wonder-blocks-core";
+import {View, getWBComponentProps} from "@khanacademy/wonder-blocks-core";
 import {sizing} from "@khanacademy/wonder-blocks-tokens";
 import {Heading, BodyText} from "@khanacademy/wonder-blocks-typography";
 import type {Typography} from "@khanacademy/wonder-blocks-typography";
@@ -75,6 +75,7 @@ export default class TooltipContent extends React.Component<Props> {
             <View
                 style={[containerStyle, this.props.contentStyle]}
                 testId={this.props.testId}
+                {...getWBComponentProps("TooltipContent")}
             >
                 {title}
                 {title ? <View>{children}</View> : children}

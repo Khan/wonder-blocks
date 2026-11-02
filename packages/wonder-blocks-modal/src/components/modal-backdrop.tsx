@@ -1,7 +1,7 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 
-import {View} from "@khanacademy/wonder-blocks-core";
+import {View, getWBComponentProps} from "@khanacademy/wonder-blocks-core";
 import type {StyleType} from "@khanacademy/wonder-blocks-core";
 
 import {StyleSheet} from "aphrodite";
@@ -165,6 +165,8 @@ const ModalBackdrop = ({
             onMouseUp={handleMouseUp}
             testId={testId}
             {...backdropProps}
+            // ModalBackdrop is only rendered by ModalLauncher.
+            {...getWBComponentProps("ModalLauncher")}
         >
             {children}
         </View>

@@ -1,6 +1,10 @@
 import * as React from "react";
 
-import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
+import type {
+    AriaProps,
+    StyleType,
+    WBComponentProps,
+} from "@khanacademy/wonder-blocks-core";
 import ChoiceInternal from "./choice-internal";
 
 // Keep synced with ChoiceComponentProps in ../util/types.js
@@ -54,7 +58,7 @@ type ChoiceComponentProps = AriaProps & {
      * @ignore
      */
     groupName?: string;
-};
+} & WBComponentProps;
 
 /**
  * 🔘 A nicely styled radio button for all your non-AMFM radio button needs. Can

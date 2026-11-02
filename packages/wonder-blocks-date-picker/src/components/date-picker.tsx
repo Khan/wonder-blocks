@@ -8,6 +8,7 @@ import {
     findFocusableNodes,
     View,
     type StyleType,
+    getWBComponentProps,
 } from "@khanacademy/wonder-blocks-core";
 import {font, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {focusStyles} from "@khanacademy/wonder-blocks-styles";
@@ -625,7 +626,11 @@ const DatePicker = (props: Props) => {
     ]);
 
     return (
-        <View style={style} ref={refWrapper}>
+        <View
+            style={style}
+            ref={refWrapper}
+            {...getWBComponentProps("DatePicker")}
+        >
             {renderInput(modifiers)}
             {showOverlay && (
                 <DatePickerOverlay

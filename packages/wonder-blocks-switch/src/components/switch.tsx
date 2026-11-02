@@ -1,7 +1,12 @@
 import * as React from "react";
 import {CSSProperties, StyleSheet} from "aphrodite";
 
-import {AriaProps, View, addStyle} from "@khanacademy/wonder-blocks-core";
+import {
+    AriaProps,
+    View,
+    addStyle,
+    getWBComponentProps,
+} from "@khanacademy/wonder-blocks-core";
 import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {useId} from "react";
@@ -187,6 +192,7 @@ const Switch = React.forwardRef(function Switch(
             style={combinedStyles}
             className={className}
             testId={testId}
+            {...getWBComponentProps("Switch")}
         >
             <StyledInput
                 aria-describedby={ariaDescribedBy}

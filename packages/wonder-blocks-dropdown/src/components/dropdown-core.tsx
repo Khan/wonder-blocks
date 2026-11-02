@@ -20,7 +20,11 @@ import SearchField from "@khanacademy/wonder-blocks-search-field";
 import {BodyText} from "@khanacademy/wonder-blocks-typography";
 import {useActionScheduler} from "@khanacademy/wonder-blocks-timing";
 
-import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
+import type {
+    AriaProps,
+    StyleType,
+    WBComponentProps,
+} from "@khanacademy/wonder-blocks-core";
 import {Placement} from "@popperjs/core";
 import DropdownCoreVirtualized from "./dropdown-core-virtualized";
 import SeparatorItem from "./separator-item";
@@ -178,7 +182,11 @@ type ExportProps = Readonly<{
     selectionType?: "single" | "multi";
 }>;
 
-type Props = ExportProps & DropdownAriaProps;
+type Props = ExportProps &
+    DropdownAriaProps &
+    // The name of the public component that renders this dropdown (e.g.
+    // `SingleSelect`). It's added to the root element and the dropdown menu.
+    WBComponentProps;
 
 type ItemRefs = Array<{
     ref: {
@@ -233,6 +241,7 @@ const DropdownCore = (props: Props) => {
         "aria-label": ariaLabel,
         "aria-labelledby": ariaLabelledby,
         "aria-required": ariaRequired,
+        "data-wb-component": wbComponent,
         alignment = "left",
         autoFocus = true,
         className,
@@ -1017,6 +1026,7 @@ const DropdownCore = (props: Props) => {
                     dropdownStyle,
                 ]}
                 testId="dropdown-core-container"
+                data-wb-component={wbComponent}
             >
                 {isFilterable && renderSearchField()}
                 <View
@@ -1076,6 +1086,7 @@ const DropdownCore = (props: Props) => {
             onKeyUp={!disabled ? handleKeyUp : undefined}
             style={[styles.menuWrapper, style]}
             className={className}
+            data-wb-component={wbComponent}
         >
             {opener}
             {open && renderDropdown()}

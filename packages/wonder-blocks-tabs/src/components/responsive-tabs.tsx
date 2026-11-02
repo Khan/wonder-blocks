@@ -1,6 +1,10 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
-import {StyleType, View} from "@khanacademy/wonder-blocks-core";
+import {
+    StyleType,
+    View,
+    getWBComponentProps,
+} from "@khanacademy/wonder-blocks-core";
 import {Tabs, TabsProps} from "./tabs";
 import {TabsDropdown, TabsDropdownProps} from "./tabs-dropdown";
 import {AriaLabelOrAriaLabelledby} from "./types";
@@ -161,6 +165,7 @@ export const ResponsiveTabs = (props: Props) => {
             style={[styles.container, stylesProp?.root]}
             id={id}
             testId={testId}
+            {...getWBComponentProps("ResponsiveTabs")}
         >
             {showDropdown ? (
                 <TabsDropdown

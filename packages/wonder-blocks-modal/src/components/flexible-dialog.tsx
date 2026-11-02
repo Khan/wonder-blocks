@@ -1,7 +1,10 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
-import type {StyleType} from "@khanacademy/wonder-blocks-core";
-import {View} from "@khanacademy/wonder-blocks-core";
+import type {
+    StyleType,
+    WBComponentProps,
+} from "@khanacademy/wonder-blocks-core";
+import {View, getWBComponentProps} from "@khanacademy/wonder-blocks-core";
 
 import {semanticColor} from "@khanacademy/wonder-blocks-tokens";
 import {Heading} from "@khanacademy/wonder-blocks-typography";
@@ -60,7 +63,7 @@ type Props = AccessibleDialogProps & {
      * The ID of the content describing this dialog, if applicable.
      */
     "aria-describedby"?: string;
-};
+} & WBComponentProps;
 
 // Style contract for DrawerLauncher with FlexibleDialog
 export type FlexibleDialogStyles = {
@@ -155,7 +158,10 @@ const FlexibleDialog = React.forwardRef(function FlexibleDialog(
         );
 
     return (
-        <View style={[componentStyles.root, styles?.root]}>
+        <View
+            style={[componentStyles.root, styles?.root]}
+            {...getWBComponentProps("FlexibleDialog", props)}
+        >
             <View
                 role={role}
                 aria-modal="true"

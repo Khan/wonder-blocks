@@ -1,6 +1,7 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 import {semanticColor} from "@khanacademy/wonder-blocks-tokens";
+import {getWBComponentProps} from "@khanacademy/wonder-blocks-core";
 import {Badge} from "./badge";
 import {BaseBadgeProps, IconLabelProps} from "../types";
 
@@ -29,6 +30,7 @@ const StatusBadge = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
             ref={ref}
             showBorder={showBorder}
             {...otherProps}
+            {...getWBComponentProps("StatusBadge")}
             styles={{
                 ...otherProps.styles,
                 root: [getKindStyle(kind), otherProps.styles?.root],

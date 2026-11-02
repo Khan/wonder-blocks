@@ -12,6 +12,7 @@ import {
     semanticColor,
     sizing,
 } from "@khanacademy/wonder-blocks-tokens";
+import {getWBComponentProps} from "@khanacademy/wonder-blocks-core";
 
 import FocusManager from "./focus-manager";
 
@@ -160,6 +161,7 @@ const DatePickerOverlay = ({
                             role="region"
                             style={combinedStyles}
                             data-placement={placement}
+                            {...getWBComponentProps("DatePicker")}
                         >
                             {children}
                         </div>

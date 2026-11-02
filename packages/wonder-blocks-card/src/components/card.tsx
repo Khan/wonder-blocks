@@ -1,7 +1,11 @@
 import * as React from "react";
 
 import {StyleSheet} from "aphrodite";
-import {StyleType, View} from "@khanacademy/wonder-blocks-core";
+import {
+    StyleType,
+    View,
+    getWBComponentProps,
+} from "@khanacademy/wonder-blocks-core";
 import type {AriaProps} from "@khanacademy/wonder-blocks-core";
 
 import {
@@ -242,6 +246,7 @@ const Card = React.forwardRef(function Card(
             tag={tag}
             testId={testId}
             {...{inert: inert ? "" : undefined}}
+            {...getWBComponentProps("Card")}
         >
             {onDismiss ? (
                 <DismissButton

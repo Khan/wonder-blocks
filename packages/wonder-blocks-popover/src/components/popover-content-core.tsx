@@ -1,8 +1,12 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
-import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
-import {View} from "@khanacademy/wonder-blocks-core";
+import type {
+    AriaProps,
+    StyleType,
+    WBComponentProps,
+} from "@khanacademy/wonder-blocks-core";
+import {View, getWBComponentProps} from "@khanacademy/wonder-blocks-core";
 import {ScrollableView} from "@khanacademy/wonder-blocks-layout";
 import {border, sizing} from "@khanacademy/wonder-blocks-tokens";
 
@@ -36,7 +40,7 @@ type Props = AriaProps & {
      * Test ID used for e2e testing.
      */
     testId?: string;
-};
+} & WBComponentProps;
 
 /**
  * This is the base popover container. It’s used internally by all the variants.
@@ -87,6 +91,7 @@ const PopoverContentCore = React.forwardRef<HTMLElement, Props>(
             closeButtonVisible = false,
             style,
             testId,
+            ...wbComponentProps
         }: Props,
         ref,
     ): React.ReactElement {
@@ -102,7 +107,11 @@ const PopoverContentCore = React.forwardRef<HTMLElement, Props>(
               };
 
         return (
-            <ScrollableView {...labelProps} style={styles.scrollableView}>
+            <ScrollableView
+                {...labelProps}
+                {...getWBComponentProps("PopoverContentCore", wbComponentProps)}
+                style={styles.scrollableView}
+            >
                 <View testId={testId} style={[styles.content, style]} ref={ref}>
                     {/* The close button is part of the content (inside the
                     scroll container), so it scrolls with it. */}

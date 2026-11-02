@@ -2,6 +2,7 @@ import * as React from "react";
 import {StyleSheet} from "aphrodite";
 import {Icon, StreakIcon} from "@khanacademy/wonder-blocks-icon";
 import {semanticColor} from "@khanacademy/wonder-blocks-tokens";
+import {getWBComponentProps} from "@khanacademy/wonder-blocks-core";
 import {Badge} from "./badge";
 import {BaseBadgeProps, ShowIconProps} from "../types";
 
@@ -18,6 +19,7 @@ const StreakBadge = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
     return (
         <Badge
             {...otherProps}
+            {...getWBComponentProps("StreakBadge")}
             label={label || ""}
             icon={
                 showIcon ? (

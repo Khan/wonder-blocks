@@ -1,5 +1,5 @@
 import * as React from "react";
-import {addStyle} from "@khanacademy/wonder-blocks-core";
+import {addStyle, getWBComponentProps} from "@khanacademy/wonder-blocks-core";
 import {CustomIconProps} from "../../types";
 import {useImageRoleAttributes} from "../../hooks/use-image-role-attributes";
 
@@ -38,6 +38,7 @@ const GemIcon = React.forwardRef<SVGSVGElement, CustomIconProps>(
                 xmlns="http://www.w3.org/2000/svg"
                 {...attributes}
                 {...otherProps}
+                {...getWBComponentProps("GemIcon")}
             >
                 <path
                     d="M1.246 5.38105L2.36444 3.66654C2.63609 3.25012 3.0934 3 3.58311 3H12.4169C12.9066 3 13.3639 3.25012 13.6356 3.66654L14.754 5.38105C15.1278 5.95411 15.0708 6.71389 14.6158 7.22195L9.08044 13.4027C8.49982 14.051 7.50018 14.051 6.91956 13.4027L1.38423 7.22195C0.929229 6.71389 0.872177 5.95411 1.246 5.38105Z"

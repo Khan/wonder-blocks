@@ -5,7 +5,7 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
-import {addStyle} from "@khanacademy/wonder-blocks-core";
+import {addStyle, getWBComponentProps} from "@khanacademy/wonder-blocks-core";
 import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
 import {focusStyles} from "@khanacademy/wonder-blocks-styles";
 import {BodyText} from "@khanacademy/wonder-blocks-typography";
@@ -167,6 +167,7 @@ export const CustomOpener = React.forwardRef(function CustomOpener(
     return (
         <StyledButton
             {...restProps}
+            {...getWBComponentProps("CustomOpener")}
             ref={ref as React.Ref<HTMLButtonElement>}
             type="button"
             aria-disabled={ariaDisabled}

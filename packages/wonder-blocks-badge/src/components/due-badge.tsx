@@ -4,6 +4,7 @@ import {semanticColor} from "@khanacademy/wonder-blocks-tokens";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import DateIcon from "@phosphor-icons/core/bold/calendar-blank-bold.svg";
 import WarningCircle from "@phosphor-icons/core/bold/warning-circle-bold.svg";
+import {getWBComponentProps} from "@khanacademy/wonder-blocks-core";
 import {Badge} from "./badge";
 import {BaseBadgeProps, ShowIconProps} from "../types";
 
@@ -50,6 +51,7 @@ const DueBadge = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
         <Badge
             ref={ref}
             {...otherProps}
+            {...getWBComponentProps("DueBadge")}
             label={label || ""}
             icon={
                 showIcon ? (

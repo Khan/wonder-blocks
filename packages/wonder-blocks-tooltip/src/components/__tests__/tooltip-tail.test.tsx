@@ -50,6 +50,7 @@ describe("TooltipTail", () => {
   <div
     class=""
     data-placement="top"
+    data-wb-component="TooltipTail"
     style="align-items: stretch; border-width: 0px; border-style: solid; box-sizing: border-box; display: flex; flex-direction: column; margin: 0px; padding: 0px; position: relative; z-index: 0; min-block-size: 0; min-inline-size: 0; pointer-events: none; top: -1px; width: 40px; height: 20px;"
   >
     <svg
@@ -120,11 +121,13 @@ describe("TooltipTail", () => {
                   <div
                     class=""
                     data-placement="top"
+                    data-wb-component="TooltipTail"
                     style="align-items: stretch; border-width: 0px; border-style: solid; box-sizing: border-box; display: flex; flex-direction: column; margin: 0px; padding: 0px; position: relative; z-index: 0; min-block-size: 0; min-inline-size: 0; pointer-events: none; top: -1px; width: 40px; height: 20px;"
                   >
                     <div
                       aria-hidden="true"
                       class=""
+                      data-wb-component="View"
                       style="align-items: stretch; border-width: 0px; border-style: solid; box-sizing: border-box; display: flex; flex-direction: column; margin: 0px; padding: 0px; position: relative; z-index: 0; min-block-size: 0; min-inline-size: 0; inline-size: 12px; flex-basis: 12px; flex-shrink: 0;"
                     />
                   </div>

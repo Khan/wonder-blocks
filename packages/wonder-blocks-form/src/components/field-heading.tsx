@@ -1,7 +1,12 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
-import {View, addStyle, StyleType} from "@khanacademy/wonder-blocks-core";
+import {
+    View,
+    addStyle,
+    StyleType,
+    getWBComponentProps,
+} from "@khanacademy/wonder-blocks-core";
 import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {BodyText} from "@khanacademy/wonder-blocks-typography";
 import theme from "../theme";
@@ -118,7 +123,11 @@ export default class FieldHeading extends React.Component<Props> {
         const {field, style} = this.props;
 
         return (
-            <View style={style}>
+            <View
+                style={style}
+                // FieldHeading is only rendered by LabeledTextField.
+                {...getWBComponentProps("LabeledTextField")}
+            >
                 {this.renderLabel()}
                 {this.maybeRenderDescription()}
                 <View style={styles.fieldSpacing}>{field}</View>

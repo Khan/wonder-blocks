@@ -3,7 +3,7 @@ import {StyleSheet} from "aphrodite";
 import {Breadcrumbs} from "@khanacademy/wonder-blocks-breadcrumbs";
 import type {StyleType} from "@khanacademy/wonder-blocks-core";
 
-import {Id} from "@khanacademy/wonder-blocks-core";
+import {Id, getWBComponentProps} from "@khanacademy/wonder-blocks-core";
 // TODO [WB-2137]: standardize media query breakpoint tokens
 import {modalMediaQuery} from "../util/constants";
 import ModalDialog from "./modal-dialog";
@@ -189,6 +189,7 @@ const OnePaneDialog = (props: Props): React.ReactElement => {
         <Id id={titleId}>
             {(uniqueId) => (
                 <ModalDialog
+                    {...getWBComponentProps("OnePaneDialog")}
                     style={[styles.dialog, style]}
                     above={above}
                     below={below}

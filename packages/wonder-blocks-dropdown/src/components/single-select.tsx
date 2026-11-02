@@ -5,6 +5,7 @@ import {
     Id,
     type AriaProps,
     type StyleType,
+    getWBComponentProps,
 } from "@khanacademy/wonder-blocks-core";
 
 import {announceMessage} from "@khanacademy/wonder-blocks-announcer";
@@ -591,6 +592,7 @@ const SingleSelect = (props: Props) => {
         <Id id={dropdownId}>
             {(uniqueDropdownId) => (
                 <DropdownCore
+                    {...getWBComponentProps("SingleSelect")}
                     id={uniqueDropdownId}
                     role="listbox"
                     selectionType="single"

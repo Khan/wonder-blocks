@@ -1,6 +1,10 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
-import {StyleType, View} from "@khanacademy/wonder-blocks-core";
+import {
+    StyleType,
+    View,
+    getWBComponentProps,
+} from "@khanacademy/wonder-blocks-core";
 import Link from "@khanacademy/wonder-blocks-link";
 import {
     NavigationTabsDropdown,
@@ -214,6 +218,7 @@ export const ResponsiveNavigationTabs = (props: Props) => {
             style={[styles.container, stylesProp?.root]}
             id={id}
             testId={testId}
+            {...getWBComponentProps("ResponsiveNavigationTabs")}
         >
             {showDropdown ? (
                 <NavigationTabsDropdown

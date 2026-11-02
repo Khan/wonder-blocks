@@ -1,7 +1,7 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
-import {addStyle} from "@khanacademy/wonder-blocks-core";
+import {addStyle, getWBComponentProps} from "@khanacademy/wonder-blocks-core";
 import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
 
 import AccordionSection from "./accordion-section";
@@ -301,6 +301,7 @@ const Accordion = React.forwardRef(function Accordion(
             style={[styles.wrapper, style]}
             onKeyDown={handleKeyDown}
             {...ariaProps}
+            {...getWBComponentProps("Accordion")}
             ref={ref}
         >
             {children.map((child, index) => {

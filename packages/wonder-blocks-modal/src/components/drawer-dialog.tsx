@@ -3,6 +3,7 @@ import {StyleSheet} from "aphrodite";
 import {
     useDirectionDetection,
     type StyleType,
+    getWBComponentProps,
 } from "@khanacademy/wonder-blocks-core";
 import {breakpoint, semanticColor} from "@khanacademy/wonder-blocks-tokens";
 import type {DrawerAlignment} from "../util/types";
@@ -173,6 +174,7 @@ const DrawerDialog = React.forwardRef(function DrawerDialog(
     return (
         <FlexibleDialog
             {...props}
+            {...getWBComponentProps("DrawerDialog")}
             ref={ref}
             styles={{
                 root: [

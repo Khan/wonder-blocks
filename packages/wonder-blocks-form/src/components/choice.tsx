@@ -1,5 +1,6 @@
 import * as React from "react";
 
+import {getWBComponentProps} from "@khanacademy/wonder-blocks-core";
 import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
 import Checkbox from "./checkbox";
 import Radio from "./radio";
@@ -146,6 +147,7 @@ const Choice = React.forwardRef(function Choice(
     return (
         <ChoiceComponent
             {...remainingProps}
+            {...getWBComponentProps("Choice")}
             checked={checked}
             disabled={disabled}
             onChange={onChange}

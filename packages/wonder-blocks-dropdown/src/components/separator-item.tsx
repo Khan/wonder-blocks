@@ -5,7 +5,7 @@ import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
 import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
-import {View} from "@khanacademy/wonder-blocks-core";
+import {View, getWBComponentProps} from "@khanacademy/wonder-blocks-core";
 
 import type {StyleType} from "@khanacademy/wonder-blocks-core";
 
@@ -33,6 +33,7 @@ export default class SeparatorItem extends React.Component<{
             <View
                 style={[styles.separator, this.props.style]}
                 aria-hidden="true"
+                {...getWBComponentProps("SeparatorItem")}
             />
         );
     }

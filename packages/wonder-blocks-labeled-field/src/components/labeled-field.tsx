@@ -4,7 +4,11 @@ import WarningCircle from "@phosphor-icons/core/bold/warning-circle-bold.svg";
 import LockIcon from "@phosphor-icons/core/bold/lock-bold.svg";
 import {useWonderBlocksI18n} from "@khanacademy/wonder-blocks-config";
 import {BodyText} from "@khanacademy/wonder-blocks-typography";
-import {View, StyleType} from "@khanacademy/wonder-blocks-core";
+import {
+    View,
+    StyleType,
+    getWBComponentProps,
+} from "@khanacademy/wonder-blocks-core";
 import {font, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import theme from "../theme";
@@ -328,7 +332,12 @@ export default function LabeledField(props: Props) {
     }
 
     return (
-        <View style={stylesProp?.root} testId={testId} id={uniqueId}>
+        <View
+            style={stylesProp?.root}
+            testId={testId}
+            id={uniqueId}
+            {...getWBComponentProps("LabeledField")}
+        >
             {renderLabelAndContextLabel()}
             {maybeRenderDescription()}
             {renderField()}

@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import {View} from "@khanacademy/wonder-blocks-core";
+import {View, getWBComponentProps} from "@khanacademy/wonder-blocks-core";
 import type {StyleType} from "@khanacademy/wonder-blocks-core";
 
 import {StyleSheet} from "aphrodite";
@@ -193,6 +193,8 @@ const DrawerBackdrop = ({
             onMouseUp={handleMouseUp}
             testId={testId}
             {...backdropProps}
+            // DrawerBackdrop is only rendered by DrawerLauncher.
+            {...getWBComponentProps("DrawerLauncher")}
         >
             {children}
         </View>
