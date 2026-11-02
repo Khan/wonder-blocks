@@ -4,8 +4,9 @@ import {StyleSheet} from "aphrodite";
 
 import {View} from "@khanacademy/wonder-blocks-core";
 import {ExclusiveCategoryFilter} from "@khanacademy/wonder-blocks-filters";
-import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
+import {Icon, PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
+import {multiColoredIcon} from "../components/icons-for-testing";
 import {
     longText,
     longTextWithNoWordBreak,
@@ -42,6 +43,27 @@ const generateRows = (rtl: boolean = false) => [
                             icon={IconMappings.iceCream}
                             aria-label="Ice cream"
                         />
+                    ),
+                },
+            ],
+        },
+    },
+    {
+        name: "Custom icons",
+        props: {
+            options: [
+                {
+                    value: "all",
+                    label: rtl ? rtlText : "All",
+                    startIcon: <Icon>{multiColoredIcon}</Icon>,
+                },
+                {
+                    value: "math",
+                    label: rtl ? rtlText : "Math",
+                    startIcon: (
+                        <Icon>
+                            <img src="logo.svg" alt="" />
+                        </Icon>
                     ),
                 },
             ],
