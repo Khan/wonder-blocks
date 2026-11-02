@@ -45,21 +45,14 @@ const generateRows = (rtl: boolean = false) => [
                         />
                     ),
                 },
-            ],
-        },
-    },
-    {
-        name: "Custom icons",
-        props: {
-            options: [
                 {
-                    value: "all",
-                    label: rtl ? rtlText : "All",
+                    value: "science",
+                    label: rtl ? rtlText : "Science",
                     startIcon: <Icon>{multiColoredIcon}</Icon>,
                 },
                 {
-                    value: "math",
-                    label: rtl ? rtlText : "Math",
+                    value: "reading",
+                    label: rtl ? rtlText : "Reading",
                     startIcon: (
                         <Icon>
                             <img src="logo.svg" alt="" />
