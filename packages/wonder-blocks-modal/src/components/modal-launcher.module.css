@@ -1,0 +1,21 @@
+/**
+ * ModalLauncher styles
+ *
+ * The container is `FocusTrap`'s root `View`, and `z-index` overrides the
+ * `z-index: 0` `View` sets in its own single-class rule in the same
+ * `@layer shared`. The bundle loads this package's CSS before core's, so the
+ * rule is nested under the `.root` marker class (`.root.container`) to win on
+ * specificity rather than load order. The build wraps every rule in
+ * `@layer shared { … }`.
+ */
+
+.root {
+    &.container {
+        /* This z-index is copied from the Khan Academy webapp.
+         *
+         * TODO(mdr): Should we keep this in a constants file somewhere? Or
+         *     not hardcode it at all, and provide it to Wonder Blocks via
+         *     configuration? */
+        z-index: 1080;
+    }
+}

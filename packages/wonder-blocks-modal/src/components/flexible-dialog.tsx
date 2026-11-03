@@ -1,13 +1,11 @@
 import * as React from "react";
-import {StyleSheet} from "aphrodite";
 import type {StyleType} from "@khanacademy/wonder-blocks-core";
 import {View} from "@khanacademy/wonder-blocks-core";
 
-import {semanticColor} from "@khanacademy/wonder-blocks-tokens";
 import {Heading} from "@khanacademy/wonder-blocks-typography";
 import {useModalAnnouncer} from "../hooks/use-modal-announcer";
 import FlexiblePanel from "./flexible-panel";
-import theme from "../theme";
+import componentStyles from "./flexible-dialog.module.css";
 
 // One of these three props is required for labeling the dialog:
 // `title`, `aria-label`, or `aria-labelledby`.
@@ -155,7 +153,13 @@ const FlexibleDialog = React.forwardRef(function FlexibleDialog(
         );
 
     return (
-        <View style={[componentStyles.root, styles?.root]}>
+        <View
+            style={[
+                componentStyles.root,
+                componentStyles.flexibleRoot,
+                styles?.root,
+            ]}
+        >
             <View
                 role={role}
                 aria-modal="true"
@@ -164,7 +168,7 @@ const FlexibleDialog = React.forwardRef(function FlexibleDialog(
                 aria-describedby={accessibilityProps["aria-describedby"]}
                 ref={ariaModalRef}
                 testId={testId}
-                style={[componentStyles.dialog, styles?.dialog]}
+                style={styles?.dialog}
             >
                 <FlexiblePanel
                     styles={{
@@ -181,23 +185,6 @@ const FlexibleDialog = React.forwardRef(function FlexibleDialog(
             </View>
         </View>
     );
-});
-
-const componentStyles = StyleSheet.create({
-    root: {
-        boxShadow: theme.dialog.shadow.default,
-        // Allows propagating the text color to all the children.
-        color: semanticColor.core.foreground.neutral.strong,
-        overflow: "auto", // Prevent dialog from scrolling with background
-        position: "relative",
-        willChange: "transform, opacity",
-
-        // Default widths/heights for FlexibleDialog alone
-        height: "auto",
-        maxBlockSize: "100vh",
-        maxInlineSize: 576,
-        width: "93.75%",
-    },
 });
 
 export default FlexibleDialog;
