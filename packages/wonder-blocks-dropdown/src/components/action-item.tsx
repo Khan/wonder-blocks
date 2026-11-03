@@ -5,7 +5,7 @@ import {DetailCell} from "@khanacademy/wonder-blocks-cell";
 import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {BodyText} from "@khanacademy/wonder-blocks-typography";
 
-import type {StyleType} from "@khanacademy/wonder-blocks-core";
+import type {PropsFor, StyleType} from "@khanacademy/wonder-blocks-core";
 
 import {focusStyles} from "@khanacademy/wonder-blocks-styles";
 import {DROPDOWN_ITEM_HEIGHT} from "../util/constants";
@@ -125,23 +125,25 @@ type DefaultProps = {
     role: ActionProps["role"];
 };
 
+type ActionItemInnerProps = ActionProps & {
+    /**
+     * The ref passed to `ActionItem`, forwarded to the root DOM element of
+     * the item (the `DetailCell`).
+     */
+    forwardedRef?: React.Ref<HTMLElement>;
+};
+
 /**
- * The action item trigger actions, such as navigating to a different page or
- * opening a modal. Supply the href and/or onClick props. Used as a child of
- * ActionMenu.
+ * The class implementation of `ActionItem`. It's wrapped by the exported
+ * `ActionItem` so that refs are forwarded to the root DOM element.
  */
-export default class ActionItem extends React.Component<ActionProps> {
-    static isClassOf(instance: React.ReactElement<any>): boolean {
-        // @ts-expect-error [FEI-5019] - TS2339 - Property '__IS_ACTION_ITEM__' does not exist on type 'string | JSXElementConstructor<any>'.
-        return instance && instance.type && instance.type.__IS_ACTION_ITEM__;
-    }
+class ActionItemInner extends React.Component<ActionItemInnerProps> {
     static defaultProps: DefaultProps = {
         disabled: false,
         horizontalRule: "none",
         indent: false,
         role: "menuitem",
     };
-    static __IS_ACTION_ITEM__ = true;
 
     render(): React.ReactNode {
         const {
@@ -162,6 +164,7 @@ export default class ActionItem extends React.Component<ActionProps> {
             testId,
             active,
             "aria-label": ariaLabel,
+            forwardedRef,
         } = this.props;
 
         const defaultStyle = [
@@ -206,10 +209,52 @@ export default class ActionItem extends React.Component<ActionProps> {
                 onClick={onClick}
                 active={active}
                 aria-label={ariaLabel}
+                ref={forwardedRef}
             />
         );
     }
 }
+
+type ActionItemProps = Omit<PropsFor<typeof ActionItemInner>, "forwardedRef">;
+
+/**
+ * Check whether the given element is an `ActionItem` element.
+ *
+ * @param instance The element to check.
+ * @returns `true` if the element's type is `ActionItem`.
+ */
+const isClassOf = (instance: React.ReactElement<unknown>): boolean => {
+    const type: unknown = instance?.type;
+    return (
+        typeof type === "object" &&
+        type !== null &&
+        "__IS_ACTION_ITEM__" in type &&
+        type.__IS_ACTION_ITEM__ === true
+    );
+};
+
+/**
+ * The action item trigger actions, such as navigating to a different page or
+ * opening a modal. Supply the href and/or onClick props. Used as a child of
+ * ActionMenu.
+ *
+ * The ref is forwarded to the root DOM element of the item (an `<a>` when
+ * `href` is set, otherwise a `<button>`).
+ */
+const ActionItem = Object.assign(
+    React.forwardRef(function ActionItem(
+        props: ActionItemProps,
+        ref: React.ForwardedRef<HTMLElement>,
+    ): React.ReactElement {
+        return <ActionItemInner {...props} forwardedRef={ref} />;
+    }),
+    {
+        isClassOf,
+        __IS_ACTION_ITEM__: true as const,
+    },
+);
+
+export default ActionItem;
 
 const styles = StyleSheet.create({
     wrapper: {

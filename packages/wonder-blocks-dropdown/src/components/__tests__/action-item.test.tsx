@@ -8,6 +8,8 @@ import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 
 import plusIcon from "@phosphor-icons/core/regular/plus.svg";
 import ActionItem from "../action-item";
+import OptionItem from "../option-item";
+import SeparatorItem from "../separator-item";
 
 jest.mock("react-router-dom", () => ({
     __esModule: true,
@@ -143,5 +145,82 @@ describe("ActionItem", () => {
             "aria-label",
             "ActionItem aria-label",
         );
+    });
+
+    describe("ref", () => {
+        it("should forward the ref to the root element when href is set", () => {
+            // Arrange
+            const ref = React.createRef<HTMLElement>();
+
+            // Act
+            render(<ActionItem href="/foo" label="Example" ref={ref} />);
+
+            // Assert
+            expect(ref.current).toBe(screen.getByRole("menuitem"));
+        });
+
+        it("should forward the ref to a button element when onClick is set", () => {
+            // Arrange
+            const ref = React.createRef<HTMLElement>();
+
+            // Act
+            render(<ActionItem onClick={() => {}} label="Example" ref={ref} />);
+
+            // Assert
+            expect(ref.current).toBeInstanceOf(HTMLButtonElement);
+        });
+
+        it("should forward the ref to an anchor element when href is set", () => {
+            // Arrange
+            const ref = React.createRef<HTMLElement>();
+
+            // Act
+            render(<ActionItem href="/foo" label="Example" ref={ref} />);
+
+            // Assert
+            expect(ref.current).toBeInstanceOf(HTMLAnchorElement);
+        });
+
+        it("should forward the ref to the root element when onClick is set", () => {
+            // Arrange
+            const ref = React.createRef<HTMLElement>();
+
+            // Act
+            render(<ActionItem onClick={() => {}} label="Example" ref={ref} />);
+
+            // Assert
+            expect(ref.current).toBe(screen.getByRole("menuitem"));
+        });
+    });
+
+    describe("isClassOf", () => {
+        it("should return true for an ActionItem element", () => {
+            // Arrange
+            const element = <ActionItem label="Example" />;
+
+            // Act
+            const result = ActionItem.isClassOf(element);
+
+            // Assert
+            expect(result).toBe(true);
+        });
+
+        it.each([
+            [
+                "OptionItem",
+                <OptionItem key="option" value="1" label="Example" />,
+            ],
+            ["SeparatorItem", <SeparatorItem key="separator" />],
+            ["div", <div key="div" />],
+        ])("should return false for a %s element", (_, element) => {
+            // Arrange
+            // (element comes from it.each)
+
+            // Act
+            const result = ActionItem.isClassOf(element);
+
+            // Assert
+            expect(result).toBe(false);
+        });
     });
 });
