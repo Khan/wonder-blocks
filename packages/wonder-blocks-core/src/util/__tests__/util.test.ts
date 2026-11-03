@@ -143,11 +143,9 @@ describe("processStyleList", () => {
     });
 
     describe("inline-object styles", () => {
-        // Plain objects (no `_definition`) are merged and wrapped into a
-        // single generated Aphrodite class so they apply alongside Aphrodite's
-        // `!important`. The merged values are observable in snapshot mode (see
-        // the SNAPSHOT_INLINE_APHRODITE block); here we pin the wrapping.
-        it("wraps a single inline object into a generated class, leaving `style` empty", () => {
+        // Without Aphrodite stylesheets in the list, flat plain objects (no
+        // `_definition`) are merged and returned as the `style` attribute.
+        it("returns a single inline object as `style`", () => {
             // Arrange
             const input = {padding: 0};
 
@@ -155,10 +153,10 @@ describe("processStyleList", () => {
             const result = processStyleList(input);
 
             // Assert
-            expect(result.style).toEqual({});
+            expect(result.style).toEqual({padding: 0});
         });
 
-        it("emits a non-empty generated class for a single inline object", () => {
+        it("generates no class for a single inline object", () => {
             // Arrange
             const input = {padding: 0};
 
@@ -166,10 +164,10 @@ describe("processStyleList", () => {
             const result = processStyleList(input);
 
             // Assert
-            expect(result.className.length).toBeGreaterThan(0);
+            expect(result.className).toEqual("");
         });
 
-        it("merges multiple inline objects into a single generated class", () => {
+        it("merges multiple inline objects into `style`", () => {
             // Arrange
             const input = [{padding: 0, fontSize: 12}, {padding: 10}];
 
@@ -177,10 +175,10 @@ describe("processStyleList", () => {
             const result = processStyleList(input);
 
             // Assert
-            expect(result.className.split(" ")).toHaveLength(1);
+            expect(result.style).toEqual({padding: 10, fontSize: 12});
         });
 
-        it("wraps CSS custom property keys (--*) into a generated class", () => {
+        it("returns CSS custom property keys (--*) as `style`", () => {
             // Arrange
             const input = {"--my-var": "12px"} as any;
 
@@ -188,8 +186,39 @@ describe("processStyleList", () => {
             const result = processStyleList(input);
 
             // Assert
-            expect(result.style).toEqual({});
-            expect(result.className.length).toBeGreaterThan(0);
+            expect(result).toEqual({
+                style: {"--my-var": "12px"},
+                className: "",
+            });
+        });
+
+        it("keeps null and undefined values in `style`", () => {
+            // Arrange
+            const input = {padding: 10, width: undefined, height: null} as any;
+
+            // Act
+            const result = processStyleList(input);
+
+            // Assert
+            expect(result.style).toEqual({
+                padding: 10,
+                width: undefined,
+                height: null,
+            });
+        });
+
+        it("returns inline objects as `style` next to CSS Module class names", () => {
+            // Arrange
+            const input = ["module-class", {fontSize: 14}];
+
+            // Act
+            const result = processStyleList(input);
+
+            // Assert
+            expect(result).toEqual({
+                style: {fontSize: 14},
+                className: "module-class",
+            });
         });
     });
 
@@ -343,15 +372,8 @@ describe("processStyleList", () => {
     });
 
     describe("order of precedence", () => {
-        // Inline styles are wrapped into a generated class in normal
-        // operation, so the merge isn't observable on the result. We assert
-        // the merge order in snapshot mode, where the merged inline object is
-        // returned directly via `style`.
-        beforeEach(() => {
-            // @ts-expect-error: globalThis index signature
-            global.SNAPSHOT_INLINE_APHRODITE = true;
-        });
-
+        // Without Aphrodite stylesheets in the list, the merged inline object
+        // is returned directly via `style`, so the merge order is observable.
         it("merges inline objects with later keys winning", () => {
             // Arrange
             // Consumer override is last in the array.
@@ -383,30 +405,9 @@ describe("processStyleList", () => {
     });
 
     describe("inline styles are wrapped into a generated class", () => {
-        it("emits a non-empty generated class when only inline styles are present", () => {
-            // Arrange
-            const input = {padding: 10};
-
-            // Act
-            const result = processStyleList(input);
-
-            // Assert
-            // Inline styles are wrapped into a generated class so they can
-            // outweigh Aphrodite's `!important`.
-            expect(result.className.length).toBeGreaterThan(0);
-        });
-
-        it("leaves `style` empty when only inline styles are present", () => {
-            // Arrange
-            const input = {padding: 10};
-
-            // Act
-            const result = processStyleList(input);
-
-            // Assert
-            expect(result.style).toEqual({});
-        });
-
+        // Merged into the same class as the Aphrodite stylesheets, the inline
+        // values still give way to the stylesheets' pseudo-class and media
+        // query rules, which the `style` attribute would not allow.
         it("leaves `style` empty when aphrodite is also present", () => {
             // Arrange
             const input = [styles.noPadding, {fontSize: 14}];
@@ -427,6 +428,42 @@ describe("processStyleList", () => {
 
             // Assert
             expect(result.className.length).toBeGreaterThan(0);
+        });
+
+        // These need Aphrodite to generate CSS; React can't express them in
+        // the `style` attribute.
+        it.each([
+            ["a pseudo-selector", {color: "red", ":hover": {color: "blue"}}],
+            [
+                "a media query",
+                {width: 100, "@media (max-width: 100px)": {width: 50}},
+            ],
+            [
+                "a keyframes object",
+                {animationName: {from: {opacity: 0}, to: {opacity: 1}}},
+            ],
+            ["an array fallback", {position: ["sticky", "relative"]}],
+        ])("wraps an inline object with %s", (_label, inlineStyle) => {
+            // Arrange
+            const input = inlineStyle as any;
+
+            // Act
+            const result = processStyleList(input);
+
+            // Assert
+            expect(result.style).toEqual({});
+            expect(result.className.length).toBeGreaterThan(0);
+        });
+
+        it("wraps every inline object when one of them has nested keys", () => {
+            // Arrange
+            const input = [{padding: 10}, {":hover": {color: "blue"}}] as any;
+
+            // Act
+            const result = processStyleList(input);
+
+            // Assert
+            expect(result.style).toEqual({});
         });
     });
 
