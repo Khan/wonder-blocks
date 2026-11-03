@@ -870,6 +870,12 @@ const DropdownCore = (props: Props) => {
 
     /**
      * Renders the non-virtualized list of items.
+     *
+     * Each item is wrapped in a presentational `<li>` element so that the
+     * dropdown uses semantic list markup (`<ul>`/`<li>`) while keeping the ARIA
+     * widget roles (`menu`/`menuitem`, `listbox`/`option`). The `role="none"`
+     * on the `<li>` keeps the widget role's required parent/child relationship
+     * intact. See WB-2148.
      */
     const renderList = (): React.ReactNode => {
         let focusCounter = 0;
@@ -878,7 +884,11 @@ const DropdownCore = (props: Props) => {
         // if we don't need to virtualize, we can render the list directly
         return items.map((item, index) => {
             if (SeparatorItem.isClassOf(item.component)) {
-                return item.component;
+                return (
+                    <View tag="li" role="none" key={index}>
+                        {item.component}
+                    </View>
+                );
             }
 
             const {component, focusable, populatedProps} = item;
@@ -894,9 +904,8 @@ const DropdownCore = (props: Props) => {
                 : null;
 
             // Render OptionItem and/or ActionItem elements.
-            return React.cloneElement(component, {
+            const menuItem = React.cloneElement(component, {
                 ...populatedProps,
-                key: index,
                 onClick: () => {
                     handleItemClick(focusIndex, item);
                 },
@@ -904,6 +913,12 @@ const DropdownCore = (props: Props) => {
                 ref: focusable ? currentRef : null,
                 role: populatedProps.role || itemRole,
             });
+
+            return (
+                <View tag="li" role="none" key={index}>
+                    {menuItem}
+                </View>
+            );
         });
     };
 
@@ -988,6 +1003,12 @@ const DropdownCore = (props: Props) => {
             ? openerStyle.getPropertyValue("width")
             : 0;
 
+        // Use semantic list markup (`<ul>`/`<li>`) so the dropdown items are
+        // exposed as a list. The virtualized list renders its own container
+        // structure (via react-window), so the list markup is only applied to
+        // the non-virtualized case. See WB-2148.
+        const useListMarkup = !this.shouldVirtualizeList();
+
         return (
             <View
                 // Stop propagation to prevent the mouseup listener on the
@@ -1003,6 +1024,7 @@ const DropdownCore = (props: Props) => {
                 {isFilterable && renderSearchField()}
                 <View
                     id={id}
+                    tag={useListMarkup ? "ul" : "div"}
                     role={role}
                     aria-label={ariaLabel}
                     aria-labelledby={ariaLabelledby}
