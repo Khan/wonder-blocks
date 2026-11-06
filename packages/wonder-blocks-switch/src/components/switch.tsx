@@ -1,7 +1,12 @@
 import * as React from "react";
 import {CSSProperties, StyleSheet} from "aphrodite";
 
-import {AriaProps, View, addStyle} from "@khanacademy/wonder-blocks-core";
+import {
+    AriaProps,
+    FloatingReferenceAttributeName,
+    View,
+    addStyle,
+} from "@khanacademy/wonder-blocks-core";
 import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {useId} from "react";
@@ -45,6 +50,14 @@ type Props = Pick<
      * Adds CSS classes to the component.
      */
     className?: string;
+    /**
+     * Injected by floating components (e.g. `Tooltip`) to identify the
+     * element they are anchored to. It is applied to the root element, so that
+     * they are anchored to the whole component rather than to the inner
+     * `<input>` that the ref points at.
+     * @ignore
+     */
+    [FloatingReferenceAttributeName]?: string;
 };
 
 const StyledSpan = addStyle("span");
@@ -144,6 +157,7 @@ const Switch = React.forwardRef(function Switch(
         id,
         onChange,
         testId,
+        [FloatingReferenceAttributeName]: floatingReferenceId,
     } = props;
 
     const generatedUniqueId = useId();
@@ -187,6 +201,7 @@ const Switch = React.forwardRef(function Switch(
             style={combinedStyles}
             className={className}
             testId={testId}
+            {...{[FloatingReferenceAttributeName]: floatingReferenceId}}
         >
             <StyledInput
                 aria-describedby={ariaDescribedBy}
