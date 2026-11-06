@@ -240,6 +240,9 @@ learning experience.
 Graphics tokens are used for illustrative and decorative elements such as
 character art, gems, streaks, roles, and more.
 
+For a wider selection of colors for illustrations, see
+[Graphics Palette tokens](#graphics-palette).
+
 #### Characters
 
 <Canvas
@@ -275,6 +278,25 @@ Colors that reflect external brand palettes, used exclusively when representing
 those brands (e.g. third-party sign-in buttons).
 
 <Canvas of={SemanticColorGroups.GraphicsExternalBrands} layout="fullscreen" />
+
+### Graphics Palette
+
+The graphics palette is a set of colors that are intended to be used for
+graphics like custom assets and illustrations. Their values are the same in
+every theme.
+
+<Banner
+    kind="info"
+    text="Prefer semanticColor tokens, which adapt to the current theme. Only use graphicsPalette tokens when a color must stay the same in every theme (e.g. illustrations)."
+/>
+
+```ts
+import {graphicsPalette} from "@khanacademy/wonder-blocks-tokens";
+
+<path fill={graphicsPalette.blue_30} />;
+```
+
+<Canvas of={SemanticColorGroups.GraphicsPalette} layout="fullscreen" />
 
 ### Khanmigo
 

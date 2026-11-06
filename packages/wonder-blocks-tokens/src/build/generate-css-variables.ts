@@ -3,6 +3,7 @@ import fs from "fs";
 import path from "path";
 import {THEME_DATA_ATTRIBUTE} from "@khanacademy/wonder-blocks-theming";
 import {generateTokens} from "../internal/generate-tokens";
+import {graphicsPalette} from "../theme/semantic/internal/primitive-color-thunderblocks";
 import {CSS_VAR_PREFIX} from "../util/constants";
 
 /**
@@ -82,6 +83,22 @@ function generateCssVariablesDefinitions(folderPath: string, prefix?: string) {
 }
 
 /**
+ * Generate the `:root` selector containing the graphics palette CSS variables.
+ *
+ * The graphics palette doesn't change based on the theme, so its variables are
+ * defined once on `:root` instead of once per theme.
+ */
+export function generateGraphicsPaletteDefinitions() {
+    const cssVariables = Object.entries(
+        generateTokens({graphicsPalette}, CSS_VAR_PREFIX),
+    )
+        .map(([key, value]) => `${key}: ${value};`)
+        .join("\n");
+
+    return `:root {${cssVariables}}`;
+}
+
+/**
  * Create the CSS file containing the CSS variables for each theme.
  */
 export function createCssFile(folderPath: string, prefix?: string) {
@@ -96,10 +113,21 @@ export function createCssFile(folderPath: string, prefix?: string) {
     const currentDir = parts[parts.length - 1].replace(/wonder-blocks-/g, "");
     const packagePrefix = prefix || currentDir === "tokens" ? "" : currentDir;
 
+    const definitions = [
+        generateCssVariablesDefinitions(folderPath, packagePrefix),
+    ];
+
+    // The graphics palette belongs to this package, so only its own CSS file
+    // defines the palette variables (not the component packages that also
+    // use this script through the CLI).
+    if (currentDir === "tokens") {
+        definitions.push(generateGraphicsPaletteDefinitions());
+    }
+
     // Generate the output inside dist/css/vars.css
     fs.writeFileSync(
         path.resolve(folderPath, `${dir}/vars.css`),
-        generateCssVariablesDefinitions(folderPath, packagePrefix),
+        definitions.join("\n\n"),
         {flag: "w+"},
     );
 
