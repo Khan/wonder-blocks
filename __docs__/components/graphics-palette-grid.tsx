@@ -52,34 +52,29 @@ const steps = hueRows[0][1].map(getStep);
 
 type SwatchProps = {
     name: PaletteName;
-    /**
-     * Text shown above the swatch, for tokens that aren't in the hue grid.
-     */
-    label?: string;
     style?: StyleType;
 };
 
 /**
- * A palette color, with its hex value and a button to copy its token name.
+ * A palette color, with its token name, a button to copy the token name, and
+ * its hex value.
  */
-function PaletteSwatch({name, label, style}: SwatchProps) {
+function PaletteSwatch({name, style}: SwatchProps) {
     const value = graphicsPalette[name];
     const hex = maybeGetCssVariableInfo(value).value;
 
     return (
         <View style={[styles.cell, style]}>
-            {label && (
-                <BodyText size="small" style={styles.swatchLabel}>
-                    {label}
-                </BodyText>
-            )}
             <View style={[styles.swatch, {backgroundColor: value}]} />
-            <View style={styles.details}>
-                <BodyText size="xsmall" style={styles.hex}>
-                    {hex}
+            <View style={styles.nameRow}>
+                <BodyText size="xsmall" style={styles.name}>
+                    {name}
                 </BodyText>
                 <CopyButton value={`graphicsPalette.${name}`} />
             </View>
+            <BodyText size="xsmall" style={styles.hex}>
+                {hex}
+            </BodyText>
         </View>
     );
 }
@@ -143,7 +138,6 @@ export function GraphicsPaletteGrid() {
                     <PaletteSwatch
                         key={name}
                         name={name}
-                        label={name}
                         style={[
                             styles.standalone,
                             {
@@ -167,7 +161,7 @@ const styles = StyleSheet.create({
     },
     grid: {
         display: "grid",
-        columnGap: sizing.size_060,
+        columnGap: sizing.size_040,
         rowGap: sizing.size_120,
         minInlineSize: "fit-content",
     },
@@ -178,7 +172,7 @@ const styles = StyleSheet.create({
         alignSelf: "start",
         // Center the label on the swatch, not the whole cell.
         paddingBlockStart: sizing.size_160,
-        paddingInlineEnd: sizing.size_080,
+        paddingInlineEnd: sizing.size_040,
         textAlign: "end",
         textTransform: "capitalize",
     },
@@ -188,19 +182,18 @@ const styles = StyleSheet.create({
     standalone: {
         marginBlockStart: sizing.size_160,
     },
-    swatchLabel: {
-        whiteSpace: "nowrap",
-    },
     swatch: {
         blockSize: sizing.size_480,
         borderRadius: border.radius.radius_040,
         boxShadow: `inset 0 0 0 1px ${semanticColor.core.border.neutral.subtle}`,
     },
-    details: {
+    nameRow: {
         flexDirection: "row",
         alignItems: "center",
         justifyContent: "space-between",
-        gap: sizing.size_020,
+    },
+    name: {
+        whiteSpace: "nowrap",
     },
     hex: {
         fontFamily: "monospace",
