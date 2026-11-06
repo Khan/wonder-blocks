@@ -48,6 +48,7 @@ to learn more about the API.
 | `wonder-blocks-icon` | `Icon`, `PhosphorIcon` |
 | `wonder-blocks-form` | `TextField`, `TextArea`, `Checkbox`, `CheckboxGroup`, `Choice`, `RadioGroup` |
 | `wonder-blocks-labeled-field` | `LabeledField` |
+| `wonder-blocks-filters` | `ExclusiveCategoryFilter` |
 | `wonder-blocks-dropdown` | `SingleSelect`, `MultiSelect`, `ActionMenu`, `Combobox`, `OptionItem`, `ActionItem`, `SeparatorItem` |
 | `wonder-blocks-modal` | `ModalLauncher`, `OnePaneDialog`, `FlexibleDialog`, `DrawerLauncher`, `DrawerDialog` |
 | `wonder-blocks-accordion` | `Accordion`, `AccordionSection` |
