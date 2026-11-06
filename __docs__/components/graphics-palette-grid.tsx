@@ -93,7 +93,7 @@ export function GraphicsPaletteGrid() {
                 style={[
                     styles.grid,
                     {
-                        gridTemplateColumns: `max-content repeat(${steps.length}, minmax(${CELL_MIN_WIDTH}px, 1fr))`,
+                        gridTemplateColumns: `max-content repeat(${steps.length}, ${CELL_WIDTH}px)`,
                     },
                 ]}
             >
@@ -113,7 +113,7 @@ export function GraphicsPaletteGrid() {
                 {hueRows.map(([hue, names], rowIndex) => (
                     <React.Fragment key={hue}>
                         <BodyText
-                            size="small"
+                            size="xsmall"
                             style={[
                                 styles.rowLabel,
                                 {gridColumn: 1, gridRow: rowIndex + 2},
@@ -152,7 +152,9 @@ export function GraphicsPaletteGrid() {
     );
 }
 
-const CELL_MIN_WIDTH = 72;
+// A fixed width so the grid scrolls horizontally instead of squeezing the
+// swatches when there isn't enough room.
+const CELL_WIDTH = 96;
 
 const styles = StyleSheet.create({
     scrollContainer: {
@@ -161,7 +163,7 @@ const styles = StyleSheet.create({
     },
     grid: {
         display: "grid",
-        columnGap: sizing.size_040,
+        columnGap: sizing.size_080,
         rowGap: sizing.size_120,
         minInlineSize: "fit-content",
     },
@@ -172,7 +174,7 @@ const styles = StyleSheet.create({
         alignSelf: "start",
         // Center the label on the swatch, not the whole cell.
         paddingBlockStart: sizing.size_160,
-        paddingInlineEnd: sizing.size_040,
+        paddingInlineEnd: sizing.size_080,
         textAlign: "end",
         textTransform: "capitalize",
     },
@@ -191,6 +193,7 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         alignItems: "center",
         justifyContent: "space-between",
+        gap: sizing.size_040,
     },
     name: {
         whiteSpace: "nowrap",

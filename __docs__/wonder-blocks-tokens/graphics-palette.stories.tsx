@@ -16,15 +16,12 @@ import {ColorSwatch} from "../components/color-swatch";
 import {GraphicsPaletteGrid} from "../components/graphics-palette-grid";
 
 /**
- * The graphics palette contains colors that don't change based on the theme,
- * for cases like illustrations.
+ * The graphics palette is a set of colors that are intended to be used for
+ * graphics like custom assets and illustrations. Their values are the same in
+ * every theme.
  *
  * These tokens map to the `5 - Graphics / Palette` tokens in Figma (e.g.
  * `Palette/Red/30` -> `graphicsPalette.red_30`).
- *
- * Like `semanticColor`, these tokens are CSS variables (e.g.
- * `var(--wb-graphicsPalette-red_30)`). Unlike `semanticColor`, the variables
- * are defined once on `:root`, so their values are the same in every theme.
  *
  * ## Usage
  *
@@ -45,15 +42,6 @@ import {GraphicsPaletteGrid} from "../components/graphics-palette-grid";
  *     fill: var(--wb-graphicsPalette-blue_30);
  * }
  * ```
- *
- * When a literal color value is needed (e.g. drawing on a canvas), resolve the
- * token with `tokenValue()` when it's used, not at module scope:
- *
- * ```ts
- * import {graphicsPalette, tokenValue} from "@khanacademy/wonder-blocks-tokens";
- *
- * context.fillStyle = tokenValue(graphicsPalette.blue_30);
- * ```
  */
 export default {
     title: "Packages / Tokens / Graphics Palette",
@@ -73,14 +61,14 @@ export default {
                     <Title />
                     <Subtitle />
                     <Banner
-                        kind="warning"
+                        kind="info"
                         text={
                             <>
                                 Prefer <code>semanticColor</code> tokens, which
-                                support themes. Only use{" "}
+                                adapt to the current theme. Only use{" "}
                                 <code>graphicsPalette</code> tokens when a color
                                 must stay the same in every theme (e.g.
-                                illustrations), and explain why.
+                                illustrations).
                             </>
                         }
                     />
