@@ -13,7 +13,6 @@ import {mix, fade, pxToRem, remToPx, tokenValue} from "./util";
 
 import {mapValuesToCssVars} from "./internal/map-values-to-css-vars";
 
-// graphics palette
 import graphicsPalette from "./tokens/graphics-palette";
 
 // theme
@@ -44,13 +43,7 @@ export {
      */
     semanticColor,
     /**
-     * The graphics palette. These colors are CSS variables that don't change
-     * based on the theme.
-     *
-     * NOTE: Prefer `semanticColor` tokens (e.g. `semanticColor.graphics`),
-     * which support themes. Only use `graphicsPalette` when a color must stay
-     * the same in every theme (e.g. illustrations), and explain why. To get a
-     * literal color value (e.g. for canvas), call `tokenValue()` at use time.
+     * The graphics palette that stays the same across themes.
      */
     graphicsPalette,
     /**

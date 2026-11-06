@@ -359,7 +359,6 @@ export const GraphicsExternalBrands = () => {
     );
 };
 
-// Group the graphics palette tokens by hue (e.g. `red_90` -> `red`).
 export const GraphicsPalette = () => {
     return <GraphicsPaletteGrid />;
 };
