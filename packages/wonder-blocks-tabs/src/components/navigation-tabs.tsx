@@ -1,4 +1,9 @@
-import {addStyle, AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
+import {
+    addStyle,
+    AriaProps,
+    StyleType,
+    getWBComponentProps,
+} from "@khanacademy/wonder-blocks-core";
 import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {StyleSheet} from "aphrodite";
 import * as React from "react";
@@ -142,6 +147,7 @@ export const NavigationTabs = React.forwardRef(function NavigationTabs(
                 stylesProp?.root,
             ]}
             {...otherProps}
+            {...getWBComponentProps("NavigationTabs")}
         >
             {/* Wrap the contents so that any custom styles (like padding) set
             on the root doesn't affect the positioning of the underline indicator. */}

@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import {addStyle} from "@khanacademy/wonder-blocks-core";
+import {addStyle, getWBComponentProps} from "@khanacademy/wonder-blocks-core";
 import {BodyText} from "@khanacademy/wonder-blocks-typography";
 import type {StyleType} from "@khanacademy/wonder-blocks-core";
 
@@ -114,6 +114,7 @@ const RadioGroup = React.forwardRef(function RadioGroup(
 
     return (
         <StyledFieldset
+            {...getWBComponentProps("RadioGroup")}
             data-testid={testId}
             style={[styles.fieldset, style]}
             ref={ref}

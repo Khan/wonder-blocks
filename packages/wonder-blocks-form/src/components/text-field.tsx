@@ -1,7 +1,11 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
-import {Id, addStyle} from "@khanacademy/wonder-blocks-core";
+import {
+    Id,
+    addStyle,
+    getWBComponentProps,
+} from "@khanacademy/wonder-blocks-core";
 import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {styles as typographyStyles} from "@khanacademy/wonder-blocks-typography";
 
@@ -289,6 +293,7 @@ const TextField = (props: PropsWithForwardRef) => {
                     ref={forwardedRef}
                     aria-invalid={hasError}
                     {...otherProps}
+                    {...getWBComponentProps("TextField")}
                 />
             )}
         </Id>

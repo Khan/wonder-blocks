@@ -2,6 +2,7 @@ import * as React from "react";
 
 import {Floating} from "@khanacademy/wonder-blocks-floating";
 
+import {getWBComponentProps} from "@khanacademy/wonder-blocks-core";
 import type {AriaProps} from "@khanacademy/wonder-blocks-core";
 
 import PopoverContent from "./popover-content";
@@ -333,6 +334,7 @@ function Popover(props: Props) {
             }}
         >
             <Floating
+                {...getWBComponentProps("Popover")}
                 open={opened}
                 strategy="fixed"
                 onOpenChange={handleOpenChange}

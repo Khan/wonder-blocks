@@ -1,4 +1,5 @@
-import {addStyle} from "@khanacademy/wonder-blocks-core";
+import {addStyle, getWBComponentProps} from "@khanacademy/wonder-blocks-core";
+import type {WBComponentProps} from "@khanacademy/wonder-blocks-core";
 import {
     border,
     font,
@@ -17,7 +18,7 @@ type BadgeProps = {
     showBorder?: boolean;
 };
 
-type Props = IconLabelProps & BaseBadgeProps & BadgeProps;
+type Props = IconLabelProps & BaseBadgeProps & BadgeProps & WBComponentProps;
 
 const StyledSpan = addStyle("span");
 
@@ -60,6 +61,7 @@ const Badge = React.forwardRef<HTMLDivElement, Props>(function Badge(
                 !showBorder && styles.transparentBorder,
             ]}
             {...otherProps}
+            {...getWBComponentProps("Badge", otherProps)}
         >
             {icon && (
                 <StyledSpan

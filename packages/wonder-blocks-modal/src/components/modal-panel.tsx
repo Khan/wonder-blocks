@@ -1,5 +1,9 @@
 import * as React from "react";
-import {PropsFor, View} from "@khanacademy/wonder-blocks-core";
+import {
+    PropsFor,
+    View,
+    getWBComponentProps,
+} from "@khanacademy/wonder-blocks-core";
 import type {StyleType} from "@khanacademy/wonder-blocks-core";
 
 import {focusStyles} from "@khanacademy/wonder-blocks-styles";
@@ -119,6 +123,7 @@ export default function ModalPanel({
         <View
             style={[styles.wrapper, style]}
             testId={testId && `${testId}-panel`}
+            {...getWBComponentProps("ModalPanel")}
         >
             {closeButtonVisible && (
                 <CloseButton

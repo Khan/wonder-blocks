@@ -1,6 +1,9 @@
 import * as React from "react";
-import {View} from "@khanacademy/wonder-blocks-core";
-import type {StyleType} from "@khanacademy/wonder-blocks-core";
+import {View, getWBComponentProps} from "@khanacademy/wonder-blocks-core";
+import type {
+    StyleType,
+    WBComponentProps,
+} from "@khanacademy/wonder-blocks-core";
 import {StyleSheet} from "aphrodite";
 import {semanticColor} from "@khanacademy/wonder-blocks-tokens";
 // TODO [WB-2137]: standardize media query breakpoint tokens
@@ -8,7 +11,7 @@ import {useModalAnnouncer} from "../hooks/use-modal-announcer";
 import {modalMediaQuery} from "../util/constants";
 import theme from "../theme";
 
-type Props = {
+type Props = WBComponentProps & {
     /**
      * The dialog content
      */
@@ -84,7 +87,11 @@ const ModalDialog = React.forwardRef(function ModalDialog(
     const {ariaModalRef} = useModalAnnouncer(ref);
 
     return (
-        <View style={componentStyles.paddingLayer} data-modal-padding-layer>
+        <View
+            style={componentStyles.paddingLayer}
+            data-modal-padding-layer
+            {...getWBComponentProps("ModalDialog", props)}
+        >
             {/* WB-2197: We add a data attribute for identifying this layer on backdrop clicks */}
             <View style={[componentStyles.wrapper, style]}>
                 {below && <View style={componentStyles.below}>{below}</View>}

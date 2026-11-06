@@ -1,4 +1,9 @@
-import {addStyle, AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
+import {
+    addStyle,
+    AriaProps,
+    StyleType,
+    getWBComponentProps,
+} from "@khanacademy/wonder-blocks-core";
 import {StyleSheet} from "aphrodite";
 import * as React from "react";
 import {styles as typographyStyles} from "@khanacademy/wonder-blocks-typography";
@@ -100,6 +105,7 @@ export const NavigationTabItem = React.forwardRef(function NavigationTabItem(
             style={[styles.root, current && styles.current, style]}
             ref={ref}
             {...otherProps}
+            {...getWBComponentProps("NavigationTabItem")}
         >
             {renderChildren()}
         </StyledLi>

@@ -7,6 +7,7 @@ import {
     addStyle,
     View,
     useOnMountEffect,
+    getWBComponentProps,
 } from "@khanacademy/wonder-blocks-core";
 import {border, font, semanticColor} from "@khanacademy/wonder-blocks-tokens";
 import {styles as typographyStyles} from "@khanacademy/wonder-blocks-typography";
@@ -427,6 +428,7 @@ const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
             <View
                 style={[{width: "100%"}, rootStyle]}
                 ref={textAreaContainerRef}
+                {...getWBComponentProps("TextArea")}
             >
                 <StyledTextarea
                     id={uniqueId}

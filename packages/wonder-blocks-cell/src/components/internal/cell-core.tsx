@@ -1,10 +1,13 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
-import type {StyleType} from "@khanacademy/wonder-blocks-core";
+import type {
+    StyleType,
+    WBComponentProps,
+} from "@khanacademy/wonder-blocks-core";
 
 import Clickable from "@khanacademy/wonder-blocks-clickable";
-import {View} from "@khanacademy/wonder-blocks-core";
+import {View, getWBComponentProps} from "@khanacademy/wonder-blocks-core";
 
 import {border, semanticColor} from "@khanacademy/wonder-blocks-tokens";
 import {focusStyles} from "@khanacademy/wonder-blocks-styles";
@@ -148,7 +151,7 @@ type CellCoreProps = Partial<Omit<CellProps, "title">> & {
      * within the package scope.
      */
     innerStyle?: StyleType;
-};
+} & WBComponentProps;
 
 /**
  * CellCore is the base cell wrapper. It's used as the skeleton/layout that is
@@ -214,6 +217,7 @@ const CellCore = (props: CellCoreProps): React.ReactElement => {
                 ]}
                 aria-current={active ? "true" : undefined}
                 tabIndex={tabIndex}
+                {...getWBComponentProps("CompactCell", props)}
                 id={id}
             >
                 {() => <CellInner {...props} />}
@@ -232,6 +236,7 @@ const CellCore = (props: CellCoreProps): React.ReactElement => {
             aria-current={active ? "true" : undefined}
             role={role}
             id={id}
+            {...getWBComponentProps("CompactCell", props)}
         >
             <CellInner {...props} />
         </View>

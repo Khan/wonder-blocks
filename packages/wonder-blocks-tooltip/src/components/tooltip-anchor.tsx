@@ -5,7 +5,10 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 
-import {Text as WBText} from "@khanacademy/wonder-blocks-core";
+import {
+    Text as WBText,
+    getWBComponentProps,
+} from "@khanacademy/wonder-blocks-core";
 
 import ActiveTracker from "../util/active-tracker";
 import {
@@ -315,7 +318,7 @@ export default class TooltipAnchor
     _renderAnchorableChildren(): React.ReactElement<any> {
         const {children} = this.props;
         return typeof children === "string" ? (
-            <WBText>{children}</WBText>
+            <WBText {...getWBComponentProps("Tooltip")}>{children}</WBText>
         ) : (
             children
         );

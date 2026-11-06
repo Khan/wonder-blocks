@@ -1,5 +1,6 @@
 import * as React from "react";
 
+import {getWBComponentProps} from "@khanacademy/wonder-blocks-core";
 import {BodyText} from "@khanacademy/wonder-blocks-typography";
 
 import CellCore from "./internal/cell-core";
@@ -31,7 +32,7 @@ const CompactCell = function (props: CellProps): React.ReactElement {
     const {title, ...coreProps} = props;
 
     return (
-        <CellCore {...coreProps}>
+        <CellCore {...coreProps} {...getWBComponentProps("CompactCell")}>
             {typeof title === "string" ? (
                 <BodyText
                     weight="semi"

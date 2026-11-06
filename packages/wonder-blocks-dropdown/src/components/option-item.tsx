@@ -5,7 +5,12 @@ import {DetailCell} from "@khanacademy/wonder-blocks-cell";
 import {semanticColor, border, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {BodyText} from "@khanacademy/wonder-blocks-typography";
 
-import {AriaProps, StyleType, View} from "@khanacademy/wonder-blocks-core";
+import {
+    AriaProps,
+    StyleType,
+    View,
+    getWBComponentProps,
+} from "@khanacademy/wonder-blocks-core";
 
 import {focusStyles} from "@khanacademy/wonder-blocks-styles";
 import Check from "./check";
@@ -215,6 +220,7 @@ export default class OptionItem extends React.Component<OptionProps> {
 
         return (
             <DetailCell
+                {...getWBComponentProps("OptionItem")}
                 disabled={disabled}
                 horizontalRule={horizontalRule}
                 styles={{

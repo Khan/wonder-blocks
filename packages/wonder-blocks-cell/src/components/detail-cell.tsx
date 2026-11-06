@@ -4,6 +4,8 @@ import {StyleSheet} from "aphrodite";
 import {BodyText} from "@khanacademy/wonder-blocks-typography";
 
 import {semanticColor} from "@khanacademy/wonder-blocks-tokens";
+import {getWBComponentProps} from "@khanacademy/wonder-blocks-core";
+import type {WBComponentProps} from "@khanacademy/wonder-blocks-core";
 import CellCore from "./internal/cell-core";
 
 import type {CellProps, TypographyText} from "../util/types";
@@ -63,7 +65,7 @@ type DetailCellProps = CellProps & {
      * occupy the “Subtitle2” area of the Cell.
      */
     subtitle2?: TypographyText;
-};
+} & WBComponentProps;
 
 /**
  * This is a variant of CompactCell that allows adding subtitles, before and
@@ -93,6 +95,7 @@ const DetailCell = function (props: DetailCellProps): React.ReactElement {
     return (
         <CellCore
             {...coreProps}
+            {...getWBComponentProps("DetailCell", props)}
             innerStyle={styles.innerWrapper}
             contentStyle={{
                 gap: theme.root.layout.gap.detail,

@@ -1,5 +1,9 @@
 import * as React from "react";
-import {PropsFor, Text} from "@khanacademy/wonder-blocks-core";
+import {
+    PropsFor,
+    Text,
+    getWBComponentProps,
+} from "@khanacademy/wonder-blocks-core";
 import styles from "../util/styles";
 
 const tagMap = {
@@ -52,6 +56,7 @@ const Heading = React.forwardRef(function Heading(props: Props, ref) {
     return (
         <Text
             {...otherProps}
+            {...getWBComponentProps("Heading", otherProps)}
             tag={resolvedTag}
             style={[styles.Heading, themeHeading, style]}
             ref={ref}

@@ -3,7 +3,7 @@ import {StyleSheet} from "aphrodite";
 import {Link, useInRouterContext} from "react-router-dom-v5-compat";
 
 import {useWonderBlocksI18n} from "@khanacademy/wonder-blocks-config";
-import {addStyle} from "@khanacademy/wonder-blocks-core";
+import {addStyle, getWBComponentProps} from "@khanacademy/wonder-blocks-core";
 import {
     border,
     font,
@@ -78,6 +78,7 @@ const LinkCore = React.forwardRef(function LinkCore(
         style: [defaultStyles, style],
         target,
         ...restProps,
+        ...getWBComponentProps("Link"),
     } as const;
 
     const linkUrl = new URL(href, window.location.origin);

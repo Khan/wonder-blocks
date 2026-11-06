@@ -3,6 +3,7 @@ import * as React from "react";
 import type {CSSProperties} from "aphrodite";
 
 import type {AriaAttributes, AriaRole} from "./aria-types";
+import type {WBComponentProps} from "./wb-component";
 
 type NestedArray<T> = ReadonlyArray<T | NestedArray<T>>;
 type Falsy = false | 0 | null | undefined;
@@ -112,6 +113,7 @@ export type TextViewSharedProps = {
      */
     "data-placement"?: string;
 } & AriaProps &
+    WBComponentProps &
     EventHandlers;
 
 export * from "./types.propsfor";

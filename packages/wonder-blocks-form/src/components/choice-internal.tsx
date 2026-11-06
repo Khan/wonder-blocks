@@ -1,10 +1,14 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
-import {View, Id} from "@khanacademy/wonder-blocks-core";
+import {View, Id, getWBComponentProps} from "@khanacademy/wonder-blocks-core";
 import {font, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {BodyText} from "@khanacademy/wonder-blocks-typography";
-import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
+import type {
+    AriaProps,
+    StyleType,
+    WBComponentProps,
+} from "@khanacademy/wonder-blocks-core";
 import CheckboxCore from "./checkbox-core";
 import RadioCore from "./radio-core";
 import theme from "../theme";
@@ -45,7 +49,7 @@ type Props = AriaProps & {
     groupName?: string;
     /** Takes either "radio" or "checkbox" value. */
     variant: "radio" | "checkbox";
-};
+} & WBComponentProps;
 
 /**
  * This is a potentially labeled 🔘 or ☑️ item. This is an internal component
@@ -69,6 +73,8 @@ type Props = AriaProps & {
         style,
         className,
         variant,
+        // This is only applied to the root element (not to the input).
+        "data-wb-component": wbComponent,
         ...coreProps
     } = props;
 
@@ -128,7 +134,16 @@ type Props = AriaProps & {
                     : undefined;
 
                 return (
-                    <View style={style} className={className}>
+                    <View
+                        style={style}
+                        className={className}
+                        {...getWBComponentProps(
+                            // `Radio` isn't a public component, it's only
+                            // rendered by `Choice`.
+                            variant === "checkbox" ? "Checkbox" : "Choice",
+                            {"data-wb-component": wbComponent},
+                        )}
+                    >
                         <View
                             style={styles.wrapper}
                             // We are resetting the tabIndex=0 from handlers

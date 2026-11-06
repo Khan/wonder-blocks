@@ -2,7 +2,11 @@ import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
 import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
-import {addStyle, View} from "@khanacademy/wonder-blocks-core";
+import {
+    addStyle,
+    View,
+    getWBComponentProps,
+} from "@khanacademy/wonder-blocks-core";
 import {sizing} from "@khanacademy/wonder-blocks-tokens";
 import {BodyText, Heading} from "@khanacademy/wonder-blocks-typography";
 
@@ -208,6 +212,7 @@ const PopoverContent = React.forwardRef<HTMLElement, Props>(
 
         return (
             <PopoverContentCore
+                {...getWBComponentProps("PopoverContent")}
                 closeButtonLight={!!image && placement === "top"}
                 closeButtonLabel={closeButtonLabel}
                 closeButtonVisible={closeButtonVisible}

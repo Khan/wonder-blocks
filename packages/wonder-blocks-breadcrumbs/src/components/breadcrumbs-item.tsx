@@ -2,7 +2,7 @@ import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
 import type {AriaProps} from "@khanacademy/wonder-blocks-core";
-import {addStyle} from "@khanacademy/wonder-blocks-core";
+import {addStyle, getWBComponentProps} from "@khanacademy/wonder-blocks-core";
 import Link from "@khanacademy/wonder-blocks-link";
 import {font, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 
@@ -56,6 +56,7 @@ const BreadcrumbsItem = React.forwardRef(function BreadcrumbsItem(
     return (
         <StyledLi
             {...otherProps}
+            {...getWBComponentProps("BreadcrumbsItem")}
             style={styles.item}
             data-testid={testId}
             ref={ref}

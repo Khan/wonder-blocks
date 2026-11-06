@@ -5,7 +5,7 @@ import xIcon from "@phosphor-icons/core/regular/x.svg";
 import magnifyingGlassIcon from "@phosphor-icons/core/bold/magnifying-glass-bold.svg";
 
 import {styles as typographyStyles} from "@khanacademy/wonder-blocks-typography";
-import {View, Id} from "@khanacademy/wonder-blocks-core";
+import {View, Id, getWBComponentProps} from "@khanacademy/wonder-blocks-core";
 import IconButton from "@khanacademy/wonder-blocks-icon-button";
 import {TextField} from "@khanacademy/wonder-blocks-form";
 import {useWonderBlocksI18n} from "@khanacademy/wonder-blocks-config";
@@ -202,7 +202,11 @@ const SearchField: React.ForwardRefExoticComponent<
     return (
         <Id id={id}>
             {(uniqueId) => (
-                <View onClick={onClick} style={[styles.inputContainer, style]}>
+                <View
+                    onClick={onClick}
+                    style={[styles.inputContainer, style]}
+                    {...getWBComponentProps("SearchField")}
+                >
                     <PhosphorIcon
                         icon={magnifyingGlassIcon}
                         size="small"

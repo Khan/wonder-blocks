@@ -2,7 +2,8 @@ import * as React from "react";
 import {CSSProperties, StyleSheet} from "aphrodite";
 import {useInRouterContext} from "react-router-dom-v5-compat";
 
-import {View} from "@khanacademy/wonder-blocks-core";
+import {View, getWBComponentProps} from "@khanacademy/wonder-blocks-core";
+import type {WBComponentProps} from "@khanacademy/wonder-blocks-core";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {focusStyles} from "@khanacademy/wonder-blocks-styles";
 import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
@@ -22,7 +23,10 @@ import type {
 
 import {ButtonUnstyled} from "./button-unstyled";
 
-type ButtonCoreProps = ActivityButtonProps & ChildrenProps & ClickableState;
+type ButtonCoreProps = ActivityButtonProps &
+    ChildrenProps &
+    ClickableState &
+    WBComponentProps;
 
 const ActivityButtonCore: React.ForwardRefExoticComponent<
     ButtonCoreProps & React.RefAttributes<ButtonRef>
@@ -211,6 +215,7 @@ export const ActivityButton = React.forwardRef(function ActivityButton(
                         {...sharedButtonCoreProps}
                         {...state}
                         {...restChildProps}
+                        {...getWBComponentProps("ActivityButton")}
                         disabled={disabled}
                         kind={kind}
                         skipClientNav={skipClientNav}

@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import {addStyle} from "@khanacademy/wonder-blocks-core";
+import {addStyle, getWBComponentProps} from "@khanacademy/wonder-blocks-core";
 import {BodyText} from "@khanacademy/wonder-blocks-typography";
 import type {StyleType} from "@khanacademy/wonder-blocks-core";
 
@@ -129,6 +129,7 @@ const CheckboxGroup = React.forwardRef(function CheckboxGroup(
 
     return (
         <StyledFieldset
+            {...getWBComponentProps("CheckboxGroup")}
             data-testid={testId}
             style={[styles.fieldset, style]}
             ref={ref}

@@ -1,7 +1,7 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
-import {View} from "@khanacademy/wonder-blocks-core";
+import {View, getWBComponentProps} from "@khanacademy/wonder-blocks-core";
 import type {StyleType} from "@khanacademy/wonder-blocks-core";
 
 type Props = {
@@ -16,7 +16,13 @@ type Props = {
 export default class Spring extends React.Component<Props> {
     render(): React.ReactNode {
         const {style} = this.props;
-        return <View aria-hidden="true" style={[styles.grow, style]} />;
+        return (
+            <View
+                aria-hidden="true"
+                style={[styles.grow, style]}
+                {...getWBComponentProps("Spring")}
+            />
+        );
     }
 }
 

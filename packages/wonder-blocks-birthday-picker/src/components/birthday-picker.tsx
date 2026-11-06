@@ -2,7 +2,11 @@ import {Temporal} from "temporal-polyfill";
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 import {useWonderBlocksI18n} from "@khanacademy/wonder-blocks-config";
-import {StyleType, View} from "@khanacademy/wonder-blocks-core";
+import {
+    StyleType,
+    View,
+    getWBComponentProps,
+} from "@khanacademy/wonder-blocks-core";
 import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {BodyText} from "@khanacademy/wonder-blocks-typography";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
@@ -507,6 +511,7 @@ const BirthdayPicker = (props: Props) => {
     return (
         <>
             <View
+                {...getWBComponentProps("BirthdayPicker")}
                 testId="birthday-picker"
                 style={[defaultStyles.wrapper, style]}
             >

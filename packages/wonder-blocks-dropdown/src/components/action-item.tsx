@@ -5,6 +5,7 @@ import {DetailCell} from "@khanacademy/wonder-blocks-cell";
 import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {BodyText} from "@khanacademy/wonder-blocks-typography";
 
+import {getWBComponentProps} from "@khanacademy/wonder-blocks-core";
 import type {StyleType} from "@khanacademy/wonder-blocks-core";
 
 import {focusStyles} from "@khanacademy/wonder-blocks-styles";
@@ -185,6 +186,7 @@ export default class ActionItem extends React.Component<ActionProps> {
 
         return (
             <DetailCell
+                {...getWBComponentProps("ActionItem")}
                 disabled={disabled}
                 horizontalRule={horizontalRule}
                 leftAccessory={leftAccessory}

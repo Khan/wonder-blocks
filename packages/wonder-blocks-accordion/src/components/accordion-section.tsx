@@ -2,7 +2,7 @@ import * as React from "react";
 import {StyleSheet} from "aphrodite";
 import type {StyleDeclaration} from "aphrodite";
 
-import {View} from "@khanacademy/wonder-blocks-core";
+import {View, getWBComponentProps} from "@khanacademy/wonder-blocks-core";
 import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {BodyText} from "@khanacademy/wonder-blocks-typography";
 import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
@@ -266,6 +266,7 @@ const AccordionSection = React.forwardRef(function AccordionSection(
             ]}
             testId={testId}
             {...ariaProps}
+            {...getWBComponentProps("AccordionSection")}
         >
             <AccordionSectionHeader
                 id={headerId}

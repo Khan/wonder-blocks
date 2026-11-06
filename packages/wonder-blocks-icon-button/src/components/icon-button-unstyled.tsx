@@ -4,7 +4,12 @@
 import * as React from "react";
 import {Link, useInRouterContext} from "react-router-dom-v5-compat";
 
-import {addStyle, keys} from "@khanacademy/wonder-blocks-core";
+import {
+    addStyle,
+    keys,
+    getWBComponentProps,
+} from "@khanacademy/wonder-blocks-core";
+import type {WBComponentProps} from "@khanacademy/wonder-blocks-core";
 import {isClientSideUrl} from "@khanacademy/wonder-blocks-clickable";
 import {StyleSheet} from "aphrodite";
 import type {IconButtonProps, IconButtonRef} from "../util/icon-button.types";
@@ -39,7 +44,7 @@ type Props = Omit<IconButtonProps, "icon" | "aria-label"> & {
      * interactions, so we can provide visual feedback to the user.
      */
     onPress?: (isPressing: boolean) => unknown;
-};
+} & WBComponentProps;
 
 export const IconButtonUnstyled: React.ForwardRefExoticComponent<
     Props & React.RefAttributes<IconButtonRef>
@@ -101,6 +106,7 @@ export const IconButtonUnstyled: React.ForwardRefExoticComponent<
         onKeyDown: handleKeyDown,
         onKeyUp: handleKeyUp,
         ...restProps,
+        ...getWBComponentProps("IconButton", restProps),
     } as const;
 
     if (href && !disabled) {

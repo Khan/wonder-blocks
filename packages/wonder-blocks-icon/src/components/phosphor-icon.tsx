@@ -1,6 +1,11 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
-import {addStyle, AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
+import {
+    addStyle,
+    AriaProps,
+    StyleType,
+    getWBComponentProps,
+} from "@khanacademy/wonder-blocks-core";
 import {sizing} from "@khanacademy/wonder-blocks-tokens";
 
 import {IconSize, PhosphorIconAsset} from "../types";
@@ -127,6 +132,7 @@ export const PhosphorIcon = React.forwardRef(function PhosphorIcon(
     return (
         <StyledSpan
             {...sharedProps}
+            {...getWBComponentProps("PhosphorIcon")}
             className={classNames}
             style={[
                 styles.svg,

@@ -3,7 +3,7 @@ import {StyleSheet} from "aphrodite";
 import type {StyleDeclaration} from "aphrodite";
 
 import Clickable from "@khanacademy/wonder-blocks-clickable";
-import {View} from "@khanacademy/wonder-blocks-core";
+import {View, getWBComponentProps} from "@khanacademy/wonder-blocks-core";
 import {BodyText} from "@khanacademy/wonder-blocks-typography";
 import type {StyleType, AriaProps} from "@khanacademy/wonder-blocks-core";
 import type {ClickableRole} from "@khanacademy/wonder-blocks-clickable";
@@ -175,6 +175,7 @@ const Pill = React.forwardRef(function Pill(
                 ref={ref as React.ForwardedRef<HTMLButtonElement>}
                 tabIndex={tabIndex}
                 {...ariaProps}
+                {...getWBComponentProps("Pill")}
             >
                 {() => <PillInner size={size}>{children}</PillInner>}
             </Clickable>
@@ -189,6 +190,7 @@ const Pill = React.forwardRef(function Pill(
             testId={testId}
             ref={ref as React.ForwardedRef<HTMLElement>}
             {...ariaProps}
+            {...getWBComponentProps("Pill")}
         >
             <PillInner size={size}>{children}</PillInner>
         </View>

@@ -3,6 +3,7 @@ import {CSSProperties, StyleSheet} from "aphrodite";
 
 import {BodyText} from "@khanacademy/wonder-blocks-typography";
 import {View} from "@khanacademy/wonder-blocks-core";
+import type {WBComponentProps} from "@khanacademy/wonder-blocks-core";
 import {CircularSpinner} from "@khanacademy/wonder-blocks-progress-spinner";
 
 import type {
@@ -23,7 +24,7 @@ import {ButtonIcon} from "./button-icon";
 import theme from "../theme";
 import {ButtonUnstyled} from "./button-unstyled";
 
-type Props = ButtonProps & ChildrenProps & ClickableState;
+type Props = ButtonProps & ChildrenProps & ClickableState & WBComponentProps;
 
 const ButtonCore: React.ForwardRefExoticComponent<
     Props & React.RefAttributes<ButtonRef>

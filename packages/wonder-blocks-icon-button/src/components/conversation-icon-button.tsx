@@ -4,6 +4,7 @@ import {StyleSheet} from "aphrodite";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {focusStyles} from "@khanacademy/wonder-blocks-styles";
 import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
+import {getWBComponentProps} from "@khanacademy/wonder-blocks-core";
 
 import type {
     ActivityIconButtonActionType,
@@ -81,6 +82,7 @@ export const ConversationIconButton: React.ForwardRefExoticComponent<
     return (
         <IconButtonUnstyled
             {...restProps}
+            {...getWBComponentProps("ConversationIconButton")}
             disabled={disabled}
             kind={kind}
             onPress={handlePress}

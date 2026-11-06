@@ -8,6 +8,7 @@ import {
     type AriaAttributes,
     type StyleType,
     View,
+    getWBComponentProps,
 } from "@khanacademy/wonder-blocks-core";
 import {TextField} from "@khanacademy/wonder-blocks-form";
 import IconButton from "@khanacademy/wonder-blocks-icon-button";
@@ -582,6 +583,7 @@ export default function Combobox({
     return (
         <>
             <View
+                {...getWBComponentProps("Combobox")}
                 onClick={() => {
                     updateOpenState(true);
                 }}
@@ -699,6 +701,7 @@ export default function Combobox({
                 >
                     {(isReferenceHidden) => (
                         <View
+                            {...getWBComponentProps("Combobox")}
                             onMouseDown={(e) => {
                                 // Prevents the combobox from losing focus when clicking
                                 // on the option item.

@@ -6,6 +6,7 @@ import type {
     ChildrenProps,
 } from "@khanacademy/wonder-blocks-clickable";
 import {useInRouterContext} from "react-router-dom-v5-compat";
+import {getWBComponentProps} from "@khanacademy/wonder-blocks-core";
 import ButtonCore from "./button-core";
 import type {ButtonProps, ButtonRef} from "../util/button.types";
 
@@ -94,6 +95,7 @@ const Button = React.forwardRef(function Button(
                         {...sharedButtonCoreProps}
                         {...state}
                         {...restChildProps}
+                        {...getWBComponentProps("Button")}
                         disabled={disabled}
                         spinner={spinner || state.waiting}
                         actionType={actionType}

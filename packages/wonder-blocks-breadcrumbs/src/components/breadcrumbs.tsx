@@ -3,7 +3,7 @@ import {StyleSheet} from "aphrodite";
 
 import {useWonderBlocksI18n} from "@khanacademy/wonder-blocks-config";
 import type {AriaProps} from "@khanacademy/wonder-blocks-core";
-import {addStyle} from "@khanacademy/wonder-blocks-core";
+import {addStyle, getWBComponentProps} from "@khanacademy/wonder-blocks-core";
 import BreadcrumbsItem from "./breadcrumbs-item";
 
 type Props = AriaProps & {
@@ -79,6 +79,7 @@ const Breadcrumbs = React.forwardRef(function Breadcrumbs(
     return (
         <nav
             {...otherProps}
+            {...getWBComponentProps("Breadcrumbs")}
             aria-label={ariaLabel || strings.breadcrumbs}
             data-testid={testId}
             ref={ref}

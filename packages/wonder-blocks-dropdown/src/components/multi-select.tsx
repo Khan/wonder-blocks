@@ -5,6 +5,7 @@ import {
     Id,
     type AriaProps,
     type StyleType,
+    getWBComponentProps,
 } from "@khanacademy/wonder-blocks-core";
 
 import {announceMessage} from "@khanacademy/wonder-blocks-announcer";
@@ -762,6 +763,7 @@ const MultiSelect = (props: Props) => {
         <Id id={dropdownId}>
             {(uniqueDropdownId) => (
                 <DropdownCore
+                    {...getWBComponentProps("MultiSelect")}
                     id={uniqueDropdownId}
                     role="listbox"
                     alignment={alignment}

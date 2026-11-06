@@ -4,7 +4,8 @@
 import * as React from "react";
 import {Link, useInRouterContext} from "react-router-dom-v5-compat";
 
-import {addStyle} from "@khanacademy/wonder-blocks-core";
+import {addStyle, getWBComponentProps} from "@khanacademy/wonder-blocks-core";
+import type {WBComponentProps} from "@khanacademy/wonder-blocks-core";
 import {isClientSideUrl} from "@khanacademy/wonder-blocks-clickable";
 import {StyleSheet} from "aphrodite";
 import {ButtonProps} from "../util/button.types";
@@ -18,7 +19,7 @@ type Props = Omit<ButtonProps, "children"> & {
      * The button content.
      */
     children: React.ReactNode;
-};
+} & WBComponentProps;
 
 const ButtonUnstyled: React.ForwardRefExoticComponent<
     Props &
@@ -47,6 +48,7 @@ const ButtonUnstyled: React.ForwardRefExoticComponent<
         role: "button",
         style: [styles.reset, style],
         ...restProps,
+        ...getWBComponentProps("Button", restProps),
     } as const;
 
     const inRouterContext = useInRouterContext();

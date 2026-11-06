@@ -5,8 +5,12 @@ import * as React from "react";
 import {StyleSheet} from "aphrodite";
 import {Link, useInRouterContext} from "react-router-dom-v5-compat";
 
-import {addStyle} from "@khanacademy/wonder-blocks-core";
-import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
+import {addStyle, getWBComponentProps} from "@khanacademy/wonder-blocks-core";
+import type {
+    AriaProps,
+    StyleType,
+    WBComponentProps,
+} from "@khanacademy/wonder-blocks-core";
 import {border, semanticColor} from "@khanacademy/wonder-blocks-tokens";
 import {minTargetSizeStyles} from "@khanacademy/wonder-blocks-styles";
 
@@ -119,7 +123,8 @@ type CommonProps =
          * navigation is guaranteed to succeed.
          */
         safeWithNav?: () => Promise<unknown>;
-    } & ExposedEventHandlers;
+    } & WBComponentProps &
+        ExposedEventHandlers;
 
 type Props =
     | (CommonProps & {
@@ -327,6 +332,7 @@ const Clickable = React.forwardRef(function Clickable(
                 {(state, childrenProps) =>
                     getCorrectTag(state, inRouterContext, {
                         ...restProps,
+                        ...getWBComponentProps("Clickable", restProps),
                         "data-testid": testId,
                         style: getStyle(state),
                         ...childrenProps,
@@ -340,6 +346,7 @@ const Clickable = React.forwardRef(function Clickable(
                 {(state, childrenProps) =>
                     getCorrectTag(state, inRouterContext, {
                         ...restProps,
+                        ...getWBComponentProps("Clickable", restProps),
                         "data-testid": testId,
                         style: getStyle(state),
                         ...childrenProps,
