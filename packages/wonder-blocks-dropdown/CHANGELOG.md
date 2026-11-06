@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-dropdown
 
+## 10.14.2
+
+### Patch Changes
+
+- 8739d20: Remove the unused `@khanacademy/wonder-blocks-pill` dependency.
+
 ## 10.14.1
 
 ### Patch Changes

@@ -3,7 +3,7 @@
   "description": "Filters are used to narrow the items shown in a list",
   "author": "Khan Academy",
   "license": "MIT",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "publishConfig": {
     "access": "public"
   },
