@@ -1,0 +1,55 @@
+/**
+ * DrawerDialog styles
+ *
+ * Every rule is nested inside `.root` — the marker class `DrawerDialog`
+ * passes into `FlexibleDialog`'s `styles.root`, which carries no declarations
+ * of its own. The root and dialog rules override properties `View` sets in
+ * its own single-class rule in the same `@layer shared` (`min-block-size`,
+ * `min-inline-size`); the bundle loads this package's CSS before core's, so
+ * the compound selector makes the result depend on specificity instead of
+ * load order.
+ *
+ * `FlexibleDialog` assigns its default sizes inside `:where()` (zero
+ * specificity), so these rules override them regardless of load order.
+ * Within this file, source order reproduces the old Aphrodite merge:
+ * `.drawerRoot` → `.blockEnd`.
+ *
+ * The drawer's small-screen rules (`breakpoint.mediaQuery.smOrSmaller`) live
+ * in `util/small-screen-styles.ts`, because the consumer's `styles.root`
+ * would otherwise beat them. The slide/fade animation and the consumer's
+ * `styles.*` are plain style objects / Aphrodite styles, which
+ * `processStyleList` merges after every class here (unlayered and
+ * `!important`), so they win over this module as they did before. The build
+ * wraps every rule in `@layer shared { … }`.
+ */
+
+.root {
+    &.drawerRoot {
+        /* Override FlexibleDialog defaults for drawer usage */
+        block-size: 100%;
+        min-block-size: 100vh;
+
+        /* Use common widths for mininum/maximum */
+        min-inline-size: 567px; /* breakpoint.width.xsMax */
+        max-inline-size: 681px; /* breakpoint.width.smMax */
+        inline-size: 100%;
+    }
+
+    &.blockEnd {
+        block-size: auto;
+        min-block-size: unset;
+        max-inline-size: unset;
+    }
+
+    /* Override the minBlockSize and minInlineSize on View, and allow blockEnd
+     * content to provide its own height. */
+    & .dialogDefault {
+        min-block-size: 100vh;
+        min-inline-size: unset;
+    }
+
+    & .dialogBlockEnd {
+        min-block-size: unset;
+        min-inline-size: unset;
+    }
+}

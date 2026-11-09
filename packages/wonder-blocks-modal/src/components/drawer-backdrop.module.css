@@ -1,0 +1,80 @@
+/**
+ * DrawerBackdrop styles
+ *
+ * The positioner is a `View`, and these rules override properties `View`
+ * sets in its own single-class rule in the same `@layer shared` (`position`,
+ * `align-items`). The bundle loads this package's CSS before core's, so the
+ * rules are nested under the `.root` marker class to win on specificity
+ * rather than load order.
+ *
+ * The fade classes are only applied when `animated` is true. The durations
+ * mirror `DRAWER_ENTER_DURATION_MS` / `DRAWER_EXIT_DURATION_MS` in
+ * `util/drawer-animation.ts`; a `timingDuration` override and the consumer's
+ * `style` are plain style objects that still go through Aphrodite (unlayered
+ * and `!important`), so they win over this module. The build wraps every
+ * rule in `@layer shared { … }`.
+ */
+
+.root {
+    &.drawerPositioner {
+        position: fixed;
+        inset-inline-start: 0;
+        inset-block-start: 0;
+        inline-size: 100%;
+        block-size: 100%;
+        display: flex;
+        overflow: hidden;
+        background: var(--wb-semanticColor-core-background-overlay-default);
+    }
+
+    &.inlineStart {
+        align-items: flex-start;
+        justify-content: flex-start;
+    }
+
+    &.inlineEnd {
+        align-items: flex-end;
+        justify-content: flex-start;
+    }
+
+    &.blockEnd {
+        align-items: center;
+        justify-content: flex-end;
+    }
+
+    /* The backdrop's fade. Shares the panel's durations by default, so the
+     * two finish together. */
+    &.fadeIn {
+        animation-name: backdrop-fade-in;
+        animation-duration: 300ms;
+        animation-timing-function: linear;
+        animation-fill-mode: forwards;
+    }
+
+    &.fadeOut {
+        animation-name: backdrop-fade-out;
+        animation-duration: 150ms;
+        animation-timing-function: linear;
+        animation-fill-mode: forwards;
+    }
+}
+
+@keyframes backdrop-fade-in {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes backdrop-fade-out {
+    0% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}

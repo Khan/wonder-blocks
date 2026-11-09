@@ -2,12 +2,10 @@ import * as React from "react";
 import {PropsFor, View} from "@khanacademy/wonder-blocks-core";
 import type {StyleType} from "@khanacademy/wonder-blocks-core";
 
-import {focusStyles} from "@khanacademy/wonder-blocks-styles";
-import {StyleSheet} from "aphrodite";
 import {semanticColor} from "@khanacademy/wonder-blocks-tokens";
 import ModalContent from "./modal-content";
 import CloseButton from "./close-button";
-import theme from "../theme";
+import componentStyles from "./flexible-panel.module.css";
 
 type RenderProps = {
     title: React.ReactNode | string;
@@ -124,6 +122,7 @@ export default function FlexiblePanel({
     return (
         <View
             style={[
+                componentStyles.root,
                 componentStyles.wrapper,
                 defaultBackgroundStyle,
                 styles?.panel,
@@ -146,29 +145,3 @@ export default function FlexiblePanel({
 FlexiblePanel.defaultProps = {
     closeButtonVisible: true,
 };
-
-const componentStyles = StyleSheet.create({
-    wrapper: {
-        flex: "1 1 auto",
-        flexDirection: "column",
-        boxSizing: "border-box",
-        overflow: "hidden",
-        height: "100%",
-        width: "100%",
-    },
-
-    closeButton: {
-        position: "absolute",
-        // insetInlineEnd supports both RTL and LTR layouts
-        insetInlineEnd: theme.closeButton.layout.gapRight,
-        insetBlockStart: theme.closeButton.layout.gapTop,
-        // This is to allow the button to be tab-ordered before the modal
-        // content but still be above the header and content.
-        zIndex: 1,
-
-        // NOTE: IconButton uses :focus-visible, which is not supported for
-        // programmatic focus. This is a workaround to make sure the focus
-        // outline is visible when this control is focused.
-        ":focus": focusStyles.focus[":focus-visible"],
-    },
-});
