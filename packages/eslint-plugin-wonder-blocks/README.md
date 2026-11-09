@@ -77,5 +77,5 @@ The following shows what rules are enabled in each config:
 | [`no-invalid-bodytext-children`](docs/no-invalid-bodytext-children.md)|✅|✅|
 | [`no-invalid-bodytext-parent`](docs/no-invalid-bodytext-parent.md)| |✅|
 | [`no-raw-button`](docs/no-raw-button.md)| |✅|
-| [`prefer-semantic-color-over-graphics-palette`](docs/prefer-semantic-color-over-graphics-palette.md)| |✅|
+| [`prefer-semantic-color-over-graphics-palette`](docs/prefer-semantic-color-over-graphics-palette.md)|✅|✅|
 | [`require-logical-properties-for-rtl`](docs/require-logical-properties-for-rtl.md)| opt-in | opt-in |
