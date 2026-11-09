@@ -110,6 +110,13 @@ In an inline `style` prop:
 <div style={{borderColor: graphicsPalette.gray_30}} />
 ```
 
+Bracket access, including dynamic keys:
+
+```tsx
+const accent = graphicsPalette["red_01"];
+const fill = graphicsPalette[`blue_${step}`];
+```
+
 Destructuring from the palette:
 
 ```tsx

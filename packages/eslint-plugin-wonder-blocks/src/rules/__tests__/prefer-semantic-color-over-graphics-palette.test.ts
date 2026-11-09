@@ -82,6 +82,10 @@ const c = graphicsPalette.red_30;`,
         {
             code: `${importNamed}<path fill={isActive ? graphicsPalette.green_30 : graphicsPalette.gray_30} />;`,
         },
+        // Bracket access in an SVG color attribute
+        {
+            code: `${importNamed}<path fill={graphicsPalette[color]} />;`,
+        },
         // tokenValue() in an SVG color attribute
         {
             code: `${importNamed}<path fill={tokenValue(graphicsPalette.gray_30)} />;`,
@@ -226,9 +230,21 @@ const b = {color: red_30};`,
             code: `${importNamed}const c = graphicsPalette?.red_10;`,
             errors: [error],
         },
-        // Dynamic access
+        // Bracket access, including dynamic keys
         {
             code: `${importNamed}const c = graphicsPalette[key];`,
+            errors: [error],
+        },
+        {
+            code: `${importNamed}const c = graphicsPalette["red_01"];`,
+            errors: [error],
+        },
+        {
+            code: `${importNamed}const c = graphicsPalette[\`red_\${step}\`];`,
+            errors: [error],
+        },
+        {
+            code: `${importNamed}const colors = steps.map((step) => graphicsPalette[\`blue_\${step}\`]);`,
             errors: [error],
         },
         // Passing the whole object
