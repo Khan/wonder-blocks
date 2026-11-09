@@ -1,3 +1,4 @@
+/* eslint-disable @khanacademy/wonder-blocks/no-graphics-palette -- This component documents the graphicsPalette tokens themselves */
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 

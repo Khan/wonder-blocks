@@ -10,11 +10,10 @@ import {StyleSheet} from "aphrodite";
 import starIcon from "@phosphor-icons/core/regular/star.svg";
 
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
-import {semanticColor} from "@khanacademy/wonder-blocks-tokens";
-// TODO(WB-graphics-palette): Remove this ts-ignore once `graphicsPalette` is
-// exported from wonder-blocks-tokens (https://github.com/Khan/wonder-blocks/pull/3294).
-// @ts-ignore -- `graphicsPalette` isn't exported from the tokens package yet
-import {graphicsPalette} from "@khanacademy/wonder-blocks-tokens";
+import {
+    graphicsPalette,
+    semanticColor,
+} from "@khanacademy/wonder-blocks-tokens";
 
 // ✅ Valid: semanticColor tokens adapt to the current theme
 const validStyles = StyleSheet.create({
@@ -58,8 +57,14 @@ const {green_30: successColor} = graphicsPalette;
 // ❌ Invalid: passing the whole palette
 const chartConfig = {colors: graphicsPalette};
 
+// ❌ Invalid: a palette CSS variable written out by hand
+const invalidCssVarStyles = StyleSheet.create({
+    card: {border: `2px solid var(--wb-graphicsPalette-red_20)`},
+});
+
 // Suppress unused variable warnings for the examples above
 void validStyles;
 void invalidStyles;
 void successColor;
 void chartConfig;
+void invalidCssVarStyles;

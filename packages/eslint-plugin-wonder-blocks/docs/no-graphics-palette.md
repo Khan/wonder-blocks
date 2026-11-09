@@ -30,6 +30,14 @@ import {graphicsPalette as gp} from "@khanacademy/wonder-blocks-tokens";
 import * as tokens from "@khanacademy/wonder-blocks-tokens"; // tokens.graphicsPalette
 ```
 
+It also reports palette CSS variables written out in strings and template
+literals, which would otherwise get around the import check:
+
+```ts
+const border = `2px solid var(--wb-graphicsPalette-red_20)`;
+<path fill="var(--wb-graphicsPalette-yellow_30)" />;
+```
+
 Each reference is reported once: `graphicsPalette.red_30` is one report.
 Destructuring (`const {red_30} = graphicsPalette`) is reported once, at the
 destructuring; uses of the new variables aren't reported again.
@@ -64,6 +72,8 @@ StyleSheet.create({card: {backgroundColor: graphicsPalette.blue_80}});
 const {red_30} = graphicsPalette;
 
 renderChart({colors: graphicsPalette});
+
+const border = "1px solid var(--wb-graphicsPalette-gray_60)";
 ```
 
 Examples of **correct** code:
@@ -98,5 +108,5 @@ can't follow the colors after that:
 - **Colors passed through props or variables:** a color is reported where
   `graphicsPalette` is referenced, not where the value is later used (e.g. a
   component that receives it as a `color` prop).
-- **Literal CSS variable strings:** strings like
-  `"var(--wb-graphicsPalette-blue_30)"` aren't reported.
+- **CSS files:** the rule only checks JS and TS. Palette CSS variables in
+  `.css` files aren't reported.
