@@ -15,7 +15,7 @@ const createRule = ESLintUtils.RuleCreator<WonderBlocksPluginDocs>(
 );
 
 type Options = [];
-type MessageIds = "preferSemanticColor" | "preferSemanticColorGeneric";
+type MessageIds = "preferSemanticColor";
 
 const TOKENS_PACKAGE = "@khanacademy/wonder-blocks-tokens";
 
@@ -33,9 +33,9 @@ function escapeRegExp(value: string): string {
     return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 }
 
-// Matches a palette CSS variable and captures the token name.
+// Matches each palette CSS variable in a string.
 const PALETTE_CSS_VAR_RE = new RegExp(
-    `${escapeRegExp(PALETTE_CSS_VAR_PREFIX)}([A-Za-z0-9_]*)`,
+    escapeRegExp(PALETTE_CSS_VAR_PREFIX),
     "g",
 );
 
@@ -137,8 +137,7 @@ export default createRule<Options, MessageIds>({
             recommended: false,
         },
         messages: {
-            preferSemanticColor: `\`${PALETTE_EXPORT}.{{name}}\` is a color that stays the same in every theme. ${ADVICE}`,
-            preferSemanticColorGeneric: `\`${PALETTE_EXPORT}\` colors stay the same in every theme. ${ADVICE}`,
+            preferSemanticColor: `\`${PALETTE_EXPORT}\` colors stay the same in every theme. ${ADVICE}`,
         },
         schema: [],
         type: "suggestion",
@@ -146,26 +145,11 @@ export default createRule<Options, MessageIds>({
     create(context) {
         const sourceCode = context.sourceCode;
 
-        function reportGeneric(node: TSESTree.Node) {
+        function report(node: TSESTree.Node) {
             if (isInSvgElementAttribute(node)) {
                 return;
             }
-            context.report({node, messageId: "preferSemanticColorGeneric"});
-        }
-
-        function reportToken(node: TSESTree.Node, name: string | null) {
-            if (name === null) {
-                reportGeneric(node);
-                return;
-            }
-            if (isInSvgElementAttribute(node)) {
-                return;
-            }
-            context.report({
-                node,
-                messageId: "preferSemanticColor",
-                data: {name},
-            });
+            context.report({node, messageId: "preferSemanticColor"});
         }
 
         /**
@@ -178,7 +162,7 @@ export default createRule<Options, MessageIds>({
 
             // graphicsPalette.red_30 / graphicsPalette["red_30"]
             if (parent?.type === "MemberExpression" && parent.object === node) {
-                reportToken(parent, getStaticPropertyName(parent));
+                report(parent);
                 return;
             }
 
@@ -190,19 +174,13 @@ export default createRule<Options, MessageIds>({
                 parent.init === node &&
                 parent.id.type === "ObjectPattern"
             ) {
-                const {properties} = parent.id;
-                reportToken(
-                    parent.id,
-                    properties.length === 1
-                        ? getStaticKeyName(properties[0])
-                        : null,
-                );
+                report(parent.id);
                 return;
             }
 
             // Any other use of the whole object: passing it as an argument,
             // spreading it, assigning it, re-exporting it, etc.
-            reportGeneric(node);
+            report(node);
         }
 
         /**
@@ -229,7 +207,7 @@ export default createRule<Options, MessageIds>({
             ) {
                 for (const property of parent.id.properties) {
                     if (getStaticKeyName(property) === PALETTE_EXPORT) {
-                        reportGeneric(property);
+                        report(property);
                     }
                 }
             }
@@ -240,8 +218,9 @@ export default createRule<Options, MessageIds>({
          * `"var(--wb-graphicsPalette-blue_30)"`.
          */
         function checkString(node: TSESTree.Node, value: string) {
-            for (const match of value.matchAll(PALETTE_CSS_VAR_RE)) {
-                reportToken(node, match[1] || null);
+            const matches = value.match(PALETTE_CSS_VAR_RE) ?? [];
+            for (let i = 0; i < matches.length; i++) {
+                report(node);
             }
         }
 
@@ -290,7 +269,7 @@ export default createRule<Options, MessageIds>({
                     const localName =
                         local.type === "Identifier" ? local.name : local.value;
                     if (localName === PALETTE_EXPORT) {
-                        reportGeneric(specifier);
+                        report(specifier);
                     }
                 }
             },

@@ -20,9 +20,7 @@ const rule = rules[ruleName];
 const importNamed = `import {graphicsPalette} from "@khanacademy/wonder-blocks-tokens";\n`;
 const importNamespace = `import * as tokens from "@khanacademy/wonder-blocks-tokens";\n`;
 
-const tokenError = (name: string) =>
-    ({messageId: "preferSemanticColor", data: {name}}) as const;
-const genericError = {messageId: "preferSemanticColorGeneric"} as const;
+const error = {messageId: "preferSemanticColor"} as const;
 
 ruleTester.run(ruleName, rule, {
     valid: [
@@ -116,215 +114,215 @@ const c = graphicsPalette.red_30;`,
         // --- Import forms ---
         {
             code: `${importNamed}const c = graphicsPalette.red_30;`,
-            errors: [tokenError("red_30")],
+            errors: [error],
         },
         {
             code: `import {graphicsPalette as gp} from "@khanacademy/wonder-blocks-tokens";
 const c = gp.blue_80;`,
-            errors: [tokenError("blue_80")],
+            errors: [error],
         },
         {
             code: `import {semanticColor, graphicsPalette} from "@khanacademy/wonder-blocks-tokens";
 const a = semanticColor.core.foreground.neutral.strong;
 const b = graphicsPalette.white_100;`,
-            errors: [tokenError("white_100")],
+            errors: [error],
         },
         {
             code: `${importNamespace}const c = tokens.graphicsPalette.red_30;`,
-            errors: [tokenError("red_30")],
+            errors: [error],
         },
         {
             code: `${importNamespace}const c = tokens["graphicsPalette"]["green_50"];`,
-            errors: [tokenError("green_50")],
+            errors: [error],
         },
         {
             code: `${importNamespace}const {graphicsPalette} = tokens;`,
-            errors: [genericError],
+            errors: [error],
         },
         // Destructuring is reported once, and the new variables aren't followed
         {
             code: `${importNamed}const {red_30} = graphicsPalette;
 const a = red_30;
 const b = {color: red_30};`,
-            errors: [tokenError("red_30")],
+            errors: [error],
         },
         {
             code: `${importNamed}const {red_30: danger} = graphicsPalette;`,
-            errors: [tokenError("red_30")],
+            errors: [error],
         },
         {
             code: `${importNamed}const {red_30, blue_30} = graphicsPalette;`,
-            errors: [genericError],
+            errors: [error],
         },
         {
             code: `${importNamespace}const {red_30} = tokens.graphicsPalette;`,
-            errors: [tokenError("red_30")],
+            errors: [error],
         },
         // Re-exporting the palette from the tokens package
         {
             code: `export {graphicsPalette} from "@khanacademy/wonder-blocks-tokens";`,
-            errors: [genericError],
+            errors: [error],
         },
         {
             code: `${importNamed}export {graphicsPalette};`,
-            errors: [genericError],
+            errors: [error],
         },
 
         // --- Usage contexts ---
         // StyleSheet.create
         {
             code: `${importNamed}StyleSheet.create({card: {backgroundColor: graphicsPalette.blue_80}});`,
-            errors: [tokenError("blue_80")],
+            errors: [error],
         },
         // Nested style keys
         {
             code: `${importNamed}StyleSheet.create({card: {":hover": {borderColor: graphicsPalette.gray_50}}});`,
-            errors: [tokenError("gray_50")],
+            errors: [error],
         },
         // Inline style prop
         {
             code: `${importNamed}<div style={{color: graphicsPalette.magenta_40}} />;`,
-            errors: [tokenError("magenta_40")],
+            errors: [error],
         },
         // Component props
         {
             code: `${importNamed}<PhosphorIcon icon={star} color={graphicsPalette.yellow_30} />;`,
-            errors: [tokenError("yellow_30")],
+            errors: [error],
         },
         // Plain constants
         {
             code: `${importNamed}const ACCENT = graphicsPalette.orange_60;`,
-            errors: [tokenError("orange_60")],
+            errors: [error],
         },
         // Chart config
         {
             code: `${importNamed}const series = [{name: "a", color: graphicsPalette.cyan_40}, {name: "b", color: graphicsPalette.cyan_70}];`,
-            errors: [tokenError("cyan_40"), tokenError("cyan_70")],
+            errors: [error, error],
         },
         // Canvas drawing
         {
             code: `${importNamed}ctx.fillStyle = graphicsPalette.green_20;`,
-            errors: [tokenError("green_20")],
+            errors: [error],
         },
         // Inside tokenValue()
         {
             code: `${importNamed}const v = tokenValue(graphicsPalette.blue_30);`,
-            errors: [tokenError("blue_30")],
+            errors: [error],
         },
         // Template literals
         {
             code: `${importNamed}const border = \`1px solid \${graphicsPalette.gray_60}\`;`,
-            errors: [tokenError("gray_60")],
+            errors: [error],
         },
         // Optional chaining
         {
             code: `${importNamed}const c = graphicsPalette?.red_10;`,
-            errors: [tokenError("red_10")],
+            errors: [error],
         },
-        // Dynamic access has no single token name
+        // Dynamic access
         {
             code: `${importNamed}const c = graphicsPalette[key];`,
-            errors: [genericError],
+            errors: [error],
         },
         // Passing the whole object
         {
             code: `${importNamed}renderChart({colors: graphicsPalette});`,
-            errors: [genericError],
+            errors: [error],
         },
         {
             code: `${importNamed}const colors = Object.values(graphicsPalette);`,
-            errors: [genericError],
+            errors: [error],
         },
         // Spreading the whole object
         {
             code: `${importNamed}const colors = {...graphicsPalette};`,
-            errors: [genericError],
+            errors: [error],
         },
         {
             code: `${importNamed}<Chart {...graphicsPalette} />;`,
-            errors: [genericError],
+            errors: [error],
         },
         // Aliasing the whole object
         {
             code: `${importNamed}const p = graphicsPalette;`,
-            errors: [genericError],
+            errors: [error],
         },
         // --- Literal CSS variable strings ---
         {
             // eslint-disable-next-line @khanacademy/wonder-blocks/prefer-semantic-color -- Test input for this rule
             code: `const c = "var(--wb-graphicsPalette-blue_30)";`,
-            errors: [tokenError("blue_30")],
+            errors: [error],
         },
         {
             // eslint-disable-next-line @khanacademy/wonder-blocks/prefer-semantic-color -- Test input for this rule
             code: `StyleSheet.create({card: {color: "var(--wb-graphicsPalette-gray_70)"}});`,
-            errors: [tokenError("gray_70")],
+            errors: [error],
         },
         {
             // eslint-disable-next-line @khanacademy/wonder-blocks/prefer-semantic-color -- Test input for this rule
             code: "const border = `2px solid var(--wb-graphicsPalette-red_20)`;",
-            errors: [tokenError("red_20")],
+            errors: [error],
         },
         {
             // eslint-disable-next-line @khanacademy/wonder-blocks/prefer-semantic-color -- Test input for this rule
             code: "const border = `${width} solid var(--wb-graphicsPalette-red_20)`;",
-            errors: [tokenError("red_20")],
+            errors: [error],
         },
         // The variable name without var()
         {
             // eslint-disable-next-line @khanacademy/wonder-blocks/prefer-semantic-color -- Test input for this rule
             code: `el.style.getPropertyValue("--wb-graphicsPalette-white_100");`,
-            errors: [tokenError("white_100")],
+            errors: [error],
         },
         // Each variable in a string is reported
         {
             // eslint-disable-next-line @khanacademy/wonder-blocks/prefer-semantic-color -- Test input for this rule
             code: `const g = "linear-gradient(var(--wb-graphicsPalette-blue_30), var(--wb-graphicsPalette-blue_60))";`,
-            errors: [tokenError("blue_30"), tokenError("blue_60")],
+            errors: [error, error],
         },
-        // A prefix with no token name gets the generic message
+        // A variable with a dynamic name
         {
             // eslint-disable-next-line @khanacademy/wonder-blocks/prefer-semantic-color -- Test input for this rule
             code: "const v = `var(--wb-graphicsPalette-${name})`;",
-            errors: [genericError],
+            errors: [error],
         },
 
         // --- SVG edge cases that are still reported ---
         // The same attribute on a non-SVG element
         {
             code: `${importNamed}<div style={{fill: graphicsPalette.gray_30}} />;`,
-            errors: [tokenError("gray_30")],
+            errors: [error],
         },
         // Components aren't SVG elements, even if they render one
         {
             code: `${importNamed}<Path fill={graphicsPalette.gray_30} />;`,
-            errors: [tokenError("gray_30")],
+            errors: [error],
         },
         // Child content of an SVG element isn't an attribute
         {
             code: `${importNamed}<text>{graphicsPalette.gray_30}</text>;`,
-            errors: [tokenError("gray_30")],
+            errors: [error],
         },
         // HTML elements nested inside an SVG
         {
             code: `${importNamed}<svg><foreignObject><div style={{color: graphicsPalette.gray_30}} /></foreignObject></svg>;`,
-            errors: [tokenError("gray_30")],
+            errors: [error],
         },
         // Functions inside an SVG attribute
         {
             code: `${importNamed}<path onClick={() => setColor(graphicsPalette.red_30)} />;`,
-            errors: [tokenError("red_30")],
+            errors: [error],
         },
         // Spreading the palette as props
         {
             code: `${importNamed}<path {...graphicsPalette} />;`,
-            errors: [genericError],
+            errors: [error],
         },
         // Colors defined outside the SVG are reported where they're defined
         {
             code: `${importNamed}const FILL = graphicsPalette.gray_30;
 <path fill={FILL} />;`,
-            errors: [tokenError("gray_30")],
+            errors: [error],
         },
 
         // Each reference is reported once
@@ -333,9 +331,9 @@ const b = {color: red_30};`,
 const b = graphicsPalette.red_30;
 function f() { return graphicsPalette.blue_30; }`,
             errors: [
-                {...tokenError("red_30"), line: 2, column: 11},
-                {...tokenError("red_30"), line: 3, column: 11},
-                {...tokenError("blue_30"), line: 4, column: 23},
+                {...error, line: 2, column: 11},
+                {...error, line: 3, column: 11},
+                {...error, line: 4, column: 23},
             ],
         },
     ],
