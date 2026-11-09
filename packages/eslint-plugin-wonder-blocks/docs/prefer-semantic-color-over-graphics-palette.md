@@ -90,40 +90,65 @@ Always explain why in the disable comment.
 
 ## Examples
 
-Examples of **incorrect** code:
+### Incorrect
+
+In a `StyleSheet.create` style:
 
 ```tsx
-import {graphicsPalette} from "@khanacademy/wonder-blocks-tokens";
-
 StyleSheet.create({card: {backgroundColor: graphicsPalette.blue_80}});
+```
 
-<PhosphorIcon icon={star} color={graphicsPalette.yellow_30} />;
+In a component prop:
 
+```tsx
+<PhosphorIcon icon={star} color={graphicsPalette.yellow_30} />
+```
+
+In an inline `style` prop:
+
+```tsx
+<div style={{borderColor: graphicsPalette.gray_30}} />
+```
+
+Destructuring from the palette:
+
+```tsx
 const {red_30} = graphicsPalette;
+```
 
+Passing the whole palette:
+
+```tsx
 renderChart({colors: graphicsPalette});
+```
 
-<div style={{borderColor: graphicsPalette.gray_30}} />;
+A palette CSS variable written out in a string:
 
+```tsx
 const border = "1px solid var(--wb-graphicsPalette-gray_60)";
 ```
 
-Examples of **correct** code:
+### Correct
+
+Preferred: a themable `semanticColor` token:
 
 ```tsx
-import {graphicsPalette, semanticColor} from "@khanacademy/wonder-blocks-tokens";
-
-// Preferred: a themable semantic token
 StyleSheet.create({
     card: {backgroundColor: semanticColor.core.background.base.default},
 });
+```
 
-// OK: SVG fill and stroke attributes
+SVG `fill` and `stroke` attributes:
+
+```tsx
 <svg viewBox="0 0 24 24">
-    <path fill={graphicsPalette.gray_30} />
-</svg>;
+    <path fill={graphicsPalette.gray_30} stroke={graphicsPalette.black_100} />
+</svg>
+```
 
-// OK: outside SVG, with a reason
+Outside SVG, disabled with a reason:
+
+```tsx
 // eslint-disable-next-line @khanacademy/wonder-blocks/prefer-semantic-color-over-graphics-palette -- Exported PNG chart colors must not change with the theme
 const EXPORT_LINE_COLOR = graphicsPalette.blue_30;
 ```
