@@ -15,7 +15,7 @@ const createRule = ESLintUtils.RuleCreator<WonderBlocksPluginDocs>(
 );
 
 type Options = [];
-type MessageIds = "noGraphicsPalette" | "noGraphicsPaletteGeneric";
+type MessageIds = "preferSemanticColor" | "preferSemanticColorGeneric";
 
 const TOKENS_PACKAGE = "@khanacademy/wonder-blocks-tokens";
 
@@ -26,7 +26,7 @@ const PALETTE_EXPORT = "graphicsPalette";
 // The prefix of the CSS variables that the palette tokens resolve to, e.g.
 // `var(--wb-graphicsPalette-blue_30)`. Writing the variable by hand gets
 // around the import check, so string literals are checked for it too.
-// eslint-disable-next-line @khanacademy/wonder-blocks/no-graphics-palette -- This is the prefix the rule looks for
+// eslint-disable-next-line @khanacademy/wonder-blocks/prefer-semantic-color -- This is the prefix the rule looks for
 const PALETTE_CSS_VAR_PREFIX = "--wb-graphicsPalette-";
 
 function escapeRegExp(value: string): string {
@@ -43,15 +43,15 @@ const ADVICE =
     "Prefer a `semanticColor` token, which adapts to the current theme. If this color must stay the same in every theme (e.g. illustrations), disable this rule with a comment explaining why.";
 
 export default createRule<Options, MessageIds>({
-    name: "no-graphics-palette",
+    name: "prefer-semantic-color",
     meta: {
         docs: {
-            description: `Disallow \`${PALETTE_EXPORT}\` color tokens, which stay the same in every theme. Prefer themable \`semanticColor\` tokens.`,
+            description: `Prefer themable \`semanticColor\` tokens over \`${PALETTE_EXPORT}\` color tokens, which stay the same in every theme.`,
             recommended: false,
         },
         messages: {
-            noGraphicsPalette: `\`${PALETTE_EXPORT}.{{name}}\` is a color that stays the same in every theme. ${ADVICE}`,
-            noGraphicsPaletteGeneric: `\`${PALETTE_EXPORT}\` colors stay the same in every theme. ${ADVICE}`,
+            preferSemanticColor: `\`${PALETTE_EXPORT}.{{name}}\` is a color that stays the same in every theme. ${ADVICE}`,
+            preferSemanticColorGeneric: `\`${PALETTE_EXPORT}\` colors stay the same in every theme. ${ADVICE}`,
         },
         schema: [],
         type: "suggestion",
@@ -60,7 +60,7 @@ export default createRule<Options, MessageIds>({
         const sourceCode = context.sourceCode;
 
         function reportGeneric(node: TSESTree.Node) {
-            context.report({node, messageId: "noGraphicsPaletteGeneric"});
+            context.report({node, messageId: "preferSemanticColorGeneric"});
         }
 
         function reportToken(node: TSESTree.Node, name: string | null) {
@@ -70,7 +70,7 @@ export default createRule<Options, MessageIds>({
             }
             context.report({
                 node,
-                messageId: "noGraphicsPalette",
+                messageId: "preferSemanticColor",
                 data: {name},
             });
         }

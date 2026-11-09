@@ -1,4 +1,4 @@
-/* eslint-disable @khanacademy/wonder-blocks/no-graphics-palette -- The test cases are source strings that mention palette CSS variables on purpose */
+/* eslint-disable @khanacademy/wonder-blocks/prefer-semantic-color -- The test cases are source strings that mention palette CSS variables on purpose */
 import {RuleTester} from "@typescript-eslint/rule-tester";
 
 import {rules} from "..";
@@ -15,15 +15,15 @@ const ruleTester = new RuleTester({
     },
 });
 
-const ruleName = "no-graphics-palette";
+const ruleName = "prefer-semantic-color";
 const rule = rules[ruleName];
 
 const importNamed = `import {graphicsPalette} from "@khanacademy/wonder-blocks-tokens";\n`;
 const importNamespace = `import * as tokens from "@khanacademy/wonder-blocks-tokens";\n`;
 
 const tokenError = (name: string) =>
-    ({messageId: "noGraphicsPalette", data: {name}}) as const;
-const genericError = {messageId: "noGraphicsPaletteGeneric"} as const;
+    ({messageId: "preferSemanticColor", data: {name}}) as const;
+const genericError = {messageId: "preferSemanticColorGeneric"} as const;
 
 ruleTester.run(ruleName, rule, {
     valid: [
