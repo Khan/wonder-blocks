@@ -183,7 +183,8 @@ const styles = StyleSheet.create({
         alignSelf: "start",
         // Center the label on the swatch, not the whole cell.
         paddingBlockStart: sizing.size_160,
-        paddingInlineEnd: sizing.size_080,
+        paddingInlineStart: sizing.size_080,
+        paddingInlineEnd: sizing.size_160,
         textAlign: "end",
     },
     cell: {
