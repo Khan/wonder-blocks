@@ -1,3 +1,4 @@
+/* eslint-disable @khanacademy/wonder-blocks/no-graphics-palette -- The test cases are source strings that mention palette CSS variables on purpose */
 import {RuleTester} from "@typescript-eslint/rule-tester";
 
 import {rules} from "..";
@@ -60,6 +61,18 @@ const c = graphicsPalette.red_30;`,
         // Re-exporting something else from the tokens package isn't reported
         {
             code: `export {semanticColor} from "@khanacademy/wonder-blocks-tokens";`,
+        },
+        // Strings that mention graphicsPalette without the CSS variable
+        // prefix aren't reported
+        {code: `const label = "graphicsPalette.blue_30";`},
+        {code: `const msg = \`Use graphicsPalette for illustrations\`;`},
+        {code: `const v = "var(--graphicsPalette-blue_30)";`},
+        // Other WB CSS variables aren't reported
+        {
+            code: `const v = "var(--wb-semanticColor-core-background-base-default)";`,
+        },
+        {
+            code: `<path fill="var(--wb-semanticColor-core-foreground-neutral-strong)" />;`,
         },
     ],
     invalid: [
@@ -204,6 +217,47 @@ const b = {color: red_30};`,
             code: `${importNamed}const p = graphicsPalette;`,
             errors: [genericError],
         },
+        // --- Literal CSS variable strings ---
+        {
+            code: `const c = "var(--wb-graphicsPalette-blue_30)";`,
+            errors: [tokenError("blue_30")],
+        },
+        {
+            code: `StyleSheet.create({card: {color: "var(--wb-graphicsPalette-gray_70)"}});`,
+            errors: [tokenError("gray_70")],
+        },
+        {
+            code: `<path fill="var(--wb-graphicsPalette-yellow_30)" />;`,
+            errors: [tokenError("yellow_30")],
+        },
+        {
+            code: `<path fill={"var(--wb-graphicsPalette-yellow_30)"} />;`,
+            errors: [tokenError("yellow_30")],
+        },
+        {
+            code: "const border = `2px solid var(--wb-graphicsPalette-red_20)`;",
+            errors: [tokenError("red_20")],
+        },
+        {
+            code: "const border = `${width} solid var(--wb-graphicsPalette-red_20)`;",
+            errors: [tokenError("red_20")],
+        },
+        // The variable name without var()
+        {
+            code: `el.style.getPropertyValue("--wb-graphicsPalette-white_100");`,
+            errors: [tokenError("white_100")],
+        },
+        // Each variable in a string is reported
+        {
+            code: `const g = "linear-gradient(var(--wb-graphicsPalette-blue_30), var(--wb-graphicsPalette-blue_60))";`,
+            errors: [tokenError("blue_30"), tokenError("blue_60")],
+        },
+        // A prefix with no token name gets the generic message
+        {
+            code: "const v = `var(--wb-graphicsPalette-${name})`;",
+            errors: [genericError],
+        },
+
         // Each reference is reported once
         {
             code: `${importNamed}const a = graphicsPalette.red_30;

@@ -23,6 +23,22 @@ const TOKENS_PACKAGE = "@khanacademy/wonder-blocks-tokens";
 // place the name is spelled out so that a rename is a one-line change.
 const PALETTE_EXPORT = "graphicsPalette";
 
+// The prefix of the CSS variables that the palette tokens resolve to, e.g.
+// `var(--wb-graphicsPalette-blue_30)`. Writing the variable by hand gets
+// around the import check, so string literals are checked for it too.
+// eslint-disable-next-line @khanacademy/wonder-blocks/no-graphics-palette -- This is the prefix the rule looks for
+const PALETTE_CSS_VAR_PREFIX = "--wb-graphicsPalette-";
+
+function escapeRegExp(value: string): string {
+    return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
+// Matches a palette CSS variable and captures the token name.
+const PALETTE_CSS_VAR_RE = new RegExp(
+    `${escapeRegExp(PALETTE_CSS_VAR_PREFIX)}([A-Za-z0-9_]*)`,
+    "g",
+);
+
 const ADVICE =
     "Prefer a `semanticColor` token, which adapts to the current theme. If this color must stay the same in every theme (e.g. illustrations), disable this rule with a comment explaining why.";
 
@@ -126,6 +142,16 @@ export default createRule<Options, MessageIds>({
             }
         }
 
+        /**
+         * Report each palette CSS variable written out in a string, e.g.
+         * `"var(--wb-graphicsPalette-blue_30)"`.
+         */
+        function checkString(node: TSESTree.Node, value: string) {
+            for (const match of value.matchAll(PALETTE_CSS_VAR_RE)) {
+                reportToken(node, match[1] || null);
+            }
+        }
+
         return {
             Program() {
                 const binding = findImportedBinding(
@@ -145,6 +171,19 @@ export default createRule<Options, MessageIds>({
                         checkNamespaceReference(reference.identifier);
                     }
                 }
+            },
+
+            // "var(--wb-graphicsPalette-blue_30)", including JSX attributes
+            // like fill="var(--wb-graphicsPalette-blue_30)".
+            Literal(node) {
+                if (typeof node.value === "string") {
+                    checkString(node, node.value);
+                }
+            },
+
+            // `2px solid var(--wb-graphicsPalette-red_20)`
+            TemplateElement(node) {
+                checkString(node, node.value.cooked ?? node.value.raw);
             },
 
             // export {graphicsPalette} from "@khanacademy/wonder-blocks-tokens";
