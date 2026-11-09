@@ -71,15 +71,12 @@ const c = graphicsPalette.red_30;`,
         {
             code: `<path fill="var(--wb-semanticColor-core-foreground-neutral-strong)" />;`,
         },
-        // --- SVG color attributes (fill, stroke, stopColor) are allowed ---
+        // --- SVG fill and stroke attributes are allowed ---
         {
             code: `${importNamed}<path fill={graphicsPalette.gray_30} stroke={graphicsPalette.black_100} />;`,
         },
         {
             code: `${importNamed}<svg><circle fill={graphicsPalette.red_30} /><rect stroke={graphicsPalette.blue_30} /></svg>;`,
-        },
-        {
-            code: `${importNamed}<linearGradient><stop stopColor={graphicsPalette.yellow_30} /></linearGradient>;`,
         },
         // expressions in the attribute value
         {
@@ -307,7 +304,11 @@ const b = {color: red_30};`,
             code: `${importNamed}<div style={{fill: graphicsPalette.gray_30}} />;`,
             errors: [error],
         },
-        // Less common SVG color attributes
+        // Other SVG color attributes
+        {
+            code: `${importNamed}<linearGradient><stop stopColor={graphicsPalette.yellow_30} /></linearGradient>;`,
+            errors: [error],
+        },
         {
             code: `${importNamed}<feFlood floodColor={graphicsPalette.white_100} />;`,
             errors: [error],

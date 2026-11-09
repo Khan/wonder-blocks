@@ -1,9 +1,9 @@
 # prefer-semantic-color-over-graphics-palette
 
 Prefer themable `semanticColor` tokens over `graphicsPalette` color tokens,
-which stay the same in every theme. `graphicsPalette` is allowed in SVG `fill`,
-`stroke` and `stopColor` attributes, and elsewhere with a disable comment explaining why the color must
-stay the same.
+which stay the same in every theme. `graphicsPalette` is allowed in SVG `fill`
+and `stroke` attributes, and elsewhere with a disable comment explaining why the
+color must stay the same.
 
 This rule only checks `graphicsPalette`. Hardcoded colors (hex, `rgb()`, named
 colors) are reported by [`no-hardcoded-color`](no-hardcoded-color.md).
@@ -50,24 +50,24 @@ destructuring; uses of the new variables aren't reported again.
 Identifiers named `graphicsPalette` that don't come from the tokens package
 aren't reported.
 
-### Allowed: SVG `fill`, `stroke` and `stopColor`
+### Allowed: SVG `fill` and `stroke`
 
 SVG artwork usually needs colors that stay the same in every theme, so
-`graphicsPalette` is allowed in the `fill`, `stroke` and `stopColor` attributes
-of elements like `<path>`, `<circle>` and `<stop>`:
+`graphicsPalette` is allowed in the `fill` and `stroke` attributes of elements
+like `<path>`, `<circle>` and `<rect>`:
 
 ```tsx
 <svg viewBox="0 0 24 24">
     <path fill={graphicsPalette.gray_30} stroke={graphicsPalette.black_100} />
-    <stop stopColor={graphicsPalette.yellow_30} />
+    <circle fill={graphicsPalette.red_30} />
 </svg>
 ```
 
 These are still reported:
 
 - other attributes, including `style` objects, e.g.
-  `<path style={{fill: graphicsPalette.gray_30}} />`, and less common color
-  attributes like `floodColor`;
+  `<path style={{fill: graphicsPalette.gray_30}} />`, and other color
+  attributes like `stopColor` and `floodColor`;
 - components, e.g. `<PhosphorIcon color={...} />` or `<Icon fill={...} />`,
   even if the component renders an SVG;
 - child content, e.g. `<text>{graphicsPalette.gray_30}</text>`;
@@ -80,14 +80,13 @@ These are still reported:
 Disable the rule when a color really must stay the same in every theme, for
 example:
 
-- illustration and artwork colors outside SVG `fill`, `stroke` and `stopColor`
-  attributes;
+- illustration and artwork colors outside SVG `fill` and `stroke` attributes,
+  e.g. gradient `stopColor`s;
 - canvas drawings or exported images (PNG, PDF) whose colors must not change
   with the theme;
 - custom assets that match a fixed brand or artwork color.
 
-Always explain why in the disable comment. Teams can enforce this with
-[`eslint-comments/require-description`](https://mysticatea.github.io/eslint-plugin-eslint-comments/rules/require-description.html).
+Always explain why in the disable comment.
 
 ## Examples
 
@@ -119,7 +118,7 @@ StyleSheet.create({
     card: {backgroundColor: semanticColor.core.background.base.default},
 });
 
-// OK: SVG fill, stroke and stopColor attributes
+// OK: SVG fill and stroke attributes
 <svg viewBox="0 0 24 24">
     <path fill={graphicsPalette.gray_30} />
 </svg>;
