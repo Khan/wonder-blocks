@@ -20,9 +20,6 @@ import {GraphicsPaletteGrid} from "../components/graphics-palette-grid";
  * graphics like custom assets and illustrations. Their values are the same in
  * every theme.
  *
- * These tokens map to the `5 - Graphics / Palette` tokens in Figma (e.g.
- * `Palette/Red/30` -> `graphicsPalette.red_30`).
- *
  * ## Usage
  *
  * ```tsx
@@ -92,8 +89,8 @@ export default {
 type Row = {label: string; css: string; value: string};
 
 /**
- * The palette by hue and step, matching its layout in Figma. Use the copy
- * button on a swatch to copy its token name.
+ * The palette by hue and step. Use the copy button on a swatch to copy its
+ * token name.
  */
 export const Palette = {
     render: () => <GraphicsPaletteGrid />,

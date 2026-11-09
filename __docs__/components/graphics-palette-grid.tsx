@@ -4,6 +4,7 @@ import {StyleSheet} from "aphrodite";
 import {StyleType, View} from "@khanacademy/wonder-blocks-core";
 import {
     border,
+    font,
     graphicsPalette,
     semanticColor,
     sizing,
@@ -15,38 +16,42 @@ import {maybeGetCssVariableInfo} from "./tokens-util";
 type PaletteName = keyof typeof graphicsPalette;
 
 /**
- * Tokens that aren't part of a hue's scale, shown after the hue rows.
- */
-const standaloneNames: Array<PaletteName> = ["black_100", "white_100"];
-
-/**
  * Get the numeric step of a palette token (e.g. `red_05` -> 5).
  */
 const getStep = (name: PaletteName) => Number(name.split("_")[1]);
 
 /**
- * The palette's hues (red, orange, …) with their tokens, ordered from dark to
- * light.
+ * The palette's tokens grouped by color (e.g. `red_05` -> `red`), with each
+ * group ordered from dark to light.
  */
-const hueRows = Object.keys(graphicsPalette)
-    .filter(
-        (name): name is PaletteName =>
-            !standaloneNames.includes(name as PaletteName),
-    )
-    .reduce<Array<[string, Array<PaletteName>]>>((rows, name) => {
-        const hue = name.split("_")[0];
-        const row = rows.find(([rowHue]) => rowHue === hue);
-        if (row) {
-            row[1].push(name);
+const colorGroups = (Object.keys(graphicsPalette) as Array<PaletteName>)
+    .reduce<Array<[string, Array<PaletteName>]>>((groups, name) => {
+        const colorName = name.split("_")[0];
+        const group = groups.find(([groupName]) => groupName === colorName);
+        if (group) {
+            group[1].push(name);
         } else {
-            rows.push([hue, [name]]);
+            groups.push([colorName, [name]]);
         }
-        return rows;
+        return groups;
     }, [])
-    .map(([hue, names]): [string, Array<PaletteName>] => [
-        hue,
+    .map(([colorName, names]): [string, Array<PaletteName>] => [
+        colorName,
         [...names].sort((a, b) => getStep(a) - getStep(b)),
     ]);
+
+/**
+ * The hues (red, orange, …), which each have a scale of steps.
+ */
+const hueRows = colorGroups.filter(([, names]) => names.length > 1);
+
+/**
+ * Tokens that aren't part of a hue's scale (e.g. black and white), shown after
+ * the hue rows.
+ */
+const standaloneNames = colorGroups
+    .filter(([, names]) => names.length === 1)
+    .map(([, names]) => names[0]);
 
 const steps = hueRows[0][1].map(getStep);
 
@@ -81,7 +86,8 @@ function PaletteSwatch({name, style}: SwatchProps) {
 
 /**
  * Show the graphics palette as a grid of hues (rows) by steps (columns),
- * matching the palette's layout in Figma, followed by black and white.
+ * followed by the tokens that aren't part of a hue's scale (e.g. black and
+ * white).
  *
  * Each swatch has a button that copies its token name (e.g.
  * `graphicsPalette.red_30`).
@@ -199,7 +205,7 @@ const styles = StyleSheet.create({
         whiteSpace: "nowrap",
     },
     hex: {
-        fontFamily: "monospace",
+        fontFamily: font.family.mono,
         color: semanticColor.core.foreground.neutral.subtle,
     },
 });
