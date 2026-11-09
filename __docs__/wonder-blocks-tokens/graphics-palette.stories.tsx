@@ -1,3 +1,4 @@
+/* eslint-disable @khanacademy/wonder-blocks/no-graphics-palette -- These stories document the graphicsPalette tokens themselves */
 import * as React from "react";
 import {
     Title,
