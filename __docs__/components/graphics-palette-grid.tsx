@@ -160,7 +160,7 @@ export function GraphicsPaletteGrid() {
 
 // A fixed width so the grid scrolls horizontally instead of squeezing the
 // swatches when there isn't enough room.
-const CELL_WIDTH = 96;
+const CELL_WIDTH = 92;
 
 const styles = StyleSheet.create({
     scrollContainer: {
