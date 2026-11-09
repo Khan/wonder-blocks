@@ -99,13 +99,13 @@ describe("OptionItem", () => {
         });
     });
 
-    describe("isClassOf", () => {
+    describe("isComponentOf", () => {
         it("should return true for an OptionItem element", () => {
             // Arrange
             const element = <OptionItem value="1" label="Example" />;
 
             // Act
-            const result = OptionItem.isClassOf(element);
+            const result = OptionItem.isComponentOf(element);
 
             // Assert
             expect(result).toBe(true);
@@ -120,7 +120,7 @@ describe("OptionItem", () => {
             // (element comes from it.each)
 
             // Act
-            const result = OptionItem.isClassOf(element);
+            const result = OptionItem.isComponentOf(element);
 
             // Assert
             expect(result).toBe(false);

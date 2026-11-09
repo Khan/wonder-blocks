@@ -678,11 +678,11 @@ const DropdownCore = (props: Props) => {
             const foundIndex = items
                 .filter((item) => item.focusable)
                 .findIndex(({component}) => {
-                    if (SeparatorItem.isClassOf(component)) {
+                    if (SeparatorItem.isComponentOf(component)) {
                         return false;
                     }
 
-                    if (OptionItem.isClassOf(component)) {
+                    if (OptionItem.isComponentOf(component)) {
                         const optionItemProps = component.props as PropsFor<
                             typeof OptionItem
                         >;
@@ -900,7 +900,7 @@ const DropdownCore = (props: Props) => {
 
         // if we don't need to virtualize, we can render the list directly
         return items.map((item, index) => {
-            if (SeparatorItem.isClassOf(item.component)) {
+            if (SeparatorItem.isComponentOf(item.component)) {
                 return item.component;
             }
 
@@ -944,7 +944,10 @@ const DropdownCore = (props: Props) => {
 
         return items.map((item, index) => {
             const {populatedProps} = item;
-            if (!SeparatorItem.isClassOf(item.component) && item.focusable) {
+            if (
+                !SeparatorItem.isComponentOf(item.component) &&
+                item.focusable
+            ) {
                 focusCounter += 1;
             }
 

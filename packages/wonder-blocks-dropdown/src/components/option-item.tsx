@@ -284,7 +284,7 @@ type OptionItemProps = Omit<PropsFor<typeof OptionItemInner>, "forwardedRef">;
  * @param instance The element to check.
  * @returns `true` if the element's type is `OptionItem`.
  */
-const isClassOf = (instance: React.ReactElement<unknown>): boolean => {
+const isComponentOf = (instance: React.ReactElement<unknown>): boolean => {
     const type: unknown = instance?.type;
     return (
         typeof type === "object" &&
@@ -301,7 +301,7 @@ const isClassOf = (instance: React.ReactElement<unknown>): boolean => {
 type OptionItemComponent = React.ForwardRefExoticComponent<
     OptionItemProps & React.RefAttributes<HTMLElement>
 > & {
-    isClassOf: typeof isClassOf;
+    isComponentOf: typeof isComponentOf;
     __IS_OPTION_ITEM__: true;
 };
 
@@ -319,7 +319,7 @@ const OptionItem = React.forwardRef(function OptionItem(
     return <OptionItemInner {...props} forwardedRef={ref} />;
 }) as OptionItemComponent;
 
-OptionItem.isClassOf = isClassOf;
+OptionItem.isComponentOf = isComponentOf;
 OptionItem.__IS_OPTION_ITEM__ = true;
 
 export default OptionItem;

@@ -20,7 +20,7 @@ export default class SeparatorItem extends React.Component<{
      */
     style?: StyleType;
 }> {
-    static isClassOf(instance: React.ReactElement<any>): boolean {
+    static isComponentOf(instance: React.ReactElement<any>): boolean {
         // @ts-expect-error [FEI-5019] - TS2339 - Property '__IS_SEPARATOR_ITEM__' does not exist on type 'string | JSXElementConstructor<any>'.
         return instance && instance.type && instance.type.__IS_SEPARATOR_ITEM__;
     }

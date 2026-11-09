@@ -223,7 +223,7 @@ type ActionItemProps = Omit<PropsFor<typeof ActionItemInner>, "forwardedRef">;
  * @param instance The element to check.
  * @returns `true` if the element's type is `ActionItem`.
  */
-const isClassOf = (instance: React.ReactElement<unknown>): boolean => {
+const isComponentOf = (instance: React.ReactElement<unknown>): boolean => {
     const type: unknown = instance?.type;
     return (
         typeof type === "object" &&
@@ -240,7 +240,7 @@ const isClassOf = (instance: React.ReactElement<unknown>): boolean => {
 type ActionItemComponent = React.ForwardRefExoticComponent<
     ActionItemProps & React.RefAttributes<HTMLElement>
 > & {
-    isClassOf: typeof isClassOf;
+    isComponentOf: typeof isComponentOf;
     __IS_ACTION_ITEM__: true;
 };
 
@@ -259,7 +259,7 @@ const ActionItem = React.forwardRef(function ActionItem(
     return <ActionItemInner {...props} forwardedRef={ref} />;
 }) as ActionItemComponent;
 
-ActionItem.isClassOf = isClassOf;
+ActionItem.isComponentOf = isComponentOf;
 ActionItem.__IS_ACTION_ITEM__ = true;
 
 export default ActionItem;

@@ -193,13 +193,13 @@ describe("ActionItem", () => {
         });
     });
 
-    describe("isClassOf", () => {
+    describe("isComponentOf", () => {
         it("should return true for an ActionItem element", () => {
             // Arrange
             const element = <ActionItem label="Example" />;
 
             // Act
-            const result = ActionItem.isClassOf(element);
+            const result = ActionItem.isComponentOf(element);
 
             // Assert
             expect(result).toBe(true);
@@ -217,7 +217,7 @@ describe("ActionItem", () => {
             // (element comes from it.each)
 
             // Act
-            const result = ActionItem.isClassOf(element);
+            const result = ActionItem.isComponentOf(element);
 
             // Assert
             expect(result).toBe(false);
