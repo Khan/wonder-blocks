@@ -73,6 +73,44 @@ const c = graphicsPalette.red_30;`,
         {
             code: `<path fill="var(--wb-semanticColor-core-foreground-neutral-strong)" />;`,
         },
+        // --- SVG element attributes are allowed ---
+        {
+            code: `${importNamed}<path fill={graphicsPalette.gray_30} stroke={graphicsPalette.black_100} />;`,
+        },
+        {
+            code: `${importNamed}<svg><circle fill={graphicsPalette.red_30} /><rect stroke={graphicsPalette.blue_30} /></svg>;`,
+        },
+        {
+            code: `${importNamed}<linearGradient><stop stopColor={graphicsPalette.yellow_30} /></linearGradient>;`,
+        },
+        {
+            code: `${importNamed}<feFlood floodColor={graphicsPalette.white_100} />;`,
+        },
+        // style objects on SVG elements
+        {
+            code: `${importNamed}<path style={{fill: graphicsPalette.gray_30}} />;`,
+        },
+        // expressions in the attribute value
+        {
+            code: `${importNamed}<path fill={isActive ? graphicsPalette.green_30 : graphicsPalette.gray_30} />;`,
+        },
+        // alias and namespace imports
+        {
+            code: `import {graphicsPalette as gp} from "@khanacademy/wonder-blocks-tokens";
+<path fill={gp.gray_30} />;`,
+        },
+        {
+            code: `${importNamespace}<path fill={tokens.graphicsPalette.gray_30} />;`,
+        },
+        // palette CSS variable strings
+        {
+            // eslint-disable-next-line @khanacademy/wonder-blocks/prefer-semantic-color -- Test input for this rule
+            code: `<path fill="var(--wb-graphicsPalette-yellow_30)" />;`,
+        },
+        {
+            // eslint-disable-next-line @khanacademy/wonder-blocks/prefer-semantic-color -- Test input for this rule
+            code: `<path fill={"var(--wb-graphicsPalette-yellow_30)"} />;`,
+        },
     ],
     invalid: [
         // --- Import forms ---
@@ -147,11 +185,6 @@ const b = {color: red_30};`,
         {
             code: `${importNamed}<div style={{color: graphicsPalette.magenta_40}} />;`,
             errors: [tokenError("magenta_40")],
-        },
-        // SVG fill/stroke attributes
-        {
-            code: `${importNamed}<path fill={graphicsPalette.gray_30} stroke={graphicsPalette.black_100} />;`,
-            errors: [tokenError("gray_30"), tokenError("black_100")],
         },
         // Component props
         {
@@ -229,16 +262,6 @@ const b = {color: red_30};`,
         },
         {
             // eslint-disable-next-line @khanacademy/wonder-blocks/prefer-semantic-color -- Test input for this rule
-            code: `<path fill="var(--wb-graphicsPalette-yellow_30)" />;`,
-            errors: [tokenError("yellow_30")],
-        },
-        {
-            // eslint-disable-next-line @khanacademy/wonder-blocks/prefer-semantic-color -- Test input for this rule
-            code: `<path fill={"var(--wb-graphicsPalette-yellow_30)"} />;`,
-            errors: [tokenError("yellow_30")],
-        },
-        {
-            // eslint-disable-next-line @khanacademy/wonder-blocks/prefer-semantic-color -- Test input for this rule
             code: "const border = `2px solid var(--wb-graphicsPalette-red_20)`;",
             errors: [tokenError("red_20")],
         },
@@ -264,6 +287,44 @@ const b = {color: red_30};`,
             // eslint-disable-next-line @khanacademy/wonder-blocks/prefer-semantic-color -- Test input for this rule
             code: "const v = `var(--wb-graphicsPalette-${name})`;",
             errors: [genericError],
+        },
+
+        // --- SVG edge cases that are still reported ---
+        // The same attribute on a non-SVG element
+        {
+            code: `${importNamed}<div style={{fill: graphicsPalette.gray_30}} />;`,
+            errors: [tokenError("gray_30")],
+        },
+        // Components aren't SVG elements, even if they render one
+        {
+            code: `${importNamed}<Path fill={graphicsPalette.gray_30} />;`,
+            errors: [tokenError("gray_30")],
+        },
+        // Child content of an SVG element isn't an attribute
+        {
+            code: `${importNamed}<text>{graphicsPalette.gray_30}</text>;`,
+            errors: [tokenError("gray_30")],
+        },
+        // HTML elements nested inside an SVG
+        {
+            code: `${importNamed}<svg><foreignObject><div style={{color: graphicsPalette.gray_30}} /></foreignObject></svg>;`,
+            errors: [tokenError("gray_30")],
+        },
+        // Functions inside an SVG attribute
+        {
+            code: `${importNamed}<path onClick={() => setColor(graphicsPalette.red_30)} />;`,
+            errors: [tokenError("red_30")],
+        },
+        // Spreading the palette as props
+        {
+            code: `${importNamed}<path {...graphicsPalette} />;`,
+            errors: [genericError],
+        },
+        // Colors defined outside the SVG are reported where they're defined
+        {
+            code: `${importNamed}const FILL = graphicsPalette.gray_30;
+<path fill={FILL} />;`,
+            errors: [tokenError("gray_30")],
         },
 
         // Each reference is reported once

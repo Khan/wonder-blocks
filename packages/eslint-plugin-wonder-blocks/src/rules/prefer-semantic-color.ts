@@ -39,6 +39,93 @@ const PALETTE_CSS_VAR_RE = new RegExp(
     "g",
 );
 
+// Intrinsic SVG elements (as React spells them). Palette colors are allowed in
+// these elements' attributes, e.g. <path fill={graphicsPalette.gray_30} />,
+// since SVG artwork usually needs colors that stay the same in every theme.
+const SVG_ELEMENTS = new Set([
+    "svg",
+    "g",
+    "defs",
+    "symbol",
+    "use",
+    "path",
+    "circle",
+    "ellipse",
+    "line",
+    "polygon",
+    "polyline",
+    "rect",
+    "text",
+    "textPath",
+    "tspan",
+    "image",
+    "marker",
+    "mask",
+    "clipPath",
+    "pattern",
+    "linearGradient",
+    "radialGradient",
+    "stop",
+    "filter",
+    "feBlend",
+    "feColorMatrix",
+    "feComponentTransfer",
+    "feComposite",
+    "feConvolveMatrix",
+    "feDiffuseLighting",
+    "feDisplacementMap",
+    "feDistantLight",
+    "feDropShadow",
+    "feFlood",
+    "feFuncA",
+    "feFuncB",
+    "feFuncG",
+    "feFuncR",
+    "feGaussianBlur",
+    "feImage",
+    "feMerge",
+    "feMergeNode",
+    "feMorphology",
+    "feOffset",
+    "fePointLight",
+    "feSpecularLighting",
+    "feSpotLight",
+    "feTile",
+    "feTurbulence",
+]);
+
+/**
+ * Whether `node` is part of an attribute value on an intrinsic SVG element,
+ * e.g. `fill={...}`, `stroke="..."` or `style={{fill: ...}}` on a `<path>`.
+ *
+ * Only the attribute's value counts: event handlers and other functions
+ * inside an attribute, child content, and spread attributes are still
+ * checked.
+ */
+function isInSvgElementAttribute(node: TSESTree.Node): boolean {
+    let current: TSESTree.Node | undefined = node.parent;
+    while (current) {
+        switch (current.type) {
+            case "JSXAttribute": {
+                const element = current.parent;
+                return (
+                    element.name.type === "JSXIdentifier" &&
+                    SVG_ELEMENTS.has(element.name.name)
+                );
+            }
+            case "JSXElement":
+            case "JSXFragment":
+            case "JSXSpreadAttribute":
+            case "ArrowFunctionExpression":
+            case "FunctionExpression":
+            case "FunctionDeclaration":
+                return false;
+        }
+        current = current.parent;
+    }
+    return false;
+}
+
 const ADVICE =
     "Prefer a `semanticColor` token, which adapts to the current theme. If this color must stay the same in every theme (e.g. illustrations), disable this rule with a comment explaining why.";
 
@@ -60,12 +147,18 @@ export default createRule<Options, MessageIds>({
         const sourceCode = context.sourceCode;
 
         function reportGeneric(node: TSESTree.Node) {
+            if (isInSvgElementAttribute(node)) {
+                return;
+            }
             context.report({node, messageId: "preferSemanticColorGeneric"});
         }
 
         function reportToken(node: TSESTree.Node, name: string | null) {
             if (name === null) {
                 reportGeneric(node);
+                return;
+            }
+            if (isInSvgElementAttribute(node)) {
                 return;
             }
             context.report({
