@@ -157,8 +157,8 @@ Outside SVG, disabled with a reason:
 
 ```tsx
 StyleSheet.create({
-    spiderIllustration: {
-        // eslint-disable-next-line @khanacademy/wonder-blocks/prefer-semantic-color-over-graphics-palette -- Spider illustration artwork; colors stay the same in every theme
+    illustration: {
+        // eslint-disable-next-line @khanacademy/wonder-blocks/prefer-semantic-color-over-graphics-palette -- Illustration artwork; colors stay the same in every theme
         backgroundColor: graphicsPalette.gray_30,
     },
 });
