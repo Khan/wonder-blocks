@@ -172,8 +172,8 @@ const styles = StyleSheet.create({
     },
     grid: {
         display: "grid",
-        columnGap: sizing.size_080,
-        rowGap: sizing.size_120,
+        columnGap: sizing.size_240,
+        rowGap: sizing.size_200,
         minInlineSize: "fit-content",
     },
     columnLabel: {
