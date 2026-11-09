@@ -15,7 +15,7 @@ const createRule = ESLintUtils.RuleCreator<WonderBlocksPluginDocs>(
 );
 
 type Options = [];
-type MessageIds = "preferSemanticColor";
+type MessageIds = "preferSemanticColorOverGraphicsPalette";
 
 const TOKENS_PACKAGE = "@khanacademy/wonder-blocks-tokens";
 
@@ -26,7 +26,7 @@ const PALETTE_EXPORT = "graphicsPalette";
 // The prefix of the CSS variables that the palette tokens resolve to, e.g.
 // `var(--wb-graphicsPalette-blue_30)`. Writing the variable by hand gets
 // around the import check, so string literals are checked for it too.
-// eslint-disable-next-line @khanacademy/wonder-blocks/prefer-semantic-color -- This is the prefix the rule looks for
+// eslint-disable-next-line @khanacademy/wonder-blocks/prefer-semantic-color-over-graphics-palette -- This is the prefix the rule looks for
 const PALETTE_CSS_VAR_PREFIX = "--wb-graphicsPalette-";
 
 function escapeRegExp(value: string): string {
@@ -83,14 +83,14 @@ const ADVICE =
     "Prefer a `semanticColor` token, which adapts to the current theme. If this color must stay the same in every theme (e.g. illustrations), disable this rule with a comment explaining why.";
 
 export default createRule<Options, MessageIds>({
-    name: "prefer-semantic-color",
+    name: "prefer-semantic-color-over-graphics-palette",
     meta: {
         docs: {
             description: `Prefer themable \`semanticColor\` tokens over \`${PALETTE_EXPORT}\` color tokens, which stay the same in every theme.`,
             recommended: false,
         },
         messages: {
-            preferSemanticColor: `\`${PALETTE_EXPORT}\` colors stay the same in every theme. ${ADVICE}`,
+            preferSemanticColorOverGraphicsPalette: `\`${PALETTE_EXPORT}\` colors stay the same in every theme. ${ADVICE}`,
         },
         schema: [],
         type: "suggestion",
@@ -102,7 +102,10 @@ export default createRule<Options, MessageIds>({
             if (isInSvgColorAttribute(node)) {
                 return;
             }
-            context.report({node, messageId: "preferSemanticColor"});
+            context.report({
+                node,
+                messageId: "preferSemanticColorOverGraphicsPalette",
+            });
         }
 
         /**

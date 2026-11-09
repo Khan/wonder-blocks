@@ -1,4 +1,4 @@
-# prefer-semantic-color
+# prefer-semantic-color-over-graphics-palette
 
 Prefer themable `semanticColor` tokens over `graphicsPalette` color tokens,
 which stay the same in every theme. `graphicsPalette` is allowed in SVG `fill`,
@@ -126,7 +126,7 @@ StyleSheet.create({
 </svg>;
 
 // OK: outside SVG, with a reason
-// eslint-disable-next-line @khanacademy/wonder-blocks/prefer-semantic-color -- Exported PNG chart colors must not change with the theme
+// eslint-disable-next-line @khanacademy/wonder-blocks/prefer-semantic-color-over-graphics-palette -- Exported PNG chart colors must not change with the theme
 const EXPORT_LINE_COLOR = graphicsPalette.blue_30;
 ```
 

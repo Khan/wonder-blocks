@@ -14,13 +14,13 @@ const ruleTester = new RuleTester({
     },
 });
 
-const ruleName = "prefer-semantic-color";
+const ruleName = "prefer-semantic-color-over-graphics-palette";
 const rule = rules[ruleName];
 
 const importNamed = `import {graphicsPalette} from "@khanacademy/wonder-blocks-tokens";\n`;
 const importNamespace = `import * as tokens from "@khanacademy/wonder-blocks-tokens";\n`;
 
-const error = {messageId: "preferSemanticColor"} as const;
+const error = {messageId: "preferSemanticColorOverGraphicsPalette"} as const;
 
 ruleTester.run(ruleName, rule, {
     valid: [
@@ -99,11 +99,11 @@ const c = graphicsPalette.red_30;`,
         },
         // palette CSS variable strings
         {
-            // eslint-disable-next-line @khanacademy/wonder-blocks/prefer-semantic-color -- Test input for this rule
+            // eslint-disable-next-line @khanacademy/wonder-blocks/prefer-semantic-color-over-graphics-palette -- Test input for this rule
             code: `<path fill="var(--wb-graphicsPalette-yellow_30)" />;`,
         },
         {
-            // eslint-disable-next-line @khanacademy/wonder-blocks/prefer-semantic-color -- Test input for this rule
+            // eslint-disable-next-line @khanacademy/wonder-blocks/prefer-semantic-color-over-graphics-palette -- Test input for this rule
             code: `<path fill={"var(--wb-graphicsPalette-yellow_30)"} />;`,
         },
     ],
@@ -215,7 +215,7 @@ const b = {color: red_30};`,
             errors: [error],
         },
         {
-            // eslint-disable-next-line @khanacademy/wonder-blocks/prefer-semantic-color -- Test input for this rule
+            // eslint-disable-next-line @khanacademy/wonder-blocks/prefer-semantic-color-over-graphics-palette -- Test input for this rule
             code: `const v = tokenValue("var(--wb-graphicsPalette-blue_30)");`,
             errors: [error],
         },
@@ -259,40 +259,40 @@ const b = {color: red_30};`,
         },
         // --- Literal CSS variable strings ---
         {
-            // eslint-disable-next-line @khanacademy/wonder-blocks/prefer-semantic-color -- Test input for this rule
+            // eslint-disable-next-line @khanacademy/wonder-blocks/prefer-semantic-color-over-graphics-palette -- Test input for this rule
             code: `const c = "var(--wb-graphicsPalette-blue_30)";`,
             errors: [error],
         },
         {
-            // eslint-disable-next-line @khanacademy/wonder-blocks/prefer-semantic-color -- Test input for this rule
+            // eslint-disable-next-line @khanacademy/wonder-blocks/prefer-semantic-color-over-graphics-palette -- Test input for this rule
             code: `StyleSheet.create({card: {color: "var(--wb-graphicsPalette-gray_70)"}});`,
             errors: [error],
         },
         {
-            // eslint-disable-next-line @khanacademy/wonder-blocks/prefer-semantic-color -- Test input for this rule
+            // eslint-disable-next-line @khanacademy/wonder-blocks/prefer-semantic-color-over-graphics-palette -- Test input for this rule
             code: "const border = `2px solid var(--wb-graphicsPalette-red_20)`;",
             errors: [error],
         },
         {
-            // eslint-disable-next-line @khanacademy/wonder-blocks/prefer-semantic-color -- Test input for this rule
+            // eslint-disable-next-line @khanacademy/wonder-blocks/prefer-semantic-color-over-graphics-palette -- Test input for this rule
             code: "const border = `${width} solid var(--wb-graphicsPalette-red_20)`;",
             errors: [error],
         },
         // The variable name without var()
         {
-            // eslint-disable-next-line @khanacademy/wonder-blocks/prefer-semantic-color -- Test input for this rule
+            // eslint-disable-next-line @khanacademy/wonder-blocks/prefer-semantic-color-over-graphics-palette -- Test input for this rule
             code: `el.style.getPropertyValue("--wb-graphicsPalette-white_100");`,
             errors: [error],
         },
         // Each variable in a string is reported
         {
-            // eslint-disable-next-line @khanacademy/wonder-blocks/prefer-semantic-color -- Test input for this rule
+            // eslint-disable-next-line @khanacademy/wonder-blocks/prefer-semantic-color-over-graphics-palette -- Test input for this rule
             code: `const g = "linear-gradient(var(--wb-graphicsPalette-blue_30), var(--wb-graphicsPalette-blue_60))";`,
             errors: [error, error],
         },
         // A variable with a dynamic name
         {
-            // eslint-disable-next-line @khanacademy/wonder-blocks/prefer-semantic-color -- Test input for this rule
+            // eslint-disable-next-line @khanacademy/wonder-blocks/prefer-semantic-color-over-graphics-palette -- Test input for this rule
             code: "const v = `var(--wb-graphicsPalette-${name})`;",
             errors: [error],
         },
