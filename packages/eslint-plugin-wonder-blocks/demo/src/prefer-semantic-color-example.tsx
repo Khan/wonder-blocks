@@ -20,16 +20,19 @@ const validStyles = StyleSheet.create({
     card: {backgroundColor: semanticColor.core.background.base.default},
 });
 
-// ✅ Valid: static artwork that must stay the same in every theme, disabled
-// with a reason
+// ✅ Valid: attributes of SVG elements (static artwork)
 export function ValidIllustrationExample() {
     return (
         <svg viewBox="0 0 24 24">
-            {/* eslint-disable-next-line @khanacademy/wonder-blocks/prefer-semantic-color -- Spider illustration artwork; colors stay the same in every theme */}
             <path fill={graphicsPalette.gray_30} d="M12 2L2 22h20L12 2z" />
+            <circle stroke={graphicsPalette.red_50} cx="12" cy="12" r="10" />
         </svg>
     );
 }
+
+// ✅ Valid: outside SVG, disabled with a reason
+// eslint-disable-next-line @khanacademy/wonder-blocks/prefer-semantic-color -- Exported PNG chart colors must not change with the theme
+const exportLineColor = graphicsPalette.blue_30;
 
 // ❌ Invalid: graphicsPalette in StyleSheet.create
 const invalidStyles = StyleSheet.create({
@@ -41,13 +44,9 @@ export function InvalidIconExample() {
     return <PhosphorIcon icon={starIcon} color={graphicsPalette.yellow_30} />;
 }
 
-// ❌ Invalid: graphicsPalette as an SVG attribute, without a disable comment
-export function InvalidSvgFillExample() {
-    return (
-        <svg viewBox="0 0 24 24">
-            <circle stroke={graphicsPalette.red_50} cx="12" cy="12" r="10" />
-        </svg>
-    );
+// ❌ Invalid: an SVG attribute on an HTML element
+export function InvalidHtmlFillExample() {
+    return <div style={{fill: graphicsPalette.red_50}} />;
 }
 
 // ❌ Invalid: destructuring from graphicsPalette (reported once)
@@ -63,6 +62,7 @@ const invalidCssVarStyles = StyleSheet.create({
 
 // Suppress unused variable warnings for the examples above
 void validStyles;
+void exportLineColor;
 void invalidStyles;
 void successColor;
 void chartConfig;

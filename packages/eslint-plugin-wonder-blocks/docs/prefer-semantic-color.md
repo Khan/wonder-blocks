@@ -1,8 +1,9 @@
 # prefer-semantic-color
 
 Prefer themable `semanticColor` tokens over `graphicsPalette` color tokens,
-which stay the same in every theme. Uses of `graphicsPalette` are allowed with a
-disable comment explaining why the color must stay the same.
+which stay the same in every theme. `graphicsPalette` is allowed in attributes of
+SVG elements, and elsewhere with a disable comment explaining why the color must
+stay the same.
 
 This rule only checks `graphicsPalette`. Hardcoded colors (hex, `rgb()`, named
 colors) are reported by [`no-hardcoded-color`](no-hardcoded-color.md).
@@ -20,10 +21,10 @@ colors) are reported by [`no-hardcoded-color`](no-hardcoded-color.md).
 
 Using `graphicsPalette` for UI means that part of the UI doesn't follow the
 theme (for example, it stays light in a dark theme). To make each use a
-deliberate choice, this rule reports **every** use of `graphicsPalette`,
-wherever it appears: style objects, `style` props, JSX attributes (including
-SVG `fill` and `stroke`), component props, plain constants, chart and canvas
-config, `tokenValue(...)` calls, and passing or spreading the whole object.
+deliberate choice, this rule reports uses of `graphicsPalette` wherever they
+appear: style objects, `style` props, component props, plain constants, chart
+and canvas config, `tokenValue(...)` calls, and passing or spreading the whole
+object. The one exception is SVG artwork (see below).
 
 The rule finds `graphicsPalette` through imports from
 `@khanacademy/wonder-blocks-tokens`:
@@ -49,12 +50,39 @@ destructuring; uses of the new variables aren't reported again.
 Identifiers named `graphicsPalette` that don't come from the tokens package
 aren't reported.
 
+### Allowed: attributes of SVG elements
+
+SVG artwork usually needs colors that stay the same in every theme, so
+`graphicsPalette` is allowed in the attributes of intrinsic SVG elements
+(`<svg>`, `<path>`, `<circle>`, `<rect>`, `<g>`, `<stop>`, `<linearGradient>`,
+`<text>`, filter primitives, etc.). That includes `fill`, `stroke`,
+`stopColor` and other attributes, and `style` objects on those elements:
+
+```tsx
+<svg viewBox="0 0 24 24">
+    <path fill={graphicsPalette.gray_30} stroke={graphicsPalette.black_100} />
+    <circle style={{fill: graphicsPalette.red_30}} />
+</svg>
+```
+
+These are still reported:
+
+- the same attributes on HTML elements or components, e.g. `<div style={{fill:
+  ...}} />` or `<PhosphorIcon color={...} />`, even if the component renders an
+  SVG;
+- child content of an SVG element, e.g. `<text>{graphicsPalette.gray_30}</text>`,
+  and HTML elements inside `<foreignObject>`;
+- functions inside an attribute, e.g. `onClick={() => setColor(...)}`;
+- spreading the palette as props, e.g. `<path {...graphicsPalette} />`;
+- colors defined outside the SVG and passed in, e.g. `const FILL =
+  graphicsPalette.gray_30` is reported where it's defined.
+
 ## When to disable this rule
 
 Disable the rule when a color really must stay the same in every theme, for
 example:
 
-- illustration and artwork colors;
+- illustration and artwork colors that aren't set directly on SVG elements;
 - canvas drawings or exported images (PNG, PDF) whose colors must not change
   with the theme;
 - custom assets that match a fixed brand or artwork color.
@@ -77,6 +105,8 @@ const {red_30} = graphicsPalette;
 
 renderChart({colors: graphicsPalette});
 
+<div style={{borderColor: graphicsPalette.gray_30}} />;
+
 const border = "1px solid var(--wb-graphicsPalette-gray_60)";
 ```
 
@@ -90,13 +120,12 @@ StyleSheet.create({
     card: {backgroundColor: semanticColor.core.background.base.default},
 });
 
-// OK: static artwork, with a reason
+// OK: attributes of SVG elements
 <svg viewBox="0 0 24 24">
-    {/* eslint-disable-next-line @khanacademy/wonder-blocks/prefer-semantic-color -- Spider illustration artwork; colors stay the same in every theme */}
     <path fill={graphicsPalette.gray_30} />
 </svg>;
 
-// OK: a single line, with a reason
+// OK: outside SVG, with a reason
 // eslint-disable-next-line @khanacademy/wonder-blocks/prefer-semantic-color -- Exported PNG chart colors must not change with the theme
 const EXPORT_LINE_COLOR = graphicsPalette.blue_30;
 ```
