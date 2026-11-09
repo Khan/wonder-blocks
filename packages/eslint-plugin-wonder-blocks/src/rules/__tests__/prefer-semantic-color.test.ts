@@ -1,4 +1,3 @@
-/* eslint-disable @khanacademy/wonder-blocks/prefer-semantic-color -- The test cases are source strings that mention palette CSS variables on purpose */
 import {RuleTester} from "@typescript-eslint/rule-tester";
 
 import {rules} from "..";
@@ -219,41 +218,50 @@ const b = {color: red_30};`,
         },
         // --- Literal CSS variable strings ---
         {
+            // eslint-disable-next-line @khanacademy/wonder-blocks/prefer-semantic-color -- Test input for this rule
             code: `const c = "var(--wb-graphicsPalette-blue_30)";`,
             errors: [tokenError("blue_30")],
         },
         {
+            // eslint-disable-next-line @khanacademy/wonder-blocks/prefer-semantic-color -- Test input for this rule
             code: `StyleSheet.create({card: {color: "var(--wb-graphicsPalette-gray_70)"}});`,
             errors: [tokenError("gray_70")],
         },
         {
+            // eslint-disable-next-line @khanacademy/wonder-blocks/prefer-semantic-color -- Test input for this rule
             code: `<path fill="var(--wb-graphicsPalette-yellow_30)" />;`,
             errors: [tokenError("yellow_30")],
         },
         {
+            // eslint-disable-next-line @khanacademy/wonder-blocks/prefer-semantic-color -- Test input for this rule
             code: `<path fill={"var(--wb-graphicsPalette-yellow_30)"} />;`,
             errors: [tokenError("yellow_30")],
         },
         {
+            // eslint-disable-next-line @khanacademy/wonder-blocks/prefer-semantic-color -- Test input for this rule
             code: "const border = `2px solid var(--wb-graphicsPalette-red_20)`;",
             errors: [tokenError("red_20")],
         },
         {
+            // eslint-disable-next-line @khanacademy/wonder-blocks/prefer-semantic-color -- Test input for this rule
             code: "const border = `${width} solid var(--wb-graphicsPalette-red_20)`;",
             errors: [tokenError("red_20")],
         },
         // The variable name without var()
         {
+            // eslint-disable-next-line @khanacademy/wonder-blocks/prefer-semantic-color -- Test input for this rule
             code: `el.style.getPropertyValue("--wb-graphicsPalette-white_100");`,
             errors: [tokenError("white_100")],
         },
         // Each variable in a string is reported
         {
+            // eslint-disable-next-line @khanacademy/wonder-blocks/prefer-semantic-color -- Test input for this rule
             code: `const g = "linear-gradient(var(--wb-graphicsPalette-blue_30), var(--wb-graphicsPalette-blue_60))";`,
             errors: [tokenError("blue_30"), tokenError("blue_60")],
         },
         // A prefix with no token name gets the generic message
         {
+            // eslint-disable-next-line @khanacademy/wonder-blocks/prefer-semantic-color -- Test input for this rule
             code: "const v = `var(--wb-graphicsPalette-${name})`;",
             errors: [genericError],
         },

@@ -1,4 +1,3 @@
-/* eslint-disable @khanacademy/wonder-blocks/prefer-semantic-color -- This component documents the graphicsPalette tokens themselves */
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
@@ -15,6 +14,7 @@ import {BodyText} from "@khanacademy/wonder-blocks-typography";
 import {CopyButton} from "./copy-button";
 import {maybeGetCssVariableInfo} from "./tokens-util";
 
+// eslint-disable-next-line @khanacademy/wonder-blocks/prefer-semantic-color -- This component documents the graphicsPalette tokens themselves
 type PaletteName = keyof typeof graphicsPalette;
 
 /**
@@ -26,6 +26,7 @@ const getStep = (name: PaletteName) => Number(name.split("_")[1]);
  * The palette's tokens grouped by color (e.g. `red_05` -> `red`), with each
  * group ordered from dark to light.
  */
+// eslint-disable-next-line @khanacademy/wonder-blocks/prefer-semantic-color -- This component documents the graphicsPalette tokens themselves
 const colorGroups = (Object.keys(graphicsPalette) as Array<PaletteName>)
     .reduce<Array<[string, Array<PaletteName>]>>((groups, name) => {
         const colorName = name.split("_")[0];
@@ -67,6 +68,7 @@ type SwatchProps = {
  * its hex value.
  */
 function PaletteSwatch({name, style}: SwatchProps) {
+    // eslint-disable-next-line @khanacademy/wonder-blocks/prefer-semantic-color -- This component documents the graphicsPalette tokens themselves
     const value = graphicsPalette[name];
     const hex = maybeGetCssVariableInfo(value).value;
 

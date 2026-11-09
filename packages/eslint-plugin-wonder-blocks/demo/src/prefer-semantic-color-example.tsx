@@ -25,9 +25,8 @@ const validStyles = StyleSheet.create({
 export function ValidIllustrationExample() {
     return (
         <svg viewBox="0 0 24 24">
-            {/* eslint-disable @khanacademy/wonder-blocks/prefer-semantic-color -- Spider illustration artwork; colors stay the same in every theme */}
+            {/* eslint-disable-next-line @khanacademy/wonder-blocks/prefer-semantic-color -- Spider illustration artwork; colors stay the same in every theme */}
             <path fill={graphicsPalette.gray_30} d="M12 2L2 22h20L12 2z" />
-            {/* eslint-enable @khanacademy/wonder-blocks/prefer-semantic-color */}
         </svg>
     );
 }
