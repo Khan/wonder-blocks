@@ -9,7 +9,5 @@ export default {
         "@khanacademy/wonder-blocks/no-invalid-bodytext-parent": "error",
         "@khanacademy/wonder-blocks/no-hardcoded-color": "error",
         "@khanacademy/wonder-blocks/no-raw-button": "error",
-        "@khanacademy/wonder-blocks/prefer-semantic-color-over-graphics-palette":
-            "error",
     },
 };

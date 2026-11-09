@@ -87,7 +87,7 @@ export default createRule<Options, MessageIds>({
     meta: {
         docs: {
             description: `Prefer themable \`semanticColor\` tokens over \`${PALETTE_EXPORT}\` color tokens, which stay the same in every theme.`,
-            recommended: false,
+            recommended: true,
         },
         messages: {
             preferSemanticColorOverGraphicsPalette: `\`${PALETTE_EXPORT}\` colors stay the same in every theme. ${ADVICE}`,
