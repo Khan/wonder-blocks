@@ -98,6 +98,12 @@ export const Palette = {
 };
 
 export const Default = {
+    parameters: {
+        chromatic: {
+            // The Palette story already snapshots these colors.
+            disableSnapshot: true,
+        },
+    },
     render: () => (
         <TokenTable
             columns={[
