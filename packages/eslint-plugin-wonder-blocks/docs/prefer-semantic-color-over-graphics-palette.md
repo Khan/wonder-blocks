@@ -127,18 +127,3 @@ StyleSheet.create({
 // eslint-disable-next-line @khanacademy/wonder-blocks/prefer-semantic-color-over-graphics-palette -- Exported PNG chart colors must not change with the theme
 const EXPORT_LINE_COLOR = graphicsPalette.blue_30;
 ```
-
-## Limitations
-
-The rule only looks at the file being linted and doesn't use type
-information. It reports the places where `graphicsPalette` is referenced, and
-can't follow the colors after that:
-
-- **Re-exported values:** if another file exports a value built from
-  `graphicsPalette` (e.g. `export const ACCENT = graphicsPalette.red_30`),
-  the rule reports it in that file, not in the files that import `ACCENT`.
-- **Colors passed through props or variables:** a color is reported where
-  `graphicsPalette` is referenced, not where the value is later used (e.g. a
-  component that receives it as a `color` prop).
-- **CSS files:** the rule only checks JS and TS. Palette CSS variables in
-  `.css` files aren't reported.
