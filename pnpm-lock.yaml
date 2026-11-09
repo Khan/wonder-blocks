@@ -171,6 +171,9 @@ importers:
       '@khanacademy/wonder-blocks-dropdown':
         specifier: workspace:*
         version: link:packages/wonder-blocks-dropdown
+      '@khanacademy/wonder-blocks-filters':
+        specifier: workspace:*
+        version: link:packages/wonder-blocks-filters
       '@khanacademy/wonder-blocks-form':
         specifier: workspace:*
         version: link:packages/wonder-blocks-form
@@ -1060,6 +1063,31 @@ importers:
       '@khanacademy/wonder-blocks-labeled-field':
         specifier: workspace:*
         version: link:../wonder-blocks-labeled-field
+
+  packages/wonder-blocks-filters:
+    dependencies:
+      '@khanacademy/wonder-blocks-core':
+        specifier: workspace:*
+        version: link:../wonder-blocks-core
+      '@khanacademy/wonder-blocks-styles':
+        specifier: workspace:*
+        version: link:../wonder-blocks-styles
+      '@khanacademy/wonder-blocks-tokens':
+        specifier: workspace:*
+        version: link:../wonder-blocks-tokens
+      '@khanacademy/wonder-blocks-typography':
+        specifier: workspace:*
+        version: link:../wonder-blocks-typography
+      aphrodite:
+        specifier: 'catalog:'
+        version: 1.2.5
+      react:
+        specifier: 'catalog:'
+        version: 18.2.0
+    devDependencies:
+      '@khanacademy/wb-dev-build-settings':
+        specifier: workspace:*
+        version: link:../../build-settings
 
   packages/wonder-blocks-floating:
     dependencies:
