@@ -14,6 +14,7 @@ import packageConfig from "../../packages/wonder-blocks-tokens/package.json";
 import {Code} from "../components/code";
 import {ColorSwatch} from "../components/color-swatch";
 import {GraphicsPaletteGrid} from "../components/graphics-palette-grid";
+import {allThemeModes} from "../../.storybook/modes";
 
 /**
  * The graphics palette is a set of colors that are intended to be used for
@@ -76,8 +77,8 @@ export default {
             toc: false,
         },
         chromatic: {
-            // Token tables don't need visual regression snapshots.
-            disableSnapshot: true,
+            // Snapshot every theme to catch the palette changing with it.
+            modes: allThemeModes,
         },
     },
     tags: [
