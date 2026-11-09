@@ -94,16 +94,16 @@ type Row = {label: string; css: string; value: string};
  * token name.
  */
 export const Palette = {
+    parameters: {
+        chromatic: {
+            // The Default story already snapshots these colors.
+            disableSnapshot: true,
+        },
+    },
     render: () => <GraphicsPaletteGrid />,
 };
 
 export const Default = {
-    parameters: {
-        chromatic: {
-            // The Palette story already snapshots these colors.
-            disableSnapshot: true,
-        },
-    },
     render: () => (
         <TokenTable
             columns={[
