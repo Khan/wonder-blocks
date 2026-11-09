@@ -44,17 +44,17 @@ const colorGroups = (Object.keys(graphicsPalette) as Array<PaletteName>)
 /**
  * The hues (red, orange, …), which each have a scale of steps.
  */
-const hueRows = colorGroups.filter(([, names]) => names.length > 1);
+const hues = colorGroups.filter(([, names]) => names.length > 1);
 
 /**
  * Tokens that aren't part of a hue's scale (e.g. black and white), shown after
- * the hue rows.
+ * the steps.
  */
 const standaloneNames = colorGroups
     .filter(([, names]) => names.length === 1)
     .map(([, names]) => names[0]);
 
-const steps = hueRows[0][1].map(getStep);
+const steps = hues[0][1].map(getStep);
 
 type SwatchProps = {
     name: PaletteName;
@@ -86,7 +86,7 @@ function PaletteSwatch({name, style}: SwatchProps) {
 }
 
 /**
- * Show the graphics palette as a grid of hues (rows) by steps (columns),
+ * Show the graphics palette as a grid of steps (rows) by hues (columns),
  * followed by the tokens that aren't part of a hue's scale (e.g. black and
  * white).
  *
@@ -100,46 +100,48 @@ export function GraphicsPaletteGrid() {
                 style={[
                     styles.grid,
                     {
-                        gridTemplateColumns: `max-content repeat(${steps.length}, ${CELL_WIDTH}px)`,
+                        gridTemplateColumns: `max-content repeat(${hues.length}, ${CELL_WIDTH}px)`,
                     },
                 ]}
             >
-                {steps.map((step, index) => (
+                {hues.map(([hue], columnIndex) => (
+                    <BodyText
+                        key={hue}
+                        size="xsmall"
+                        style={[
+                            styles.columnLabel,
+                            {gridColumn: columnIndex + 2, gridRow: 1},
+                        ]}
+                    >
+                        {hue}
+                    </BodyText>
+                ))}
+
+                {steps.map((step, rowIndex) => (
                     <BodyText
                         key={step}
                         size="small"
                         style={[
-                            styles.columnLabel,
-                            {gridColumn: index + 2, gridRow: 1},
+                            styles.rowLabel,
+                            {gridColumn: 1, gridRow: rowIndex + 2},
                         ]}
                     >
                         {step}
                     </BodyText>
                 ))}
 
-                {hueRows.map(([hue, names], rowIndex) => (
-                    <React.Fragment key={hue}>
-                        <BodyText
-                            size="xsmall"
-                            style={[
-                                styles.rowLabel,
-                                {gridColumn: 1, gridRow: rowIndex + 2},
-                            ]}
-                        >
-                            {hue}
-                        </BodyText>
-                        {names.map((name, columnIndex) => (
-                            <PaletteSwatch
-                                key={name}
-                                name={name}
-                                style={{
-                                    gridColumn: columnIndex + 2,
-                                    gridRow: rowIndex + 2,
-                                }}
-                            />
-                        ))}
-                    </React.Fragment>
-                ))}
+                {hues.map(([hue, names], columnIndex) =>
+                    names.map((name, rowIndex) => (
+                        <PaletteSwatch
+                            key={name}
+                            name={name}
+                            style={{
+                                gridColumn: columnIndex + 2,
+                                gridRow: rowIndex + 2,
+                            }}
+                        />
+                    )),
+                )}
 
                 {standaloneNames.map((name, index) => (
                     <PaletteSwatch
@@ -149,7 +151,7 @@ export function GraphicsPaletteGrid() {
                             styles.standalone,
                             {
                                 gridColumn: index + 2,
-                                gridRow: hueRows.length + 2,
+                                gridRow: steps.length + 2,
                             },
                         ]}
                     />
@@ -175,7 +177,7 @@ const styles = StyleSheet.create({
         minInlineSize: "fit-content",
     },
     columnLabel: {
-        textAlign: "center",
+        textTransform: "capitalize",
     },
     rowLabel: {
         alignSelf: "start",
@@ -183,7 +185,6 @@ const styles = StyleSheet.create({
         paddingBlockStart: sizing.size_160,
         paddingInlineEnd: sizing.size_080,
         textAlign: "end",
-        textTransform: "capitalize",
     },
     cell: {
         gap: sizing.size_040,
