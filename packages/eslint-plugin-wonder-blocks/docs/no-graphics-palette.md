@@ -1,0 +1,102 @@
+# no-graphics-palette
+
+Disallow `graphicsPalette` color tokens, which stay the same in every theme.
+Prefer themable `semanticColor` tokens.
+
+## Rule Details
+
+`@khanacademy/wonder-blocks-tokens` exports two kinds of color tokens:
+
+- **`semanticColor`** tokens adapt to the current theme. They are the default
+  choice for UI.
+- **`graphicsPalette`** tokens (`red_01`…`red_90`, the same for orange, yellow,
+  green, cyan, blue, magenta and gray, plus `black_100` and `white_100`) are
+  **the same in every theme**. They are meant for colors that must not change
+  with the theme, such as illustrations and custom assets.
+
+Using `graphicsPalette` for UI means that part of the UI doesn't follow the
+theme (for example, it stays light in a dark theme). To make each use a
+deliberate choice, this rule reports **every** use of `graphicsPalette`,
+wherever it appears: style objects, `style` props, JSX attributes (including
+SVG `fill` and `stroke`), component props, plain constants, chart and canvas
+config, `tokenValue(...)` calls, and passing or spreading the whole object.
+
+The rule finds `graphicsPalette` through imports from
+`@khanacademy/wonder-blocks-tokens`:
+
+```ts
+import {graphicsPalette} from "@khanacademy/wonder-blocks-tokens";
+import {graphicsPalette as gp} from "@khanacademy/wonder-blocks-tokens";
+import * as tokens from "@khanacademy/wonder-blocks-tokens"; // tokens.graphicsPalette
+```
+
+Each reference is reported once: `graphicsPalette.red_30` is one report.
+Destructuring (`const {red_30} = graphicsPalette`) is reported once, at the
+destructuring; uses of the new variables aren't reported again.
+
+Identifiers named `graphicsPalette` that don't come from the tokens package
+aren't reported.
+
+## When to disable this rule
+
+Disable the rule when a color really must stay the same in every theme, for
+example:
+
+- illustration and artwork colors;
+- canvas drawings or exported images (PNG, PDF) whose colors must not change
+  with the theme;
+- custom assets that match a fixed brand or artwork color.
+
+Always explain why in the disable comment. Teams can enforce this with
+[`eslint-comments/require-description`](https://mysticatea.github.io/eslint-plugin-eslint-comments/rules/require-description.html).
+
+## Examples
+
+Examples of **incorrect** code:
+
+```tsx
+import {graphicsPalette} from "@khanacademy/wonder-blocks-tokens";
+
+StyleSheet.create({card: {backgroundColor: graphicsPalette.blue_80}});
+
+<PhosphorIcon icon={star} color={graphicsPalette.yellow_30} />;
+
+const {red_30} = graphicsPalette;
+
+renderChart({colors: graphicsPalette});
+```
+
+Examples of **correct** code:
+
+```tsx
+import {graphicsPalette, semanticColor} from "@khanacademy/wonder-blocks-tokens";
+
+// Preferred: a themable semantic token
+StyleSheet.create({
+    card: {backgroundColor: semanticColor.core.background.base.default},
+});
+
+// OK: static artwork, with a reason
+/* eslint-disable @khanacademy/wonder-blocks/no-graphics-palette -- Spider illustration artwork; colors stay the same in every theme */
+<path fill={graphicsPalette.gray_30} />;
+/* eslint-enable @khanacademy/wonder-blocks/no-graphics-palette */
+
+// OK: a single line, with a reason
+// eslint-disable-next-line @khanacademy/wonder-blocks/no-graphics-palette -- Exported PNG chart colors must not change with the theme
+const EXPORT_LINE_COLOR = graphicsPalette.blue_30;
+```
+
+## Limitations
+
+The rule only looks at the file being linted and doesn't use type
+information. It reports the places where `graphicsPalette` is referenced, and
+can't follow the colors after that:
+
+- **Re-exported values:** if another file exports a value built from
+  `graphicsPalette` (e.g. `export const ACCENT = graphicsPalette.red_30`),
+  the rule reports it in that file, not in the files that import `ACCENT`.
+- **Colors passed through props or variables:** a color is reported where
+  `graphicsPalette` is referenced, not where the value is later used (e.g. a
+  component that receives it as a `color` prop).
+- **Literal CSS variable strings:** strings like
+  `"var(--wb-graphicsPalette-blue_30)"` aren't reported.
