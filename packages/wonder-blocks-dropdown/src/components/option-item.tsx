@@ -295,24 +295,32 @@ const isClassOf = (instance: React.ReactElement<unknown>): boolean => {
 };
 
 /**
+ * The type of `OptionItem`: a ref-forwarding component plus the statics that
+ * parents use to recognise its elements.
+ */
+type OptionItemComponent = React.ForwardRefExoticComponent<
+    OptionItemProps & React.RefAttributes<HTMLElement>
+> & {
+    isClassOf: typeof isClassOf;
+    __IS_OPTION_ITEM__: true;
+};
+
+/**
  * For option items that can be selected in a dropdown, selection denoted either
  * with a check ✔️ or a checkbox ☑️. Use as children in SingleSelect or
  * MultiSelect.
  *
  * The ref is forwarded to the root DOM element of the item.
  */
-const OptionItem = Object.assign(
-    React.forwardRef(function OptionItem(
-        props: OptionItemProps,
-        ref: React.ForwardedRef<HTMLElement>,
-    ): React.ReactElement {
-        return <OptionItemInner {...props} forwardedRef={ref} />;
-    }),
-    {
-        isClassOf,
-        __IS_OPTION_ITEM__: true as const,
-    },
-);
+const OptionItem = React.forwardRef(function OptionItem(
+    props: OptionItemProps,
+    ref: React.ForwardedRef<HTMLElement>,
+): React.ReactElement {
+    return <OptionItemInner {...props} forwardedRef={ref} />;
+}) as OptionItemComponent;
+
+OptionItem.isClassOf = isClassOf;
+OptionItem.__IS_OPTION_ITEM__ = true;
 
 export default OptionItem;
 

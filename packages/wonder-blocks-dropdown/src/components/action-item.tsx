@@ -234,6 +234,17 @@ const isClassOf = (instance: React.ReactElement<unknown>): boolean => {
 };
 
 /**
+ * The type of `ActionItem`: a ref-forwarding component plus the statics that
+ * parents use to recognise its elements.
+ */
+type ActionItemComponent = React.ForwardRefExoticComponent<
+    ActionItemProps & React.RefAttributes<HTMLElement>
+> & {
+    isClassOf: typeof isClassOf;
+    __IS_ACTION_ITEM__: true;
+};
+
+/**
  * The action item trigger actions, such as navigating to a different page or
  * opening a modal. Supply the href and/or onClick props. Used as a child of
  * ActionMenu.
@@ -241,18 +252,15 @@ const isClassOf = (instance: React.ReactElement<unknown>): boolean => {
  * The ref is forwarded to the root DOM element of the item (an `<a>` when
  * `href` is set, otherwise a `<button>`).
  */
-const ActionItem = Object.assign(
-    React.forwardRef(function ActionItem(
-        props: ActionItemProps,
-        ref: React.ForwardedRef<HTMLElement>,
-    ): React.ReactElement {
-        return <ActionItemInner {...props} forwardedRef={ref} />;
-    }),
-    {
-        isClassOf,
-        __IS_ACTION_ITEM__: true as const,
-    },
-);
+const ActionItem = React.forwardRef(function ActionItem(
+    props: ActionItemProps,
+    ref: React.ForwardedRef<HTMLElement>,
+): React.ReactElement {
+    return <ActionItemInner {...props} forwardedRef={ref} />;
+}) as ActionItemComponent;
+
+ActionItem.isClassOf = isClassOf;
+ActionItem.__IS_ACTION_ITEM__ = true;
 
 export default ActionItem;
 
