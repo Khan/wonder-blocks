@@ -1,7 +1,11 @@
-# no-graphics-palette
+# prefer-semantic-color
 
-Disallow `graphicsPalette` color tokens, which stay the same in every theme.
-Prefer themable `semanticColor` tokens.
+Prefer themable `semanticColor` tokens over `graphicsPalette` color tokens,
+which stay the same in every theme. Uses of `graphicsPalette` are allowed with a
+disable comment explaining why the color must stay the same.
+
+This rule only checks `graphicsPalette`. Hardcoded colors (hex, `rgb()`, named
+colors) are reported by [`no-hardcoded-color`](no-hardcoded-color.md).
 
 ## Rule Details
 
@@ -87,12 +91,12 @@ StyleSheet.create({
 });
 
 // OK: static artwork, with a reason
-/* eslint-disable @khanacademy/wonder-blocks/no-graphics-palette -- Spider illustration artwork; colors stay the same in every theme */
+/* eslint-disable @khanacademy/wonder-blocks/prefer-semantic-color -- Spider illustration artwork; colors stay the same in every theme */
 <path fill={graphicsPalette.gray_30} />;
-/* eslint-enable @khanacademy/wonder-blocks/no-graphics-palette */
+/* eslint-enable @khanacademy/wonder-blocks/prefer-semantic-color */
 
 // OK: a single line, with a reason
-// eslint-disable-next-line @khanacademy/wonder-blocks/no-graphics-palette -- Exported PNG chart colors must not change with the theme
+// eslint-disable-next-line @khanacademy/wonder-blocks/prefer-semantic-color -- Exported PNG chart colors must not change with the theme
 const EXPORT_LINE_COLOR = graphicsPalette.blue_30;
 ```
 
