@@ -85,6 +85,10 @@ const c = graphicsPalette.red_30;`,
         {
             code: `${importNamed}<path fill={isActive ? graphicsPalette.green_30 : graphicsPalette.gray_30} />;`,
         },
+        // tokenValue() in an SVG color attribute
+        {
+            code: `${importNamed}<path fill={tokenValue(graphicsPalette.gray_30)} />;`,
+        },
         // alias and namespace imports
         {
             code: `import {graphicsPalette as gp} from "@khanacademy/wonder-blocks-tokens";
@@ -200,6 +204,19 @@ const b = {color: red_30};`,
         // Inside tokenValue()
         {
             code: `${importNamed}const v = tokenValue(graphicsPalette.blue_30);`,
+            errors: [error],
+        },
+        {
+            code: `${importNamespace}const v = tokens.tokenValue(tokens.graphicsPalette.blue_30);`,
+            errors: [error],
+        },
+        {
+            code: `${importNamed}ctx.strokeStyle = tokenValue(graphicsPalette.red_30);`,
+            errors: [error],
+        },
+        {
+            // eslint-disable-next-line @khanacademy/wonder-blocks/prefer-semantic-color -- Test input for this rule
+            code: `const v = tokenValue("var(--wb-graphicsPalette-blue_30)");`,
             errors: [error],
         },
         // Template literals
