@@ -4,9 +4,17 @@
 // Plugin order matters:
 //   1. postcss-import           — inline @import (incl. cross-package paths
 //                                 resolved through the workspace).
-//   2. @csstools/postcss-mixins — expand @define-mixin / @mixin before any
+//   2. postcss-global-data      — inject the breakpoint `@custom-media`
+//                                 definitions from the tokens package into
+//                                 every file (removed again on exit), so
+//                                 modules don't need to `@import` them.
+//   3. @csstools/postcss-mixins — expand @define-mixin / @mixin before any
 //                                 downstream transform sees them.
-//   3. wrap-in-layer            — move every remaining top-level rule into
+//   4. postcss-custom-media     — expand `@media (--wb-breakpoint-…)` to the
+//                                 plain `min-width` / `max-width` query. Must
+//                                 run before wrap-in-layer moves the
+//                                 definitions into `@layer shared`.
+//   5. wrap-in-layer            — move every remaining top-level rule into
 //                                 `@layer shared { … }` so authors never
 //                                 write the wrap by hand. Layer order is
 //                                 declared once in
@@ -21,6 +29,17 @@ const {createRequire} = require("node:module");
 const path = require("node:path");
 const postcssImport = require("postcss-import");
 const postcssMixins = require("@csstools/postcss-mixins");
+const postcssGlobalData = require("@csstools/postcss-global-data");
+const postcssCustomMedia = require("postcss-custom-media");
+
+// Generated from `breakpoint.mediaQuery` in
+// `packages/wonder-blocks-tokens/src/tokens/media-queries.ts`. Referenced by
+// path (not a package export) because it's only consumed at build time;
+// the published CSS contains the expanded queries.
+const CUSTOM_MEDIA_FILE = path.join(
+    __dirname,
+    "packages/wonder-blocks-tokens/src/css/custom-media.css",
+);
 
 // postcss-import's default resolver (browserify/resolve) does not honor the
 // `exports` field in package.json. `@khanacademy/wonder-blocks-styles`
@@ -104,7 +123,11 @@ module.exports = {
                 return id.includes("@khanacademy/wonder-blocks-styles");
             },
         }),
+        postcssGlobalData({files: [CUSTOM_MEDIA_FILE]}),
         postcssMixins(),
+        // `preserve: false` (the default) drops the `@custom-media` rules
+        // and leaves only the expanded `@media` queries in the output.
+        postcssCustomMedia(),
         wrapInLayer("shared"),
     ],
 };
