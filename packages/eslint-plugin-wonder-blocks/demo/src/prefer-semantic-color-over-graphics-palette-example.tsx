@@ -1,6 +1,6 @@
 /**
  * This file demonstrates the wonder-blocks ESLint rule:
- * `@khanacademy/wonder-blocks/prefer-semantic-color`
+ * `@khanacademy/wonder-blocks/prefer-semantic-color-over-graphics-palette`
  * Run `pnpm lint` in this directory to see the errors.
  */
 
@@ -31,7 +31,7 @@ export function ValidIllustrationExample() {
 }
 
 // ✅ Valid: outside SVG, disabled with a reason
-// eslint-disable-next-line @khanacademy/wonder-blocks/prefer-semantic-color -- Exported PNG chart colors must not change with the theme
+// eslint-disable-next-line @khanacademy/wonder-blocks/prefer-semantic-color-over-graphics-palette -- Exported PNG chart colors must not change with the theme
 export const exportLineColor = graphicsPalette.blue_30;
 
 // ❌ Invalid: graphicsPalette in StyleSheet.create
