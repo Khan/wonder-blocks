@@ -73,8 +73,7 @@ These are still reported:
 - child content, e.g. `<text>{graphicsPalette.gray_30}</text>`;
 - functions inside an attribute, e.g. `onClick={() => setColor(...)}`;
 - spreading the palette as props, e.g. `<path {...graphicsPalette} />`;
-- colors defined outside the SVG and passed in, e.g. `const FILL =
-  graphicsPalette.gray_30` is reported where it's defined.
+- colors defined outside the SVG and passed in, e.g. `const FILL = graphicsPalette.gray_30` is reported where it's defined.
 
 ## When to disable this rule
 
