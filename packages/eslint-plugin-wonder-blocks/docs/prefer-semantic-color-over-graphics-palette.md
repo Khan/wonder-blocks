@@ -156,6 +156,10 @@ SVG `fill` and `stroke` attributes:
 Outside SVG, disabled with a reason:
 
 ```tsx
-// eslint-disable-next-line @khanacademy/wonder-blocks/prefer-semantic-color-over-graphics-palette -- Exported PNG chart colors must not change with the theme
-const EXPORT_LINE_COLOR = graphicsPalette.blue_30;
+StyleSheet.create({
+    spiderIllustration: {
+        // eslint-disable-next-line @khanacademy/wonder-blocks/prefer-semantic-color-over-graphics-palette -- Spider illustration artwork; colors stay the same in every theme
+        backgroundColor: graphicsPalette.gray_30,
+    },
+});
 ```
