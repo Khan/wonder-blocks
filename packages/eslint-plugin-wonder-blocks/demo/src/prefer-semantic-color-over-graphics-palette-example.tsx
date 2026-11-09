@@ -31,8 +31,12 @@ export function ValidIllustrationExample() {
 }
 
 // ✅ Valid: outside SVG, disabled with a reason
-// eslint-disable-next-line @khanacademy/wonder-blocks/prefer-semantic-color-over-graphics-palette -- Exported PNG chart colors must not change with the theme
-export const exportLineColor = graphicsPalette.blue_30;
+export const illustrationStyles = StyleSheet.create({
+    illustration: {
+        // eslint-disable-next-line @khanacademy/wonder-blocks/prefer-semantic-color-over-graphics-palette -- Illustration artwork; colors stay the same in every theme
+        backgroundColor: graphicsPalette.gray_30,
+    },
+});
 
 // ❌ Invalid: graphicsPalette in StyleSheet.create
 export const invalidStyles = StyleSheet.create({
