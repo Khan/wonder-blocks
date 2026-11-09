@@ -191,7 +191,6 @@ const ActionMenu = React.forwardRef(function ActionMenu(
         // verify if there's at least one OptionItem element to indent the
         // possible Action items
         const isOptionItemIncluded = allChildren.some((item) =>
-            // @ts-expect-error [FEI-5019] - TS2345 - Argument of type 'ReactChild | ReactFragment | ReactPortal' is not assignable to parameter of type 'ReactElement<any, string | JSXElementConstructor<any>>'.
             OptionItem.isComponentOf(item),
         );
 
@@ -202,15 +201,12 @@ const ActionMenu = React.forwardRef(function ActionMenu(
             const itemObject = {
                 component: item,
                 focusable:
-                    // @ts-expect-error [FEI-5019] - TS2345 - Argument of type 'ReactChild | ReactFragment | ReactPortal' is not assignable to parameter of type 'ReactElement<any, string | JSXElementConstructor<any>>'.
                     ActionItem.isComponentOf(item) ||
-                    // @ts-expect-error [FEI-5019] - TS2345 - Argument of type 'ReactChild | ReactFragment | ReactPortal' is not assignable to parameter of type 'ReactElement<any, string | JSXElementConstructor<any>>'.
                     OptionItem.isComponentOf(item)
                         ? !disabled
                         : false,
                 populatedProps: {},
             } as const;
-            // @ts-expect-error [FEI-5019] - TS2345 - Argument of type 'ReactChild | ReactFragment | ReactPortal' is not assignable to parameter of type 'ReactElement<any, string | JSXElementConstructor<any>>'.
             if (ActionItem.isComponentOf(item)) {
                 return {
                     ...itemObject,
@@ -219,7 +215,6 @@ const ActionMenu = React.forwardRef(function ActionMenu(
                         onClick: handleItemSelected,
                     },
                 };
-                // @ts-expect-error [FEI-5019] - TS2345 - Argument of type 'ReactChild | ReactFragment | ReactPortal' is not assignable to parameter of type 'ReactElement<any, string | JSXElementConstructor<any>>'.
             } else if (OptionItem.isComponentOf(item)) {
                 const selected = selectedValues
                     ? selectedValues.includes(value)

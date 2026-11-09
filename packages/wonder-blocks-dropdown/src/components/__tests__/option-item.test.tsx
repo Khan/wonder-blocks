@@ -125,5 +125,52 @@ describe("OptionItem", () => {
             // Assert
             expect(result).toBe(false);
         });
+
+        it.each([
+            ["a string", "Example"],
+            ["a number", 1],
+            ["null", null],
+            ["undefined", undefined],
+        ])("should return false for %s", (_, child) => {
+            // Arrange
+            // (child comes from it.each)
+
+            // Act
+            const result = OptionItem.isComponentOf(child);
+
+            // Assert
+            expect(result).toBe(false);
+        });
+    });
+
+    describe("SeparatorItem.isComponentOf", () => {
+        it("should return true for a SeparatorItem element", () => {
+            // Arrange
+            const element = <SeparatorItem />;
+
+            // Act
+            const result = SeparatorItem.isComponentOf(element);
+
+            // Assert
+            expect(result).toBe(true);
+        });
+
+        it.each([
+            [
+                "an OptionItem element",
+                <OptionItem key="o" value="1" label="Example" />,
+            ],
+            ["a string", "Example"],
+            ["null", null],
+        ])("should return false for %s", (_, child) => {
+            // Arrange
+            // (child comes from it.each)
+
+            // Act
+            const result = SeparatorItem.isComponentOf(child);
+
+            // Assert
+            expect(result).toBe(false);
+        });
     });
 });

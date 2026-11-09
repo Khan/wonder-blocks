@@ -220,11 +220,14 @@ type ActionItemProps = Omit<PropsFor<typeof ActionItemInner>, "forwardedRef">;
 /**
  * Check whether the given element is an `ActionItem` element.
  *
- * @param instance The element to check.
+ * @param instance The value to check, e.g. a child of a dropdown.
  * @returns `true` if the element's type is `ActionItem`.
  */
-const isComponentOf = (instance: React.ReactElement<unknown>): boolean => {
-    const type: unknown = instance?.type;
+const isComponentOf = (instance: unknown): boolean => {
+    if (typeof instance !== "object" || instance === null) {
+        return false;
+    }
+    const type: unknown = "type" in instance ? instance.type : undefined;
     return (
         typeof type === "object" &&
         type !== null &&
