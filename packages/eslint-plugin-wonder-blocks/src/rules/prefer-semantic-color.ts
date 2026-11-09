@@ -39,78 +39,31 @@ const PALETTE_CSS_VAR_RE = new RegExp(
     "g",
 );
 
-// Intrinsic SVG elements (as React spells them). Palette colors are allowed in
-// these elements' attributes, e.g. <path fill={graphicsPalette.gray_30} />,
-// since SVG artwork usually needs colors that stay the same in every theme.
-const SVG_ELEMENTS = new Set([
-    "svg",
-    "g",
-    "defs",
-    "symbol",
-    "use",
-    "path",
-    "circle",
-    "ellipse",
-    "line",
-    "polygon",
-    "polyline",
-    "rect",
-    "text",
-    "textPath",
-    "tspan",
-    "image",
-    "marker",
-    "mask",
-    "clipPath",
-    "pattern",
-    "linearGradient",
-    "radialGradient",
-    "stop",
-    "filter",
-    "feBlend",
-    "feColorMatrix",
-    "feComponentTransfer",
-    "feComposite",
-    "feConvolveMatrix",
-    "feDiffuseLighting",
-    "feDisplacementMap",
-    "feDistantLight",
-    "feDropShadow",
-    "feFlood",
-    "feFuncA",
-    "feFuncB",
-    "feFuncG",
-    "feFuncR",
-    "feGaussianBlur",
-    "feImage",
-    "feMerge",
-    "feMergeNode",
-    "feMorphology",
-    "feOffset",
-    "fePointLight",
-    "feSpecularLighting",
-    "feSpotLight",
-    "feTile",
-    "feTurbulence",
-]);
+// SVG color attributes where palette colors are allowed, e.g.
+// <path fill={graphicsPalette.gray_30} />, since SVG artwork usually needs
+// colors that stay the same in every theme.
+const SVG_COLOR_ATTRIBUTES = new Set(["fill", "stroke", "stopColor"]);
 
 /**
- * Whether `node` is part of an attribute value on an intrinsic SVG element,
- * e.g. `fill={...}`, `stroke="..."` or `style={{fill: ...}}` on a `<path>`.
+ * Whether `node` is part of the value of an SVG color attribute (`fill`,
+ * `stroke` or `stopColor`) on an intrinsic element, e.g. `<path fill={...} />`.
  *
- * Only the attribute's value counts: event handlers and other functions
- * inside an attribute, child content, and spread attributes are still
- * checked.
+ * Components (e.g. `<Icon fill={...} />`), other attributes (including
+ * `style`), functions inside the attribute, child content and spread
+ * attributes are still checked.
  */
-function isInSvgElementAttribute(node: TSESTree.Node): boolean {
+function isInSvgColorAttribute(node: TSESTree.Node): boolean {
     let current: TSESTree.Node | undefined = node.parent;
     while (current) {
         switch (current.type) {
             case "JSXAttribute": {
                 const element = current.parent;
                 return (
+                    current.name.type === "JSXIdentifier" &&
+                    SVG_COLOR_ATTRIBUTES.has(current.name.name) &&
                     element.name.type === "JSXIdentifier" &&
-                    SVG_ELEMENTS.has(element.name.name)
+                    // Intrinsic elements start with a lowercase letter.
+                    /^[a-z]/.test(element.name.name)
                 );
             }
             case "JSXElement":
@@ -146,7 +99,7 @@ export default createRule<Options, MessageIds>({
         const sourceCode = context.sourceCode;
 
         function report(node: TSESTree.Node) {
-            if (isInSvgElementAttribute(node)) {
+            if (isInSvgColorAttribute(node)) {
                 return;
             }
             context.report({node, messageId: "preferSemanticColor"});

@@ -1,8 +1,8 @@
 # prefer-semantic-color
 
 Prefer themable `semanticColor` tokens over `graphicsPalette` color tokens,
-which stay the same in every theme. `graphicsPalette` is allowed in attributes of
-SVG elements, and elsewhere with a disable comment explaining why the color must
+which stay the same in every theme. `graphicsPalette` is allowed in SVG `fill`,
+`stroke` and `stopColor` attributes, and elsewhere with a disable comment explaining why the color must
 stay the same.
 
 This rule only checks `graphicsPalette`. Hardcoded colors (hex, `rgb()`, named
@@ -24,7 +24,7 @@ theme (for example, it stays light in a dark theme). To make each use a
 deliberate choice, this rule reports uses of `graphicsPalette` wherever they
 appear: style objects, `style` props, component props, plain constants, chart
 and canvas config, `tokenValue(...)` calls, and passing or spreading the whole
-object. The one exception is SVG artwork (see below).
+object. The one exception is SVG color attributes (see below).
 
 The rule finds `graphicsPalette` through imports from
 `@khanacademy/wonder-blocks-tokens`:
@@ -50,28 +50,27 @@ destructuring; uses of the new variables aren't reported again.
 Identifiers named `graphicsPalette` that don't come from the tokens package
 aren't reported.
 
-### Allowed: attributes of SVG elements
+### Allowed: SVG `fill`, `stroke` and `stopColor`
 
 SVG artwork usually needs colors that stay the same in every theme, so
-`graphicsPalette` is allowed in the attributes of intrinsic SVG elements
-(`<svg>`, `<path>`, `<circle>`, `<rect>`, `<g>`, `<stop>`, `<linearGradient>`,
-`<text>`, filter primitives, etc.). That includes `fill`, `stroke`,
-`stopColor` and other attributes, and `style` objects on those elements:
+`graphicsPalette` is allowed in the `fill`, `stroke` and `stopColor` attributes
+of elements like `<path>`, `<circle>` and `<stop>`:
 
 ```tsx
 <svg viewBox="0 0 24 24">
     <path fill={graphicsPalette.gray_30} stroke={graphicsPalette.black_100} />
-    <circle style={{fill: graphicsPalette.red_30}} />
+    <stop stopColor={graphicsPalette.yellow_30} />
 </svg>
 ```
 
 These are still reported:
 
-- the same attributes on HTML elements or components, e.g. `<div style={{fill:
-  ...}} />` or `<PhosphorIcon color={...} />`, even if the component renders an
-  SVG;
-- child content of an SVG element, e.g. `<text>{graphicsPalette.gray_30}</text>`,
-  and HTML elements inside `<foreignObject>`;
+- other attributes, including `style` objects, e.g.
+  `<path style={{fill: graphicsPalette.gray_30}} />`, and less common color
+  attributes like `floodColor`;
+- components, e.g. `<PhosphorIcon color={...} />` or `<Icon fill={...} />`,
+  even if the component renders an SVG;
+- child content, e.g. `<text>{graphicsPalette.gray_30}</text>`;
 - functions inside an attribute, e.g. `onClick={() => setColor(...)}`;
 - spreading the palette as props, e.g. `<path {...graphicsPalette} />`;
 - colors defined outside the SVG and passed in, e.g. `const FILL =
@@ -82,7 +81,8 @@ These are still reported:
 Disable the rule when a color really must stay the same in every theme, for
 example:
 
-- illustration and artwork colors that aren't set directly on SVG elements;
+- illustration and artwork colors outside SVG `fill`, `stroke` and `stopColor`
+  attributes;
 - canvas drawings or exported images (PNG, PDF) whose colors must not change
   with the theme;
 - custom assets that match a fixed brand or artwork color.
@@ -120,7 +120,7 @@ StyleSheet.create({
     card: {backgroundColor: semanticColor.core.background.base.default},
 });
 
-// OK: attributes of SVG elements
+// OK: SVG fill, stroke and stopColor attributes
 <svg viewBox="0 0 24 24">
     <path fill={graphicsPalette.gray_30} />
 </svg>;

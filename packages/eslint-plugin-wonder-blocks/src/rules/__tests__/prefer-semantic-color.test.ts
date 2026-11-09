@@ -71,7 +71,7 @@ const c = graphicsPalette.red_30;`,
         {
             code: `<path fill="var(--wb-semanticColor-core-foreground-neutral-strong)" />;`,
         },
-        // --- SVG element attributes are allowed ---
+        // --- SVG color attributes (fill, stroke, stopColor) are allowed ---
         {
             code: `${importNamed}<path fill={graphicsPalette.gray_30} stroke={graphicsPalette.black_100} />;`,
         },
@@ -80,13 +80,6 @@ const c = graphicsPalette.red_30;`,
         },
         {
             code: `${importNamed}<linearGradient><stop stopColor={graphicsPalette.yellow_30} /></linearGradient>;`,
-        },
-        {
-            code: `${importNamed}<feFlood floodColor={graphicsPalette.white_100} />;`,
-        },
-        // style objects on SVG elements
-        {
-            code: `${importNamed}<path style={{fill: graphicsPalette.gray_30}} />;`,
         },
         // expressions in the attribute value
         {
@@ -288,9 +281,23 @@ const b = {color: red_30};`,
         },
 
         // --- SVG edge cases that are still reported ---
-        // The same attribute on a non-SVG element
+        // style objects, even on SVG elements
+        {
+            code: `${importNamed}<path style={{fill: graphicsPalette.gray_30}} />;`,
+            errors: [error],
+        },
         {
             code: `${importNamed}<div style={{fill: graphicsPalette.gray_30}} />;`,
+            errors: [error],
+        },
+        // Less common SVG color attributes
+        {
+            code: `${importNamed}<feFlood floodColor={graphicsPalette.white_100} />;`,
+            errors: [error],
+        },
+        // Non-color attributes on SVG elements
+        {
+            code: `${importNamed}<path data-color={graphicsPalette.gray_30} />;`,
             errors: [error],
         },
         // Components aren't SVG elements, even if they render one

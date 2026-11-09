@@ -20,7 +20,7 @@ export const validStyles = StyleSheet.create({
     card: {backgroundColor: semanticColor.core.background.base.default},
 });
 
-// ✅ Valid: attributes of SVG elements (static artwork)
+// ✅ Valid: SVG fill and stroke attributes (static artwork)
 export function ValidIllustrationExample() {
     return (
         <svg viewBox="0 0 24 24">
@@ -44,7 +44,8 @@ export function InvalidIconExample() {
     return <PhosphorIcon icon={starIcon} color={graphicsPalette.yellow_30} />;
 }
 
-// ❌ Invalid: an SVG attribute on an HTML element
+// ❌ Invalid: a style object (only SVG fill, stroke and stopColor attributes
+// are allowed)
 export function InvalidHtmlFillExample() {
     return <div style={{fill: graphicsPalette.red_50}} />;
 }
