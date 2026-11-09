@@ -91,9 +91,10 @@ StyleSheet.create({
 });
 
 // OK: static artwork, with a reason
-/* eslint-disable @khanacademy/wonder-blocks/prefer-semantic-color -- Spider illustration artwork; colors stay the same in every theme */
-<path fill={graphicsPalette.gray_30} />;
-/* eslint-enable @khanacademy/wonder-blocks/prefer-semantic-color */
+<svg viewBox="0 0 24 24">
+    {/* eslint-disable-next-line @khanacademy/wonder-blocks/prefer-semantic-color -- Spider illustration artwork; colors stay the same in every theme */}
+    <path fill={graphicsPalette.gray_30} />
+</svg>;
 
 // OK: a single line, with a reason
 // eslint-disable-next-line @khanacademy/wonder-blocks/prefer-semantic-color -- Exported PNG chart colors must not change with the theme
