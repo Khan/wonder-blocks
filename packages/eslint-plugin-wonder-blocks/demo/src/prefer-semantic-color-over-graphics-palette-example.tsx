@@ -44,8 +44,7 @@ export function InvalidIconExample() {
     return <PhosphorIcon icon={starIcon} color={graphicsPalette.yellow_30} />;
 }
 
-// ❌ Invalid: a style object (only SVG fill, stroke and stopColor attributes
-// are allowed)
+// ❌ Invalid: a style object (only SVG fill and stroke attributes are allowed)
 export function InvalidHtmlFillExample() {
     return <div style={{fill: graphicsPalette.red_50}} />;
 }

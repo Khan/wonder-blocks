@@ -42,11 +42,11 @@ const PALETTE_CSS_VAR_RE = new RegExp(
 // SVG color attributes where palette colors are allowed, e.g.
 // <path fill={graphicsPalette.gray_30} />, since SVG artwork usually needs
 // colors that stay the same in every theme.
-const SVG_COLOR_ATTRIBUTES = new Set(["fill", "stroke", "stopColor"]);
+const SVG_COLOR_ATTRIBUTES = new Set(["fill", "stroke"]);
 
 /**
- * Whether `node` is part of the value of an SVG color attribute (`fill`,
- * `stroke` or `stopColor`) on an intrinsic element, e.g. `<path fill={...} />`.
+ * Whether `node` is part of the value of an SVG `fill` or `stroke` attribute
+ * on an intrinsic element, e.g. `<path fill={...} />`.
  *
  * Components (e.g. `<Icon fill={...} />`), other attributes (including
  * `style`), functions inside the attribute, child content and spread
