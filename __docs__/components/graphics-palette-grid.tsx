@@ -1,7 +1,8 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
-import {StyleType, View} from "@khanacademy/wonder-blocks-core";
+import type {StyleType} from "@khanacademy/wonder-blocks-core";
+import {View} from "@khanacademy/wonder-blocks-core";
 import {
     border,
     font,
