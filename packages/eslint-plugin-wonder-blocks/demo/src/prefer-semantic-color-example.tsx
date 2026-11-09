@@ -16,7 +16,7 @@ import {
 } from "@khanacademy/wonder-blocks-tokens";
 
 // ✅ Valid: semanticColor tokens adapt to the current theme
-const validStyles = StyleSheet.create({
+export const validStyles = StyleSheet.create({
     card: {backgroundColor: semanticColor.core.background.base.default},
 });
 
@@ -32,10 +32,10 @@ export function ValidIllustrationExample() {
 
 // ✅ Valid: outside SVG, disabled with a reason
 // eslint-disable-next-line @khanacademy/wonder-blocks/prefer-semantic-color -- Exported PNG chart colors must not change with the theme
-const exportLineColor = graphicsPalette.blue_30;
+export const exportLineColor = graphicsPalette.blue_30;
 
 // ❌ Invalid: graphicsPalette in StyleSheet.create
-const invalidStyles = StyleSheet.create({
+export const invalidStyles = StyleSheet.create({
     card: {backgroundColor: graphicsPalette.blue_80},
 });
 
@@ -50,20 +50,12 @@ export function InvalidHtmlFillExample() {
 }
 
 // ❌ Invalid: destructuring from graphicsPalette (reported once)
-const {green_30: successColor} = graphicsPalette;
+export const {green_30: successColor} = graphicsPalette;
 
 // ❌ Invalid: passing the whole palette
-const chartConfig = {colors: graphicsPalette};
+export const chartConfig = {colors: graphicsPalette};
 
 // ❌ Invalid: a palette CSS variable written out by hand
-const invalidCssVarStyles = StyleSheet.create({
+export const invalidCssVarStyles = StyleSheet.create({
     card: {border: `2px solid var(--wb-graphicsPalette-red_20)`},
 });
-
-// Suppress unused variable warnings for the examples above
-void validStyles;
-void exportLineColor;
-void invalidStyles;
-void successColor;
-void chartConfig;
-void invalidCssVarStyles;
