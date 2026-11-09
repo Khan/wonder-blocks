@@ -101,4 +101,23 @@ describe("CompactCell", () => {
         // Assert
         expect(onClickMock).toHaveBeenCalled();
     });
+
+    it("should set aria-haspopup on a pressable cell", () => {
+        // Arrange
+
+        // Act
+        render(
+            <CompactCell
+                title="Compact cell"
+                href="/dialog-fallback"
+                aria-haspopup="dialog"
+            />,
+        );
+
+        // Assert
+        expect(screen.getByRole("link")).toHaveAttribute(
+            "aria-haspopup",
+            "dialog",
+        );
+    });
 });
