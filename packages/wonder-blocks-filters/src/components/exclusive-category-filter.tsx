@@ -1,12 +1,10 @@
 import * as React from "react";
-import {StyleSheet} from "aphrodite";
 import {addStyle, keys, StyleType, View} from "@khanacademy/wonder-blocks-core";
-import {focusStyles} from "@khanacademy/wonder-blocks-styles";
-import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {
     BodyText,
-    styles as typographyStyles,
+    typographyClassNames,
 } from "@khanacademy/wonder-blocks-typography";
+import styles from "./exclusive-category-filter.module.css";
 
 export type ExclusiveCategoryFilterOption = {
     /**
@@ -215,7 +213,7 @@ export const ExclusiveCategoryFilter = React.forwardRef(
                 ref={ref}
                 id={uniqueId}
                 testId={testId}
-                style={[styles.root, stylesProp?.root]}
+                style={[styles.root, styles.container, stylesProp?.root]}
             >
                 <BodyText
                     tag="span"
@@ -256,7 +254,7 @@ export const ExclusiveCategoryFilter = React.forwardRef(
                                 onClick={() => selectOption(option.value)}
                                 onKeyDown={handleKeyDown}
                                 style={[
-                                    typographyStyles.BodyTextMediumSemiWeight,
+                                    typographyClassNames.BodyTextMediumSemiWeight,
                                     styles.option,
                                     checked && styles.selected,
                                     stylesProp?.option,
@@ -273,65 +271,3 @@ export const ExclusiveCategoryFilter = React.forwardRef(
         );
     },
 );
-
-/**
- * Inline padding for options with a medium border. The extra border width is
- * taken off the padding so every state keeps the same size and the row
- * doesn't reflow on hover, press or selection.
- */
-const mediumBorderPaddingInline = `calc(${sizing.size_160} - (${border.width.medium} - ${border.width.thin}))`;
-
-const styles = StyleSheet.create({
-    root: {
-        gap: sizing.size_080,
-    },
-    label: {
-        color: semanticColor.core.foreground.neutral.default,
-        // Break long words so they don't overflow the container.
-        overflowWrap: "anywhere",
-    },
-    options: {
-        flexDirection: "row",
-        flexWrap: "wrap",
-        gap: sizing.size_080,
-    },
-    option: {
-        display: "inline-flex",
-        alignItems: "center",
-        gap: sizing.size_080,
-        boxSizing: "border-box",
-        // Break long words so they stay inside the pill.
-        overflowWrap: "anywhere",
-        // A minimum height (rather than a fixed one) and a maximum width
-        // let a label wider than the container wrap inside the pill instead
-        // of overflowing sideways.
-        minBlockSize: sizing.size_400,
-        maxInlineSize: "100%",
-        margin: 0,
-        paddingBlock: sizing.size_080,
-        paddingInline: sizing.size_160,
-        textAlign: "start",
-        cursor: "pointer",
-        color: semanticColor.core.foreground.neutral.subtle,
-        backgroundColor: semanticColor.core.transparent,
-        border: `${border.width.thin} solid ${semanticColor.core.border.neutral.subtle}`,
-        borderRadius: border.radius.radius_240,
-        ...focusStyles.focus,
-        // Hover and press styles only apply to options that aren't selected.
-        [":hover:not([aria-checked='true'])" as any]: {
-            borderColor: semanticColor.core.border.neutral.default,
-        },
-        [":active:not([aria-checked='true'])" as any]: {
-            borderWidth: border.width.medium,
-            borderColor: semanticColor.core.border.neutral.default,
-            paddingInline: mediumBorderPaddingInline,
-        },
-    },
-    selected: {
-        color: semanticColor.core.foreground.instructive.default,
-        backgroundColor: semanticColor.core.background.instructive.subtle,
-        borderWidth: border.width.medium,
-        borderColor: semanticColor.core.border.instructive.default,
-        paddingInline: mediumBorderPaddingInline,
-    },
-});
