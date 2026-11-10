@@ -5,7 +5,7 @@ import {rules} from "..";
 const ruleTester = new RuleTester({
     languageOptions: {
         parserOptions: {
-            ecmaVersion: 2022,
+            ecmaVersion: 6,
             sourceType: "module",
             ecmaFeatures: {
                 jsx: true,
