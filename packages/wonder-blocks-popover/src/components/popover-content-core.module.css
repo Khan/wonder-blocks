@@ -1,9 +1,10 @@
 /**
  * PopoverContentCore styles
  *
- * `.root` sits on the `ScrollableView` (still Aphrodite). Its own
- * declaration (`border-radius`) doesn't compete with anything:
- * `ScrollableView` and `View` don't set it, so a single class is enough.
+ * `.root` sits on the `ScrollableView`. Its own declaration
+ * (`border-radius`) doesn't compete with anything: `ScrollableView` and
+ * `View` don't set it (their classes load after this one), so a single class
+ * is enough.
  *
  * The content wrapper is a `View` and the close button is an `IconButton`;
  * these rules override properties `View` sets in its own single-class rule in

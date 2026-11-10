@@ -1,0 +1,15 @@
+/**
+ * Spring styles
+ *
+ * `.spring` sits on the `View` itself. `View`'s own rule (`.default` in core)
+ * doesn't set `flex-grow`, so nothing competes for it and a single class is
+ * enough, whichever package's CSS loads first.
+ *
+ * The consumer's `style` still goes through Aphrodite (unlayered) or inline
+ * styles, so it wins over this module as it did before. The build wraps every
+ * rule in `@layer shared { … }`.
+ */
+
+.spring {
+    flex-grow: 1;
+}

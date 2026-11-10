@@ -1,12 +1,10 @@
 import * as React from "react";
-import {StyleSheet} from "aphrodite";
 
 import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
 import {View} from "@khanacademy/wonder-blocks-core";
-import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
-import {focusStyles} from "@khanacademy/wonder-blocks-styles";
 
 import {useScrollOverflow} from "../hooks/use-scroll-overflow";
+import styles from "./scrollable-view.module.css";
 
 type Props = Omit<AriaProps, "aria-label" | "aria-labelledby"> & {
     /**
@@ -168,68 +166,7 @@ ScrollableView.displayName = "ScrollableView";
 
 export default ScrollableView;
 
-// CSS custom properties used to show/hide each fade.
+// CSS custom properties used to show/hide each fade. Keep these in sync with
+// the names read in `scrollable-view.module.css`.
 const FADE_TOP_OPACITY = "--wb-scrollable-view-fade-top-opacity";
 const FADE_BOTTOM_OPACITY = "--wb-scrollable-view-fade-bottom-opacity";
-
-// The fades blend the content into the background.
-const fadeColor = semanticColor.core.background.base.default;
-const fadeSize = sizing.size_480;
-
-/**
- * A fade overlay that sticks to the top or bottom edge of the scrollable
- * view. It's drawn with a pseudo-element that doesn't take up space (its
- * negative margin cancels out its size) and doesn't capture clicks.
- */
-const fadeOverlay = {
-    content: "''",
-    display: "block",
-    position: "sticky",
-    flexShrink: 0,
-    blockSize: fadeSize,
-    pointerEvents: "none",
-    // Render the fade above the content.
-    zIndex: 1,
-} as const;
-
-const styles = StyleSheet.create({
-    scrollableView: {
-        // Scroll the content when it doesn't fit in the available space
-        // (e.g. on small screens or at high zoom levels).
-        overflowY: "auto",
-        // Don't let the browser adjust the scroll position when the content
-        // changes (e.g. when the fades are rendered).
-        overflowAnchor: "none",
-        // Keep focused elements (and anything scrolled into view) clear of the
-        // fades, so they aren't hidden under them.
-        scrollPaddingBlock: fadeSize,
-        ...focusStyles.focus,
-    },
-    /**
-     * Fades at the top and bottom edges that hint that there's more content
-     * to scroll to. Each fade is only visible (via its opacity custom
-     * property) when there's content past that edge.
-     */
-    fades: {
-        "::before": {
-            ...fadeOverlay,
-            insetBlockStart: 0,
-            marginBlockEnd: `calc(-1 * ${fadeSize})`,
-            background: `linear-gradient(to bottom, ${fadeColor}, transparent)`,
-            // Match the view's rounded corners (if any).
-            borderStartStartRadius: "inherit",
-            borderStartEndRadius: "inherit",
-            opacity: `var(${FADE_TOP_OPACITY}, 0)`,
-        },
-        "::after": {
-            ...fadeOverlay,
-            insetBlockEnd: 0,
-            marginBlockStart: `calc(-1 * ${fadeSize})`,
-            background: `linear-gradient(to top, ${fadeColor}, transparent)`,
-            // Match the view's rounded corners (if any).
-            borderEndStartRadius: "inherit",
-            borderEndEndRadius: "inherit",
-            opacity: `var(${FADE_BOTTOM_OPACITY}, 0)`,
-        },
-    },
-});
