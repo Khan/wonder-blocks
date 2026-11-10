@@ -135,7 +135,9 @@ describe("FlexibleDialog", () => {
             );
 
             // Act
-            const heading = screen.getByTestId("title-heading-wrapper");
+            const heading = screen.getByRole("heading", {
+                name: "Mystery mission",
+            });
 
             // Assert
             expect(heading).toHaveAttribute("id", "heading-1");
