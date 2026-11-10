@@ -140,7 +140,7 @@ export const groups: ReadonlyArray<Group> = [
         heading: "Graphics palette tokens map",
         tokenPrefix: "graphicsPalette",
         description:
-            "Colors that don't change based on the theme, for cases like illustrations. Prefer `semanticColor`, which supports themes.",
+            "Colors for illustrations and other graphics (e.g. custom assets). For anything else, use `semanticColor`.",
         tokens: graphicsPalette,
         includeCssVar: true,
     },
