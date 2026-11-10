@@ -219,7 +219,7 @@ exports[`renderMdx should render the expected content for the graphics-palette g
 
 import {Meta} from "@storybook/addon-docs/blocks";
 
-<Meta title="References / Tokens Map / Graphics Palette" summary="Colors that don't change based on the theme, for cases like illustrations. Prefer \`semanticColor\`, which supports themes." />
+<Meta title="References / Tokens Map / Graphics Palette" summary="Colors for illustrations and other graphics (e.g. custom assets). For anything else, use \`semanticColor\`." />
 
 {/*
   Constrain wide token tables to the docs content width and let them scroll
@@ -236,7 +236,7 @@ import {Meta} from "@storybook/addon-docs/blocks";
 
 # Graphics palette tokens map
 
-Colors that don't change based on the theme, for cases like illustrations. Prefer \`semanticColor\`, which supports themes.
+Colors for illustrations and other graphics (e.g. custom assets). For anything else, use \`semanticColor\`.
 
 \`\`\`ts
 import {graphicsPalette} from "@khanacademy/wonder-blocks-tokens";

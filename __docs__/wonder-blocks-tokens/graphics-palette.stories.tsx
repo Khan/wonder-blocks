@@ -62,11 +62,10 @@ export default {
                         kind="info"
                         text={
                             <>
-                                Prefer <code>semanticColor</code> tokens, which
-                                adapt to the current theme. Only use{" "}
-                                <code>graphicsPalette</code> tokens when a color
-                                must stay the same in every theme (e.g.
-                                illustrations).
+                                Only use <code>graphicsPalette</code> tokens in
+                                illustrations and other graphics (e.g. custom
+                                assets). For anything else, use{" "}
+                                <code>semanticColor</code> tokens.
                             </>
                         }
                     />
