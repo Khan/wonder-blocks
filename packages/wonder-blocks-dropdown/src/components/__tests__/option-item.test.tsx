@@ -5,7 +5,9 @@ import {Heading} from "@khanacademy/wonder-blocks-typography";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 
 import plusIcon from "@phosphor-icons/core/regular/plus.svg";
+import ActionItem from "../action-item";
 import OptionItem from "../option-item";
+import SeparatorItem from "../separator-item";
 
 describe("OptionItem", () => {
     it("should render with disabled styles", () => {
@@ -82,5 +84,93 @@ describe("OptionItem", () => {
 
         // Assert
         expect(screen.getByText("Subtitle 2")).toBeInTheDocument();
+    });
+
+    describe("ref", () => {
+        it("should forward the ref to the root element", () => {
+            // Arrange
+            const ref = React.createRef<HTMLElement>();
+
+            // Act
+            render(<OptionItem value="1" label="Example" ref={ref} />);
+
+            // Assert
+            expect(ref.current).toBe(screen.getByRole("option"));
+        });
+    });
+
+    describe("isComponentOf", () => {
+        it("should return true for an OptionItem element", () => {
+            // Arrange
+            const element = <OptionItem value="1" label="Example" />;
+
+            // Act
+            const result = OptionItem.isComponentOf(element);
+
+            // Assert
+            expect(result).toBe(true);
+        });
+
+        it.each([
+            ["ActionItem", <ActionItem key="action" label="Example" />],
+            ["SeparatorItem", <SeparatorItem key="separator" />],
+            ["div", <div key="div" />],
+        ])("should return false for a %s element", (_, element) => {
+            // Arrange
+            // (element comes from it.each)
+
+            // Act
+            const result = OptionItem.isComponentOf(element);
+
+            // Assert
+            expect(result).toBe(false);
+        });
+
+        it.each([
+            ["a string", "Example"],
+            ["a number", 1],
+            ["null", null],
+            ["undefined", undefined],
+        ])("should return false for %s", (_, child) => {
+            // Arrange
+            // (child comes from it.each)
+
+            // Act
+            const result = OptionItem.isComponentOf(child);
+
+            // Assert
+            expect(result).toBe(false);
+        });
+    });
+
+    describe("SeparatorItem.isComponentOf", () => {
+        it("should return true for a SeparatorItem element", () => {
+            // Arrange
+            const element = <SeparatorItem />;
+
+            // Act
+            const result = SeparatorItem.isComponentOf(element);
+
+            // Assert
+            expect(result).toBe(true);
+        });
+
+        it.each([
+            [
+                "an OptionItem element",
+                <OptionItem key="o" value="1" label="Example" />,
+            ],
+            ["a string", "Example"],
+            ["null", null],
+        ])("should return false for %s", (_, child) => {
+            // Arrange
+            // (child comes from it.each)
+
+            // Act
+            const result = SeparatorItem.isComponentOf(child);
+
+            // Assert
+            expect(result).toBe(false);
+        });
     });
 });
