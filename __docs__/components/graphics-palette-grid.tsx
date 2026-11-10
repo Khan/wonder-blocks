@@ -14,7 +14,6 @@ import {BodyText} from "@khanacademy/wonder-blocks-typography";
 import {CopyButton} from "./copy-button";
 import {maybeGetCssVariableInfo} from "./tokens-util";
 
-// eslint-disable-next-line @khanacademy/wonder-blocks/prefer-semantic-color-over-graphics-palette -- This component documents the graphicsPalette tokens themselves
 type PaletteName = keyof typeof graphicsPalette;
 
 /**

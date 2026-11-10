@@ -71,6 +71,17 @@ const c = graphicsPalette.red_30;`,
         {
             code: `<path fill="var(--wb-semanticColor-core-foreground-neutral-strong)" />;`,
         },
+        // Type-only uses don't apply a color, so they aren't reported
+        {
+            code: `${importNamed}type PaletteName = keyof typeof graphicsPalette;`,
+        },
+        {code: `${importNamed}let color: typeof graphicsPalette.red_30;`},
+        {
+            code: `${importNamed}const getStep = (name: keyof typeof graphicsPalette) => name;`,
+        },
+        {
+            code: `${importNamespace}type PaletteName = keyof typeof tokens.graphicsPalette;`,
+        },
         // --- SVG fill and stroke attributes are allowed ---
         {
             code: `${importNamed}<path fill={graphicsPalette.gray_30} stroke={graphicsPalette.black_100} />;`,
@@ -263,6 +274,11 @@ const b = {color: red_30};`,
         },
         {
             code: `${importNamed}<Chart {...graphicsPalette} />;`,
+            errors: [error],
+        },
+        // A value use next to a type-only use is still reported
+        {
+            code: `${importNamed}const names = Object.keys(graphicsPalette) as Array<keyof typeof graphicsPalette>;`,
             errors: [error],
         },
         // Aliasing the whole object
