@@ -79,6 +79,21 @@ function isInSvgColorAttribute(node: TSESTree.Node): boolean {
     return false;
 }
 
+/**
+ * Whether `node` is only used as a type, e.g. `keyof typeof graphicsPalette`.
+ * Type-only uses don't apply a color, so they aren't reported.
+ */
+function isInTypeQuery(node: TSESTree.Node): boolean {
+    let current: TSESTree.Node | undefined = node.parent;
+    while (current) {
+        if (current.type === "TSTypeQuery") {
+            return true;
+        }
+        current = current.parent;
+    }
+    return false;
+}
+
 const ADVICE =
     "Prefer a `semanticColor` token, which adapts to the current theme. If this color must stay the same in every theme (e.g. illustrations), disable this rule with a comment explaining why.";
 
@@ -190,13 +205,17 @@ export default createRule<Options, MessageIds>({
 
                 for (const variable of binding.named) {
                     for (const reference of variable.references) {
-                        reportPaletteUse(reference.identifier);
+                        if (!isInTypeQuery(reference.identifier)) {
+                            reportPaletteUse(reference.identifier);
+                        }
                     }
                 }
 
                 for (const variable of binding.namespace) {
                     for (const reference of variable.references) {
-                        checkNamespaceReference(reference.identifier);
+                        if (!isInTypeQuery(reference.identifier)) {
+                            checkNamespaceReference(reference.identifier);
+                        }
                     }
                 }
             },
