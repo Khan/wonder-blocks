@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-cell
 
+## 6.4.0
+
+### Minor Changes
+
+- 4e011ea: `DetailCell` and `CompactCell` now forward their `ref` to the root DOM element: the `<button>` (with `onClick`) or `<a>` (with `href`) when the cell is pressable, otherwise the wrapping `<div>`.
+
 ## 6.3.0
 
 ### Minor Changes
