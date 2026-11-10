@@ -1942,6 +1942,43 @@ describe("DropdownCore", () => {
             }
         };
 
+        it("should stop trying to focus an item whose ref isn't a DOM element", () => {
+            // Arrange
+            // A class component doesn't forward its ref, so the item ref holds
+            // the component instance instead of a DOM element.
+            class NonForwardingItem extends React.Component<{label: string}> {
+                render(): React.ReactNode {
+                    return <div>{this.props.label}</div>;
+                }
+            }
+            const nonForwardingItems = new Array(200)
+                .fill(null)
+                .map((_: any, i: any) => ({
+                    component: (
+                        <NonForwardingItem key={i} label={`Fruit # ${i + 1}`} />
+                    ),
+                    focusable: true,
+                    populatedProps: {},
+                }));
+            render(
+                <DropdownCore
+                    initialFocusedIndex={0}
+                    items={nonForwardingItems}
+                    role="listbox"
+                    open={true}
+                    opener={<button />}
+                    onOpenChanged={jest.fn()}
+                />,
+            );
+
+            // Act
+            advanceFrames();
+            const pendingTimers = jest.getTimerCount();
+
+            // Assert
+            expect(pendingTimers).toBe(0);
+        });
+
         it("should focus the next item when pressing ArrowDown", async () => {
             // Arrange
             const user = userEvent.setup({

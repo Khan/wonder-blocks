@@ -191,8 +191,7 @@ const ActionMenu = React.forwardRef(function ActionMenu(
         // verify if there's at least one OptionItem element to indent the
         // possible Action items
         const isOptionItemIncluded = allChildren.some((item) =>
-            // @ts-expect-error [FEI-5019] - TS2345 - Argument of type 'ReactChild | ReactFragment | ReactPortal' is not assignable to parameter of type 'ReactElement<any, string | JSXElementConstructor<any>>'.
-            OptionItem.isClassOf(item),
+            OptionItem.isComponentOf(item),
         );
 
         // @ts-expect-error [FEI-5019] - TS2322 - Type '({ readonly component: ReactChild | ReactFragment | ReactPortal; readonly focusable: boolean; readonly populatedProps: {}; } | { populatedProps: { ...; }; component: ReactChild | ... 1 more ... | ReactPortal; focusable: boolean; } | { ...; })[]' is not assignable to type 'DropdownItem[]'.
@@ -202,14 +201,13 @@ const ActionMenu = React.forwardRef(function ActionMenu(
             const itemObject = {
                 component: item,
                 focusable:
-                    // @ts-expect-error [FEI-5019] - TS2345 - Argument of type 'ReactChild | ReactFragment | ReactPortal' is not assignable to parameter of type 'ReactElement<any, string | JSXElementConstructor<any>>'. | TS2345 - Argument of type 'ReactChild | ReactFragment | ReactPortal' is not assignable to parameter of type 'ReactElement<any, string | JSXElementConstructor<any>>'.
-                    ActionItem.isClassOf(item) || OptionItem.isClassOf(item)
+                    ActionItem.isComponentOf(item) ||
+                    OptionItem.isComponentOf(item)
                         ? !disabled
                         : false,
                 populatedProps: {},
             } as const;
-            // @ts-expect-error [FEI-5019] - TS2345 - Argument of type 'ReactChild | ReactFragment | ReactPortal' is not assignable to parameter of type 'ReactElement<any, string | JSXElementConstructor<any>>'.
-            if (ActionItem.isClassOf(item)) {
+            if (ActionItem.isComponentOf(item)) {
                 return {
                     ...itemObject,
                     populatedProps: {
@@ -217,8 +215,7 @@ const ActionMenu = React.forwardRef(function ActionMenu(
                         onClick: handleItemSelected,
                     },
                 };
-                // @ts-expect-error [FEI-5019] - TS2345 - Argument of type 'ReactChild | ReactFragment | ReactPortal' is not assignable to parameter of type 'ReactElement<any, string | JSXElementConstructor<any>>'.
-            } else if (OptionItem.isClassOf(item)) {
+            } else if (OptionItem.isComponentOf(item)) {
                 const selected = selectedValues
                     ? selectedValues.includes(value)
                     : false;

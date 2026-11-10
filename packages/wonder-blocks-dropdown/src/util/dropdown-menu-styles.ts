@@ -24,7 +24,7 @@ export function getDropdownMenuHeight(
     // calculate using the first 10 items on the array as we want to display
     // this number of elements in the visible area
     return items.slice(0, MAX_VISIBLE_ITEMS).reduce((sum, item) => {
-        if (SeparatorItem.isClassOf(item.component)) {
+        if (SeparatorItem.isComponentOf(item.component)) {
             return sum + SEPARATOR_ITEM_HEIGHT;
         } else {
             return sum + DROPDOWN_ITEM_HEIGHT;
