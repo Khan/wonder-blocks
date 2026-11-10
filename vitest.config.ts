@@ -3,6 +3,10 @@ import {playwright} from "@vitest/browser-playwright";
 
 import {storybookTest} from "@storybook/addon-vitest/vitest-plugin";
 import viteConfig from "./vite.config";
+import {argosPlugins} from "./.storybook/argos-vitest-plugin";
+
+// Opt-in so local `pnpm test:storybook` runs stay a11y-only (and fast).
+const argosEnabled = process.env.ARGOS_SCREENSHOTS === "true";
 
 // Strip any trailing slash so the "Click to debug" link the Storybook Vitest
 // addon builds as `${storybookUrl}/?path=...` doesn't end up with a double
@@ -26,6 +30,23 @@ export default mergeConfig(
                             configDir: ".storybook",
                             storybookUrl,
                         }),
+                        // Visual regression with Argos (spike, WB-2480). When
+                        // enabled, every story is screenshotted after it
+                        // renders (and after its a11y check), so the same
+                        // Vitest run covers both a11y and VRT. Story modes
+                        // (themes, viewports, RTL) come from the existing
+                        // `chromatic.modes` parameters, so this is only turned
+                        // on for one job of the CI theme matrix.
+                        // Screenshots land in `./screenshots`, and are only
+                        // uploaded when `ARGOS_UPLOAD=true` (auth comes from
+                        // `ARGOS_TOKEN` or GitHub Actions OIDC).
+                        // See: https://argos-ci.com/docs/reference/storybook
+                        ...(argosEnabled
+                            ? argosPlugins({
+                                  uploadToArgos:
+                                      process.env.ARGOS_UPLOAD === "true",
+                              })
+                            : []),
                     ],
 
                     test: {
