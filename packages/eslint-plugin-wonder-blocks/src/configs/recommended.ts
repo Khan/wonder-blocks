@@ -5,5 +5,7 @@ export default {
         "@khanacademy/wonder-blocks/no-invalid-bodytext-children": "error",
         "@khanacademy/wonder-blocks/require-logical-properties-for-rtl":
             "error",
+        "@khanacademy/wonder-blocks/prefer-semantic-color-over-graphics-palette":
+            "error",
     },
 };

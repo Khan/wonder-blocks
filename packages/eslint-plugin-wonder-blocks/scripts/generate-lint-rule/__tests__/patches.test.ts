@@ -18,6 +18,20 @@ const rules: Record<string, TSESLint.RuleModule<string, readonly unknown[]>> = {
 export {rules};
 `;
 
+const RULES_INDEX_WITH_WRAPPED_ENTRY_SRC = `import {TSESLint} from "@typescript-eslint/utils";
+
+import aVeryLongExistingRuleName from "./a-very-long-existing-rule-name";
+import noExistingRule from "./no-existing-rule";
+
+const rules: Record<string, TSESLint.RuleModule<string, readonly unknown[]>> = {
+    "a-very-long-existing-rule-name":
+        aVeryLongExistingRuleName,
+    "no-existing-rule": noExistingRule,
+};
+
+export {rules};
+`;
+
 const RECOMMENDED_CONFIG_EMPTY_SRC = `export default {
     plugins: ["@khanacademy/wonder-blocks"],
     rules: {},
@@ -85,6 +99,24 @@ describe("applyRulesIndexPatch", () => {
         const alphaPos = result.indexOf("no-alpha-rule");
         const existingPos = result.indexOf("no-existing-rule");
         expect(alphaPos).toBeLessThan(existingPos);
+    });
+
+    it("should keep wrapped map entries together when sorting", () => {
+        // Arrange
+        const ruleName = "b-new-rule";
+
+        // Act
+        const result = applyRulesIndexPatch(
+            RULES_INDEX_WITH_WRAPPED_ENTRY_SRC,
+            ruleName,
+        );
+
+        // Assert
+        expect(result).toContain(`    "a-very-long-existing-rule-name":
+        aVeryLongExistingRuleName,
+    "b-new-rule": bNewRule,
+    "no-existing-rule": noExistingRule,
+};`);
     });
 
     it("should throw if the rule already exists", () => {

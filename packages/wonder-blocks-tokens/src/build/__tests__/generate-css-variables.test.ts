@@ -21,6 +21,7 @@ describe("generateGraphicsPaletteDefinitions", () => {
 
         // Assert
         expect(result).toContain(
+            // eslint-disable-next-line @khanacademy/wonder-blocks/prefer-semantic-color-over-graphics-palette -- Checks the generated palette CSS variable
             `--wb-graphicsPalette-blue_30: ${graphicsPaletteValues.blue_30};`,
         );
     });

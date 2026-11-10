@@ -76,5 +76,6 @@ The following shows what rules are enabled in each config:
 | [`no-heading-in-accordion-header`](docs/no-heading-in-accordion-header.md)|✅|✅|
 | [`no-invalid-bodytext-children`](docs/no-invalid-bodytext-children.md)|✅|✅|
 | [`no-invalid-bodytext-parent`](docs/no-invalid-bodytext-parent.md)| |✅|
-| [`require-logical-properties-for-rtl`](docs/require-logical-properties-for-rtl.md)| opt-in | opt-in |
 | [`no-raw-button`](docs/no-raw-button.md)| |✅|
+| [`prefer-semantic-color-over-graphics-palette`](docs/prefer-semantic-color-over-graphics-palette.md)|✅|✅|
+| [`require-logical-properties-for-rtl`](docs/require-logical-properties-for-rtl.md)| opt-in | opt-in |
