@@ -20,9 +20,22 @@ export default class SeparatorItem extends React.Component<{
      */
     style?: StyleType;
 }> {
-    static isClassOf(instance: React.ReactElement<any>): boolean {
-        // @ts-expect-error [FEI-5019] - TS2339 - Property '__IS_SEPARATOR_ITEM__' does not exist on type 'string | JSXElementConstructor<any>'.
-        return instance && instance.type && instance.type.__IS_SEPARATOR_ITEM__;
+    /**
+     * Check whether the given value is a `SeparatorItem` element.
+     *
+     * @param instance The value to check, e.g. a child of a dropdown.
+     * @returns `true` if the value is an element whose type is `SeparatorItem`.
+     */
+    static isComponentOf(instance: unknown): boolean {
+        if (typeof instance !== "object" || instance === null) {
+            return false;
+        }
+        const type: unknown = "type" in instance ? instance.type : undefined;
+        return (
+            typeof type === "function" &&
+            "__IS_SEPARATOR_ITEM__" in type &&
+            type.__IS_SEPARATOR_ITEM__ === true
+        );
     }
 
     static __IS_SEPARATOR_ITEM__ = true;

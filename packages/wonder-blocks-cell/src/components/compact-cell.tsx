@@ -27,11 +27,14 @@ import theme from "../theme";
  * />
  * ```
  */
-const CompactCell = function (props: CellProps): React.ReactElement {
+const CompactCell = React.forwardRef(function CompactCell(
+    props: CellProps,
+    ref: React.ForwardedRef<HTMLElement>,
+): React.ReactElement {
     const {title, ...coreProps} = props;
 
     return (
-        <CellCore {...coreProps}>
+        <CellCore {...coreProps} ref={ref}>
             {typeof title === "string" ? (
                 <BodyText
                     weight="semi"
@@ -44,6 +47,6 @@ const CompactCell = function (props: CellProps): React.ReactElement {
             )}
         </CellCore>
     );
-};
+});
 
 export default CompactCell;

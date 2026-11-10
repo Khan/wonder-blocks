@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-cell
 
+## 6.3.0
+
+### Minor Changes
+
+- 3652e16: Add `aria-haspopup` to `CompactCell` and `DetailCell`, for a pressable cell that opens a popup such as a dialog.
+
 ## 6.2.15
 
 ### Patch Changes
