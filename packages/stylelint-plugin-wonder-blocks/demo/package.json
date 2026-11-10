@@ -1,0 +1,13 @@
+{
+    "name": "stylelint-plugin-wonder-blocks-demo",
+    "version": "0.0.0",
+    "private": true,
+    "license": "MIT",
+    "scripts": {
+        "lint": "stylelint \"src/**/*.css\""
+    },
+    "devDependencies": {
+        "@khanacademy/stylelint-plugin-wonder-blocks": "workspace:*",
+        "stylelint": "^17.12.0"
+    }
+}

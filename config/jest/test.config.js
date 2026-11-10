@@ -1,7 +1,8 @@
 /**
  * This is the main jest config. Most tests run using jest-environment-jsdom.
- * Packages that don't need a DOM (e.g. eslint-plugin-wonder-blocks) run with
- * the node environment and are configured via the `projects` array below.
+ * Packages that don't need a DOM (e.g. eslint-plugin-wonder-blocks and
+ * stylelint-plugin-wonder-blocks) run with the node environment and are
+ * configured via the `projects` array below.
  */
 const fs = require("node:fs");
 const path = require("node:path");
@@ -104,6 +105,21 @@ module.exports = {
                 "<rootDir>/config/jest/rule-tester-setup.js",
             ],
         },
+        // stylelint-plugin-wonder-blocks tests don't need a DOM environment.
+        {
+            ...projectConfig,
+            displayName: "stylelint-plugin",
+            testMatch: [
+                "<rootDir>/packages/stylelint-plugin-wonder-blocks/**/*.test.ts",
+            ],
+            testEnvironment: "jest-environment-node",
+            setupFilesAfterEnv: ["jest-extended/all"],
+            moduleNameMapper: {
+                ...projectConfig.moduleNameMapper,
+                // Stylelint is ESM-only; see stylelint.shim.js.
+                "^stylelint$": "<rootDir>/config/jest/stylelint.shim.js",
+            },
+        },
         // All other packages use jsdom.
         {
             ...projectConfig,
@@ -117,6 +133,7 @@ module.exports = {
             ],
             testPathIgnorePatterns: [
                 "<rootDir>/packages/eslint-plugin-wonder-blocks/",
+                "<rootDir>/packages/stylelint-plugin-wonder-blocks/",
             ],
         },
     ],

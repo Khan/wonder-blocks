@@ -1,0 +1,12 @@
+{
+    "exclude": [
+        "dist",
+        "demo",
+        "src/**/__tests__"
+    ],
+    "extends": "../tsconfig-shared.json",
+    "compilerOptions": {
+        "outDir": "./dist",
+        "rootDir": "src",
+    }
+}

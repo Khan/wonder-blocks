@@ -7,6 +7,8 @@ packages:
     - "wb-codemod"
     # ESLint plugin demo
     - "packages/eslint-plugin-wonder-blocks/demo"
+    # Stylelint plugin demo
+    - "packages/stylelint-plugin-wonder-blocks/demo"
 catalog:
     # Wonder Stuff
     "@khanacademy/wonder-stuff-core": ^3.0.0

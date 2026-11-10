@@ -19,7 +19,10 @@
     },
     "overrides": [
         {
-            "patterns": ["packages/eslint-plugin-wonder-blocks/demo/package.json"],
+            "patterns": [
+                "packages/eslint-plugin-wonder-blocks/demo/package.json",
+                "packages/stylelint-plugin-wonder-blocks/demo/package.json"
+            ],
             "rules": {
                 "require-main": "off",
                 "require-module": "off",

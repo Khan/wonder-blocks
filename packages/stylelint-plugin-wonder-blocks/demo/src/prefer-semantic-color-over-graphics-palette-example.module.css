@@ -1,0 +1,44 @@
+/* ✅ Valid: a themable semanticColor token */
+.card {
+    background-color: var(--wb-semanticColor-core-background-base-default);
+}
+
+/* ✅ Valid: fill and stroke are allowed */
+.illustration path {
+    fill: var(--wb-graphicsPalette-gray_30);
+    stroke: var(--wb-graphicsPalette-black_100);
+}
+
+/* ✅ Valid: disabled with a reason */
+.illustration {
+    /* stylelint-disable-next-line @khanacademy/wonder-blocks/prefer-semantic-color-over-graphics-palette -- Illustration artwork; colors stay the same in every theme */
+    background-color: var(--wb-graphicsPalette-gray_30);
+}
+
+/* ❌ Invalid: a color on its own */
+.invalidColor {
+    color: var(--wb-graphicsPalette-blue_30);
+}
+
+/* ❌ Invalid: in a shorthand */
+.invalidBorder {
+    border: 1px solid var(--wb-graphicsPalette-gray_60);
+}
+
+/* ❌ Invalid: in a gradient (2 errors) */
+.invalidGradient {
+    background: linear-gradient(
+        var(--wb-graphicsPalette-red_30),
+        var(--wb-graphicsPalette-blue_30)
+    );
+}
+
+/* ❌ Invalid: in a var() fallback */
+.invalidFallback {
+    color: var(--card-color, var(--wb-graphicsPalette-gray_90));
+}
+
+/* ❌ Invalid: in a custom property definition */
+:root {
+    --accent: var(--wb-graphicsPalette-magenta_30);
+}

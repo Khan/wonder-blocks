@@ -15,3 +15,7 @@ packages/wonder-blocks-tokens/src/**/*.css
 # Storybook preview chrome + vendored fonts (not part of the design system
 # surface authored by Wonder Blocks).
 static/**/*.css
+
+# The stylelint plugin demo has invalid CSS on purpose, to check that the
+# plugin's rules report it. Run `pnpm lint` in the demo directory to see it.
+packages/stylelint-plugin-wonder-blocks/demo/**/*.css
