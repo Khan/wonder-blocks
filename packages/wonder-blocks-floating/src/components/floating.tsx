@@ -28,6 +28,7 @@ import {
 import {Arrow, type ArrowStyles} from "./floating-arrow";
 import {Portal} from "./floating-portal";
 import {rtlMirror} from "../util/rtl-mirror-middleware";
+import {tallerThanViewport} from "../util/taller-than-viewport-middleware";
 import {canAcceptRef, getElementRef} from "../util/trigger-refs";
 
 const StyledDiv = addStyle("div");
@@ -121,6 +122,10 @@ type FloatingProps = {
      * has focus (e.g. the user is typing in it). Hiding it would make the
      * browser drop focus, which on mobile devices also closes the virtual
      * keyboard.
+     *
+     * It is also not hidden when it and the reference element together are
+     * taller than the viewport (e.g. on very small screens or at high zoom
+     * levels), so that users can scroll through it without it disappearing.
      * @default true
      */
     hide?: boolean;
@@ -234,6 +239,18 @@ type FloatingProps = {
      * @default false
      */
     closeOnFocusOut?: boolean;
+
+    /**
+     * Called when the pointer enters the floating element, including its
+     * border and arrow.
+     */
+    onMouseEnter?: (event: React.MouseEvent) => void;
+
+    /**
+     * Called when the pointer leaves the floating element, including its
+     * border and arrow.
+     */
+    onMouseLeave?: (event: React.MouseEvent) => void;
 };
 
 type FocusManagerProps =
@@ -353,6 +370,8 @@ export default function Floating({
     initialFocusRef,
     returnFocus = true,
     closeOnFocusOut = false,
+    onMouseEnter,
+    onMouseLeave,
     dismissEnabled = false,
     onPlacementChange,
     // middleware specific
@@ -418,6 +437,9 @@ export default function Floating({
                 : undefined,
             showArrow ? arrow({element: arrowRef}) : undefined,
             hideProp ? hide() : undefined,
+            // Keep the floating element visible when it doesn't fit in the
+            // viewport anyway (see the `hide` prop).
+            hideProp ? tallerThanViewport() : undefined,
             // Mirror the floating element in RTL when placement is left/right
             rtlMirror(),
         ],
@@ -522,7 +544,13 @@ export default function Floating({
     // opening the virtual keyboard shrinks the visual viewport, which can push
     // the reference element out of view. Hiding the floating element then
     // would blur the focused field and close the keyboard again.
-    const isHidden = !!middlewareData.hide?.referenceHidden && !focusedField;
+    // It also stays visible when it and the reference element don't fit in
+    // the viewport together, since it would otherwise disappear while the
+    // user scrolls through it (e.g. at high zoom levels).
+    const isHidden =
+        !!middlewareData.hide?.referenceHidden &&
+        !focusedField &&
+        !middlewareData.tallerThanViewport?.isTaller;
 
     // Notify consumers of the resolved placement (after middleware such as
     // `flip` has run) so they can adapt their content accordingly.
@@ -653,6 +681,8 @@ export default function Floating({
                                 onPointerDown: handlePointerDown,
                                 onPointerUp: handlePointerUp,
                                 onPointerCancel: handlePointerUp,
+                                onMouseEnter,
+                                onMouseLeave,
                             })}
                         >
                             {content}

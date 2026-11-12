@@ -399,6 +399,52 @@ describe("Floating", () => {
     });
 
     describe("Props", () => {
+        it("should call onMouseEnter when the pointer enters the floating element", async () => {
+            // Arrange
+            const onMouseEnter = jest.fn();
+            render(
+                <Floating
+                    content="Floating content"
+                    open={true}
+                    focusManagerEnabled={false}
+                    onMouseEnter={onMouseEnter}
+                    testId="floating"
+                >
+                    <button>Trigger</button>
+                </Floating>,
+            );
+
+            // Act
+            await userEvent.hover(await screen.findByTestId("floating"));
+
+            // Assert
+            expect(onMouseEnter).toHaveBeenCalledTimes(1);
+        });
+
+        it("should call onMouseLeave when the pointer leaves the floating element", async () => {
+            // Arrange
+            const onMouseLeave = jest.fn();
+            render(
+                <Floating
+                    content="Floating content"
+                    open={true}
+                    focusManagerEnabled={false}
+                    onMouseLeave={onMouseLeave}
+                    testId="floating"
+                >
+                    <button>Trigger</button>
+                </Floating>,
+            );
+            const floating = await screen.findByTestId("floating");
+            await userEvent.hover(floating);
+
+            // Act
+            await userEvent.unhover(floating);
+
+            // Assert
+            expect(onMouseLeave).toHaveBeenCalledTimes(1);
+        });
+
         describe("onOpenChange", () => {
             it("should call onOpenChange when open prop changes", async () => {
                 // Arrange
