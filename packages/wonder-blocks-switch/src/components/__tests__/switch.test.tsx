@@ -3,7 +3,10 @@ import {render, screen} from "@testing-library/react";
 
 import {userEvent} from "@testing-library/user-event";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
-import {RenderStateRoot} from "@khanacademy/wonder-blocks-core";
+import {
+    FloatingReferenceAttributeName,
+    RenderStateRoot,
+} from "@khanacademy/wonder-blocks-core";
 import magnifyingGlassIcon from "@phosphor-icons/core/bold/magnifying-glass-bold.svg";
 import Switch from "../switch";
 
@@ -89,6 +92,46 @@ describe("Switch", () => {
     });
 
     describe("setting attributes", () => {
+        it("should apply the floating reference attribute to its root element", async () => {
+            // Arrange
+            // Floating components (e.g. Tooltip) inject this attribute to find
+            // the element they are anchored to.
+            render(
+                <Switch
+                    aria-label="Gravity"
+                    checked={false}
+                    testId="switch-root"
+                    {...{[FloatingReferenceAttributeName]: "anchor-id"}}
+                />,
+            );
+
+            // Act
+            const root = await screen.findByTestId("switch-root");
+
+            // Assert
+            expect(root).toHaveAttribute(
+                FloatingReferenceAttributeName,
+                "anchor-id",
+            );
+        });
+
+        it("should not apply the floating reference attribute to its input", async () => {
+            // Arrange
+            render(
+                <Switch
+                    aria-label="Gravity"
+                    checked={false}
+                    {...{[FloatingReferenceAttributeName]: "anchor-id"}}
+                />,
+            );
+
+            // Act
+            const input = await screen.findByRole("switch");
+
+            // Assert
+            expect(input).not.toHaveAttribute(FloatingReferenceAttributeName);
+        });
+
         it("should set the accessibility attributes accordingly", async () => {
             // Arrange
             render(

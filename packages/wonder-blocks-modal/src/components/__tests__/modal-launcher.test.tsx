@@ -4,7 +4,10 @@ import {userEvent} from "@testing-library/user-event";
 import {MemoryRouter} from "react-router-dom";
 import {CompatRouter} from "react-router-dom-v5-compat";
 
-import {View} from "@khanacademy/wonder-blocks-core";
+import {
+    FloatingReferenceAttributeName,
+    View,
+} from "@khanacademy/wonder-blocks-core";
 import Button from "@khanacademy/wonder-blocks-button";
 
 import ModalLauncher from "../modal-launcher";
@@ -18,6 +21,26 @@ const exampleModal = (
 );
 
 describe("ModalLauncher", () => {
+    test("passes the floating reference attribute to the opener", () => {
+        // Arrange, Act
+        // Floating components (e.g. Tooltip) inject this attribute to find the
+        // element they are anchored to.
+        render(
+            <ModalLauncher
+                modal={exampleModal}
+                {...{[FloatingReferenceAttributeName]: "anchor-id"}}
+            >
+                {({openModal}) => <Button onClick={openModal}>Open</Button>}
+            </ModalLauncher>,
+        );
+
+        // Assert
+        expect(screen.getByRole("button", {name: "Open"})).toHaveAttribute(
+            FloatingReferenceAttributeName,
+            "anchor-id",
+        );
+    });
+
     beforeEach(() => {
         jest.spyOn(window, "scrollTo").mockImplementation(() => {});
     });

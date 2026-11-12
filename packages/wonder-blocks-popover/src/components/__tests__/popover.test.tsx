@@ -51,6 +51,27 @@ describe("Popover", () => {
         Element.prototype.getBoundingClientRect = originalGetBoundingClientRect;
     });
 
+    it("should forward its ref to the trigger element", async () => {
+        // Arrange
+        const ref = React.createRef<HTMLElement>();
+
+        // Act
+        render(
+            <Popover
+                ref={ref}
+                onClose={jest.fn()}
+                content={<PopoverContent title="Title" content="Content" />}
+            >
+                <Button>Open default popover</Button>
+            </Popover>,
+        );
+
+        // Assert
+        expect(ref.current).toBe(
+            await screen.findByRole("button", {name: "Open default popover"}),
+        );
+    });
+
     it("should allow passing a custom ref to the anchor with children as a function", async () => {
         // Arrange
         const ref: React.RefObject<HTMLButtonElement> = React.createRef();

@@ -123,7 +123,10 @@ export type LabeledFieldLabels = {
  * component. Helper text includes a description, error message, read only
  * message, and any additional helper message.
  */
-export default function LabeledField(props: Props) {
+const LabeledField = React.forwardRef(function LabeledField(
+    props: Props,
+    ref: React.ForwardedRef<HTMLElement>,
+) {
     const {
         field,
         styles: stylesProp,
@@ -328,7 +331,7 @@ export default function LabeledField(props: Props) {
     }
 
     return (
-        <View style={stylesProp?.root} testId={testId} id={uniqueId}>
+        <View ref={ref} style={stylesProp?.root} testId={testId} id={uniqueId}>
             {renderLabelAndContextLabel()}
             {maybeRenderDescription()}
             {renderField()}
@@ -337,7 +340,9 @@ export default function LabeledField(props: Props) {
             {maybeRenderError()}
         </View>
     );
-}
+});
+
+export default LabeledField;
 
 const styles = StyleSheet.create({
     labelContainer: {

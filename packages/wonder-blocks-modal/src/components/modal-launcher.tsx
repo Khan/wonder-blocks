@@ -8,6 +8,7 @@ import {
     SchedulePolicy,
     ClearPolicy,
 } from "@khanacademy/wonder-blocks-timing";
+import {FloatingReferenceAttributeName} from "@khanacademy/wonder-blocks-core";
 import type {StyleType} from "@khanacademy/wonder-blocks-core";
 
 import FocusTrap from "./focus-trap";
@@ -57,6 +58,12 @@ type Props = Readonly<{
      * Test ID used for e2e testing. It's set on the ModalBackdrop
      */
     testId?: string;
+    /**
+     * Injected by floating components (e.g. `Tooltip`) to identify the
+     * element they are anchored to. It is applied to the element rendered by `children` (the opener), so that the opener is the anchor.
+     * @ignore
+     */
+    [FloatingReferenceAttributeName]?: string;
 
     /**
      * Renders the modal when true, renders nothing when false.
@@ -118,6 +125,7 @@ const ModalLauncher = (props: Props): React.ReactElement | null => {
         schedule,
         styles: stylesProp,
         testId,
+        [FloatingReferenceAttributeName]: floatingReferenceId,
     } = props;
 
     const lastElementFocusedOutsideModalRef = React.useRef<HTMLElement | null>(
@@ -204,11 +212,19 @@ const ModalLauncher = (props: Props): React.ReactElement | null => {
         }
     }, [modal, handleCloseModal]);
 
-    const renderedChildren = children
+    const opener = children
         ? children({
               openModal,
           })
         : null;
+    // Pass the attribute that identifies a floating element's anchor along to
+    // the opener (when there's a single element to pass it to).
+    const renderedChildren =
+        floatingReferenceId && React.isValidElement(opener)
+            ? React.cloneElement(opener, {
+                  [FloatingReferenceAttributeName]: floatingReferenceId,
+              })
+            : opener;
 
     const {body} = document;
     if (!body) {
