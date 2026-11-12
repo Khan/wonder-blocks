@@ -59,11 +59,28 @@ type Props = {
      * This ID will reference the text in the tooltip bubble.
      * It should only be set to `undefined` when the tooltip bubble
      * is not visible.
+     *
+     * It is added to the anchored content's own `aria-describedby` (if any),
+     * rather than replacing it.
      */
     "aria-describedby": string | undefined;
 };
 
 const TRACKER = new ActiveTracker();
+
+/**
+ * Combines space-separated lists of ids (e.g. `aria-describedby` values),
+ * skipping empty values and duplicates. Returns `undefined` when there are no
+ * ids, so that no empty attribute is rendered.
+ */
+function mergeIds(
+    ...idLists: ReadonlyArray<string | undefined>
+): string | undefined {
+    const ids = idLists
+        .flatMap((idList) => idList?.split(/\s+/) ?? [])
+        .filter(Boolean);
+    return ids.length > 0 ? [...new Set(ids)].join(" ") : undefined;
+}
 
 type ActiveStateManager = {
     /**
@@ -438,7 +455,12 @@ const TooltipAnchor = React.forwardRef(function TooltipAnchor(
     ]);
 
     return React.cloneElement(anchorableChildren, {
-        "aria-describedby": ariaDescribedBy,
+        // Keep the anchored content's own description (e.g. a hint) and add
+        // the tooltip's to it, so that screen readers announce both.
+        "aria-describedby": mergeIds(
+            anchorableChildren.props["aria-describedby"],
+            ariaDescribedBy,
+        ),
         // Passed along so that the anchored element can be found in the DOM.
         // This is why anchored content that doesn't attach the ref below has
         // to spread the props it is given.

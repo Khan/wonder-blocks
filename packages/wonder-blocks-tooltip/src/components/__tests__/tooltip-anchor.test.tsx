@@ -257,6 +257,63 @@ describe("TooltipAnchor", () => {
         expect(result).toHaveAttribute("aria-describedby", "tooltip-id");
     });
 
+    test("adds aria-describedby to the anchored content's own aria-describedby", async () => {
+        // Arrange
+        render(
+            <TooltipAnchor
+                onActiveChanged={() => {}}
+                aria-describedby="tooltip-id"
+            >
+                <input aria-label="Anchor" aria-describedby="hint-id" />
+            </TooltipAnchor>,
+        );
+
+        // Act
+        const result = await screen.findByRole("textbox");
+
+        // Assert
+        expect(result).toHaveAttribute(
+            "aria-describedby",
+            "hint-id tooltip-id",
+        );
+    });
+
+    test("keeps the anchored content's own aria-describedby while the tooltip is hidden", async () => {
+        // Arrange
+        render(
+            <TooltipAnchor
+                onActiveChanged={() => {}}
+                aria-describedby={undefined}
+            >
+                <input aria-label="Anchor" aria-describedby="hint-id" />
+            </TooltipAnchor>,
+        );
+
+        // Act
+        const result = await screen.findByRole("textbox");
+
+        // Assert
+        expect(result).toHaveAttribute("aria-describedby", "hint-id");
+    });
+
+    test("doesn't duplicate an id the anchored content already describes itself with", async () => {
+        // Arrange
+        render(
+            <TooltipAnchor
+                onActiveChanged={() => {}}
+                aria-describedby="tooltip-id"
+            >
+                <input aria-label="Anchor" aria-describedby="tooltip-id" />
+            </TooltipAnchor>,
+        );
+
+        // Act
+        const result = await screen.findByRole("textbox");
+
+        // Assert
+        expect(result).toHaveAttribute("aria-describedby", "tooltip-id");
+    });
+
     test("prefers the element that receives the props over the element the ref points at", async () => {
         // Arrange
         // Like `Switch`: the ref points at an inner input, while the props
