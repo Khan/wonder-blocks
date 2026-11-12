@@ -269,7 +269,9 @@ const ForwardRefAnchor = React.forwardRef(function ForwardRefAnchor(
  *    components).
  * 2. **Pass the props it is given along** to its element. `Tooltip` injects
  *    the `aria-describedby` prop, plus an attribute it uses to find the
- *    element in the DOM. Both are typed by `TooltipAnchorProps`.
+ *    element in the DOM. Both are typed by `TooltipAnchorProps`. If the
+ *    anchor already has an `aria-describedby` (e.g. an input with a hint),
+ *    the tooltip's id is added to it instead of replacing it.
  *
  * Strings are wrapped in an element that does both. Wonder Blocks components
  * such as `Button`, `IconButton`, `Link`, `View` and the typography components
