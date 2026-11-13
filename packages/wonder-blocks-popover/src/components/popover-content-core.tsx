@@ -4,7 +4,6 @@ import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {ScrollableView} from "@khanacademy/wonder-blocks-layout";
 
-import {actionStyles} from "@khanacademy/wonder-blocks-styles";
 import CloseButton from "./close-button";
 import PopoverContext from "./popover-context";
 import styles from "./popover-content-core.module.css";
@@ -110,7 +109,7 @@ const PopoverContentCore = React.forwardRef<HTMLElement, Props>(
                             aria-label={closeButtonLabel}
                             style={[
                                 styles.closeButton,
-                                closeButtonLight && actionStyles.inverse,
+                                closeButtonLight && styles.closeButtonLight,
                             ]}
                             testId={`${testId || "popover"}-close-btn`}
                         />

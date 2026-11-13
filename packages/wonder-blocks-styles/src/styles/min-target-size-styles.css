@@ -1,0 +1,60 @@
+/*
+ * Cross-package minimum-target-size mixin.
+ *
+ * CSS counterpart of the `minTargetSizeStyles.minTargetSize` JS export.
+ *
+ * Authors include the mixin via:
+ *
+ *   @import "@khanacademy/wonder-blocks-styles/min-target-size-styles.css";
+ *
+ *   .my-control {
+ *       @apply --wb-min-target-size;
+ *   }
+ *
+ * postcss-import resolves the @import through the workspace and
+ * @csstools/postcss-mixins expands the @apply at build time
+ * (CSS Mixins Level 1 syntax — note the leading `--` on the name).
+ *
+ * Precedence: the JS export goes through Aphrodite, so it lands unlayered and
+ * `!important`, and beats a consumer's Aphrodite `position` / `::before`
+ * styles. The mixin expands into the consumer's (layered) selector, so any
+ * consumer override of `position` or `::before` now wins instead.
+ */
+
+/*
+ * A transparent hit area that guarantees a control is at least 24x24, to
+ * satisfy WCAG 2.5.8 (Target Size, Minimum).
+ *
+ * We expand the *hit area* with a pseudo-element rather than growing the
+ * element itself so that the visual layout of existing components is
+ * unchanged.
+ *
+ * Notes:
+ * - `block-size`/`inline-size` of `100%` mean the hit area is never *smaller*
+ *   than the control it belongs to.
+ * - WCAG 2.5.8 exempts inline targets (a link within a sentence, whose size is
+ *   constrained by the line-height of the surrounding text), so this should not
+ *   be applied to inline links.
+ * - `:before` and `::before` are the same pseudo-element, so this collides
+ *   with an element that draws its own `::before`.
+ *
+ * See `action-styles.css` for why the nesting-selector rule is disabled.
+ */
+/* stylelint-disable nesting-selector-no-missing-scoping-root */
+@mixin --wb-min-target-size() {
+    /* Establishes the containing block for the ::before hit area below. */
+    position: relative;
+
+    &::before {
+        content: "";
+        position: absolute;
+        inset-block-start: 50%;
+        inset-inline-start: 50%;
+        transform: translate(-50%, -50%);
+        block-size: 100%;
+        inline-size: 100%;
+        min-block-size: var(--wb-sizing-size_240);
+        min-inline-size: var(--wb-sizing-size_240);
+    }
+}
+/* stylelint-enable nesting-selector-no-missing-scoping-root */
