@@ -120,6 +120,42 @@ describe("PopoverContentCore", () => {
         expect(screen.getByTestId("content")).toContainElement(closeButton);
     });
 
+    describe("closeButtonLight", () => {
+        it("should apply the inverse styles to the close button when set", () => {
+            // Arrange
+
+            // Act
+            render(
+                <PopoverContentCore
+                    closeButtonVisible={true}
+                    closeButtonLight={true}
+                >
+                    content
+                </PopoverContentCore>,
+            );
+
+            // Assert
+            // `*.module.css` maps class names to themselves in jest.
+            expect(screen.getByRole("button")).toHaveClass("closeButtonLight");
+        });
+
+        it("should not apply the inverse styles to the close button by default", () => {
+            // Arrange
+
+            // Act
+            render(
+                <PopoverContentCore closeButtonVisible={true}>
+                    content
+                </PopoverContentCore>,
+            );
+
+            // Assert
+            expect(screen.getByRole("button")).not.toHaveClass(
+                "closeButtonLight",
+            );
+        });
+    });
+
     it("should forward the ref to the content element", () => {
         // Arrange
         const ref = React.createRef<HTMLElement>();

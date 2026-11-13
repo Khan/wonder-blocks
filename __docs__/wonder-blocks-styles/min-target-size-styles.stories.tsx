@@ -57,6 +57,21 @@ import {allThemeModes} from "../../.storybook/modes";
  * Note that applying the hit area also makes the element a containing block
  * (`position: relative`), which affects absolutely-positioned descendants that
  * previously resolved against an ancestor.
+ *
+ * ### CSS Modules
+ *
+ * The same hit area ships as a CSS mixin:
+ *
+ * ```css
+ * @import "@khanacademy/wonder-blocks-styles/min-target-size-styles.css";
+ *
+ * .myControl {
+ *     @apply --wb-min-target-size;
+ * }
+ * ```
+ *
+ * Unlike the JS export (Aphrodite, `!important`), the mixin's `position` and
+ * `::before` declarations lose to any of your own rules that set them.
  */
 export default {
     title: "Packages / Styles / Min Target Size Styles",

@@ -12,11 +12,12 @@
  * this package's CSS before core's, so they're nested under `.root`
  * (`.root .content`, …) to win on specificity rather than load order.
  *
- * The consumer's `style` and the close button's `actionStyles.inverse` still
- * go through Aphrodite (unlayered and `!important`), so they win over this
- * module as they did before. The build wraps every rule in
- * `@layer shared { … }`.
+ * The consumer's `style` still goes through Aphrodite (unlayered and
+ * `!important`), so it wins over this module as it did before. The build
+ * wraps every rule in `@layer shared { … }`.
  */
+
+@import "@khanacademy/wonder-blocks-styles/action-styles.css";
 
 .root {
     /* The scrollable view sits at the edges of the floating element (the
@@ -44,5 +45,19 @@
 
         /* Allows the button to be above the title and/or custom content */
         z-index: 1;
+    }
+
+    /**
+     * `closeButtonLight`: the inverse action styles, for dark backgrounds.
+     *
+     * These used to come from the JS `actionStyles.inverse` (Aphrodite,
+     * unlayered and `!important`), which beat every `IconButton` state rule.
+     * Nested under `.root`, the expanded rules (`.root .closeButtonLight:hover…`,
+     * (0,3,0)+) out-specify IconButton's strongest competing state rules
+     * (`.button:hover`, `.button:where(.tertiary):active`, (0,2,0)), so they
+     * still win without `!important`.
+     */
+    & .closeButtonLight {
+        @apply --wb-action-inverse;
     }
 }

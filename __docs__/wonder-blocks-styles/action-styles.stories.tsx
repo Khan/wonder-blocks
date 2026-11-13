@@ -31,6 +31,22 @@ import Link from "@khanacademy/wonder-blocks-link";
  * **Note:** Using `actionStyles` with a raw HTML element via `addStyle`
  * requires disabling the `@khanacademy/wonder-blocks/no-raw-button` lint rule.
  * This should be rare — prefer WB components whenever possible.
+ *
+ * ### CSS Modules
+ *
+ * The same styles ship as a CSS mixin:
+ *
+ * ```css
+ * @import "@khanacademy/wonder-blocks-styles/action-styles.css";
+ *
+ * .root .myControl {
+ *     @apply --wb-action-inverse;
+ * }
+ * ```
+ *
+ * Unlike the JS export (Aphrodite, `!important`), the mixin's rules don't
+ * automatically beat the component's own state rules. Nest the selector under
+ * a root class so it out-specifies them.
  */
 export default {
     tags: ["!manifest"],
