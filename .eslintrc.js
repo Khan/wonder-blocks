@@ -71,6 +71,30 @@ module.exports = {
                 "@typescript-eslint/no-unused-expressions": "off",
             },
         },
+        {
+            // Published code must declare every package it imports in its
+            // own package.json. Otherwise it only resolves for consumers when
+            // their package manager happens to hoist the missing package.
+            // Tests and stories are excluded because their dependencies are
+            // declared in the root package.json.
+            files: ["packages/*/src/**"],
+            excludedFiles: [
+                "**/__tests__/**",
+                "**/__docs__/**",
+                "**/*.test.*",
+                "**/*.stories.*",
+                "**/*.typestest.*",
+            ],
+            rules: {
+                "import/no-extraneous-dependencies": [
+                    "error",
+                    {
+                        peerDependencies: true,
+                        includeTypes: true,
+                    },
+                ],
+            },
+        },
     ],
     globals: {
         // `no-undef` doesn't support `globalThis`, for details see
