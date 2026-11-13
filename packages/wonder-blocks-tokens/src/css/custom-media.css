@@ -1,0 +1,24 @@
+/**
+ * GENERATED FILE — do not edit by hand.
+ * Source: packages/wonder-blocks-tokens/src/tokens/media-queries.ts
+ * Regenerate: pnpm --filter @khanacademy/wonder-blocks-tokens build:custom-media
+ *
+ * Breakpoint custom media queries for CSS Modules. These are injected into
+ * every CSS file by the root `postcss.config.cjs` and expanded at build
+ * time, so they don't need to be imported:
+ *
+ *     @media (--wb-breakpoint-mediaQuery-mdOrLarger) { … }
+ */
+@custom-media --wb-breakpoint-mediaQuery-xs screen and (max-width: 567px);
+@custom-media --wb-breakpoint-mediaQuery-sm screen and (min-width: 568px) and (max-width: 681px);
+@custom-media --wb-breakpoint-mediaQuery-md screen and (min-width: 682px) and (max-width: 1023px);
+@custom-media --wb-breakpoint-mediaQuery-lg screen and (min-width: 1024px) and (max-width: 1199px);
+@custom-media --wb-breakpoint-mediaQuery-xl screen and (min-width: 1200px);
+@custom-media --wb-breakpoint-mediaQuery-xsOrSmaller screen and (max-width: 567px);
+@custom-media --wb-breakpoint-mediaQuery-smOrSmaller screen and (max-width: 681px);
+@custom-media --wb-breakpoint-mediaQuery-mdOrSmaller screen and (max-width: 1023px);
+@custom-media --wb-breakpoint-mediaQuery-lgOrSmaller screen and (max-width: 1199px);
+@custom-media --wb-breakpoint-mediaQuery-smOrLarger screen and (min-width: 568px);
+@custom-media --wb-breakpoint-mediaQuery-mdOrLarger screen and (min-width: 682px);
+@custom-media --wb-breakpoint-mediaQuery-lgOrLarger screen and (min-width: 1024px);
+@custom-media --wb-breakpoint-mediaQuery-xlOrLarger screen and (min-width: 1200px);
