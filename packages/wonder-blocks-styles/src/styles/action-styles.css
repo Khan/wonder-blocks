@@ -1,0 +1,98 @@
+/*
+ * Cross-package action-style mixins.
+ *
+ * CSS counterpart of the Aphrodite-shaped `actionStyles` JS export, so CSS
+ * Modules authors get the same interactive-control styling without Aphrodite.
+ *
+ * Authors include a mixin via:
+ *
+ *   @import "@khanacademy/wonder-blocks-styles/action-styles.css";
+ *
+ *   .my-control {
+ *       @apply --wb-action-inverse;
+ *   }
+ *
+ * postcss-import resolves the @import through the workspace and
+ * @csstools/postcss-mixins expands the @apply at build time
+ * (CSS Mixins Level 1 syntax — note the leading `--` on the name).
+ *
+ * Precedence: the JS export goes through Aphrodite, so it lands unlayered and
+ * `!important` and beats every rule of the component it's applied to. A mixin
+ * expands into the consumer's selector instead, so its states only win when
+ * that selector out-specifies the component's own state rules (e.g. nest it
+ * under a root marker class).
+ */
+
+/*
+ * The inverse styles for an interactive control, for special cases where the
+ * element sits on a dark background.
+ *
+ * NOTE: This mirrors `actionStyles.inverse`, which is slated to be deprecated
+ * in the future.
+ *
+ * The `&` selectors below have no scoping root at the mixin *definition*
+ * site, but they resolve to the consumer's selector once the mixin is
+ * `@apply`-ed inside a rule. Stylelint can't see that context, so the
+ * `nesting-selector-no-missing-scoping-root` rule is disabled for the block.
+ */
+/* stylelint-disable nesting-selector-no-missing-scoping-root */
+@mixin --wb-action-inverse() {
+    /*
+     * The shared focus ring, to keep the focus state consistent. Keep in sync
+     * with `--wb-focus-visible` in `focus-styles.css`.
+     *
+     * Spelled out rather than `@apply --wb-focus-visible`:
+     * `@csstools/postcss-mixins` doesn't expand a mixin whose body contains an
+     * `@apply` (it expands the inner one and leaves the outer `@apply`
+     * unresolved), so nesting mixins isn't an option.
+     *
+     * Declared first (unlike the JS export, which spreads `focus` after
+     * `:hover`) to satisfy `no-descending-specificity`. That's cascade-neutral:
+     * no other rule in this mixin sets `box-shadow` or `outline*`.
+     */
+    &:focus-visible {
+        box-shadow: 0 0 0 var(--wb-border-width-medium)
+            var(--wb-semanticColor-focus-inner);
+        outline: var(--wb-border-width-medium) solid
+            var(--wb-semanticColor-focus-outer);
+        outline-offset: var(--wb-border-width-medium);
+    }
+
+    /*
+     * Overriding border-color only to preserve the visual integrity of the
+     * control, as there might be some cases where the interactive element
+     * already includes a border.
+     */
+    &:not([aria-disabled="true"]) {
+        border-color: var(--wb-semanticColor-core-border-knockout-default);
+        color: var(--wb-semanticColor-core-foreground-knockout-default);
+    }
+
+    &:hover:not([aria-disabled="true"]) {
+        color: var(--wb-semanticColor-core-foreground-knockout-default);
+
+        /*
+         * Overriding border-color only to preserve the visual integrity of
+         * the control, as there might be some cases where the interactive
+         * element already includes a border.
+         */
+        border-color: var(--wb-semanticColor-core-border-knockout-default);
+    }
+
+    &:active:not([aria-disabled="true"]) {
+        border-radius: var(--wb-border-radius-radius_080);
+
+        /* A slightly darker color than the inverse border color. */
+        border-color: color-mix(
+            in srgb,
+            var(--wb-semanticColor-core-border-neutral-default) 55%,
+            var(--wb-semanticColor-core-border-knockout-default)
+        );
+        background: color-mix(
+            in srgb,
+            var(--wb-semanticColor-core-background-base-default) 5%,
+            transparent
+        );
+    }
+}
+/* stylelint-enable nesting-selector-no-missing-scoping-root */

@@ -9,6 +9,9 @@ const pressColor = `color-mix(in srgb, ${semanticColor.core.border.neutral.defau
  * This is used for special cases where the element is on a dark background.
  *
  * NOTE: This will be deprecated in the future.
+ *
+ * In a CSS Module, use the `--wb-action-inverse` mixin from
+ * `@khanacademy/wonder-blocks-styles/action-styles.css` instead.
  */
 export const inverse = {
     // Overriding borderColor only to preserve the visual integrity of the
