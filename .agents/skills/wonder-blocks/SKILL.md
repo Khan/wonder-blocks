@@ -131,7 +131,7 @@ they scale with the font size. 1rem = 10px
 **`border`** — Always use border tokens instead of hardcoded pixel values.
 
 - Radius: `border.radius.radius_040`, `border.radius.radius_full`, etc. For a
-  fully rounded pill, use `border.radius.radius_240`. `radius_full` is `50%`,
+  fully rounded element, use `border.radius.radius_240`. `radius_full` is `50%`,
   which turns anything wider than it is tall into an ellipse.
 - Width: `border.width.thin`, `border.width.medium`, `border.width.thick`
 
@@ -309,7 +309,7 @@ prop so consumers can pass in the user's reduced motion preference.
   some languages, user-provided labels) needs `overflowWrap` so it wraps instead
   of overflowing its container. Use `"break-word"` by default. Use `"anywhere"`
   when the text is in a flex item that has to shrink below its longest word,
-  such as a pill in a wrapping row: unlike `"break-word"`, it also lowers the
+  such as an option in a wrapping row: unlike `"break-word"`, it also lowers the
   element's minimum width.
 - Built-in strings (accessible names for icon buttons, alt text, screen reader
   announcements) come from `WonderBlocksConfigProvider` in

@@ -151,7 +151,7 @@ containers. For anything visual, check the story in Storybook (see
 
 These all came up in review on `ExclusiveCategoryFilter`; check for them
 before a reviewer does. General styling guidance that came up in the same
-review (typography styles, the pill radius, long words) lives in the
+review (typography styles, the border radius, long words) lives in the
 `wonder-blocks` skill.
 
 - **Long words**: test text without spaces (`longTextWithNoWordBreak`) in a

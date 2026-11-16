@@ -22,7 +22,7 @@ decision.
 ### Dependencies
 
 WB packages the component builds on, and anything it doesn't use on purpose
-(e.g. "doesn't use `Pill`, because …").
+(e.g. "doesn't use `Button`, because …").
 
 ### When to use
 
