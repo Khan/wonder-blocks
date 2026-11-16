@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-tokens
 
+## 18.2.0
+
+### Minor Changes
+
+- 6f254fe: Add `graphicsPalette` tokens: colors that don't change based on the theme, for cases like illustrations. They're exported as CSS variables (e.g. `var(--wb-graphicsPalette-blue_30)`), defined once on `:root` in `styles.css`.
+
 ## 18.1.0
 
 ### Minor Changes
