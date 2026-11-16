@@ -26,10 +26,7 @@ export const minTargetSize = {
         content: "''",
         position: "absolute",
         insetBlockStart: "50%",
-        // Physical `left`, not `insetInlineStart`: `translate()` is always
-        // physical, so in RTL `insetInlineStart` (= `right: 50%`) plus the
-        // leftward shift put the hit area beside the control instead of on it.
-        left: "50%",
+        insetInlineStart: "50%",
         transform: "translate(-50%, -50%)",
         blockSize: "100%",
         inlineSize: "100%",
