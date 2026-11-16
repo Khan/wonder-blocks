@@ -6,6 +6,7 @@ import path from "node:path";
 import themeDefault from "../theme/default";
 import themeThunderblocks from "../theme/thunderblocks";
 import themeSylDark from "../theme/syl-dark";
+import {graphicsPalette} from "../theme/semantic/internal/primitive-color-thunderblocks";
 import {breakpoint} from "../tokens/media-queries";
 import {CSS_VAR_PREFIX} from "../util/constants";
 
@@ -131,6 +132,16 @@ export const groups: ReadonlyArray<Group> = [
                 status: {},
             };
         },
+        includeCssVar: true,
+    },
+    {
+        id: "graphics-palette",
+        title: "References / Tokens Map / Graphics Palette",
+        heading: "Graphics palette tokens map",
+        tokenPrefix: "graphicsPalette",
+        description:
+            "Colors for illustrations and other graphics (e.g. custom assets). For anything else, use `semanticColor`.",
+        tokens: graphicsPalette,
         includeCssVar: true,
     },
     {

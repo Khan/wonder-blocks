@@ -1,4 +1,10 @@
-import {border, font, semanticColor, sizing} from "../../index";
+import {
+    border,
+    font,
+    graphicsPalette,
+    semanticColor,
+    sizing,
+} from "../../index";
 import {tokenValue} from "../token-value";
 
 // The CSS variable name that `semanticColor.core.foreground.instructive.default`
@@ -9,6 +15,7 @@ const INSTRUCTIVE_FOREGROUND_VAR =
 const SIZING_160_VAR = "--wb-sizing-size_160";
 const FONT_FAMILY_SANS_VAR = "--wb-font-family-sans";
 const BORDER_WIDTH_THIN_VAR = "--wb-border-width-thin";
+const GRAPHICS_PALETTE_BLUE_30_VAR = "--wb-graphicsPalette-blue_30";
 
 describe("tokenValue", () => {
     afterEach(() => {
@@ -116,6 +123,20 @@ describe("tokenValue", () => {
 
         // Assert
         expect(result).toBe("1.6rem");
+    });
+
+    it("resolves a graphicsPalette token to its computed value", () => {
+        // Arrange
+        document.documentElement.style.setProperty(
+            GRAPHICS_PALETTE_BLUE_30_VAR,
+            "#5753FA",
+        );
+
+        // Act
+        const result = tokenValue(graphicsPalette.blue_30);
+
+        // Assert
+        expect(result).toBe("#5753FA");
     });
 
     it("resolves a font token to its computed value", () => {
