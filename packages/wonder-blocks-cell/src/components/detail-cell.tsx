@@ -88,7 +88,10 @@ type DetailCellProps = CellProps & {
  * />
  * ```
  */
-const DetailCell = function (props: DetailCellProps): React.ReactElement {
+const DetailCell = React.forwardRef(function DetailCell(
+    props: DetailCellProps,
+    ref: React.ForwardedRef<HTMLElement>,
+): React.ReactElement {
     const {title, subtitle1, subtitle2, ...coreProps} = props;
 
     return (
@@ -98,6 +101,7 @@ const DetailCell = function (props: DetailCellProps): React.ReactElement {
             // innerWrapper. It lives in `cell-core.module.css` so it is
             // emitted after `.wrapper`, which sets the same properties.
             innerStyle={coreStyles.detail}
+            ref={ref}
             contentStyle={{
                 gap: theme.root.layout.gap.detail,
             }}
@@ -116,6 +120,6 @@ const DetailCell = function (props: DetailCellProps): React.ReactElement {
             <Subtitle subtitle={subtitle2} disabled={coreProps.disabled} />
         </CellCore>
     );
-};
+});
 
 export default DetailCell;
