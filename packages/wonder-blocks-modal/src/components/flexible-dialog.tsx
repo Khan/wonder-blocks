@@ -147,10 +147,9 @@ const FlexibleDialog = React.forwardRef(function FlexibleDialog(
         title == null ? null : typeof title === "string" ? (
             <Heading id={headingId}>{title}</Heading>
         ) : (
-            // Augment heading element with ID/testId
+            // Augment heading element with ID
             React.cloneElement(title, {
                 id: headingId,
-                testId: "title-heading-wrapper",
             })
         );
 
