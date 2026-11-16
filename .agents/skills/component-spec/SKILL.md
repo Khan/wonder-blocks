@@ -4,8 +4,7 @@ description: >
   Takes a new Wonder Blocks component (or a large change to one) from a Jira
   ticket and Figma designs to an implementation spec, then to a stack of
   reviewed PRs. Use when the user asks to spec, plan, design the API of, or
-  build a new WB component or package; mentions an implementation spec, the
-  "Writing implementation specs" template, or the Tabs implementation spec; or
+  build a new WB component or package; mentions an implementation spec; or
   asks to turn an approved spec into PRs. Covers research, the spec doc,
   review rounds, the implementation plan, the PR stack and driving it to
   merge. Do NOT trigger for small fixes to an existing component, for writing
@@ -31,20 +30,28 @@ Gather everything before writing. Ask the user for links you can't find.
 - **Designs**: the Figma component page. Get the variants, states (rest,
   hover, press, focus, selected, disabled), sizes, spacing and color
   variables. Map every value to a WB token; list any value with no token.
-- **Template**: the Confluence pages "Writing implementation specs" and
-  "Tabs Implementation Spec" (WB space). Follow their section structure.
+- **Template**: the section outline in
+  [references/spec-template.md](references/spec-template.md).
 - **Prior art**: existing WB components with similar behavior (props, naming,
   keyboard handling), and the matching ARIA APG pattern.
-- **Current usages**: search the frontend repo for the hand-rolled versions
-  this component will replace. These become the migration list, and they show
-  which props consumers actually need. Note any that load data
-  asynchronously, render inside other widgets, or need RTL.
+- **Current usages** (run this in parallel with the steps above): search the
+  frontend and Perseus repos for the hand-rolled versions this component
+  will replace. These become the migration list, and they show which props
+  consumers actually need. Note any that load data asynchronously, render
+  inside other widgets, or have RTL-specific behavior (direction-aware keys
+  or icons). Every component supports RTL; this is about the ones that need
+  more than logical CSS properties.
 
 ## Phase 2: Write the spec
 
 Write it as a Claude Doc (load the docs skill) so reviewers can comment in
-place. Use the section outline in
+place, and so their changes can be made in the same session as the
+implementation. Use the section outline in
 [references/spec-template.md](references/spec-template.md).
+
+Once the spec is approved, move it to the WB space in Confluence, where the
+team keeps its docs, and link it from the ticket. Ask the user where it
+should go. From then on, update the Confluence page.
 
 What makes a spec reviewable:
 
@@ -73,11 +80,14 @@ What makes a spec reviewable:
   because a comment thread is anchored on it, reword the block instead.
 - Fold answers into the spec as they arrive, and keep the open questions
   table current (answered → move the answer into the relevant section).
-- When review changes the API, also update any PRs already open.
+- If review changes the API after Phase 5 has started, also update the open
+  PRs that implement it.
 
 ## Phase 4: Plan the implementation
 
-Add an **Implementation plan** section to the spec:
+Once the first review round has settled the API, usage examples and notes,
+add an **Implementation plan** section to the spec. It gets its own review:
+the plan is the contract the PRs implement.
 
 - **Phase 1, the component**: a PR stack, one reviewable concern per PR.
   The default stack for a new package:
@@ -85,11 +95,17 @@ Add an **Implementation plan** section to the spec:
      `0.0.0`, a minor changeset ("Add new package"), root `package.json` and
      `tsconfig-build.json` wiring, empty `index.ts` export.
   2. **Behavior and semantics**: the component unstyled, with full unit
-     tests (roles, names, ids, keyboard, mouse, edge cases, ref forwarding).
+     tests (roles, names, ids, keyboard, mouse, edge cases, ref forwarding),
+     plus a few functional stories so reviewers can try the keyboard and
+     mouse behavior. These stories show behavior, not visuals, so they set
+     `chromatic: {disableSnapshot: true}`.
   3. **Styles**: tokens, states, and the Chromatic state sheet story
-     (`*-testing-snapshots.stories.tsx`) with RTL.
+     (`*-testing-snapshots.stories.tsx`).
   4. **Docs**: stories, an accessibility `.mdx` page, `argTypes`, a Scenarios
-     snapshot story, and a row in the `wonder-blocks` skill's package table.
+     snapshot story (long text, text without spaces, RTL and other edge
+     cases), and a row in the `wonder-blocks` skill's package table. RTL goes
+     in Scenarios rather than the state sheet, because the state sheet is
+     the story every theme is applied to.
 - **Phase 2, migrations**: one row per usage found in Phase 1, in order,
   each with its own Jira sub-task. Ask the user before creating tickets.
 - **Phase 3, follow-ups**: anything deferred (dev warnings, open design
@@ -110,8 +126,10 @@ code. Follow `CLAUDE.md` for conventions.
 - When a lower PR changes, merge its branch into the next one and push.
   Never rebase or force-push a stacked branch.
 - A new public package can't publish npm snapshots until it exists on npm
-  (trusted publishing). Tell the user after PR 1 opens; they set it up, then
-  re-run the failed snapshot jobs.
+  (trusted publishing). Once the spec confirms the package name, and before
+  PR 1 opens, ask the user to set up and publish the package. It's a manual
+  step done with wonder-stuff. If PR 1 opened first, re-run its failed
+  snapshot jobs after the package is published.
 
 ### Before every push
 
@@ -126,24 +144,21 @@ pnpm exec jest --config config/jest/test.config.js --ci --runInBand \
 ```
 
 `--forceExit` and `--reporters default` avoid Jest hanging on exit in remote
-containers. For anything visual, start Storybook
-(`pnpm exec storybook dev -p 6061 --ci --no-open`) and check the story in a
-browser (Playwright screenshots work), including the docs page, not just the
-single story view.
+containers. For anything visual, check the story in Storybook (see
+`AGENTS.md`), including the docs page, not just the single story view.
 
 ### Lessons from past components
 
 These all came up in review on `ExclusiveCategoryFilter`; check for them
-before a reviewer does.
+before a reviewer does. General styling guidance that came up in the same
+review (typography styles, the pill radius, long words) lives in the
+`wonder-blocks` skill.
 
-- **Typography styles** from `@khanacademy/wonder-blocks-typography`
-  (`styles.BodyTextMediumSemiWeight`) are Aphrodite entries. Put them in the
-  `style` array; spreading them into `StyleSheet.create` emits no CSS.
-- **Full pill radius** is `border.radius.radius_240` (`radius_full` is 50%).
-- **Long words**: add `overflowWrap: "anywhere"` to labels and options, and
-  test text without spaces (`longTextWithNoWordBreak`).
-- **State-dependent borders** shouldn't reflow the row: take the extra
-  border width off the padding instead of growing the element.
+- **Long words**: test text without spaces (`longTextWithNoWordBreak`) in a
+  `Scenarios` story.
+- **State-dependent borders** shouldn't reflow the row. Keep the border
+  width the same in every state and make it transparent where it shouldn't
+  show, or take any extra width off the padding.
 - **Ids**: build element ids from a namespaced segment
   (`${id}-option-${index}`), never from raw consumer values (they can
   collide with other ids or contain spaces), and let items override their id.

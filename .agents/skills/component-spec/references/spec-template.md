@@ -1,8 +1,6 @@
 # Implementation spec outline
 
-Follows the WB Confluence template "Writing implementation specs" and the
-Tabs implementation spec. Keep the headings in this order so reviewers can
-find things across specs.
+Keep the headings in this order so reviewers can find things across specs.
 
 ## Header
 
@@ -42,6 +40,10 @@ Start with one sentence on the semantics it follows (link the APG pattern).
 Table with columns: **Prop**, **Type**, **Description**, **Rationale**.
 Mark required props. Defaults go in the description.
 
+Include the common props from `CLAUDE.md` that apply (`id`, `testId`, `ref`,
+`style` / `styles`, `aria-*`, `labels` for built-in strings) so it's clear
+which ones the component supports.
+
 After the table, list props deliberately left out and why (e.g. "No
 `activationMode`: …").
 
@@ -65,7 +67,8 @@ Numbered examples, each with a sentence of context and a `tsx` block:
 ### Implementation
 
 Bullets on the non-obvious mechanics: state handling, id generation, focus
-management, edge-case behavior, what's left to follow-ups.
+management, edge-case behavior, RTL-specific behavior (arrow-key direction,
+mirrored icons), what's left to follow-ups.
 
 ### Design
 
@@ -82,6 +85,9 @@ management, edge-case behavior, what's left to follow-ups.
 - **Keyboard interactions**: table of key → behavior, including keys that
   deliberately do nothing. Note RTL behavior for arrow keys.
 - **Focus management**: where focus goes on load, on change, after removal.
+- **Announcements**: what the component announces to screen readers itself
+  (built-in strings), and what consumers need to announce (e.g. updated
+  results), with guidance for them.
 - **Contrast**: table of foreground/background pairs per state with ratios,
   and any that need a design decision.
 - **To test**: screen readers and browsers to verify with.
@@ -102,8 +108,7 @@ row with a short resolution.
 
 ### Resources
 
-Links: ticket, Figma, Confluence template, APG pattern, Slack threads,
-related PRs.
+Links: ticket, Figma, APG pattern, Slack threads, related PRs.
 
 ## DACI
 
