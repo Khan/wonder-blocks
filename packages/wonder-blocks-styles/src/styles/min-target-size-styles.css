@@ -49,7 +49,15 @@
         content: "";
         position: absolute;
         inset-block-start: 50%;
-        inset-inline-start: 50%;
+
+        /*
+         * Centered with a *physical* `left`, not `inset-inline-start`:
+         * `translate()` is always physical, so in RTL `inset-inline-start`
+         * (= `right: 50%`) plus the leftward shift put the hit area beside
+         * the control instead of on it.
+         */
+        /* stylelint-disable-next-line csstools/use-logical -- pairs with the physical translate() */
+        left: 50%;
         transform: translate(-50%, -50%);
         block-size: 100%;
         inline-size: 100%;
