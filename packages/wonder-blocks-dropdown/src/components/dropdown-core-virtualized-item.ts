@@ -36,7 +36,7 @@ class DropdownVirtualizedItem extends React.Component<Props> {
         const {data, index, style} = this.props;
         const item = data[index];
 
-        if (SeparatorItem.isClassOf(item.component)) {
+        if (SeparatorItem.isComponentOf(item.component)) {
             // add react-window style to the separator to preserve the correct
             // position
             return React.cloneElement(item.component, {style});

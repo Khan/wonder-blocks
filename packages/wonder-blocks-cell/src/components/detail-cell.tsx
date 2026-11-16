@@ -88,12 +88,16 @@ type DetailCellProps = CellProps & {
  * />
  * ```
  */
-const DetailCell = function (props: DetailCellProps): React.ReactElement {
+const DetailCell = React.forwardRef(function DetailCell(
+    props: DetailCellProps,
+    ref: React.ForwardedRef<HTMLElement>,
+): React.ReactElement {
     const {title, subtitle1, subtitle2, ...coreProps} = props;
 
     return (
         <CellCore
             {...coreProps}
+            ref={ref}
             // This is to override the default padding of the CellCore
             // innerWrapper. It lives in `cell-core.module.css` so it is
             // emitted after `.wrapper`, which sets the same properties.
@@ -116,6 +120,6 @@ const DetailCell = function (props: DetailCellProps): React.ReactElement {
             <Subtitle subtitle={subtitle2} disabled={coreProps.disabled} />
         </CellCore>
     );
-};
+});
 
 export default DetailCell;
