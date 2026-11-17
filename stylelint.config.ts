@@ -128,9 +128,13 @@ const config: Config = {
         // tightens to `error` in Phase 5.
         //
         // Also forbids `graphicsPalette` colors (`var(--wb-graphicsPalette-*)`)
-        // everywhere except the `fill` and `stroke` properties (WB-2501). This
-        // matches the `prefer-semantic-color-over-graphics-palette` ESLint
-        // rule, which allows them only in SVG `fill` and `stroke` attributes.
+        // in every property (WB-2501), with the same message as the
+        // `prefer-semantic-color-over-graphics-palette` ESLint rule. Unlike
+        // that rule, `fill` and `stroke` aren't exempt: the ESLint rule allows
+        // the SVG `fill`/`stroke` attributes, which are set on the artwork's
+        // own elements, but a CSS selector (e.g. `.button svg`) can match any
+        // SVG, and in CSS these properties usually style themed UI such as
+        // icons and separators.
         // `graphicsPalette` colors stay the same in every theme, so UI should
         // use `semanticColor` tokens instead. Keeping a palette color (e.g.
         // for illustrations) needs a disable comment that explains why:
@@ -140,8 +144,8 @@ const config: Config = {
         // message and severity are picked from the value being reported.
         "declaration-property-value-disallowed-list": [
             {
-                "/.*/": ["/var\\([^,)]+,[^)]+\\)/"],
-                "/^(?!(fill|stroke)$)/i": [
+                "/.*/": [
+                    "/var\\([^,)]+,[^)]+\\)/",
                     `/${GRAPHICS_PALETTE_CSS_VAR_PREFIX}/`,
                 ],
             },

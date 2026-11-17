@@ -64,13 +64,14 @@ describe("stylelint config: graphicsPalette CSS variables", () => {
                 "a custom property definition",
                 ":root { --my-color: var(--wb-graphicsPalette-green_30); }",
             ],
+            ["fill", ".a svg { fill: var(--wb-graphicsPalette-gray_30); }"],
             [
-                "an SVG color property other than fill and stroke",
-                ".a { stop-color: var(--wb-graphicsPalette-cyan_30); }",
+                "stroke",
+                ".a path { stroke: var(--wb-graphicsPalette-black_100); }",
             ],
             [
-                "a property that only starts with fill",
-                ".a { fill-opacity: var(--wb-graphicsPalette-gray_30); }",
+                "an SVG color property",
+                ".a { stop-color: var(--wb-graphicsPalette-cyan_30); }",
             ],
             [
                 "a reference in a nested rule",
@@ -120,7 +121,7 @@ describe("stylelint config: graphicsPalette CSS variables", () => {
             const warnings = await lintCss(code);
 
             // Assert
-            expect(warnings.map((warning) => warning.line)).toEqual([2, 4]);
+            expect(warnings.map((warning) => warning.line)).toEqual([2, 3, 4]);
         });
 
         it("reports a line that isn't disabled", async () => {
@@ -141,12 +142,6 @@ describe("stylelint config: graphicsPalette CSS variables", () => {
 
     describe("not reported", () => {
         it.each([
-            ["fill", ".a { fill: var(--wb-graphicsPalette-gray_30); }"],
-            ["stroke", ".a { stroke: var(--wb-graphicsPalette-black_100); }"],
-            [
-                "uppercase FILL",
-                ".a { FILL: var(--wb-graphicsPalette-gray_30); }",
-            ],
             [
                 "a semanticColor variable",
                 ".a { color: var(--wb-semanticColor-core-foreground-neutral-strong); }",
