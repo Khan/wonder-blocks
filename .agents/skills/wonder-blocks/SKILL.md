@@ -29,8 +29,9 @@ If the Figma MCP or WB Storybook MCP is used, use each for its purpose:
 If the WB Storybook MCP is not available, refer to the type definitions for WB components
 to learn more about the API.
 
-> **IMPORTANT:** This skill is required even when similar patterns already exist in the
-> codebase. Do not skip it because you found a nearby file to copy from.
+Follow this guidance even where nearby code does something different: older code in a
+codebase may still use deprecated components or tokens, so don't copy a pattern from a
+nearby file without checking it against this skill.
 
 ---
 

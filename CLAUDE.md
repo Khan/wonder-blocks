@@ -52,7 +52,7 @@ This file provides instructions for Claude when working on the Wonder Blocks des
 
 - Define styles using `StyleSheet.create` from `aphrodite`. Colocate styles with the component
 - Use `addStyle` from `@khanacademy/wonder-blocks-core` to create styled HTML elements
-- Use semantic color tokens from `@khanacademy/wonder-blocks-tokens` (e.g., `semanticColor.core.background.base`)
+- Use semantic color tokens from `@khanacademy/wonder-blocks-tokens` (e.g., `semanticColor.core.background.base.default`)
 - Use the `focusStyles` utility from `@khanacademy/wonder-blocks-styles` for focus indicators
 - **Avoid using primitive `color` tokens**; use `semanticColor` tokens instead
 
@@ -279,7 +279,7 @@ Don't hesitate to bump major or minor versions when appropriate—following semv
 
 # Cross-Platform Rule Synchronization
 
-**CRITICAL: Keep AI assistant rules in sync across platforms.**
+**Keep AI assistant rules in sync across platforms.**
 
 This project maintains rules for multiple AI assistants. When updating this file, also update the corresponding files for other platforms:
 
