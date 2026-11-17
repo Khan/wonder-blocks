@@ -15,6 +15,7 @@ import plus from "@phosphor-icons/core/regular/plus.svg";
 import magnifyingGlass from "@phosphor-icons/core/regular/magnifying-glass.svg";
 import caretRight from "@phosphor-icons/core/regular/caret-right.svg";
 import clock from "@phosphor-icons/core/regular/clock.svg";
+import {ReactRouterAdapter} from "@khanacademy/wonder-blocks-testing-core";
 
 import {View} from "@khanacademy/wonder-blocks-core";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
@@ -757,23 +758,25 @@ export const PreventNavigation: StoryComponentType = {
     render: () => (
         <MemoryRouter>
             <CompatRouter>
-                <View style={styles.row}>
-                    <Button
-                        href="/foo"
-                        style={styles.button}
-                        onClick={(e) => {
-                            e.preventDefault();
-                        }}
-                    >
-                        This button prevents navigation.
-                    </Button>
-                    <Routes>
-                        <Route
-                            path="/foo"
-                            element={<View id="foo">Hello, world!</View>}
-                        />
-                    </Routes>
-                </View>
+                <ReactRouterAdapter>
+                    <View style={styles.row}>
+                        <Button
+                            href="/foo"
+                            style={styles.button}
+                            onClick={(e) => {
+                                e.preventDefault();
+                            }}
+                        >
+                            This button prevents navigation.
+                        </Button>
+                        <Routes>
+                            <Route
+                                path="/foo"
+                                element={<View id="foo">Hello, world!</View>}
+                            />
+                        </Routes>
+                    </View>
+                </ReactRouterAdapter>
             </CompatRouter>
         </MemoryRouter>
     ),
@@ -795,20 +798,22 @@ export const WithRouter: StoryComponentType = {
     render: () => (
         <MemoryRouter>
             <CompatRouter>
-                <View style={styles.row}>
-                    <Button href="/foo" style={styles.button}>
-                        Uses Client-side Nav
-                    </Button>
-                    <Button href="/foo" style={styles.button} skipClientNav>
-                        Avoids Client-side Nav
-                    </Button>
-                    <Routes>
-                        <Route
-                            path="/foo"
-                            element={<View id="foo">Hello, world!</View>}
-                        />
-                    </Routes>
-                </View>
+                <ReactRouterAdapter>
+                    <View style={styles.row}>
+                        <Button href="/foo" style={styles.button}>
+                            Uses Client-side Nav
+                        </Button>
+                        <Button href="/foo" style={styles.button} skipClientNav>
+                            Avoids Client-side Nav
+                        </Button>
+                        <Routes>
+                            <Route
+                                path="/foo"
+                                element={<View id="foo">Hello, world!</View>}
+                            />
+                        </Routes>
+                    </View>
+                </ReactRouterAdapter>
             </CompatRouter>
         </MemoryRouter>
     ),

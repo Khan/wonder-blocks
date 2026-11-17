@@ -11,6 +11,7 @@ import {
 
 import type {LocationDescriptor} from "history";
 import type {RouteObject} from "react-router-dom-v5-compat";
+import {ReactRouterAdapter} from "../react-router-adapter";
 import type {TestHarnessAdapter} from "../types";
 
 type MemoryRouterProps = JSX.LibraryManagedAttributes<
@@ -379,7 +380,9 @@ const HarnessedChildrenContext = React.createContext<React.ReactNode>(null);
  * created only once.
  */
 const ChildrenSlot = (): React.ReactElement => (
-    <>{React.useContext(HarnessedChildrenContext)}</>
+    <ReactRouterAdapter>
+        {React.useContext(HarnessedChildrenContext)}
+    </ReactRouterAdapter>
 );
 
 /**
@@ -525,7 +528,7 @@ export const adapter: TestHarnessAdapter<Config> = (
                         path={config.path}
                         configLocation={config.location}
                     >
-                        {children}
+                        <ReactRouterAdapter>{children}</ReactRouterAdapter>
                     </MaybeWithRoute>
                 </StaticRouter>
             );
@@ -538,7 +541,7 @@ export const adapter: TestHarnessAdapter<Config> = (
                         path={config.path}
                         configLocation={config.location}
                     >
-                        {children}
+                        <ReactRouterAdapter>{children}</ReactRouterAdapter>
                     </MaybeWithRoute>
                 </CompatRouter>
             </StaticRouter>
@@ -560,7 +563,7 @@ export const adapter: TestHarnessAdapter<Config> = (
                         path={config.path}
                         configLocation={config.location}
                     >
-                        {children}
+                        <ReactRouterAdapter>{children}</ReactRouterAdapter>
                     </MaybeWithRoute>
                 </CompatRouter>
             </MemoryRouter>

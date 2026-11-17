@@ -6,6 +6,7 @@ import * as React from "react";
 import {render, screen, fireEvent, waitFor} from "@testing-library/react";
 import {MemoryRouter} from "react-router-dom";
 import {CompatRouter, Route, Routes} from "react-router-dom-v5-compat";
+import {ReactRouterAdapter} from "@khanacademy/wonder-blocks-testing-core";
 import {userEvent} from "@testing-library/user-event";
 import {keys} from "@khanacademy/wonder-blocks-core";
 
@@ -941,30 +942,32 @@ describe("ClickableBehavior", () => {
             render(
                 <MemoryRouter>
                     <CompatRouter>
-                        <div>
-                            <ClickableBehaviorWithRouter
-                                href="/foo"
-                                onClick={(e: any) => {}}
-                                role="checkbox"
-                            >
-                                {(state: any, childrenProps: any) => {
-                                    // The base element here doesn't matter in this testing
-                                    // environment, but the simulated events in the test are in
-                                    // line with what browsers do for this element.
-                                    return (
-                                        <button {...childrenProps}>
-                                            label
-                                        </button>
-                                    );
-                                }}
-                            </ClickableBehaviorWithRouter>
-                            <Routes>
-                                <Route
-                                    path="/foo"
-                                    element={<div>Hello, world!</div>}
-                                />
-                            </Routes>
-                        </div>
+                        <ReactRouterAdapter>
+                            <div>
+                                <ClickableBehaviorWithRouter
+                                    href="/foo"
+                                    onClick={(e: any) => {}}
+                                    role="checkbox"
+                                >
+                                    {(state: any, childrenProps: any) => {
+                                        // The base element here doesn't matter in this testing
+                                        // environment, but the simulated events in the test are in
+                                        // line with what browsers do for this element.
+                                        return (
+                                            <button {...childrenProps}>
+                                                label
+                                            </button>
+                                        );
+                                    }}
+                                </ClickableBehaviorWithRouter>
+                                <Routes>
+                                    <Route
+                                        path="/foo"
+                                        element={<div>Hello, world!</div>}
+                                    />
+                                </Routes>
+                            </div>
+                        </ReactRouterAdapter>
                     </CompatRouter>
                 </MemoryRouter>,
             );
@@ -984,33 +987,35 @@ describe("ClickableBehavior", () => {
                 render(
                     <MemoryRouter>
                         <CompatRouter>
-                            <div>
-                                <ClickableBehaviorWithRouter
-                                    href="/foo"
-                                    onClick={(e: any) => {}}
-                                    role="checkbox"
-                                    beforeNav={() => Promise.resolve()}
-                                >
-                                    {(state: any, childrenProps: any) => {
-                                        // The base element here doesn't matter in this testing
-                                        // environment, but the simulated events in the test are in
-                                        // line with what browsers do for this element.
-                                        return (
-                                            <button {...childrenProps}>
-                                                {state.waiting
-                                                    ? "waiting"
-                                                    : "label"}
-                                            </button>
-                                        );
-                                    }}
-                                </ClickableBehaviorWithRouter>
-                                <Routes>
-                                    <Route
-                                        path="/foo"
-                                        element={<div>Hello, world!</div>}
-                                    />
-                                </Routes>
-                            </div>
+                            <ReactRouterAdapter>
+                                <div>
+                                    <ClickableBehaviorWithRouter
+                                        href="/foo"
+                                        onClick={(e: any) => {}}
+                                        role="checkbox"
+                                        beforeNav={() => Promise.resolve()}
+                                    >
+                                        {(state: any, childrenProps: any) => {
+                                            // The base element here doesn't matter in this testing
+                                            // environment, but the simulated events in the test are in
+                                            // line with what browsers do for this element.
+                                            return (
+                                                <button {...childrenProps}>
+                                                    {state.waiting
+                                                        ? "waiting"
+                                                        : "label"}
+                                                </button>
+                                            );
+                                        }}
+                                    </ClickableBehaviorWithRouter>
+                                    <Routes>
+                                        <Route
+                                            path="/foo"
+                                            element={<div>Hello, world!</div>}
+                                        />
+                                    </Routes>
+                                </div>
+                            </ReactRouterAdapter>
                         </CompatRouter>
                     </MemoryRouter>,
                 );
@@ -1033,33 +1038,35 @@ describe("ClickableBehavior", () => {
                 render(
                     <MemoryRouter>
                         <CompatRouter>
-                            <div>
-                                <ClickableBehaviorWithRouter
-                                    href="/foo"
-                                    onClick={(e: any) => {}}
-                                    role="checkbox"
-                                    beforeNav={() => Promise.resolve()}
-                                >
-                                    {(state: any, childrenProps: any) => {
-                                        // The base element here doesn't matter in this testing
-                                        // environment, but the simulated events in the test are in
-                                        // line with what browsers do for this element.
-                                        return (
-                                            <button {...childrenProps}>
-                                                {state.waiting
-                                                    ? "waiting"
-                                                    : "label"}
-                                            </button>
-                                        );
-                                    }}
-                                </ClickableBehaviorWithRouter>
-                                <Routes>
-                                    <Route
-                                        path="/foo"
-                                        element={<div>Hello, world!</div>}
-                                    />
-                                </Routes>
-                            </div>
+                            <ReactRouterAdapter>
+                                <div>
+                                    <ClickableBehaviorWithRouter
+                                        href="/foo"
+                                        onClick={(e: any) => {}}
+                                        role="checkbox"
+                                        beforeNav={() => Promise.resolve()}
+                                    >
+                                        {(state: any, childrenProps: any) => {
+                                            // The base element here doesn't matter in this testing
+                                            // environment, but the simulated events in the test are in
+                                            // line with what browsers do for this element.
+                                            return (
+                                                <button {...childrenProps}>
+                                                    {state.waiting
+                                                        ? "waiting"
+                                                        : "label"}
+                                                </button>
+                                            );
+                                        }}
+                                    </ClickableBehaviorWithRouter>
+                                    <Routes>
+                                        <Route
+                                            path="/foo"
+                                            element={<div>Hello, world!</div>}
+                                        />
+                                    </Routes>
+                                </div>
+                            </ReactRouterAdapter>
                         </CompatRouter>
                     </MemoryRouter>,
                 );
@@ -1076,31 +1083,33 @@ describe("ClickableBehavior", () => {
                 render(
                     <MemoryRouter>
                         <CompatRouter>
-                            <div>
-                                <ClickableBehaviorWithRouter
-                                    href="/foo"
-                                    onClick={(e: any) => {}}
-                                    role="checkbox"
-                                    beforeNav={() => Promise.reject()}
-                                >
-                                    {(state: any, childrenProps: any) => {
-                                        // The base element here doesn't matter in this testing
-                                        // environment, but the simulated events in the test are in
-                                        // line with what browsers do for this element.
-                                        return (
-                                            <button {...childrenProps}>
-                                                label
-                                            </button>
-                                        );
-                                    }}
-                                </ClickableBehaviorWithRouter>
-                                <Routes>
-                                    <Route
-                                        path="/foo"
-                                        element={<div>Hello, world!</div>}
-                                    />
-                                </Routes>
-                            </div>
+                            <ReactRouterAdapter>
+                                <div>
+                                    <ClickableBehaviorWithRouter
+                                        href="/foo"
+                                        onClick={(e: any) => {}}
+                                        role="checkbox"
+                                        beforeNav={() => Promise.reject()}
+                                    >
+                                        {(state: any, childrenProps: any) => {
+                                            // The base element here doesn't matter in this testing
+                                            // environment, but the simulated events in the test are in
+                                            // line with what browsers do for this element.
+                                            return (
+                                                <button {...childrenProps}>
+                                                    label
+                                                </button>
+                                            );
+                                        }}
+                                    </ClickableBehaviorWithRouter>
+                                    <Routes>
+                                        <Route
+                                            path="/foo"
+                                            element={<div>Hello, world!</div>}
+                                        />
+                                    </Routes>
+                                </div>
+                            </ReactRouterAdapter>
                         </CompatRouter>
                     </MemoryRouter>,
                 );
@@ -1120,34 +1129,36 @@ describe("ClickableBehavior", () => {
                 render(
                     <MemoryRouter>
                         <CompatRouter>
-                            <div>
-                                <ClickableBehaviorWithRouter
-                                    href="/foo"
-                                    onClick={(e: any) => {}}
-                                    role="checkbox"
-                                    beforeNav={() => Promise.resolve()}
-                                    safeWithNav={safeWithNavMock}
-                                >
-                                    {(state: any, childrenProps: any) => {
-                                        // The base element here doesn't matter in this testing
-                                        // environment, but the simulated events in the test are in
-                                        // line with what browsers do for this element.
-                                        return (
-                                            <button {...childrenProps}>
-                                                {state.waiting
-                                                    ? "waiting"
-                                                    : "label"}
-                                            </button>
-                                        );
-                                    }}
-                                </ClickableBehaviorWithRouter>
-                                <Routes>
-                                    <Route
-                                        path="/foo"
-                                        element={<div>Hello, world!</div>}
-                                    />
-                                </Routes>
-                            </div>
+                            <ReactRouterAdapter>
+                                <div>
+                                    <ClickableBehaviorWithRouter
+                                        href="/foo"
+                                        onClick={(e: any) => {}}
+                                        role="checkbox"
+                                        beforeNav={() => Promise.resolve()}
+                                        safeWithNav={safeWithNavMock}
+                                    >
+                                        {(state: any, childrenProps: any) => {
+                                            // The base element here doesn't matter in this testing
+                                            // environment, but the simulated events in the test are in
+                                            // line with what browsers do for this element.
+                                            return (
+                                                <button {...childrenProps}>
+                                                    {state.waiting
+                                                        ? "waiting"
+                                                        : "label"}
+                                                </button>
+                                            );
+                                        }}
+                                    </ClickableBehaviorWithRouter>
+                                    <Routes>
+                                        <Route
+                                            path="/foo"
+                                            element={<div>Hello, world!</div>}
+                                        />
+                                    </Routes>
+                                </div>
+                            </ReactRouterAdapter>
                         </CompatRouter>
                     </MemoryRouter>,
                 );
@@ -1167,31 +1178,33 @@ describe("ClickableBehavior", () => {
             render(
                 <MemoryRouter>
                     <CompatRouter>
-                        <div>
-                            <ClickableBehaviorWithRouter
-                                href="/foo"
-                                onClick={(e: any) => {}}
-                                role="checkbox"
-                                safeWithNav={() => Promise.resolve()}
-                            >
-                                {(state: any, childrenProps: any) => {
-                                    // The base element here doesn't matter in this testing
-                                    // environment, but the simulated events in the test are in
-                                    // line with what browsers do for this element.
-                                    return (
-                                        <button {...childrenProps}>
-                                            label
-                                        </button>
-                                    );
-                                }}
-                            </ClickableBehaviorWithRouter>
-                            <Routes>
-                                <Route
-                                    path="/foo"
-                                    element={<div>Hello, world!</div>}
-                                />
-                            </Routes>
-                        </div>
+                        <ReactRouterAdapter>
+                            <div>
+                                <ClickableBehaviorWithRouter
+                                    href="/foo"
+                                    onClick={(e: any) => {}}
+                                    role="checkbox"
+                                    safeWithNav={() => Promise.resolve()}
+                                >
+                                    {(state: any, childrenProps: any) => {
+                                        // The base element here doesn't matter in this testing
+                                        // environment, but the simulated events in the test are in
+                                        // line with what browsers do for this element.
+                                        return (
+                                            <button {...childrenProps}>
+                                                label
+                                            </button>
+                                        );
+                                    }}
+                                </ClickableBehaviorWithRouter>
+                                <Routes>
+                                    <Route
+                                        path="/foo"
+                                        element={<div>Hello, world!</div>}
+                                    />
+                                </Routes>
+                            </div>
+                        </ReactRouterAdapter>
                     </CompatRouter>
                 </MemoryRouter>,
             );
@@ -1210,30 +1223,32 @@ describe("ClickableBehavior", () => {
             render(
                 <MemoryRouter>
                     <CompatRouter>
-                        <div>
-                            <ClickableBehaviorWithRouter
-                                href="/foo"
-                                onClick={(e: any) => e.preventDefault()}
-                                role="checkbox"
-                            >
-                                {(state: any, childrenProps: any) => {
-                                    // The base element here doesn't matter in this testing
-                                    // environment, but the simulated events in the test are in
-                                    // line with what browsers do for this element.
-                                    return (
-                                        <button {...childrenProps}>
-                                            label
-                                        </button>
-                                    );
-                                }}
-                            </ClickableBehaviorWithRouter>
-                            <Routes>
-                                <Route
-                                    path="/foo"
-                                    element={<div>Hello, world!</div>}
-                                />
-                            </Routes>
-                        </div>
+                        <ReactRouterAdapter>
+                            <div>
+                                <ClickableBehaviorWithRouter
+                                    href="/foo"
+                                    onClick={(e: any) => e.preventDefault()}
+                                    role="checkbox"
+                                >
+                                    {(state: any, childrenProps: any) => {
+                                        // The base element here doesn't matter in this testing
+                                        // environment, but the simulated events in the test are in
+                                        // line with what browsers do for this element.
+                                        return (
+                                            <button {...childrenProps}>
+                                                label
+                                            </button>
+                                        );
+                                    }}
+                                </ClickableBehaviorWithRouter>
+                                <Routes>
+                                    <Route
+                                        path="/foo"
+                                        element={<div>Hello, world!</div>}
+                                    />
+                                </Routes>
+                            </div>
+                        </ReactRouterAdapter>
                     </CompatRouter>
                 </MemoryRouter>,
             );
@@ -1351,23 +1366,25 @@ describe("ClickableBehavior", () => {
             render(
                 <MemoryRouter initialEntries={["/"]}>
                     <CompatRouter>
-                        <ClickableBehavior
-                            disabled={false}
-                            href="https://www.khanacademy.org"
-                            role="link"
-                            target="_blank"
-                        >
-                            {(state: any, childrenProps: any) => {
-                                return (
-                                    <a
-                                        href="https://www.khanacademy.org"
-                                        {...childrenProps}
-                                    >
-                                        Label
-                                    </a>
-                                );
-                            }}
-                        </ClickableBehavior>
+                        <ReactRouterAdapter>
+                            <ClickableBehavior
+                                disabled={false}
+                                href="https://www.khanacademy.org"
+                                role="link"
+                                target="_blank"
+                            >
+                                {(state: any, childrenProps: any) => {
+                                    return (
+                                        <a
+                                            href="https://www.khanacademy.org"
+                                            {...childrenProps}
+                                        >
+                                            Label
+                                        </a>
+                                    );
+                                }}
+                            </ClickableBehavior>
+                        </ReactRouterAdapter>
                     </CompatRouter>
                 </MemoryRouter>,
             );
@@ -1389,24 +1406,26 @@ describe("ClickableBehavior", () => {
             render(
                 <MemoryRouter initialEntries={["/"]}>
                     <CompatRouter>
-                        <ClickableBehavior
-                            disabled={false}
-                            href="https://www.khanacademy.org"
-                            role="link"
-                            target="_blank"
-                            safeWithNav={safeWithNavMock}
-                        >
-                            {(state: any, childrenProps: any) => {
-                                return (
-                                    <a
-                                        href="https://www.khanacademy.org"
-                                        {...childrenProps}
-                                    >
-                                        Label
-                                    </a>
-                                );
-                            }}
-                        </ClickableBehavior>
+                        <ReactRouterAdapter>
+                            <ClickableBehavior
+                                disabled={false}
+                                href="https://www.khanacademy.org"
+                                role="link"
+                                target="_blank"
+                                safeWithNav={safeWithNavMock}
+                            >
+                                {(state: any, childrenProps: any) => {
+                                    return (
+                                        <a
+                                            href="https://www.khanacademy.org"
+                                            {...childrenProps}
+                                        >
+                                            Label
+                                        </a>
+                                    );
+                                }}
+                            </ClickableBehavior>
+                        </ReactRouterAdapter>
                     </CompatRouter>
                 </MemoryRouter>,
             );
@@ -1428,24 +1447,26 @@ describe("ClickableBehavior", () => {
             render(
                 <MemoryRouter initialEntries={["/"]}>
                     <CompatRouter>
-                        <ClickableBehavior
-                            disabled={false}
-                            href="https://www.khanacademy.org"
-                            role="link"
-                            target="_blank"
-                            safeWithNav={safeWithNavMock}
-                        >
-                            {(state: any, childrenProps: any) => {
-                                return (
-                                    <a
-                                        href="https://www.khanacademy.org"
-                                        {...childrenProps}
-                                    >
-                                        Label
-                                    </a>
-                                );
-                            }}
-                        </ClickableBehavior>
+                        <ReactRouterAdapter>
+                            <ClickableBehavior
+                                disabled={false}
+                                href="https://www.khanacademy.org"
+                                role="link"
+                                target="_blank"
+                                safeWithNav={safeWithNavMock}
+                            >
+                                {(state: any, childrenProps: any) => {
+                                    return (
+                                        <a
+                                            href="https://www.khanacademy.org"
+                                            {...childrenProps}
+                                        >
+                                            Label
+                                        </a>
+                                    );
+                                }}
+                            </ClickableBehavior>
+                        </ReactRouterAdapter>
                     </CompatRouter>
                 </MemoryRouter>,
             );

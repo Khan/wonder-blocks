@@ -1,6 +1,6 @@
 import * as React from "react";
+import type {RouterConfig} from "@khanacademy/wonder-blocks-config";
 import {keys} from "@khanacademy/wonder-blocks-core";
-import {NavigateFunction} from "react-router-dom-v5-compat";
 
 // NOTE: Potentially add to this as more cases come up.
 export type ClickableRole =
@@ -141,7 +141,7 @@ interface CommonProps extends ExposedEventHandlers {
      * Passed in by an HOC in get-clickable-behavior.tsx.
      * @ignore
      */
-    navigate?: NavigateFunction;
+    navigate?: RouterConfig["navigate"];
     /**
      * A role that encapsulates how the clickable component should behave, which
      * affects which keyboard actions trigger the component. For example, a
@@ -155,12 +155,12 @@ interface CommonProps extends ExposedEventHandlers {
      * Transition) for this navigation by wrapping the final state update in
      * `document.startViewTransition()`.
      *
-     * @see https://reactrouter.com/6.30.0/components/link#viewtransition
+     * Only has an effect if the app's router supports it.
      */
     viewTransition?: boolean;
     /**
-     * Adds persistent client side routing state to the next location.
-     * See https://reactrouter.com/api/components/Link#state
+     * Adds persistent client side routing state to the next location, if the
+     * app's router supports it.
      */
     state?: unknown;
 }
@@ -328,16 +328,12 @@ const startState: ClickableState = {
  * Components](https://medium.com/merrickchristensen/function-as-child-components-5f3920a9ace9).
  *
  * **WARNING:** Do not use this component directly, use getClickableBehavior
- * instead. getClickableBehavior takes three arguments (href, directtNav, and
- * router) and returns either the default ClickableBehavior or a react-router
- * aware version.
+ * instead. getClickableBehavior takes three arguments (href, skipClientNav,
+ * and inRouterContext) and returns either the default ClickableBehavior or a
+ * router aware version.
  *
- * The react-router aware version is returned if `router` is a react-router-dom
- * router, `skipClientNav` is not `true`, and `href` is an internal URL.
- *
- * The `router` can be accessed via __RouterContext (imported from
-   'react-router') from a component rendered as a descendant of a BrowserRouter.
-   See https://reacttraining.com/react-router/web/guides/basic-components.
+ * The router aware version is returned if the app supplies a router,
+ * `skipClientNav` is not `true`, and `href` is an internal URL.
  */
 export default class ClickableBehavior extends React.Component<
     Props,
@@ -385,9 +381,6 @@ export default class ClickableBehavior extends React.Component<
                     window.open(href, "_blank");
                     this.setState({waiting: false});
                 } else if (navigate && !skipClientNav) {
-                    // viewTransition needs to be set for enabling the
-                    // View Transition API.
-                    // @see https://remix.run/docs/en/main/hooks/use-navigate#options
                     navigate(href, {
                         viewTransition: this.props.viewTransition,
                         state: this.props.state,

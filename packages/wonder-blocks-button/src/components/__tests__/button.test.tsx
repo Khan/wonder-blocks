@@ -2,6 +2,7 @@ import * as React from "react";
 import Plus from "@phosphor-icons/core/regular/plus.svg";
 import {MemoryRouter} from "react-router-dom";
 import {CompatRouter, Route, Routes} from "react-router-dom-v5-compat";
+import {ReactRouterAdapter} from "@khanacademy/wonder-blocks-testing-core";
 import {render, screen, waitFor} from "@testing-library/react";
 import {userEvent} from "@testing-library/user-event";
 
@@ -91,15 +92,17 @@ describe("Button", () => {
         render(
             <MemoryRouter>
                 <CompatRouter>
-                    <div>
-                        <Button href="/foo">Click me!</Button>
-                        <Routes>
-                            <Route
-                                path="/foo"
-                                element={<div id="foo">Hello, world!</div>}
-                            />
-                        </Routes>
-                    </div>
+                    <ReactRouterAdapter>
+                        <div>
+                            <Button href="/foo">Click me!</Button>
+                            <Routes>
+                                <Route
+                                    path="/foo"
+                                    element={<div id="foo">Hello, world!</div>}
+                                />
+                            </Routes>
+                        </div>
+                    </ReactRouterAdapter>
                 </CompatRouter>
             </MemoryRouter>,
         );
@@ -180,17 +183,22 @@ describe("Button", () => {
         render(
             <MemoryRouter>
                 <CompatRouter>
-                    <div>
-                        <Button href="/foo" beforeNav={() => Promise.reject()}>
-                            Click me!
-                        </Button>
-                        <Routes>
-                            <Route
-                                path="/foo"
-                                element={<div id="foo">Hello, world!</div>}
-                            />
-                        </Routes>
-                    </div>
+                    <ReactRouterAdapter>
+                        <div>
+                            <Button
+                                href="/foo"
+                                beforeNav={() => Promise.reject()}
+                            >
+                                Click me!
+                            </Button>
+                            <Routes>
+                                <Route
+                                    path="/foo"
+                                    element={<div id="foo">Hello, world!</div>}
+                                />
+                            </Routes>
+                        </div>
+                    </ReactRouterAdapter>
                 </CompatRouter>
             </MemoryRouter>,
         );
@@ -209,21 +217,23 @@ describe("Button", () => {
         render(
             <MemoryRouter>
                 <CompatRouter>
-                    <div>
-                        <Button
-                            href="/foo"
-                            beforeNav={() => Promise.reject()}
-                            safeWithNav={safeWithNavMock}
-                        >
-                            Click me!
-                        </Button>
-                        <Routes>
-                            <Route
-                                path="/foo"
-                                element={<div id="foo">Hello, world!</div>}
-                            />
-                        </Routes>
-                    </div>
+                    <ReactRouterAdapter>
+                        <div>
+                            <Button
+                                href="/foo"
+                                beforeNav={() => Promise.reject()}
+                                safeWithNav={safeWithNavMock}
+                            >
+                                Click me!
+                            </Button>
+                            <Routes>
+                                <Route
+                                    path="/foo"
+                                    element={<div id="foo">Hello, world!</div>}
+                                />
+                            </Routes>
+                        </div>
+                    </ReactRouterAdapter>
                 </CompatRouter>
             </MemoryRouter>,
         );
@@ -241,17 +251,22 @@ describe("Button", () => {
         render(
             <MemoryRouter>
                 <CompatRouter>
-                    <div>
-                        <Button href="/foo" beforeNav={() => Promise.resolve()}>
-                            Click me!
-                        </Button>
-                        <Routes>
-                            <Route
-                                path="/foo"
-                                element={<div id="foo">Hello, world!</div>}
-                            />
-                        </Routes>
-                    </div>
+                    <ReactRouterAdapter>
+                        <div>
+                            <Button
+                                href="/foo"
+                                beforeNav={() => Promise.resolve()}
+                            >
+                                Click me!
+                            </Button>
+                            <Routes>
+                                <Route
+                                    path="/foo"
+                                    element={<div id="foo">Hello, world!</div>}
+                                />
+                            </Routes>
+                        </div>
+                    </ReactRouterAdapter>
                 </CompatRouter>
             </MemoryRouter>,
         );
@@ -273,21 +288,23 @@ describe("Button", () => {
         render(
             <MemoryRouter>
                 <CompatRouter>
-                    <div>
-                        <Button
-                            href="/foo"
-                            beforeNav={() => Promise.resolve()}
-                            safeWithNav={safeWithNavMock}
-                        >
-                            Click me!
-                        </Button>
-                        <Routes>
-                            <Route
-                                path="/foo"
-                                element={<div id="foo">Hello, world!</div>}
-                            />
-                        </Routes>
-                    </div>
+                    <ReactRouterAdapter>
+                        <div>
+                            <Button
+                                href="/foo"
+                                beforeNav={() => Promise.resolve()}
+                                safeWithNav={safeWithNavMock}
+                            >
+                                Click me!
+                            </Button>
+                            <Routes>
+                                <Route
+                                    path="/foo"
+                                    element={<div id="foo">Hello, world!</div>}
+                                />
+                            </Routes>
+                        </div>
+                    </ReactRouterAdapter>
                 </CompatRouter>
             </MemoryRouter>,
         );
@@ -309,17 +326,22 @@ describe("Button", () => {
         render(
             <MemoryRouter>
                 <CompatRouter>
-                    <div>
-                        <Button href="/foo" beforeNav={() => Promise.resolve()}>
-                            Click me!
-                        </Button>
-                        <Routes>
-                            <Route
-                                path="/foo"
-                                element={<div id="foo">Hello, world!</div>}
-                            />
-                        </Routes>
-                    </div>
+                    <ReactRouterAdapter>
+                        <div>
+                            <Button
+                                href="/foo"
+                                beforeNav={() => Promise.resolve()}
+                            >
+                                Click me!
+                            </Button>
+                            <Routes>
+                                <Route
+                                    path="/foo"
+                                    element={<div id="foo">Hello, world!</div>}
+                                />
+                            </Routes>
+                        </div>
+                    </ReactRouterAdapter>
                 </CompatRouter>
             </MemoryRouter>,
         );
@@ -339,21 +361,23 @@ describe("Button", () => {
         render(
             <MemoryRouter>
                 <CompatRouter>
-                    <div>
-                        <Button
-                            href="/foo"
-                            safeWithNav={() => Promise.resolve()}
-                            skipClientNav={true}
-                        >
-                            Click me!
-                        </Button>
-                        <Routes>
-                            <Route
-                                path="/foo"
-                                element={<div id="foo">Hello, world!</div>}
-                            />
-                        </Routes>
-                    </div>
+                    <ReactRouterAdapter>
+                        <div>
+                            <Button
+                                href="/foo"
+                                safeWithNav={() => Promise.resolve()}
+                                skipClientNav={true}
+                            >
+                                Click me!
+                            </Button>
+                            <Routes>
+                                <Route
+                                    path="/foo"
+                                    element={<div id="foo">Hello, world!</div>}
+                                />
+                            </Routes>
+                        </div>
+                    </ReactRouterAdapter>
                 </CompatRouter>
             </MemoryRouter>,
         );
@@ -373,21 +397,23 @@ describe("Button", () => {
         render(
             <MemoryRouter>
                 <CompatRouter>
-                    <div>
-                        <Button
-                            href="/foo"
-                            safeWithNav={() => Promise.resolve()}
-                            skipClientNav={true}
-                        >
-                            Click me!
-                        </Button>
-                        <Routes>
-                            <Route
-                                path="/foo"
-                                element={<div id="foo">Hello, world!</div>}
-                            />
-                        </Routes>
-                    </div>
+                    <ReactRouterAdapter>
+                        <div>
+                            <Button
+                                href="/foo"
+                                safeWithNav={() => Promise.resolve()}
+                                skipClientNav={true}
+                            >
+                                Click me!
+                            </Button>
+                            <Routes>
+                                <Route
+                                    path="/foo"
+                                    element={<div id="foo">Hello, world!</div>}
+                                />
+                            </Routes>
+                        </div>
+                    </ReactRouterAdapter>
                 </CompatRouter>
             </MemoryRouter>,
         );
@@ -406,22 +432,24 @@ describe("Button", () => {
         render(
             <MemoryRouter>
                 <CompatRouter>
-                    <div>
-                        <Button
-                            href="/foo"
-                            beforeNav={() => Promise.resolve()}
-                            safeWithNav={() => Promise.resolve()}
-                            skipClientNav={true}
-                        >
-                            Click me!
-                        </Button>
-                        <Routes>
-                            <Route
-                                path="/foo"
-                                element={<div id="foo">Hello, world!</div>}
-                            />
-                        </Routes>
-                    </div>
+                    <ReactRouterAdapter>
+                        <div>
+                            <Button
+                                href="/foo"
+                                beforeNav={() => Promise.resolve()}
+                                safeWithNav={() => Promise.resolve()}
+                                skipClientNav={true}
+                            >
+                                Click me!
+                            </Button>
+                            <Routes>
+                                <Route
+                                    path="/foo"
+                                    element={<div id="foo">Hello, world!</div>}
+                                />
+                            </Routes>
+                        </div>
+                    </ReactRouterAdapter>
                 </CompatRouter>
             </MemoryRouter>,
         );
@@ -442,21 +470,23 @@ describe("Button", () => {
         render(
             <MemoryRouter>
                 <CompatRouter>
-                    <div>
-                        <Button
-                            href="/foo"
-                            safeWithNav={() => Promise.reject()}
-                            skipClientNav={true}
-                        >
-                            Click me!
-                        </Button>
-                        <Routes>
-                            <Route
-                                path="/foo"
-                                element={<div id="foo">Hello, world!</div>}
-                            />
-                        </Routes>
-                    </div>
+                    <ReactRouterAdapter>
+                        <div>
+                            <Button
+                                href="/foo"
+                                safeWithNav={() => Promise.reject()}
+                                skipClientNav={true}
+                            >
+                                Click me!
+                            </Button>
+                            <Routes>
+                                <Route
+                                    path="/foo"
+                                    element={<div id="foo">Hello, world!</div>}
+                                />
+                            </Routes>
+                        </div>
+                    </ReactRouterAdapter>
                 </CompatRouter>
             </MemoryRouter>,
         );
@@ -476,19 +506,21 @@ describe("Button", () => {
         render(
             <MemoryRouter>
                 <CompatRouter>
-                    <Button
-                        href="/foo"
-                        safeWithNav={safeWithNavMock}
-                        skipClientNav={false}
-                    >
-                        Click me!
-                    </Button>
-                    <Routes>
-                        <Route
-                            path="/foo"
-                            element={<div id="foo">Hello, world!</div>}
-                        />
-                    </Routes>
+                    <ReactRouterAdapter>
+                        <Button
+                            href="/foo"
+                            safeWithNav={safeWithNavMock}
+                            skipClientNav={false}
+                        >
+                            Click me!
+                        </Button>
+                        <Routes>
+                            <Route
+                                path="/foo"
+                                element={<div id="foo">Hello, world!</div>}
+                            />
+                        </Routes>
+                    </ReactRouterAdapter>
                 </CompatRouter>
             </MemoryRouter>,
         );
@@ -509,22 +541,24 @@ describe("Button", () => {
         render(
             <MemoryRouter>
                 <CompatRouter>
-                    <div>
-                        <Button
-                            href="/foo"
-                            beforeNav={() => Promise.resolve()}
-                            safeWithNav={safeWithNavMock}
-                            skipClientNav={false}
-                        >
-                            Click me!
-                        </Button>
-                        <Routes>
-                            <Route
-                                path="/foo"
-                                element={<div id="foo">Hello, world!</div>}
-                            />
-                        </Routes>
-                    </div>
+                    <ReactRouterAdapter>
+                        <div>
+                            <Button
+                                href="/foo"
+                                beforeNav={() => Promise.resolve()}
+                                safeWithNav={safeWithNavMock}
+                                skipClientNav={false}
+                            >
+                                Click me!
+                            </Button>
+                            <Routes>
+                                <Route
+                                    path="/foo"
+                                    element={<div id="foo">Hello, world!</div>}
+                                />
+                            </Routes>
+                        </div>
+                    </ReactRouterAdapter>
                 </CompatRouter>
             </MemoryRouter>,
         );
@@ -547,15 +581,19 @@ describe("Button", () => {
             render(
                 <MemoryRouter>
                     <CompatRouter>
-                        <div>
-                            <Button href="/foo">Click me!</Button>
-                            <Routes>
-                                <Route
-                                    path="/foo"
-                                    element={<div id="foo">Hello, world!</div>}
-                                />
-                            </Routes>
-                        </div>
+                        <ReactRouterAdapter>
+                            <div>
+                                <Button href="/foo">Click me!</Button>
+                                <Routes>
+                                    <Route
+                                        path="/foo"
+                                        element={
+                                            <div id="foo">Hello, world!</div>
+                                        }
+                                    />
+                                </Routes>
+                            </div>
+                        </ReactRouterAdapter>
                     </CompatRouter>
                 </MemoryRouter>,
             );
@@ -575,15 +613,19 @@ describe("Button", () => {
             render(
                 <MemoryRouter>
                     <CompatRouter>
-                        <div>
-                            <Button href="/foo">Click me!</Button>
-                            <Routes>
-                                <Route
-                                    path="/foo"
-                                    element={<div id="foo">Hello, world!</div>}
-                                />
-                            </Routes>
-                        </div>
+                        <ReactRouterAdapter>
+                            <div>
+                                <Button href="/foo">Click me!</Button>
+                                <Routes>
+                                    <Route
+                                        path="/foo"
+                                        element={
+                                            <div id="foo">Hello, world!</div>
+                                        }
+                                    />
+                                </Routes>
+                            </div>
+                        </ReactRouterAdapter>
                     </CompatRouter>
                 </MemoryRouter>,
             );
@@ -603,20 +645,24 @@ describe("Button", () => {
             render(
                 <MemoryRouter>
                     <CompatRouter>
-                        <div>
-                            <Button
-                                href="/foo"
-                                beforeNav={() => Promise.reject()}
-                            >
-                                Click me!
-                            </Button>
-                            <Routes>
-                                <Route
-                                    path="/foo"
-                                    element={<div id="foo">Hello, world!</div>}
-                                />
-                            </Routes>
-                        </div>
+                        <ReactRouterAdapter>
+                            <div>
+                                <Button
+                                    href="/foo"
+                                    beforeNav={() => Promise.reject()}
+                                >
+                                    Click me!
+                                </Button>
+                                <Routes>
+                                    <Route
+                                        path="/foo"
+                                        element={
+                                            <div id="foo">Hello, world!</div>
+                                        }
+                                    />
+                                </Routes>
+                            </div>
+                        </ReactRouterAdapter>
                     </CompatRouter>
                 </MemoryRouter>,
             );
@@ -634,20 +680,24 @@ describe("Button", () => {
             render(
                 <MemoryRouter>
                     <CompatRouter>
-                        <div>
-                            <Button
-                                href="/foo"
-                                beforeNav={() => Promise.resolve()}
-                            >
-                                Click me!
-                            </Button>
-                            <Routes>
-                                <Route
-                                    path="/foo"
-                                    element={<div id="foo">Hello, world!</div>}
-                                />
-                            </Routes>
-                        </div>
+                        <ReactRouterAdapter>
+                            <div>
+                                <Button
+                                    href="/foo"
+                                    beforeNav={() => Promise.resolve()}
+                                >
+                                    Click me!
+                                </Button>
+                                <Routes>
+                                    <Route
+                                        path="/foo"
+                                        element={
+                                            <div id="foo">Hello, world!</div>
+                                        }
+                                    />
+                                </Routes>
+                            </div>
+                        </ReactRouterAdapter>
                     </CompatRouter>
                 </MemoryRouter>,
             );
@@ -670,21 +720,25 @@ describe("Button", () => {
             render(
                 <MemoryRouter>
                     <CompatRouter>
-                        <div>
-                            <Button
-                                href="/foo"
-                                safeWithNav={() => Promise.resolve()}
-                                skipClientNav={true}
-                            >
-                                Click me!
-                            </Button>
-                            <Routes>
-                                <Route
-                                    path="/foo"
-                                    element={<div id="foo">Hello, world!</div>}
-                                />
-                            </Routes>
-                        </div>
+                        <ReactRouterAdapter>
+                            <div>
+                                <Button
+                                    href="/foo"
+                                    safeWithNav={() => Promise.resolve()}
+                                    skipClientNav={true}
+                                >
+                                    Click me!
+                                </Button>
+                                <Routes>
+                                    <Route
+                                        path="/foo"
+                                        element={
+                                            <div id="foo">Hello, world!</div>
+                                        }
+                                    />
+                                </Routes>
+                            </div>
+                        </ReactRouterAdapter>
                     </CompatRouter>
                 </MemoryRouter>,
             );
@@ -703,21 +757,25 @@ describe("Button", () => {
             render(
                 <MemoryRouter>
                     <CompatRouter>
-                        <div>
-                            <Button
-                                href="/foo"
-                                safeWithNav={() => Promise.reject()}
-                                skipClientNav={true}
-                            >
-                                Click me!
-                            </Button>
-                            <Routes>
-                                <Route
-                                    path="/foo"
-                                    element={<div id="foo">Hello, world!</div>}
-                                />
-                            </Routes>
-                        </div>
+                        <ReactRouterAdapter>
+                            <div>
+                                <Button
+                                    href="/foo"
+                                    safeWithNav={() => Promise.reject()}
+                                    skipClientNav={true}
+                                >
+                                    Click me!
+                                </Button>
+                                <Routes>
+                                    <Route
+                                        path="/foo"
+                                        element={
+                                            <div id="foo">Hello, world!</div>
+                                        }
+                                    />
+                                </Routes>
+                            </div>
+                        </ReactRouterAdapter>
                     </CompatRouter>
                 </MemoryRouter>,
             );
@@ -739,21 +797,25 @@ describe("Button", () => {
             render(
                 <MemoryRouter>
                     <CompatRouter>
-                        <div>
-                            <Button
-                                href="/foo"
-                                safeWithNav={safeWithNavMock}
-                                skipClientNav={false}
-                            >
-                                Click me!
-                            </Button>
-                            <Routes>
-                                <Route
-                                    path="/foo"
-                                    element={<div id="foo">Hello, world!</div>}
-                                />
-                            </Routes>
-                        </div>
+                        <ReactRouterAdapter>
+                            <div>
+                                <Button
+                                    href="/foo"
+                                    safeWithNav={safeWithNavMock}
+                                    skipClientNav={false}
+                                >
+                                    Click me!
+                                </Button>
+                                <Routes>
+                                    <Route
+                                        path="/foo"
+                                        element={
+                                            <div id="foo">Hello, world!</div>
+                                        }
+                                    />
+                                </Routes>
+                            </div>
+                        </ReactRouterAdapter>
                     </CompatRouter>
                 </MemoryRouter>,
             );

@@ -11,6 +11,7 @@ import {
     useViewTransitionState,
 } from "react-router-dom-v5-compat";
 import type {Meta, StoryObj} from "@storybook/react-vite";
+import {ReactRouterAdapter} from "@khanacademy/wonder-blocks-testing-core";
 
 import {View} from "@khanacademy/wonder-blocks-core";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
@@ -353,50 +354,52 @@ export const Navigation: StoryComponentType = {
     render: () => (
         <MemoryRouter>
             <CompatRouter>
-                <View>
-                    <View style={styles.row}>
-                        <Link
-                            href="/foo"
-                            style={styles.heading}
-                            onClick={() => {
-                                // eslint-disable-next-line no-console
-                                console.log("I'm still on the same page!");
-                            }}
-                        >
-                            <BodyText weight="bold">
-                                Uses Client-side Nav
-                            </BodyText>
-                        </Link>
-                        <Link
-                            href="/iframe.html?id=link--default&viewMode=story"
-                            style={styles.heading}
-                            skipClientNav
-                        >
-                            <BodyText weight="bold">
-                                Avoids Client-side Nav
-                            </BodyText>
-                        </Link>
+                <ReactRouterAdapter>
+                    <View>
+                        <View style={styles.row}>
+                            <Link
+                                href="/foo"
+                                style={styles.heading}
+                                onClick={() => {
+                                    // eslint-disable-next-line no-console
+                                    console.log("I'm still on the same page!");
+                                }}
+                            >
+                                <BodyText weight="bold">
+                                    Uses Client-side Nav
+                                </BodyText>
+                            </Link>
+                            <Link
+                                href="/iframe.html?id=link--default&viewMode=story"
+                                style={styles.heading}
+                                skipClientNav
+                            >
+                                <BodyText weight="bold">
+                                    Avoids Client-side Nav
+                                </BodyText>
+                            </Link>
+                        </View>
+                        <View style={styles.navigation}>
+                            <Routes>
+                                <Route
+                                    path="/foo"
+                                    element={
+                                        <View id="foo">
+                                            The first link does client-side
+                                            navigation here.
+                                        </View>
+                                    }
+                                />
+                                <Route
+                                    path="*"
+                                    element={
+                                        <View>See navigation changes here</View>
+                                    }
+                                />
+                            </Routes>
+                        </View>
                     </View>
-                    <View style={styles.navigation}>
-                        <Routes>
-                            <Route
-                                path="/foo"
-                                element={
-                                    <View id="foo">
-                                        The first link does client-side
-                                        navigation here.
-                                    </View>
-                                }
-                            />
-                            <Route
-                                path="*"
-                                element={
-                                    <View>See navigation changes here</View>
-                                }
-                            />
-                        </Routes>
-                    </View>
-                </View>
+                </ReactRouterAdapter>
             </CompatRouter>
         </MemoryRouter>
     ),
@@ -588,11 +591,13 @@ export const WithState: StoryComponentType = {
     render: () => (
         <MemoryRouter>
             <CompatRouter>
-                <View>
-                    <Link href="/foo" state={{from: "wonder-blocks-link"}}>
-                        Link with state
-                    </Link>
-                </View>
+                <ReactRouterAdapter>
+                    <View>
+                        <Link href="/foo" state={{from: "wonder-blocks-link"}}>
+                            Link with state
+                        </Link>
+                    </View>
+                </ReactRouterAdapter>
             </CompatRouter>
         </MemoryRouter>
     ),

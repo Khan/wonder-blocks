@@ -1,27 +1,26 @@
 /**
- * Returns either the default ClickableBehavior or a react-router aware version.
+ * Returns either the default ClickableBehavior or a router aware version.
  *
- * The react-router aware version is returned if `router` is a react-router-dom
- * router, `skipClientNav` is not `true`, and `href` is an internal URL.
+ * The router aware version is returned if the app supplies a router,
+ * `skipClientNav` is not `true`, and `href` is an internal URL.
  *
- * The `router` can be accessed via __RouterContext (imported from 'react-router')
- * from a component rendered as a descendant of a BrowserRouter.
- * See https://reacttraining.com/react-router/web/guides/basic-components.
+ * The app supplies a router with `WonderBlocksRouterProvider`.
  */
 import * as React from "react";
-import {useNavigate} from "react-router-dom-v5-compat";
+
+import {useWonderBlocksRouter} from "@khanacademy/wonder-blocks-config";
 
 import ClickableBehavior from "../components/clickable-behavior";
 import {isClientSideUrl} from "./is-client-side-url";
 
-// Create a wrapper component that uses useNavigate
+// Create a wrapper component that gets `navigate` from the app's router
 function withRouter(Component: typeof ClickableBehavior) {
     function WithRouterWrapper(
         props: Omit<React.ComponentProps<typeof ClickableBehavior>, "navigate">,
     ) {
-        const navigate = useNavigate();
+        const router = useWonderBlocksRouter();
         // @ts-expect-error Ignoring the type mismatch
-        return <Component {...props} navigate={navigate} />;
+        return <Component {...props} navigate={router?.navigate} />;
     }
     WithRouterWrapper.displayName = "withRouter(ClickableBehavior)";
     return WithRouterWrapper;
@@ -35,11 +34,11 @@ export default function getClickableBehavior(
      */
     href?: string,
     /**
-     * Should we skip using the react router and go to the page directly.
+     * Should we skip the app's router and go to the page directly.
      */
     skipClientNav?: boolean,
     /**
-     * Whether we're in a react-router context.
+     * Whether the app supplies a router.
      */
     inRouterContext?: boolean,
 ): typeof ClickableBehavior {

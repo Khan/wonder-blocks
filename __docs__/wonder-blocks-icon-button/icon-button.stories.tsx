@@ -13,6 +13,7 @@ import info from "@phosphor-icons/core/regular/info.svg";
 import magnifyingGlass from "@phosphor-icons/core/regular/magnifying-glass.svg";
 import magnifyingGlassBold from "@phosphor-icons/core/bold/magnifying-glass-bold.svg";
 import minusCircle from "@phosphor-icons/core/regular/minus-circle.svg";
+import {ReactRouterAdapter} from "@khanacademy/wonder-blocks-testing-core";
 
 import {View} from "@khanacademy/wonder-blocks-core";
 import {BodyText} from "@khanacademy/wonder-blocks-typography";
@@ -314,28 +315,30 @@ export const WithRouter: StoryComponentType = {
     render: () => (
         <MemoryRouter>
             <CompatRouter>
-                <View style={styles.row}>
-                    <IconButton
-                        href="/foo"
-                        icon={caretRight}
-                        onClick={() => console.log("Click!")}
-                        aria-label="Navigate to /foo using React Router"
-                    />
-                    <IconButton
-                        href="https://www.khanacademy.org"
-                        target="_blank"
-                        icon={externalLinkIcon}
-                        onClick={() => console.log("Click!")}
-                        aria-label="Skip client navigation"
-                        skipClientNav
-                    />
-                    <Routes>
-                        <Route
-                            path="/foo"
-                            element={<View id="foo">Hello, world!</View>}
+                <ReactRouterAdapter>
+                    <View style={styles.row}>
+                        <IconButton
+                            href="/foo"
+                            icon={caretRight}
+                            onClick={() => console.log("Click!")}
+                            aria-label="Navigate to /foo using React Router"
                         />
-                    </Routes>
-                </View>
+                        <IconButton
+                            href="https://www.khanacademy.org"
+                            target="_blank"
+                            icon={externalLinkIcon}
+                            onClick={() => console.log("Click!")}
+                            aria-label="Skip client navigation"
+                            skipClientNav
+                        />
+                        <Routes>
+                            <Route
+                                path="/foo"
+                                element={<View id="foo">Hello, world!</View>}
+                            />
+                        </Routes>
+                    </View>
+                </ReactRouterAdapter>
             </CompatRouter>
         </MemoryRouter>
     ),

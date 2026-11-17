@@ -3,8 +3,8 @@
 // wraps addStyle("button") as its underlying DOM primitive.
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
-import {Link, useInRouterContext} from "react-router-dom-v5-compat";
 
+import {useWonderBlocksRouter} from "@khanacademy/wonder-blocks-config";
 import {addStyle} from "@khanacademy/wonder-blocks-core";
 import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
 import {border, semanticColor} from "@khanacademy/wonder-blocks-tokens";
@@ -33,7 +33,7 @@ type CommonProps =
         children: (clickableState: ClickableState) => React.ReactNode;
         /**
          * Optional href which Clickable should direct to, uses client-side routing
-         * by default if react-router is present
+         * by default if the app supplies a router
          */
         href?: string;
         /**
@@ -165,7 +165,6 @@ type Props =
 
 const StyledA = addStyle("a");
 const StyledButton = addStyle("button");
-const StyledLink = addStyle(Link);
 
 /**
  * A component to turn any custom component into a clickable one.
@@ -179,8 +178,8 @@ const StyledLink = addStyle(Link);
  * - Handle mouse / touch / keyboard events
  * - Match the standard behavior of the given role
  * - Apply custom styles based on pressed / focused / hovered state
- * - Perform Client Side Navigation when href is passed and the component is a
- *   descendent of a react-router Router.
+ * - Perform Client Side Navigation when href is passed and the app supplies a
+ *   router with `WonderBlocksRouterProvider`.
  *
  * ### Usage
  *
@@ -203,47 +202,31 @@ const StyledLink = addStyle(Link);
 
 const Clickable = React.forwardRef(function Clickable(
     props: Props,
-    ref: React.ForwardedRef<
-        typeof Link | HTMLAnchorElement | HTMLButtonElement
-    >,
+    ref: React.ForwardedRef<HTMLAnchorElement | HTMLButtonElement>,
 ) {
     const getCorrectTag: (
         clickableState: ClickableState,
-        inRouterContext: boolean,
         commonProps: {
             [key: string]: any;
         },
-    ) => React.ReactElement = (
-        clickableState,
-        inRouterContext,
-        commonProps,
-    ) => {
+    ) => React.ReactElement = (clickableState, commonProps) => {
         const activeHref = props.href && !props.disabled;
         const useClient =
-            inRouterContext &&
+            router != null &&
             !props.skipClientNav &&
             isClientSideUrl(props.href || "");
 
         // NOTE: checking this.props.href here is redundant, but TypeScript
         // needs it to refine this.props.href to a string.
-        if (activeHref && useClient && props.href) {
-            return (
-                <StyledLink
-                    {...commonProps}
-                    to={props.href}
-                    role={props.role}
-                    target={props.target || undefined}
-                    aria-disabled={props.disabled ? "true" : "false"}
-                    ref={ref as React.Ref<typeof Link>}
-                >
-                    {props.children(clickableState)}
-                </StyledLink>
-            );
-        } else if (activeHref && !useClient) {
+        if (activeHref && props.href) {
             return (
                 <StyledA
                     {...commonProps}
-                    href={props.href}
+                    href={
+                        useClient
+                            ? (router.resolveHref?.(props.href) ?? props.href)
+                            : props.href
+                    }
                     role={props.role}
                     target={props.target || undefined}
                     aria-disabled={props.disabled ? "true" : "false"}
@@ -266,7 +249,7 @@ const Clickable = React.forwardRef(function Clickable(
         }
     };
 
-    const inRouterContext = useInRouterContext();
+    const router = useWonderBlocksRouter();
     const {
         href,
         onClick,
@@ -293,7 +276,7 @@ const Clickable = React.forwardRef(function Clickable(
     const ClickableBehavior = getClickableBehavior(
         href,
         skipClientNav,
-        inRouterContext,
+        router != null,
     );
 
     const getStyle = (state: ClickableState): StyleType => [
@@ -325,7 +308,7 @@ const Clickable = React.forwardRef(function Clickable(
         return (
             <ClickableBehavior {...sharedProps} beforeNav={beforeNav}>
                 {(state, childrenProps) =>
-                    getCorrectTag(state, inRouterContext, {
+                    getCorrectTag(state, {
                         ...restProps,
                         "data-testid": testId,
                         style: getStyle(state),
@@ -338,7 +321,7 @@ const Clickable = React.forwardRef(function Clickable(
         return (
             <ClickableBehavior {...sharedProps} target={target}>
                 {(state, childrenProps) =>
-                    getCorrectTag(state, inRouterContext, {
+                    getCorrectTag(state, {
                         ...restProps,
                         "data-testid": testId,
                         style: getStyle(state),

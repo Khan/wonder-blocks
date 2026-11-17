@@ -29,6 +29,7 @@ export {makeHookHarness} from "./harness/make-hook-harness";
 export {makeTestHarness} from "./harness/make-test-harness";
 export {hookHarness} from "./harness/hook-harness";
 export {testHarness} from "./harness/test-harness";
+export {ReactRouterAdapter} from "./harness/react-router-adapter";
 
 // React testing utilities
 export {renderHookStatic} from "./render-hook-static";
