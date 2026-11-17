@@ -15,6 +15,23 @@ import type {Config} from "stylelint";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
+// The prefix of the CSS variables that `graphicsPalette` tokens resolve to,
+// e.g. `var(--wb-graphicsPalette-blue_30)`. Keep this the only place the
+// prefix is spelled out so that a rename is a one-line change.
+const GRAPHICS_PALETTE_CSS_VAR_PREFIX = "--wb-graphicsPalette-";
+
+const isGraphicsPaletteValue = (value: string): boolean =>
+    value.includes(GRAPHICS_PALETTE_CSS_VAR_PREFIX);
+
+// Same message as the `prefer-semantic-color-over-graphics-palette` ESLint
+// rule in `@khanacademy/eslint-plugin-wonder-blocks`, so the policy reads the
+// same in JS and CSS.
+const GRAPHICS_PALETTE_MESSAGE =
+    "`graphicsPalette` colors stay the same in every theme. Prefer a `semanticColor` token, which adapts to the current theme. If this color must stay the same in every theme (e.g. illustrations), disable this rule with a comment explaining why.";
+
+const VAR_FALLBACK_MESSAGE =
+    "Avoid var() fallbacks — reference --wb-* tokens directly so typos are caught by csstools/value-no-unknown-custom-properties.";
+
 const config: Config = {
     extends: ["stylelint-config-standard", "stylelint-config-css-modules"],
     ignoreFiles: ["**/dist/**", "**/node_modules/**"],
@@ -109,12 +126,32 @@ const config: Config = {
         // fallback form forces every custom-property reference to be
         // validated against the token set above. WARN during the migration;
         // tightens to `error` in Phase 5.
+        //
+        // Also forbids `graphicsPalette` colors (`var(--wb-graphicsPalette-*)`)
+        // everywhere except the `fill` and `stroke` properties (WB-2501). This
+        // matches the `prefer-semantic-color-over-graphics-palette` ESLint
+        // rule, which allows them only in SVG `fill` and `stroke` attributes.
+        // `graphicsPalette` colors stay the same in every theme, so UI should
+        // use `semanticColor` tokens instead. Keeping a palette color (e.g.
+        // for illustrations) needs a disable comment that explains why:
+        // `/* stylelint-disable-next-line declaration-property-value-disallowed-list -- <reason> */`.
+        // This is an ERROR now, while the fallback check stays a WARN. Both
+        // checks share this rule (a rule can only be configured once), so the
+        // message and severity are picked from the value being reported.
         "declaration-property-value-disallowed-list": [
-            {"/.*/": ["/var\\([^,)]+,[^)]+\\)/"]},
             {
-                message:
-                    "Avoid var() fallbacks — reference --wb-* tokens directly so typos are caught by csstools/value-no-unknown-custom-properties.",
-                severity: "warning",
+                "/.*/": ["/var\\([^,)]+,[^)]+\\)/"],
+                "/^(?!(fill|stroke)$)/i": [
+                    `/${GRAPHICS_PALETTE_CSS_VAR_PREFIX}/`,
+                ],
+            },
+            {
+                message: (_property: string, value: string) =>
+                    isGraphicsPaletteValue(value)
+                        ? GRAPHICS_PALETTE_MESSAGE
+                        : VAR_FALLBACK_MESSAGE,
+                severity: (_property: string, value: string) =>
+                    isGraphicsPaletteValue(value) ? "error" : "warning",
             },
         ],
 
