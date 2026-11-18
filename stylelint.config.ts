@@ -18,6 +18,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 // The prefix of the CSS variables that `graphicsPalette` tokens resolve to,
 // e.g. `var(--wb-graphicsPalette-blue_30)`. Keep this the only place the
 // prefix is spelled out so that a rename is a one-line change.
+// eslint-disable-next-line @khanacademy/wonder-blocks/prefer-semantic-color-over-graphics-palette -- This is the prefix the stylelint rule looks for
 const GRAPHICS_PALETTE_CSS_VAR_PREFIX = "--wb-graphicsPalette-";
 
 const isGraphicsPaletteValue = (value: string): boolean =>
