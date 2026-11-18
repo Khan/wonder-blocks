@@ -723,9 +723,9 @@ import {semanticColor} from "@khanacademy/wonder-blocks-tokens";
 | \`semanticColor.input.error.border\` | \`--wb-semanticColor-input-error-border\` | \`#d92916\` | \`#E22D2D\` | \`#E22D2D\` |
 | \`semanticColor.input.error.background\` | \`--wb-semanticColor-input-error-background\` | \`#fceeec\` | \`#FFFFFF\` | \`#252531\` |
 | \`semanticColor.input.error.foreground\` | \`--wb-semanticColor-input-error-foreground\` | \`#21242c\` | \`#151521\` | \`#EDEDEE\` |
-| \`semanticColor.input.readOnly.background\` | \`--wb-semanticColor-input-readOnly-background\` | \`#ffffff\` | \`#EDEDEE\` | \`#4A4C53\` |
-| \`semanticColor.input.readOnly.text\` | \`--wb-semanticColor-input-readOnly-text\` | \`#21242c\` | \`#4A4C53\` | \`#EDEDEE\` |
-| \`semanticColor.input.readOnly.icon\` | \`--wb-semanticColor-input-readOnly-icon\` | \`transparent\` | \`#717279\` | \`#A0A1A4\` |
+| \`semanticColor.input.readOnly.background\` | \`--wb-semanticColor-input-readOnly-background\` | \`#ededee\` | \`#EDEDEE\` | \`#4A4C53\` |
+| \`semanticColor.input.readOnly.text\` | \`--wb-semanticColor-input-readOnly-text\` | \`#5f6167\` | \`#4A4C53\` | \`#EDEDEE\` |
+| \`semanticColor.input.readOnly.icon\` | \`--wb-semanticColor-input-readOnly-icon\` | \`#717378\` | \`#717279\` | \`#A0A1A4\` |
 | \`semanticColor.focus.outer\` | \`--wb-semanticColor-focus-outer\` | \`#1865f2\` | \`#5753FA\` | \`#5753FA\` |
 | \`semanticColor.focus.inner\` | \`--wb-semanticColor-focus-inner\` | \`#ffffff\` | \`#FFFFFF\` | \`#FFFFFF\` |
 | \`semanticColor.link.rest\` | \`--wb-semanticColor-link-rest\` | \`#1865f2\` | \`#5753FA\` | \`#6C82FF\` |

@@ -966,9 +966,9 @@ export const semanticColor = {
             foreground: core.foreground.neutral.strong,
         },
         readOnly: {
-            background: core.background.base.default,
-            text: core.foreground.neutral.strong,
-            icon: core.transparent,
+            background: core.background.disabled.default,
+            text: core.foreground.neutral.default,
+            icon: core.foreground.neutral.subtle,
         },
     },
     /**
