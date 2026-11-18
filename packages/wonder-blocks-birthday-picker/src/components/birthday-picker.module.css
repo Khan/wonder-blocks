@@ -58,7 +58,7 @@
     }
 
     /* breakpoint.mediaQuery.xsOrSmaller (max-width: breakpoint.width.xsMax) */
-    @media (--wb-breakpoint-xsOrSmaller) {
+    @media (--wb-breakpoint-mediaQuery-xsOrSmaller) {
         &.wrapper {
             flex-direction: column !important;
         }

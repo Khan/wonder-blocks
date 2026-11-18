@@ -10,7 +10,7 @@
 //                                 modules don't need to `@import` them.
 //   3. @csstools/postcss-mixins — expand @define-mixin / @mixin before any
 //                                 downstream transform sees them.
-//   4. postcss-custom-media     — expand `@media (--wb-breakpoint-…)` to the
+//   4. postcss-custom-media     — expand `@media (--wb-breakpoint-mediaQuery-…)` to the
 //                                 plain `min-width` / `max-width` query. Must
 //                                 run before wrap-in-layer moves the
 //                                 definitions into `@layer shared`.

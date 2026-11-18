@@ -103,11 +103,11 @@ const config: Config = {
             },
         ],
 
-        // Breakpoints: `@media (--wb-breakpoint-*)` must name a
+        // Breakpoints: `@media (--wb-breakpoint-mediaQuery-*)` must name a
         // custom media query generated from `breakpoint.mediaQuery` in the
         // tokens package (expanded at build time by `postcss-custom-media`,
         // see `postcss.config.cjs`). Catches typos like
-        // `--wb-breakpoint-mdOrLargr`, which would otherwise be
+        // `--wb-breakpoint-mediaQuery-mdOrLargr`, which would otherwise be
         // left in the output as a query that never matches. `known` (not
         // `always-known`) so one-off, non-token queries such as
         // `prefers-reduced-motion` stay allowed.

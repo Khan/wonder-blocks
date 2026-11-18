@@ -69,7 +69,7 @@ type Row = {label: string; css: string; value: string};
  * support `@custom-media` natively yet:
  *
  * ```css
- * @media (--wb-breakpoint-sm) {
+ * @media (--wb-breakpoint-mediaQuery-sm) {
  *     .root {
  *         flex-direction: column;
  *     }
@@ -88,7 +88,7 @@ export const BreakpointMediaQueries = () => (
             {
                 label: "CSS Custom Media",
                 cell: (row: Row) => (
-                    <Code>{`--wb-breakpoint-${row.label}`}</Code>
+                    <Code>{`--wb-breakpoint-mediaQuery-${row.label}`}</Code>
                 ),
             },
             {

@@ -2,7 +2,7 @@
 /**
  * Generate `src/css/custom-media.css`: one `@custom-media` definition per
  * `breakpoint.mediaQuery` entry, so CSS Modules can use the same breakpoints
- * as Aphrodite (`@media (--wb-breakpoint-mdOrLarger) { … }`).
+ * as Aphrodite (`@media (--wb-breakpoint-mediaQuery-mdOrLarger) { … }`).
  *
  * The file is published as `@khanacademy/wonder-blocks-tokens/custom-media.css`
  * so consumers' own CSS can use the same breakpoints.
@@ -19,8 +19,8 @@
  */
 import fs from "fs";
 import path from "path";
+import {generateTokens} from "../internal/generate-tokens";
 import {breakpoint} from "../tokens/media-queries";
-import {CSS_VAR_PREFIX} from "../util/constants";
 
 export const CUSTOM_MEDIA_FILE = path.resolve(
     __dirname,
@@ -40,10 +40,17 @@ export function toMediaQueryList(mediaQuery: string): string {
 
 /**
  * The custom media name for a `breakpoint.mediaQuery` key, e.g.
- * `mdOrLarger` → `--wb-breakpoint-mdOrLarger`.
+ * `mdOrLarger` → `--wb-breakpoint-mediaQuery-mdOrLarger`.
+ *
+ * Built with `generateTokens`, the same helper that names the `--wb-*` CSS
+ * variables, so the token path maps to the name the same way
+ * (`breakpoint.mediaQuery.mdOrLarger` → `--wb-breakpoint-mediaQuery-mdOrLarger`).
  */
 export function toCustomMediaName(name: string): string {
-    return `${CSS_VAR_PREFIX}breakpoint-${name}`;
+    const [customMediaName] = Object.keys(
+        generateTokens({breakpoint: {mediaQuery: {[name]: ""}}}),
+    );
+    return customMediaName;
 }
 
 /**
@@ -65,7 +72,7 @@ export function generateCustomMedia(
         " *",
         " * Breakpoint custom media queries (CSS Media Queries Level 5). Use them as:",
         " *",
-        " *     @media (--wb-breakpoint-mdOrLarger) { … }",
+        " *     @media (--wb-breakpoint-mediaQuery-mdOrLarger) { … }",
         " *",
         " * Browsers don't support `@custom-media` natively yet, so these must be",
         " * expanded at build time with `postcss-custom-media`. Make the definitions",

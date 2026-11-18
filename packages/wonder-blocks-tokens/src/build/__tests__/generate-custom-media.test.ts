@@ -21,7 +21,7 @@ describe("toMediaQueryList", () => {
 });
 
 describe("toCustomMediaName", () => {
-    it("should prefix the breakpoint name with --wb-breakpoint-", () => {
+    it("should follow the CSS variable naming of the token path", () => {
         // Arrange
         const input = "mdOrLarger";
 
@@ -29,7 +29,7 @@ describe("toCustomMediaName", () => {
         const result = toCustomMediaName(input);
 
         // Assert
-        expect(result).toBe("--wb-breakpoint-mdOrLarger");
+        expect(result).toBe("--wb-breakpoint-mediaQuery-mdOrLarger");
     });
 });
 
@@ -45,7 +45,7 @@ describe("generateCustomMedia", () => {
 
         // Assert
         expect(result).toContain(
-            "@custom-media --wb-breakpoint-mdOrLarger screen and (min-width: 682px);",
+            "@custom-media --wb-breakpoint-mediaQuery-mdOrLarger screen and (min-width: 682px);",
         );
     });
 
