@@ -30,8 +30,8 @@
         min-block-size: 100vh;
 
         /* Use common widths for mininum/maximum */
-        min-inline-size: 567px; /* breakpoint.width.xsMax */
-        max-inline-size: 681px; /* breakpoint.width.smMax */
+        min-inline-size: var(--wb-breakpoint-width-xsMax);
+        max-inline-size: var(--wb-breakpoint-width-smMax);
         inline-size: 100%;
     }
 
