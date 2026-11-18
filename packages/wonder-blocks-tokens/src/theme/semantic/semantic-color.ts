@@ -966,9 +966,12 @@ export const semanticColor = {
             foreground: core.foreground.neutral.strong,
         },
         readOnly: {
-            background: core.background.base.default,
+            background: core.background.disabled.default,
+            // Use a darker text color than Thunderblocks so readonly values
+            // stay distinct from placeholder and disabled text, which use
+            // `core.foreground.neutral.default` in the default theme.
             text: core.foreground.neutral.strong,
-            icon: core.transparent,
+            icon: core.foreground.neutral.subtle,
         },
     },
     /**
