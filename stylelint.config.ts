@@ -15,9 +15,14 @@ import type {Config} from "stylelint";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
-// The prefix of the CSS variables that `graphicsPalette` tokens resolve to,
-// e.g. `var(--wb-graphicsPalette-blue_30)`. Keep this the only place the
-// prefix is spelled out so that a rename is a one-line change.
+// `graphicsPalette` colors (e.g. `var(--wb-graphicsPalette-blue_30)`) stay the
+// same in every theme, so they're reported in every property (WB-2501); UI
+// should use `semanticColor` tokens. To keep one (e.g. for an illustration),
+// disable `declaration-property-value-disallowed-list` with a reason. Unlike the
+// `prefer-semantic-color-over-graphics-palette` ESLint rule, `fill` and `stroke`
+// aren't exempt: in CSS, a selector can match any SVG, including themed UI.
+// Keep this the only place the prefix is spelled out so that a rename is a
+// one-line change.
 // eslint-disable-next-line @khanacademy/wonder-blocks/prefer-semantic-color-over-graphics-palette -- This is the prefix the stylelint rule looks for
 const GRAPHICS_PALETTE_CSS_VAR_PREFIX = "--wb-graphicsPalette-";
 
@@ -128,21 +133,9 @@ const config: Config = {
         // validated against the token set above. WARN during the migration;
         // tightens to `error` in Phase 5.
         //
-        // Also forbids `graphicsPalette` colors (`var(--wb-graphicsPalette-*)`)
-        // in every property (WB-2501), with the same message as the
-        // `prefer-semantic-color-over-graphics-palette` ESLint rule. Unlike
-        // that rule, `fill` and `stroke` aren't exempt: the ESLint rule allows
-        // the SVG `fill`/`stroke` attributes, which are set on the artwork's
-        // own elements, but a CSS selector (e.g. `.button svg`) can match any
-        // SVG, and in CSS these properties usually style themed UI such as
-        // icons and separators.
-        // `graphicsPalette` colors stay the same in every theme, so UI should
-        // use `semanticColor` tokens instead. Keeping a palette color (e.g.
-        // for illustrations) needs a disable comment that explains why:
-        // `/* stylelint-disable-next-line declaration-property-value-disallowed-list -- <reason> */`.
-        // This is an ERROR now, while the fallback check stays a WARN. Both
-        // checks share this rule (a rule can only be configured once), so the
-        // message and severity are picked from the value being reported.
+        // Also forbids `graphicsPalette` colors; see
+        // `GRAPHICS_PALETTE_CSS_VAR_PREFIX`. A rule can only be configured
+        // once, so the message is picked from the value being reported.
         "declaration-property-value-disallowed-list": [
             {
                 "/.*/": [
@@ -155,8 +148,7 @@ const config: Config = {
                     isGraphicsPaletteValue(value)
                         ? GRAPHICS_PALETTE_MESSAGE
                         : VAR_FALLBACK_MESSAGE,
-                severity: (_property: string, value: string) =>
-                    isGraphicsPaletteValue(value) ? "error" : "warning",
+                severity: "warning",
             },
         ],
 

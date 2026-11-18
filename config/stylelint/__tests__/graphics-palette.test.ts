@@ -98,7 +98,7 @@ describe("stylelint config: graphicsPalette CSS variables", () => {
             expect(warning.text).toBe(GRAPHICS_PALETTE_MESSAGE);
         });
 
-        it("reports as an error", async () => {
+        it("reports as a warning", async () => {
             // Arrange
             const code = ".a { color: var(--wb-graphicsPalette-blue_30); }";
 
@@ -106,7 +106,7 @@ describe("stylelint config: graphicsPalette CSS variables", () => {
             const [warning] = await lintCss(code);
 
             // Assert
-            expect(warning.severity).toBe("error");
+            expect(warning.severity).toBe("warning");
         });
 
         it("reports each declaration that uses the palette", async () => {
