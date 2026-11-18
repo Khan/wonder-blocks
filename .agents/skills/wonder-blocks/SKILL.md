@@ -130,7 +130,9 @@ they scale with the font size. 1rem = 10px
 
 **`border`** — Always use border tokens instead of hardcoded pixel values.
 
-- Radius: `border.radius.radius_040`, `border.radius.radius_full`, etc.
+- Radius: `border.radius.radius_040`, `border.radius.radius_full`, etc. For a
+  fully rounded element, use `border.radius.radius_240`. `radius_full` is `50%`,
+  which turns anything wider than it is tall into an ellipse.
 - Width: `border.width.thin`, `border.width.medium`, `border.width.thick`
 
 ```ts
@@ -188,6 +190,24 @@ import {Heading, BodyText} from "@khanacademy/wonder-blocks-typography";
 <Heading size="small" tag="h3">Profile</Heading>
 <BodyText>Description text</BodyText>
 <BodyText size="small" tag="span">Inline note</BodyText>
+```
+
+When an element that isn't `Heading` or `BodyText` needs a type style (a
+button-like label, for example), use the `styles` export from
+`@khanacademy/wonder-blocks-typography` (e.g. `styles.BodyTextMediumSemiWeight`).
+These are Aphrodite style entries: put them in the `style` array. Spreading one
+into `StyleSheet.create` emits no CSS.
+
+```tsx
+import {styles as typographyStyles} from "@khanacademy/wonder-blocks-typography";
+
+// ✅ correct
+<StyledButton style={[typographyStyles.BodyTextMediumSemiWeight, styles.option]} />
+
+// ❌ avoid: produces no font styles
+const styles = StyleSheet.create({
+    option: {...typographyStyles.BodyTextMediumSemiWeight},
+});
 ```
 
 ## Icons
@@ -285,6 +305,12 @@ prop so consumers can pass in the user's reduced motion preference.
   | `maxHeight` / `minHeight` | `maxBlockSize` / `minBlockSize` |
   | `width` / `height` (when directional) | `inlineSize` / `blockSize` |
 
+- Text that can contain long words without spaces (URLs, long compound words in
+  some languages, user-provided labels) needs `overflowWrap` so it wraps instead
+  of overflowing its container. Use `"break-word"` by default. Use `"anywhere"`
+  when the text is in a flex item that has to shrink below its longest word,
+  such as an option in a wrapping row: unlike `"break-word"`, it also lowers the
+  element's minimum width.
 - Built-in strings (accessible names for icon buttons, alt text, screen reader
   announcements) come from `WonderBlocksConfigProvider` in
   `@khanacademy/wonder-blocks-config`. The consuming app renders the provider

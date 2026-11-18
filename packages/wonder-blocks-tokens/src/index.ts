@@ -13,6 +13,8 @@ import {mix, fade, pxToRem, remToPx, tokenValue} from "./util";
 
 import {mapValuesToCssVars} from "./internal/map-values-to-css-vars";
 
+import graphicsPalette from "./tokens/graphics-palette";
+
 // theme
 import theme from "./tokens/theme";
 
@@ -40,6 +42,10 @@ export {
      * Semantic tokens.
      */
     semanticColor,
+    /**
+     * The graphics palette that stays the same across themes.
+     */
+    graphicsPalette,
     /**
      * Utility functions for working with colors.
      */
