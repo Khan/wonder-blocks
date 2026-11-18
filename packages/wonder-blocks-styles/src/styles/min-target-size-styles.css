@@ -40,7 +40,7 @@
  *
  * See `action-styles.css` for why the nesting-selector rule is disabled.
  */
-/* stylelint-disable nesting-selector-no-missing-scoping-root */
+/* stylelint-disable nesting-selector-no-missing-scoping-root -- the `&` selectors only resolve once the mixin is `@apply`-ed inside the consumer's rule, which stylelint can't see at the definition site */
 @mixin --wb-min-target-size() {
     /* Establishes the containing block for the ::before hit area below. */
     position: relative;

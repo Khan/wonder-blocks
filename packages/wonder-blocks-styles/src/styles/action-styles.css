@@ -35,7 +35,7 @@
  * `@apply`-ed inside a rule. Stylelint can't see that context, so the
  * `nesting-selector-no-missing-scoping-root` rule is disabled for the block.
  */
-/* stylelint-disable nesting-selector-no-missing-scoping-root */
+/* stylelint-disable nesting-selector-no-missing-scoping-root -- the `&` selectors only resolve once the mixin is `@apply`-ed inside the consumer's rule, which stylelint can't see at the definition site */
 @mixin --wb-action-inverse() {
     /*
      * The shared focus ring, to keep the focus state consistent. Keep in sync
