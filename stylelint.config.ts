@@ -16,13 +16,11 @@ import type {Config} from "stylelint";
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 // `graphicsPalette` colors (e.g. `var(--wb-graphicsPalette-blue_30)`) stay the
-// same in every theme, so they're reported in every property (WB-2501); UI
-// should use `semanticColor` tokens. To keep one (e.g. for an illustration),
-// disable `declaration-property-value-disallowed-list` with a reason. Unlike the
+// same in every theme, so they're reported in every property; UI should use
+// `semanticColor` tokens. To keep one (e.g. for an illustration), disable
+// `declaration-property-value-disallowed-list` with a reason. Unlike the
 // `prefer-semantic-color-over-graphics-palette` ESLint rule, `fill` and `stroke`
 // aren't exempt: in CSS, a selector can match any SVG, including themed UI.
-// Keep this the only place the prefix is spelled out so that a rename is a
-// one-line change.
 // eslint-disable-next-line @khanacademy/wonder-blocks/prefer-semantic-color-over-graphics-palette -- This is the prefix the stylelint rule looks for
 const GRAPHICS_PALETTE_CSS_VAR_PREFIX = "--wb-graphicsPalette-";
 
