@@ -57,9 +57,8 @@
         color: var(--wb-semanticColor-core-foreground-critical-default);
     }
 
-    /* [WB-1655] Update with media query tokens */
-    /* stylelint-disable-next-line media-feature-range-notation -- range syntax (`width <= 520px`) needs Safari 16.4+; older browsers would drop the whole block. */
-    @media (max-width: 520px) {
+    /* breakpoint.mediaQuery.xsOrSmaller (max-width: breakpoint.width.xsMax) */
+    @media (--wb-breakpoint-xsOrSmaller) {
         &.wrapper {
             flex-direction: column !important;
         }
