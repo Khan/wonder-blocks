@@ -108,6 +108,12 @@ export type CellProps = {
      */
     "aria-checked"?: AriaProps["aria-checked"];
     /**
+     * Used to indicate the cell opens a popup, e.g. "dialog" for a cell that
+     * opens a modal. Only applies to pressable cells (with `href` or
+     * `onClick`).
+     */
+    "aria-haspopup"?: AriaProps["aria-haspopup"];
+    /**
      * Optinal href which Cell should direct to, uses client-side routing
      * by default if react-router is present.
      */

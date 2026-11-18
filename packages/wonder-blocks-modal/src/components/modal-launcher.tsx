@@ -1,6 +1,5 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
-import {StyleSheet} from "aphrodite";
 
 import {
     withActionScheduler,
@@ -15,6 +14,7 @@ import ModalBackdrop from "./modal-backdrop";
 import ScrollDisabler from "./scroll-disabler";
 import type {ModalElement} from "../util/types";
 import ModalContext from "./modal-context";
+import styles from "./modal-launcher.module.css";
 
 type Props = Readonly<{
     /**
@@ -222,7 +222,7 @@ const ModalLauncher = (props: Props): React.ReactElement | null => {
                 ReactDOM.createPortal(
                     /* We need the container View that FocusTrap creates to be at the
                        correct z-index so that it'll be above the global nav in webapp. */
-                    <FocusTrap style={styles.container}>
+                    <FocusTrap style={[styles.root, styles.container]}>
                         <ModalBackdrop
                             initialFocusId={initialFocusId}
                             testId={testId}
@@ -281,16 +281,5 @@ const ModalLauncherKeypressListener = ({
 
     return null;
 };
-
-const styles = StyleSheet.create({
-    container: {
-        // This z-index is copied from the Khan Academy webapp.
-        //
-        // TODO(mdr): Should we keep this in a constants file somewhere? Or
-        //     not hardcode it at all, and provide it to Wonder Blocks via
-        //     configuration?
-        zIndex: 1080,
-    },
-});
 
 export default withActionScheduler(ModalLauncher);

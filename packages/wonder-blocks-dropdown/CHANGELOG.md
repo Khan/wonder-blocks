@@ -1,5 +1,67 @@
 # @khanacademy/wonder-blocks-dropdown
 
+## 11.0.2
+
+### Patch Changes
+
+- Updated dependencies [6f254fe]
+    - @khanacademy/wonder-blocks-tokens@18.2.0
+    - @khanacademy/wonder-blocks-button@11.7.14
+    - @khanacademy/wonder-blocks-cell@6.4.1
+    - @khanacademy/wonder-blocks-clickable@8.3.3
+    - @khanacademy/wonder-blocks-form@7.7.7
+    - @khanacademy/wonder-blocks-icon@6.0.4
+    - @khanacademy/wonder-blocks-icon-button@12.0.3
+    - @khanacademy/wonder-blocks-modal@8.10.5
+    - @khanacademy/wonder-blocks-search-field@5.2.7
+    - @khanacademy/wonder-blocks-styles@0.4.2
+    - @khanacademy/wonder-blocks-typography@5.0.7
+    - @khanacademy/wonder-blocks-announcer@1.1.2
+
+## 11.0.1
+
+### Patch Changes
+
+- Updated dependencies [f95f310]
+    - @khanacademy/wonder-blocks-modal@8.10.4
+
+## 11.0.0
+
+### Major Changes
+
+- 4e011ea: `OptionItem` and `ActionItem` now forward their `ref` to the item's root DOM element (the underlying `DetailCell`: a `<button>`, or an `<a>` for an `ActionItem` with `href`) instead of exposing the component instance.
+
+    Breaking changes:
+
+    - `ref.current` on an `OptionItem` or `ActionItem` is now an `HTMLElement`, not a class instance. Code that called instance methods (e.g. `handleClick`) or read `props` from the instance must use the element instead. Code that passed the instance to `ReactDOM.findDOMNode` can use `ref.current` directly.
+    - `OptionItem` and `ActionItem` are no longer classes: they can't be extended, used with `instanceof`, or used as an instance type (e.g. `React.RefObject<OptionItem>`), and they no longer have a `defaultProps` static.
+    - `OptionItem.isClassOf`, `ActionItem.isClassOf` and `SeparatorItem.isClassOf` are renamed to `isComponentOf`, matching `ModalContent.isComponentOf` and `ModalFooter.isComponentOf`. They work the same way.
+    - `DropdownCore` now focuses items using the element from their ref instead of `ReactDOM.findDOMNode`. A custom component passed as a `SingleSelect`, `MultiSelect` or `ActionMenu` item must forward its ref to a DOM element to receive keyboard focus; a class component that doesn't is skipped.
+
+### Patch Changes
+
+- Updated dependencies [4e011ea]
+    - @khanacademy/wonder-blocks-cell@6.4.0
+
+## 10.14.2
+
+### Patch Changes
+
+- 8739d20: Remove the unused `@khanacademy/wonder-blocks-pill` dependency.
+
+## 10.14.1
+
+### Patch Changes
+
+- Updated dependencies [3652e16]
+- Updated dependencies [53fee3b]
+    - @khanacademy/wonder-blocks-cell@6.3.0
+    - @khanacademy/wonder-blocks-config@0.7.1
+    - @khanacademy/wonder-blocks-form@7.7.6
+    - @khanacademy/wonder-blocks-modal@8.10.3
+    - @khanacademy/wonder-blocks-search-field@5.2.6
+    - @khanacademy/wonder-blocks-pill@3.1.83
+
 ## 10.14.0
 
 ### Minor Changes

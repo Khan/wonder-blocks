@@ -2,11 +2,7 @@ import * as React from "react";
 import {Breadcrumbs} from "@khanacademy/wonder-blocks-breadcrumbs";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {Heading, BodyText} from "@khanacademy/wonder-blocks-typography";
-import {StyleSheet} from "aphrodite";
-import {semanticColor} from "@khanacademy/wonder-blocks-tokens";
-// TODO [WB-2137]: standardize media query breakpoint tokens
-import {modalMediaQuery} from "../util/constants";
-import theme from "../theme";
+import styles from "./modal-header.module.css";
 
 type Common = {
     /**
@@ -103,7 +99,7 @@ export default function ModalHeader(props: Props) {
         throw new Error("'subtitle' and 'breadcrumbs' can't be used together");
     }
     return (
-        <View style={[styles.header]} testId={testId}>
+        <View style={[styles.root, styles.header]} testId={testId}>
             {breadcrumbs && (
                 <View style={styles.breadcrumbs}>{breadcrumbs}</View>
             )}
@@ -134,40 +130,3 @@ export default function ModalHeader(props: Props) {
  * TODO(WB-1655): Change this to use the theme instead (inside themedStylesFn).
  * e.g. `[theme.breakpoints.small]: {...}`
  */
-const styles = StyleSheet.create({
-    header: {
-        boxShadow: `0px 1px 0px ${semanticColor.core.border.neutral.subtle}`,
-        display: "flex",
-        flexDirection: "column",
-        minBlockSize: 66,
-        paddingBlock: theme.header.layout.padding.block,
-        paddingInline: theme.header.layout.padding.inline.default,
-        position: "relative",
-        width: "100%",
-
-        [modalMediaQuery.midOrSmaller as any]: {
-            paddingInline: theme.header.layout.padding.inline.small,
-        },
-        [modalMediaQuery.smMinOrSmallerHeight as any]: {
-            minBlockSize: "unset",
-        },
-    },
-
-    breadcrumbs: {
-        color: semanticColor.core.foreground.neutral.default,
-        marginBlockEnd: theme.header.layout.gap.default,
-    },
-
-    title: {
-        // Prevent title from overlapping the close button
-        paddingInlineEnd: theme.header.layout.gap.title.default,
-        [modalMediaQuery.midOrSmaller as any]: {
-            paddingInlineEnd: theme.header.layout.gap.title.small,
-        },
-    },
-
-    subtitle: {
-        color: semanticColor.core.foreground.neutral.default,
-        marginBlockStart: theme.header.layout.gap.default,
-    },
-});

@@ -14,7 +14,6 @@ import Button from "../../packages/wonder-blocks-button/src/components/button";
 import {PhosphorIcon} from "../../packages/wonder-blocks-icon/src/components/phosphor-icon";
 import IconButton from "@khanacademy/wonder-blocks-icon-button";
 import Link from "../../packages/wonder-blocks-link/src/components/link";
-import Pill from "../../packages/wonder-blocks-pill/src/components/pill";
 import Switch from "../../packages/wonder-blocks-switch/src/components/switch";
 import Text from "../../packages/wonder-blocks-core/src/components/text";
 import View from "../../packages/wonder-blocks-core/src/components/view";
@@ -412,33 +411,5 @@ describe("PhosphorIcon", () => {
 
         // Assert
         expect(ref.current).toBeInstanceOf(HTMLSpanElement);
-    });
-});
-
-describe("Pill", () => {
-    test("forwards ref to an HTMLElement when there's no onClick", () => {
-        // Arrange
-        const ref: React.RefObject<HTMLElement> = React.createRef();
-
-        // Act
-        render(<Pill ref={ref}>This is a pill</Pill>);
-
-        // Assert
-        expect(ref.current).toBeInstanceOf(HTMLElement);
-    });
-
-    test("forwards ref to an HTMLButtonElement when there's an onClick", () => {
-        // Arrange
-        const ref: React.RefObject<HTMLButtonElement> = React.createRef();
-
-        // Act
-        render(
-            <Pill ref={ref} onClick={() => {}}>
-                This is a pill
-            </Pill>,
-        );
-
-        // Assert
-        expect(ref.current).toBeInstanceOf(HTMLButtonElement);
     });
 });

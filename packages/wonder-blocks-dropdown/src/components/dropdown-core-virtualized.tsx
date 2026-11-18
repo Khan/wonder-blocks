@@ -121,7 +121,7 @@ class DropdownCoreVirtualized extends React.Component<Props, State> {
         // get the current item in the list
         const item = this.props.data[index];
 
-        if (SeparatorItem.isClassOf(item.component)) {
+        if (SeparatorItem.isComponentOf(item.component)) {
             // this is the separator's height (1px) + vertical margin (8px)
             return SEPARATOR_ITEM_HEIGHT;
         } else {

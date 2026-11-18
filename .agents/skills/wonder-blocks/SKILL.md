@@ -48,6 +48,7 @@ to learn more about the API.
 | `wonder-blocks-icon` | `Icon`, `PhosphorIcon` |
 | `wonder-blocks-form` | `TextField`, `TextArea`, `Checkbox`, `CheckboxGroup`, `Choice`, `RadioGroup` |
 | `wonder-blocks-labeled-field` | `LabeledField` |
+| `wonder-blocks-filters` | `ExclusiveCategoryFilter` |
 | `wonder-blocks-dropdown` | `SingleSelect`, `MultiSelect`, `ActionMenu`, `Combobox`, `OptionItem`, `ActionItem`, `SeparatorItem` |
 | `wonder-blocks-modal` | `ModalLauncher`, `OnePaneDialog`, `FlexibleDialog`, `DrawerLauncher`, `DrawerDialog` |
 | `wonder-blocks-accordion` | `Accordion`, `AccordionSection` |
@@ -121,7 +122,7 @@ Always reach for tokens rather than hardcoded values. The two main namespaces:
 
 **`semanticColor`** — the right choice for most UI work. Tokens like
 `semanticColor.core.background.base.default`, `semanticColor.core.foreground.neutral.strong`,
-`semanticColor.core.border.neutral.default`, `semanticColor.feedback.success.background`.
+`semanticColor.core.border.neutral.default`, `semanticColor.feedback.success.subtle.background`.
 These automatically adapt to themes. Use these values with the appropriate CSS properties.
 
 **`sizing`** — Use `sizing` tokens for spacing. These values use `rem` values so
@@ -129,7 +130,9 @@ they scale with the font size. 1rem = 10px
 
 **`border`** — Always use border tokens instead of hardcoded pixel values.
 
-- Radius: `border.radius.radius_040`, `border.radius.radius_full`, etc.
+- Radius: `border.radius.radius_040`, `border.radius.radius_full`, etc. For a
+  fully rounded element, use `border.radius.radius_240`. `radius_full` is `50%`,
+  which turns anything wider than it is tall into an ellipse.
 - Width: `border.width.thin`, `border.width.medium`, `border.width.thick`
 
 ```ts
@@ -146,13 +149,13 @@ borderRadius: 4,
 
 **`font`** — Always use font tokens instead of hardcoded values for weight, size, and line-height.
 
-- Weight: `font.body.weight.regular`, `font.body.weight.bold`
+- Weight: `font.weight.regular`, `font.weight.bold`
 - Size: `font.body.size.medium`, `font.heading.size.large`, etc.
 - Line height: `font.body.lineHeight.medium`, etc.
 
 ```ts
 // ✅ correct
-fontWeight: font.body.weight.bold,
+fontWeight: font.weight.bold,
 
 // ❌ avoid
 fontWeight: "700",
@@ -187,6 +190,24 @@ import {Heading, BodyText} from "@khanacademy/wonder-blocks-typography";
 <Heading size="small" tag="h3">Profile</Heading>
 <BodyText>Description text</BodyText>
 <BodyText size="small" tag="span">Inline note</BodyText>
+```
+
+When an element that isn't `Heading` or `BodyText` needs a type style (a
+button-like label, for example), use the `styles` export from
+`@khanacademy/wonder-blocks-typography` (e.g. `styles.BodyTextMediumSemiWeight`).
+These are Aphrodite style entries: put them in the `style` array. Spreading one
+into `StyleSheet.create` emits no CSS.
+
+```tsx
+import {styles as typographyStyles} from "@khanacademy/wonder-blocks-typography";
+
+// ✅ correct
+<StyledButton style={[typographyStyles.BodyTextMediumSemiWeight, styles.option]} />
+
+// ❌ avoid: produces no font styles
+const styles = StyleSheet.create({
+    option: {...typographyStyles.BodyTextMediumSemiWeight},
+});
 ```
 
 ## Icons
@@ -284,8 +305,50 @@ prop so consumers can pass in the user's reduced motion preference.
   | `maxHeight` / `minHeight` | `maxBlockSize` / `minBlockSize` |
   | `width` / `height` (when directional) | `inlineSize` / `blockSize` |
 
-- Components with built-in labels should accept a `labels` prop so consumers
-can pass in translated strings.
+- Text that can contain long words without spaces (URLs, long compound words in
+  some languages, user-provided labels) needs `overflowWrap` so it wraps instead
+  of overflowing its container. Use `"break-word"` by default. Use `"anywhere"`
+  when the text is in a flex item that has to shrink below its longest word,
+  such as an option in a wrapping row: unlike `"break-word"`, it also lowers the
+  element's minimum width.
+- Built-in strings (accessible names for icon buttons, alt text, screen reader
+  announcements) come from `WonderBlocksConfigProvider` in
+  `@khanacademy/wonder-blocks-config`. The consuming app renders the provider
+  with translated strings and its locale; without one, components fall back
+  to `defaultStringsEn`. Never hard-code English strings in a component.
+- Read the strings in a component with the `useWonderBlocksI18n` hook:
+
+  ```tsx
+  import {useWonderBlocksI18n} from "@khanacademy/wonder-blocks-config";
+
+  const {strings} = useWonderBlocksI18n();
+  const clearLabel = labels?.clearSearch || strings.iconAltClearSearch;
+  ```
+
+- The default for a built-in string must always come from the provider. A
+  `labels` prop is only an override, not the way translations reach the
+  component.
+- Consider whether a string needs an override before adding one to `labels`.
+  It's useful when the right wording depends on how the component is used.
+- When a string can be overridden, resolve it as `labels?.x || strings.y` so
+  the prop wins and an empty string falls back to the provider.
+- To add a new built-in string, edit `packages/wonder-blocks-config/src/strings.ts`:
+  1. Add the key to the `WonderBlocksStrings` type, under the matching group
+     (icon alt text, labels, selection, screen reader announcements, ...).
+  2. Add an entry to `strings` with a `message` and a `context` that tells
+     translators where and how the string is used.
+  3. Add the English value to `defaultStringsEn`. Strings with interpolated
+     values are functions (e.g. `({label}) => \`Remove ${label}\``); name the
+     count variable `num` for strings that need pluralization.
+  4. If the component's package doesn't use `@khanacademy/wonder-blocks-config`
+     yet, add it as a dependency in the package's `package.json` and add
+     `{"path": "../wonder-blocks-config/tsconfig-build.json"}` to the
+     `references` in its `tsconfig-build.json`.
+
+  Consumers pick up new strings by regenerating their translated strings after
+  upgrading (in the frontend repo: `pnpm i18n:extract-external-strings`). The
+  frontend repo's `deploy_wonder_blocks` script runs this automatically when it
+  updates the Wonder Blocks packages.
 
 ## Patterns
 

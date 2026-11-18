@@ -1,5 +1,27 @@
 # @khanacademy/wonder-blocks-cell
 
+## 6.4.1
+
+### Patch Changes
+
+- Updated dependencies [6f254fe]
+    - @khanacademy/wonder-blocks-tokens@18.2.0
+    - @khanacademy/wonder-blocks-clickable@8.3.3
+    - @khanacademy/wonder-blocks-styles@0.4.2
+    - @khanacademy/wonder-blocks-typography@5.0.7
+
+## 6.4.0
+
+### Minor Changes
+
+- 4e011ea: `DetailCell` and `CompactCell` now forward their `ref` to the root DOM element: the `<button>` (with `onClick`) or `<a>` (with `href`) when the cell is pressable, otherwise the wrapping `<div>`.
+
+## 6.3.0
+
+### Minor Changes
+
+- 3652e16: Add `aria-haspopup` to `CompactCell` and `DetailCell`, for a pressable cell that opens a popup such as a dialog.
+
 ## 6.2.15
 
 ### Patch Changes

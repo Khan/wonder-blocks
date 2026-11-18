@@ -4,11 +4,10 @@ import * as ReactDOM from "react-dom";
 import {View} from "@khanacademy/wonder-blocks-core";
 import type {StyleType} from "@khanacademy/wonder-blocks-core";
 
-import {StyleSheet} from "aphrodite";
-import {semanticColor} from "@khanacademy/wonder-blocks-tokens";
 import {ModalLauncherPortalAttributeName} from "../util/constants";
 import {findFocusableNodes} from "../util/find-focusable-nodes";
 import type {ModalElement} from "../util/types";
+import styles from "./modal-backdrop.module.css";
 
 type Props = {
     children: ModalElement;
@@ -160,7 +159,7 @@ const ModalBackdrop = ({
     return (
         <View
             ref={backdropRef}
-            style={[styles.modalPositioner, style]}
+            style={[styles.root, styles.modalPositioner, style]}
             onMouseDown={handleMouseDown}
             onMouseUp={handleMouseUp}
             testId={testId}
@@ -172,24 +171,3 @@ const ModalBackdrop = ({
 };
 
 export default ModalBackdrop;
-
-const styles = StyleSheet.create({
-    modalPositioner: {
-        position: "fixed",
-        insetInlineStart: 0,
-        insetBlockStart: 0,
-
-        width: "100%",
-        height: "100%",
-
-        alignItems: "center",
-        justifyContent: "center",
-
-        // If the modal ends up being too big for the viewport (e.g., the min
-        // height is triggered), add another scrollbar specifically for
-        // scrolling modal content.
-        overflow: "auto",
-
-        background: semanticColor.core.background.overlay.default,
-    },
-});

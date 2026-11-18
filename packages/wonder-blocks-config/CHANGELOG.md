@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-config
 
+## 0.7.1
+
+### Patch Changes
+
+- 53fee3b: Update jsdocs for WonderBlocksConfigProvider
+
 ## 0.7.0
 
 ### Minor Changes

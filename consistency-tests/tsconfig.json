@@ -20,7 +20,6 @@
         {"path": "../packages/wonder-blocks-icon-button/tsconfig-build.json"},
         {"path": "../packages/wonder-blocks-layout/tsconfig-build.json"},
         {"path": "../packages/wonder-blocks-modal/tsconfig-build.json"},
-        {"path": "../packages/wonder-blocks-pill/tsconfig-build.json"},
         {"path": "../packages/wonder-blocks-search-field/tsconfig-build.json"},
         {"path": "../packages/wonder-blocks-switch/tsconfig-build.json"},
         {"path": "../packages/wonder-blocks-timing/tsconfig-build.json"},

@@ -1,5 +1,32 @@
 # @khanacademy/wonder-blocks-modal
 
+## 8.10.5
+
+### Patch Changes
+
+- Updated dependencies [6f254fe]
+    - @khanacademy/wonder-blocks-tokens@18.2.0
+    - @khanacademy/wonder-blocks-breadcrumbs@3.3.7
+    - @khanacademy/wonder-blocks-icon-button@12.0.3
+    - @khanacademy/wonder-blocks-layout@3.2.2
+    - @khanacademy/wonder-blocks-styles@0.4.2
+    - @khanacademy/wonder-blocks-typography@5.0.7
+    - @khanacademy/wonder-blocks-announcer@1.1.2
+
+## 8.10.4
+
+### Patch Changes
+
+- f95f310: FlexibleDialog: Stop injecting a hardcoded `testId` (`"title-heading-wrapper"`) into the `title` element. This prevents React warnings when `title` is a native DOM element (e.g. `<h1>`). The hardcoded test id isn't needed internally; if you need a test id on the title, pass it directly to the component you provide for the `title` prop (e.g. `title={<Heading testId="my-title">...</Heading>}`).
+
+## 8.10.3
+
+### Patch Changes
+
+- Updated dependencies [53fee3b]
+    - @khanacademy/wonder-blocks-config@0.7.1
+    - @khanacademy/wonder-blocks-breadcrumbs@3.3.6
+
 ## 8.10.2
 
 ### Patch Changes

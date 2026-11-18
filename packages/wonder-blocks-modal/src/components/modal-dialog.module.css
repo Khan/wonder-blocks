@@ -1,0 +1,87 @@
+/**
+ * ModalDialog styles
+ *
+ * Every rule is nested inside `.root` — the marker class on the outer padding
+ * layer `View`, which carries no declarations of its own. Every element here
+ * is a `View`, and these rules override properties `View` sets in its own
+ * single-class rule in the same `@layer shared` (`flex-direction`,
+ * `padding`, `position`, `z-index`, …). The bundle loads this package's CSS
+ * before core's, so the compound selector makes the result depend on
+ * specificity instead of load order.
+ *
+ * The wrapper's full-size defaults are assigned inside `:where()`, which has
+ * zero specificity, so `OnePaneDialog`'s module (passed through `style`)
+ * overrides them regardless of load order. `View` sets neither property.
+ *
+ * The small-screen overrides for elements a consumer can style live in
+ * `util/small-screen-styles.ts` as plain style objects, not here: the
+ * consumer's `style` goes through Aphrodite (unlayered and `!important`), so a
+ * rule in `@layer shared` would lose to it even inside a media query. That
+ * covers the wrapper's small-screen rules; the media blocks below only target
+ * elements consumers can't style. The media queries are the modal
+ * breakpoints: `midOrSmaller` (`max-width: 767px`) and `smMinOrSmallerHeight`
+ * (`max-height: 500px`). The build wraps every rule in `@layer shared { … }`.
+ *
+ * TODO [WB-2137]: standardize media query breakpoint tokens
+ */
+
+.root {
+    /* Pad outside of the shadow layer so the background color stays
+     * aligned. */
+    &.paddingLayer {
+        align-items: center;
+        block-size: 100%;
+        justify-content: center;
+        inline-size: 100%;
+    }
+
+    & .wrapper {
+        align-items: stretch;
+        border-radius: var(--wb-c-modal-root-border-radius);
+        box-shadow: var(--wb-c-modal-dialog-shadow-default);
+
+        /* Allows propagating the text color to all the children. */
+        color: var(--wb-semanticColor-core-foreground-neutral-strong);
+        flex-direction: row;
+        position: relative;
+    }
+
+    /* Ensures the dialog container uses the container size */
+    & .dialog {
+        inline-size: 100%;
+        block-size: 100%;
+        border-radius: var(--wb-c-modal-root-border-radius);
+        overflow: hidden;
+    }
+
+    & .above {
+        pointer-events: none;
+        position: absolute;
+        inset: 0;
+        z-index: 1;
+    }
+
+    & .below {
+        pointer-events: none;
+        position: absolute;
+        inset: 0;
+        z-index: -1;
+    }
+
+    @media screen and (height <= 500px) {
+        & .dialog {
+            overflow: auto;
+        }
+    }
+
+    @media screen and (width <= 767px) {
+        &.paddingLayer {
+            padding: var(--wb-c-modal-dialog-layout-padding);
+        }
+    }
+}
+
+:where(.wrapper) {
+    block-size: 100%;
+    inline-size: 100%;
+}

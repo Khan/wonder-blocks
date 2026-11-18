@@ -156,7 +156,10 @@ type CellCoreProps = Partial<Omit<CellProps, "title">> & {
  * responsibility of this component is to render the contents that are passed in
  * (using the `children` prop).
  */
-const CellCore = (props: CellCoreProps): React.ReactElement => {
+const CellCore = React.forwardRef(function CellCore(
+    props: CellCoreProps,
+    ref: React.ForwardedRef<HTMLElement>,
+): React.ReactElement {
     const {
         active,
         disabled,
@@ -165,6 +168,7 @@ const CellCore = (props: CellCoreProps): React.ReactElement => {
         "aria-label": ariaLabel,
         "aria-selected": ariaSelected,
         "aria-checked": ariaChecked,
+        "aria-haspopup": ariaHasPopup,
         target,
         role,
         tabIndex,
@@ -199,6 +203,7 @@ const CellCore = (props: CellCoreProps): React.ReactElement => {
                 aria-label={ariaLabel ? ariaLabel : undefined}
                 aria-selected={ariaSelected ? ariaSelected : undefined}
                 aria-checked={ariaChecked}
+                aria-haspopup={ariaHasPopup}
                 role={role}
                 target={target}
                 style={[
@@ -211,6 +216,8 @@ const CellCore = (props: CellCoreProps): React.ReactElement => {
                 aria-current={active ? "true" : undefined}
                 tabIndex={tabIndex}
                 id={id}
+                // The root element is either an `<a>` or a `<button>`.
+                ref={ref as React.Ref<HTMLAnchorElement | HTMLButtonElement>}
             >
                 {() => <CellInner {...props} />}
             </Clickable>
@@ -228,10 +235,11 @@ const CellCore = (props: CellCoreProps): React.ReactElement => {
             aria-current={active ? "true" : undefined}
             role={role}
             id={id}
+            ref={ref}
         >
             <CellInner {...props} />
         </View>
     );
-};
+});
 
 export default CellCore;

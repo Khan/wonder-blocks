@@ -101,4 +101,58 @@ describe("CompactCell", () => {
         // Assert
         expect(onClickMock).toHaveBeenCalled();
     });
+
+    it("should set aria-haspopup on a pressable cell", () => {
+        // Arrange
+
+        // Act
+        render(
+            <CompactCell
+                title="Compact cell"
+                href="/dialog-fallback"
+                aria-haspopup="dialog"
+            />,
+        );
+
+        // Assert
+        expect(screen.getByRole("link")).toHaveAttribute(
+            "aria-haspopup",
+            "dialog",
+        );
+    });
+
+    describe("ref", () => {
+        it("should forward the ref to the root element when clickable", () => {
+            // Arrange
+            const ref = React.createRef<HTMLElement>();
+
+            // Act
+            render(<CompactCell title="Cell" onClick={() => {}} ref={ref} />);
+
+            // Assert
+            expect(ref.current).toBe(screen.getByRole("button"));
+        });
+
+        it("should forward the ref to the root element when it's a link", () => {
+            // Arrange
+            const ref = React.createRef<HTMLElement>();
+
+            // Act
+            render(<CompactCell title="Cell" href="/foo" ref={ref} />);
+
+            // Assert
+            expect(ref.current).toBe(screen.getByRole("link"));
+        });
+
+        it("should forward the ref to the root element when not clickable", () => {
+            // Arrange
+            const ref = React.createRef<HTMLElement>();
+
+            // Act
+            render(<CompactCell title="Cell" id="cell-root" ref={ref} />);
+
+            // Assert
+            expect(ref.current).toHaveAttribute("id", "cell-root");
+        });
+    });
 });
