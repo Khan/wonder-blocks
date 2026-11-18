@@ -1,7 +1,11 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
-import {View, Id} from "@khanacademy/wonder-blocks-core";
+import {
+    FloatingReferenceAttributeName,
+    View,
+    Id,
+} from "@khanacademy/wonder-blocks-core";
 import {font, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {BodyText} from "@khanacademy/wonder-blocks-typography";
 import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
@@ -45,6 +49,14 @@ type Props = AriaProps & {
     groupName?: string;
     /** Takes either "radio" or "checkbox" value. */
     variant: "radio" | "checkbox";
+    /**
+     * Injected by floating components (e.g. `Tooltip`) to identify the
+     * element they are anchored to. It is applied to the root element, so that
+     * they are anchored to the whole component rather than to the inner
+     * `<input>` that the ref points at.
+     * @ignore
+     */
+    [FloatingReferenceAttributeName]?: string;
 };
 
 /**
@@ -69,6 +81,8 @@ type Props = AriaProps & {
         style,
         className,
         variant,
+        // Applied to the root element instead of the inner input (see Props).
+        [FloatingReferenceAttributeName]: floatingReferenceId,
         ...coreProps
     } = props;
 
@@ -128,7 +142,14 @@ type Props = AriaProps & {
                     : undefined;
 
                 return (
-                    <View style={style} className={className}>
+                    <View
+                        style={style}
+                        className={className}
+                        {...{
+                            [FloatingReferenceAttributeName]:
+                                floatingReferenceId,
+                        }}
+                    >
                         <View
                             style={styles.wrapper}
                             // We are resetting the tabIndex=0 from handlers

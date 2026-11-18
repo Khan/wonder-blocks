@@ -4,7 +4,10 @@ import {StyleSheet} from "aphrodite";
 import type {StyleType} from "@khanacademy/wonder-blocks-core";
 
 import Clickable from "@khanacademy/wonder-blocks-clickable";
-import {View} from "@khanacademy/wonder-blocks-core";
+import {
+    FloatingReferenceAttributeName,
+    View,
+} from "@khanacademy/wonder-blocks-core";
 
 import {border, semanticColor} from "@khanacademy/wonder-blocks-tokens";
 import {focusStyles} from "@khanacademy/wonder-blocks-styles";
@@ -148,6 +151,13 @@ type CellCoreProps = Partial<Omit<CellProps, "title">> & {
      * within the package scope.
      */
     innerStyle?: StyleType;
+
+    /**
+     * Injected by floating components (e.g. `Tooltip`) to identify the
+     * element they are anchored to. It is applied to the root element, so that the whole cell is the anchor.
+     * @ignore
+     */
+    [FloatingReferenceAttributeName]?: string;
 };
 
 /**
@@ -178,6 +188,7 @@ const CellCore = React.forwardRef(function CellCore(
         horizontalRule = "inset",
         styles: stylesProp,
         innerStyle,
+        [FloatingReferenceAttributeName]: floatingReferenceId,
     } = props;
 
     const horizontalRuleStyles = getHorizontalRuleStyles(horizontalRule);
@@ -218,6 +229,7 @@ const CellCore = React.forwardRef(function CellCore(
                 aria-current={active ? "true" : undefined}
                 tabIndex={tabIndex}
                 id={id}
+                {...{[FloatingReferenceAttributeName]: floatingReferenceId}}
                 // The root element is either an `<a>` or a `<button>`.
                 ref={ref as React.Ref<HTMLAnchorElement | HTMLButtonElement>}
             >
@@ -237,6 +249,7 @@ const CellCore = React.forwardRef(function CellCore(
             aria-current={active ? "true" : undefined}
             role={role}
             id={id}
+            {...{[FloatingReferenceAttributeName]: floatingReferenceId}}
             ref={ref}
         >
             <CellInner {...props} />
