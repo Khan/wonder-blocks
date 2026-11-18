@@ -3,7 +3,7 @@
   "description": "Typography components for Wonder Blocks design system.",
   "author": "Khan Academy",
   "license": "MIT",
-  "version": "5.0.7",
+  "version": "5.0.8",
   "publishConfig": {
     "access": "public"
   },
