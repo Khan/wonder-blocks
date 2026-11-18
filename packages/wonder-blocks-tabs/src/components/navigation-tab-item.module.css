@@ -39,7 +39,7 @@
     }
 
     /* breakpoint.mediaQuery.mdOrLarger (min-width: breakpoint.width.mdMin) */
-    @media (--wb-breakpoint-mediaQuery-mdOrLarger) {
+    @media (--wb-breakpoint-mdOrLarger) {
         padding-block: var(--wb-sizing-size_200) var(--wb-sizing-size_240);
     }
 

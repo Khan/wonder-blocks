@@ -2,7 +2,10 @@
 /**
  * Generate `src/css/custom-media.css`: one `@custom-media` definition per
  * `breakpoint.mediaQuery` entry, so CSS Modules can use the same breakpoints
- * as Aphrodite (`@media (--wb-breakpoint-mediaQuery-mdOrLarger) { … }`).
+ * as Aphrodite (`@media (--wb-breakpoint-mdOrLarger) { … }`).
+ *
+ * The file is published as `@khanacademy/wonder-blocks-tokens/custom-media.css`
+ * so consumers' own CSS can use the same breakpoints.
  *
  * Custom properties can't be used in a media query condition, so these are
  * resolved at build time by `postcss-custom-media` (see the root
@@ -36,6 +39,14 @@ export function toMediaQueryList(mediaQuery: string): string {
 }
 
 /**
+ * The custom media name for a `breakpoint.mediaQuery` key, e.g.
+ * `mdOrLarger` → `--wb-breakpoint-mdOrLarger`.
+ */
+export function toCustomMediaName(name: string): string {
+    return `${CSS_VAR_PREFIX}breakpoint-${name}`;
+}
+
+/**
  * Build the contents of `custom-media.css` from `breakpoint.mediaQuery`.
  */
 export function generateCustomMedia(
@@ -43,7 +54,7 @@ export function generateCustomMedia(
 ): string {
     const definitions = Object.entries(mediaQueries).map(
         ([name, query]) =>
-            `@custom-media ${CSS_VAR_PREFIX}breakpoint-mediaQuery-${name} ${toMediaQueryList(query)};`,
+            `@custom-media ${toCustomMediaName(name)} ${toMediaQueryList(query)};`,
     );
 
     return [
@@ -52,11 +63,16 @@ export function generateCustomMedia(
         " * Source: packages/wonder-blocks-tokens/src/tokens/media-queries.ts",
         " * Regenerate: pnpm --filter @khanacademy/wonder-blocks-tokens build:custom-media",
         " *",
-        " * Breakpoint custom media queries for CSS Modules. These are injected into",
-        " * every CSS file by the root `postcss.config.cjs` and expanded at build",
-        " * time, so they don't need to be imported:",
+        " * Breakpoint custom media queries (CSS Media Queries Level 5). Use them as:",
         " *",
-        " *     @media (--wb-breakpoint-mediaQuery-mdOrLarger) { … }",
+        " *     @media (--wb-breakpoint-mdOrLarger) { … }",
+        " *",
+        " * Browsers don't support `@custom-media` natively yet, so these must be",
+        " * expanded at build time with `postcss-custom-media`. Make the definitions",
+        " * available to it either by importing this file",
+        ' * (`@import "@khanacademy/wonder-blocks-tokens/custom-media.css";` with',
+        " * `postcss-import`) or by injecting it with `@csstools/postcss-global-data`,",
+        " * which is what Wonder Blocks' own `postcss.config.cjs` does.",
         " */",
         ...definitions,
         "",

@@ -1,11 +1,11 @@
 ---
+"@khanacademy/wonder-blocks-tokens": minor
 "@khanacademy/wonder-blocks-tabs": patch
-"@khanacademy/wonder-blocks-tokens": patch
 ---
 
-Internal: CSS Modules can now use the `breakpoint.mediaQuery` tokens as
-build-time custom media queries (`@media (--wb-breakpoint-mediaQuery-mdOrLarger)`),
-generated from `media-queries.ts` and expanded by `postcss-custom-media`.
-`NavigationTabItem` uses the `mdOrLarger` token; its emitted query changes
-from `(width >= 682px)` to the equivalent `(min-width: 682px)`, matching the
-Aphrodite token and supporting Safari < 16.4.
+Add breakpoint custom media queries for CSS. `@khanacademy/wonder-blocks-tokens/custom-media.css`
+defines one `@custom-media` per `breakpoint.mediaQuery` token (e.g.
+`@media (--wb-breakpoint-mdOrLarger)`); expand them at build time with
+`postcss-custom-media`. `NavigationTabItem` now uses the `mdOrLarger` breakpoint;
+its emitted query changes from `(width >= 682px)` to the equivalent
+`(min-width: 682px)`, matching the Aphrodite token and supporting Safari < 16.4.

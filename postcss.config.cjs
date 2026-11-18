@@ -33,9 +33,10 @@ const postcssGlobalData = require("@csstools/postcss-global-data");
 const postcssCustomMedia = require("postcss-custom-media");
 
 // Generated from `breakpoint.mediaQuery` in
-// `packages/wonder-blocks-tokens/src/tokens/media-queries.ts`. Referenced by
-// path (not a package export) because it's only consumed at build time;
-// the published CSS contains the expanded queries.
+// `packages/wonder-blocks-tokens/src/tokens/media-queries.ts`. Consumers get it
+// from the `@khanacademy/wonder-blocks-tokens/custom-media.css` export; here we
+// reference it by path so the root config doesn't depend on the tokens
+// package. The published CSS contains only the expanded queries.
 const CUSTOM_MEDIA_FILE = path.join(
     __dirname,
     "packages/wonder-blocks-tokens/src/css/custom-media.css",

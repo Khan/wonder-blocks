@@ -2,6 +2,7 @@ import fs from "fs";
 import {
     CUSTOM_MEDIA_FILE,
     generateCustomMedia,
+    toCustomMediaName,
     toMediaQueryList,
 } from "../generate-custom-media";
 
@@ -19,6 +20,19 @@ describe("toMediaQueryList", () => {
     });
 });
 
+describe("toCustomMediaName", () => {
+    it("should prefix the breakpoint name with --wb-breakpoint-", () => {
+        // Arrange
+        const input = "mdOrLarger";
+
+        // Act
+        const result = toCustomMediaName(input);
+
+        // Assert
+        expect(result).toBe("--wb-breakpoint-mdOrLarger");
+    });
+});
+
 describe("generateCustomMedia", () => {
     it("should emit one @custom-media rule per media query", () => {
         // Arrange
@@ -31,7 +45,7 @@ describe("generateCustomMedia", () => {
 
         // Assert
         expect(result).toContain(
-            "@custom-media --wb-breakpoint-mediaQuery-mdOrLarger screen and (min-width: 682px);",
+            "@custom-media --wb-breakpoint-mdOrLarger screen and (min-width: 682px);",
         );
     });
 

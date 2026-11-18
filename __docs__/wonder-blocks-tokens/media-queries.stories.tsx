@@ -61,6 +61,20 @@ type Row = {label: string; css: string; value: string};
  *     },
  * };
  * ```
+ *
+ * In CSS (e.g. CSS Modules), use the matching custom media query instead. The
+ * definitions are published as
+ * `@khanacademy/wonder-blocks-tokens/custom-media.css` and need to be
+ * expanded at build time with `postcss-custom-media`, because browsers don't
+ * support `@custom-media` natively yet:
+ *
+ * ```css
+ * @media (--wb-breakpoint-sm) {
+ *     .root {
+ *         flex-direction: column;
+ *     }
+ * }
+ * ```
  */
 export const BreakpointMediaQueries = () => (
     <TokenTable
@@ -69,6 +83,12 @@ export const BreakpointMediaQueries = () => (
                 label: "Media Query Token",
                 cell: (row: Row) => (
                     <Code>{`breakpoint.mediaQuery.${row.label}`}</Code>
+                ),
+            },
+            {
+                label: "CSS Custom Media",
+                cell: (row: Row) => (
+                    <Code>{`--wb-breakpoint-${row.label}`}</Code>
                 ),
             },
             {
