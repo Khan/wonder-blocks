@@ -39,7 +39,21 @@ export function applyRulesIndexPatch(src: string, ruleName: string): string {
     if (!mapMatch) {
         throw new Error("Could not locate the rules map in src/rules/index.ts");
     }
-    const entries = mapMatch[2].split("\n").filter((l) => l.trim().length > 0);
+    // Group each entry's lines so entries that Prettier wrapped onto several
+    // lines stay together when sorted, e.g.
+    //     "long-rule-name":
+    //         longRuleName,
+    const entries: Array<string> = [];
+    for (const line of mapMatch[2].split("\n")) {
+        if (line.trim().length === 0) {
+            continue;
+        }
+        if (/^ {4}\S/.test(line) || entries.length === 0) {
+            entries.push(line);
+        } else {
+            entries[entries.length - 1] += `\n${line}`;
+        }
+    }
     entries.push(mapLine);
     entries.sort();
     updated = updated.replace(mapRegex, `$1${entries.join("\n")}$3`);
