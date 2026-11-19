@@ -18,5 +18,10 @@ export const FloatingReferenceAttributeName = "data-wb-floating-reference";
  * pass them along to the component's root element.
  */
 export type FloatingReferenceProps = {
+    /**
+     * Injected by floating components (e.g. `Tooltip`) to identify the element
+     * they are anchored to.
+     * @ignore
+     */
     [FloatingReferenceAttributeName]?: string;
 };

@@ -1,11 +1,54 @@
 import * as React from "react";
-import {render, screen} from "@testing-library/react";
+import {queryByAttribute, render, screen} from "@testing-library/react";
 
+import {FloatingReferenceAttributeName} from "@khanacademy/wonder-blocks-core";
 import {Heading} from "@khanacademy/wonder-blocks-typography";
 
 import DetailCell from "../detail-cell";
 
 describe("DetailCell", () => {
+    it("should apply the floating reference attribute to the root of a static cell", () => {
+        // Arrange
+
+        // Act
+        render(
+            <DetailCell
+                title="Cell title"
+                subtitle1="Subtitle"
+                {...{[FloatingReferenceAttributeName]: "anchor-id"}}
+            />,
+        );
+
+        // Assert
+        expect(
+            queryByAttribute(
+                FloatingReferenceAttributeName,
+                document.body,
+                "anchor-id",
+            ),
+        ).toHaveTextContent("Cell title");
+    });
+
+    it("should apply the floating reference attribute to the root of a pressable cell", () => {
+        // Arrange
+
+        // Act
+        render(
+            <DetailCell
+                title="Cell title"
+                subtitle1="Subtitle"
+                onClick={() => {}}
+                {...{[FloatingReferenceAttributeName]: "anchor-id"}}
+            />,
+        );
+
+        // Assert
+        expect(screen.getByRole("button")).toHaveAttribute(
+            FloatingReferenceAttributeName,
+            "anchor-id",
+        );
+    });
+
     it("should render the default DetailCell component", () => {
         // Arrange
 

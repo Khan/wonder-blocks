@@ -1,13 +1,22 @@
 import * as React from "react";
 import {CSSProperties, StyleSheet} from "aphrodite";
 
-import {AriaProps, View, addStyle} from "@khanacademy/wonder-blocks-core";
+import {
+    AriaProps,
+    FloatingReferenceAttributeName,
+    View,
+    addStyle,
+} from "@khanacademy/wonder-blocks-core";
+import type {FloatingReferenceProps} from "@khanacademy/wonder-blocks-core";
 import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {useId} from "react";
 import {focusStyles} from "@khanacademy/wonder-blocks-styles";
 import theme from "../theme/index";
 
+// `FloatingReferenceProps` are applied to the root element, so that floating
+// components (e.g. `Tooltip`) are anchored to the whole component rather than
+// to the inner `<input>` that the ref points at.
 type Props = Pick<
     AriaProps,
     "aria-labelledby" | "aria-label" | "aria-describedby"
@@ -45,7 +54,7 @@ type Props = Pick<
      * Adds CSS classes to the component.
      */
     className?: string;
-};
+} & FloatingReferenceProps;
 
 const StyledSpan = addStyle("span");
 const StyledInput = addStyle("input");
@@ -144,6 +153,7 @@ const Switch = React.forwardRef(function Switch(
         id,
         onChange,
         testId,
+        [FloatingReferenceAttributeName]: floatingReferenceId,
     } = props;
 
     const generatedUniqueId = useId();
@@ -187,6 +197,7 @@ const Switch = React.forwardRef(function Switch(
             style={combinedStyles}
             className={className}
             testId={testId}
+            {...{[FloatingReferenceAttributeName]: floatingReferenceId}}
         >
             <StyledInput
                 aria-describedby={ariaDescribedBy}

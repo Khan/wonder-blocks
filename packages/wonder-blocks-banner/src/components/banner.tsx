@@ -6,7 +6,13 @@ import xIcon from "@phosphor-icons/core/bold/x-bold.svg";
 import Button from "@khanacademy/wonder-blocks-button";
 import {useWonderBlocksI18n} from "@khanacademy/wonder-blocks-config";
 import type {WonderBlocksStrings} from "@khanacademy/wonder-blocks-config";
-import {addStyle, StyleType, View} from "@khanacademy/wonder-blocks-core";
+import {
+    addStyle,
+    FloatingReferenceAttributeName,
+    StyleType,
+    View,
+} from "@khanacademy/wonder-blocks-core";
+import type {FloatingReferenceProps} from "@khanacademy/wonder-blocks-core";
 import {PhosphorIcon, PhosphorIconAsset} from "@khanacademy/wonder-blocks-icon";
 import IconButton from "@khanacademy/wonder-blocks-icon-button";
 import Link from "@khanacademy/wonder-blocks-link";
@@ -68,7 +74,9 @@ type BannerValues = {
     ariaLive?: "assertive" | "polite";
 };
 
-type Props = {
+// `FloatingReferenceProps` are applied to the root element, so that the whole
+// banner is the anchor of floating components (e.g. `Tooltip`).
+type Props = FloatingReferenceProps & {
     /**
      * Accessible label for the banner.
      * This is read out before the other contents of the banner.
@@ -231,6 +239,7 @@ const Banner = (props: Props): React.ReactElement => {
         testId,
         icon,
         styles: stylesProp,
+        [FloatingReferenceAttributeName]: floatingReferenceId,
     } = props;
     const {strings} = useWonderBlocksI18n();
 
@@ -316,6 +325,7 @@ const Banner = (props: Props): React.ReactElement => {
             aria-label={ariaLabel}
             aria-live={valuesForKind.ariaLive}
             testId={testId}
+            {...{[FloatingReferenceAttributeName]: floatingReferenceId}}
         >
             <View style={styles.containerInner}>
                 {iconElement}
