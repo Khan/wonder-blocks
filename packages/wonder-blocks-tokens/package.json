@@ -24,10 +24,12 @@
       "require": "./dist/index.js",
       "types": "./dist/index.d.ts"
     },
-    "./styles.css": "./dist/css/index.css"
+    "./styles.css": "./dist/css/index.css",
+    "./custom-media.css": "./src/css/custom-media.css"
   },
   "scripts": {
     "build:css": "node -r @swc-node/register ./src/build/generate-css-variables.ts",
+    "build:custom-media": "node -r @swc-node/register ./src/build/generate-custom-media.ts",
     "build:token-docs": "node -r @swc-node/register ./src/build/generate-token-docs.ts",
     "test": "echo \"Error: no test specified\" && exit 1",
     "prepublishOnly": "../../utils/publish/package-pre-publish-check.sh"
