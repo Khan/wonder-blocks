@@ -9,7 +9,10 @@ import {
     ClearPolicy,
 } from "@khanacademy/wonder-blocks-timing";
 import {FloatingReferenceAttributeName} from "@khanacademy/wonder-blocks-core";
-import type {StyleType} from "@khanacademy/wonder-blocks-core";
+import type {
+    FloatingReferenceProps,
+    StyleType,
+} from "@khanacademy/wonder-blocks-core";
 
 import FocusTrap from "./focus-trap";
 import ModalBackdrop from "./modal-backdrop";
@@ -17,6 +20,9 @@ import ScrollDisabler from "./scroll-disabler";
 import type {ModalElement} from "../util/types";
 import ModalContext from "./modal-context";
 
+// `FloatingReferenceProps` are applied to the element rendered by `children`
+// (the opener), so that the opener is the anchor of floating components (e.g.
+// `Tooltip`).
 type Props = Readonly<{
     /**
      * The modal to render.
@@ -58,12 +64,6 @@ type Props = Readonly<{
      * Test ID used for e2e testing. It's set on the ModalBackdrop
      */
     testId?: string;
-    /**
-     * Injected by floating components (e.g. `Tooltip`) to identify the
-     * element they are anchored to. It is applied to the element rendered by `children` (the opener), so that the opener is the anchor.
-     * @ignore
-     */
-    [FloatingReferenceAttributeName]?: string;
 
     /**
      * Renders the modal when true, renders nothing when false.
@@ -95,7 +95,8 @@ type Props = Readonly<{
      */
     children?: (arg1: {openModal: () => unknown}) => React.ReactNode;
 }> &
-    WithActionSchedulerProps;
+    WithActionSchedulerProps &
+    FloatingReferenceProps;
 
 /**
  * This component enables you to launch a modal, covering the screen.

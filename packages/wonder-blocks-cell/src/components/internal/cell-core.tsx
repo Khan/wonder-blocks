@@ -1,7 +1,10 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
-import type {StyleType} from "@khanacademy/wonder-blocks-core";
+import type {
+    FloatingReferenceProps,
+    StyleType,
+} from "@khanacademy/wonder-blocks-core";
 
 import Clickable from "@khanacademy/wonder-blocks-clickable";
 import {
@@ -132,6 +135,8 @@ function CellInner(props: CellCoreProps): React.ReactElement {
     );
 }
 
+// `FloatingReferenceProps` are applied to the root element, so that the whole
+// cell is the anchor of floating components (e.g. `Tooltip`).
 type CellCoreProps = Partial<Omit<CellProps, "title">> & {
     /**
      * The content of the cell.
@@ -151,14 +156,7 @@ type CellCoreProps = Partial<Omit<CellProps, "title">> & {
      * within the package scope.
      */
     innerStyle?: StyleType;
-
-    /**
-     * Injected by floating components (e.g. `Tooltip`) to identify the
-     * element they are anchored to. It is applied to the root element, so that the whole cell is the anchor.
-     * @ignore
-     */
-    [FloatingReferenceAttributeName]?: string;
-};
+} & FloatingReferenceProps;
 
 /**
  * CellCore is the base cell wrapper. It's used as the skeleton/layout that is

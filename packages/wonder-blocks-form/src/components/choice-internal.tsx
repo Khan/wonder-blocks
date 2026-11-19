@@ -8,11 +8,18 @@ import {
 } from "@khanacademy/wonder-blocks-core";
 import {font, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {BodyText} from "@khanacademy/wonder-blocks-typography";
-import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
+import type {
+    AriaProps,
+    FloatingReferenceProps,
+    StyleType,
+} from "@khanacademy/wonder-blocks-core";
 import CheckboxCore from "./checkbox-core";
 import RadioCore from "./radio-core";
 import theme from "../theme";
 
+// `FloatingReferenceProps` are applied to the root element, so that floating
+// components (e.g. `Tooltip`) are anchored to the whole component rather than
+// to the inner `<input>` that the ref points at.
 type Props = AriaProps & {
     /** Whether this choice is checked. */
     checked: boolean | null | undefined;
@@ -49,15 +56,7 @@ type Props = AriaProps & {
     groupName?: string;
     /** Takes either "radio" or "checkbox" value. */
     variant: "radio" | "checkbox";
-    /**
-     * Injected by floating components (e.g. `Tooltip`) to identify the
-     * element they are anchored to. It is applied to the root element, so that
-     * they are anchored to the whole component rather than to the inner
-     * `<input>` that the ref points at.
-     * @ignore
-     */
-    [FloatingReferenceAttributeName]?: string;
-};
+} & FloatingReferenceProps;
 
 /**
  * This is a potentially labeled 🔘 or ☑️ item. This is an internal component

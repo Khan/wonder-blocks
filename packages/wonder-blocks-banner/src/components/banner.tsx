@@ -12,6 +12,7 @@ import {
     StyleType,
     View,
 } from "@khanacademy/wonder-blocks-core";
+import type {FloatingReferenceProps} from "@khanacademy/wonder-blocks-core";
 import {PhosphorIcon, PhosphorIconAsset} from "@khanacademy/wonder-blocks-icon";
 import IconButton from "@khanacademy/wonder-blocks-icon-button";
 import Link from "@khanacademy/wonder-blocks-link";
@@ -73,7 +74,9 @@ type BannerValues = {
     ariaLive?: "assertive" | "polite";
 };
 
-type Props = {
+// `FloatingReferenceProps` are applied to the root element, so that the whole
+// banner is the anchor of floating components (e.g. `Tooltip`).
+type Props = FloatingReferenceProps & {
     /**
      * Accessible label for the banner.
      * This is read out before the other contents of the banner.
@@ -108,12 +111,6 @@ type Props = {
      * Test ID used for e2e testing.
      */
     testId?: string;
-    /**
-     * Injected by floating components (e.g. `Tooltip`) to identify the
-     * element they are anchored to. It is applied to the root element, so that the whole banner is the anchor.
-     * @ignore
-     */
-    [FloatingReferenceAttributeName]?: string;
     /**
      * An optional icon to display. This is a reference to the icon asset (imported as a
      * static SVG file). If not provided, a default icon will be used based on

@@ -6,7 +6,11 @@ import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {BodyText} from "@khanacademy/wonder-blocks-typography";
 
 import {FloatingReferenceAttributeName} from "@khanacademy/wonder-blocks-core";
-import type {PropsFor, StyleType} from "@khanacademy/wonder-blocks-core";
+import type {
+    FloatingReferenceProps,
+    PropsFor,
+    StyleType,
+} from "@khanacademy/wonder-blocks-core";
 
 import {focusStyles} from "@khanacademy/wonder-blocks-styles";
 import {DROPDOWN_ITEM_HEIGHT} from "../util/constants";
@@ -14,13 +18,9 @@ import theme from "../theme";
 
 import type {CellProps} from "../util/types";
 
+// `FloatingReferenceProps` are applied to the root element (the cell), so that
+// the whole item is the anchor of floating components (e.g. `Tooltip`).
 type ActionProps = {
-    /**
-     * Injected by floating components (e.g. `Tooltip`) to identify the
-     * element they are anchored to. It is applied to the root element (the cell), so that the whole item is the anchor.
-     * @ignore
-     */
-    [FloatingReferenceAttributeName]?: string;
     /**
      * Display text of the action item.
      */
@@ -123,7 +123,7 @@ type ActionProps = {
      * Optional aria-label for the action item.
      */
     "aria-label"?: string;
-};
+} & FloatingReferenceProps;
 
 type DefaultProps = {
     disabled: ActionProps["disabled"];

@@ -7,12 +7,16 @@ import {
     View,
     addStyle,
 } from "@khanacademy/wonder-blocks-core";
+import type {FloatingReferenceProps} from "@khanacademy/wonder-blocks-core";
 import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {useId} from "react";
 import {focusStyles} from "@khanacademy/wonder-blocks-styles";
 import theme from "../theme/index";
 
+// `FloatingReferenceProps` are applied to the root element, so that floating
+// components (e.g. `Tooltip`) are anchored to the whole component rather than
+// to the inner `<input>` that the ref points at.
 type Props = Pick<
     AriaProps,
     "aria-labelledby" | "aria-label" | "aria-describedby"
@@ -50,15 +54,7 @@ type Props = Pick<
      * Adds CSS classes to the component.
      */
     className?: string;
-    /**
-     * Injected by floating components (e.g. `Tooltip`) to identify the
-     * element they are anchored to. It is applied to the root element, so that
-     * they are anchored to the whole component rather than to the inner
-     * `<input>` that the ref points at.
-     * @ignore
-     */
-    [FloatingReferenceAttributeName]?: string;
-};
+} & FloatingReferenceProps;
 
 const StyledSpan = addStyle("span");
 const StyledInput = addStyle("input");
