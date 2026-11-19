@@ -1,5 +1,12 @@
 # @khanacademy/wonder-blocks-labeled-field
 
+## 4.3.9
+
+### Patch Changes
+
+- Updated dependencies [5d07224]
+    - @khanacademy/wonder-blocks-layout@4.0.0
+
 ## 4.3.8
 
 ### Patch Changes

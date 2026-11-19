@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-search-field
 
+## 5.2.9
+
+### Patch Changes
+
+- @khanacademy/wonder-blocks-form@7.7.9
+
 ## 5.2.8
 
 ### Patch Changes

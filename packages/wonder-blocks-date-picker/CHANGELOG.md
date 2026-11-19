@@ -1,5 +1,12 @@
 # @khanacademy/wonder-blocks-date-picker
 
+## 1.2.7
+
+### Patch Changes
+
+- @khanacademy/wonder-blocks-form@7.7.9
+- @khanacademy/wonder-blocks-modal@8.10.7
+
 ## 1.2.6
 
 ### Patch Changes
