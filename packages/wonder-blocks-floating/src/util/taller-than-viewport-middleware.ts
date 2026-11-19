@@ -15,15 +15,26 @@ import type {Middleware} from "@floating-ui/react";
 export const tallerThanViewport = (): Middleware => {
     return {
         name: "tallerThanViewport",
-        fn({rects, elements}) {
+        fn({rects, elements, placement}) {
+            const doc = elements.floating.ownerDocument;
+            // Measure the same viewport as floating-ui's `hide` and `size`
+            // middlewares: the visual viewport (which shrinks when the page is
+            // pinch-zoomed), or the layout viewport when it isn't available.
             const viewportHeight =
-                elements.floating.ownerDocument.documentElement.clientHeight;
+                doc.defaultView?.visualViewport?.height ??
+                doc.documentElement.clientHeight;
+
+            // `top`/`bottom` placements stack the elements, while
+            // `left`/`right` placements put them side by side.
+            const [side] = placement.split("-");
+            const isStacked = side === "top" || side === "bottom";
+            const height = isStacked
+                ? rects.floating.height + rects.reference.height
+                : Math.max(rects.floating.height, rects.reference.height);
 
             return {
                 data: {
-                    isTaller:
-                        rects.floating.height + rects.reference.height >
-                        viewportHeight,
+                    isTaller: height > viewportHeight,
                 },
             };
         },
