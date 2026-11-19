@@ -94,8 +94,6 @@ describe("Switch", () => {
     describe("setting attributes", () => {
         it("should apply the floating reference attribute to its root element", async () => {
             // Arrange
-            // Floating components (e.g. Tooltip) inject this attribute to find
-            // the element they are anchored to.
             render(
                 <Switch
                     aria-label="Gravity"

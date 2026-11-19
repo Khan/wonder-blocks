@@ -14,9 +14,9 @@ import Banner from "../banner";
 
 describe("Banner", () => {
     test("applies the floating reference attribute to its root element", () => {
-        // Arrange, Act
-        // Floating components (e.g. Tooltip) inject this attribute to find the
-        // element they are anchored to.
+        // Arrange
+
+        // Act
         render(
             <Banner
                 text="Banner text"

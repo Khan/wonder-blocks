@@ -22,9 +22,9 @@ const exampleModal = (
 
 describe("ModalLauncher", () => {
     test("passes the floating reference attribute to the opener", () => {
-        // Arrange, Act
-        // Floating components (e.g. Tooltip) inject this attribute to find the
-        // element they are anchored to.
+        // Arrange
+
+        // Act
         render(
             <ModalLauncher
                 modal={exampleModal}

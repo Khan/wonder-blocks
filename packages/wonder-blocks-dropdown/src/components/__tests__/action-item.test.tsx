@@ -21,8 +21,6 @@ jest.mock("react-router-dom", () => ({
 describe("ActionItem", () => {
     it("should apply the floating reference attribute to its root element", () => {
         // Arrange
-        // Floating components (e.g. Tooltip) inject this attribute to find the
-        // element they are anchored to.
 
         // Act
         render(

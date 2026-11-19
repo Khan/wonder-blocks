@@ -533,32 +533,47 @@ export default function Floating({
     const {setReference} = refs;
 
     // Identifies this instance's trigger in the DOM, so that we can look up its
-    // element if the ref doesn't resolve it (see the effect below).
+    // element (see `resolveReference` below).
     // `React.useId` values are unique for every component instance, so
     // instances never resolve each other's trigger.
     const referenceId = React.useId();
 
     // The element the trigger attached the injected ref to, if any. It is kept
-    // in a ref (rather than in state) because it is only read to decide whether
-    // the DOM lookup below is needed; `setReference` already re-renders when
-    // the reference element changes.
+    // in a ref (rather than in state) because it is only read to resolve the
+    // reference element below; `setReference` already re-renders when the
+    // reference element changes.
     const referenceFromRef = React.useRef<Element | null>(null);
 
     /**
-     * Registers the element the trigger attached the injected ref to as the
-     * reference (anchor) element.
+     * Resolves the trigger's reference (anchor) element: the element that
+     * received the injected attribute (preferred), or the element the trigger
+     * attached the injected ref to.
+     *
+     * The attribute is preferred so that components whose ref points at an
+     * inner element (e.g. `Switch`, whose ref points at its `<input>`) can
+     * anchor the floating element to their root element, by passing the
+     * attribute to it.
+     */
+    const resolveReference = React.useCallback(
+        () =>
+            document.querySelector(
+                `[${FloatingReferenceAttributeName}="${referenceId}"]`,
+            ) ?? referenceFromRef.current,
+        [referenceId],
+    );
+
+    /**
+     * Registers the element the trigger attached the injected ref to.
      *
      * Triggers that forward their ref to a component instance rather than to an
      * element are ignored here, and resolved from the DOM instead.
      */
     const setReferenceFromTrigger = React.useCallback(
         (node: unknown) => {
-            const element = node instanceof Element ? node : null;
-
-            referenceFromRef.current = element;
-            setReference(element);
+            referenceFromRef.current = node instanceof Element ? node : null;
+            setReference(resolveReference());
         },
-        [setReference],
+        [resolveReference, setReference],
     );
 
     // Give the trigger's own ref (if it has one) back to its owner, so that
@@ -580,26 +595,18 @@ export default function Floating({
         });
     }, [children, getReferenceProps, referenceId, triggerRef]);
 
-    // Resolve the reference element from the DOM for the triggers the ref above
-    // doesn't resolve: the ones that can't receive a ref, and the ones that
-    // don't attach the one they are given. Those only have to spread the props
-    // they are given (which they need to do anyway for the interaction and ARIA
-    // props) onto the element the floating element is anchored to, and we find
-    // that element by the attribute injected above.
+    // Resolve the reference element for every trigger, including the ones the
+    // ref above doesn't resolve: the ones that can't receive a ref, and the ones
+    // that don't attach the one they are given. Those only have to spread the
+    // props they are given (which they need to do anyway for the interaction
+    // and ARIA props) onto the element the floating element is anchored to, and
+    // we find that element by the attribute injected above.
     //
     // NOTE: This runs after every render (no dependency array) so that the
     // reference element stays in sync if the trigger renders a different DOM
     // element. Setting the same element again is a no-op in floating-ui.
     React.useLayoutEffect(() => {
-        // The trigger attached the injected ref, so it already registered its
-        // element (refs are attached before this effect runs).
-        if (referenceFromRef.current) {
-            return;
-        }
-
-        const node = document.querySelector(
-            `[${FloatingReferenceAttributeName}="${referenceId}"]`,
-        );
+        const node = resolveReference();
 
         if (node !== elements.reference) {
             setReference(node);
