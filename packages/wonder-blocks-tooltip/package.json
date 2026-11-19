@@ -28,7 +28,8 @@
     "@khanacademy/wonder-blocks-layout": "workspace:*",
     "@khanacademy/wonder-blocks-modal": "workspace:*",
     "@khanacademy/wonder-blocks-tokens": "workspace:*",
-    "@khanacademy/wonder-blocks-typography": "workspace:*"
+    "@khanacademy/wonder-blocks-typography": "workspace:*",
+    "@khanacademy/wonder-stuff-core": "catalog:"
   },
   "peerDependencies": {
     "@popperjs/core": "catalog:",
