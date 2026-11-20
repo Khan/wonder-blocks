@@ -259,6 +259,18 @@ const startState: ClickableState = {
 };
 
 /**
+ * Whether a click has a modifier key held or isn't from the primary button.
+ *
+ * Browsers handle these clicks on links themselves, e.g. by opening the link
+ * in a new tab or window. This mirrors react-router's `shouldProcessLinkClick`.
+ */
+const isModifiedClick = (e: React.SyntheticEvent): boolean => {
+    const {metaKey, ctrlKey, shiftKey, altKey, button} =
+        e as Partial<React.MouseEvent>;
+    return !!(metaKey || ctrlKey || shiftKey || altKey || button);
+};
+
+/**
  * Add hover, focus, and active status updates to a clickable component.
  *
  * Via mouse:
@@ -523,6 +535,7 @@ export default class ClickableBehavior extends React.Component<
             onClick = undefined,
             beforeNav = undefined,
             safeWithNav = undefined,
+            href,
         } = this.props;
 
         if (this.enterClick) {
@@ -531,6 +544,24 @@ export default class ClickableBehavior extends React.Component<
 
         if (onClick || beforeNav || safeWithNav) {
             this.waitingForClick = false;
+        }
+
+        // Let the browser (and react-router's Link) handle modified clicks on
+        // links, e.g. Cmd/Ctrl-click to open in a new tab. We only do this
+        // when the handlers are on an anchor, since other elements have no
+        // default action to fall back on. beforeNav must finish before
+        // navigating, which requires preventing the default, so those clicks
+        // keep navigating in the same tab.
+        if (
+            href &&
+            !beforeNav &&
+            isModifiedClick(e) &&
+            e.currentTarget instanceof window.HTMLAnchorElement
+        ) {
+            onClick?.(e);
+            // The current page isn't unloaded, so there's no need to wait.
+            safeWithNav?.().catch(() => {});
+            return;
         }
 
         this.runCallbackAndMaybeNavigate(e);

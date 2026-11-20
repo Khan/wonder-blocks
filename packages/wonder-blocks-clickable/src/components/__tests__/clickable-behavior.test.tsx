@@ -1574,4 +1574,135 @@ describe("ClickableBehavior", () => {
             );
         });
     });
+
+    describe("modified clicks on a link", () => {
+        const renderLink = (
+            props: Partial<React.ComponentProps<typeof ClickableBehavior>> = {},
+        ) =>
+            render(
+                <ClickableBehavior
+                    disabled={false}
+                    href="/foo"
+                    role="link"
+                    {...props}
+                >
+                    {(state: any, childrenProps: any) => (
+                        <a href="/foo" {...childrenProps}>
+                            Label
+                        </a>
+                    )}
+                </ClickableBehavior>,
+            );
+
+        it.each(["metaKey", "ctrlKey", "shiftKey", "altKey"])(
+            "does not prevent the default action when %s is held",
+            async (key: string) => {
+                // Arrange
+                renderLink();
+                const link = await screen.findByRole("link");
+
+                // Act
+                const notPrevented = fireEvent.click(link, {[key]: true});
+
+                // Assert
+                expect(notPrevented).toBe(true);
+            },
+        );
+
+        it("does not navigate in the current tab on a meta click", async () => {
+            // Arrange
+            renderLink();
+            const link = await screen.findByRole("link");
+
+            // Act
+            fireEvent.click(link, {metaKey: true});
+
+            // Assert
+            expect(window.location.assign).not.toHaveBeenCalled();
+        });
+
+        it("calls onClick on a meta click", async () => {
+            // Arrange
+            const onClick = jest.fn();
+            renderLink({onClick});
+            const link = await screen.findByRole("link");
+
+            // Act
+            fireEvent.click(link, {metaKey: true});
+
+            // Assert
+            expect(onClick).toHaveBeenCalledTimes(1);
+        });
+
+        it("stays prevented if onClick calls preventDefault on a meta click", async () => {
+            // Arrange
+            renderLink({
+                onClick: (e: React.SyntheticEvent) => e.preventDefault(),
+            });
+            const link = await screen.findByRole("link");
+
+            // Act
+            const notPrevented = fireEvent.click(link, {metaKey: true});
+
+            // Assert
+            expect(notPrevented).toBe(false);
+        });
+
+        it("calls safeWithNav on a meta click", async () => {
+            // Arrange
+            const safeWithNav = jest.fn().mockResolvedValue(undefined);
+            renderLink({safeWithNav});
+            const link = await screen.findByRole("link");
+
+            // Act
+            fireEvent.click(link, {metaKey: true});
+
+            // Assert
+            expect(safeWithNav).toHaveBeenCalledTimes(1);
+        });
+
+        it("navigates in the current tab after beforeNav resolves on a meta click", async () => {
+            // Arrange
+            renderLink({beforeNav: () => Promise.resolve()});
+            const link = await screen.findByRole("link");
+
+            // Act
+            fireEvent.click(link, {metaKey: true});
+
+            // Assert
+            await waitFor(() =>
+                expect(window.location.assign).toHaveBeenCalledWith("/foo"),
+            );
+        });
+
+        it("does not call window.open on a meta click when target is _blank", async () => {
+            // Arrange
+            renderLink({target: "_blank"});
+            const link = await screen.findByRole("link");
+
+            // Act
+            fireEvent.click(link, {metaKey: true});
+
+            // Assert
+            expect(window.open).not.toHaveBeenCalled();
+        });
+
+        it("navigates in the current tab on a meta click when the element is not an anchor", async () => {
+            // Arrange
+            render(
+                <ClickableBehavior disabled={false} href="/foo" role="button">
+                    {(state: any, childrenProps: any) => (
+                        <button {...childrenProps}>Label</button>
+                    )}
+                </ClickableBehavior>,
+            );
+            const button = await screen.findByRole("button");
+
+            // Act
+            fireEvent.click(button, {metaKey: true});
+
+            // Assert
+            expect(window.location.assign).toHaveBeenCalledWith("/foo");
+        });
+    });
 });

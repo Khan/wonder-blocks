@@ -58,6 +58,19 @@ rejects, `safeWithNav` will not be run.
 If the `onClick` handler calls `preventDefault()`, then `beforeNav`
 and `safeWithNav` will still run, but navigation will not occur.
 
+## Opening in a new tab or window
+
+When the user clicks while holding a modifier key (Cmd, Ctrl, Shift or Alt),
+Wonder Blocks lets the browser handle the click, so the link opens in a new
+tab or window as it would for a regular link. In this case:
+
+- `onClick` is still called. If it calls `preventDefault()`, nothing opens.
+- `safeWithNav` is still called, but nothing waits for it, since the current
+  page stays open.
+- If `beforeNav` is set, the click is not left to the browser. `beforeNav`
+  runs and the navigation happens in the current tab, because the navigation
+  can't be delayed when the browser handles the click.
+
 export const BeforeNavCallbacks = () => (
     <MemoryRouter>
         <CompatRouter>
