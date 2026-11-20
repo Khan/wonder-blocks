@@ -259,8 +259,8 @@ const startState: ClickableState = {
 };
 
 /**
- * Matches the modifier-key and non-primary-button checks in react-router's
- * `shouldProcessLinkClick`.
+ * Clicks the browser handles itself on a link: a modifier key held (e.g.
+ * Cmd/Ctrl for a new tab, Shift for a new window) or a non-primary button.
  */
 const isModifiedClick = (e: React.SyntheticEvent): boolean => {
     const {metaKey, ctrlKey, shiftKey, altKey, button} =
