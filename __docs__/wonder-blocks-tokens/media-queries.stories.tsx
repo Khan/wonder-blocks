@@ -61,6 +61,43 @@ type Row = {label: string; css: string; value: string};
  *     },
  * };
  * ```
+ *
+ * In CSS (e.g. CSS Modules), use the matching custom media query instead:
+ *
+ * ```css
+ * @media (--wb-breakpoint-mediaQuery-sm) {
+ *     .root {
+ *         flex-direction: column;
+ *     }
+ * }
+ * ```
+ *
+ * Browsers don't support `@custom-media` natively yet, so the queries are
+ * expanded at build time by `postcss-custom-media`. The definitions are
+ * published as `@khanacademy/wonder-blocks-tokens/custom-media.css`; inject
+ * them into every CSS file with `@csstools/postcss-global-data` (this works
+ * with any bundler, e.g. rspack + `postcss-loader`):
+ *
+ * ```js
+ * // postcss.config.cjs
+ * module.exports = {
+ *     plugins: [
+ *         require("@csstools/postcss-global-data")({
+ *             files: [
+ *                 require.resolve(
+ *                     "@khanacademy/wonder-blocks-tokens/custom-media.css",
+ *                 ),
+ *             ],
+ *         }),
+ *         require("postcss-custom-media")(),
+ *     ],
+ * };
+ * ```
+ *
+ * An `@import` of the definitions only works when it's inlined inside PostCSS
+ * by a resolver that honors package `exports` (Vite, or `postcss-import` with
+ * a Node-based `resolve` option). Left to rspack/webpack's `css-loader`, the
+ * import is resolved after PostCSS runs and the queries aren't expanded.
  */
 export const BreakpointMediaQueries = () => (
     <TokenTable
@@ -69,6 +106,12 @@ export const BreakpointMediaQueries = () => (
                 label: "Media Query Token",
                 cell: (row: Row) => (
                     <Code>{`breakpoint.mediaQuery.${row.label}`}</Code>
+                ),
+            },
+            {
+                label: "CSS Custom Media",
+                cell: (row: Row) => (
+                    <Code>{`--wb-breakpoint-mediaQuery-${row.label}`}</Code>
                 ),
             },
             {
