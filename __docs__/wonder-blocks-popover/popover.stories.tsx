@@ -97,7 +97,7 @@ type StoryComponentType = StoryObj<typeof Popover>;
 
 // NOTE: Adding arg types to be able to use the union types defined by the
 // component.
-type PopoverArgs = Partial<React.ComponentProps<typeof Popover>>;
+type PopoverArgs = Partial<typeof Popover>;
 
 export const Default: StoryComponentType = {
     args: {
