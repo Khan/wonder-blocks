@@ -533,8 +533,54 @@ export default class ClickableBehavior extends React.Component<
             this.waitingForClick = false;
         }
 
+        if (this.shouldLetBrowserHandleClick(e)) {
+            // Let the browser do what the user asked for (e.g. Cmd/Ctrl+click
+            // opens the link in a new tab, Shift+click opens a new window).
+            // We still notify the caller, but we don't call preventDefault()
+            // or navigate the current page ourselves.
+            onClick?.(e);
+            if (!e.defaultPrevented) {
+                // The current page stays open, so it's safe to run this
+                // without waiting for it.
+                safeWithNav?.().catch(() => {});
+            }
+            return;
+        }
+
         this.runCallbackAndMaybeNavigate(e);
     };
+
+    /**
+     * Returns true when a click on a link has a modifier key pressed. In that
+     * case, the browser's default behavior (opening the link in a new tab or
+     * window, downloading it, etc.) should be used instead of navigating the
+     * current page.
+     */
+    shouldLetBrowserHandleClick(e: React.SyntheticEvent): boolean {
+        const {href, beforeNav} = this.props;
+        const nativeEvent = e.nativeEvent;
+
+        // beforeNav can block navigation, which we can't do once the browser
+        // handles the click, so we keep the existing behavior in that case.
+        if (!href || beforeNav || !(nativeEvent instanceof MouseEvent)) {
+            return false;
+        }
+
+        // The browser only navigates natively for anchors with an href.
+        if (
+            !(e.currentTarget instanceof HTMLAnchorElement) ||
+            !e.currentTarget.hasAttribute("href")
+        ) {
+            return false;
+        }
+
+        return (
+            nativeEvent.metaKey ||
+            nativeEvent.ctrlKey ||
+            nativeEvent.shiftKey ||
+            nativeEvent.altKey
+        );
+    }
 
     handleMouseEnter: (e: React.MouseEvent) => void = (e) => {
         this.props.onMouseEnter?.(e);

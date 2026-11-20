@@ -929,6 +929,112 @@ describe("ClickableBehavior", () => {
         expect(onClick).toHaveBeenCalledTimes(0);
     });
 
+    describe("modifier key clicks", () => {
+        const renderLink = (
+            props: Partial<React.ComponentProps<typeof ClickableBehavior>> = {},
+        ) =>
+            render(
+                <ClickableBehavior
+                    href="https://khanacademy.org/"
+                    role="link"
+                    {...props}
+                >
+                    {(state: any, childrenProps: any) => (
+                        <a href="https://khanacademy.org/" {...childrenProps}>
+                            Label
+                        </a>
+                    )}
+                </ClickableBehavior>,
+            );
+
+        it.each(["metaKey", "ctrlKey", "shiftKey", "altKey"])(
+            "does not navigate the current page when %s is pressed",
+            async (modifier) => {
+                // Arrange
+                renderLink();
+
+                // Act
+                fireEvent.click(await screen.findByRole("link"), {
+                    [modifier]: true,
+                });
+
+                // Assert
+                expect(window.location.assign).not.toHaveBeenCalled();
+            },
+        );
+
+        it("does not prevent the browser's default behavior", async () => {
+            // Arrange
+            renderLink();
+
+            // Act
+            const notCancelled = fireEvent.click(
+                await screen.findByRole("link"),
+                {metaKey: true},
+            );
+
+            // Assert
+            expect(notCancelled).toBe(true);
+        });
+
+        it("calls onClick", async () => {
+            // Arrange
+            const onClick = jest.fn();
+            renderLink({onClick});
+
+            // Act
+            fireEvent.click(await screen.findByRole("link"), {metaKey: true});
+
+            // Assert
+            expect(onClick).toHaveBeenCalledTimes(1);
+        });
+
+        it("calls safeWithNav", async () => {
+            // Arrange
+            const safeWithNav = jest.fn().mockResolvedValue(undefined);
+            renderLink({safeWithNav});
+
+            // Act
+            fireEvent.click(await screen.findByRole("link"), {metaKey: true});
+
+            // Assert
+            expect(safeWithNav).toHaveBeenCalledTimes(1);
+        });
+
+        it("keeps the existing behavior when beforeNav is set", async () => {
+            // Arrange
+            renderLink({beforeNav: () => Promise.resolve()});
+
+            // Act
+            const notCancelled = fireEvent.click(
+                await screen.findByRole("link"),
+                {metaKey: true},
+            );
+
+            // Assert
+            expect(notCancelled).toBe(false);
+        });
+
+        it("keeps the existing behavior for non-anchor elements", async () => {
+            // Arrange
+            render(
+                <ClickableBehavior href="https://khanacademy.org/" role="link">
+                    {(state: any, childrenProps: any) => (
+                        <button {...childrenProps}>Label</button>
+                    )}
+                </ClickableBehavior>,
+            );
+
+            // Act
+            fireEvent.click(await screen.findByRole("button"), {
+                metaKey: true,
+            });
+
+            // Assert
+            expect(window.location.assign).toHaveBeenCalledTimes(1);
+        });
+    });
+
     describe("client-side navgiation", () => {
         const ClickableBehaviorWithRouter = getClickableBehavior(
             "/foo",
