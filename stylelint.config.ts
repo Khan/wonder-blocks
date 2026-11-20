@@ -15,6 +15,27 @@ import type {Config} from "stylelint";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
+// `graphicsPalette` colors (e.g. `var(--wb-graphicsPalette-blue_30)`) stay the
+// same in every theme, so they're reported in every property; UI should use
+// `semanticColor` tokens. To keep one (e.g. for an illustration), disable
+// `declaration-property-value-disallowed-list` with a reason. Unlike the
+// `prefer-semantic-color-over-graphics-palette` ESLint rule, `fill` and `stroke`
+// aren't exempt: in CSS, a selector can match any SVG, including themed UI.
+// eslint-disable-next-line @khanacademy/wonder-blocks/prefer-semantic-color-over-graphics-palette -- This is the prefix the stylelint rule looks for
+const GRAPHICS_PALETTE_CSS_VAR_PREFIX = "--wb-graphicsPalette-";
+
+const isGraphicsPaletteValue = (value: string): boolean =>
+    value.includes(GRAPHICS_PALETTE_CSS_VAR_PREFIX);
+
+// Same message as the `prefer-semantic-color-over-graphics-palette` ESLint
+// rule in `@khanacademy/eslint-plugin-wonder-blocks`, so the policy reads the
+// same in JS and CSS.
+const GRAPHICS_PALETTE_MESSAGE =
+    "`graphicsPalette` colors stay the same in every theme. Prefer a `semanticColor` token, which adapts to the current theme. If this color must stay the same in every theme (e.g. illustrations), disable this rule with a comment explaining why.";
+
+const VAR_FALLBACK_MESSAGE =
+    "Avoid var() fallbacks — reference --wb-* tokens directly so typos are caught by csstools/value-no-unknown-custom-properties.";
+
 const config: Config = {
     extends: ["stylelint-config-standard", "stylelint-config-css-modules"],
     ignoreFiles: ["**/dist/**", "**/node_modules/**"],
@@ -109,11 +130,22 @@ const config: Config = {
         // fallback form forces every custom-property reference to be
         // validated against the token set above. WARN during the migration;
         // tightens to `error` in Phase 5.
+        //
+        // Also forbids `graphicsPalette` colors; see
+        // `GRAPHICS_PALETTE_CSS_VAR_PREFIX`. A rule can only be configured
+        // once, so the message is picked from the value being reported.
         "declaration-property-value-disallowed-list": [
-            {"/.*/": ["/var\\([^,)]+,[^)]+\\)/"]},
             {
-                message:
-                    "Avoid var() fallbacks — reference --wb-* tokens directly so typos are caught by csstools/value-no-unknown-custom-properties.",
+                "/.*/": [
+                    "/var\\([^,)]+,[^)]+\\)/",
+                    `/${GRAPHICS_PALETTE_CSS_VAR_PREFIX}/`,
+                ],
+            },
+            {
+                message: (_property: string, value: string) =>
+                    isGraphicsPaletteValue(value)
+                        ? GRAPHICS_PALETTE_MESSAGE
+                        : VAR_FALLBACK_MESSAGE,
                 severity: "warning",
             },
         ],
