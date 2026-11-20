@@ -22,7 +22,6 @@ import packageConfig from "../../packages/wonder-blocks-tooltip/package.json";
 
 import ComponentInfo from "../components/component-info";
 import TooltipArgTypes from "./tooltip.argtypes";
-import {LabeledField} from "@khanacademy/wonder-blocks-labeled-field";
 
 const styles = StyleSheet.create({
     storyCanvas: {
@@ -130,6 +129,10 @@ Default.play = async ({canvasElement}) => {
  * since the text input can take focus. However, that needs a custom
  * accessibility implementation too (for that, we should use `useId`, but we'll
  * cheat here and give our own identifier).
+ *
+ * The tooltip is anchored to the text field itself rather than to a
+ * `LabeledField` around it: anchor a tooltip to the element people interact
+ * with.
  */
 export const ComplexAnchorAndTitle: StoryComponentType = {
     args: {
@@ -139,17 +142,7 @@ export const ComplexAnchorAndTitle: StoryComponentType = {
         title: "This tooltip has a title",
         content: "I'm at the bottom!",
         children: (
-            <LabeledField
-                label="Some text"
-                field={
-                    <TextField
-                        aria-describedby="my-a11y-tooltip"
-                        id=""
-                        onChange={() => {}}
-                        value=""
-                    />
-                }
-            />
+            <TextField aria-label="Some text" onChange={() => {}} value="" />
         ),
     } as TooltipArgs,
     play: async ({canvasElement}) => {
@@ -159,8 +152,8 @@ export const ComplexAnchorAndTitle: StoryComponentType = {
 
         // Act
         // Triggers the hover state
-        const text = await canvas.findByText("Some text");
-        await userEvent.hover(text);
+        const field = await canvas.findByRole("textbox", {name: "Some text"});
+        await userEvent.hover(field);
 
         // Assert
         await expect(
