@@ -1,6 +1,10 @@
 import {graphicsPalette} from "../../index";
 import {graphicsPalette as graphicsPaletteValues} from "../../theme/semantic/internal/primitive-color-thunderblocks";
-import {generateGraphicsPaletteDefinitions} from "../generate-css-variables";
+import {breakpoint} from "../../tokens/media-queries";
+import {
+    generateBreakpointWidthDefinitions,
+    generateGraphicsPaletteDefinitions,
+} from "../generate-css-variables";
 
 describe("generateGraphicsPaletteDefinitions", () => {
     it("should define the variables on the :root selector only", () => {
@@ -49,5 +53,39 @@ describe("generateGraphicsPaletteDefinitions", () => {
 
         // Assert
         expect(undefinedVariables).toEqual([]);
+    });
+});
+
+describe("generateBreakpointWidthDefinitions", () => {
+    it("should define the variables on the :root selector only", () => {
+        // Arrange
+
+        // Act
+        const result = generateBreakpointWidthDefinitions();
+
+        // Assert
+        expect(result).toMatch(/^:root \{[^{}]*\}$/);
+    });
+
+    it("should define each width in px, named after its token path", () => {
+        // Arrange
+
+        // Act
+        const result = generateBreakpointWidthDefinitions();
+
+        // Assert
+        expect(result).toContain("--wb-breakpoint-width-mdMin: 682px;");
+    });
+
+    it("should define one variable per breakpoint width", () => {
+        // Arrange
+
+        // Act
+        const result = generateBreakpointWidthDefinitions();
+
+        // Assert
+        expect(result.match(/--wb-breakpoint-width-/g)).toHaveLength(
+            Object.keys(breakpoint.width).length,
+        );
     });
 });
