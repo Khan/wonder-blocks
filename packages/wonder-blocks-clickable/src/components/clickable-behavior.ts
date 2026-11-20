@@ -259,10 +259,8 @@ const startState: ClickableState = {
 };
 
 /**
- * Whether a click has a modifier key held or isn't from the primary button.
- *
- * Browsers handle these clicks on links themselves, e.g. by opening the link
- * in a new tab or window. This mirrors react-router's `shouldProcessLinkClick`.
+ * Matches the modifier-key and non-primary-button checks in react-router's
+ * `shouldProcessLinkClick`.
  */
 const isModifiedClick = (e: React.SyntheticEvent): boolean => {
     const {metaKey, ctrlKey, shiftKey, altKey, button} =
@@ -546,12 +544,10 @@ export default class ClickableBehavior extends React.Component<
             this.waitingForClick = false;
         }
 
-        // Let the browser (and react-router's Link) handle modified clicks on
-        // links, e.g. Cmd/Ctrl-click to open in a new tab. We only do this
-        // when the handlers are on an anchor, since other elements have no
-        // default action to fall back on. beforeNav must finish before
-        // navigating, which requires preventing the default, so those clicks
-        // keep navigating in the same tab.
+        // Leave modified clicks on links to the browser (and react-router's
+        // Link), e.g. Cmd/Ctrl-click to open in a new tab. Only anchors have
+        // a default action to fall back on, and beforeNav needs the default
+        // prevented so that it can finish before we navigate.
         if (
             href &&
             !beforeNav &&
