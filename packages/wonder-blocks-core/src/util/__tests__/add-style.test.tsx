@@ -61,7 +61,7 @@ describe("addStyle", () => {
         expect(div).toHaveAttribute("class", "foo");
     });
 
-    it("should wrap inline styles into a generated class alongside the consumer className", () => {
+    it("should set inline styles as the style attribute alongside the consumer className", () => {
         // Arrange
         render(
             <StyledDiv
@@ -74,9 +74,27 @@ describe("addStyle", () => {
         // Act
         const div = screen.getByTestId("styled-div");
 
-        // Assert — inline styles are wrapped into a generated aphrodite class
-        // (so they can outweigh aphrodite's `!important`); the consumer's
-        // `className` is appended and no inline `style` attribute is emitted.
+        // Assert
+        expect(div).toHaveAttribute("class", "foo");
+        expect(div).toHaveAttribute("style", "width: 100%;");
+    });
+
+    it("should wrap inline styles into a generated class when a stylesheet style is also provided", () => {
+        // Arrange
+        render(
+            <StyledDiv
+                className="foo"
+                style={[styles.foo, {width: "100%"}]}
+                data-testid="styled-div"
+            />,
+        );
+
+        // Act
+        const div = screen.getByTestId("styled-div");
+
+        // Assert — inline styles are merged into the generated aphrodite
+        // class, so the stylesheet's pseudo-class and media query rules can
+        // still override them; no inline `style` attribute is emitted.
         const classNames = div.className.split(" ");
         expect(classNames).toHaveLength(2);
         expect(classNames[0]).toEqual(expect.any(String));
