@@ -1,6 +1,7 @@
 import {afterEach, beforeAll} from "vitest";
 import {setProjectAnnotations} from "@storybook/react-vite";
 import * as a11yAddonAnnotations from "@storybook/addon-a11y/preview";
+import * as pseudoStatesAddonAnnotations from "storybook-addon-pseudo-states/preview";
 
 import * as previewAnnotations from "./preview";
 
@@ -13,6 +14,14 @@ const theme = import.meta.env.VITE_WB_THEME;
 // More info at: https://storybook.js.org/docs/api/portable-stories/portable-stories-vitest#setprojectannotations
 const annotations = setProjectAnnotations([
     a11yAddonAnnotations,
+    // Needed for the `pseudo` parameter (state sheets) to render in Argos
+    // screenshots. Because we call `setProjectAnnotations` ourselves,
+    // `@storybook/addon-vitest` skips auto-loading addon annotations, so
+    // without this the pseudo-states decorator never runs under Vitest.
+    // The addon only rewrites `:hover`/`:focus`/... rules when the
+    // `storyRendered` event fires, which only Argos emits here, so a11y-only
+    // runs are unaffected.
+    pseudoStatesAddonAnnotations,
     previewAnnotations,
     // Drive the theme from an env var so the a11y suite can be run once per
     // theme. Each run re-renders every story under the given theme so
