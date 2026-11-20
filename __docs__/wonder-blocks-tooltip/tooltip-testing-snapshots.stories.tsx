@@ -24,7 +24,7 @@ const meta = {
     parameters: {
         chromatic: {
             modes: allThemeModes,
-            // Give PopperJS time to position the tooltip before snapshotting.
+            // Give floating-ui time to position the tooltip before snapshotting.
             delay: 500,
         },
     },
@@ -113,7 +113,7 @@ export const StateSheetStory: Story = {
         >
             {({props, name}) => (
                 // The bubble portals out of the cell and is positioned by
-                // Popper above the anchor, so give each cell enough room
+                // floating-ui next to the anchor, so give each cell enough room
                 // around the anchor for the bubble to render without
                 // overlapping neighboring cells.
                 <View style={styles.anchorCell} key={name}>

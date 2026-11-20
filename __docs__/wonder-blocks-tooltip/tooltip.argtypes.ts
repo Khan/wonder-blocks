@@ -75,7 +75,7 @@ export default {
     },
     autoUpdate: {
         description:
-            "Whether the tooltip should automatically update its position when the anchor element changes size or position.",
+            "**Deprecated:** This prop is a no-op. The tooltip always keeps its position in sync with the anchor element.",
         control: {
             type: "boolean",
         },
@@ -102,9 +102,9 @@ export default {
     },
     viewportPadding: {
         description:
-            `If \`rootBoundary\` is \`viewport\`, this padding value is ` +
-            `used to provide spacing between the popper and the viewport. ` +
-            `If not provided, default spacing of 12px is applied.`,
+            `The padding (in pixels) kept between the tooltip and the ` +
+            `edges of the viewport when the tooltip is shifted to stay in ` +
+            `view. If not provided, default spacing of 12px is applied.`,
         control: {
             type: "number",
         },
