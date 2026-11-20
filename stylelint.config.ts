@@ -123,6 +123,21 @@ const config: Config = {
             },
         ],
 
+        // Pairs with the rule above: `known` only validates custom media
+        // names, so a hard-coded `@media (min-width: 682px)` would still pass.
+        // Flag width-based media features so breakpoints go through the
+        // `--wb-breakpoint-mediaQuery-*` custom media queries instead. Other
+        // features (`hover`, `height`, `prefers-reduced-motion`, …) stay
+        // allowed. WARN during the migration; tightens to `error` in Phase 5.
+        "media-feature-name-disallowed-list": [
+            ["width", "min-width", "max-width"],
+            {
+                message:
+                    "Use a breakpoint custom media query (e.g. `@media (--wb-breakpoint-mediaQuery-mdOrLarger)`) instead of a hard-coded width.",
+                severity: "warning",
+            },
+        ],
+
         // Closes the gap left by `csstools/value-no-unknown-custom-properties`:
         // that rule intentionally skips `var()` calls with a fallback (the
         // fallback is treated as a safety net), so a typo like
