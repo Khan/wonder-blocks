@@ -259,6 +259,16 @@ const startState: ClickableState = {
 };
 
 /**
+ * Clicks the browser handles itself on a link: a modifier key held (e.g.
+ * Cmd/Ctrl for a new tab, Shift for a new window) or a non-primary button.
+ */
+const isModifiedClick = (e: React.SyntheticEvent): boolean => {
+    const {metaKey, ctrlKey, shiftKey, altKey, button} =
+        e as Partial<React.MouseEvent>;
+    return !!(metaKey || ctrlKey || shiftKey || altKey || button);
+};
+
+/**
  * Add hover, focus, and active status updates to a clickable component.
  *
  * Via mouse:
@@ -523,6 +533,7 @@ export default class ClickableBehavior extends React.Component<
             onClick = undefined,
             beforeNav = undefined,
             safeWithNav = undefined,
+            href,
         } = this.props;
 
         if (this.enterClick) {
@@ -531,6 +542,22 @@ export default class ClickableBehavior extends React.Component<
 
         if (onClick || beforeNav || safeWithNav) {
             this.waitingForClick = false;
+        }
+
+        // Leave modified clicks on links to the browser (and react-router's
+        // Link), e.g. Cmd/Ctrl-click to open in a new tab. Only anchors have
+        // a default action to fall back on, and beforeNav needs the default
+        // prevented so that it can finish before we navigate.
+        if (
+            href &&
+            !beforeNav &&
+            isModifiedClick(e) &&
+            e.currentTarget instanceof window.HTMLAnchorElement
+        ) {
+            onClick?.(e);
+            // The current page isn't unloaded, so there's no need to wait.
+            safeWithNav?.().catch(() => {});
+            return;
         }
 
         this.runCallbackAndMaybeNavigate(e);

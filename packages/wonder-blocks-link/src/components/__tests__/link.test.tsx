@@ -35,6 +35,35 @@ describe("Link", () => {
     });
 
     describe("client-side navigation", () => {
+        test("does not client-side navigate on a meta click", async () => {
+            // Arrange
+            render(
+                <MemoryRouter>
+                    <CompatRouter>
+                        <div>
+                            <Link href="/foo">Click me!</Link>
+                            <Routes>
+                                <Route
+                                    path="/foo"
+                                    element={<div id="foo">Hello, world!</div>}
+                                />
+                            </Routes>
+                        </div>
+                    </CompatRouter>
+                </MemoryRouter>,
+            );
+            const link = await screen.findByText("Click me!");
+            const user = userEvent.setup();
+
+            // Act
+            await user.keyboard("{Meta>}");
+            await user.click(link);
+            await user.keyboard("{/Meta}");
+
+            // Assert
+            expect(screen.queryByText("Hello, world!")).not.toBeInTheDocument();
+        });
+
         test("works for known URLs", async () => {
             // Arrange
             render(
