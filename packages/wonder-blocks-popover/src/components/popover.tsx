@@ -167,14 +167,8 @@ type Props = AriaProps & {
  *      {({ open }) => <Button onClick={open}>Open popover</Button>}
  *  </Popover>
  * ```
- *
- * The `ref` is set to the trigger element (when the trigger attaches the ref it
- * is given), so that a `Popover` can be the anchor of a `Tooltip`.
  */
-const Popover = React.forwardRef(function Popover(
-    props: Props,
-    ref: React.ForwardedRef<HTMLElement>,
-) {
+function Popover(props: Props) {
     const {
         children,
         content,
@@ -363,7 +357,6 @@ const Popover = React.forwardRef(function Popover(
                 testId={testId}
             >
                 <PopoverAnchor
-                    ref={ref}
                     id={`${uniqueId}-anchor`}
                     aria-controls={uniqueId}
                     aria-expanded={opened ? "true" : "false"}
@@ -374,8 +367,6 @@ const Popover = React.forwardRef(function Popover(
             </Floating>
         </PopoverContext.Provider>
     );
-});
-
-Popover.displayName = "Popover";
+}
 
 export default Popover;
