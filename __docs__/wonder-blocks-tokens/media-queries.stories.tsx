@@ -148,6 +148,14 @@ export const BreakpointMediaQueries = () => (
  *     max-inline-size: var(--wb-breakpoint-width-lgMax);
  * }
  * ```
+ *
+ * Unlike most tokens (e.g. `semanticColor`, `sizing`), the JS
+ * `breakpoint.width` values are plain numbers, not `var()` strings, so they
+ * can be used in calculations, `matchMedia` or comparisons with
+ * `window.innerWidth`. The CSS variables are generated from the same numbers.
+ * Treat them as read-only: don't override them, because the JS values and the
+ * breakpoint media queries (`--wb-breakpoint-mediaQuery-*`, expanded to fixed
+ * pixel values at build time) would no longer match.
  */
 export const BreakpointWidths = () => (
     <TokenTable
