@@ -49,13 +49,15 @@
 
     /* Corner styles. */
     &.square {
-        border: 1px solid var(--wb-semanticColor-core-border-neutral-subtle);
+        border: var(--wb-border-width-thin) solid
+            var(--wb-semanticColor-core-border-neutral-subtle);
         border-block-end: none;
         border-radius: var(--wb-border-radius-radius_0);
     }
 
     &.rounded {
-        border: 1px solid var(--wb-semanticColor-core-border-neutral-subtle);
+        border: var(--wb-border-width-thin) solid
+            var(--wb-semanticColor-core-border-neutral-subtle);
         border-block-end: none;
     }
 
@@ -66,7 +68,7 @@
 
     &.square.lastSection,
     &.rounded.lastSection {
-        border-block-end: 1px solid
+        border-block-end: var(--wb-border-width-thin) solid
             var(--wb-semanticColor-core-border-neutral-subtle);
     }
 
@@ -76,7 +78,8 @@
     }
 
     &.roundedPerSection {
-        border: 1px solid var(--wb-semanticColor-core-border-neutral-subtle);
+        border: var(--wb-border-width-thin) solid
+            var(--wb-semanticColor-core-border-neutral-subtle);
         border-radius: var(--wb-border-radius-radius_120);
         margin-block-end: var(--wb-sizing-size_160);
     }

@@ -23,7 +23,7 @@
         margin: 0;
         padding: 0;
         border: none;
-        width: auto;
+        inline-size: auto;
         background: var(--wb-semanticColor-core-transparent);
         box-sizing: border-box;
         overflow: visible;
@@ -37,6 +37,7 @@
 
         /* Normalize `line-height`. Cannot be changed from `normal` in
          * Firefox 4+. */
+        /* stylelint-disable-next-line scale-unlimited/declaration-strict-value -- reset to the browser default; no line-height token means "normal" */
         line-height: normal;
 
         /* This is usually frowned upon b/c of accessibility. We expect users of

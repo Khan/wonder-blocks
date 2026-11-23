@@ -6,8 +6,13 @@
 //   * Co-exist with the PostCSS pipeline declared in `postcss.config.cjs`
 //     (postcss-import + @csstools/postcss-mixins).
 //
-// Phase 0 lands with permissive defaults; severity tightens to `error`
-// once Phase 5 migrates the last component (per WB-2324 0.4 plan).
+// Phase 0 landed these rules at `warning` severity so un-migrated components
+// could co-exist. Every component is migrated now, so they're `error` (per the
+// WB-2324 0.4 plan; done in WB-2684), and `pnpm lint:css` runs with
+// `--max-warnings 0` so any new warning-level rule also fails CI.
+//
+// Every `stylelint-disable` comment must say why after `--`
+// (`reportDescriptionlessDisables`), like `eslint-comments/require-description`.
 import path from "node:path";
 import {fileURLToPath} from "node:url";
 
@@ -39,6 +44,7 @@ const VAR_FALLBACK_MESSAGE =
 const config: Config = {
     extends: ["stylelint-config-standard", "stylelint-config-css-modules"],
     ignoreFiles: ["**/dist/**", "**/node_modules/**"],
+    reportDescriptionlessDisables: true,
     plugins: [
         "stylelint-declaration-strict-value",
         "stylelint-media-use-custom-media",
@@ -149,13 +155,12 @@ const config: Config = {
         // Flag width-based media features so breakpoints go through the
         // `--wb-breakpoint-mediaQuery-*` custom media queries instead. Other
         // features (`hover`, `height`, `prefers-reduced-motion`, …) stay
-        // allowed. WARN during the migration; tightens to `error` in Phase 5.
+        // allowed.
         "media-feature-name-disallowed-list": [
             ["width", "min-width", "max-width"],
             {
                 message:
                     "Use a breakpoint custom media query (e.g. `@media (--wb-breakpoint-mediaQuery-mdOrLarger)`) instead of a hard-coded width.",
-                severity: "warning",
             },
         ],
 
@@ -164,8 +169,7 @@ const config: Config = {
         // fallback is treated as a safety net), so a typo like
         // `var(--wb-typoed-token, 10px)` slips through. Banning the
         // fallback form forces every custom-property reference to be
-        // validated against the token set above. WARN during the migration;
-        // tightens to `error` in Phase 5.
+        // validated against the token set above.
         //
         // Also forbids `graphicsPalette` colors; see
         // `GRAPHICS_PALETTE_CSS_VAR_PREFIX`. A rule can only be configured
@@ -182,7 +186,6 @@ const config: Config = {
                     isGraphicsPaletteValue(value)
                         ? GRAPHICS_PALETTE_MESSAGE
                         : VAR_FALLBACK_MESSAGE,
-                severity: "warning",
             },
         ],
 
@@ -190,10 +193,9 @@ const config: Config = {
         // `@import` notation that our PostCSS pipeline uses.
         "import-notation": "string",
 
-        // Token-required properties. WARN level during the migration so
-        // un-migrated Aphrodite call-sites can still co-exist without
-        // failing CI. Tighten to `error` once Phase 5 component waves
-        // complete.
+        // Token-required properties. Where a raw value is intentional (e.g.
+        // the visually-hidden `margin: -1px`), disable the rule on that line
+        // with a reason.
         "scale-unlimited/declaration-strict-value": [
             [
                 /**
@@ -240,7 +242,6 @@ const config: Config = {
                     "dashed",
                     "dotted",
                 ],
-                severity: "warning",
             },
         ],
 
@@ -248,18 +249,15 @@ const config: Config = {
         // `declaration-strict-value` above by closing the side-channel:
         // a hex used in a property *not* on that list (e.g. `box-shadow`,
         // `outline`, `fill`) would otherwise still slip through. Authors
-        // should reach for a `--wb-*` token via `var()` instead. WARN
-        // during the migration; tightens to `error` in Phase 5 alongside
-        // `declaration-strict-value`.
-        "color-no-hex": [true, {severity: "warning"}],
+        // should reach for a `--wb-*` token via `var()` instead.
+        "color-no-hex": true,
 
         // Require logical properties / values for inline-axis sizing,
         // positioning, and text alignment so styles work in RTL locales
         // without per-component flips. Mirrors the Aphrodite-side
         // `@khanacademy/wonder-blocks/require-logical-properties-for-rtl`
-        // ESLint rule (CLASS-14218) for the CSS Modules pipeline. WARN
-        // during the migration; tightens to `error` in Phase 5.
-        "csstools/use-logical": ["always", {severity: "warning"}],
+        // ESLint rule (CLASS-14218) for the CSS Modules pipeline.
+        "csstools/use-logical": "always",
     },
 };
 
