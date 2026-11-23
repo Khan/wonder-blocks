@@ -185,7 +185,7 @@ describe("tokenValue", () => {
 
     // Simulates an SSR / node-based test environment where `document` is not
     // defined globally. Some consumers call `tokenValue` at module load time
-    // (e.g. `wonder-blocks-layout/src/util/specs.ts`), so the helper must not
+    // (e.g. to build module-level constants), so the helper must not
     // throw a `ReferenceError` when imported in those environments.
     describe("when document is undefined", () => {
         beforeEach(() => {

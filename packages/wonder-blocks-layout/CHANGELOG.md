@@ -1,5 +1,19 @@
 # @khanacademy/wonder-blocks-layout
 
+## 4.0.0
+
+### Major Changes
+
+- 5d07224: Remove the deprecated `MediaLayout` component and `MediaLayoutContext`, along with their related exports: `MEDIA_DEFAULT_SPEC`, `MEDIA_INTERNAL_SPEC`, `MEDIA_MODAL_SPEC`, `VALID_MEDIA_SIZES`, `queryMatchesSize`, and the `MediaQuery`, `MediaSize`, `MediaSpec`, `MockStyleSheet` and `MediaLayoutContextValue` types. Use CSS media queries instead.
+
+## 3.2.3
+
+### Patch Changes
+
+- Updated dependencies [d4df210]
+    - @khanacademy/wonder-blocks-tokens@18.2.1
+    - @khanacademy/wonder-blocks-styles@0.4.3
+
 ## 3.2.2
 
 ### Patch Changes

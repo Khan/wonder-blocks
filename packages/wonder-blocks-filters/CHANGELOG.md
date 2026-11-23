@@ -1,5 +1,14 @@
 # @khanacademy/wonder-blocks-filters
 
+## 0.1.2
+
+### Patch Changes
+
+- Updated dependencies [d4df210]
+    - @khanacademy/wonder-blocks-tokens@18.2.1
+    - @khanacademy/wonder-blocks-styles@0.4.3
+    - @khanacademy/wonder-blocks-typography@5.0.8
+
 ## 0.1.1
 
 ### Patch Changes
