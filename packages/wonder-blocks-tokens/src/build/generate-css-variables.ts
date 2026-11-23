@@ -4,6 +4,7 @@ import path from "path";
 import {THEME_DATA_ATTRIBUTE} from "@khanacademy/wonder-blocks-theming";
 import {generateTokens} from "../internal/generate-tokens";
 import {graphicsPalette} from "../theme/semantic/internal/primitive-color-thunderblocks";
+import {breakpoint} from "../tokens/media-queries";
 import {CSS_VAR_PREFIX} from "../util/constants";
 
 /**
@@ -99,6 +100,34 @@ export function generateGraphicsPaletteDefinitions() {
 }
 
 /**
+ * Generate the `:root` selector containing the breakpoint width CSS variables
+ * (e.g. `--wb-breakpoint-width-mdMin: 682px`).
+ *
+ * Like the graphics palette, breakpoints don't change based on the theme, so
+ * they're defined once on `:root`. The `breakpoint.width` tokens are unitless
+ * pixel numbers, so the `px` unit is added here.
+ *
+ * NOTE: Custom properties can't be used in a media query condition. Use these
+ * for property values (e.g. `max-inline-size`) and the
+ * `breakpoint.mediaQuery` tokens for media queries.
+ */
+export function generateBreakpointWidthDefinitions() {
+    const width = Object.fromEntries(
+        Object.entries(breakpoint.width).map(([key, value]) => [
+            key,
+            `${value}px`,
+        ]),
+    );
+    const cssVariables = Object.entries(
+        generateTokens({breakpoint: {width}}, CSS_VAR_PREFIX),
+    )
+        .map(([key, value]) => `${key}: ${value};`)
+        .join("\n");
+
+    return `:root {${cssVariables}}`;
+}
+
+/**
  * Create the CSS file containing the CSS variables for each theme.
  */
 export function createCssFile(folderPath: string, prefix?: string) {
@@ -122,6 +151,7 @@ export function createCssFile(folderPath: string, prefix?: string) {
     // use this script through the CLI).
     if (currentDir === "tokens") {
         definitions.push(generateGraphicsPaletteDefinitions());
+        definitions.push(generateBreakpointWidthDefinitions());
     }
 
     // Generate the output inside dist/css/vars.css

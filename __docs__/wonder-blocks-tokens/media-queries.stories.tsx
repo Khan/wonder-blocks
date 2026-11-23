@@ -138,6 +138,24 @@ export const BreakpointMediaQueries = () => (
  *     },
  * };
  * ```
+ *
+ * In CSS (e.g. CSS Modules), use the matching CSS variable, which already
+ * includes the `px` unit. CSS variables can't be used in media query
+ * conditions, so use these for property values only:
+ *
+ * ```css
+ * .element {
+ *     max-inline-size: var(--wb-breakpoint-width-lgMax);
+ * }
+ * ```
+ *
+ * Unlike most tokens (e.g. `semanticColor`, `sizing`), the JS
+ * `breakpoint.width` values are plain numbers, not `var()` strings, so they
+ * can be used in calculations, `matchMedia` or comparisons with
+ * `window.innerWidth`. The CSS variables are generated from the same numbers.
+ * Treat them as read-only: don't override them, because the JS values and the
+ * breakpoint media queries (`--wb-breakpoint-mediaQuery-*`, expanded to fixed
+ * pixel values at build time) would no longer match.
  */
 export const BreakpointWidths = () => (
     <TokenTable
@@ -146,6 +164,12 @@ export const BreakpointWidths = () => (
                 label: "Width Token",
                 cell: (row: Row) => (
                     <Code>{`breakpoint.width.${row.label}`}</Code>
+                ),
+            },
+            {
+                label: "CSS Variable",
+                cell: (row: Row) => (
+                    <Code>{`--wb-breakpoint-width-${row.label}`}</Code>
                 ),
             },
             {
