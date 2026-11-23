@@ -3,4 +3,7 @@ tsconfig-build.json
 dist/**/__tests__
 dist/**/*.test.d.ts
 types
-src
+# Ship only the generated custom media definitions from `src` (exported as
+# `./custom-media.css`).
+src/*
+!src/css

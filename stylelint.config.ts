@@ -41,6 +41,7 @@ const config: Config = {
     ignoreFiles: ["**/dist/**", "**/node_modules/**"],
     plugins: [
         "stylelint-declaration-strict-value",
+        "stylelint-media-use-custom-media",
         "stylelint-use-logical",
         "stylelint-value-no-unknown-custom-properties",
     ],
@@ -120,6 +121,41 @@ const config: Config = {
                         "packages/wonder-blocks-tokens/dist/css/index.css",
                     ),
                 ],
+            },
+        ],
+
+        // Breakpoints: `@media (--wb-breakpoint-mediaQuery-*)` must name a
+        // custom media query generated from `breakpoint.mediaQuery` in the
+        // tokens package (expanded at build time by `postcss-custom-media`,
+        // see `postcss.config.cjs`). Catches typos like
+        // `--wb-breakpoint-mediaQuery-mdOrLargr`, which would otherwise be
+        // left in the output as a query that never matches. `known` (not
+        // `always-known`) so one-off, non-token queries such as
+        // `prefers-reduced-motion` stay allowed.
+        "csstools/media-use-custom-media": [
+            "known",
+            {
+                importFrom: [
+                    path.resolve(
+                        __dirname,
+                        "packages/wonder-blocks-tokens/src/css/custom-media.css",
+                    ),
+                ],
+            },
+        ],
+
+        // Pairs with the rule above: `known` only validates custom media
+        // names, so a hard-coded `@media (min-width: 682px)` would still pass.
+        // Flag width-based media features so breakpoints go through the
+        // `--wb-breakpoint-mediaQuery-*` custom media queries instead. Other
+        // features (`hover`, `height`, `prefers-reduced-motion`, …) stay
+        // allowed. WARN during the migration; tightens to `error` in Phase 5.
+        "media-feature-name-disallowed-list": [
+            ["width", "min-width", "max-width"],
+            {
+                message:
+                    "Use a breakpoint custom media query (e.g. `@media (--wb-breakpoint-mediaQuery-mdOrLarger)`) instead of a hard-coded width.",
+                severity: "warning",
             },
         ],
 

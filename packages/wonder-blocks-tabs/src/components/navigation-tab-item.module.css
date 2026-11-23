@@ -39,7 +39,7 @@
     }
 
     /* breakpoint.mediaQuery.mdOrLarger (min-width: breakpoint.width.mdMin) */
-    @media screen and (width >= 682px) {
+    @media (--wb-breakpoint-mediaQuery-mdOrLarger) {
         padding-block: var(--wb-sizing-size_200) var(--wb-sizing-size_240);
     }
 
