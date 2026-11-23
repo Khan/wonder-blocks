@@ -22,6 +22,14 @@
   "sideEffects": [
     "**/*.css"
   ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/es/index.js",
+      "require": "./dist/index.js"
+    },
+    "./css": "./dist/index.css"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "prepublishOnly": "../../utils/publish/package-pre-publish-check.sh"
