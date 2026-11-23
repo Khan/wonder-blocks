@@ -18,17 +18,11 @@
 import * as fs from "fs";
 import * as path from "path";
 import * as fglob from "fast-glob";
-import postcss from "postcss";
+
+import {findUnexpandedAtRules} from "./find-unexpanded-at-rules";
 
 const rootDir = path.join(__dirname, "..");
 const packagesDir = path.join(rootDir, "packages");
-
-const DISALLOWED_AT_RULES = new Set([
-    "apply",
-    "mixin",
-    "define-mixin",
-    "import",
-]);
 
 const cssFiles = fglob.sync("*/dist/**/*.css", {
     cwd: packagesDir,
@@ -47,19 +41,14 @@ if (cssFiles.length === 0) {
 let foundErrors = false;
 for (const file of cssFiles) {
     const filePath = path.join(packagesDir, file);
-    const root = postcss.parse(fs.readFileSync(filePath, "utf8"), {
-        from: filePath,
-    });
-    root.walkAtRules((atRule) => {
-        if (DISALLOWED_AT_RULES.has(atRule.name)) {
-            foundErrors = true;
-            const line = atRule.source?.start?.line ?? "?";
-            // eslint-disable-next-line no-console -- CLI output
-            console.error(
-                `packages/${file}:${line}: unexpanded \`@${atRule.name} ${atRule.params}\``,
-            );
-        }
-    });
+    const css = fs.readFileSync(filePath, "utf8");
+    for (const {name, params, line} of findUnexpandedAtRules(css, filePath)) {
+        foundErrors = true;
+        // eslint-disable-next-line no-console -- CLI output
+        console.error(
+            `packages/${file}:${line ?? "?"}: unexpanded \`@${name} ${params}\``,
+        );
+    }
 }
 
 if (foundErrors) {
