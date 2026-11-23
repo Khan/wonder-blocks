@@ -98,7 +98,7 @@ describe("stylelint config: graphicsPalette CSS variables", () => {
             expect(warning.text).toBe(GRAPHICS_PALETTE_MESSAGE);
         });
 
-        it("reports as a warning", async () => {
+        it("reports as an error", async () => {
             // Arrange
             const code = ".a { color: var(--wb-graphicsPalette-blue_30); }";
 
@@ -106,7 +106,7 @@ describe("stylelint config: graphicsPalette CSS variables", () => {
             const [warning] = await lintCss(code);
 
             // Assert
-            expect(warning.severity).toBe("warning");
+            expect(warning.severity).toBe("error");
         });
 
         it("reports each declaration that uses the palette", async () => {
@@ -173,7 +173,7 @@ describe("stylelint config: graphicsPalette CSS variables", () => {
     });
 
     describe("var() fallbacks", () => {
-        it("still reports a fallback without a palette color as a warning", async () => {
+        it("still reports a fallback without a palette color as an error", async () => {
             // Arrange
             const code = ".a { color: var(--x, red); }";
 
@@ -182,7 +182,7 @@ describe("stylelint config: graphicsPalette CSS variables", () => {
 
             // Assert
             expect(warning).toMatchObject({
-                severity: "warning",
+                severity: "error",
                 text: `Avoid var() fallbacks — reference --wb-* tokens directly so typos are caught by csstools/value-no-unknown-custom-properties. (${RULE})`,
             });
         });
