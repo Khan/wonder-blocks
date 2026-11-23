@@ -11,7 +11,7 @@ This file provides frontend development instructions for the Wonder Blocks desig
 
 - **Language**: TypeScript (Strict mode enforced)
 - **Framework**: React (Functional Components and Hooks)
-- **Styling**: Aphrodite (`aphrodite`) for CSS-in-JS with Wonder Blocks tokens (`@khanacademy/wonder-blocks-tokens`)
+- **Styling**: CSS Modules (colocated `*.module.css` files) with Wonder Blocks tokens as CSS variables (`@khanacademy/wonder-blocks-tokens`). Aphrodite is only for consumer styles passed through `style` props
 - **State Management**: Local state (`useState`) and React Context API (`useContext`)
 - **Data Fetching**: There should be no data fetching in the design system UI components
 - **Routing**: Design system components with link functionality should also support React-Router routes
@@ -53,13 +53,20 @@ This file provides frontend development instructions for the Wonder Blocks desig
 
 **Class to Functional Migration**: When converting class components to functional components, if there is a `componentWillUnmount` method, the corresponding `useEffect` should either not have any dependencies or should call the `isMounted` function returned by `useIsMounted` from `@khanacademy/wonder-blocks-core`.
 
-### Styling (Aphrodite)
+### Styling (CSS Modules)
 
-- Define styles using `StyleSheet.create` from `aphrodite`. Colocate styles with the component
-- Use `addStyle` from `@khanacademy/wonder-blocks-core` to create styled HTML elements
-- Use semantic color tokens from `@khanacademy/wonder-blocks-tokens` (e.g., `semanticColor.core.background.base`)
-- Use the `focusStyles` utility from `@khanacademy/wonder-blocks-styles` for focus indicators
+- Put component styles in a colocated `*.module.css` file (e.g. `badge.tsx` and `badge.module.css`). **Don't use `StyleSheet.create` from `aphrodite` for Wonder Blocks component styles.** Consumers still pass Aphrodite styles through `style` props, so keep the `StyleType` props
+- Import the module (`import styles from "./badge.module.css"`) and pass its class names in the `style` list together with the consumer's styles (e.g. `style={[styles.badge, style]}`). `View`, `addStyle` and `processStyleList` from `@khanacademy/wonder-blocks-core` add class name strings to `className`
+- Don't write `@layer shared`: the build (`postcss.config.cjs`) wraps every rule in it
+- Use tokens as CSS variables (e.g. `var(--wb-semanticColor-core-background-base)`, `var(--wb-sizing-size_160)`), not raw values, and no `var()` fallbacks. Stylelint enforces this (`pnpm lint:css`)
+- Get shared styles (focus ring, action styles, minimum target size) from `@khanacademy/wonder-blocks-styles` with `@import` and `@apply` mixins (e.g. `@apply --wb-focus-visible;`)
+- Use camelCase class names (e.g. `.iconOnly`)
+- Don't use `composes` or `@value`
+- Use logical properties (`inline-size`, `margin-inline-start`, etc.) for RTL support
+- Use pseudo-classes for states, and `:focus-visible` for focus
+- Run `pnpm gen:css-types` to generate the `*.module.css.d.ts` files (`pnpm build` and `pnpm typecheck` run it for you)
 - **Avoid using primitive `color` tokens**; use `semanticColor` tokens instead
+- See [Writing CSS Modules](../../__docs__/writing-css-modules.mdx) for the full conventions
 
 ### Wonder Blocks Usage
 
@@ -150,7 +157,7 @@ This file provides frontend development instructions for the Wonder Blocks desig
 
 **Focused State:**
 - Use `:focus-visible` instead of `:focus` for focus indicators
-- Use `focusStyles` utility from `@khanacademy/wonder-blocks-styles`
+- Use the `--wb-focus-visible` mixin from `@khanacademy/wonder-blocks-styles/focus-styles.css`
 - Consider focused state in combination with other states
 - **Avoid using `box-shadow`** for focus indicators
 
@@ -303,11 +310,11 @@ This project maintains rules for multiple AI assistants. When updating these ins
 
 1. **TypeScript**: Use strict mode, avoid `any`, prefer type-only imports
 2. **React**: Use functional components and hooks, avoid `React.FC`
-3. **Styling**: Use semantic color tokens and `StyleSheet.create` from Aphrodite
+3. **Styling**: Use CSS Modules with semantic color tokens; don't use `StyleSheet.create` in components
 4. **Accessibility**: Use `aria-disabled` instead of `disabled`, ensure keyboard navigation works
 5. **Components**: Small, single-responsibility, with proper TypeScript types
 6. **Props**: Follow common patterns (`id`, `testId`, `disabled`, `onChange`, etc.)
 7. **States**: Use CSS pseudo-classes for hover/focus/active styling
 8. **Documentation**: JSDoc comments for props, Storybook stories for examples
 9. **Testing**: Jest + RTL for behavior, Storybook for visual regression
-10. **Tokens**: Use `semanticColor`, `font`, and `sizing` from `@khanacademy/wonder-blocks-tokens`
+10. **Tokens**: Use `semanticColor`, `font`, and `sizing` tokens from `@khanacademy/wonder-blocks-tokens` (as `var(--wb-…)` in CSS)

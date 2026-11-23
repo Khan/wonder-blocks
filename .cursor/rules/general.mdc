@@ -9,7 +9,7 @@ alwaysApply: true
 
 * Language: TypeScript (Strict mode enforced).
 * Framework: React (Functional Components and Hooks are standard).
-* Styling: Aphrodite (`aphrodite`) for CSS-in-JS, leveraging Wonder Blocks tokens (`@khanacademy/wonder-blocks-tokens`) and themes.
+* Styling: CSS Modules (colocated `*.module.css` files), leveraging Wonder Blocks tokens as CSS variables (`@khanacademy/wonder-blocks-tokens`) and themes. Aphrodite is only for consumer styles passed through `style` props.
 * State Management: Primarily local state (`useState`) and React Context API (`useContext` with custom provider hooks).
 * Data Fetching: There should be no data fetching in the design system UI components.
 * Routing: Design system components that have link functionality should also support React-Router routes.
@@ -53,19 +53,27 @@ alwaysApply: true
 
 ⚠️ **Class to Functional Migration**: When converting a class-based component to a functional component, if there is a `componentWillUnmount` method, the corresponding `useEffect` should either not have any dependencies or it should call the `isMounted` function returned by the `useIsMounted` hook (this can be imported from `@khanacademy/wonder-blocks-core`).
 
-### 5. Styling (Aphrodite)
+### 5. Styling (CSS Modules)
 
-* ✅ Define styles using `StyleSheet.create` from `aphrodite`. Colocate styles with the component
-* ✅ Use `addStyle` from `@khanacademy/wonder-blocks-core` to create styled HTML elements (e.g., `addStyle("div")`, `addStyle("input")`)
-* ✅ Use semantic color tokens from `@khanacademy/wonder-blocks-tokens` (e.g., `semanticColor.core.background.base`)
-* ✅ Use the `focusStyles` utility from `@khanacademy/wonder-blocks-styles` for consistent focus indicators
+* ✅ Put component styles in a colocated `*.module.css` file (e.g. `badge.tsx` and `badge.module.css`). **Don't use `StyleSheet.create` from `aphrodite` for Wonder Blocks component styles.** Consumers still pass Aphrodite styles through `style` props, so keep the `StyleType` props
+* ✅ Import the module (`import styles from "./badge.module.css"`) and pass its class names in the `style` list together with the consumer's styles (e.g. `style={[styles.badge, style]}`). `View`, `addStyle` and `processStyleList` from `@khanacademy/wonder-blocks-core` add class name strings to `className`
+* ✅ Don't write `@layer shared`: the build (`postcss.config.cjs`) wraps every rule in it
+* ✅ Use tokens as CSS variables (e.g. `var(--wb-semanticColor-core-background-base)`, `var(--wb-sizing-size_160)`), not raw values, and no `var()` fallbacks. Stylelint enforces this (`pnpm lint:css`)
+* ✅ Get shared styles (focus ring, action styles, minimum target size) from `@khanacademy/wonder-blocks-styles` with `@import` and `@apply` mixins (e.g. `@apply --wb-focus-visible;`)
+* ✅ Use camelCase class names (e.g. `.iconOnly`)
+* ❌ Don't use `composes` or `@value`
+* ✅ Use logical properties (`inline-size`, `margin-inline-start`, etc.) for RTL support
+* ✅ Use pseudo-classes for states, and `:focus-visible` for focus
+* ✅ Run `pnpm gen:css-types` to generate the `*.module.css.d.ts` files (`pnpm build` and `pnpm typecheck` run it for you)
+* ❌ Avoid using primitive `color` tokens. Use `semanticColor` tokens instead
 * ✅ Ensure styling consistency across different components throughout the design system
+* ✅ See [Writing CSS Modules](../../__docs__/writing-css-modules.mdx) for the full conventions
 
 ### 6. Wonder Blocks Usage
 
 * ✅ `View`: Use the `View` component from `@khanacademy/wonder-blocks-core` for layout containers instead of plain divs
 * ✅ Use the `useId` hook from React to generate unique ids (auto-generated if not provided). The `Id` component should not be used
-* ✅ `addStyle`: Use to create styled HTML elements with Aphrodite styles applied (see Styling section)
+* ✅ `addStyle`: Use to create styled HTML elements that accept CSS Module class names and Aphrodite styles in `style` (see Styling section)
 * ✅ Tokens: Use `semanticColor`, `font`, and `sizing` tokens from `@khanacademy/wonder-blocks-tokens`
 * ✅ Typography: Use `Heading` and `BodyText` components from `@khanacademy/wonder-blocks-typography` for text
 * ✅ Icons: Import Phosphor icons from `@phosphor-icons/core` (e.g., `import plusIcon from "@phosphor-icons/core/regular/plus.svg"`). Use the `PhosphorIcon` component from `@khanacademy/wonder-blocks-icon` to render them
@@ -197,7 +205,7 @@ Wonder Blocks components often support the following states:
 #### Focused State
 
 * ✅ Use `:focus-visible` instead of `:focus` for focus indicators
-* ✅ Use the `focusStyles` utility from `@khanacademy/wonder-blocks-styles` for consistent focus indicators
+* ✅ Use the `--wb-focus-visible` mixin from `@khanacademy/wonder-blocks-styles/focus-styles.css` for consistent focus indicators
 * ✅ Consider the focused state in combination with other states (disabled + focused, error + focused)
 * ❌ Avoid using `box-shadow` for focus indicators
 
@@ -378,12 +386,12 @@ When working on components or stories, prefer using the MCP tools (list componen
 
 1. ✅ **TypeScript**: Use strict mode, avoid `any`, prefer type-only imports
 2. ✅ **React**: Use functional components and hooks, avoid `React.FC`
-3. ✅ **Styling**: Use semantic color tokens and `StyleSheet.create` from Aphrodite
+3. ✅ **Styling**: Use CSS Modules with semantic color tokens; don't use `StyleSheet.create` in components
 4. ✅ **Accessibility**: Use `aria-disabled` instead of `disabled`, ensure keyboard navigation works
 5. ✅ **Components**: Small, single-responsibility, with proper TypeScript types
 6. ✅ **Props**: Follow common patterns (`id`, `testId`, `disabled`, `onChange`, etc.)
 7. ✅ **States**: Use CSS pseudo-classes for hover/focus/active styling
 8. ✅ **Documentation**: JSDoc comments for props, Storybook stories for examples
 9. ✅ **Testing**: Jest + RTL for behavior, Storybook for visual regression
-10. ✅ **Tokens**: Use `semanticColor`, `font`, and `sizing` from `@khanacademy/wonder-blocks-tokens`
+10. ✅ **Tokens**: Use `semanticColor`, `font`, and `sizing` tokens from `@khanacademy/wonder-blocks-tokens` (as `var(--wb-…)` in CSS)
 

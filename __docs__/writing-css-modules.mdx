@@ -1,0 +1,133 @@
+import {Meta} from "@storybook/addon-docs/blocks";
+
+<Meta title="Contributing / Writing CSS Modules" />
+
+# Writing CSS Modules
+
+Wonder Blocks components are styled with
+[CSS Modules](https://github.com/css-modules/css-modules). This page is for
+people (and AI agents) working on Wonder Blocks components. If you use Wonder
+Blocks in an app, see "Using Wonder Blocks CSS" instead.
+
+**Don't use Aphrodite (`StyleSheet.create`) for Wonder Blocks component
+styles.** New and changed styles go in a `*.module.css` file. Aphrodite is
+still how consumers pass styles to components through the `style` prop, so the
+`StyleType` props stay.
+
+## Files
+
+Put a component's styles in a `*.module.css` file next to it, with the same
+name:
+
+```
+packages/wonder-blocks-badge/src/components/
+├── badge.tsx
+└── badge.module.css
+```
+
+Import the module as a default import and pass its class names in the `style`
+prop, together with the consumer's styles:
+
+```tsx
+import {addStyle} from "@khanacademy/wonder-blocks-core";
+
+import styles from "./badge.module.css";
+
+const StyledDiv = addStyle("div");
+
+export const Badge = ({style}: Props) => (
+    <StyledDiv style={[styles.badge, isIconOnly && styles.iconOnly, style]} />
+);
+```
+
+`View`, `addStyle` and `processStyleList` (all from
+`@khanacademy/wonder-blocks-core`) accept class name strings in a style list
+and add them to the element's `className`. Aphrodite style objects in the same
+list still work, so consumer styles keep working.
+
+Run `pnpm gen:css-types` to generate the `*.module.css.d.ts` files, so
+TypeScript checks `styles.<className>`. `pnpm build` and `pnpm typecheck` run
+it for you, and the files are gitignored. Your editor reads the CSS directly
+through `typescript-plugin-css-modules`.
+
+## What the build does for you
+
+`postcss.config.cjs` runs these steps on every file, in Storybook (Vite) and in
+the published build (Rollup):
+
+1. **`postcss-import`** inlines `@import`s of shared styles from
+   `@khanacademy/wonder-blocks-styles`.
+2. **`@csstools/postcss-mixins`** expands `@apply --wb-…;` mixins.
+3. **`postcss-custom-media`** expands the breakpoint custom media queries
+   (`@media (--wb-breakpoint-mediaQuery-mdOrLarger)`).
+4. **wrap-in-layer** wraps every rule in `@layer shared { … }`.
+
+So:
+
+- **Don't write `@layer shared`.** The build adds it. Element resets can go in
+  `@layer reset { … }`, which becomes the nested `shared.reset` layer.
+- The build hashes class names as `wb-<file>-<class>-<hash>`, the same in
+  Storybook and in `dist`.
+- A post-build check fails if any `@import`, `@apply` or `@mixin` is left in
+  `dist` CSS.
+
+## Conventions
+
+- **Class names are camelCase** (`.iconOnly`, not `.icon-only`), so they read as
+  `styles.iconOnly` in TypeScript.
+- **Use tokens, not raw values.** Reference tokens as CSS variables, for example
+  `var(--wb-semanticColor-core-border-neutral-subtle)`,
+  `var(--wb-sizing-size_160)` or `var(--wb-border-width-thin)`. Use
+  `semanticColor` tokens, not primitive or `graphicsPalette` colors.
+- **No `var()` fallbacks** (`var(--wb-x, 8px)`). Stylelint checks every
+  `--wb-*` name against the token set, and a fallback would hide a typo.
+- **No `composes` and no `@value`.** Share styles through the mixins below, or
+  through component tokens (`--wb-c-<component>-*` custom properties).
+- **Use logical properties**: `inline-size`, `block-size`, `margin-inline-start`,
+  `padding-block`, `inset-inline-end`, `text-align: start`, and so on. This
+  keeps components correct in right-to-left languages.
+- **Use pseudo-classes for states**: `:hover`, `:active`, `:focus-visible`, and
+  `[aria-disabled="true"]` for disabled. Use `:focus-visible`, not `:focus`, for
+  focus indicators. Don't track hover or press state in JavaScript.
+- **Breakpoints** use the custom media queries from the tokens package, not
+  hard-coded widths.
+
+When a raw value really is intentional (for example `margin: -1px` in a
+visually-hidden pattern), disable the Stylelint rule on that line and say why
+after `--`. Stylelint fails on a disable comment that has no reason:
+
+```css
+/* stylelint-disable-next-line scale-unlimited/declaration-strict-value -- part of the standard visually-hidden pattern */
+margin: -1px;
+```
+
+## Shared styles (mixins)
+
+`@khanacademy/wonder-blocks-styles` ships CSS mixins for styles that several
+components share. Import the file, then apply the mixin:
+
+```css
+@import "@khanacademy/wonder-blocks-styles/focus-styles.css";
+
+.button:focus-visible {
+    @apply --wb-focus-visible;
+}
+```
+
+| File | Mixin | Use for |
+| --- | --- | --- |
+| `focus-styles.css` | `--wb-focus-visible` | The standard focus ring. |
+| `action-styles.css` | `--wb-action-inverse` | Interactive controls on dark backgrounds (the CSS version of `actionStyles.inverse`). |
+| `min-target-size-styles.css` | `--wb-min-target-size` | The minimum touch target size. |
+
+## Checks
+
+Run these before opening a PR:
+
+- `pnpm lint:css`: Stylelint. It runs with `--max-warnings 0`, so warnings fail
+  too.
+- `pnpm typecheck`: also regenerates the `*.module.css.d.ts` files.
+- `pnpm test`: Jest maps `*.module.css` to `identity-obj-proxy`, so
+  `styles.badge` is the string `"badge"` in tests, and other `.css` imports to a
+  no-op mock. Don't assert on styles in unit tests; Chromatic snapshot stories
+  cover how components look.
