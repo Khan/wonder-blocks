@@ -12,6 +12,10 @@ import * as path from "node:path";
  *   import away (e.g. if someone later sets `"sideEffects": false`), and
  * - expose the stylesheet as `./css` in its `exports` map, so consumers can
  *   import it directly (an `exports` map blocks every path it doesn't list).
+ *   `./css` is conditional: `import` resolves to the copy the ESM entry
+ *   imports (`dist/es/index.css`) and `require` to the CommonJS one
+ *   (`dist/index.css`), so a bundler that also imports `./css` resolves the
+ *   same file as the JS entry and loads the CSS once.
  *
  * The `.` entry lists the `types` condition first, because TypeScript resolves
  * conditions in order.
@@ -71,7 +75,7 @@ describe("packages that emit CSS", () => {
             expect(sideEffects).toEqual(expect.arrayContaining(["**/*.css"]));
         });
 
-        it("exports the stylesheet as `./css`", () => {
+        it("exports the stylesheet as `./css`, matching each JS build", () => {
             // Arrange
             const pkg = pkgJson;
 
@@ -79,7 +83,11 @@ describe("packages that emit CSS", () => {
             const cssExport = pkg.exports?.["./css"];
 
             // Assert
-            expect(cssExport).toBe("./dist/index.css");
+            expect(cssExport).toEqual({
+                import: "./dist/es/index.css",
+                require: "./dist/index.css",
+                default: "./dist/index.css",
+            });
         });
 
         it("lists the `types` condition first in `.`", () => {

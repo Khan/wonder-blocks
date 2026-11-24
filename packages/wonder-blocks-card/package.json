@@ -28,7 +28,11 @@
       "import": "./dist/es/index.js",
       "require": "./dist/index.js"
     },
-    "./css": "./dist/index.css"
+    "./css": {
+      "import": "./dist/es/index.css",
+      "require": "./dist/index.css",
+      "default": "./dist/index.css"
+    }
   },
   "source": "src/index.js",
   "scripts": {
