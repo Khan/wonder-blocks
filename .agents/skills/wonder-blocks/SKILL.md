@@ -16,7 +16,8 @@ description: >
 
 Wonder Blocks is Khan Academy's React component library (`@khanacademy/wonder-blocks-*`).
 All components are TypeScript-friendly, ship their own CSS, accept aphrodite styles
-through their `style` props, and follow WAI-ARIA accessibility patterns.
+through their `style` props (kept temporarily, until consumers are converted to CSS
+Modules), and follow WAI-ARIA accessibility patterns.
 
 ## Implementation workflow
 
@@ -87,9 +88,11 @@ guide for the full setup.
 ## Styling with aphrodite
 
 This section is about styling app code. Inside the Wonder Blocks repo, component styles
-are written as CSS Modules instead (see `__docs__/writing-css-modules.mdx`).
+are written as CSS Modules instead (see `__docs__/writing-css-modules.mdx`). Apps keep
+using aphrodite for now: it's supported temporarily, until consumers are converted to
+CSS Modules.
 
-WB uses aphrodite for scoped CSS. Never use inline style objects for complex styles —
+App code uses aphrodite for scoped CSS. Never use inline style objects for complex styles —
 define them with `StyleSheet.create` so they're type-safe and mergeable.
 
 ```tsx

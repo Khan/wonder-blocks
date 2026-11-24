@@ -12,7 +12,8 @@ Blocks in an app, see "Using Wonder Blocks CSS" instead.
 **Don't use Aphrodite (`StyleSheet.create`) for Wonder Blocks component
 styles.** New and changed styles go in a `*.module.css` file. Aphrodite is
 still how consumers pass styles to components through the `style` prop, so the
-`StyleType` props stay.
+`StyleType` props stay. That support is temporary: it stays until consumers are
+converted to CSS Modules.
 
 ## Files
 
@@ -43,7 +44,8 @@ export const Badge = ({style}: Props) => (
 `View`, `addStyle` and `processStyleList` (all from
 `@khanacademy/wonder-blocks-core`) accept class name strings in a style list
 and add them to the element's `className`. Aphrodite style objects in the same
-list still work, so consumer styles keep working.
+list still work, so consumer styles keep working until consumers are converted
+to CSS Modules.
 
 Run `pnpm gen:css-types` to generate the `*.module.css.d.ts` files, so
 TypeScript checks `styles.<className>`. `pnpm build` and `pnpm typecheck` run
@@ -114,11 +116,11 @@ components share. Import the file, then apply the mixin:
 }
 ```
 
-| File | Mixin | Use for |
-| --- | --- | --- |
-| `focus-styles.css` | `--wb-focus-visible` | The standard focus ring. |
-| `action-styles.css` | `--wb-action-inverse` | Interactive controls on dark backgrounds (the CSS version of `actionStyles.inverse`). |
-| `min-target-size-styles.css` | `--wb-min-target-size` | The minimum touch target size. |
+| File                         | Mixin                  | Use for                                                                               |
+| ---------------------------- | ---------------------- | ------------------------------------------------------------------------------------- |
+| `focus-styles.css`           | `--wb-focus-visible`   | The standard focus ring.                                                              |
+| `action-styles.css`          | `--wb-action-inverse`  | Interactive controls on dark backgrounds (the CSS version of `actionStyles.inverse`). |
+| `min-target-size-styles.css` | `--wb-min-target-size` | The minimum touch target size.                                                        |
 
 ## Checks
 

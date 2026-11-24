@@ -6,7 +6,7 @@ This file provides instructions for Claude when working on the Wonder Blocks des
 
 - **Language**: TypeScript (Strict mode enforced)
 - **Framework**: React (Functional Components and Hooks)
-- **Styling**: CSS Modules (colocated `*.module.css` files) with Wonder Blocks tokens as CSS variables (`@khanacademy/wonder-blocks-tokens`). Aphrodite is only for consumer styles passed through `style` props
+- **Styling**: CSS Modules (colocated `*.module.css` files) with Wonder Blocks tokens as CSS variables (`@khanacademy/wonder-blocks-tokens`). Aphrodite support is kept temporarily, only for consumer styles passed through `style` props, until consumers are converted to CSS Modules
 - **State Management**: Local state (`useState`) and React Context API (`useContext`)
 - **Data Fetching**: There should be no data fetching in the design system UI components
 - **Routing**: Design system components with link functionality should also support React-Router routes
@@ -50,7 +50,7 @@ This file provides instructions for Claude when working on the Wonder Blocks des
 
 ### Styling (CSS Modules)
 
-- Put component styles in a colocated `*.module.css` file (e.g. `badge.tsx` and `badge.module.css`). **Don't use `StyleSheet.create` from `aphrodite` for Wonder Blocks component styles.** Consumers still pass Aphrodite styles through `style` props, so keep the `StyleType` props
+- Put component styles in a colocated `*.module.css` file (e.g. `badge.tsx` and `badge.module.css`). **Don't use `StyleSheet.create` from `aphrodite` for Wonder Blocks component styles.** Consumers still pass Aphrodite styles through `style` props, so keep the `StyleType` props for now: Aphrodite support is temporary, until consumers are converted to CSS Modules
 - Import the module (`import styles from "./badge.module.css"`) and pass its class names in the `style` list together with the consumer's styles (e.g. `style={[styles.badge, style]}`). `View`, `addStyle` and `processStyleList` from `@khanacademy/wonder-blocks-core` add class name strings to `className`
 - Don't write `@layer shared`: the build (`postcss.config.cjs`) wraps every rule in it
 - Use tokens as CSS variables (e.g. `var(--wb-semanticColor-core-background-base)`, `var(--wb-sizing-size_160)`), not raw values, and no `var()` fallbacks. Stylelint enforces this (`pnpm lint:css`)
