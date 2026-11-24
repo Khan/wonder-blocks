@@ -44,7 +44,7 @@
         margin-block-start: var(--wb-c-modal-header-layout-gap-default);
     }
 
-    /* stylelint-disable-next-line media-feature-name-disallowed-list -- Modal's small-screen breakpoint (767px) has no breakpoint token; switching to one would change the layout */
+    /* stylelint-disable-next-line media-feature-name-disallowed-list -- Modal's small-screen breakpoint (767px) has no breakpoint token; switching to one would change the layout. TODO(WB-2137): move Modal (CSS and modalMediaQuery) to a standard breakpoint together */
     @media screen and (width <= 767px) {
         &.header {
             padding-inline: var(--wb-c-modal-header-layout-padding-inline-small);
