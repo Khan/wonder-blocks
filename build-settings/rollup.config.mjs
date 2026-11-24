@@ -96,8 +96,9 @@ const createConfig = (pkgName, {input, esm, cjs}) => {
                 // specifiers (e.g. `@khanacademy/wonder-blocks-styles/...`),
                 // so it printed a false "Unresolved `@import`" warning for
                 // every package using the shared mixins. `postcss-import` in
-                // `postcss.config.cjs` resolves them instead (as it already
-                // does in Vite/Storybook).
+                // `postcss.config.cjs` is the only resolver now: it inlines
+                // relative imports and `@khanacademy/wonder-blocks-*` CSS (see
+                // `isInlinedCssImport` there).
                 import: false,
             }),
             swc({

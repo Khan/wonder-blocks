@@ -85,25 +85,40 @@ describe("findUnexpandedAtRules", () => {
         expect(result).toEqual([]);
     });
 
-    it("ignores the doc comment of the shared focus-styles mixin file", () => {
+    // The mixin's doc comment mentions `@import` and `@apply`, and it's inlined
+    // into every package that uses the focus ring, once per import.
+    const getFocusStylesComments = (): string =>
+        (
+            fs
+                .readFileSync(
+                    path.join(
+                        __dirname,
+                        "../../packages/wonder-blocks-styles/src/styles/focus-styles.css",
+                    ),
+                    "utf8",
+                )
+                .match(/\/\*[\s\S]*?\*\//g) ?? []
+        ).join("\n");
+
+    it("reads a focus-styles doc comment that mentions `@apply`", () => {
         // Arrange
-        // The mixin's doc comment, which mentions `@import` and `@apply`, is
-        // inlined into every package that uses the focus ring, once per
-        // import. Keep only the comments from the real file.
-        const source = fs.readFileSync(
-            path.join(
-                __dirname,
-                "../../packages/wonder-blocks-styles/src/styles/focus-styles.css",
-            ),
-            "utf8",
-        );
-        const comments = source.match(/\/\*[\s\S]*?\*\//g) ?? [];
+        const comments = getFocusStylesComments();
 
         // Act
-        const result = findUnexpandedAtRules(comments.join("\n"));
+        const mentionsApply = comments.includes("@apply");
 
         // Assert
-        expect(comments.join("")).toContain("@apply");
+        expect(mentionsApply).toBe(true);
+    });
+
+    it("ignores the doc comment of the shared focus-styles mixin file", () => {
+        // Arrange
+        const comments = getFocusStylesComments();
+
+        // Act
+        const result = findUnexpandedAtRules(comments);
+
+        // Assert
         expect(result).toEqual([]);
     });
 
@@ -114,8 +129,11 @@ describe("findUnexpandedAtRules", () => {
         "@keyframes spin { to { transform: rotate(360deg); } }",
         '@font-face { font-family: "Lato"; src: url(lato.woff2); }',
         "@supports (display: grid) { .a { display: grid; } }",
-    ])("doesn't report allowed at-rules: %s", (css) => {
-        // Arrange, Act
+    ])("doesn't report allowed at-rules: %s", (allowedCss) => {
+        // Arrange
+        const css = allowedCss;
+
+        // Act
         const result = findUnexpandedAtRules(css);
 
         // Assert

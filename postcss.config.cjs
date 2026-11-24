@@ -62,6 +62,17 @@ function resolveCssImport(id, basedir) {
     return createRequire(path.join(basedir, "_")).resolve(id);
 }
 
+// Which `@import`s postcss-import inlines: relative paths and Wonder Blocks
+// packages (e.g. `@khanacademy/wonder-blocks-styles/focus-styles.css`). Remote
+// URLs (e.g. font CDNs) and other packages are left for the browser or the
+// consumer's bundler.
+function isInlinedCssImport(id) {
+    if (/^([a-z]+:)?\/\//i.test(id)) {
+        return false;
+    }
+    return id.startsWith(".") || id.startsWith("@khanacademy/wonder-blocks-");
+}
+
 const wrapInLayer = (layerName) => ({
     postcssPlugin: "wrap-in-layer",
     Once(root, {AtRule}) {
@@ -118,11 +129,11 @@ module.exports = {
     plugins: [
         postcssImport({
             resolve: resolveCssImport,
-            filter: (id) => {
-                // Only process WB imports — don't try to inline @imports that
-                // appear in third-party CSS files (e.g. font CDN URLs).
-                return id.includes("@khanacademy/wonder-blocks-styles");
-            },
+            // Inline relative imports and Wonder Blocks package CSS. This is
+            // the only `@import` resolver in the Rollup build
+            // (rollup-plugin-styler's own is turned off), so anything skipped
+            // here ships as a literal `@import` and fails `check:dist-css`.
+            filter: isInlinedCssImport,
         }),
         postcssGlobalData({files: [CUSTOM_MEDIA_FILE]}),
         postcssMixins(),
