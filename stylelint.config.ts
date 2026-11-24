@@ -1,4 +1,4 @@
-// Stylelint config for the CSS Modules migration (Phase 0.4 of WB-2324).
+// Stylelint config for Wonder Blocks CSS Modules.
 //
 // Goals:
 //   * Catch CSS-side typos / structural issues that don't show up in JSX.
@@ -6,8 +6,11 @@
 //   * Co-exist with the PostCSS pipeline declared in `postcss.config.cjs`
 //     (postcss-import + @csstools/postcss-mixins).
 //
-// Phase 0 lands with permissive defaults; severity tightens to `error`
-// once Phase 5 migrates the last component (per WB-2324 0.4 plan).
+// Every rule is an error, and `pnpm lint:css` runs with `--max-warnings 0`,
+// so any warning-level rule added later also fails CI.
+//
+// Every `stylelint-disable` comment must say why after `--`
+// (`reportDescriptionlessDisables`), like `eslint-comments/require-description`.
 import path from "node:path";
 import {fileURLToPath} from "node:url";
 
@@ -33,12 +36,23 @@ const isGraphicsPaletteValue = (value: string): boolean =>
 const GRAPHICS_PALETTE_MESSAGE =
     "`graphicsPalette` colors stay the same in every theme. Prefer a `semanticColor` token, which adapts to the current theme. If this color must stay the same in every theme (e.g. illustrations), disable this rule with a comment explaining why.";
 
+// `-var(--x)` isn't valid CSS: browsers drop the whole declaration without
+// an error. A negated token has to go through `calc()`.
+const NEGATED_VAR_PATTERN = /(^|[\s(,])-var\(/;
+
+const isNegatedVarValue = (value: string): boolean =>
+    NEGATED_VAR_PATTERN.test(value);
+
+const NEGATED_VAR_MESSAGE =
+    "`-var(…)` is invalid CSS, so browsers drop the whole declaration. Negate a token with `calc(-1 * var(--wb-…))` instead.";
+
 const VAR_FALLBACK_MESSAGE =
     "Avoid var() fallbacks — reference --wb-* tokens directly so typos are caught by csstools/value-no-unknown-custom-properties.";
 
 const config: Config = {
     extends: ["stylelint-config-standard", "stylelint-config-css-modules"],
     ignoreFiles: ["**/dist/**", "**/node_modules/**"],
+    reportDescriptionlessDisables: true,
     plugins: [
         "stylelint-declaration-strict-value",
         "stylelint-media-use-custom-media",
@@ -149,13 +163,12 @@ const config: Config = {
         // Flag width-based media features so breakpoints go through the
         // `--wb-breakpoint-mediaQuery-*` custom media queries instead. Other
         // features (`hover`, `height`, `prefers-reduced-motion`, …) stay
-        // allowed. WARN during the migration; tightens to `error` in Phase 5.
+        // allowed.
         "media-feature-name-disallowed-list": [
             ["width", "min-width", "max-width"],
             {
                 message:
                     "Use a breakpoint custom media query (e.g. `@media (--wb-breakpoint-mediaQuery-mdOrLarger)`) instead of a hard-coded width.",
-                severity: "warning",
             },
         ],
 
@@ -164,25 +177,31 @@ const config: Config = {
         // fallback is treated as a safety net), so a typo like
         // `var(--wb-typoed-token, 10px)` slips through. Banning the
         // fallback form forces every custom-property reference to be
-        // validated against the token set above. WARN during the migration;
-        // tightens to `error` in Phase 5.
+        // validated against the token set above.
         //
-        // Also forbids `graphicsPalette` colors; see
-        // `GRAPHICS_PALETTE_CSS_VAR_PREFIX`. A rule can only be configured
-        // once, so the message is picked from the value being reported.
+        // Also forbids `graphicsPalette` colors (see
+        // `GRAPHICS_PALETTE_CSS_VAR_PREFIX`) and negated tokens written as
+        // `-var(…)` (see `NEGATED_VAR_PATTERN`). A rule can only be
+        // configured once, so the message is picked from the value being
+        // reported.
         "declaration-property-value-disallowed-list": [
             {
                 "/.*/": [
                     "/var\\([^,)]+,[^)]+\\)/",
                     `/${GRAPHICS_PALETTE_CSS_VAR_PREFIX}/`,
+                    NEGATED_VAR_PATTERN,
                 ],
             },
             {
-                message: (_property: string, value: string) =>
-                    isGraphicsPaletteValue(value)
-                        ? GRAPHICS_PALETTE_MESSAGE
-                        : VAR_FALLBACK_MESSAGE,
-                severity: "warning",
+                message: (_property: string, value: string) => {
+                    if (isGraphicsPaletteValue(value)) {
+                        return GRAPHICS_PALETTE_MESSAGE;
+                    }
+                    if (isNegatedVarValue(value)) {
+                        return NEGATED_VAR_MESSAGE;
+                    }
+                    return VAR_FALLBACK_MESSAGE;
+                },
             },
         ],
 
@@ -190,47 +209,49 @@ const config: Config = {
         // `@import` notation that our PostCSS pipeline uses.
         "import-notation": "string",
 
-        // Token-required properties. WARN level during the migration so
-        // un-migrated Aphrodite call-sites can still co-exist without
-        // failing CI. Tighten to `error` once Phase 5 component waves
-        // complete.
+        // Token-required properties. Where a raw value is intentional (e.g.
+        // the visually-hidden `margin: -1px`), disable the rule on that line
+        // with a reason.
         "scale-unlimited/declaration-strict-value": [
             [
+                // Plain names are matched exactly, so regexes cover the
+                // logical longhands (`padding-inline`, `border-block-end`,
+                // `border-start-start-radius`, …) as well as the shorthands.
                 /**
                  * WB semanticColor tokens
                  */
-                "/color/",
-                "background-color",
-                "border-color",
+                "/color$/",
+                "fill",
+                "stroke",
+                "background",
                 /**
                  * WB sizing tokens
                  */
-                "padding",
-                "margin",
+                "/^padding/",
+                "/^margin/",
+                "/^gap$/",
+                "/-gap$/",
                 /**
                  * WB border tokens
                  */
                 // radius
-                "border-radius",
+                "/radius$/",
                 // width
-                "border",
-                "border-width",
-                "border-block-start-width",
-                "border-block-end-width",
-                "border-inline-start-width",
-                "border-inline-end-width",
+                "/^border(-(block|inline)(-(start|end))?)?(-width)?$/",
+                "/^outline(-width)?$/",
                 /**
                  * WB font/typography tokens
                  */
-                "font-weight",
+                "/^font(-(weight|size|family))?$/",
                 "line-height",
-                "font-size",
-                "font-family",
             ],
             {
+                // `transparent` isn't allowed: use
+                // `var(--wb-semanticColor-core-transparent)`.
                 ignoreValues: [
-                    "transparent",
-                    "currentColor",
+                    // Lowercase: `value-keyword-case` (stylelint-config-standard)
+                    // rejects `currentColor`, and this list is case-sensitive.
+                    "currentcolor",
                     "inherit",
                     "0",
                     "auto",
@@ -240,7 +261,9 @@ const config: Config = {
                     "dashed",
                     "dotted",
                 ],
-                severity: "warning",
+                // Check each value in a shorthand (e.g. the width in
+                // `border: 1px solid var(…)`) rather than the whole value.
+                expandShorthand: true,
             },
         ],
 
@@ -248,18 +271,24 @@ const config: Config = {
         // `declaration-strict-value` above by closing the side-channel:
         // a hex used in a property *not* on that list (e.g. `box-shadow`,
         // `outline`, `fill`) would otherwise still slip through. Authors
-        // should reach for a `--wb-*` token via `var()` instead. WARN
-        // during the migration; tightens to `error` in Phase 5 alongside
-        // `declaration-strict-value`.
-        "color-no-hex": [true, {severity: "warning"}],
+        // should reach for a `--wb-*` token via `var()` instead.
+        "color-no-hex": true,
+
+        // Close the other colour side channels: named colours (`red`,
+        // `white`) and colour functions (`rgb()`, `oklch()`, …) in any
+        // property, including the ones `declaration-strict-value` skips
+        // (`box-shadow`, `outline`) and function values it ignores.
+        "color-named": "never",
+        "function-disallowed-list": [
+            ["/^(rgb|rgba|hsl|hsla|hwb|lab|lch|oklab|oklch|color)$/"],
+        ],
 
         // Require logical properties / values for inline-axis sizing,
         // positioning, and text alignment so styles work in RTL locales
         // without per-component flips. Mirrors the Aphrodite-side
         // `@khanacademy/wonder-blocks/require-logical-properties-for-rtl`
-        // ESLint rule (CLASS-14218) for the CSS Modules pipeline. WARN
-        // during the migration; tightens to `error` in Phase 5.
-        "csstools/use-logical": ["always", {severity: "warning"}],
+        // ESLint rule (CLASS-14218) for the CSS Modules pipeline.
+        "csstools/use-logical": "always",
     },
 };
 

@@ -26,6 +26,7 @@
         background: var(--wb-semanticColor-input-default-background);
 
         /* TODO(WB-1864): Use the correct token once TB is updated. */
+        /* stylelint-disable-next-line scale-unlimited/declaration-strict-value -- no 3px radius token yet; see the TODO above */
         border-radius: 3px;
         border-width: var(--wb-border-width-thin);
         border-style: solid;

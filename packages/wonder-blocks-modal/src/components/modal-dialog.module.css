@@ -74,6 +74,7 @@
         }
     }
 
+    /* stylelint-disable-next-line media-feature-name-disallowed-list -- Modal's small-screen breakpoint (767px) has no breakpoint token; switching to one would change the layout. TODO(WB-2137): move Modal (CSS and modalMediaQuery) to a standard breakpoint together */
     @media screen and (width <= 767px) {
         &.paddingLayer {
             padding: var(--wb-c-modal-dialog-layout-padding);

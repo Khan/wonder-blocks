@@ -12,6 +12,7 @@
     /* stylelint-disable-next-line property-no-deprecated -- the standard visually-hidden pattern; kept as-is from the Aphrodite version */
     clip: rect(0, 0, 0, 0);
     block-size: 1px;
+    /* stylelint-disable-next-line scale-unlimited/declaration-strict-value -- part of the standard visually-hidden pattern, not a design spacing value */
     margin: -1px;
     overflow: hidden;
     padding: 0;

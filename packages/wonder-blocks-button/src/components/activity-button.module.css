@@ -75,7 +75,7 @@
 
     /* Applying a transparent background to allow the chonky box to show
      * through. */
-    background: transparent;
+    background: var(--wb-semanticColor-core-transparent);
 
     /* Used for the focus ring. */
     border-radius: var(--wb-border-radius-radius_120);
