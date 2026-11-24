@@ -97,28 +97,29 @@ once, in a `<style>` tag in the page `<head>`, **before any stylesheet loads**.
 Otherwise the order depends on which stylesheet happens to load first, which
 can change as bundles are split differently.
 
-> **Pending [WB-2687](https://khanacademy.atlassian.net/browse/WB-2687):** the
-> canonical declaration, including where `shared.reset` goes relative to
-> consumer sub-layers such as `shared.base`, hasn't been decided yet. This
-> section will be updated with that declaration. Until then, use the
-> declaration below.
-
-The declaration Khan Academy's frontend uses today
-(`libs/dev/page-template/src/make-page.ts`), and that Perseus' Storybook
-injects (`.storybook/main.ts`), is:
+Use this declaration:
 
 ```html
 <style>
-    @layer reset, shared, shared.base, legacy;
+    @layer reset, shared, shared.base, shared.reset, legacy;
 </style>
 ```
 
 - `reset`: your app's global reset or normalize styles.
 - `shared`: Wonder Blocks component styles. Your app can put shared styles here
-  too.
-- `shared.base`: your app's base element styles.
+  too. Rules directly in `shared` win over both of its sub-layers.
+- `shared.base`: your app's base element styles (headings, `p` and so on).
+- `shared.reset`: Wonder Blocks element resets for its buttons and links. It
+  comes after `shared.base` so these resets win over your app's base element
+  styles, as they did when Wonder Blocks used Aphrodite.
 - `legacy`: styles that must win over Wonder Blocks, layered so they still
   lose to unlayered styles.
+
+Khan Academy's frontend (`libs/dev/page-template/src/make-page.ts`) and
+Perseus' Storybook (`.storybook/main.ts`) declare
+`@layer reset, shared, shared.base, legacy;`. That gives the same result,
+because `shared.reset` first appears after `shared.base`, but listing
+`shared.reset` keeps the order explicit.
 
 Later layers win over earlier ones, and unlayered styles win over every layer.
 
