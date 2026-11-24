@@ -15,18 +15,26 @@
 <link rel="stylesheet" href="./sb-styles/preview.css" />
 <style>
     /*
-     * Cascade-layer order for Wonder Blocks.
+     * Canonical cascade-layer order for Wonder Blocks (WB-2687). Consumers
+     * declare the same order before any Wonder Blocks CSS loads; see the
+     * "Using Wonder Blocks CSS" docs page.
      *
      * Earlier layers lose to later ones, so authoring order is also
      * priority order. Anything unlayered wins over everything below.
      *
-     *   reset  — future normalize / reset rules
-     *   shared — every Wonder Blocks component (CSS Modules output is
-     *            wrapped in @layer shared by the build pipeline)
-     *   legacy — consumer-owned escape hatch for legacy styles that need
-     *            to win over Wonder Blocks defaults
+     *   reset        — the app's global reset / normalize rules
+     *   shared       — every Wonder Blocks component (CSS Modules output is
+     *                  wrapped in @layer shared by the build pipeline).
+     *                  Rules directly in `shared` beat both sub-layers.
+     *   shared.base  — the app's base element styles (headings, `p`, …)
+     *   shared.reset — Wonder Blocks element resets (`@layer reset` inside
+     *                  a `*.module.css` file, nested by the build). Listed
+     *                  after `shared.base` so they win over the app's base
+     *                  element styles, as the Aphrodite resets did.
+     *   legacy       — consumer-owned escape hatch for legacy styles that
+     *                  need to win over Wonder Blocks defaults
      */
-    @layer reset, shared, legacy;
+    @layer reset, shared, shared.base, shared.reset, legacy;
 
     body {
         font-family: "Lato", sans-serif;

@@ -16,10 +16,12 @@
 //                                 definitions into `@layer shared`.
 //   5. wrap-in-layer            — move every remaining top-level rule into
 //                                 `@layer shared { … }` so authors never
-//                                 write the wrap by hand. Layer order is
-//                                 declared once in
-//                                 `.storybook/preview-head.html`
-//                                 (`@layer reset, tokens, shared, overrides`).
+//                                 write the wrap by hand. A file's own
+//                                 `@layer reset { … }` becomes the nested
+//                                 `shared.reset`. The canonical layer order
+//                                 (`@layer reset, shared, shared.base,
+//                                 shared.reset, legacy`) is declared in
+//                                 `.storybook/preview-head.html` (WB-2687).
 //
 // CSS Modules class-name hashing is handled by the consumer:
 //   - Vite handles `*.module.css` natively (its built-in CSS Modules pass
