@@ -10,9 +10,10 @@
   "scripts": {
     "alex": "alex packages/",
     "dev": "pnpm build && turbo watch build:css",
-    "build": "rollup -c ./build-settings/rollup.config.mjs && pnpm -r build && turbo build:css",
+    "build": "rollup -c ./build-settings/rollup.config.mjs && pnpm -r build && turbo build:css && pnpm check:dist-css",
     "prebuild": "pnpm gen:css-types",
     "gen:css-types": "node ./build-settings/gen-css-types.cjs",
+    "check:dist-css": "./build-settings/check-dist-css.ts",
     "build:css": "node -r @swc-node/register ./build-settings/build-css.ts",
     "build:token-docs": "pnpm --filter @khanacademy/wonder-blocks-tokens build:token-docs",
     "build:types": "tsgo --build tsconfig-build.json && ./build-settings/check-type-definitions.ts",

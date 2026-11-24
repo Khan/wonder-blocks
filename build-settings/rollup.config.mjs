@@ -91,6 +91,15 @@ const createConfig = (pkgName, {input, esm, cjs}) => {
                     generateScopedName,
                 },
                 sourceMap: true,
+                // Turn off styler's built-in `@import` resolver. It runs
+                // before the PostCSS config and can't resolve bare package
+                // specifiers (e.g. `@khanacademy/wonder-blocks-styles/...`),
+                // so it printed a false "Unresolved `@import`" warning for
+                // every package using the shared mixins. `postcss-import` in
+                // `postcss.config.cjs` is the only resolver now: it inlines
+                // relative imports and `@khanacademy/wonder-blocks-*` CSS (see
+                // `isInlinedCssImport` there).
+                import: false,
             }),
             swc({
                 swc: {
