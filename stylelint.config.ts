@@ -198,36 +198,36 @@ const config: Config = {
         // with a reason.
         "scale-unlimited/declaration-strict-value": [
             [
+                // Plain names are matched exactly, so regexes cover the
+                // logical longhands (`padding-inline`, `border-block-end`,
+                // `border-start-start-radius`, …) as well as the shorthands.
                 /**
                  * WB semanticColor tokens
                  */
-                "/color/",
-                "background-color",
-                "border-color",
+                "/color$/",
+                "fill",
+                "stroke",
+                "background",
                 /**
                  * WB sizing tokens
                  */
-                "padding",
-                "margin",
+                "/^padding/",
+                "/^margin/",
+                "/^gap$/",
+                "/-gap$/",
                 /**
                  * WB border tokens
                  */
                 // radius
-                "border-radius",
+                "/radius$/",
                 // width
-                "border",
-                "border-width",
-                "border-block-start-width",
-                "border-block-end-width",
-                "border-inline-start-width",
-                "border-inline-end-width",
+                "/^border(-(block|inline)(-(start|end))?)?(-width)?$/",
+                "/^outline(-width)?$/",
                 /**
                  * WB font/typography tokens
                  */
-                "font-weight",
+                "/^font(-(weight|size|family))?$/",
                 "line-height",
-                "font-size",
-                "font-family",
             ],
             {
                 ignoreValues: [
@@ -244,6 +244,9 @@ const config: Config = {
                     "dashed",
                     "dotted",
                 ],
+                // Check each value in a shorthand (e.g. the width in
+                // `border: 1px solid var(…)`) rather than the whole value.
+                expandShorthand: true,
             },
         ],
 
@@ -253,6 +256,15 @@ const config: Config = {
         // `outline`, `fill`) would otherwise still slip through. Authors
         // should reach for a `--wb-*` token via `var()` instead.
         "color-no-hex": true,
+
+        // Close the other colour side channels: named colours (`red`,
+        // `white`) and colour functions (`rgb()`, `oklch()`, …) in any
+        // property, including the ones `declaration-strict-value` skips
+        // (`box-shadow`, `outline`) and function values it ignores.
+        "color-named": "never",
+        "function-disallowed-list": [
+            ["/^(rgb|rgba|hsl|hsla|hwb|lab|lch|oklab|oklch|color)$/"],
+        ],
 
         // Require logical properties / values for inline-axis sizing,
         // positioning, and text alignment so styles work in RTL locales

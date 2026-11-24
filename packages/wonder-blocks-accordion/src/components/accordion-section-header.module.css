@@ -42,17 +42,17 @@
     z-index: 1;
 
     &:active {
-        outline: 2px solid
+        outline: var(--wb-border-width-medium) solid
             var(--wb-semanticColor-action-secondary-progressive-press-border);
     }
 
     &:hover {
-        outline: 2px solid
+        outline: var(--wb-border-width-medium) solid
             var(--wb-semanticColor-action-secondary-progressive-hover-border);
     }
 
     &:focus-visible {
-        outline: 2px solid var(--wb-semanticColor-focus-outer);
+        outline: var(--wb-border-width-medium) solid var(--wb-semanticColor-focus-outer);
     }
 
     & .headerContent {
@@ -121,6 +121,6 @@
     color: inherit;
 
     &:focus-visible {
-        outline: 2px solid var(--wb-semanticColor-focus-outer);
+        outline: var(--wb-border-width-medium) solid var(--wb-semanticColor-focus-outer);
     }
 }
