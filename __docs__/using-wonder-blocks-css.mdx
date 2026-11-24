@@ -42,12 +42,12 @@ unstyled.
 You don't need to configure CSS Modules for Wonder Blocks. The class names
 are hashed when Wonder Blocks is built, and `dist/index.css` is plain CSS.
 
-### rspack and webpack
+### rspack
 
 Add a rule for `.css` files that runs `css-loader`, followed by
-`CssExtractRspackPlugin.loader` (`MiniCssExtractPlugin.loader` in webpack) in
-production or `style-loader` in development. You can also use rspack's
-built-in CSS support (`experiments.css`) instead.
+`CssExtractRspackPlugin.loader` in production or `style-loader` in
+development. You can also use rspack's built-in CSS support
+(`experiments.css`) instead.
 
 Don't exclude `node_modules` from the rule. This is the rule Khan Academy's
 frontend uses (`getCssRule` in `libs/config/rspack/src/rspack.config.ts`):
@@ -73,13 +73,10 @@ If your app also uses `sideEffects: false` or similar tree-shaking settings,
 note that every Wonder Blocks package lists `"sideEffects": ["**/*.css"]` so
 the CSS import is never dropped.
 
-### Vite and Next.js
+### Vite
 
 Vite processes CSS imported from JavaScript, including from `node_modules`,
 without extra configuration. Wonder Blocks' own Storybook runs on Vite.
-
-We haven't checked Next.js yet. If you use Wonder Blocks with Next.js, please
-let the Wonder Blocks team know how it went.
 
 ### Breakpoints in your own CSS
 
@@ -187,22 +184,22 @@ with Aphrodite in a test environment; use visual regression tests for those.
 
 Packages with component styles have these exports:
 
-| Export                                         | File                                | Contains                                                                                                |
-| ---------------------------------------------- | ----------------------------------- | ------------------------------------------------------------------------------------------------------- |
-| `@khanacademy/wonder-blocks-<name>`            | `dist/index.js`, `dist/es/index.js` | The components. Each build imports its own copy of the stylesheet for you.                              |
-| `@khanacademy/wonder-blocks-<name>/css`        | `dist/index.css`                    | The component stylesheet: the CSS Modules rules, in `@layer shared`.                                    |
-| `@khanacademy/wonder-blocks-<name>/styles.css` | `dist/css/vars.css`                 | Only in packages with component tokens: the package's CSS variables (`--wb-c-<name>-*`) for each theme. |
+| Export                                         | File                                  | Contains                                                                                                |
+| ---------------------------------------------- | ------------------------------------- | ------------------------------------------------------------------------------------------------------- |
+| `@khanacademy/wonder-blocks-<name>`            | `dist/index.js`, `dist/es/index.js`   | The components. Each build imports its own copy of the stylesheet for you.                              |
+| `@khanacademy/wonder-blocks-<name>/css`        | `dist/es/index.css`, `dist/index.css` | The component stylesheet: the CSS Modules rules, in `@layer shared`.                                    |
+| `@khanacademy/wonder-blocks-<name>/styles.css` | `dist/css/vars.css`                   | Only in packages with component tokens: the package's CSS variables (`--wb-c-<name>-*`) for each theme. |
 
 Don't mix up the names: **`./css` is the component styles** and
 **`./styles.css` is CSS variables**.
 
 You don't normally import either one:
 
-- The JavaScript entry already imports the component stylesheet. Import `./css`
-  directly only if you use none of the package's components, since it points at
-  the CommonJS copy (`dist/index.css`). In an app that bundles the ESM entry,
-  importing `./css` as well loads the same rules twice, and the second copy can
-  change which Wonder Blocks rule wins inside `@layer shared`.
+- The JavaScript entry already imports the component stylesheet. `./css` is a
+  conditional export that resolves to the same copy (`import` →
+  `dist/es/index.css`, `require` → `dist/index.css`), so importing it as well
+  doesn't load the CSS twice. Import it directly only if you need the stylesheet
+  without the components, for example to preload it.
 - The variables in each package's `./styles.css` are also merged into
   `@khanacademy/wonder-blocks-tokens/styles.css`, which every app imports (see
   [Get Started](./?path=/docs/get-started--docs)). Import a package's
