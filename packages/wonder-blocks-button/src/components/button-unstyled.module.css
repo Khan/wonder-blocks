@@ -29,6 +29,6 @@
     .reset:focus {
         /* Mobile: removes the blue highlight shown when the user taps a
          * button. */
-        -webkit-tap-highlight-color: transparent;
+        -webkit-tap-highlight-color: var(--wb-semanticColor-core-transparent);
     }
 }

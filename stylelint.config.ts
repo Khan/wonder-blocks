@@ -246,8 +246,9 @@ const config: Config = {
                 "line-height",
             ],
             {
+                // `transparent` isn't allowed: use
+                // `var(--wb-semanticColor-core-transparent)`.
                 ignoreValues: [
-                    "transparent",
                     // Lowercase: `value-keyword-case` (stylelint-config-standard)
                     // rejects `currentColor`, and this list is case-sensitive.
                     "currentcolor",

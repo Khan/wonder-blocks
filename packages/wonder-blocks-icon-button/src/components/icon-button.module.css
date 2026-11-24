@@ -294,7 +294,7 @@
     /* Prevents hover from being "sticky" on touch devices (e.g. mobile). */
     @media not (hover: hover) {
         &:hover {
-            background-color: transparent;
+            background-color: var(--wb-semanticColor-core-transparent);
         }
     }
 

@@ -53,6 +53,7 @@ describe("stylelint config: token coverage", () => {
         "box-shadow: 0 0 0 2px white",
         "fill: rgb(0 0 0)",
         "background-color: oklch(50% 0.1 200)",
+        "background: transparent",
     ])("reports `%s`", async (declaration) => {
         // Arrange
         const code = `.a { ${declaration}; }`;
@@ -70,7 +71,7 @@ describe("stylelint config: token coverage", () => {
         "outline: var(--wb-border-width-medium) solid var(--wb-semanticColor-focus-outer)",
         "inline-size: calc(var(--wb-sizing-size_120) * 2)",
         "color: currentcolor",
-        "background: transparent",
+        "background: var(--wb-semanticColor-core-transparent)",
     ])("allows `%s`", async (declaration) => {
         // Arrange
         const code = `.a { ${declaration}; }`;
