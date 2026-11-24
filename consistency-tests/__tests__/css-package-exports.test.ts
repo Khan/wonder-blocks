@@ -46,36 +46,61 @@ const cssPackages = fs
         ),
     }));
 
+// Guards against the detection above silently matching nothing.
 describe("packages that emit CSS", () => {
     it("are found", () => {
-        // Arrange, Act, Assert
-        // Guards against the detection above silently matching nothing.
-        expect(cssPackages.length).toBeGreaterThan(0);
+        // Arrange
+        const packages = cssPackages;
+
+        // Act
+        const count = packages.length;
+
+        // Assert
+        expect(count).toBeGreaterThan(0);
     });
 
     describe.each(cssPackages)("$name", ({pkgJson}) => {
         it("lists `**/*.css` in `sideEffects`", () => {
-            // Arrange, Act
-            const sideEffects = pkgJson.sideEffects;
+            // Arrange
+            const pkg = pkgJson;
+
+            // Act
+            const sideEffects = pkg.sideEffects;
 
             // Assert
             expect(sideEffects).toEqual(expect.arrayContaining(["**/*.css"]));
         });
 
         it("exports the stylesheet as `./css`", () => {
-            // Arrange, Act
-            const cssExport = pkgJson.exports?.["./css"];
+            // Arrange
+            const pkg = pkgJson;
+
+            // Act
+            const cssExport = pkg.exports?.["./css"];
 
             // Assert
             expect(cssExport).toBe("./dist/index.css");
         });
 
-        it("exports `.` with the `types` condition first", () => {
-            // Arrange, Act
-            const conditions = Object.keys(pkgJson.exports?.["."] ?? {});
+        it("lists the `types` condition first in `.`", () => {
+            // Arrange
+            const pkg = pkgJson;
+
+            // Act
+            const [firstCondition] = Object.keys(pkg.exports?.["."] ?? {});
 
             // Assert
-            expect(conditions[0]).toBe("types");
+            expect(firstCondition).toBe("types");
+        });
+
+        it("has `types`, `import` and `require` conditions in `.`", () => {
+            // Arrange
+            const pkg = pkgJson;
+
+            // Act
+            const conditions = Object.keys(pkg.exports?.["."] ?? {});
+
+            // Assert
             expect(conditions).toEqual(
                 expect.arrayContaining(["types", "import", "require"]),
             );
