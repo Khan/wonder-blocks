@@ -6,8 +6,10 @@ import {Meta} from "@storybook/addon-docs/blocks";
 
 Wonder Blocks components are styled with
 [CSS Modules](https://github.com/css-modules/css-modules). Every package that
-has component styles ships them as a stylesheet, `dist/index.css`, and its
-JavaScript entry imports that stylesheet:
+has component styles ships them as a stylesheet, and its JavaScript entry
+imports that stylesheet. The ESM build (`dist/es/index.js`, which bundlers use)
+imports its own copy, `dist/es/index.css`; the CommonJS build (`dist/index.js`)
+imports `dist/index.css`. The two files are identical.
 
 ```js
 // @khanacademy/wonder-blocks-button/dist/es/index.js
@@ -187,7 +189,7 @@ Packages with component styles have these exports:
 
 | Export                                         | File                                | Contains                                                                                                |
 | ---------------------------------------------- | ----------------------------------- | ------------------------------------------------------------------------------------------------------- |
-| `@khanacademy/wonder-blocks-<name>`            | `dist/index.js`, `dist/es/index.js` | The components. Imports `./css` for you.                                                                |
+| `@khanacademy/wonder-blocks-<name>`            | `dist/index.js`, `dist/es/index.js` | The components. Each build imports its own copy of the stylesheet for you.                              |
 | `@khanacademy/wonder-blocks-<name>/css`        | `dist/index.css`                    | The component stylesheet: the CSS Modules rules, in `@layer shared`.                                    |
 | `@khanacademy/wonder-blocks-<name>/styles.css` | `dist/css/vars.css`                 | Only in packages with component tokens: the package's CSS variables (`--wb-c-<name>-*`) for each theme. |
 
@@ -196,8 +198,11 @@ Don't mix up the names: **`./css` is the component styles** and
 
 You don't normally import either one:
 
-- The JavaScript entry already imports `./css`. Import it directly only if you
-  need the stylesheet without the components, for example to preload it.
+- The JavaScript entry already imports the component stylesheet. Import `./css`
+  directly only if you use none of the package's components, since it points at
+  the CommonJS copy (`dist/index.css`). In an app that bundles the ESM entry,
+  importing `./css` as well loads the same rules twice, and the second copy can
+  change which Wonder Blocks rule wins inside `@layer shared`.
 - The variables in each package's `./styles.css` are also merged into
   `@khanacademy/wonder-blocks-tokens/styles.css`, which every app imports (see
   [Get Started](./?path=/docs/get-started--docs)). Import a package's
