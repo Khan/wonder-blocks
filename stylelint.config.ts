@@ -232,7 +232,9 @@ const config: Config = {
             {
                 ignoreValues: [
                     "transparent",
-                    "currentColor",
+                    // Lowercase: `value-keyword-case` (stylelint-config-standard)
+                    // rejects `currentColor`, and this list is case-sensitive.
+                    "currentcolor",
                     "inherit",
                     "0",
                     "auto",
