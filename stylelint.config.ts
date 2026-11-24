@@ -1,4 +1,4 @@
-// Stylelint config for the CSS Modules migration (Phase 0.4 of WB-2324).
+// Stylelint config for Wonder Blocks CSS Modules.
 //
 // Goals:
 //   * Catch CSS-side typos / structural issues that don't show up in JSX.
@@ -6,10 +6,8 @@
 //   * Co-exist with the PostCSS pipeline declared in `postcss.config.cjs`
 //     (postcss-import + @csstools/postcss-mixins).
 //
-// Phase 0 landed these rules at `warning` severity so un-migrated components
-// could co-exist. Every component is migrated now, so they're `error` (per the
-// WB-2324 0.4 plan; done in WB-2684), and `pnpm lint:css` runs with
-// `--max-warnings 0` so any new warning-level rule also fails CI.
+// Every rule is an error, and `pnpm lint:css` runs with `--max-warnings 0`,
+// so any warning-level rule added later also fails CI.
 //
 // Every `stylelint-disable` comment must say why after `--`
 // (`reportDescriptionlessDisables`), like `eslint-comments/require-description`.
