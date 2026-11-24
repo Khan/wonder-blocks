@@ -36,6 +36,16 @@ const isGraphicsPaletteValue = (value: string): boolean =>
 const GRAPHICS_PALETTE_MESSAGE =
     "`graphicsPalette` colors stay the same in every theme. Prefer a `semanticColor` token, which adapts to the current theme. If this color must stay the same in every theme (e.g. illustrations), disable this rule with a comment explaining why.";
 
+// `-var(--x)` isn't valid CSS: browsers drop the whole declaration without
+// an error. A negated token has to go through `calc()`.
+const NEGATED_VAR_PATTERN = /(^|[\s(,])-var\(/;
+
+const isNegatedVarValue = (value: string): boolean =>
+    NEGATED_VAR_PATTERN.test(value);
+
+const NEGATED_VAR_MESSAGE =
+    "`-var(…)` is invalid CSS, so browsers drop the whole declaration. Negate a token with `calc(-1 * var(--wb-…))` instead.";
+
 const VAR_FALLBACK_MESSAGE =
     "Avoid var() fallbacks — reference --wb-* tokens directly so typos are caught by csstools/value-no-unknown-custom-properties.";
 
@@ -169,21 +179,29 @@ const config: Config = {
         // fallback form forces every custom-property reference to be
         // validated against the token set above.
         //
-        // Also forbids `graphicsPalette` colors; see
-        // `GRAPHICS_PALETTE_CSS_VAR_PREFIX`. A rule can only be configured
-        // once, so the message is picked from the value being reported.
+        // Also forbids `graphicsPalette` colors (see
+        // `GRAPHICS_PALETTE_CSS_VAR_PREFIX`) and negated tokens written as
+        // `-var(…)` (see `NEGATED_VAR_PATTERN`). A rule can only be
+        // configured once, so the message is picked from the value being
+        // reported.
         "declaration-property-value-disallowed-list": [
             {
                 "/.*/": [
                     "/var\\([^,)]+,[^)]+\\)/",
                     `/${GRAPHICS_PALETTE_CSS_VAR_PREFIX}/`,
+                    NEGATED_VAR_PATTERN,
                 ],
             },
             {
-                message: (_property: string, value: string) =>
-                    isGraphicsPaletteValue(value)
-                        ? GRAPHICS_PALETTE_MESSAGE
-                        : VAR_FALLBACK_MESSAGE,
+                message: (_property: string, value: string) => {
+                    if (isGraphicsPaletteValue(value)) {
+                        return GRAPHICS_PALETTE_MESSAGE;
+                    }
+                    if (isNegatedVarValue(value)) {
+                        return NEGATED_VAR_MESSAGE;
+                    }
+                    return VAR_FALLBACK_MESSAGE;
+                },
             },
         ],
 
