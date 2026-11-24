@@ -64,14 +64,26 @@ const createConfig = (pkgName, {input, esm, cjs}) => {
                 assetFileNames: "index.css",
                 // Side-effect import of the extracted CSS so npm consumers
                 // get styles automatically when they import the package.
-                intro: cssSideEffect ? 'import "./index.css";' : "",
+                //
+                // This must be an `outro`, not an `intro`. Rollup hoists the
+                // package's dependency imports to the top of the chunk, so an
+                // import in the outro evaluates after them. Bundlers emit CSS
+                // in import-evaluation order, so this package's CSS lands
+                // after the CSS of the WB packages it composes (e.g. Button
+                // after Typography). Component styles live in the same
+                // `@layer shared` and use single-class selectors, so the
+                // later rule wins. With an `intro`, Button's label styles
+                // came before `BodyText`'s and lost to them. This matches
+                // the source, where `*.module.css` is imported last.
+                outro: cssSideEffect ? 'import "./index.css";' : "",
             },
             // TODO(FEI-5030): Stop building CJS modules
             {
                 file: path.join("packages", pkgName, cjs),
                 format: "cjs",
                 assetFileNames: "index.css",
-                intro: cssSideEffect ? 'require("./index.css");' : "",
+                // See the ESM output above for why this is an `outro`.
+                outro: cssSideEffect ? 'require("./index.css");' : "",
             },
         ],
         input: path.join("packages", pkgName, input),
