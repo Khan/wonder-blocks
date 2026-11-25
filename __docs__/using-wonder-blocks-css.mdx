@@ -27,8 +27,8 @@ To make sure this works in your app:
 3. [Review how your styles override](#cascade-contract) Wonder Blocks styles.
 4. [Map CSS imports in your test runner](#tests).
 
-This page also covers [what each package exports](#package-exports) and, for
-contributors, [how Wonder Blocks CSS is written](#writing-css-modules-in-wonder-blocks).
+If you're a Wonder Blocks contributor, see
+[how Wonder Blocks CSS is written](#writing-css-modules-in-wonder-blocks).
 
 ## Bundler setup
 
@@ -173,31 +173,6 @@ The hashed class names (like `wb-badge-badge-cbb1e92a`) are added to the Wonder
 Blocks JavaScript when it's built, so components render the same class names
 whether or not the CSS loads. Like with Aphrodite, tests can't see the styles
 themselves. Use visual regression tests for those.
-
-## Package exports
-
-Packages with component styles have these exports:
-
-| Export                                         | File                                  | Contains                                                                                                |
-| ---------------------------------------------- | ------------------------------------- | ------------------------------------------------------------------------------------------------------- |
-| `@khanacademy/wonder-blocks-<name>`            | `dist/index.js`, `dist/es/index.js`   | The components. Each build imports its own copy of the stylesheet for you.                              |
-| `@khanacademy/wonder-blocks-<name>/css`        | `dist/es/index.css`, `dist/index.css` | The component stylesheet: the CSS Modules rules, in `@layer shared`.                                    |
-| `@khanacademy/wonder-blocks-<name>/styles.css` | `dist/css/vars.css`                   | Only in packages with component tokens: the package's CSS variables (`--wb-c-<name>-*`) for each theme. |
-
-Note: **`./css` is the component styles** and **`./styles.css` is the CSS
-variables**.
-
-You usually won't need to import either of these:
-
-- The JavaScript already imports the component stylesheet. `./css` is a
-  conditional export that points to the same copy (`import` →
-  `dist/es/index.css`, `require` → `dist/index.css`), so importing it too
-  doesn't load the CSS twice. Only import it directly if you need the
-  stylesheet without the components, like to preload it.
-- The variables in each package's `./styles.css` are also included in
-  `@khanacademy/wonder-blocks-tokens/styles.css`, which every app imports (see
-  [Get Started](./?path=/docs/get-started--docs)). Only import a
-  package's `./styles.css` if you can't load the full tokens stylesheet.
 
 ## Writing CSS Modules in Wonder Blocks
 
