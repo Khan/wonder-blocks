@@ -1,13 +1,13 @@
 import {Meta} from "@storybook/addon-docs/blocks";
 
-<Meta title="Contributing / Writing CSS Modules" />
+<Meta title="Development / Styling Wonder Blocks Components" />
 
-# Writing CSS Modules
+# Styling Wonder Blocks Components
 
 Wonder Blocks components are styled with
 [CSS Modules](https://github.com/css-modules/css-modules). This page is for
-people (and AI agents) working on Wonder Blocks components. If you use Wonder
-Blocks in an app, see "Using Wonder Blocks CSS" instead.
+people (and AI agents) building Wonder Blocks components in this repo. If you
+use Wonder Blocks in an app, see "Get Started / CSS setup" instead.
 
 **Don't use Aphrodite (`StyleSheet.create`) for Wonder Blocks component
 styles.** New and changed styles go in a `*.module.css` file. Aphrodite is
@@ -83,8 +83,9 @@ So:
   `semanticColor` tokens, not primitive or `graphicsPalette` colors.
 - **No `var()` fallbacks** (`var(--wb-x, 8px)`). Stylelint checks every
   `--wb-*` name against the token set, and a fallback would hide a typo.
-- **No `composes` and no `@value`.** Share styles through the mixins below, or
-  through component tokens (`--wb-c-<component>-*` custom properties).
+- **No `composes` and no `@value`.** Share styles through the
+  [shared style mixins](#shared-styles-mixins), or through component tokens
+  (`--wb-c-<component>-*` custom properties).
 - **Use logical properties**: `inline-size`, `block-size`, `margin-inline-start`,
   `padding-block`, `inset-inline-end`, `text-align: start`, and so on. This
   keeps components correct in right-to-left languages.
@@ -106,7 +107,7 @@ margin: -1px;
 ## Shared styles (mixins)
 
 `@khanacademy/wonder-blocks-styles` ships CSS mixins for styles that several
-components share. Import the file, then apply the mixin:
+components share, like the focus ring. Import the file, then apply the mixin:
 
 ```css
 @import "@khanacademy/wonder-blocks-styles/focus-styles.css";
@@ -116,11 +117,8 @@ components share. Import the file, then apply the mixin:
 }
 ```
 
-| File                         | Mixin                  | Use for                                                                               |
-| ---------------------------- | ---------------------- | ------------------------------------------------------------------------------------- |
-| `focus-styles.css`           | `--wb-focus-visible`   | The standard focus ring.                                                              |
-| `action-styles.css`          | `--wb-action-inverse`  | Interactive controls on dark backgrounds (the CSS version of `actionStyles.inverse`). |
-| `min-target-size-styles.css` | `--wb-min-target-size` | The minimum touch target size.                                                        |
+See the <a href="./?path=/docs/packages-styles-overview--docs">Styles package</a>
+for the available mixins.
 
 ## Checks
 

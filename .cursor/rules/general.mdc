@@ -55,19 +55,13 @@ alwaysApply: true
 
 ### 5. Styling (CSS Modules)
 
-* ✅ Put component styles in a colocated `*.module.css` file (e.g. `badge.tsx` and `badge.module.css`). **Don't use `StyleSheet.create` from `aphrodite` for Wonder Blocks component styles.** Consumers still pass Aphrodite styles through `style` props, so keep the `StyleType` props for now: Aphrodite support is temporary, until consumers are converted to CSS Modules
-* ✅ Import the module (`import styles from "./badge.module.css"`) and pass its class names in the `style` list together with the consumer's styles (e.g. `style={[styles.badge, style]}`). `View`, `addStyle` and `processStyleList` from `@khanacademy/wonder-blocks-core` add class name strings to `className`
-* ✅ Don't write `@layer shared`: the build (`postcss.config.cjs`) wraps every rule in it
-* ✅ Use tokens as CSS variables (e.g. `var(--wb-semanticColor-core-background-base)`, `var(--wb-sizing-size_160)`), not raw values, and no `var()` fallbacks. Stylelint enforces this (`pnpm lint:css`)
-* ✅ Get shared styles (focus ring, action styles, minimum target size) from `@khanacademy/wonder-blocks-styles` with `@import` and `@apply` mixins (e.g. `@apply --wb-focus-visible;`)
-* ✅ Use camelCase class names (e.g. `.iconOnly`)
-* ❌ Don't use `composes` or `@value`
+* ✅ Put component styles in a colocated `*.module.css` file (e.g. `badge.tsx` and `badge.module.css`). **Don't use `StyleSheet.create` from `aphrodite` for Wonder Blocks component styles.** Keep the `StyleType` props: Aphrodite support for consumer styles is temporary, until consumers are converted to CSS Modules
+* ✅ Use tokens as CSS variables (e.g. `var(--wb-semanticColor-core-background-base)`, `var(--wb-sizing-size_160)`), not raw values. Use `semanticColor` tokens, not primitive `color` tokens
+* ❌ Don't write `@layer shared`: the build wraps every rule in it
 * ✅ Use logical properties (`inline-size`, `margin-inline-start`, etc.) for RTL support
-* ✅ Use pseudo-classes for states, and `:focus-visible` for focus
-* ✅ Run `pnpm gen:css-types` to generate the `*.module.css.d.ts` files (`pnpm build` and `pnpm typecheck` run it for you)
-* ❌ Avoid using primitive `color` tokens. Use `semanticColor` tokens instead
+* ✅ Use the breakpoint custom media queries from `@khanacademy/wonder-blocks-tokens` (e.g. `@media (--wb-breakpoint-mediaQuery-mdOrLarger)`), not hard-coded widths
 * ✅ Ensure styling consistency across different components throughout the design system
-* ✅ See [Writing CSS Modules](../../__docs__/writing-css-modules.mdx) for the full conventions
+* ✅ See [Styling Wonder Blocks Components](../../__docs__/styling-wonder-blocks-components.mdx) for the full conventions (class names, shared style mixins, generated types and checks). Stylelint (`pnpm lint:css`) enforces most of them
 
 ### 6. Wonder Blocks Usage
 

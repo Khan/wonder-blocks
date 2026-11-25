@@ -88,7 +88,7 @@ guide for the full setup.
 ## Styling with aphrodite
 
 This section is about styling app code. Inside the Wonder Blocks repo, component styles
-are written as CSS Modules instead (see `__docs__/writing-css-modules.mdx`). Apps keep
+are written as CSS Modules instead (see `__docs__/styling-wonder-blocks-components.mdx`). Apps keep
 using aphrodite for now: it's supported temporarily, until consumers are converted to
 CSS Modules.
 
