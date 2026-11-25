@@ -7,9 +7,7 @@ import {Meta} from "@storybook/addon-docs/blocks";
 Wonder Blocks components are styled with
 [CSS Modules](https://github.com/css-modules/css-modules). Every package that
 has component styles ships them as a stylesheet, and its JavaScript entry
-imports that stylesheet. The ESM build (`dist/es/index.js`, which bundlers use)
-imports its own copy, `dist/es/index.css`; the CommonJS build (`dist/index.js`)
-imports `dist/index.css`. The two files are identical.
+imports that stylesheet:
 
 ```js
 // @khanacademy/wonder-blocks-button/dist/es/index.js
