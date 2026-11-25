@@ -15,8 +15,9 @@ description: >
 # Wonder Blocks UI Implementation
 
 Wonder Blocks is Khan Academy's React component library (`@khanacademy/wonder-blocks-*`).
-All components are TypeScript-friendly, use aphrodite for styling, and follow WAI-ARIA
-accessibility patterns.
+All components are TypeScript-friendly, ship their own CSS, accept aphrodite styles
+through their `style` props (kept temporarily, until consumers are converted to CSS
+Modules), and follow WAI-ARIA accessibility patterns.
 
 ## Implementation workflow
 
@@ -67,9 +68,31 @@ to learn more about the API.
 | `wonder-blocks-theming` | Theme providers |
 | `wonder-blocks-styles` | Global style helpers like `focusStyles` |
 
+## Loading Wonder Blocks CSS
+
+WB components are styled with CSS Modules. Each package's JS entry imports its own
+stylesheet (`import "./index.css"`), so the app has to load that CSS:
+
+- The bundler must handle `.css` imported from `node_modules` (e.g. `css-loader` in
+  rspack/webpack; Vite handles it out of the box).
+- The page must declare the cascade layer order (including `shared`, where all WB
+  rules live) before any WB CSS loads.
+- Test runners must map `.css` imports to a no-op mock. Class names don't change.
+
+WB rules are in `@layer shared`, so unlayered app styles (including aphrodite styles
+passed through `style`) always win over WB styles, in every state (hover, press,
+focus). See the
+[Using Wonder Blocks CSS](https://khan.github.io/wonder-blocks/?path=/docs/using-wonder-blocks-css--docs)
+guide for the full setup.
+
 ## Styling with aphrodite
 
-WB uses aphrodite for scoped CSS. Never use inline style objects for complex styles —
+This section is about styling app code. Inside the Wonder Blocks repo, component styles
+are written as CSS Modules instead (see `__docs__/styling-wonder-blocks-components.mdx`). Apps keep
+using aphrodite for now: it's supported temporarily, until consumers are converted to
+CSS Modules.
+
+App code uses aphrodite for scoped CSS. Never use inline style objects for complex styles —
 define them with `StyleSheet.create` so they're type-safe and mergeable.
 
 ```tsx
