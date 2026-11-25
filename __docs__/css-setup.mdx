@@ -1,8 +1,8 @@
 import {Meta} from "@storybook/addon-docs/blocks";
 
-<Meta title="Using Wonder Blocks CSS" />
+<Meta title="Get Started / CSS setup" />
 
-# Using Wonder Blocks CSS
+# CSS setup
 
 Wonder Blocks components are styled with
 [CSS Modules](https://github.com/css-modules/css-modules). Each package with
@@ -27,8 +27,9 @@ To make sure this works in your app:
 3. [Review how your styles override](#cascade-contract) Wonder Blocks styles.
 4. [Map CSS imports in your test runner](#tests).
 
-If you're a Wonder Blocks contributor, see
-[how Wonder Blocks CSS is written](#writing-css-modules-in-wonder-blocks).
+If you're building Wonder Blocks components instead, see
+the <a href="./?path=/docs/development-styling-wonder-blocks-components--docs">Styling Wonder Blocks Components</a>
+page.
 
 ## Bundler setup
 
@@ -72,6 +73,26 @@ function getCssRule(cssExtractor: string) {
 
 Vite processes CSS imported from JavaScript, including from `node_modules`, so
 no extra setup is needed! Wonder Blocks' own Storybook runs on Vite.
+
+### Storybook
+
+Storybook's Vite and webpack builders process CSS imported from JavaScript, so
+Wonder Blocks CSS loads in your stories without extra setup.
+
+1. Add the [layer declaration](#layer-order) to the preview `<head>`, so your
+   stories get the same cascade as your app. Add it to
+   `.storybook/preview-head.html`, or use `previewHead` in `.storybook/main.ts`:
+
+```ts
+// .storybook/main.ts
+const config: StorybookConfig = {
+    // ...
+    previewHead: (head) => `${head}
+<style>
+    @layer reset, shared, shared.base, shared.reset, legacy;
+</style>`,
+};
+```
 
 ### Breakpoints in your own CSS
 
@@ -129,8 +150,7 @@ own state styles could win over your styles. Keep these in mind when upgrading:
 
 - **Overrides apply in every state.** If you set `color` or `text-decoration`
   on a `Link` or `Tabs` using `style`, that value now also applies on hover and
-  press, where Wonder Blocks used to apply its own state styles. See
-  [WB-2487](https://khanacademy.atlassian.net/browse/WB-2487).
+  press, where Wonder Blocks used to apply its own state styles.
 - **Focus rings.** If you set `outline` or `box-shadow` on a focusable
   component (like a custom opener), your styles replace the Wonder Blocks focus
   ring while the element is focused. If you override these properties, make
@@ -173,27 +193,6 @@ The hashed class names (like `wb-badge-badge-cbb1e92a`) are added to the Wonder
 Blocks JavaScript when it's built, so components render the same class names
 whether or not the CSS loads. Like with Aphrodite, tests can't see the styles
 themselves. Use visual regression tests for those.
-
-## Writing CSS Modules in Wonder Blocks
-
-This section is for Wonder Blocks contributors. For the full conventions, see
-the <a href="./?path=/docs/contributing-writing-css-modules--docs">Writing CSS Modules</a>
-page.
-
-1. Add the component's styles to a `*.module.css` file next to the component.
-2. Use tokens (`var(--wb-…)`) instead of raw values. Stylelint checks this
-   (`pnpm lint:css`).
-3. Don't use `composes` or `@value`.
-
-When Wonder Blocks is built, `postcss.config.cjs`:
-
-- Inlines shared styles from `@khanacademy/wonder-blocks-styles` using
-  `postcss-import` (for example
-  `@import "@khanacademy/wonder-blocks-styles/focus-styles.css";`).
-- Expands mixins like `@apply --wb-focus-visible;` using
-  `@csstools/postcss-mixins`.
-- Expands the breakpoint custom media queries using `postcss-custom-media`.
-- Wraps every rule in `@layer shared`, so you don't need to add it yourself.
 
 <br />
 <br />
