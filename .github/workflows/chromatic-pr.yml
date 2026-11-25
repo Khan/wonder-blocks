@@ -5,6 +5,10 @@ on:
         # ready_for_review allows us to run the workflow on PRs when they move
         # from draft to non-draft. We intentionally don't include "edited" so
         # that changing the PR title/description doesn't re-run (and cancel) CI.
+        # NOTE: Changing a PR's base branch (including GitHub auto-retargeting a
+        # stacked PR) only sends "edited", so it won't re-run this workflow.
+        # "Re-run jobs" reuses the old merge commit; push a commit or close and
+        # reopen the PR to test against the new base.
         types: [opened, synchronize, ready_for_review, reopened]
 
 concurrency:
