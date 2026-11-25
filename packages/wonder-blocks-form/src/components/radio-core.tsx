@@ -1,15 +1,12 @@
 import * as React from "react";
-import {StyleSheet} from "aphrodite";
 
-import {border} from "@khanacademy/wonder-blocks-tokens";
 import {addStyle, View} from "@khanacademy/wonder-blocks-core";
-import {focusStyles} from "@khanacademy/wonder-blocks-styles";
-import theme from "../theme/index";
-import type {ChoiceCoreProps, Checked} from "../util/types";
+import type {ChoiceCoreProps} from "../util/types";
 
-import {colorStates, baseStyles} from "../util/styles";
+import styles from "./radio-core.module.css";
 
 const StyledInput = addStyle("input");
+const StyledSpan = addStyle("span");
 
 /**
  * The internal stateless 🔘 Radio button
@@ -27,14 +24,18 @@ const StyledInput = addStyle("input");
     const {checked, disabled, error, groupName, id, testId, ...sharedProps} =
         props;
 
-    const stateStyles = _generateStyles(checked, error, disabled);
     const defaultStyle = [
-        sharedStyles.inputReset,
-        sharedStyles.default,
-        stateStyles.default,
+        styles.input,
+        checked && styles.checked,
+        disabled && styles.disabled,
+        error && styles.error,
     ];
 
-    const wrapperStyle = [sharedStyles.inputWrapper, stateStyles.inputWrapper];
+    // The `root` class carries no styling of its own — every rule in the
+    // module is qualified with it so this component's styles outrank the
+    // single-class rule that `View` ships in the same `@layer shared`. See
+    // `radio-core.module.css`.
+    const wrapperStyle = [styles.root, styles.wrapper];
 
     const handleWrapperClick = (e: React.MouseEvent) => {
         // forward event from wrapper Div
@@ -70,126 +71,16 @@ const StyledInput = addStyle("input");
                     }}
                 />
                 {disabled && checked && (
-                    <span style={stateStyles.disabledChecked} />
+                    <StyledSpan
+                        style={[
+                            styles.disabledChecked,
+                            error && styles.disabledCheckedError,
+                        ]}
+                    />
                 )}
             </View>
         </React.Fragment>
     );
 });
-
-const sharedStyles = StyleSheet.create({
-    inputWrapper: {
-        padding: theme.choice.inputWrapper.layout.padding,
-        margin: theme.choice.inputWrapper.layout.margin,
-        position: "relative",
-    },
-    // Reset the default styled input element
-    inputReset: {
-        appearance: "none",
-        WebkitAppearance: "none",
-        MozAppearance: "none",
-    },
-    default: {
-        height: baseStyles.choice.sizing.size,
-        width: baseStyles.choice.sizing.size,
-        minBlockSize: baseStyles.choice.sizing.size,
-        minInlineSize: baseStyles.choice.sizing.size,
-        margin: 0,
-        outline: "none",
-        boxSizing: "border-box",
-        borderStyle: "solid",
-        borderWidth: baseStyles.radio.border.width.default,
-        borderRadius: baseStyles.radio.border.radius.default,
-    },
-});
-
-const styles: Record<string, any> = {};
-const _generateStyles = (
-    checked: Checked,
-    error: boolean,
-    disabled: boolean,
-) => {
-    // "hash" the parameters
-    const styleKey = `${String(checked)}-${String(error)}-${String(disabled)}`;
-    if (styles[styleKey]) {
-        return styles[styleKey];
-    }
-
-    let newStyles: Record<string, any> = {};
-
-    type ChoiceState = "default" | "disabled" | "error";
-
-    const currentState: ChoiceState = error
-        ? "error"
-        : disabled
-          ? "disabled"
-          : "default";
-
-    if (checked) {
-        const checkedStyles = colorStates.radio.checked[currentState];
-        newStyles = {
-            inputWrapper: {
-                // TODO(WB-1864): Revisit hover, press tokens
-                ":hover input:not([disabled])": {
-                    outline: `${border.width.medium} solid ${checkedStyles.hover.border}`,
-                    outlineOffset: 1,
-                },
-            },
-            default: {
-                backgroundColor: checkedStyles.rest.background,
-                borderColor: checkedStyles.rest.border,
-                // borders need to render in pixels for consistent size
-                borderWidth: `calc(${baseStyles.choice.sizing.size} / 4)`,
-
-                // Use the global focus style
-                ":focus-visible:not([disabled])":
-                    focusStyles.focus[":focus-visible"],
-
-                ":active:not([disabled])": {
-                    outline: `${border.width.medium} solid ${checkedStyles.press.border}`,
-                    outlineOffset: 1,
-                    borderColor: checkedStyles.press.border,
-                },
-            },
-            disabledChecked: {
-                position: "absolute",
-                top: `calc(${baseStyles.choice.sizing.size} * .25 + ${theme.choice.inputWrapper.layout.padding})`,
-                left: `calc(${baseStyles.choice.sizing.size} * .25 + ${theme.choice.inputWrapper.layout.padding})`,
-                height: `calc(${baseStyles.choice.sizing.size} / 2)`,
-                width: `calc(${baseStyles.choice.sizing.size} / 2)`,
-                borderRadius: baseStyles.radio.border.radius.default,
-                backgroundColor: checkedStyles.rest.background,
-            },
-        };
-    } else {
-        const uncheckedStyles = colorStates.radio.unchecked[currentState];
-        newStyles = {
-            inputWrapper: {
-                // TODO(WB-1864): Revisit hover, press tokens
-                ":hover input:not([disabled])": {
-                    backgroundColor: uncheckedStyles.hover.background,
-                    outline: `${border.width.medium} solid ${uncheckedStyles.hover.border}`,
-                    outlineOffset: -1,
-                },
-            },
-            default: {
-                backgroundColor: uncheckedStyles.rest.background,
-                borderColor: uncheckedStyles.rest.border,
-
-                // Use the global focus style
-                ":focus-visible:not([disabled])":
-                    focusStyles.focus[":focus-visible"],
-
-                ":active:not([disabled])": {
-                    backgroundColor: uncheckedStyles.press.background,
-                    outline: `${border.width.medium} solid ${uncheckedStyles.press.border}`,
-                    outlineOffset: -1,
-                },
-            },
-        };
-    }
-    styles[styleKey] = StyleSheet.create(newStyles);
-    return styles[styleKey];
-};
 
 export default RadioCore;

@@ -61,6 +61,43 @@ type Row = {label: string; css: string; value: string};
  *     },
  * };
  * ```
+ *
+ * In CSS (e.g. CSS Modules), use the matching custom media query instead:
+ *
+ * ```css
+ * @media (--wb-breakpoint-mediaQuery-sm) {
+ *     .root {
+ *         flex-direction: column;
+ *     }
+ * }
+ * ```
+ *
+ * Browsers don't support `@custom-media` natively yet, so the queries are
+ * expanded at build time by `postcss-custom-media`. The definitions are
+ * published as `@khanacademy/wonder-blocks-tokens/custom-media.css`; inject
+ * them into every CSS file with `@csstools/postcss-global-data` (this works
+ * with any bundler, e.g. rspack + `postcss-loader`):
+ *
+ * ```js
+ * // postcss.config.cjs
+ * module.exports = {
+ *     plugins: [
+ *         require("@csstools/postcss-global-data")({
+ *             files: [
+ *                 require.resolve(
+ *                     "@khanacademy/wonder-blocks-tokens/custom-media.css",
+ *                 ),
+ *             ],
+ *         }),
+ *         require("postcss-custom-media")(),
+ *     ],
+ * };
+ * ```
+ *
+ * An `@import` of the definitions only works when it's inlined inside PostCSS
+ * by a resolver that honors package `exports` (Vite, or `postcss-import` with
+ * a Node-based `resolve` option). Left to rspack/webpack's `css-loader`, the
+ * import is resolved after PostCSS runs and the queries aren't expanded.
  */
 export const BreakpointMediaQueries = () => (
     <TokenTable
@@ -69,6 +106,12 @@ export const BreakpointMediaQueries = () => (
                 label: "Media Query Token",
                 cell: (row: Row) => (
                     <Code>{`breakpoint.mediaQuery.${row.label}`}</Code>
+                ),
+            },
+            {
+                label: "CSS Custom Media",
+                cell: (row: Row) => (
+                    <Code>{`--wb-breakpoint-mediaQuery-${row.label}`}</Code>
                 ),
             },
             {
@@ -95,6 +138,24 @@ export const BreakpointMediaQueries = () => (
  *     },
  * };
  * ```
+ *
+ * In CSS (e.g. CSS Modules), use the matching CSS variable, which already
+ * includes the `px` unit. CSS variables can't be used in media query
+ * conditions, so use these for property values only:
+ *
+ * ```css
+ * .element {
+ *     max-inline-size: var(--wb-breakpoint-width-lgMax);
+ * }
+ * ```
+ *
+ * Unlike most tokens (e.g. `semanticColor`, `sizing`), the JS
+ * `breakpoint.width` values are plain numbers, not `var()` strings, so they
+ * can be used in calculations, `matchMedia` or comparisons with
+ * `window.innerWidth`. The CSS variables are generated from the same numbers.
+ * Treat them as read-only: don't override them, because the JS values and the
+ * breakpoint media queries (`--wb-breakpoint-mediaQuery-*`, expanded to fixed
+ * pixel values at build time) would no longer match.
  */
 export const BreakpointWidths = () => (
     <TokenTable
@@ -103,6 +164,12 @@ export const BreakpointWidths = () => (
                 label: "Width Token",
                 cell: (row: Row) => (
                     <Code>{`breakpoint.width.${row.label}`}</Code>
+                ),
+            },
+            {
+                label: "CSS Variable",
+                cell: (row: Row) => (
+                    <Code>{`--wb-breakpoint-width-${row.label}`}</Code>
                 ),
             },
             {

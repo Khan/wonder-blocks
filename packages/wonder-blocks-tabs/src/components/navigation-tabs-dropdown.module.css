@@ -1,0 +1,47 @@
+/**
+ * NavigationTabsDropdown styles
+ *
+ * The root element is rendered by `addStyle`, which ships no class of its own,
+ * so `.divider` needs no extra specificity.
+ *
+ * Every other rule is nested inside `.root` — a marker class on that root
+ * element, which carries no declarations of its own. Those rules override
+ * classes from other packages: `.actionMenu` lands on DropdownCore's
+ * `.menuWrapper` `View` (`inline-size`, `align-items`), and `.opener` /
+ * `.label` land on `Button` and its `BodyText` label (`block-size`,
+ * `padding`). The published bundle loads this package's CSS before its
+ * dependencies', so at equal specificity those rules would win. The
+ * descendant selectors (0,2,0) make the result depend on specificity instead.
+ *
+ * The consumer's `styles.*` still go through Aphrodite (unlayered and
+ * `!important`) or inline styles, so they win over this module as they did
+ * before. The build wraps every rule in `@layer shared { … }`.
+ */
+
+.divider {
+    border-block-end: var(--wb-border-width-thin) solid
+        var(--wb-semanticColor-core-border-neutral-subtle);
+}
+
+.root {
+    .actionMenu {
+        inline-size: 100%;
+        align-items: flex-start;
+    }
+
+    .opener {
+        position: relative;
+        block-size: unset;
+        padding-block: var(--wb-sizing-size_120) var(--wb-sizing-size_140);
+        padding-inline: var(--wb-sizing-size_180);
+        inline-size: 100%;
+        justify-content: space-between;
+        gap: var(--wb-sizing-size_020);
+    }
+
+    .label {
+        flex-grow: 1;
+        max-inline-size: 100%;
+        text-align: start;
+    }
+}

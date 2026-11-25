@@ -1,10 +1,8 @@
 import * as React from "react";
-import {StyleSheet} from "aphrodite";
 
 import {View, addStyle, StyleType} from "@khanacademy/wonder-blocks-core";
-import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {BodyText} from "@khanacademy/wonder-blocks-typography";
-import theme from "../theme";
+import styles from "./field-heading.module.css";
 
 type Props = {
     /**
@@ -118,7 +116,11 @@ export default class FieldHeading extends React.Component<Props> {
         const {field, style} = this.props;
 
         return (
-            <View style={style}>
+            // The `root` class carries no styling of its own — every rule in
+            // the module is qualified with it so this component's styles
+            // outrank the single-class rules that `BodyText` and `View` ship
+            // in the same `@layer shared`. See `field-heading.module.css`.
+            <View style={[styles.root, style]}>
                 {this.renderLabel()}
                 {this.maybeRenderDescription()}
                 <View style={styles.fieldSpacing}>{field}</View>
@@ -127,30 +129,3 @@ export default class FieldHeading extends React.Component<Props> {
         );
     }
 }
-
-const styles = StyleSheet.create({
-    label: {
-        color: semanticColor.core.foreground.neutral.strong,
-    },
-    labelSpacing: {
-        marginBlockEnd: sizing.size_040,
-    },
-    description: {
-        color: theme.description.color.foreground,
-    },
-    descriptionSpacing: {
-        marginBlockEnd: sizing.size_040,
-    },
-    fieldSpacing: {
-        marginBlockStart: sizing.size_080,
-    },
-    error: {
-        color: semanticColor.status.critical.foreground,
-    },
-    errorSpacing: {
-        marginBlockStart: sizing.size_120,
-    },
-    required: {
-        color: semanticColor.status.critical.foreground,
-    },
-});

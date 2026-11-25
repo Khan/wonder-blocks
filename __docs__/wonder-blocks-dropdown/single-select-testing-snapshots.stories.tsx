@@ -2,7 +2,7 @@ import * as React from "react";
 import type {Meta, StoryObj} from "@storybook/react-vite";
 
 import {SingleSelect, OptionItem} from "@khanacademy/wonder-blocks-dropdown";
-import {allThemeModes} from "../../.storybook/modes";
+import {allModes, allThemeModes} from "../../.storybook/modes";
 import {defaultPseudoStates, StateSheet} from "../components/state-sheet";
 import {ScenariosLayout} from "../components/scenarios-layout";
 import {
@@ -207,6 +207,52 @@ export const Scenarios: Story = {
                 )}
             </ScenariosLayout>
         );
+    },
+    globals: {
+        viewport: {
+            value: "small",
+        },
+    },
+};
+
+const manyItems = Array.from({length: 30}, (_, i) => (
+    <OptionItem label={`item ${i + 1}`} value={`${i + 1}`} key={i} />
+));
+
+/**
+ * The opened menu never grows past the space available in the viewport: the
+ * popper's max-height modifier sets `--popper-max-height`, which the menu
+ * container reads as its `max-block-size`, and the list scrolls inside it.
+ * In the small viewport, 30 items are taller than the viewport, so the menu is
+ * capped.
+ *
+ * A virtualized list renders at most 9 rows, so its menu always fits this
+ * viewport and never reaches the cap (the "Virtualized (opened)" story covers
+ * that menu).
+ */
+export const MaxHeight: Story = {
+    name: "Max height",
+    render: () => (
+        <ControlledSingleSelect
+            aria-label="Max height"
+            placeholder="Placeholder"
+            opened={true}
+            onChange={() => {}}
+        >
+            {manyItems}
+        </ControlledSingleSelect>
+    ),
+    parameters: {
+        chromatic: {
+            // The cap doesn't vary by theme, so one theme is enough. Story
+            // modes merge with the file's `allThemeModes`, so the other two
+            // are disabled explicitly.
+            modes: {
+                default: {disable: true},
+                thunderblocks: allModes.themeThunderBlocks,
+                sylDark: {disable: true},
+            },
+        },
     },
     globals: {
         viewport: {

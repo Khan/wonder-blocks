@@ -1,0 +1,234 @@
+/**
+ * Checkbox styles
+ *
+ * The wrapper's padding and margin are the codegen'd
+ * `--wb-c-form-choice-inputWrapper-*` tokens (switched on `[data-wb-theme]`);
+ * every other value is the plain `--wb-*` token.
+ *
+ * Every rule is nested inside `.root` — the marker class on the wrapper
+ * (the outermost element), which carries no declarations of its own. The
+ * wrapper is a `View` and the check icon is a `PhosphorIcon`, which ship
+ * single-class rules in the same `@layer shared`, and this component overrides
+ * properties they set (`margin` and `padding` on the wrapper, the icon's
+ * size). At equal specificity stylesheet load order would decide the winner,
+ * so the compound selector makes it depend on specificity instead.
+ *
+ * Colour is keyed on two axes — checked (or indeterminate) × default /
+ * disabled / error — so each cell only assigns `--wb-c-checkbox--*` custom
+ * properties ("component tokens"), and the rest / hover / press rules read
+ * them:
+ *
+ *   --wb-c-checkbox--color-background-rest
+ *   --wb-c-checkbox--color-border-rest
+ *   --wb-c-checkbox--color-background-hover    (unchecked only)
+ *   --wb-c-checkbox--color-outline-hover
+ *   --wb-c-checkbox--color-background-press
+ *   --wb-c-checkbox--color-border-press
+ *   --wb-c-checkbox--color-outline-press
+ *   --wb-c-checkbox--outline-offset
+ *
+ * `error` takes precedence over `disabled` (it is declared later at equal
+ * specificity). The hover and press rules exclude `[disabled]`, so a disabled
+ * checkbox never reads its hover or press tokens.
+ *
+ * The state rules keep the specificity relationship the Aphrodite version
+ * had: the wrapper's `:hover` rule outranks the input's `:active` rule, which
+ * follows `:focus-visible` at equal specificity. So a hovered checkbox shows
+ * the hover outline even while pressed, and a pressed one shows the press
+ * outline over the focus ring's outline (the ring's `box-shadow` stays). The
+ * exception is an unchecked checkbox, whose focus ring outranked both (the
+ * Aphrodite version nested a second `:focus-visible` into its selector), so it
+ * keeps the full ring while hovered or pressed.
+ *
+ * Nesting is native CSS: every `&` is explicit and resolves to the flat
+ * selector it replaces (`.root .input`, `.root.wrapper:hover .input…`). The
+ * state classes are composed through the `style` prop (`processStyleList`
+ * routes class-name strings to `className`). The build wraps every rule in
+ * `@layer shared { … }`.
+ */
+
+@import "@khanacademy/wonder-blocks-styles/focus-styles.css";
+
+.root {
+    &.wrapper {
+        margin: var(--wb-c-form-choice-inputWrapper-layout-margin);
+        padding: var(--wb-c-form-choice-inputWrapper-layout-padding);
+        position: relative;
+    }
+
+    /* Colour cells: the only rules that assign component tokens. The
+     * unchecked default cell sits on the base `.input` rule. */
+    & .input {
+        --wb-c-checkbox--color-background-rest: var(
+            --wb-semanticColor-input-default-background
+        );
+        --wb-c-checkbox--color-border-rest: var(
+            --wb-semanticColor-input-default-border
+        );
+        --wb-c-checkbox--color-background-hover: var(
+            --wb-semanticColor-action-secondary-progressive-hover-background
+        );
+        --wb-c-checkbox--color-outline-hover: var(
+            --wb-semanticColor-action-secondary-progressive-hover-border
+        );
+        --wb-c-checkbox--color-background-press: var(
+            --wb-semanticColor-action-secondary-progressive-press-background
+        );
+        --wb-c-checkbox--color-border-press: var(
+            --wb-c-checkbox--color-border-rest
+        );
+        --wb-c-checkbox--color-outline-press: var(
+            --wb-semanticColor-action-secondary-progressive-press-border
+        );
+        --wb-c-checkbox--outline-offset: -1px;
+
+        /* Reset the default styled input element */
+        appearance: none;
+        block-size: var(--wb-sizing-size_160);
+        inline-size: var(--wb-sizing-size_160);
+        min-block-size: var(--wb-sizing-size_160);
+        min-inline-size: var(--wb-sizing-size_160);
+        margin: 0;
+        outline: none;
+        box-sizing: border-box;
+        border-style: solid;
+        border-width: var(--wb-border-width-thin);
+        border-radius: var(--wb-border-radius-radius_040);
+        background-color: var(--wb-c-checkbox--color-background-rest);
+        border-color: var(--wb-c-checkbox--color-border-rest);
+    }
+
+    & .input.disabled {
+        --wb-c-checkbox--color-background-rest: var(
+            --wb-semanticColor-input-disabled-background
+        );
+        --wb-c-checkbox--color-border-rest: var(
+            --wb-semanticColor-input-disabled-border
+        );
+    }
+
+    & .input.error {
+        --wb-c-checkbox--color-background-rest: var(
+            --wb-semanticColor-input-error-background
+        );
+        --wb-c-checkbox--color-border-rest: var(
+            --wb-semanticColor-input-error-border
+        );
+        --wb-c-checkbox--color-background-hover: var(
+            --wb-semanticColor-input-error-background
+        );
+        --wb-c-checkbox--color-outline-hover: var(
+            --wb-semanticColor-input-error-border
+        );
+        --wb-c-checkbox--color-background-press: var(
+            --wb-semanticColor-input-error-background
+        );
+        --wb-c-checkbox--color-outline-press: var(
+            --wb-semanticColor-core-border-critical-strong
+        );
+    }
+
+    & .input.checked {
+        --wb-c-checkbox--color-background-rest: var(
+            --wb-semanticColor-input-checked-background
+        );
+        --wb-c-checkbox--color-border-rest: var(
+            --wb-semanticColor-core-transparent
+        );
+        --wb-c-checkbox--color-outline-hover: var(
+            --wb-semanticColor-input-checked-border
+        );
+        --wb-c-checkbox--color-background-press: var(
+            --wb-semanticColor-core-background-instructive-strong
+        );
+
+        /* Match the border to the background in the press state */
+        --wb-c-checkbox--color-border-press: var(
+            --wb-c-checkbox--color-background-press
+        );
+        --wb-c-checkbox--color-outline-press: var(
+            --wb-semanticColor-input-checked-border
+        );
+        --wb-c-checkbox--outline-offset: 1px;
+    }
+
+    & .input.checked.disabled {
+        --wb-c-checkbox--color-background-rest: var(
+            --wb-semanticColor-core-background-disabled-strong
+        );
+        --wb-c-checkbox--color-border-rest: var(
+            --wb-semanticColor-core-transparent
+        );
+    }
+
+    & .input.checked.error {
+        --wb-c-checkbox--color-background-rest: var(
+            --wb-semanticColor-core-border-critical-default
+        );
+        --wb-c-checkbox--color-border-rest: var(
+            --wb-semanticColor-core-border-critical-default
+        );
+        --wb-c-checkbox--color-outline-hover: var(
+            --wb-semanticColor-core-border-critical-default
+        );
+        --wb-c-checkbox--color-background-press: var(
+            --wb-semanticColor-core-background-critical-strong
+        );
+        --wb-c-checkbox--color-outline-press: var(
+            --wb-semanticColor-core-border-critical-strong
+        );
+    }
+
+    /* Use the global focus style */
+    & .input:focus-visible:not([disabled]) {
+        @apply --wb-focus-visible;
+    }
+
+    & .input:active:not([disabled]) {
+        background-color: var(--wb-c-checkbox--color-background-press);
+        border-color: var(--wb-c-checkbox--color-border-press);
+        outline: var(--wb-border-width-medium) solid
+            var(--wb-c-checkbox--color-outline-press);
+        outline-offset: var(--wb-c-checkbox--outline-offset);
+    }
+
+    /* TODO(WB-1864): Revisit hover, press tokens */
+    &.wrapper:hover .input:not([disabled]) {
+        outline: var(--wb-border-width-medium) solid
+            var(--wb-c-checkbox--color-outline-hover);
+        outline-offset: var(--wb-c-checkbox--outline-offset);
+    }
+
+    /* Only the unchecked hover state changes the background, so the checked
+     * press background still shows while hovered. */
+    &.wrapper:hover .input:not([disabled], .checked) {
+        background-color: var(--wb-c-checkbox--color-background-hover);
+    }
+
+    /* An unchecked checkbox keeps the focus ring's outline while hovered or
+     * pressed (a checked one shows the hover / press outline instead).
+     * Declared after the hover rules, at the same specificity, so it
+     * overrides them. */
+    &.wrapper .input:focus-visible:not([disabled], .checked) {
+        @apply --wb-focus-visible;
+    }
+
+    & .icon {
+        position: absolute;
+        pointer-events: none;
+
+        /* The check icon is smaller than the checkbox, as per design. */
+        block-size: var(--wb-sizing-size_120);
+        inline-size: var(--wb-sizing-size_120);
+
+        /* This margin is to center the check icon in the checkbox. */
+        margin: calc((var(--wb-sizing-size_160) - var(--wb-sizing-size_120)) / 2);
+
+        /* `PhosphorIcon` masks its glyph with `currentColor`. */
+        color: var(--wb-semanticColor-input-checked-foreground);
+    }
+
+    & .iconDisabled {
+        color: var(--wb-semanticColor-core-foreground-neutral-subtle);
+    }
+}

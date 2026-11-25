@@ -1,13 +1,11 @@
 import * as React from "react";
-import {StyleSheet} from "aphrodite";
 
 import {View, Id} from "@khanacademy/wonder-blocks-core";
-import {font, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {BodyText} from "@khanacademy/wonder-blocks-typography";
 import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
 import CheckboxCore from "./checkbox-core";
 import RadioCore from "./radio-core";
-import theme from "../theme";
+import styles from "./choice-internal.module.css";
 
 type Props = AriaProps & {
     /** Whether this choice is checked. */
@@ -128,7 +126,12 @@ type Props = AriaProps & {
                     : undefined;
 
                 return (
-                    <View style={style} className={className}>
+                    // The `root` class carries no styling of its own — every
+                    // rule in the module is qualified with it so this
+                    // component's styles outrank the single-class rules that
+                    // `View` and `BodyText` ship in the same `@layer shared`.
+                    // See `choice-internal.module.css`.
+                    <View style={[styles.root, style]} className={className}>
                         <View
                             style={styles.wrapper}
                             // We are resetting the tabIndex=0 from handlers
@@ -156,37 +159,6 @@ type Props = AriaProps & {
             }}
         </Id>
     );
-});
-
-const styles = StyleSheet.create({
-    wrapper: {
-        gap: sizing.size_080,
-        lineHeight: font.body.lineHeight.small,
-        flexDirection: "row",
-        alignItems: "flex-start",
-        outline: "none",
-    },
-    choiceWrapper: {
-        display: "block",
-        // Account for half of the default label lineHeight difference,
-        // which is 18px (label text) - 16px (choice size).
-        // This equals 1 pixel above, and 1 pixel below to be vertically centered
-        marginBlockStart: sizing.size_010,
-    },
-    label: {
-        color: semanticColor.core.foreground.neutral.strong,
-        lineHeight: font.body.lineHeight.small,
-    },
-    disabledLabel: {
-        // Match disabled text input label color
-        color: semanticColor.core.foreground.disabled.subtle,
-    },
-    description: {
-        // 16 for icon + 8 for spacing strut
-        marginInlineStart: `calc(${sizing.size_160} + ${sizing.size_080})`,
-        marginBlockStart: sizing.size_040,
-        color: theme.description.color.foreground,
-    },
 });
 
 export default ChoiceInternal;

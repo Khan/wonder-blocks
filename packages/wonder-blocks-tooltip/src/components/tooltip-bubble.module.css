@@ -1,0 +1,75 @@
+/**
+ * TooltipBubble styles
+ *
+ * Every rule is nested inside `.root` — the marker class on the bubble's
+ * outer `View`, which carries no declarations of its own. Both the bubble
+ * and its content wrapper are `View`s, and this component overrides
+ * properties `View` sets in its own single-class rule in the same
+ * `@layer shared` (`position`, `flex-direction`, `border-*`). The bundle
+ * loads this package's CSS before core's, so at equal specificity `View`
+ * would win; the compound selector makes the result depend on specificity
+ * instead.
+ *
+ * Source order reproduces the order of the `style` arrays: `hide` → `bubble`
+ * → placement on the bubble, and `content` → `contentStrong` on the content
+ * wrapper. The popper position (`style`) and the legacy `backgroundColor`
+ * override are plain style objects, which `processStyleList` still routes
+ * through Aphrodite (unlayered and `!important`), so they win over this
+ * module as they did before — including over `contentStrong`.
+ *
+ * Nesting is native CSS: every `&` is explicit and resolves to the flat
+ * selector it replaces (`.root.hide`, `.root .content`, …). The build wraps
+ * every rule in `@layer shared { … }`.
+ */
+
+.root {
+    /* The hide style ensures that the bounds of the bubble stay unchanged.
+     * This is because popper.js calculates the bubble position based off its
+     * bounds and if we stopped rendering it entirely, it wouldn't know where
+     * to place it when it reappeared. */
+    &.hide {
+        pointer-events: none;
+        opacity: 0;
+        background-color: var(--wb-semanticColor-core-transparent);
+        color: var(--wb-semanticColor-core-transparent);
+    }
+
+    &.bubble {
+        position: absolute;
+    }
+
+    /* Ensure the content and tail are properly arranged. */
+    &.contentTop {
+        flex-direction: column;
+    }
+
+    &.contentRight {
+        flex-direction: row-reverse;
+    }
+
+    &.contentBottom {
+        flex-direction: column-reverse;
+    }
+
+    &.contentLeft {
+        flex-direction: row;
+    }
+
+    & .content {
+        max-inline-size: 472px;
+        border-radius: var(--wb-border-radius-radius_040);
+        border: solid var(--wb-border-width-thin) var(--wb-semanticColor-core-border-neutral-subtle);
+        background-color: var(--wb-semanticColor-core-background-base-default);
+        box-shadow: var(--wb-boxShadow-mid);
+        justify-content: center;
+    }
+
+    /* The strong variant uses a higher-emphasis inverse/knockout treatment.
+     * The text color is set here so it cascades to the `TooltipContent`
+     * typography, which inherits the CSS `color`. */
+    & .contentStrong {
+        background-color: var(--wb-semanticColor-feedback-neutral-strong-background);
+        border-color: var(--wb-semanticColor-feedback-neutral-strong-border);
+        color: var(--wb-semanticColor-feedback-neutral-strong-text);
+    }
+}

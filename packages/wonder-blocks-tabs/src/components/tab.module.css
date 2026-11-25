@@ -1,0 +1,78 @@
+/**
+ * Tab styles
+ *
+ * Every rule is nested inside `.root` — a marker class on the tab button
+ * itself, which carries no declarations of its own. The button also gets the
+ * typography classes (`typographyClassNames.BodyTextMediumMediumWeight`), which
+ * ship single-class rules in the same `@layer shared` — including `display`
+ * and `margin`, both of which this component overrides. At equal specificity
+ * stylesheet load order would decide the winner, so the compound selector
+ * makes it depend on specificity instead.
+ *
+ * The consumer's `style` still goes through Aphrodite (unlayered and
+ * `!important`), so it wins over this module as it did before. Nesting is
+ * native CSS: every `&` is explicit and resolves to the flat selector it
+ * replaces (`.root.tab`, `.root.tab::after`, …). The build wraps every rule in
+ * `@layer shared { … }`.
+ */
+
+@import "@khanacademy/wonder-blocks-styles/focus-styles.css";
+
+.root {
+    &.tab {
+        display: flex;
+        align-items: center;
+        text-wrap: nowrap;
+        background-color: var(--wb-semanticColor-core-transparent);
+        border: none;
+        margin: 0;
+        padding: 0;
+        cursor: pointer;
+        margin-block: var(--wb-sizing-size_080) var(--wb-sizing-size_140);
+        gap: var(--wb-sizing-size_080);
+        position: relative;
+        color: var(--wb-semanticColor-core-foreground-neutral-subtle);
+    }
+
+    &.tab:focus-visible {
+        @apply --wb-focus-visible;
+    }
+
+    /* Using ::after styling to apply the hover/pressed underline styling
+     * instead of box-shadow because we use box-shadow for the focus
+     * outline. */
+    &.tab::after {
+        content: "";
+        position: absolute;
+        inset-inline: 0;
+        inset-block-end: calc(var(--wb-sizing-size_140) * -1);
+    }
+
+    /* Only apply hover styles to tabs that are not selected */
+    &.tab:hover:not([aria-selected="true"]) {
+        color: var(--wb-semanticColor-core-foreground-instructive-default);
+
+        &::after {
+            block-size: var(--wb-border-width-thin);
+            background-color: var(
+                --wb-semanticColor-core-background-instructive-default
+            );
+        }
+    }
+
+    /* Only apply active styles to tabs that are not selected */
+    &.tab:active:not([aria-selected="true"]) {
+        color: var(--wb-semanticColor-core-foreground-instructive-default);
+
+        &::after {
+            block-size: var(--wb-border-width-thick);
+            background-color: var(
+                --wb-semanticColor-core-background-instructive-default
+            );
+        }
+    }
+
+    &.selectedTab {
+        color: var(--wb-semanticColor-core-foreground-instructive-default);
+    }
+}

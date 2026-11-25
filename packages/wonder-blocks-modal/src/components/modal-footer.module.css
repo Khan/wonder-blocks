@@ -1,0 +1,28 @@
+/**
+ * ModalFooter styles
+ *
+ * The footer is a `View`, and this rule overrides properties `View` sets in
+ * its own single-class rule in the same `@layer shared` (`flex-direction`,
+ * `padding`, `margin`, …). The bundle loads this package's CSS before core's,
+ * so the rule is nested under the `.root` marker class (`.root.footer`) to
+ * win on specificity rather than load order. The build wraps every rule in
+ * `@layer shared { … }`.
+ */
+
+.root {
+    &.footer {
+        flex: 0 0 auto;
+        box-sizing: border-box;
+
+        /* ensure footer stays at the bottom of modal content with scrolling */
+        margin-block-start: auto;
+        min-block-size: var(--wb-sizing-size_640);
+        padding-inline: var(--wb-c-modal-footer-layout-padding-inline);
+        padding-block: var(--wb-c-modal-footer-layout-padding-block);
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-end;
+        box-shadow: 0 -1px 0 var(--wb-semanticColor-core-border-neutral-subtle);
+    }
+}

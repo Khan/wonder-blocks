@@ -1,0 +1,31 @@
+/**
+ * ModalBackdrop styles
+ *
+ * The positioner is a `View`, and this component overrides properties `View`
+ * sets in its own single-class rule in the same `@layer shared` (`position`,
+ * `align-items`). The bundle loads this package's CSS before core's, so the
+ * rule is nested under the `.root` marker class (`.root.modalPositioner`) to
+ * win on specificity rather than load order.
+ *
+ * The consumer's `styles.backdrop` (via `ModalLauncher`) still goes through
+ * Aphrodite (unlayered and `!important`), so it wins over this module as it
+ * did before. The build wraps every rule in `@layer shared { … }`.
+ */
+
+.root {
+    &.modalPositioner {
+        position: fixed;
+        inset-inline-start: 0;
+        inset-block-start: 0;
+        inline-size: 100%;
+        block-size: 100%;
+        align-items: center;
+        justify-content: center;
+
+        /* If the modal ends up being too big for the viewport (e.g., the min
+         * height is triggered), add another scrollbar specifically for
+         * scrolling modal content. */
+        overflow: auto;
+        background: var(--wb-semanticColor-core-background-overlay-default);
+    }
+}

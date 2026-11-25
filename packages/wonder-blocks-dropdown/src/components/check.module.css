@@ -1,0 +1,28 @@
+/**
+ * Check styles (the selection indicator `OptionItem` uses for single
+ * selection).
+ *
+ * The check is a `PhosphorIcon`, whose size class (same `@layer shared`) sets
+ * `block-size`. The published bundle loads this stylesheet *before* the icon
+ * package's, so the rules are qualified with the `.root` marker class
+ * (applied to the same element) to win on specificity rather than load
+ * order.
+ *
+ * Nesting is native CSS: every `&` is explicit and resolves to the flat
+ * selector it replaces. The build wraps every rule in `@layer shared { … }`.
+ */
+
+.root {
+    &.check {
+        align-self: center;
+        block-size: var(--wb-sizing-size_160);
+
+        /* Semantically, this are the constants for a small-sized icon */
+        min-block-size: var(--wb-sizing-size_160);
+        min-inline-size: var(--wb-sizing-size_160);
+    }
+
+    &.hidden {
+        visibility: hidden;
+    }
+}

@@ -1,0 +1,37 @@
+/**
+ * DismissButton styles
+ *
+ * Every rule is nested inside `.root`, a marker class on the button itself
+ * that carries no declarations of its own. The button is an `IconButton`,
+ * which ships rules in the same `@layer shared` that set properties overridden
+ * below (`outline`, `box-shadow` in its hover / press states). The bundle
+ * loads this package's CSS before `IconButton`'s, so the compound selector
+ * makes these rules win on specificity rather than load order.
+ *
+ * The build wraps every rule in `@layer shared { … }`.
+ */
+
+@import "@khanacademy/wonder-blocks-styles/focus-styles.css";
+
+.root {
+    &.dismissButton {
+        position: absolute;
+
+        /* insetInlineEnd supports both RTL and LTR layouts */
+        inset-inline-end: var(--wb-sizing-size_080);
+        inset-block-start: var(--wb-sizing-size_080);
+
+        /* This is to allow the button to be tab-ordered before the component
+         * content but still be above the content. */
+        z-index: 1;
+
+        /* NOTE: IconButton uses :focus-visible, which is not supported for
+         * programmatic focus. This is a workaround to make sure the focus
+         * outline is visible when this control is focused. At (0,3,0) it
+         * outranks IconButton's hover / press rules, as the Aphrodite
+         * version did. */
+        &:focus {
+            @apply --wb-focus-visible;
+        }
+    }
+}

@@ -1,8 +1,7 @@
 import * as React from "react";
 import {addStyle, AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
-import {CSSProperties, StyleSheet} from "aphrodite";
-import {sizing} from "@khanacademy/wonder-blocks-tokens";
 import {IconSize} from "../types";
+import styles from "./icon.module.css";
 
 type Props = AriaProps & {
     /**
@@ -27,24 +26,6 @@ type Props = AriaProps & {
      */
     children: React.ReactElement;
 };
-
-function getSize(size: IconSize): CSSProperties {
-    switch (size) {
-        case "small":
-        default: {
-            return styles.small;
-        }
-        case "medium": {
-            return styles.medium;
-        }
-        case "large": {
-            return styles.large;
-        }
-        case "xlarge": {
-            return styles.xlarge;
-        }
-    }
-}
 
 const StyledDiv = addStyle("div");
 
@@ -77,9 +58,13 @@ const Icon = React.forwardRef(
             },
         });
 
+        // only allow the sizes defined in IconSize
+        const sizeStyles = styles[size] || styles.small;
+
         return (
             <StyledDiv
-                style={[getSize(size), style]}
+                className={sizeStyles}
+                style={style}
                 id={id}
                 data-testid={testId}
                 ref={ref}
@@ -90,24 +75,5 @@ const Icon = React.forwardRef(
         );
     },
 );
-
-const styles = StyleSheet.create({
-    small: {
-        width: sizing.size_160,
-        height: sizing.size_160,
-    },
-    medium: {
-        width: sizing.size_240,
-        height: sizing.size_240,
-    },
-    large: {
-        width: sizing.size_480,
-        height: sizing.size_480,
-    },
-    xlarge: {
-        width: sizing.size_960,
-        height: sizing.size_960,
-    },
-});
 
 export {Icon};

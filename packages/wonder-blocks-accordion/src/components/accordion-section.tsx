@@ -1,15 +1,13 @@
 import * as React from "react";
-import {StyleSheet} from "aphrodite";
-import type {StyleDeclaration} from "aphrodite";
 
 import {View} from "@khanacademy/wonder-blocks-core";
-import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {BodyText} from "@khanacademy/wonder-blocks-typography";
 import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
 
 import {useId} from "react";
 import type {AccordionCornerKindType} from "./accordion";
 import AccordionSectionHeader from "./accordion-section-header";
+import styles from "./accordion-section.module.css";
 
 export type TagType = "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
 
@@ -221,11 +219,11 @@ const AccordionSection = React.forwardRef(function AccordionSection(
     // aria-controls attribute can point to it.
     const sectionContentUniqueId = useId();
 
-    const sectionStyles = _generateStyles(
-        cornerKind,
-        isFirstSection,
-        isLastSection,
-    );
+    const cornerStyle = {
+        square: styles.square,
+        rounded: styles.rounded,
+        "rounded-per-section": styles.roundedPerSection,
+    }[cornerKind];
 
     const handleClick = () => {
         // Controlled mode
@@ -258,10 +256,17 @@ const AccordionSection = React.forwardRef(function AccordionSection(
             id={sectionId}
             // Drives the expanded/collapsed row sizing in `styles.wrapper`.
             data-expanded={expandedState ? "true" : "false"}
+            // The `root` class carries no styling of its own — every rule in
+            // the module is qualified with it so this component's styles
+            // outrank the single-class rules that `View` ships in the same
+            // `@layer shared`. See `accordion-section.module.css`.
             style={[
+                styles.root,
                 styles.wrapper,
                 animated && styles.wrapperWithAnimation,
-                sectionStyles.wrapper,
+                cornerStyle,
+                isFirstSection && styles.firstSection,
+                isLastSection && styles.lastSection,
                 style,
             ]}
             testId={testId}
@@ -292,8 +297,7 @@ const AccordionSection = React.forwardRef(function AccordionSection(
                     styles.contentWrapper,
                     expandedState
                         ? styles.contentWrapperExpanded
-                        : styles.conentWrapperCollapsed,
-                    sectionStyles.contentWrapper,
+                        : styles.contentWrapperCollapsed,
                 ]}
                 testId={testId ? `${testId}-content-panel` : undefined}
             >
@@ -308,141 +312,5 @@ const AccordionSection = React.forwardRef(function AccordionSection(
         </View>
     );
 });
-
-const styles = StyleSheet.create({
-    wrapper: {
-        // Use grid layout for clean animations.
-        display: "grid",
-        gridTemplateRows: "min-content 1fr",
-        // The collapsed size is a selector on this same class rather than a
-        // separate one. Aphrodite merges each style list into one class and
-        // injects its rule lazily, so swapping classes points the first expand
-        // at a rule that doesn't exist yet: `grid-template-rows` computes to
-        // `none`, which can't interpolate, and the first open snaps.
-        // Note: while collapsed this outranks a consumer `style` override.
-        [':not([data-expanded="true"])' as any]: {
-            gridTemplateRows: "min-content 0fr",
-        },
-        // Remove the View's default relative position because it creates
-        // overlap issues with the outline. In this case, it's safe to
-        // remove the stacking context beacuse accordion sections are always
-        // vertically stacked.
-        position: "static",
-        boxSizing: "border-box",
-        backgroundColor: semanticColor.core.background.base.default,
-    },
-    wrapperWithAnimation: {
-        transition: "grid-template-rows 300ms",
-    },
-    contentWrapper: {
-        overflow: "hidden",
-    },
-    conentWrapperCollapsed: {
-        // Make sure screen readers don't read the content when it's
-        // collapsed.
-        visibility: "hidden",
-    },
-    contentWrapperExpanded: {
-        visibility: "visible",
-    },
-    stringContent: {
-        padding: sizing.size_160,
-    },
-});
-
-const cornerStyles: Record<string, any> = {};
-
-const _generateStyles = (
-    cornerKind: AccordionCornerKindType,
-    isFirstSection: boolean,
-    isLastSection: boolean,
-) => {
-    const sectionType = `${cornerKind}-${isFirstSection.toString()}-${isLastSection.toString()}`;
-    if (cornerStyles[sectionType]) {
-        return cornerStyles[sectionType];
-    }
-
-    let wrapperStyle: StyleType = Object.freeze({});
-    let contentWrapperStyle: StyleType = Object.freeze({});
-    let firstSectionStyle: StyleType = Object.freeze({});
-    let lastSectionStyle: StyleType = Object.freeze({});
-
-    const borderStyle = `1px solid ${semanticColor.core.border.neutral.subtle}`;
-
-    if (cornerKind === "square") {
-        wrapperStyle = {
-            border: borderStyle,
-            borderBottom: "none",
-            borderRadius: border.radius.radius_0,
-        };
-
-        if (isLastSection) {
-            lastSectionStyle = {
-                borderBottom: borderStyle,
-            };
-        }
-    }
-
-    if (cornerKind === "rounded") {
-        wrapperStyle = {
-            border: borderStyle,
-            borderBottom: "none",
-        };
-
-        if (isFirstSection) {
-            firstSectionStyle = {
-                borderStartStartRadius: sizing.size_120,
-                borderStartEndRadius: sizing.size_120,
-            };
-        }
-
-        if (isLastSection) {
-            lastSectionStyle = {
-                borderBottom: borderStyle,
-                borderEndStartRadius: sizing.size_120,
-                borderEndEndRadius: sizing.size_120,
-            };
-
-            contentWrapperStyle = {
-                // Give the last section's content wrapper the same bottom
-                // border radius as the wrapper so that the content doesn't
-                // overflow out the corners. This issue can't be solved by
-                // putting `overflow: "hidden"` on the overall container
-                // because that cuts off the header's focus outline.
-                borderEndEndRadius: sizing.size_120,
-                borderEndStartRadius: sizing.size_120,
-            };
-        }
-    }
-
-    if (cornerKind === "rounded-per-section") {
-        wrapperStyle = {
-            border: borderStyle,
-            borderRadius: border.radius.radius_120,
-            marginBlockEnd: sizing.size_160,
-        };
-
-        contentWrapperStyle = {
-            // Give the content wrapper the same border radius as the wrapper
-            // so that the content doesn't overflow out the corners. We
-            // can't put `overflow: "hidden"` on the overall container
-            // because it cuts off the header's focus outline.
-            borderEndEndRadius: sizing.size_120,
-            borderEndStartRadius: sizing.size_120,
-        };
-    }
-
-    const newStyles: StyleDeclaration = {
-        wrapper: {
-            ...wrapperStyle,
-            ...firstSectionStyle,
-            ...lastSectionStyle,
-        },
-        contentWrapper: contentWrapperStyle,
-    };
-
-    cornerStyles[sectionType] = StyleSheet.create(newStyles);
-    return cornerStyles[sectionType];
-};
 
 export default AccordionSection;

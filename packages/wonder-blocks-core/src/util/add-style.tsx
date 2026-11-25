@@ -1,7 +1,7 @@
 import * as React from "react";
-import {StyleSheet} from "aphrodite";
 
 import {processStyleList} from "./util";
+import resetStyles from "./add-style.module.css";
 
 import type {StyleType} from "./types";
 
@@ -57,15 +57,13 @@ export default function addStyle<
  * These are necessary to override various custom styles that browsers add so that
  * elements have consistent styles across all browsers.  Only add styles here if
  * they appear in https://github.com/necolas/normalize.css/blob/master/normalize.css.
+ *
+ * The rules live in `add-style.module.css`, in the `shared.reset` cascade
+ * layer, so the element's own styles always override them.
  */
-const overrides = StyleSheet.create({
-    button: {
-        margin: 0, // Safari adds 2px left/right margins
-        "::-moz-focus-inner": {
-            border: 0, // Firefox adds an inner focus ring around text
-        },
-    },
-});
+const overrides: Partial<Record<string, string>> = {
+    button: resetStyles.button,
+};
 
 // This mapping is based on `ReactHTML` and `ReactSVG` interfaces in the type definitions
 // for React.  This is used to determine the HTML/SVG element type from the tag string.

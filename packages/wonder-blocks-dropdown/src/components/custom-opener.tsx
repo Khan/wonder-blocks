@@ -3,13 +3,12 @@
 // for use in dropdown opener render props. It intentionally wraps
 // addStyle("button") as its underlying DOM element.
 import * as React from "react";
-import {StyleSheet} from "aphrodite";
 
 import {addStyle} from "@khanacademy/wonder-blocks-core";
 import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
-import {focusStyles} from "@khanacademy/wonder-blocks-styles";
 import {BodyText} from "@khanacademy/wonder-blocks-typography";
-import {sizing} from "@khanacademy/wonder-blocks-tokens";
+
+import styles from "./custom-opener.module.css";
 
 const StyledButton = addStyle("button");
 
@@ -178,7 +177,7 @@ export const CustomOpener = React.forwardRef(function CustomOpener(
                 stylesProp?.root,
             ]}
         >
-            <BodyText tag="span" style={[styles.labelReset, stylesProp?.label]}>
+            <BodyText tag="span" style={[styles.label, stylesProp?.label]}>
                 {children}
             </BodyText>
         </StyledButton>
@@ -186,31 +185,3 @@ export const CustomOpener = React.forwardRef(function CustomOpener(
 });
 
 CustomOpener.displayName = "CustomOpener";
-
-const styles = StyleSheet.create({
-    reset: {
-        // CSS button reset — consumers start from a blank slate
-        appearance: "none",
-        background: "none",
-        border: "none",
-        boxSizing: "border-box",
-        cursor: "pointer",
-        font: "inherit",
-        margin: 0,
-        padding: 0,
-        textAlign: "inherit",
-        // Removes the 300ms tap delay on mobile browsers
-        touchAction: "manipulation",
-        // WB focus ring — always applied, no need to add it yourself
-        ...focusStyles.focus,
-    },
-    labelReset: {
-        alignItems: "center",
-        display: "flex",
-        flexDirection: "row",
-        gap: sizing.size_020,
-    },
-    disabled: {
-        cursor: "not-allowed",
-    },
-});

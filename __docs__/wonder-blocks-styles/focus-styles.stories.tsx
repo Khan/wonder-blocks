@@ -32,6 +32,18 @@ import {allThemeModes} from "../../.storybook/modes";
  * // Merging with other styles in a WB component implementation
  * <StyledElement style={{...myStyles, ...focusStyles.focus}} />
  * ```
+ *
+ * ### CSS Modules
+ *
+ * The same styles ship as a CSS mixin:
+ *
+ * ```css
+ * @import "@khanacademy/wonder-blocks-styles/focus-styles.css";
+ *
+ * .button:focus-visible {
+ *     @apply --wb-focus-visible;
+ * }
+ * ```
  */
 export default {
     title: "Packages / Styles / Focus Styles",

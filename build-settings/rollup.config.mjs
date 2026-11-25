@@ -5,6 +5,29 @@ import path from "path";
 import {nodeExternals} from "rollup-plugin-node-externals";
 import swc from "@rollup/plugin-swc";
 import resolve from "@rollup/plugin-node-resolve";
+import styles from "rollup-plugin-styler";
+
+// Shared with Vite so Storybook and the published `dist` agree on the
+// hashed CSS Modules class names. Also dodges styler's default, which
+// routes the placeholder string through `@rollup/pluginutils`'s
+// `makeLegalIdentifier` and camel-cases away the dashes.
+import {generateScopedName} from "./css-modules-scoped-name.mjs";
+
+// Recursively check whether a package contains any `*.module.css` files
+// in its `src/` tree. Used to decide whether the package's JS bundle needs
+// a side-effect import of the extracted `dist/index.css`, so consumers
+// installing via npm don't have to wire `@khanacademy/wonder-blocks-*/css`
+// themselves.
+const hasCssModules = (pkgName) => {
+    const srcDir = path.join("packages", pkgName, "src");
+    if (!fs.existsSync(srcDir)) {
+        return false;
+    }
+    const entries = fs.readdirSync(srcDir, {recursive: true});
+    return entries.some(
+        (entry) => typeof entry === "string" && entry.endsWith(".module.css"),
+    );
+};
 
 /**
  * What to build for a package, taken from the `source` on each of its
@@ -28,21 +51,68 @@ const getEntryPoints = (pkgJson) => {
 
 const createConfig = (pkgName, {input, esm, cjs}) => {
     const extensions = [".js", ".jsx", ".ts", ".tsx"];
+    const cssSideEffect = hasCssModules(pkgName);
 
     return {
         output: [
             {
                 file: path.join("packages", pkgName, esm),
                 format: "esm",
+                // Single CSS asset per package, regardless of how many
+                // `*.module.css` files were imported. Authoring layer-wrap
+                // happens in postcss.config.cjs (`@layer shared`).
+                assetFileNames: "index.css",
+                // Side-effect import of the extracted CSS so npm consumers
+                // get styles automatically when they import the package.
+                //
+                // This must be an `outro`, not an `intro`. Rollup hoists the
+                // package's dependency imports to the top of the chunk, so an
+                // import in the outro evaluates after them. Bundlers emit CSS
+                // in import-evaluation order, so this package's CSS lands
+                // after the CSS of the WB packages it composes (e.g. Button
+                // after Typography). Component styles live in the same
+                // `@layer shared` and use single-class selectors, so the
+                // later rule wins. With an `intro`, Button's label styles
+                // came before `BodyText`'s and lost to them. This matches
+                // the source, where `*.module.css` is imported last.
+                outro: cssSideEffect ? 'import "./index.css";' : "",
             },
             // TODO(FEI-5030): Stop building CJS modules
             {
                 file: path.join("packages", pkgName, cjs),
                 format: "cjs",
+                assetFileNames: "index.css",
+                // See the ESM output above for why this is an `outro`.
+                outro: cssSideEffect ? 'require("./index.css");' : "",
             },
         ],
         input: path.join("packages", pkgName, input),
         plugins: [
+            // PostCSS + CSS Modules. Reads the root `postcss.config.cjs`
+            // chain (postcss-import → @csstools/postcss-mixins →
+            // wrap-in-layer) and hashes class names deterministically so
+            // they round-trip from Vite (Storybook) to Rollup (published
+            // dist) for the same source.
+            styles({
+                mode: "extract",
+                modules: {
+                    // Embeds the source file `[name]` + the local class
+                    // `[local]` and an 8-char content hash. Round-trips
+                    // deterministically across builds and stays readable
+                    // in DevTools.
+                    generateScopedName,
+                },
+                sourceMap: true,
+                // Turn off styler's built-in `@import` resolver. It runs
+                // before the PostCSS config and can't resolve bare package
+                // specifiers (e.g. `@khanacademy/wonder-blocks-styles/...`),
+                // so it printed a false "Unresolved `@import`" warning for
+                // every package using the shared mixins. `postcss-import` in
+                // `postcss.config.cjs` is the only resolver now: it inlines
+                // relative imports and `@khanacademy/wonder-blocks-*` CSS (see
+                // `isInlinedCssImport` there).
+                import: false,
+            }),
             swc({
                 swc: {
                     swcrc: true,

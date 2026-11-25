@@ -2,12 +2,11 @@ import * as React from "react";
 import {ActionItem, ActionMenu} from "@khanacademy/wonder-blocks-dropdown";
 import Button from "@khanacademy/wonder-blocks-button";
 import caretDown from "@phosphor-icons/core/bold/caret-down-bold.svg";
-import {StyleSheet} from "aphrodite";
-import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {useWonderBlocksI18n} from "@khanacademy/wonder-blocks-config";
 import {addStyle, StyleType} from "@khanacademy/wonder-blocks-core";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import checkCircleIcon from "@phosphor-icons/core/fill/check-circle-fill.svg";
+import styles from "./navigation-tabs-dropdown.module.css";
 
 type NavigationTabDropdownItem = {
     /**
@@ -191,7 +190,11 @@ export const NavigationTabsDropdown = React.forwardRef<
             ref={ref}
             id={uniqueId}
             data-testid={testId}
-            style={[showDivider && styles.divider, stylesProp?.root]}
+            style={[
+                styles.root,
+                showDivider && styles.divider,
+                stylesProp?.root,
+            ]}
             aria-label={ariaLabel}
             aria-labelledby={ariaLabelledby}
         >
@@ -206,7 +209,7 @@ export const NavigationTabsDropdown = React.forwardRef<
                         kind="tertiary"
                         endIcon={caretDown}
                         style={[styles.opener, stylesProp?.opener]}
-                        labelStyle={styles.labelStyle}
+                        labelStyle={styles.label}
                         // If the selected tab has an aria-label, use it for
                         // the opener when it is selected
                         aria-label={selectedTabItem?.["aria-label"]}
@@ -243,29 +246,4 @@ export const NavigationTabsDropdown = React.forwardRef<
             </ActionMenu>
         </StyledTag>
     );
-});
-
-const styles = StyleSheet.create({
-    actionMenu: {
-        width: "100%",
-        alignItems: "flex-start",
-    },
-    divider: {
-        borderBlockEnd: `${border.width.thin} solid ${semanticColor.core.border.neutral.subtle}`,
-    },
-    opener: {
-        position: "relative",
-        height: "unset",
-        paddingBlockStart: sizing.size_120,
-        paddingBlockEnd: sizing.size_140,
-        paddingInline: sizing.size_180,
-        width: "100%",
-        justifyContent: "space-between",
-        gap: sizing.size_020,
-    },
-    labelStyle: {
-        flexGrow: 1,
-        maxInlineSize: "100%",
-        textAlign: "start",
-    },
 });

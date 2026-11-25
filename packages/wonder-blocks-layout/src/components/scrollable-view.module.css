@@ -1,0 +1,84 @@
+/**
+ * ScrollableView styles
+ *
+ * `.scrollableView` sits on the `View` itself. None of its properties are set
+ * by `View`'s own rule (`.default` in core), so nothing competes for them and
+ * single classes are enough, whichever package's CSS loads first. The same
+ * holds for the classes consumers pass through `style` today (Popover's
+ * `.root` only sets `border-radius`).
+ *
+ * The consumer's `style` still goes through Aphrodite (unlayered) or inline
+ * styles, so it wins over this module as it did before. The build wraps every
+ * rule in `@layer shared { … }`.
+ */
+
+@import "@khanacademy/wonder-blocks-styles/focus-styles.css";
+
+.scrollableView {
+    /* Hide both fades by default. The component shows each one by setting
+     * its opacity inline (which wins over these defaults); keep the names in
+     * sync with the `FADE_*` constants in `scrollable-view.tsx`. */
+    --wb-scrollable-view-fade-top-opacity: 0;
+    --wb-scrollable-view-fade-bottom-opacity: 0;
+
+    /* Scroll the content when it doesn't fit in the available space
+     * (e.g. on small screens or at high zoom levels). */
+    overflow-y: auto;
+
+    /* Don't let the browser adjust the scroll position when the content
+     * changes (e.g. when the fades are rendered). */
+    overflow-anchor: none;
+
+    /* Keep focused elements (and anything scrolled into view) clear of the
+     * fades, so they aren't hidden under them. */
+    scroll-padding-block: var(--wb-sizing-size_480);
+
+    &:focus-visible {
+        @apply --wb-focus-visible;
+    }
+}
+
+/**
+ * Fades at the top and bottom edges that hint that there's more content
+ * to scroll to. Each fade is only visible (via its opacity custom
+ * property) when there's content past that edge.
+ *
+ * Each fade is an overlay that sticks to the top or bottom edge of the
+ * scrollable view. It's drawn with a pseudo-element that doesn't take up
+ * space (its negative margin cancels out its size) and doesn't capture
+ * clicks. The fades blend the content into the default background color.
+ */
+.fades::before,
+.fades::after {
+    content: "";
+    display: block;
+    position: sticky;
+    flex-shrink: 0;
+    block-size: var(--wb-sizing-size_480);
+    pointer-events: none;
+
+    /* Render the fade above the content. */
+    z-index: 1;
+}
+
+.fades::before {
+    inset-block-start: 0;
+    margin-block-end: calc(-1 * var(--wb-sizing-size_480));
+    background: linear-gradient(to bottom, var(--wb-semanticColor-core-background-base-default), transparent);
+
+    /* Match the view's rounded corners (if any). */
+    border-start-start-radius: inherit;
+    border-start-end-radius: inherit;
+    opacity: var(--wb-scrollable-view-fade-top-opacity);
+}
+
+.fades::after {
+    inset-block-end: 0;
+    margin-block-start: calc(-1 * var(--wb-sizing-size_480));
+    background: linear-gradient(to top, var(--wb-semanticColor-core-background-base-default), transparent);
+
+    /* Match the view's rounded corners (if any). */
+    border-end-start-radius: inherit;
+    border-end-end-radius: inherit;
+    opacity: var(--wb-scrollable-view-fade-bottom-opacity);
+}

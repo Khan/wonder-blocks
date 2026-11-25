@@ -1,0 +1,44 @@
+@import "@khanacademy/wonder-blocks-styles/focus-styles.css";
+
+/**
+ * Combobox selected-items group styles
+ *
+ * Every rule nests inside `.root` — a marker class on the group, which
+ * carries no declarations of its own. The group is a `View` and each item a
+ * `Button`; both ship rules in the same `@layer shared`, and this component
+ * overrides properties they set (`flex-direction` and `padding` on the view;
+ * `block-size`, `padding-inline` and the focus ring on the button). The
+ * published bundle loads this stylesheet *before* those packages', so the
+ * compound selectors make the outcome depend on specificity instead.
+ *
+ * Nesting is native CSS: every `&` is explicit and resolves to the flat
+ * selector it replaces. The build wraps every rule in `@layer shared { … }`.
+ */
+
+.root {
+    &.container {
+        flex-flow: row wrap;
+        gap: var(--wb-sizing-size_080);
+        padding-block-start: var(--wb-sizing-size_080);
+    }
+
+    & .item {
+        font-size: var(--wb-font-body-size-small);
+        justify-content: space-between;
+        align-items: center;
+        block-size: auto;
+        padding-inline: var(--wb-sizing-size_080);
+    }
+
+    /* The item focused via the keyboard (visual focus only). The Aphrodite
+     * version beat every `Button` state, so this also lists the hover /
+     * press states (Button's hover and press rules are (0,2,0); its
+     * secondary focus-visible + hover / press rules are (0,3,0)). */
+    & .itemFocused,
+    & .itemFocused:hover,
+    & .itemFocused:active,
+    & .itemFocused:focus-visible:hover,
+    & .itemFocused:focus-visible:active {
+        @apply --wb-focus-visible;
+    }
+}

@@ -1,0 +1,53 @@
+/**
+ * Shared styles for `RadioGroup` and `CheckboxGroup`
+ *
+ * The one value that differs between the default and thunderblocks themes is
+ * the codegen'd `--wb-c-form-description-color-foreground` token (switched on
+ * `[data-wb-theme]`); every other value is the plain `--wb-*` token.
+ *
+ * `.fieldset` is the outermost element, rendered by `addStyle`, which ships
+ * no class of its own. Every other rule is nested inside it because the
+ * description and error are `BodyText`s and the choices are `View`s, which
+ * ship single-class rules (including `margin`) in the same `@layer shared`.
+ * At equal specificity stylesheet load order would decide the winner, so the
+ * compound selector makes it depend on specificity instead.
+ *
+ * Nesting is native CSS: every `&` is explicit and resolves to the flat
+ * selector it replaces (`.fieldset .legend`, at (0,2,0)). The build wraps
+ * every rule in `@layer shared { … }`.
+ */
+
+.fieldset {
+    display: flex;
+    flex-direction: column;
+    border: none;
+    padding: 0;
+    margin: 0;
+
+    & .legend {
+        padding: 0;
+
+        /* Let the legend use the size defined by the parent.
+         * NOTE: This applies to `RadioGroup` and `CheckboxGroup`. */
+        inline-size: 100%;
+    }
+
+    & .description {
+        color: var(--wb-c-form-description-color-foreground);
+        margin-block-start: var(--wb-sizing-size_040);
+    }
+
+    & .error {
+        color: var(--wb-semanticColor-core-foreground-critical-default);
+        margin-block-start: var(--wb-sizing-size_040);
+    }
+
+    /* Applied to each choice. */
+    & .firstChoiceMetaSpacing {
+        margin-block-start: var(--wb-sizing-size_120);
+    }
+
+    & .choiceLineGap {
+        margin-block-start: var(--wb-sizing-size_080);
+    }
+}

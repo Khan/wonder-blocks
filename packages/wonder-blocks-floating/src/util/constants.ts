@@ -1,4 +1,8 @@
 // Floating only supports pixel values for the arrow size.
+// NOTE: `min-block-size` in `components/floating.module.css` duplicates
+// ARROW_SIZE_INLINE (the floating element must be at least as tall as the
+// arrow). Keep the two in sync. `FloatingArrow` needs these as numbers to
+// draw its SVG path, so they can't come from a CSS variable.
 export const ARROW_SIZE_INLINE = 20;
 export const ARROW_SIZE_BLOCK = 10;
 

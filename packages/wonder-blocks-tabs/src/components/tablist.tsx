@@ -1,7 +1,6 @@
 import {addStyle, StyleType} from "@khanacademy/wonder-blocks-core";
-import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
-import {StyleSheet} from "aphrodite";
 import * as React from "react";
+import styles from "./tablist.module.css";
 
 type Props = {
     /**
@@ -69,14 +68,4 @@ export const Tablist = React.forwardRef(function Tablist(
             {children}
         </StyledDiv>
     );
-});
-
-const styles = StyleSheet.create({
-    tablist: {
-        display: "flex",
-        gap: sizing.size_240,
-        borderBlockEnd: `${border.width.thin} solid ${semanticColor.core.border.neutral.subtle}`,
-        // Add horizontal padding for focus outline of first/last elements
-        paddingInline: sizing.size_040,
-    },
 });

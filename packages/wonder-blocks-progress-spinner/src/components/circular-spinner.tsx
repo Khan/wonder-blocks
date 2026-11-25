@@ -1,11 +1,10 @@
 import * as React from "react";
-import {StyleSheet} from "aphrodite";
 import {View, addStyle} from "@khanacademy/wonder-blocks-core";
 import {semanticColor} from "@khanacademy/wonder-blocks-tokens";
 
 import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
 
-import theme from "../theme";
+import styles from "./circular-spinner.module.css";
 
 // CSS sets the rendered size, so the viewBox must stay at the path's size or
 // the path gets cropped instead of scaled.
@@ -86,7 +85,7 @@ export default class CircularSpinner extends React.Component<Props> {
                 height={pathSize}
                 viewBox={`0 0 ${pathSize} ${pathSize}`}
                 data-testid={testId}
-                style={sizeStyles[size]}
+                style={styles[size]}
             >
                 <StyledPath
                     style={[styles.loadingSpinner, {fill: color}]}
@@ -99,48 +98,3 @@ export default class CircularSpinner extends React.Component<Props> {
         return <View style={[styles.spinnerContainer, style]}>{svg}</View>;
     }
 }
-
-const rotateKeyFrames = {
-    "0%": {
-        transform: "rotate(0deg)",
-    },
-    "50%": {
-        transform: "rotate(180deg)",
-    },
-    "100%": {
-        transform: "rotate(360deg)",
-    },
-} as const;
-
-const sizeStyles = StyleSheet.create({
-    xsmall: {
-        width: theme.root.sizing.xsmall,
-        height: theme.root.sizing.xsmall,
-    },
-    small: {
-        width: theme.root.sizing.small,
-        height: theme.root.sizing.small,
-    },
-    medium: {
-        width: theme.root.sizing.medium,
-        height: theme.root.sizing.medium,
-    },
-    large: {
-        width: theme.root.sizing.large,
-        height: theme.root.sizing.large,
-    },
-});
-
-const styles = StyleSheet.create({
-    spinnerContainer: {
-        justifyContent: "center",
-    },
-    loadingSpinner: {
-        transformOrigin: "50% 50%",
-        // @ts-expect-error [FEI-5019]: `animationName` expects a string not an object.
-        animationName: rotateKeyFrames,
-        animationDuration: "1.1s",
-        animationIterationCount: "infinite",
-        animationTimingFunction: "linear",
-    },
-});

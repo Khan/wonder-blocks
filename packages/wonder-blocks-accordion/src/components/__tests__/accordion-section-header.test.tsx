@@ -122,9 +122,7 @@ describe("AccordionSectionHeader", () => {
         const header = screen.getByRole("button");
 
         // Assert
-        expect(header).toHaveStyle({
-            transition: "border-radius 300ms",
-        });
+        expect(header).toHaveClass("headerWrapperWithAnimation");
     });
 
     test("does not include transition styles when animated is false", () => {
@@ -148,9 +146,7 @@ describe("AccordionSectionHeader", () => {
         const header = screen.getByRole("button");
 
         // Assert
-        expect(header).not.toHaveStyle({
-            transition: "border-radius 300ms",
-        });
+        expect(header).not.toHaveClass("headerWrapperWithAnimation");
     });
 
     test("shows icon when collapsible is true", () => {

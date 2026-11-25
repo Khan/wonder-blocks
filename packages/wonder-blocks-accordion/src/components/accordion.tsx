@@ -1,10 +1,10 @@
 import * as React from "react";
-import {StyleSheet} from "aphrodite";
 
 import {addStyle} from "@khanacademy/wonder-blocks-core";
 import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
 
 import AccordionSection from "./accordion-section";
+import styles from "./accordion.module.css";
 
 const StyledUl = addStyle("ul");
 
@@ -349,16 +349,6 @@ const Accordion = React.forwardRef(function Accordion(
             })}
         </StyledUl>
     );
-});
-
-const styles = StyleSheet.create({
-    wrapper: {
-        boxSizing: "border-box",
-        listStyle: "none",
-        // Reset the default padding for lists.
-        padding: 0,
-        width: "100%",
-    },
 });
 
 export default Accordion;

@@ -1,13 +1,6 @@
 import {addStyle, AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
-import {StyleSheet} from "aphrodite";
 import * as React from "react";
-import {styles as typographyStyles} from "@khanacademy/wonder-blocks-typography";
-import {
-    border,
-    breakpoint,
-    semanticColor,
-    sizing,
-} from "@khanacademy/wonder-blocks-tokens";
+import styles from "./navigation-tab-item.module.css";
 
 type NavigationTabItemLinkProps = {style: StyleType; "aria-current"?: "page"};
 
@@ -78,11 +71,11 @@ export const NavigationTabItem = React.forwardRef(function NavigationTabItem(
 
     function renderChildren() {
         const linkProps: NavigationTabItemLinkProps = {
-            style: [
-                typographyStyles.BodyTextMediumMediumWeight,
-                styles.link,
-                current && styles.currentLink,
-            ],
+            // These classes are qualified with the list item's `root` class
+            // (the link's ancestor) so they outrank `Link`'s own rules. They
+            // also carry the BodyText medium typography. See
+            // `navigation-tab-item.module.css`.
+            style: [styles.link, current && styles.currentLink],
             "aria-current": current ? "page" : undefined,
         };
 
@@ -104,76 +97,4 @@ export const NavigationTabItem = React.forwardRef(function NavigationTabItem(
             {renderChildren()}
         </StyledLi>
     );
-});
-
-const styles = StyleSheet.create({
-    root: {
-        listStyle: "none",
-        display: "inline-flex",
-        [":has(a:hover)" as any]: {
-            // Using background token to match underline styling in Figma
-            boxShadow: `inset 0 calc(${sizing.size_020}*-1) 0 0 ${semanticColor.core.background.instructive.default}`,
-        },
-        [":has(a:active)" as any]: {
-            // Using background token to match underline styling in Figma
-            boxShadow: `inset 0 calc(${sizing.size_060}*-1) 0 0 ${semanticColor.core.background.instructive.default}`,
-        },
-        paddingBlockStart: sizing.size_080,
-        paddingBlockEnd: sizing.size_180,
-        [breakpoint.mediaQuery.mdOrLarger]: {
-            paddingBlockStart: sizing.size_200,
-            paddingBlockEnd: sizing.size_240,
-        },
-    },
-    current: {
-        // Note: The current tab item underline style is provided by NavigationTabs.
-        [":has(a:hover)" as any]: {
-            // If it is current, remove hover underline since the tab is already
-            // selected.
-            boxShadow: "none",
-        },
-        [":has(a:active):not([aria-disabled=true])" as any]: {
-            // If it is current, make sure there is no box shadow
-            boxShadow: "none",
-        },
-    },
-    currentLink: {
-        color: semanticColor.core.foreground.instructive.default,
-        [":active:not([aria-disabled=true])" as any]: {
-            // Make sure the current link doesn't change color when pressed
-            color: semanticColor.core.foreground.instructive.default,
-        },
-    },
-    link: {
-        display: "flex",
-        margin: 0,
-        color: semanticColor.core.foreground.neutral.subtle,
-        paddingInline: 0,
-        position: "relative",
-        whiteSpace: "nowrap",
-        textDecoration: "none",
-        // NOTE: We use :not[aria-disabled] to avoid the hover styles to be
-        // applied when the interactive element is disabled.
-        [":hover:not([aria-disabled=true])" as any]: {
-            textDecoration: "none",
-            border: "none",
-            outline: "none",
-            color: semanticColor.core.foreground.instructive.default,
-            backgroundColor: semanticColor.core.transparent,
-        },
-        // NOTE: We use :not[aria-disabled] to avoid the hover styles to be
-        // applied when the interactive element is disabled.
-        [":active:not([aria-disabled=true])" as any]: {
-            textDecoration: "none",
-            border: "none",
-            outline: "none",
-            color: semanticColor.core.foreground.instructive.default,
-        },
-        ":focus-visible": {
-            border: "none",
-            outline: "none",
-            boxShadow: `0 0 0 ${sizing.size_020} ${semanticColor.focus.inner}, 0 0 0 ${sizing.size_040} ${semanticColor.focus.outer}`,
-            borderRadius: border.radius.radius_0,
-        },
-    },
 });

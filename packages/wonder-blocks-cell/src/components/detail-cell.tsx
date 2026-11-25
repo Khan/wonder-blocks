@@ -1,13 +1,14 @@
 import * as React from "react";
-import {StyleSheet} from "aphrodite";
 
 import {BodyText} from "@khanacademy/wonder-blocks-typography";
 
-import {semanticColor} from "@khanacademy/wonder-blocks-tokens";
 import CellCore from "./internal/cell-core";
 
 import type {CellProps, TypographyText} from "../util/types";
 import theme from "../theme";
+
+import coreStyles from "./internal/cell-core.module.css";
+import styles from "./detail-cell.module.css";
 
 type SubtitleProps = {
     subtitle?: TypographyText;
@@ -96,8 +97,11 @@ const DetailCell = React.forwardRef(function DetailCell(
     return (
         <CellCore
             {...coreProps}
+            // This is to override the default padding of the CellCore
+            // innerWrapper. It lives in `cell-core.module.css` so it is
+            // emitted after `.wrapper`, which sets the same properties.
+            innerStyle={coreStyles.detail}
             ref={ref}
-            innerStyle={styles.innerWrapper}
             contentStyle={{
                 gap: theme.root.layout.gap.detail,
             }}
@@ -116,17 +120,6 @@ const DetailCell = React.forwardRef(function DetailCell(
             <Subtitle subtitle={subtitle2} disabled={coreProps.disabled} />
         </CellCore>
     );
-});
-
-const styles = StyleSheet.create({
-    subtitle: {
-        color: semanticColor.core.foreground.neutral.default,
-    },
-    // This is to override the default padding of the CellCore innerWrapper.
-    innerWrapper: {
-        paddingBlock: theme.root.layout.padding.block.detail,
-        paddingInline: theme.root.layout.padding.inline.detail,
-    },
 });
 
 export default DetailCell;

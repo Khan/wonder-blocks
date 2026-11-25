@@ -1,0 +1,68 @@
+/**
+ * DropdownCore styles
+ *
+ * The menu is portaled out of the wrapper by `DropdownPopper`, so its rules
+ * nest under `.menu` — a marker class on the menu container itself, which
+ * carries no declarations of its own. The container and the list are `View`s,
+ * the empty state a `BodyText` and the filter a `SearchField`; all of them
+ * ship rules in the same `@layer shared`, and this component overrides
+ * properties they set (`padding`, `border` on the container; `margin` on the
+ * empty state; `margin`, `min-block-size` and `position` on the search
+ * field). The published bundle loads this stylesheet *before* those
+ * packages', so the compound selectors make the outcome depend on specificity
+ * rather than load order.
+ *
+ * Consumer `style` / `dropdownStyle` overrides are emitted unlayered, so they
+ * still win over everything here.
+ *
+ * Nesting is native CSS: every `&` is explicit and resolves to the flat
+ * selector it replaces. The build wraps every rule in `@layer shared { … }`.
+ */
+
+.menuWrapper {
+    inline-size: fit-content;
+    max-inline-size: 100%;
+}
+
+.menu {
+    &.dropdown {
+        background-color: var(--wb-semanticColor-core-background-base-default);
+        border-radius: var(--wb-c-dropdown-listbox-border-radius);
+        padding-block: var(--wb-c-dropdown-listbox-layout-padding-block);
+        padding-inline: var(--wb-c-dropdown-listbox-layout-padding-inline);
+        border: solid var(--wb-border-width-thin)
+            var(--wb-semanticColor-core-border-neutral-subtle);
+        box-shadow: var(--wb-c-dropdown-listbox-shadow-default);
+
+        /* We use a custom property to set the max height of the dropdown.
+         * This comes from the maxHeight custom modifier.
+         * @see ../util/popper-max-height-modifier.ts */
+        /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties -- set at runtime by the popper modifier, not a token */
+        max-block-size: var(--popper-max-height);
+    }
+
+    &.hidden {
+        pointer-events: none;
+        visibility: hidden;
+    }
+
+    & .listboxOrMenu {
+        overflow-y: auto;
+    }
+
+    & .noResult {
+        color: var(--wb-semanticColor-core-foreground-neutral-default);
+        align-self: center;
+        margin-block-start: var(--wb-sizing-size_060);
+    }
+
+    & .searchField {
+        margin: var(--wb-sizing-size_080);
+        margin-block-start: var(--wb-sizing-size_040);
+
+        /* Set `min-block-size` to "auto" to stop the search field from having
+         * a height of 0 and being cut off. */
+        min-block-size: auto;
+        position: sticky;
+    }
+}

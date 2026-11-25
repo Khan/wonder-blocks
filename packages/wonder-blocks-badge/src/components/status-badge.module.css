@@ -1,0 +1,33 @@
+/**
+ * StatusBadge kinds. Each kind only assigns `Badge`'s `--wb-c-badge--*`
+ * component tokens (see `badge.module.css`), which `Badge`'s rules read. The
+ * build wraps every rule in `@layer shared { … }`.
+ */
+
+.info {
+    --wb-c-badge--color-background: var(--wb-semanticColor-feedback-info-subtle-background);
+    --wb-c-badge--color-foreground: var(--wb-semanticColor-feedback-info-subtle-text);
+    --wb-c-badge--color-border: var(--wb-semanticColor-feedback-info-subtle-border);
+    --wb-c-badge--color-icon: var(--wb-semanticColor-feedback-info-subtle-icon);
+}
+
+.success {
+    --wb-c-badge--color-background: var(--wb-semanticColor-feedback-success-subtle-background);
+    --wb-c-badge--color-foreground: var(--wb-semanticColor-feedback-success-subtle-text);
+    --wb-c-badge--color-border: var(--wb-semanticColor-feedback-success-subtle-border);
+    --wb-c-badge--color-icon: var(--wb-semanticColor-feedback-success-subtle-icon);
+}
+
+.warning {
+    --wb-c-badge--color-background: var(--wb-semanticColor-feedback-warning-subtle-background);
+    --wb-c-badge--color-foreground: var(--wb-semanticColor-feedback-warning-subtle-text);
+    --wb-c-badge--color-border: var(--wb-semanticColor-feedback-warning-subtle-border);
+    --wb-c-badge--color-icon: var(--wb-semanticColor-feedback-warning-subtle-icon);
+}
+
+.critical {
+    --wb-c-badge--color-background: var(--wb-semanticColor-feedback-critical-subtle-background);
+    --wb-c-badge--color-foreground: var(--wb-semanticColor-feedback-critical-subtle-text);
+    --wb-c-badge--color-border: var(--wb-semanticColor-feedback-critical-subtle-border);
+    --wb-c-badge--color-icon: var(--wb-semanticColor-feedback-critical-subtle-icon);
+}

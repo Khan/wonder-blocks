@@ -15,6 +15,9 @@ import {sizing} from "@khanacademy/wonder-blocks-tokens";
  * - WCAG 2.5.8 exempts inline targets (a link within a sentence, whose size is
  *   constrained by the line-height of the surrounding text), so this should not
  *   be applied to inline links.
+ *
+ * In a CSS Module, use the `--wb-min-target-size` mixin from
+ * `@khanacademy/wonder-blocks-styles/min-target-size-styles.css` instead.
  */
 export const minTargetSize = {
     // Establishes the containing block for the ::before hit area below.

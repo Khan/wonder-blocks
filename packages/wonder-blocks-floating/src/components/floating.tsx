@@ -14,21 +14,13 @@ import {
     useMergeRefs,
     FloatingFocusManager,
 } from "@floating-ui/react";
-import {StyleSheet} from "aphrodite";
-import {
-    border,
-    boxShadow,
-    semanticColor,
-} from "@khanacademy/wonder-blocks-tokens";
 import {addStyle, StyleType} from "@khanacademy/wonder-blocks-core";
-import {
-    ARROW_SIZE_INLINE,
-    FloatingReferenceAttributeName,
-} from "../util/constants";
+import {FloatingReferenceAttributeName} from "../util/constants";
 import {Arrow, type ArrowStyles} from "./floating-arrow";
 import {Portal} from "./floating-portal";
 import {rtlMirror} from "../util/rtl-mirror-middleware";
 import {canAcceptRef, getElementRef} from "../util/trigger-refs";
+import styles from "./floating.module.css";
 
 const StyledDiv = addStyle("div");
 
@@ -670,26 +662,3 @@ export default function Floating({
         </>
     );
 }
-
-const styles = StyleSheet.create({
-    floating: {
-        background: semanticColor.core.background.base.default,
-        border: `solid ${border.width.thin} ${semanticColor.core.border.neutral.subtle}`,
-        borderRadius: border.radius.radius_040,
-        // Allow the floating element to be at least as tall as the arrow. We
-        // set inline size to ensure that it works with inline placements.
-        minBlockSize: ARROW_SIZE_INLINE,
-        boxShadow: boxShadow.mid,
-        justifyContent: "center",
-        // Prevent the floating element from receiving focus when it is clicked.
-        outline: "none",
-    },
-    // Lay out the content as a flex column so it can shrink (and scroll) when
-    // the `size` middleware constrains the floating element. This is only
-    // applied with `constrainSize` enabled, so other content keeps its block layout
-    // (e.g. inline text and links keep flowing on the same line).
-    constrained: {
-        display: "flex",
-        flexDirection: "column",
-    },
-});

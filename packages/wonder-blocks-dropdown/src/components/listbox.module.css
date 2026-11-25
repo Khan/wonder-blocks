@@ -1,0 +1,25 @@
+/**
+ * Listbox styles
+ *
+ * The listbox is a `View`, whose own `.default` class (same `@layer shared`)
+ * resets `padding`. The published bundle loads this stylesheet *before*
+ * core's, so the rules are qualified with the `.root` marker class (applied to
+ * the same element) to win on specificity rather than load order.
+ *
+ * The build wraps every rule in `@layer shared { … }`.
+ */
+
+.root {
+    &.listbox {
+        background-color: var(--wb-semanticColor-core-background-base-default);
+        outline: none;
+
+        /* layout */
+        padding-block: var(--wb-c-dropdown-listbox-layout-padding-block);
+        padding-inline: var(--wb-c-dropdown-listbox-layout-padding-inline);
+    }
+
+    &.disabled {
+        color: var(--wb-semanticColor-action-secondary-disabled-foreground);
+    }
+}

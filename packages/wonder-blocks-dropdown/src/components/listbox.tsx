@@ -1,12 +1,11 @@
 import * as React from "react";
-import {StyleSheet} from "aphrodite";
 import {StyleType, View} from "@khanacademy/wonder-blocks-core";
-import {semanticColor} from "@khanacademy/wonder-blocks-tokens";
 
 import {useId} from "react";
 import {useListbox} from "../hooks/use-listbox";
 import {MaybeValueOrValues, OptionItemComponent} from "../util/types";
-import theme from "../theme";
+
+import styles from "./listbox.module.css";
 
 type Props = {
     /**
@@ -127,7 +126,12 @@ function StandaloneListbox(props: Props) {
         <View
             role="listbox"
             id={uniqueId}
-            style={[styles.listbox, style, disabled && styles.disabled]}
+            style={[
+                styles.root,
+                styles.listbox,
+                style,
+                disabled && styles.disabled,
+            ]}
             tabIndex={tabIndex}
             testId={testId}
             aria-disabled={disabled}
@@ -195,7 +199,12 @@ export default function Listbox(props: Props) {
         <View
             role="listbox"
             id={id}
-            style={[styles.listbox, style, disabled && styles.disabled]}
+            style={[
+                styles.root,
+                styles.listbox,
+                style,
+                disabled && styles.disabled,
+            ]}
             tabIndex={tabIndex}
             testId={testId}
             aria-disabled={disabled}
@@ -207,16 +216,3 @@ export default function Listbox(props: Props) {
         </View>
     );
 }
-
-const styles = StyleSheet.create({
-    listbox: {
-        backgroundColor: semanticColor.core.background.base.default,
-        outline: "none",
-        // layout
-        paddingBlock: theme.listbox.layout.padding.block,
-        paddingInline: theme.listbox.layout.padding.inline,
-    },
-    disabled: {
-        color: semanticColor.action.secondary.disabled.foreground,
-    },
-});

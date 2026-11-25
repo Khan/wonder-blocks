@@ -1,0 +1,174 @@
+@import "@khanacademy/wonder-blocks-styles/focus-styles.css";
+
+/**
+ * SelectOpener styles
+ *
+ * The opener is an `addStyle("button")`, whose element reset lives in
+ * `@layer shared.reset`, so rules directly in `@layer shared` outrank it
+ * without extra specificity. Its children are a `BodyText` and a
+ * `PhosphorIcon`, which ship rules in the same `@layer shared` (`BodyText`
+ * resets `margin`); those rules nest under `.opener` so they win on
+ * specificity rather than stylesheet load order.
+ *
+ * Aphrodite merged the `style` array into one class, re-ordering a pseudo
+ * key to the end whenever a later style set it again. The modifier classes
+ * are declared in that array order:
+ *
+ *   opener → disabled → error → placeholder → disabledPlaceholder →
+ *   press → readOnly
+ *
+ * which reproduces the merged result for every combination, e.g. an errored,
+ * disabled opener keeps the press shadow in its `:focus:active` ring because
+ * `error` came after `disabled`.
+ *
+ * Nesting is native CSS: every `&` is explicit and resolves to the flat
+ * selector it replaces. The build wraps every rule in `@layer shared { … }`.
+ */
+
+/* TODO: Dedupe with Button styles */
+.opener {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    block-size: 40px;
+
+    /* This asymmetry arises from the Icon on the right side, which has extra
+     * padding built in. To have the component look more balanced, we need to
+     * take off some paddingRight here. */
+    padding-inline: var(--wb-c-dropdown-opener-layout-padding-inlineStart)
+        var(--wb-c-dropdown-opener-layout-padding-inlineEnd);
+    border-radius: var(--wb-c-dropdown-opener-border-radius-rest);
+    outline: none;
+    text-decoration: none;
+    box-sizing: border-box;
+    white-space: nowrap;
+
+    /* This removes the 300ms click delay on mobile browsers by indicating
+     * that "double-tap to zoom" shouldn't be used on this element. */
+    touch-action: manipulation;
+
+    /* Theming (default) */
+    background: var(--wb-semanticColor-input-default-background);
+    border: var(--wb-border-width-thin) solid
+        var(--wb-semanticColor-input-default-border);
+    color: var(--wb-semanticColor-input-default-foreground);
+    cursor: pointer;
+
+    /* Use box shadow to make the border in the press state look thicker
+     * without changing the border. */
+    &:active {
+        box-shadow: 0 0 0 var(--wb-border-width-thin)
+            var(--wb-semanticColor-input-default-border);
+    }
+
+    /* Using :focus instead of :focus-visible to ensure the focus ring is
+     * visible when the button is focused (even when clicked). This makes the
+     * focus behaviour more consistent with the other field components. */
+    &:focus {
+        @apply --wb-focus-visible;
+    }
+
+    &:focus:active {
+        box-shadow:
+            0 0 0 var(--wb-border-width-thin)
+                var(--wb-semanticColor-input-default-border),
+            0 0 0 var(--wb-border-width-medium)
+                var(--wb-semanticColor-focus-inner);
+    }
+
+    & .text {
+        margin-inline-end: var(--wb-sizing-size_080);
+        white-space: nowrap;
+
+        /* Safari only honours the prefixed form, and the CSS pipeline has no
+         * autoprefixer (Aphrodite used to add it). */
+        /* stylelint-disable-next-line property-no-vendor-prefix -- Safari needs it */
+        -webkit-user-select: none;
+        user-select: none;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    & .caret {
+        min-inline-size: var(--wb-sizing-size_160);
+    }
+}
+
+.disabled {
+    background: var(--wb-semanticColor-input-disabled-background);
+    border: var(--wb-border-width-thin) solid
+        var(--wb-semanticColor-input-disabled-border);
+    color: var(--wb-semanticColor-input-disabled-foreground);
+    cursor: not-allowed;
+
+    &:active {
+        box-shadow: none;
+    }
+
+    &:focus:active {
+        box-shadow: 0 0 0 var(--wb-border-width-medium)
+            var(--wb-semanticColor-focus-inner);
+    }
+}
+
+.error {
+    background: var(--wb-semanticColor-input-error-background);
+    border: var(--wb-c-dropdown-opener-border-width-error) solid
+        var(--wb-semanticColor-input-error-border);
+    color: var(--wb-semanticColor-input-error-foreground);
+
+    &:focus:active {
+        box-shadow:
+            0 0 0 var(--wb-border-width-thin)
+                var(--wb-semanticColor-input-default-border),
+            0 0 0 var(--wb-border-width-medium)
+                var(--wb-semanticColor-focus-inner);
+    }
+}
+
+.placeholder {
+    color: var(--wb-semanticColor-input-default-placeholder);
+}
+
+.disabledPlaceholder {
+    color: var(--wb-semanticColor-input-disabled-placeholder);
+}
+
+/* Applied while Enter/Space is held down (tracked in JS). */
+.press {
+    box-shadow: 0 0 0 var(--wb-border-width-thin)
+        var(--wb-semanticColor-input-default-border);
+
+    /* We merge the focus styles with the press styles so that the focus ring
+     * is visible when the button is pressed. Declared after `.opener:focus`,
+     * which it overrides at equal specificity. */
+    &:focus-visible {
+        box-shadow:
+            0 0 0 var(--wb-border-width-thin)
+                var(--wb-semanticColor-input-default-border),
+            0 0 0 var(--wb-border-width-medium)
+                var(--wb-semanticColor-focus-inner);
+    }
+}
+
+.readOnly {
+    background: var(--wb-semanticColor-input-readOnly-background);
+    color: var(--wb-semanticColor-input-readOnly-text);
+
+    &:active {
+        box-shadow: none;
+    }
+
+    &:focus:active {
+        box-shadow: 0 0 0 var(--wb-border-width-medium)
+            var(--wb-semanticColor-focus-inner);
+    }
+
+    /* A read-only placeholder keeps the placeholder colour (the Aphrodite
+     * version re-applied `placeholder` after `readOnly`). (0,2,0) so it also
+     * beats `.disabledPlaceholder`, as the re-applied style did. */
+    &.placeholder {
+        color: var(--wb-semanticColor-input-default-placeholder);
+    }
+}

@@ -1,10 +1,10 @@
 import * as React from "react";
-import {StyleSheet} from "aphrodite";
 import {StyleType, View} from "@khanacademy/wonder-blocks-core";
 import {Tabs, TabsProps} from "./tabs";
 import {TabsDropdown, TabsDropdownProps} from "./tabs-dropdown";
 import {AriaLabelOrAriaLabelledby} from "./types";
 import {useResponsiveLayout} from "../hooks/use-responsive-layout";
+import styles from "./responsive.module.css";
 
 export type ResponsiveTabItem = {
     /**
@@ -158,7 +158,7 @@ export const ResponsiveTabs = (props: Props) => {
     return (
         <View
             ref={containerRef}
-            style={[styles.container, stylesProp?.root]}
+            style={[styles.root, styles.container, stylesProp?.root]}
             id={id}
             testId={testId}
         >
@@ -194,25 +194,3 @@ export const ResponsiveTabs = (props: Props) => {
         </View>
     );
 };
-
-const fadeInKeyframes = {
-    from: {opacity: 0},
-    to: {opacity: 1},
-};
-
-const styles = StyleSheet.create({
-    // Apply fade in animation to Tabs and TabsDropdown to ease into the
-    // transition between the two layouts. Since this is a fade animation to
-    // smoothen the transition, we apply it always, even if prefers reduced motion
-    // is enabled
-    fadeIn: {
-        // @ts-expect-error [FEI-5019]: `animationName` expects a string not an object.
-        animationName: fadeInKeyframes,
-        animationDuration: "150ms",
-        animationTimingFunction: "ease-in-out",
-    },
-    container: {
-        width: "100%",
-        minBlockSize: "auto", // override setting the min height: 0 style
-    },
-});

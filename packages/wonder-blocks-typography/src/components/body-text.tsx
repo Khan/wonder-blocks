@@ -1,6 +1,6 @@
 import * as React from "react";
 import {PropsFor, Text} from "@khanacademy/wonder-blocks-core";
-import styles from "../util/styles";
+import styles from "./body-text.module.css";
 
 type Props = PropsFor<typeof Text> & {
     size?: "xsmall" | "small" | "medium";
@@ -9,15 +9,15 @@ type Props = PropsFor<typeof Text> & {
 
 // List style combinations for matching with props
 const styleMapping = {
-    "xsmall-medium": styles.BodyTextXSmallMediumWeight,
-    "xsmall-semi": styles.BodyTextXSmallSemiWeight,
-    "xsmall-bold": styles.BodyTextXSmallBoldWeight,
-    "small-medium": styles.BodyTextSmallMediumWeight,
-    "small-semi": styles.BodyTextSmallSemiWeight,
-    "small-bold": styles.BodyTextSmallBoldWeight,
-    "medium-medium": styles.BodyTextMediumMediumWeight,
-    "medium-semi": styles.BodyTextMediumSemiWeight,
-    "medium-bold": styles.BodyTextMediumBoldWeight,
+    "xsmall-medium": styles.xsmallMedium,
+    "xsmall-semi": styles.xsmallSemi,
+    "xsmall-bold": styles.xsmallBold,
+    "small-medium": styles.smallMedium,
+    "small-semi": styles.smallSemi,
+    "small-bold": styles.smallBold,
+    "medium-medium": styles.mediumMedium,
+    "medium-semi": styles.mediumSemi,
+    "medium-bold": styles.mediumBold,
 } as const;
 
 const BodyText = React.forwardRef(function BodyText(
@@ -37,7 +37,7 @@ const BodyText = React.forwardRef(function BodyText(
         <Text
             {...otherProps}
             tag={tag}
-            style={[styles.BodyText, themeBodyText, style]}
+            style={[styles.bodyText, themeBodyText, style]}
             ref={ref}
         >
             {children}

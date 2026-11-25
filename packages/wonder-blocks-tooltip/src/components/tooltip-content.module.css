@@ -1,0 +1,29 @@
+/**
+ * TooltipContent styles
+ *
+ * The rules are nested inside `.root` — the marker class on the content
+ * `View`, which carries no declarations of its own — because they override
+ * `View`'s `padding`, which core sets in a single-class rule in the same
+ * `@layer shared`. The bundle loads this package's CSS before core's, so at
+ * equal specificity `View` would win. `TooltipContent` is a public export
+ * and doesn't have to render inside a `TooltipBubble`, so it carries its
+ * own marker instead of relying on the bubble's.
+ *
+ * The consumer's `contentStyle` is a plain style object, which
+ * `processStyleList` still routes through Aphrodite (unlayered and
+ * `!important`), so it wins over this module as it did before. The build
+ * wraps every rule in `@layer shared { … }`.
+ */
+
+.root {
+    &.withoutTitle {
+        padding: var(--wb-sizing-size_100) var(--wb-sizing-size_160);
+    }
+
+    &.withTitle {
+        padding: var(--wb-sizing-size_160);
+
+        /* gap between the title and its children when both are present. */
+        gap: var(--wb-sizing-size_040);
+    }
+}

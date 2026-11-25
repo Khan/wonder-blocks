@@ -19,11 +19,19 @@
   "main": "dist/index.js",
   "module": "dist/es/index.js",
   "types": "dist/index.d.ts",
+  "sideEffects": [
+    "**/*.css"
+  ],
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/es/index.js",
-      "require": "./dist/index.js",
-      "types": "./dist/index.d.ts"
+      "require": "./dist/index.js"
+    },
+    "./css": {
+      "import": "./dist/es/index.css",
+      "require": "./dist/index.css",
+      "default": "./dist/index.css"
     },
     "./styles.css": "./dist/css/vars.css"
   },

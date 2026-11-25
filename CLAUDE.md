@@ -6,7 +6,7 @@ This file provides instructions for Claude when working on the Wonder Blocks des
 
 - **Language**: TypeScript (Strict mode enforced)
 - **Framework**: React (Functional Components and Hooks)
-- **Styling**: Aphrodite (`aphrodite`) for CSS-in-JS with Wonder Blocks tokens (`@khanacademy/wonder-blocks-tokens`)
+- **Styling**: CSS Modules (colocated `*.module.css` files) with Wonder Blocks tokens as CSS variables (`@khanacademy/wonder-blocks-tokens`). Aphrodite support is kept temporarily, only for consumer styles passed through `style` props, until consumers are converted to CSS Modules
 - **State Management**: Local state (`useState`) and React Context API (`useContext`)
 - **Data Fetching**: There should be no data fetching in the design system UI components
 - **Routing**: Design system components with link functionality should also support React-Router routes
@@ -48,13 +48,14 @@ This file provides instructions for Claude when working on the Wonder Blocks des
 
 **Class to Functional Migration**: When converting class components to functional components, if there is a `componentWillUnmount` method, the corresponding `useEffect` should either not have any dependencies or should call the `isMounted` function returned by `useIsMounted` from `@khanacademy/wonder-blocks-core`.
 
-### Styling (Aphrodite)
+### Styling (CSS Modules)
 
-- Define styles using `StyleSheet.create` from `aphrodite`. Colocate styles with the component
-- Use `addStyle` from `@khanacademy/wonder-blocks-core` to create styled HTML elements
-- Use semantic color tokens from `@khanacademy/wonder-blocks-tokens` (e.g., `semanticColor.core.background.base`)
-- Use the `focusStyles` utility from `@khanacademy/wonder-blocks-styles` for focus indicators
-- **Avoid using primitive `color` tokens**; use `semanticColor` tokens instead
+- Put component styles in a colocated `*.module.css` file (e.g. `badge.tsx` and `badge.module.css`). **Don't use `StyleSheet.create` from `aphrodite` for Wonder Blocks component styles.** Keep the `StyleType` props: Aphrodite support for consumer styles is temporary, until consumers are converted to CSS Modules
+- Use tokens as CSS variables (e.g. `var(--wb-semanticColor-core-background-base)`, `var(--wb-sizing-size_160)`), not raw values. Use `semanticColor` tokens, not primitive `color` tokens
+- Don't write `@layer shared`: the build wraps every rule in it
+- Use logical properties (`inline-size`, `margin-inline-start`, etc.) for RTL support
+- Use the breakpoint custom media queries from `@khanacademy/wonder-blocks-tokens` (e.g. `@media (--wb-breakpoint-mediaQuery-mdOrLarger)`), not hard-coded widths
+- See [Styling Wonder Blocks Components](__docs__/styling-wonder-blocks-components.mdx) for the full conventions (class names, shared style mixins, generated types and checks). Stylelint (`pnpm lint:css`) enforces most of them
 
 ### Wonder Blocks Usage
 
@@ -138,7 +139,7 @@ This file provides instructions for Claude when working on the Wonder Blocks des
 
 **Focused State:**
 - Use `:focus-visible` instead of `:focus` for focus indicators
-- Use `focusStyles` utility from `@khanacademy/wonder-blocks-styles`
+- Use the `--wb-focus-visible` mixin from `@khanacademy/wonder-blocks-styles/focus-styles.css`
 - **Avoid using `box-shadow`** for focus indicators
 
 **Other States:**
@@ -313,11 +314,11 @@ This project maintains rules for multiple AI assistants. When updating this file
 
 1. **TypeScript**: Use strict mode, avoid `any`, prefer type-only imports
 2. **React**: Use functional components and hooks, avoid `React.FC`
-3. **Styling**: Use semantic color tokens and `StyleSheet.create` from Aphrodite
+3. **Styling**: Use CSS Modules with semantic color tokens; don't use `StyleSheet.create` in components
 4. **Accessibility**: Use `aria-disabled` instead of `disabled`, ensure keyboard navigation works
 5. **Components**: Small, single-responsibility, with proper TypeScript types
 6. **Props**: Follow common patterns (`id`, `testId`, `disabled`, `onChange`, etc.)
 7. **States**: Use CSS pseudo-classes for hover/focus/active styling
 8. **Documentation**: JSDoc comments for props, Storybook stories for examples
 9. **Testing**: Jest + RTL for behavior, Storybook for visual regression
-10. **Tokens**: Use `semanticColor`, `font`, and `sizing` from `@khanacademy/wonder-blocks-tokens`
+10. **Tokens**: Use `semanticColor`, `font`, and `sizing` tokens from `@khanacademy/wonder-blocks-tokens` (as `var(--wb-…)` in CSS)

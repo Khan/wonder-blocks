@@ -2,12 +2,12 @@
  * A toolbar component that often acts as a container header.
  */
 import * as React from "react";
-import {StyleSheet} from "aphrodite";
 
 import {View} from "@khanacademy/wonder-blocks-core";
-import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {Heading, BodyText} from "@khanacademy/wonder-blocks-typography";
 import type {AriaProps} from "@khanacademy/wonder-blocks-core";
+
+import sharedStyles from "./toolbar.module.css";
 
 type Props = AriaProps & {
     /**
@@ -76,6 +76,7 @@ export default function Toolbar({
     return (
         <View
             style={[
+                sharedStyles.root,
                 sharedStyles.container,
                 !title
                     ? sharedStyles.containerWithNoTitle
@@ -125,58 +126,3 @@ export default function Toolbar({
         </View>
     );
 }
-
-const sharedStyles = StyleSheet.create({
-    container: {
-        background: semanticColor.core.background.base.default,
-        border: `1px solid ${semanticColor.core.border.neutral.subtle}`,
-        flex: 1,
-        display: "grid",
-        alignItems: "center",
-        minBlockSize: 66,
-        paddingInline: sizing.size_160,
-        width: "100%",
-    },
-    containerWithTextTitle: {
-        gridTemplateColumns: "1fr minmax(auto, 67%) 1fr",
-    },
-    containerWithNodeTitle: {
-        gridTemplateColumns:
-            "minmax(max-content, 1fr) auto minmax(max-content, 1fr)",
-    },
-    containerWithNoTitle: {
-        gridTemplateColumns: "auto auto 1fr",
-    },
-    small: {
-        minBlockSize: 50,
-    },
-    // TODO(WB-1852): Remove light variant.
-    dark: {
-        background: semanticColor.core.background.base.strong,
-        boxShadow: `0 1px 0 0 ${semanticColor.core.foreground.knockout.default}`,
-        color: semanticColor.core.foreground.knockout.default,
-    },
-    leftColumn: {
-        alignItems: "center",
-        flexDirection: "row",
-        justifyContent: "flex-start",
-    },
-    rightColumn: {
-        alignItems: "center",
-        flexDirection: "row",
-        justifyContent: "flex-end",
-        flexGrow: 1,
-    },
-    subtitle: {
-        color: semanticColor.core.foreground.neutral.default,
-    },
-    titles: {
-        padding: sizing.size_120,
-        textAlign: "center",
-        justifySelf: "center",
-        maxInlineSize: "100%",
-    },
-    spacer: {
-        minInlineSize: sizing.size_120,
-    },
-});

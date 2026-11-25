@@ -2,19 +2,16 @@
 // This file implements the SelectOpener button primitive used by WB dropdowns —
 // it intentionally wraps addStyle("button") as its underlying DOM element.
 import * as React from "react";
-import {StyleSheet} from "aphrodite";
-
 import {keys, type AriaProps} from "@khanacademy/wonder-blocks-core";
 
 import {addStyle} from "@khanacademy/wonder-blocks-core";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {BodyText} from "@khanacademy/wonder-blocks-typography";
-import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
+import {semanticColor} from "@khanacademy/wonder-blocks-tokens";
 import caretDownIcon from "@phosphor-icons/core/bold/caret-down-bold.svg";
-import {focusStyles} from "@khanacademy/wonder-blocks-styles";
-import {DROPDOWN_ITEM_HEIGHT} from "../util/constants";
 import {OptionLabel} from "../util/types";
-import theme from "../theme";
+
+import styles from "./select-opener.module.css";
 
 const StyledButton = addStyle("button");
 
@@ -161,16 +158,15 @@ export default class SelectOpener extends React.Component<
             : semanticColor.core.foreground.neutral.default;
 
         const style = [
-            styles.shared,
-            styles.default,
+            styles.opener,
             disabled && styles.disabled,
             error && styles.error,
             isPlaceholder && styles.placeholder,
             isPlaceholder && disabled && styles.disabledPlaceholder,
             !disabled && !readOnly && this.state.pressed && styles.press,
+            // A read-only placeholder keeps the placeholder colour; see
+            // `.readOnly.placeholder` in select-opener.module.css.
             readOnly && styles.readOnly,
-            // Re-apply placeholder styles for readOnly + placeholder combination
-            readOnly && isPlaceholder && styles.placeholder,
         ];
 
         const allowInteraction = !disabled && !readOnly;
@@ -218,111 +214,3 @@ export default class SelectOpener extends React.Component<
         );
     }
 }
-
-// Use box shadow to make the border in the press state look thicker without
-// changing the border
-const PRESS_SHADOW = `0 0 0 ${border.width.thin} ${semanticColor.input.default.border}`;
-
-const styles = StyleSheet.create({
-    // TODO: Dedupe with Button styles
-    shared: {
-        position: "relative",
-        display: "inline-flex",
-        alignItems: "center",
-        justifyContent: "space-between",
-        color: semanticColor.core.foreground.neutral.strong,
-        height: DROPDOWN_ITEM_HEIGHT,
-        // This asymmetry arises from the Icon on the right side, which has
-        // extra padding built in. To have the component look more balanced,
-        // we need to take off some paddingRight here.
-        paddingInlineStart: theme.opener.layout.padding.inlineStart,
-        paddingInlineEnd: theme.opener.layout.padding.inlineEnd,
-        borderWidth: 0,
-        borderRadius: theme.opener.border.radius.rest,
-        borderStyle: "solid",
-        outline: "none",
-        textDecoration: "none",
-        boxSizing: "border-box",
-        whiteSpace: "nowrap",
-        // This removes the 300ms click delay on mobile browsers by indicating that
-        // "double-tap to zoom" shouldn't be used on this element.
-        touchAction: "manipulation",
-    },
-
-    text: {
-        marginInlineEnd: sizing.size_080,
-        whiteSpace: "nowrap",
-        userSelect: "none",
-        overflow: "hidden",
-        textOverflow: "ellipsis",
-    },
-
-    caret: {
-        minInlineSize: sizing.size_160,
-    },
-    /**
-     * Theming
-     */
-    default: {
-        background: semanticColor.input.default.background,
-        border: `${border.width.thin} solid ${semanticColor.input.default.border}`,
-        color: semanticColor.input.default.foreground,
-        cursor: "pointer",
-        ":active": {
-            boxShadow: PRESS_SHADOW,
-        },
-        ":focus": {
-            // Using :focus instead of :focus-visible to ensure the focus ring is
-            // visible when the button is focused (even when clicked). This makes
-            // the focus behaviour more consistent with the other field components.
-            ...focusStyles.focus[":focus-visible"],
-        },
-        [":focus:active" as any]: {
-            boxShadow: `${PRESS_SHADOW}, ${focusStyles.focus[":focus-visible"].boxShadow}`,
-        },
-    },
-    error: {
-        background: semanticColor.input.error.background,
-        border: `${theme.opener.border.width.error} solid ${semanticColor.input.error.border}`,
-        color: semanticColor.input.error.foreground,
-        [":focus:active" as any]: {
-            boxShadow: `${PRESS_SHADOW}, ${focusStyles.focus[":focus-visible"].boxShadow}`,
-        },
-    },
-    disabled: {
-        background: semanticColor.input.disabled.background,
-        border: `${border.width.thin} solid ${semanticColor.input.disabled.border}`,
-        color: semanticColor.input.disabled.foreground,
-        cursor: "not-allowed",
-        ":active": {
-            boxShadow: "none",
-        },
-        [":focus:active" as any]: {
-            boxShadow: focusStyles.focus[":focus-visible"].boxShadow,
-        },
-    },
-    press: {
-        boxShadow: PRESS_SHADOW,
-        ":focus-visible": {
-            // We merge the focus styles with the press styles so that the focus
-            // ring is visible when the button is pressed.
-            boxShadow: `${PRESS_SHADOW}, ${focusStyles.focus[":focus-visible"].boxShadow}`,
-        },
-    },
-    placeholder: {
-        color: semanticColor.input.default.placeholder,
-    },
-    disabledPlaceholder: {
-        color: semanticColor.input.disabled.placeholder,
-    },
-    readOnly: {
-        background: semanticColor.input.readOnly.background,
-        color: semanticColor.input.readOnly.text,
-        ":active": {
-            boxShadow: "none",
-        },
-        [":focus:active" as any]: {
-            boxShadow: focusStyles.focus[":focus-visible"].boxShadow,
-        },
-    },
-});

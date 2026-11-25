@@ -1,0 +1,17 @@
+/**
+ * StreakBadge colors. Only assigns `Badge`'s `--wb-c-badge--*` component
+ * tokens (see `badge.module.css`), which `Badge`'s rules read. The build
+ * wraps every rule in `@layer shared { … }`.
+ */
+
+.streakBadge {
+    --wb-c-badge--color-background: var(--wb-semanticColor-learning-background-streaks-subtle);
+    --wb-c-badge--color-foreground: var(--wb-semanticColor-learning-foreground-streaks-strong);
+
+    /* Border should be the same as the background. The Aphrodite version set
+     * this with the `border` shorthand, which also reset the border style to
+     * `none`, so the badge has never drawn a border. `border-style: none`
+     * keeps that. */
+    --wb-c-badge--color-border: var(--wb-semanticColor-learning-background-streaks-subtle);
+    --wb-c-badge--border-style: none;
+}

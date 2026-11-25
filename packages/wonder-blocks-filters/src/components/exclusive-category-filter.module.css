@@ -1,0 +1,100 @@
+/**
+ * ExclusiveCategoryFilter styles
+ *
+ * Every rule is nested inside `.root` — a marker class on the component's root
+ * `View`, which carries no declarations of its own. The rules override
+ * single-class rules from other packages in the same `@layer shared`: `View`'s
+ * defaults (`flex-direction`, `margin`, …) on the root and the options
+ * container, and the typography classes on the label and the options
+ * (`color`, `display`, …). The published bundle loads this package's CSS
+ * before its dependencies', so at equal specificity those rules would win. The
+ * compound and descendant selectors make the result depend on specificity
+ * instead.
+ *
+ * The consumer's `styles.*` still go through Aphrodite (unlayered and
+ * `!important`) or inline styles, so they win over this module. The build
+ * wraps every rule in `@layer shared { … }`.
+ */
+
+@import "@khanacademy/wonder-blocks-styles/focus-styles.css";
+
+.root {
+    &.container {
+        gap: var(--wb-sizing-size_080);
+    }
+
+    .label {
+        color: var(--wb-semanticColor-core-foreground-neutral-default);
+
+        /* Break long words so they don't overflow the container. */
+        overflow-wrap: anywhere;
+    }
+
+    .options {
+        flex-flow: row wrap;
+        gap: var(--wb-sizing-size_080);
+    }
+
+    .option {
+        display: inline-flex;
+        align-items: center;
+        gap: var(--wb-sizing-size_080);
+        box-sizing: border-box;
+
+        /* Break long words so they stay inside the pill. */
+        overflow-wrap: anywhere;
+
+        /* A minimum height (rather than a fixed one) and a maximum width let a
+         * label wider than the container wrap inside the pill instead of
+         * overflowing sideways. */
+        min-block-size: var(--wb-sizing-size_400);
+        max-inline-size: 100%;
+        margin: 0;
+        padding-block: var(--wb-sizing-size_080);
+        padding-inline: var(--wb-sizing-size_160);
+        text-align: start;
+        cursor: pointer;
+        color: var(--wb-semanticColor-core-foreground-neutral-subtle);
+        background-color: var(--wb-semanticColor-core-transparent);
+        border: var(--wb-border-width-thin) solid
+            var(--wb-semanticColor-core-border-neutral-subtle);
+        border-radius: var(--wb-border-radius-radius_240);
+    }
+
+    .option:focus-visible {
+        @apply --wb-focus-visible;
+    }
+
+    /* Hover and press styles only apply to options that aren't selected. */
+    .option:hover:not([aria-checked="true"]) {
+        border-color: var(--wb-semanticColor-core-border-neutral-default);
+    }
+
+    .option:active:not([aria-checked="true"]) {
+        border-width: var(--wb-border-width-medium);
+        border-color: var(--wb-semanticColor-core-border-neutral-default);
+
+        /* Take the extra border width off the padding so every state keeps
+         * the same size and the row doesn't reflow on hover, press or
+         * selection. */
+        padding-inline: calc(
+            var(--wb-sizing-size_160) -
+                (var(--wb-border-width-medium) - var(--wb-border-width-thin))
+        );
+    }
+
+    .option.selected {
+        color: var(--wb-semanticColor-core-foreground-instructive-default);
+        background-color: var(
+            --wb-semanticColor-core-background-instructive-subtle
+        );
+        border-width: var(--wb-border-width-medium);
+        border-color: var(--wb-semanticColor-core-border-instructive-default);
+
+        /* Same as the pressed state: keep the size of the rest state. */
+        padding-inline: calc(
+            var(--wb-sizing-size_160) -
+                (var(--wb-border-width-medium) - var(--wb-border-width-thin))
+        );
+    }
+}

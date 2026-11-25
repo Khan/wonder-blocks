@@ -8,8 +8,10 @@ type StyledExport = {
     className: string;
 };
 
-function flatten(list?: StyleType): Array<CSSProperties> {
-    const result: Array<CSSProperties> = [];
+type StyleLeaf = CSSProperties | string;
+
+function flatten(list?: StyleType): Array<StyleLeaf> {
+    const result: Array<StyleLeaf> = [];
 
     if (!list) {
         return result;
@@ -26,9 +28,33 @@ function flatten(list?: StyleType): Array<CSSProperties> {
     return result;
 }
 
+/**
+ * Sort a nested style list into the three buckets React needs:
+ *
+ *   1. Aphrodite stylesheets — detected via the `_definition` symbol on the
+ *      object. These are emitted as a generated class via `css(...)`.
+ *   2. Strings — treated as CSS class names (e.g. CSS Module identifiers) and
+ *      appended to the resulting `className`.
+ *   3. Plain objects without the Aphrodite `_definition` marker — merged
+ *      together (later keys winning). Includes objects whose keys are CSS
+ *      custom properties (e.g. `{"--x": "value"}`). The merged object is
+ *      returned as `style` (the DOM `style` attribute) when that is safe — see
+ *      `canUseStyleAttribute` below. Otherwise it is wrapped into a generated
+ *      Aphrodite class so it applies even alongside Aphrodite's `!important`.
+ *
+ * Any other truthy leaf (numbers, booleans, symbols, etc.) is silently
+ * ignored.
+ *
+ * Plain objects always win over the Aphrodite stylesheets and CSS Module
+ * classes in the same list, whichever path they take. In snapshot mode
+ * (`SNAPSHOT_INLINE_APHRODITE`), Aphrodite stylesheets and inline objects are
+ * both flattened into the returned `style` so tests can assert on concrete
+ * values.
+ */
 export function processStyleList(style?: StyleType): StyledExport {
-    const stylesheetStyles: Array<any> = [];
-    const inlineStyles: Array<any | Record<any, any>> = [];
+    const aphroditeStyles: Array<any> = [];
+    const inlineStylesList: Array<Record<any, any>> = [];
+    const classNameStrings: Array<string> = [];
 
     if (!style) {
         return {
@@ -43,7 +69,22 @@ export function processStyleList(style?: StyleType): StyledExport {
         typeof global !== "undefined" && global.SNAPSHOT_INLINE_APHRODITE;
 
     flatten(style).forEach((child) => {
-        // Check for aphrodite internal property
+        if (typeof child === "string") {
+            classNameStrings.push(child);
+            return;
+        }
+
+        // Silently ignore non-string, non-object truthy values (numbers,
+        // booleans, symbols, etc.). These shouldn't reach us in practice, but
+        // we prefer to drop them rather than crash.
+        if (typeof child !== "object" || child === null) {
+            return;
+        }
+
+        // Aphrodite stylesheet detection: own `_definition` property.
+        // Intentionally loose — an arbitrary plain object that happens to
+        // have a `_definition` key will be treated as an Aphrodite
+        // stylesheet. This matches historical behavior.
         const _definition = (child as any)._definition;
         if (_definition != null) {
             if (shouldInlineStyles) {
@@ -61,31 +102,76 @@ export function processStyleList(style?: StyleType): StyledExport {
                         )
                     ] = value;
                 }
-                inlineStyles.push(def);
+                inlineStylesList.push(def);
             } else {
-                stylesheetStyles.push(child);
+                aphroditeStyles.push(child);
             }
         } else {
-            inlineStyles.push(child);
+            inlineStylesList.push(child);
         }
     });
 
-    const inlineStylesObject = Object.assign({}, ...inlineStyles);
+    const inlineStylesObject = Object.assign({}, ...inlineStylesList);
+    const joinedClassNames = classNameStrings.join(" ");
+
+    const useStyleAttribute =
+        !shouldInlineStyles &&
+        aphroditeStyles.length === 0 &&
+        inlineStylesList.every(canUseStyleAttribute);
 
     // TODO(somewhatabstract): When aphrodite no longer puts "!important" on
     // all the styles, remove this <ADD JIRA ISSUE HERE IF THIS PASSES REVIEW>
     // If we're not snapshotting styles, let's create a class for the inline
     // styles so that they can apply to the element even with aphrodite's
     // use of !important.
-    if (inlineStyles.length > 0 && !shouldInlineStyles) {
+    //
+    // When the list has no Aphrodite stylesheets, the inline styles go to the
+    // `style` attribute instead. CSS Module rules live in a cascade layer, so
+    // the attribute wins over them exactly as the generated (unlayered) class
+    // did. When Aphrodite stylesheets are present we keep the generated class:
+    // merged into a single class, the stylesheets' pseudo-class and media
+    // query rules still override the inline values, which the `style`
+    // attribute would not allow.
+    if (
+        inlineStylesList.length > 0 &&
+        !shouldInlineStyles &&
+        !useStyleAttribute
+    ) {
         const inlineStylesStyleSheet = StyleSheet.create({
             inlineStyles: inlineStylesObject,
         });
-        stylesheetStyles.push(inlineStylesStyleSheet.inlineStyles);
+        aphroditeStyles.push(inlineStylesStyleSheet.inlineStyles);
     }
 
+    // Join the aphrodite-generated class (empty when no aphrodite is present)
+    // with the CSS Module / plain class-name strings, dropping empties so we
+    // never emit a leading/trailing space.
+    const aphroditeClassName = css(...aphroditeStyles);
+    const finalClassName = [aphroditeClassName, joinedClassNames]
+        .filter(Boolean)
+        .join(" ");
+
     return {
-        style: shouldInlineStyles ? inlineStylesObject : {},
-        className: css(...stylesheetStyles),
+        style:
+            shouldInlineStyles || useStyleAttribute ? inlineStylesObject : {},
+        className: finalClassName,
     };
+}
+
+/**
+ * Whether a plain style object can be expressed as a DOM `style` attribute.
+ *
+ * Only flat declarations with string or number values qualify. Anything
+ * nested needs Aphrodite to generate CSS for it: pseudo-selectors
+ * (`":hover"`), at-rules (`"@media ..."`), keyframe objects in
+ * `animationName`, font-face objects in `fontFamily`, and array fallback
+ * values.
+ */
+function canUseStyleAttribute(styleObject: Record<any, any>): boolean {
+    return Object.values(styleObject).every(
+        (value) =>
+            value == null ||
+            typeof value === "string" ||
+            typeof value === "number",
+    );
 }

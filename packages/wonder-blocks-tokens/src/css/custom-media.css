@@ -1,0 +1,45 @@
+/**
+ * GENERATED FILE — do not edit by hand.
+ * Source: packages/wonder-blocks-tokens/src/tokens/media-queries.ts
+ * Regenerate: pnpm --filter @khanacademy/wonder-blocks-tokens build:custom-media
+ *
+ * Breakpoint custom media queries (CSS Media Queries Level 5). Use them as:
+ *
+ *     @media (--wb-breakpoint-mediaQuery-mdOrLarger) { … }
+ *
+ * Browsers don't support `@custom-media` natively yet, so these must be
+ * expanded at build time with `postcss-custom-media`, which needs the
+ * definitions in the same PostCSS pass. Recommended (works with any
+ * bundler, e.g. rspack + `postcss-loader`): inject this file into every
+ * CSS file with `@csstools/postcss-global-data`:
+ *
+ *     require("@csstools/postcss-global-data")({
+ *         files: [
+ *             require.resolve(
+ *                 "@khanacademy/wonder-blocks-tokens/custom-media.css",
+ *             ),
+ *         ],
+ *     }),
+ *     require("postcss-custom-media")(),
+ *
+ * This is what Wonder Blocks' own `postcss.config.cjs` does. Alternatively,
+ * `@import "@khanacademy/wonder-blocks-tokens/custom-media.css";` works only
+ * if the import is inlined inside PostCSS by a resolver that honors
+ * package `exports`: Vite, or `postcss-import` with a Node-based `resolve`
+ * option (its default resolver ignores `exports`). A plain `@import` left
+ * to rspack/webpack's `css-loader` is resolved after PostCSS runs, so the
+ * queries would not be expanded.
+ */
+@custom-media --wb-breakpoint-mediaQuery-xs screen and (max-width: 567px);
+@custom-media --wb-breakpoint-mediaQuery-sm screen and (min-width: 568px) and (max-width: 681px);
+@custom-media --wb-breakpoint-mediaQuery-md screen and (min-width: 682px) and (max-width: 1023px);
+@custom-media --wb-breakpoint-mediaQuery-lg screen and (min-width: 1024px) and (max-width: 1199px);
+@custom-media --wb-breakpoint-mediaQuery-xl screen and (min-width: 1200px);
+@custom-media --wb-breakpoint-mediaQuery-xsOrSmaller screen and (max-width: 567px);
+@custom-media --wb-breakpoint-mediaQuery-smOrSmaller screen and (max-width: 681px);
+@custom-media --wb-breakpoint-mediaQuery-mdOrSmaller screen and (max-width: 1023px);
+@custom-media --wb-breakpoint-mediaQuery-lgOrSmaller screen and (max-width: 1199px);
+@custom-media --wb-breakpoint-mediaQuery-smOrLarger screen and (min-width: 568px);
+@custom-media --wb-breakpoint-mediaQuery-mdOrLarger screen and (min-width: 682px);
+@custom-media --wb-breakpoint-mediaQuery-lgOrLarger screen and (min-width: 1024px);
+@custom-media --wb-breakpoint-mediaQuery-xlOrLarger screen and (min-width: 1200px);

@@ -1,8 +1,7 @@
 import * as React from "react";
-import {StyleSheet} from "aphrodite";
 import {GemIcon, Icon} from "@khanacademy/wonder-blocks-icon";
-import {semanticColor} from "@khanacademy/wonder-blocks-tokens";
 import {Badge} from "./badge";
+import styles from "./gem-badge.module.css";
 import {BaseBadgeProps, ShowIconProps} from "../types";
 
 type Props = BaseBadgeProps & ShowIconProps;
@@ -36,21 +35,3 @@ const GemBadge = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
 });
 
 export {GemBadge};
-
-const gemBadgeTokens = {
-    root: {
-        color: {
-            background: semanticColor.learning.background.gems.default,
-            border: semanticColor.learning.background.gems.default, // Border should be the same as the background
-            foreground: semanticColor.learning.foreground.gems.strong,
-        },
-    },
-};
-
-const styles = StyleSheet.create({
-    gemBadge: {
-        backgroundColor: gemBadgeTokens.root.color.background,
-        border: gemBadgeTokens.root.color.border,
-        color: gemBadgeTokens.root.color.foreground,
-    },
-});

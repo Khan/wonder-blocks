@@ -1,0 +1,21 @@
+/**
+ * OnePaneDialog styles
+ *
+ * `OnePaneDialog` passes `.onePaneDialog` into `ModalDialog`'s `style`, which
+ * lands on the same element as `ModalDialog`'s `.wrapper`. That rule assigns
+ * its full-size defaults (`inline-size` / `block-size: 100%`) inside
+ * `:where()`, which has zero specificity, so this single-class rule wins
+ * regardless of stylesheet load order. `View` sets none of these properties.
+ *
+ * The small-screen overrides live in `util/small-screen-styles.ts` as plain
+ * style objects, so they keep beating the consumer's `style` (Aphrodite,
+ * unlayered and `!important`). The build wraps every rule in
+ * `@layer shared { … }`.
+ */
+
+.onePaneDialog {
+    max-inline-size: 576px;
+    inline-size: 93.75%;
+    block-size: 81.25%;
+    max-block-size: 624px;
+}

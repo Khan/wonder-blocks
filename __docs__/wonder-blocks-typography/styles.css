@@ -1,6 +1,7 @@
-.custom-style {
-    border: 1px solid #000;
+.customStyle {
+    border: var(--wb-border-width-thin) solid var(--wb-semanticColor-core-border-neutral-strong);
+
     /* NOTE: The color style is not applied to the text because the styles
     defined via Aphrodite take more precedence */
-    color: red!important;
+    color: var(--wb-semanticColor-core-foreground-critical-default)!important;
 }

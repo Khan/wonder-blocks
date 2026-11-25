@@ -1,0 +1,53 @@
+/**
+ * FieldHeading styles
+ *
+ * The one value that differs between the default and thunderblocks themes is
+ * the codegen'd `--wb-c-form-description-color-foreground` token (switched on
+ * `[data-wb-theme]`); every other value is the plain `--wb-*` token.
+ *
+ * Every rule is nested inside `.root` — the marker class on the outermost
+ * element, which carries no declarations of its own — because the label,
+ * description and error are `BodyText`s and the field wrapper is a `View`,
+ * which ship single-class rules (including `margin`) in the same
+ * `@layer shared`. At equal specificity stylesheet load order would decide
+ * the winner, so the compound selector makes it depend on specificity
+ * instead.
+ *
+ * Nesting is native CSS: every `&` is explicit and resolves to the flat
+ * selector it replaces (`.root .label`, at (0,2,0)). The build wraps every
+ * rule in `@layer shared { … }`.
+ */
+
+.root {
+    & .label {
+        color: var(--wb-semanticColor-core-foreground-neutral-strong);
+    }
+
+    & .labelSpacing {
+        margin-block-end: var(--wb-sizing-size_040);
+    }
+
+    & .description {
+        color: var(--wb-c-form-description-color-foreground);
+    }
+
+    & .descriptionSpacing {
+        margin-block-end: var(--wb-sizing-size_040);
+    }
+
+    & .fieldSpacing {
+        margin-block-start: var(--wb-sizing-size_080);
+    }
+
+    & .error {
+        color: var(--wb-semanticColor-status-critical-foreground);
+    }
+
+    & .errorSpacing {
+        margin-block-start: var(--wb-sizing-size_120);
+    }
+
+    & .required {
+        color: var(--wb-semanticColor-status-critical-foreground);
+    }
+}

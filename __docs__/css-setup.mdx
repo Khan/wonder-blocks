@@ -1,0 +1,201 @@
+import {Meta} from "@storybook/addon-docs/blocks";
+
+<Meta title="Get Started / CSS setup" />
+
+# CSS setup
+
+Wonder Blocks components are styled with
+[CSS Modules](https://github.com/css-modules/css-modules). Each package with
+component styles includes a stylesheet, and the package's JavaScript imports
+that stylesheet for you:
+
+```js
+// @khanacademy/wonder-blocks-button/dist/es/index.js
+import "./index.css";
+```
+
+This means you don't need to import Wonder Blocks stylesheets yourself! When
+you import a component, its CSS and the CSS of the Wonder Blocks packages it
+depends on are loaded too.
+
+To make sure this works in your app:
+
+1. [Set up your bundler](#bundler-setup) to handle CSS imported from
+   `node_modules`.
+2. [Declare the cascade layer order](#layer-order) before any Wonder Blocks CSS
+   loads.
+3. [Review how your styles override](#cascade-contract) Wonder Blocks styles.
+4. [Map CSS imports in your test runner](#tests).
+
+If you're building Wonder Blocks components instead, see
+the <a href="./?path=/docs/development-styling-wonder-blocks-components--docs">Styling Wonder Blocks Components</a>
+page.
+
+## Bundler setup
+
+Your bundler needs to process `.css` files imported from JavaScript, including
+files in `node_modules`. Otherwise, the build fails on the
+`import "./index.css"` in each Wonder Blocks package, or the components render
+without styles.
+
+You don't need to set up CSS Modules for Wonder Blocks. The class names are
+hashed when Wonder Blocks is built, so `dist/index.css` is plain CSS.
+
+### rspack
+
+1. Add a rule for `.css` files that runs `css-loader`, followed by
+   `CssExtractRspackPlugin.loader` in production or `style-loader` in development.
+   Make sure the rule doesn't exclude `node_modules`.
+
+```ts
+function getCssRule(cssExtractor: string) {
+    return {
+        test: /\.css$/,
+        use: [
+            // `rspack.CssExtractRspackPlugin.loader` in production,
+            // `require.resolve("style-loader")` in development.
+            cssExtractor,
+            {
+                loader: require.resolve("css-loader"),
+                options: {url: true},
+            },
+        ],
+    };
+}
+```
+
+- You can also use rspack's built-in CSS support (`experiments.css`) instead.
+- If your app uses `sideEffects: false` or similar tree-shaking settings, the
+  CSS imports are still kept: every Wonder Blocks package lists
+  `"sideEffects": ["**/*.css"]`.
+
+### Vite
+
+Vite processes CSS imported from JavaScript, including from `node_modules`, so
+no extra setup is needed! Wonder Blocks' own Storybook runs on Vite.
+
+### Storybook
+
+Storybook's Vite and webpack builders process CSS imported from JavaScript, so
+Wonder Blocks CSS loads in your stories without extra setup.
+
+1. Add the [layer declaration](#layer-order) to the preview `<head>`, so your
+   stories get the same cascade as your app. Add it to
+   `.storybook/preview-head.html`, or use `previewHead` in `.storybook/main.ts`:
+
+```ts
+// .storybook/main.ts
+const config: StorybookConfig = {
+    // ...
+    previewHead: (head) => `${head}
+<style>
+    @layer reset, shared, shared.base, shared.reset, legacy;
+</style>`,
+};
+```
+
+### Breakpoints in your own CSS
+
+If you'd like to use Wonder Blocks breakpoints in your own CSS, use the
+`@khanacademy/wonder-blocks-tokens/custom-media.css` export from the Tokens
+package (see the <a href="./?path=/docs/packages-tokens-overview--docs">Tokens docs</a>).
+This needs `@csstools/postcss-global-data` and `postcss-custom-media` in your
+PostCSS setup.
+
+You don't need this to load Wonder Blocks' own CSS, since its breakpoints are
+already expanded in `dist/index.css`.
+
+## Layer order
+
+Every Wonder Blocks CSS rule is in a
+[cascade layer](https://developer.mozilla.org/en-US/docs/Web/CSS/@layer) called
+`shared`. A few element resets are in a nested layer, `shared.reset`.
+
+1. Add this layer declaration in a `<style>` tag in the page `<head>`, **before
+   any stylesheet loads**:
+
+```html
+<style>
+    @layer reset, shared, shared.base, shared.reset, legacy;
+</style>
+```
+
+Browsers order layers by the first time they see each one. If the order isn't
+declared first, it depends on which stylesheet happens to load first, and that
+can change when bundles are split differently.
+
+Layers listed later win over earlier ones, and styles that aren't in a layer win
+over every layer. Here's what each layer is for:
+
+- `reset`: your app's global reset or normalize styles.
+- `shared`: Wonder Blocks component styles. Your app can put shared styles here
+  too. Rules directly in `shared` win over both of its nested layers.
+- `shared.base`: your app's base element styles (headings, `p`, etc.).
+- `shared.reset`: Wonder Blocks element resets for its buttons and links. These
+  come after `shared.base` so they win over your app's base element styles, like
+  they did when Wonder Blocks used Aphrodite.
+- `legacy`: styles that need to win over Wonder Blocks, but still lose to
+  styles that aren't in a layer.
+
+## Cascade contract
+
+Since Wonder Blocks rules are in `@layer shared`, **CSS in your app that isn't
+in a layer always wins over Wonder Blocks styles**. This is true no matter the
+specificity, and in every state: default, `:hover`, `:active` and
+`:focus-visible`. Aphrodite styles aren't in a layer, so styles you pass to a
+component's `style` or `styles` prop also win.
+
+This is different from when Wonder Blocks used Aphrodite, where a component's
+own state styles could win over your styles. Keep these in mind when upgrading:
+
+- **Overrides apply in every state.** If you set `color` or `text-decoration`
+  on a `Link` or `Tabs` using `style`, that value now also applies on hover and
+  press, where Wonder Blocks used to apply its own state styles.
+- **Focus rings.** If you set `outline` or `box-shadow` on a focusable
+  component (like a custom opener), your styles replace the Wonder Blocks focus
+  ring while the element is focused. If you override these properties, make
+  sure your styles still show a visible focus indicator!
+- **Media queries.** A media query in your app that sets the same property as a
+  Wonder Blocks rule (like a small-screen rule in `Modal`) now wins over Wonder
+  Blocks, where it used to lose. Check these overrides when upgrading.
+
+## Tests
+
+Test runners like Jest and rstest don't process CSS, so the
+`import "./index.css"` in Wonder Blocks packages needs to be mapped to an empty
+module.
+
+1. Map `.css` imports to a style mock. For Jest:
+
+```js
+// jest.config.js
+module.exports = {
+    moduleNameMapper: {
+        // Load a .js file with no exports whenever a .css file is requested.
+        // `*.module.css` files in your own code still need their own mapping
+        // (for example `identity-obj-proxy`).
+        "(?<!\\.module)\\.css$": "<rootDir>/config/test/style-mock.js",
+    },
+};
+```
+
+In rstest, map `.css` to a style mock the same way.
+
+2. Create the style mock:
+
+```js
+// config/test/style-mock.js
+module.exports = {};
+```
+
+Mocking Wonder Blocks CSS **doesn't change rendered class names or snapshots**.
+The hashed class names (like `wb-badge-badge-cbb1e92a`) are added to the Wonder
+Blocks JavaScript when it's built, so components render the same class names
+whether or not the CSS loads. Like with Aphrodite, tests can't see the styles
+themselves. Use visual regression tests for those.
+
+<br />
+<br />
+
+As always, feel free to reach out to the Wonder Blocks team if you have any
+questions or run into any issues!

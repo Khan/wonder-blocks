@@ -1,0 +1,32 @@
+/**
+ * NavigationTabs styles
+ *
+ * Every element is rendered by `addStyle`, which ships no class of its own, so
+ * these single-class rules don't compete with anything else in
+ * `@layer shared`. The consumer's `styles.*` still go through Aphrodite
+ * (unlayered and `!important`), so they win over this module as they did
+ * before. The build wraps every rule in `@layer shared { … }`.
+ */
+
+.nav {
+    overflow-x: auto;
+}
+
+.contents {
+    position: relative;
+}
+
+.list {
+    /* Add horizontal padding for focus outline of first/last elements */
+    padding-inline: var(--wb-sizing-size_040);
+    padding-block: var(--wb-sizing-size_0);
+    margin: var(--wb-sizing-size_0);
+    display: flex;
+    gap: var(--wb-sizing-size_160);
+    flex-wrap: nowrap;
+}
+
+.divider {
+    border-block-end: var(--wb-border-width-thin) solid
+        var(--wb-semanticColor-core-border-neutral-subtle);
+}

@@ -1,12 +1,9 @@
 import * as React from "react";
-import {CSSProperties, StyleSheet} from "aphrodite";
 
 import {AriaProps, View, addStyle} from "@khanacademy/wonder-blocks-core";
-import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {useId} from "react";
-import {focusStyles} from "@khanacademy/wonder-blocks-styles";
-import theme from "../theme/index";
+import styles from "./switch.module.css";
 
 type Props = Pick<
     AriaProps,
@@ -50,85 +47,6 @@ type Props = Pick<
 const StyledSpan = addStyle("span");
 const StyledInput = addStyle("input");
 
-const focusStylesObject = focusStyles.focus[":focus-visible"];
-
-const baseStyles = {
-    color: {
-        bg: {
-            switch: {
-                off: semanticColor.core.border.neutral.default,
-                disabledOff: semanticColor.core.background.disabled.strong,
-                activeOff: semanticColor.core.border.neutral.strong,
-                on: semanticColor.core.background.instructive.default,
-                disabledOn: semanticColor.core.background.disabled.strong,
-                activeOn: semanticColor.core.background.instructive.strong,
-            },
-            slider: {
-                on: semanticColor.action.primary.progressive.default.foreground,
-                disabledOn: semanticColor.core.foreground.disabled.default,
-                off: semanticColor.action.primary.progressive.default
-                    .foreground,
-                disabledOff: semanticColor.core.foreground.disabled.default,
-            },
-            icon: {
-                on: semanticColor.core.foreground.instructive.default,
-                disabledOn: semanticColor.core.foreground.disabled.subtle,
-                off: semanticColor.core.border.neutral.default,
-                disabledOff: semanticColor.core.foreground.disabled.subtle,
-            },
-        },
-    },
-};
-
-const sharedStyles = StyleSheet.create({
-    hidden: {
-        opacity: 0,
-        height: 0,
-        width: 0,
-    },
-    switch: {
-        display: "inline-flex",
-        height: theme.root.sizing.height,
-        width: theme.root.sizing.width,
-        borderRadius: theme.root.border.radius.default,
-        flexShrink: 0,
-    },
-    switchFocus: {
-        ":focus-within": focusStylesObject,
-    } as any,
-    disabled: {
-        cursor: "not-allowed",
-        ":hover": {
-            outline: "none",
-            boxShadow: "none",
-        },
-        ":active": {
-            outline: "none",
-            boxShadow: "none",
-        },
-    },
-    disabledFocus: {
-        ":focus-within": focusStylesObject,
-    } as any,
-    slider: {
-        position: "absolute",
-        insetBlockStart: theme.slider.position.top,
-        insetInlineStart: theme.slider.position.left,
-        height: theme.slider.sizing.height,
-        width: theme.slider.sizing.width,
-        borderRadius: theme.root.border.radius.default,
-        backgroundColor: baseStyles.color.bg.slider.on,
-        transition: "inset-inline-start 0.15s ease-in-out",
-    },
-    icon: {
-        position: "absolute",
-        insetBlockStart: theme.icon.position.top,
-        insetInlineStart: theme.icon.position.left,
-        zIndex: 1,
-        transition: "inset-inline-start 0.15s ease-in-out",
-    },
-});
-
 const Switch = React.forwardRef(function Switch(
     props: Props,
     ref: React.ForwardedRef<HTMLInputElement>,
@@ -156,18 +74,16 @@ const Switch = React.forwardRef(function Switch(
     };
     const handleChange = () => {};
 
-    const stateStyles = _generateStyles(
-        checked,
-        onChange !== undefined,
-        disabled,
-    );
-
+    // The `root` class carries no styling of its own — every rule in the
+    // module is qualified with it so this component's styles outrank the
+    // single-class rules that `View` and `PhosphorIcon` ship in the same
+    // `@layer shared`. See `switch.module.css`.
     const combinedStyles = [
-        sharedStyles.switch,
-        sharedStyles.switchFocus,
-        stateStyles.switch,
-        disabled && sharedStyles.disabled,
-        disabled && sharedStyles.disabledFocus,
+        styles.root,
+        styles.switch,
+        checked && styles.checked,
+        onChange !== undefined && styles.clickable,
+        disabled && styles.disabled,
     ];
 
     let styledIcon:
@@ -176,7 +92,7 @@ const Switch = React.forwardRef(function Switch(
     if (icon) {
         styledIcon = React.cloneElement(icon, {
             size: "small",
-            style: [sharedStyles.icon, stateStyles.icon],
+            style: styles.icon,
             "aria-hidden": true,
         } as Partial<React.ComponentProps<typeof PhosphorIcon>>);
     }
@@ -202,100 +118,13 @@ const Switch = React.forwardRef(function Switch(
                 role="switch"
                 // Input is visually hidden because we use a view and span to render
                 // the actual switch. The input is used for accessibility.
-                style={sharedStyles.hidden}
+                style={styles.hidden}
                 type="checkbox"
             />
             {icon && styledIcon}
-            <StyledSpan style={[sharedStyles.slider, stateStyles.slider]} />
+            <StyledSpan style={styles.slider} />
         </View>
     );
 });
-
-const styles: Record<string, any> = {};
-const _generateStyles = (
-    checked: boolean,
-    clickable: boolean,
-    disabled: boolean,
-) => {
-    const checkedStyle = `${checked}-${clickable}-${disabled}`;
-    // The styles are cached to avoid creating a new object on every render.
-    if (styles[checkedStyle]) {
-        return styles[checkedStyle];
-    }
-
-    let newStyles: Record<string, CSSProperties> = {};
-    const sharedSwitchStyles = {
-        cursor: clickable ? "pointer" : "auto",
-        ":hover": {
-            ...focusStylesObject,
-            outline: clickable ? focusStylesObject.outline : "none",
-        },
-    };
-
-    if (checked) {
-        newStyles = {
-            switch: {
-                backgroundColor: disabled
-                    ? baseStyles.color.bg.switch.disabledOn
-                    : baseStyles.color.bg.switch.on,
-                ":active": {
-                    backgroundColor:
-                        !disabled && clickable
-                            ? baseStyles.color.bg.switch.activeOn
-                            : undefined,
-                    ...focusStylesObject,
-                    outline: clickable ? focusStylesObject.outline : "none",
-                },
-                ...sharedSwitchStyles,
-            },
-            slider: {
-                // Positions the slider at the far end of the track:
-                // track width - slider width - edge offset
-                insetInlineStart: `calc(100% - ${sizing.size_200} - ${sizing.size_020})`,
-                backgroundColor: disabled
-                    ? baseStyles.color.bg.slider.disabledOn
-                    : baseStyles.color.bg.slider.on,
-            },
-            icon: {
-                color: disabled
-                    ? baseStyles.color.bg.icon.disabledOn
-                    : baseStyles.color.bg.icon.on,
-                // Positions the icon at the far end of the track:
-                // track width - icon width (small = size_160) - edge offset
-                insetInlineStart: `calc(100% - ${sizing.size_160} - ${sizing.size_040})`,
-            },
-        };
-    } else {
-        newStyles = {
-            switch: {
-                backgroundColor: disabled
-                    ? baseStyles.color.bg.switch.disabledOff
-                    : baseStyles.color.bg.switch.off,
-                ":active": {
-                    backgroundColor:
-                        !disabled && clickable
-                            ? baseStyles.color.bg.switch.activeOff
-                            : undefined,
-                    ...focusStylesObject,
-                    outline: clickable ? focusStylesObject.outline : "none",
-                },
-                ...sharedSwitchStyles,
-            },
-            slider: {
-                backgroundColor: disabled
-                    ? baseStyles.color.bg.slider.disabledOff
-                    : baseStyles.color.bg.slider.off,
-            },
-            icon: {
-                color: disabled
-                    ? baseStyles.color.bg.icon.disabledOff
-                    : baseStyles.color.bg.icon.off,
-            },
-        };
-    }
-
-    styles[checkedStyle] = StyleSheet.create(newStyles);
-    return styles[checkedStyle];
-};
 
 export default Switch;

@@ -1,6 +1,5 @@
 import {addStyle} from "@khanacademy/wonder-blocks-core";
 import {useWonderBlocksI18n} from "@khanacademy/wonder-blocks-config";
-import {StyleSheet} from "aphrodite";
 import * as React from "react";
 import {getLabel} from "../util/helpers";
 import {
@@ -8,6 +7,8 @@ import {
     MaybeValueOrValues,
     OptionItemComponent,
 } from "../util/types";
+
+import styles from "./combobox-live-region.module.css";
 
 const StyledSpan = addStyle("span");
 
@@ -249,16 +250,3 @@ export function ComboboxLiveRegion({
         </StyledSpan>
     );
 }
-
-const styles = StyleSheet.create({
-    srOnly: {
-        border: 0,
-        clip: "rect(0,0,0,0)",
-        height: 1,
-        margin: -1,
-        overflow: "hidden",
-        padding: 0,
-        position: "absolute",
-        width: 1,
-    },
-});

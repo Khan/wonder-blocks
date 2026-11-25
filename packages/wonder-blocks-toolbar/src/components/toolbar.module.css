@@ -1,0 +1,85 @@
+/**
+ * Toolbar styles
+ *
+ * Every rule is nested inside `.root`, the marker class on the outermost
+ * element, which carries no declarations of its own. Every element here is a
+ * `View` (and the subtitle is a `BodyText`), and those ship single-class rules
+ * in the same `@layer shared` that set properties overridden below (`display`,
+ * `padding`, `border-*`, `flex-direction`, `align-items`, `color`). The bundle
+ * loads this package's CSS before its dependencies', so at equal specificity
+ * those would win; the compound selector makes it depend on specificity
+ * instead.
+ *
+ * Source order reproduces the Aphrodite style array: container → title
+ * variant → `dark` → `small`. The build wraps every rule in
+ * `@layer shared { … }`.
+ */
+
+.root {
+    &.container {
+        background: var(--wb-semanticColor-core-background-base-default);
+        border: var(--wb-border-width-thin) solid
+            var(--wb-semanticColor-core-border-neutral-subtle);
+        flex: 1;
+        display: grid;
+        align-items: center;
+        min-block-size: 66px;
+        padding-inline: var(--wb-sizing-size_160);
+        inline-size: 100%;
+    }
+
+    &.containerWithTextTitle {
+        grid-template-columns: 1fr minmax(auto, 67%) 1fr;
+    }
+
+    &.containerWithNodeTitle {
+        grid-template-columns: minmax(max-content, 1fr) auto minmax(
+                max-content,
+                1fr
+            );
+    }
+
+    &.containerWithNoTitle {
+        grid-template-columns: auto auto 1fr;
+    }
+
+    /* TODO(WB-1852): Remove light variant. */
+    &.dark {
+        background: var(--wb-semanticColor-core-background-base-strong);
+        box-shadow: 0 1px 0 0
+            var(--wb-semanticColor-core-foreground-knockout-default);
+        color: var(--wb-semanticColor-core-foreground-knockout-default);
+    }
+
+    &.small {
+        min-block-size: 50px;
+    }
+
+    & .leftColumn {
+        align-items: center;
+        flex-direction: row;
+        justify-content: flex-start;
+    }
+
+    & .rightColumn {
+        align-items: center;
+        flex-direction: row;
+        justify-content: flex-end;
+        flex-grow: 1;
+    }
+
+    & .subtitle {
+        color: var(--wb-semanticColor-core-foreground-neutral-default);
+    }
+
+    & .titles {
+        padding: var(--wb-sizing-size_120);
+        text-align: center;
+        justify-self: center;
+        max-inline-size: 100%;
+    }
+
+    & .spacer {
+        min-inline-size: var(--wb-sizing-size_120);
+    }
+}

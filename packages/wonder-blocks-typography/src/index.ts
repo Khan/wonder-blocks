@@ -1,4 +1,5 @@
 import styles from "./util/styles";
+import typographyClassNames from "./util/class-names";
 
 import Heading from "./components/heading";
 import BodyText from "./components/body-text";
@@ -19,4 +20,4 @@ export type BodyComponents = typeof BodyText | typeof BodyMonospace;
  */
 export type Typography = HeadingComponents | BodyComponents;
 
-export {Heading, BodyText, BodyMonospace, styles};
+export {Heading, BodyText, BodyMonospace, styles, typographyClassNames};
