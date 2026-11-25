@@ -76,10 +76,10 @@ no extra setup is needed! Wonder Blocks' own Storybook runs on Vite.
 ### Breakpoints in your own CSS
 
 If you'd like to use Wonder Blocks breakpoints in your own CSS, use the
-`@khanacademy/wonder-blocks-tokens/custom-media.css` export from the
-[Tokens package](./?path=/docs/packages-tokens-overview--docs). This
-needs `@csstools/postcss-global-data` and `postcss-custom-media` in your PostCSS
-setup.
+`@khanacademy/wonder-blocks-tokens/custom-media.css` export from the Tokens
+package (see the <a href="./?path=/docs/packages-tokens-overview--docs">Tokens docs</a>).
+This needs `@csstools/postcss-global-data` and `postcss-custom-media` in your
+PostCSS setup.
 
 You don't need this to load Wonder Blocks' own CSS, since its breakpoints are
 already expanded in `dist/index.css`.
@@ -177,7 +177,8 @@ themselves. Use visual regression tests for those.
 ## Writing CSS Modules in Wonder Blocks
 
 This section is for Wonder Blocks contributors. For the full conventions, see
-[Writing CSS Modules](./?path=/docs/contributing-writing-css-modules--docs).
+the <a href="./?path=/docs/contributing-writing-css-modules--docs">Writing CSS Modules</a>
+page.
 
 1. Add the component's styles to a `*.module.css` file next to the component.
 2. Use tokens (`var(--wb-…)`) instead of raw values. Stylelint checks this
