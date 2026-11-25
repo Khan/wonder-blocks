@@ -22,8 +22,4 @@ component API is unchanged — same props, same DOM structure, and the same
   consumer override of a property the tab changes on hover / press (most
   commonly `color`) now applies in every state, rather than being replaced
   by the built-in hover / press colour.
-- `TabsDropdown` and `NavigationTabsDropdown` still use Aphrodite. Their styles
-  override the not-yet-migrated `wonder-blocks-dropdown` components (Phase 5 /
-  Wave H, WB-2485) and move with them, so `aphrodite` stays in this package's
-  `peerDependencies` for now.
 - The package now ships `dist/index.css` (auto side-effect import).

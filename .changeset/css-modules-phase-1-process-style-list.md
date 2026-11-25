@@ -16,10 +16,6 @@ Modules Phase 1).
   → `css(...)`; plain strings → appended to `className`; plain objects
   without `_definition` → forwarded as inline `style`. Non-string,
   non-object truthy leaves are silently ignored.
-- Fast-path: when no Aphrodite stylesheet is present in the merge, the
-  inline-style wrap (a `StyleSheet.create` whose only purpose was to
-  outweigh Aphrodite's `!important`) is skipped, and inline styles are
-  forwarded directly via React's `style` prop.
 
 The Cell / DatePicker / Modal patches are call-site fixes for latent
 spread-of-`StyleType` bugs that the widened union now flags at type-check

@@ -10,6 +10,7 @@
 "@khanacademy/wonder-blocks-layout": major
 "@khanacademy/wonder-blocks-popover": major
 "@khanacademy/wonder-blocks-search-field": major
+"@khanacademy/wonder-blocks-styles": major
 "@khanacademy/wonder-blocks-toolbar": major
 "@khanacademy/wonder-blocks-tooltip": major
 "@khanacademy/wonder-blocks-typography": major

@@ -13,7 +13,7 @@ structure, and `style` / `dropdownStyle` overrides.
 - Rules are nested under a marker class on the row and on the error row, so
   they beat `View`, `SingleSelect`'s wrapper and `BodyText` on specificity
   rather than stylesheet load order.
-- The small-screen (≤520px) stacked, full-width layout uses `!important`
+- The small-screen (`xsOrSmaller`, ≤567px) stacked, full-width layout uses `!important`
   inside its `@media` block. That's the only way a layered rule can outrank
   the consumer's Aphrodite overrides, and it keeps the old behavior: on small
   screens the stacked layout wins over `style` / `dropdownStyle`, and on
