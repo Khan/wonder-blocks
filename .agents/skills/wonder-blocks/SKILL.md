@@ -82,7 +82,7 @@ stylesheet (`import "./index.css"`), so the app has to load that CSS:
 WB rules are in `@layer shared`, so unlayered app styles (including aphrodite styles
 passed through `style`) always win over WB styles, in every state (hover, press,
 focus). See the
-[Using Wonder Blocks CSS](https://khan.github.io/wonder-blocks/?path=/docs/using-wonder-blocks-css--docs)
+[CSS setup](https://khan.github.io/wonder-blocks/?path=/docs/get-started-css-setup--docs)
 guide for the full setup.
 
 ## Styling with aphrodite
