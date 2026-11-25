@@ -1,6 +1,4 @@
 # GitHub automatically requests a review from the code owners listed here when
 # a pull request is opened (or marked ready for review, for draft PRs).
-# This replaces the Gerald `.github/REVIEWERS` rule that requested a review
-# from @Khan/wonder-blocks on every PR.
 # See https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners
 *       @Khan/wonder-blocks
