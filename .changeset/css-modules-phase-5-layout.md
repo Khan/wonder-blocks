@@ -12,12 +12,12 @@ props, DOM structure and `style` override.
 - The fades are still toggled through the
   `--wb-scrollable-view-fade-{top,bottom}-opacity` custom properties set inline
   on the element; their `0` defaults are now declared on the root class.
-- `MediaLayout` is unchanged and still uses Aphrodite types: it's deprecated and
-  will be removed instead (WB-2401). `Strut` already didn't use Aphrodite.
+- `Strut` already didn't use Aphrodite. (`MediaLayout` was removed separately,
+  in WB-2401.)
 - **Behavior change (edge case):** an `outline` or `box-shadow` passed to
   `ScrollableView` through `style` (plain object or Aphrodite `StyleSheet`) now
   also applies while the view has keyboard focus, replacing the focus ring.
   Before, the focus ring won while focused.
 - The package now ships `dist/index.css` (auto side-effect import) and marks
-  `**/*.css` as `sideEffects`. `aphrodite` stays a peer dependency because
-  `MediaLayout`'s types still import it.
+  `**/*.css` as `sideEffects`. The package no longer imports
+  `aphrodite`, but it stays in `peerDependencies` until Phase 6 (WB-2336).

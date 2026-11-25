@@ -44,6 +44,3 @@ refactor.
   `!important` may no longer, and stylesheets that were previously losing to
   `IconButton` may now start taking effect. Overrides passed through the `style`
   prop are unaffected — those still route through Aphrodite and continue to win.
-
-`ActivityIconButton`, `ConversationIconButton` and `NodeIconButton` still use
-Aphrodite and are unaffected; they follow in the rest of WB-2329.

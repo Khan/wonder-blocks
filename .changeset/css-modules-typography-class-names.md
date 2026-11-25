@@ -23,5 +23,3 @@ element win regardless of their position in the `style` array. That's why:
 - `SearchField` drops `display: flex` from its input reset; the typography
   style that followed it in the array always overrode it to `display: block`,
   so it never applied.
-- `NavigationTabItem` keeps the Aphrodite `styles`: it styles a child `Link`,
-  whose own Aphrodite `font-weight` / `font-family` would otherwise win.

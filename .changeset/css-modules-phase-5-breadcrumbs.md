@@ -10,5 +10,4 @@ unchanged — same props and DOM structure.
   are rendered by `addStyle`, so no other component's classes compete with
   these rules.
 - The package now ships `dist/index.css` (auto side-effect import).
-  `aphrodite` is dropped from `peerDependencies`. No `exports` map is added:
-  the package has none today, and adding one would restrict deep imports.
+  `aphrodite` is dropped from `peerDependencies`.

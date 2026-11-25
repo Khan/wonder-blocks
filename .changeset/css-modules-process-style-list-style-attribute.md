@@ -1,5 +1,5 @@
 ---
-"@khanacademy/wonder-blocks-core": minor
+"@khanacademy/wonder-blocks-core": major
 ---
 
 `processStyleList` (used by `View`, `Text` and `addStyle`) now returns plain
