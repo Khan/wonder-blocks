@@ -2,9 +2,10 @@ name: Chromatic - Pull Request
 
 on:
     pull_request:
-        # This allows us to run the workflow on PRs from when they move from draft
-        # to non-draft.
-        types: [edited, opened, synchronize, reopened]
+        # ready_for_review allows us to run the workflow on PRs when they move
+        # from draft to non-draft. We intentionally don't include "edited" so
+        # that changing the PR title/description doesn't re-run (and cancel) CI.
+        types: [opened, synchronize, ready_for_review, reopened]
 
 concurrency:
     group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}

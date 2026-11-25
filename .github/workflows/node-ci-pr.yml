@@ -3,8 +3,9 @@ name: Node CI (PR)
 on:
     pull_request:
         # ready_for_review is useful for when a PR is converted from "draft" to "not
-        # draft".
-        types: [edited, opened, synchronize, ready_for_review, reopened]
+        # draft". We intentionally don't include "edited" so that changing the PR
+        # title/description doesn't re-run (and cancel) CI.
+        types: [opened, synchronize, ready_for_review, reopened]
 
 # When a new revision is pushed to a PR, cancel all in-progress CI runs for that
 # PR. See https://docs.github.com/en/actions/using-jobs/using-concurrency
