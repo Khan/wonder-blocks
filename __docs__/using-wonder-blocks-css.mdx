@@ -14,9 +14,9 @@ imports that stylesheet:
 import "./index.css";
 ```
 
-`wonder-blocks-core` is one of these packages, so in practice every app that
-uses Wonder Blocks loads Wonder Blocks CSS. This page covers what your app
-needs for that to work:
+You don't need to import the stylesheet yourself: importing a component loads
+its CSS, and the CSS of the Wonder Blocks packages it depends on. This page
+covers what your app needs for that to work:
 
 1. [A bundler that handles CSS](#bundler-setup) imported from `node_modules`.
 2. [A cascade layer declaration](#layer-order) that loads before any Wonder
@@ -27,8 +27,6 @@ needs for that to work:
 
 It also explains [what each package exports](#package-exports) and, for
 contributors, [how Wonder Blocks CSS is written](#writing-css-modules-in-wonder-blocks).
-
-Server-side rendering and other uses outside a bundler aren't covered yet.
 
 ## Bundler setup
 
@@ -47,8 +45,7 @@ Add a rule for `.css` files that runs `css-loader`, followed by
 development. You can also use rspack's built-in CSS support
 (`experiments.css`) instead.
 
-Don't exclude `node_modules` from the rule. This is the rule Khan Academy's
-frontend uses (`getCssRule` in `libs/config/rspack/src/rspack.config.ts`):
+Don't exclude `node_modules` from the rule. For example:
 
 ```ts
 function getCssRule(cssExtractor: string) {
@@ -113,12 +110,6 @@ Use this declaration:
 - `legacy`: styles that must win over Wonder Blocks, layered so they still
   lose to unlayered styles.
 
-Khan Academy's frontend (`libs/dev/page-template/src/make-page.ts`) and
-Perseus' Storybook (`.storybook/main.ts`) declare
-`@layer reset, shared, shared.base, legacy;`. That gives the same result,
-because `shared.reset` first appears after `shared.base`, but listing
-`shared.reset` keeps the order explicit.
-
 Later layers win over earlier ones, and unlayered styles win over every layer.
 
 ## Cascade contract
@@ -169,9 +160,7 @@ module.exports = {
 module.exports = {};
 ```
 
-This is what Perseus does (`config/test/test.config.js`). Khan Academy's
-frontend does the same for rstest, mapping `/\.(css|less)$/` to a style mock in
-`make-rstest-config.ts`.
+In rstest, map `.css` to a style mock the same way.
 
 Mocking Wonder Blocks CSS **doesn't change rendered class names or snapshots**.
 The hashed class names (for example `wb-badge-badge-cbb1e92a`) are written into
