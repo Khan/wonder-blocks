@@ -97,7 +97,7 @@ These figures assume one snapshot per mode and no animated snapshots.
 - **GitHub:** the Happo GitHub App posts commit statuses. The alternative is `--githubToken ${{ secrets.GITHUB_TOKEN }}`, which posts a PR comment and needs no App. **Access control:** anyone who signs in with a GitHub account that has access to an integrated repo gets user access to the Happo account automatically. Review that.
 - **SSO:** SAML (Okta, Entra, Google, etc.), but Happo has to unlock it for the account first. Roles are User and Admin.
 - **Compliance:** https://happo.io/security lists no SOC 2 report. Happo wasn't contacted.
-- **Network:** the `Secure Network` step allows `registry.npmjs.org` and `happo.io`. Any other upload host, like Argos's presigned S3 bucket, will show up as a blocked host on the first run and has to be added.
+- **Network:** the `Secure Network` step allows `registry.npmjs.org`, `happo.io` and `happo-payloads.s3.us-west-1.amazonaws.com`. That last one is the S3 bucket for the presigned package uploads, found when the first upload was blocked. Happo's storage is in AWS us-west-1.
 
 ## Gaps and risks
 

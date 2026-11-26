@@ -79,10 +79,9 @@ jobs:
               with:
                   # registry.npmjs.org: npm package registry for pnpm install
                   # happo.io: Happo API (package upload, reports, comparisons)
-                  # NOTE: If Happo hands out presigned upload URLs on another
-                  # host (like Argos's S3 bucket), the upload step fails and
-                  # the blocked host shows up in the log; add it here.
-                  extra-domains: registry.npmjs.org happo.io
+                  # happo-payloads.s3.us-west-1.amazonaws.com: S3 bucket that the
+                  #   presigned Storybook package upload URLs point to (seen in CI).
+                  extra-domains: registry.npmjs.org happo.io happo-payloads.s3.us-west-1.amazonaws.com
 
             - name: Install & cache node_modules
               if: ${{ env.HAS_HAPPO_KEYS == 'true' }}
