@@ -101,7 +101,7 @@ jobs:
             # detection: only story files changed in the PR are re-rendered,
             # the rest is carried over from the baseline. It does NOT follow
             # imports, so a component change without a story change is missed
-            # (see the write-up for what a real script would need).
+            # (the PR description says what a real script would need).
             - name: Pick stories for a partial run
               id: only
               if: ${{ env.HAS_HAPPO_KEYS == 'true' && contains(github.event.pull_request.labels.*.name, 'happo-partial') }}
