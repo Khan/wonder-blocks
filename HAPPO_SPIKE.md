@@ -52,7 +52,7 @@ I injected Happo's Storybook runtime into a local build, the same way the CLI do
 
 | | Chromatic | Argos (spike) | Happo (spike) |
 |---|---|---|---|
-| Wall-clock to PR result | ~7 min | ~5 min | **TBD** (CI checkout → build → upload → Happo render → comparison) |
+| Wall-clock to PR result | ~7 min | ~5 min | CI job: **~1.5 min** (run 45888249177: setup ~30s, then Storybook build and upload ~45s). Happo renders and compares **after** the job ends, so time-to-result is CI time plus Happo's render time from its job page: **TBD**. |
 | Snapshots per build | 552–554 | 561 | **561** (local count) |
 | Identical re-run | — | 2 non-deterministic | **TBD** |
 | One-line change to Button `Sizes` | — | exactly 1 diff | **TBD** |
@@ -105,6 +105,7 @@ These figures assume one snapshot per mode and no animated snapshots.
 - **Fragile mapping hooks:** the mapping depends on Storybook calling `argTypesEnhancers` with a mutable `parameters` object, and on Happo reading `prepared.parameters`. Both are internals that could change in an upgrade.
 - **No automatic change detection** (see above). Without it, every PR spends the full 561.
 - **No Storybook hosting:** Happo doesn't host a browsable Storybook like Chromatic or Argos deployments do, so we'd need another host for PR Storybooks.
+- **No "done" signal without a GitHub integration:** the CLI returns once the package is uploaded (an `async-reports` link). Without the App or `--githubToken`, nothing on the PR says when results are ready or whether there are diffs. Someone has to open the report link from the job log.
 - **Extra renders per themed snapshot:** Happo applies themes after the first render, so each themed snapshot is rendered twice (render, then switch and remount). That adds render time but not quota.
 
 ## Recommendation

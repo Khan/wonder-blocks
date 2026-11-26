@@ -63,10 +63,11 @@ jobs:
                   fetch-depth: 100
 
             # Happo finds the baseline from the merge base with the PR's
-            # base branch (a stacked spike PR's base isn't `main`).
+            # base branch (a stacked spike PR's base isn't `main`), passed
+            # as `--baseBranch` below.
             - name: Fetch base branch
               if: ${{ env.HAS_HAPPO_KEYS == 'true' && github.ref != 'refs/heads/main' }}
-              run: git fetch --no-tags --depth=100 origin "${BASE_REF}:${BASE_REF}"
+              run: git fetch --no-tags --depth=100 origin "${BASE_REF}:refs/remotes/origin/${BASE_REF}"
               env:
                   BASE_REF: ${{ github.base_ref || 'main' }}
 
@@ -105,7 +106,9 @@ jobs:
               id: only
               if: ${{ env.HAS_HAPPO_KEYS == 'true' && contains(github.event.pull_request.labels.*.name, 'happo-partial') }}
               run: |
-                  files=$(git diff --name-only "$(git merge-base "$BASE_REF" HEAD)" HEAD -- '__docs__/**/*.stories.tsx' '__docs__/**/*.stories.ts')
+                  base=$(git merge-base "origin/$BASE_REF" HEAD)
+                  echo "base=$base" >> "$GITHUB_OUTPUT"
+                  files=$(git diff --name-only "$base" HEAD -- '__docs__/**/*.stories.tsx' '__docs__/**/*.stories.ts')
                   if [ -z "$files" ]; then
                       echo "No story files changed; running everything."
                       exit 0
@@ -123,15 +126,23 @@ jobs:
                   start=$(date +%s)
                   # Record the duration even when happo fails.
                   trap 'echo "seconds=$(( $(date +%s) - start ))" >> "$GITHUB_OUTPUT"' EXIT
-                  args=()
+                  args=(--baseBranch "origin/${BASE_REF}")
                   if [ -n "$HAPPO_ONLY" ]; then
                       # Log the filter so partial runs can be audited.
                       echo "Partial run, --only: $HAPPO_ONLY"
                       args+=(--only "$HAPPO_ONLY")
+                      if [ -n "$ONLY_BASE_SHA" ]; then
+                          args+=(--onlyBaseSha "$ONLY_BASE_SHA")
+                      fi
                   fi
+                  # NOTE: the CLI returns once the package is uploaded; Happo
+                  # renders and compares asynchronously. With no GitHub
+                  # integration, time-to-result is read from the Happo job page.
                   pnpm exec happo "${args[@]}" 2>&1 | tee happo.log
               env:
                   HAPPO_ONLY: ${{ inputs.only || steps.only.outputs.value }}
+                  ONLY_BASE_SHA: ${{ steps.only.outputs.base }}
+                  BASE_REF: ${{ github.base_ref || 'main' }}
                   HAPPO_API_KEY: ${{ secrets.HAPPO_API_KEY }}
                   HAPPO_API_SECRET: ${{ secrets.HAPPO_API_SECRET }}
                   TZ: America/Los_Angeles
@@ -145,7 +156,7 @@ jobs:
                       echo ""
                       echo "| Metric | Value |"
                       echo "|---|---|"
-                      echo "| Happo wall-clock (build + upload + render + compare) | ${{ steps.happo.outputs.seconds }}s |"
+                      echo "| Happo CLI wall-clock (build + upload; rendering is async) | ${{ steps.happo.outputs.seconds }}s |"
                       echo "| Partial run (--only) | ${HAPPO_ONLY:-no} |"
                       echo "| Links | ${urls} |"
                   } >> "$GITHUB_STEP_SUMMARY"
