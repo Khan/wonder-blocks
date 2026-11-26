@@ -4,9 +4,9 @@
 > for visual regression testing), which compares Chromatic, Argos, Happo and
 > Percy. It mirrors the Argos spike (#3281, WB-2480, and #3324).
 >
-> **Status:** the setup is done and checked locally. The Happo account and the
-> `HAPPO_API_KEY` / `HAPPO_API_SECRET` secrets don't exist yet, so the
-> numbers marked **TBD** need a real run.
+> **Status:** the setup is done and checked locally, and the secrets are set.
+> The first CI runs found two setup issues (the config import and an upload
+> host), both fixed. The numbers marked **TBD** need a successful run.
 
 ## Setup
 
@@ -56,7 +56,7 @@ I injected Happo's Storybook runtime into a local build, the same way the CLI do
 | Snapshots per build | 552–554 | 561 | **561** (local count) |
 | Identical re-run | — | 2 non-deterministic | **TBD** |
 | One-line change to Button `Sizes` | — | exactly 1 diff | **TBD** |
-| PR status / approval | Chromatic UI build | Argos check + approval | **TBD**. Needs the Happo GitHub App: a failing status on diffs, "Accept" in the Happo report turns it green. |
+| PR status / approval | Chromatic UI build | Argos check + approval | **Not tested.** The spike uses no GitHub integration: no App, no `--githubToken`. Results are only a report link in the job log, and diffs are accepted in the Happo UI. With the App: a failing status on diffs that "Accept" in the Happo report turns green. |
 | Baselines on `main` | auto | auto-approved `main` builds | `push: main` runs. PRs compare against the report for their merge base. |
 | Partial run (`--only`) | TurboSnap (automatic) | — | **TBD** quota used vs 561 |
 
@@ -94,7 +94,7 @@ These figures assume one snapshot per mode and no animated snapshots.
   - The screenshots it renders, which it stores.
 
   No secrets or user data, as long as stories don't embed any. With `previewOnly` (the default), the manager UI isn't uploaded.
-- **GitHub:** the Happo GitHub App posts commit statuses. The alternative is `--githubToken ${{ secrets.GITHUB_TOKEN }}`, which posts a PR comment and needs no App. **Access control:** anyone who signs in with a GitHub account that has access to an integrated repo gets user access to the Happo account automatically. Review that.
+- **GitHub:** this spike uses **no GitHub integration**, so Happo gets no access to the repo. In production, the Happo GitHub App posts commit statuses. The alternative is `--githubToken ${{ secrets.GITHUB_TOKEN }}`, which posts a PR comment and needs no App. **Access control:** anyone who signs in with a GitHub account that has access to an integrated repo gets user access to the Happo account automatically. Review that.
 - **SSO:** SAML (Okta, Entra, Google, etc.), but Happo has to unlock it for the account first. Roles are User and Admin.
 - **Compliance:** https://happo.io/security lists no SOC 2 report. Happo wasn't contacted.
 - **Network:** the `Secure Network` step allows `registry.npmjs.org`, `happo.io` and `happo-payloads.s3.us-west-1.amazonaws.com`. That last one is the S3 bucket for the presigned package uploads, found when the first upload was blocked. Happo's storage is in AWS us-west-1.
@@ -123,7 +123,7 @@ Its main advantage is real cross-browser targets, at about one extra build's wor
 
 ## To finish the spike
 
-1. Create a Happo account (14-day free calibration period) and add the `HAPPO_API_KEY` and `HAPPO_API_SECRET` repository secrets.
-2. Install the Happo GitHub App on `Khan/wonder-blocks` and activate the repo at happo.io/github-integration.
+1. ~~Create a Happo account and add the `HAPPO_API_KEY` and `HAPPO_API_SECRET` secrets~~: done.
+2. ~~Install the Happo GitHub App~~: skipped on purpose. The spike posts nothing to PRs, and results are read from the report link in the job log.
 3. Re-run the workflow on this branch: the `push` trigger produces a full report, which gives the wall-clock time and the server-side snapshot count. Re-run it once more for the stability check.
-4. `main` has no Happo reports, so a PR against `main` has no baseline. As with the Argos review-flow PR (#3324), open a DO-NOT-MERGE PR **stacked on this branch** with the one-line Button `Sizes` change. That PR measures exactly-1-diff, the PR status and the approval flow. Then add the `happo-partial` label to it to measure the quota saved.
+4. `main` has no Happo reports, so a PR against `main` has no baseline. As with the Argos review-flow PR (#3324), open a DO-NOT-MERGE PR **stacked on this branch** with the one-line Button `Sizes` change. That PR measures exactly-1-diff and accepting the diff in the Happo UI (no PR status, since there's no GitHub integration). Then add the `happo-partial` label to it to measure the quota saved.
