@@ -9,7 +9,12 @@
  */
 import {defineConfig} from "happo";
 
-import {happoTargets} from "./.storybook/happo-targets";
+// The `happo` CLI loads this file with Node's built-in TypeScript support,
+// which needs the `.ts` extension on relative imports. Our tsconfig doesn't
+// set `allowImportingTsExtensions`.
+// @ts-expect-error TS5097
+// eslint-disable-next-line import/extensions
+import {happoTargets} from "./.storybook/happo-targets.ts";
 
 export default defineConfig({
     // Never commit these: they come from the `HAPPO_API_KEY` and
