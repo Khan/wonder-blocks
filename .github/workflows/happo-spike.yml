@@ -1,0 +1,175 @@
+# SPIKE (ADR #998): Evaluate Happo for visual regression testing.
+# Not meant to merge. Chromatic and Argos workflows are untouched.
+#
+# Happo renders the screenshots in its own cloud: this job only builds the
+# Storybook package (the `happo` CLI runs `storybook build` itself), uploads
+# it, and waits for the report and comparison. There are no shards because
+# Happo splits the work into chunks on its side.
+#
+# Story config is mapped from `parameters.chromatic` in `.storybook/happo.tsx`
+# and the targets live in `.storybook/happo-targets.ts` (one Chrome target per
+# viewport, 1200x900 by default).
+#
+# Builds on `main` become the baselines. PR builds are compared against the
+# report for their merge base.
+#
+# Uploading is opt-in: the job only runs Happo when the `HAPPO_API_KEY` and
+# `HAPPO_API_SECRET` secrets are set, and reports that they're missing
+# otherwise.
+name: Happo (spike)
+
+on:
+    pull_request:
+        types: [opened, synchronize, reopened, ready_for_review, labeled]
+    push:
+        branches:
+            - main
+    workflow_dispatch:
+        inputs:
+            only:
+                description: 'Partial run: JSON passed to `happo --only`, e.g. [{"storyFile":"./__docs__/wonder-blocks-button/button-testing-snapshots.stories.tsx"}] (empty = all stories)'
+                required: false
+                default: ""
+
+concurrency:
+    group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+    cancel-in-progress: true
+
+permissions:
+    contents: read
+
+env:
+    # Secrets can't be used in step `if:` conditions directly.
+    HAS_HAPPO_KEYS: ${{ secrets.HAPPO_API_KEY != '' && secrets.HAPPO_API_SECRET != '' }}
+
+jobs:
+    happo:
+        name: Happo screenshots
+        runs-on: ${{ vars.USE_GITHUB_RUNNERS == 'true' && 'ubuntu-latest' || 'ephemeral-runner' }}
+        steps:
+            - name: Check for Happo secrets
+              if: ${{ env.HAS_HAPPO_KEYS != 'true' }}
+              run: |
+                  echo "::warning title=Happo secrets missing::Set the HAPPO_API_KEY and HAPPO_API_SECRET repository secrets to run the Happo spike."
+
+            - name: Checking out latest commit
+              if: ${{ env.HAS_HAPPO_KEYS == 'true' }}
+              uses: actions/checkout@v5
+              with:
+                  # Happo walks the git history from the merge base to find
+                  # the baseline report. On PRs, check out the PR head rather
+                  # than the merge commit so the SHA matches the PR status.
+                  ref: ${{ github.event.pull_request.head.sha || github.ref }}
+                  fetch-depth: 100
+
+            # Happo finds the baseline from the merge base with the PR's
+            # base branch (a stacked spike PR's base isn't `main`), passed
+            # as `--baseBranch` below.
+            - name: Fetch base branch
+              if: ${{ env.HAS_HAPPO_KEYS == 'true' && github.ref != 'refs/heads/main' }}
+              run: git fetch --no-tags --depth=100 origin "${BASE_REF}:refs/remotes/origin/${BASE_REF}"
+              env:
+                  BASE_REF: ${{ github.base_ref || 'main' }}
+
+            - name: Secure Network
+              if: ${{ env.HAS_HAPPO_KEYS == 'true' }}
+              uses: Khan/actions@secure-network-v1
+              timeout-minutes: 5
+              with:
+                  # registry.npmjs.org: npm package registry for pnpm install
+                  # happo.io: Happo API (package upload, reports, comparisons)
+                  # happo-payloads.s3.us-west-1.amazonaws.com: S3 bucket that the
+                  #   presigned Storybook package upload URLs point to (seen in CI).
+                  extra-domains: registry.npmjs.org happo.io happo-payloads.s3.us-west-1.amazonaws.com
+
+            - name: Install & cache node_modules
+              if: ${{ env.HAS_HAPPO_KEYS == 'true' }}
+              uses: ./.github/actions/shared-node-cache
+              timeout-minutes: 5
+
+            - name: Generate WB build artifacts
+              if: ${{ env.HAS_HAPPO_KEYS == 'true' }}
+              run: pnpm build
+
+            # The `happo` CLI runs `storybook build` directly, so the
+            # `prebuild:storybook` hook doesn't run.
+            - name: Generate token docs
+              if: ${{ env.HAS_HAPPO_KEYS == 'true' }}
+              run: pnpm build:token-docs
+
+            # Partial runs on PRs labeled `happo-partial`. A naive change
+            # detection: only story files changed in the PR are re-rendered,
+            # the rest is carried over from the baseline. It does NOT follow
+            # imports, so a component change without a story change is missed
+            # (the PR description says what a real script would need).
+            - name: Pick stories for a partial run
+              id: only
+              if: ${{ env.HAS_HAPPO_KEYS == 'true' && contains(github.event.pull_request.labels.*.name, 'happo-partial') }}
+              run: |
+                  base=$(git merge-base "origin/$BASE_REF" HEAD)
+                  echo "base=$base" >> "$GITHUB_OUTPUT"
+                  files=$(git diff --name-only "$base" HEAD -- '__docs__/**/*.stories.tsx' '__docs__/**/*.stories.ts')
+                  if [ -z "$files" ]; then
+                      echo "No story files changed; running everything."
+                      exit 0
+                  fi
+                  only=$(printf '%s\n' $files | jq -R -s -c 'split("\n") | map(select(length > 0) | {storyFile: ("./" + .)})')
+                  echo "value=$only" >> "$GITHUB_OUTPUT"
+              env:
+                  BASE_REF: ${{ github.base_ref }}
+
+            - name: Run Happo
+              id: happo
+              if: ${{ env.HAS_HAPPO_KEYS == 'true' }}
+              run: |
+                  set -o pipefail
+                  start=$(date +%s)
+                  # Record the duration even when happo fails.
+                  trap 'echo "seconds=$(( $(date +%s) - start ))" >> "$GITHUB_OUTPUT"' EXIT
+                  args=(--baseBranch "origin/${BASE_REF}")
+                  if [ -n "$HAPPO_ONLY" ]; then
+                      # Log the filter so partial runs can be audited.
+                      echo "Partial run, --only: $HAPPO_ONLY"
+                      args+=(--only "$HAPPO_ONLY")
+                      if [ -n "$ONLY_BASE_SHA" ]; then
+                          args+=(--onlyBaseSha "$ONLY_BASE_SHA")
+                      fi
+                  fi
+                  # NOTE: the CLI returns once the package is uploaded; Happo
+                  # renders and compares asynchronously. With no GitHub
+                  # integration, time-to-result is read from the Happo job page.
+                  pnpm exec happo "${args[@]}" 2>&1 | tee happo.log
+              env:
+                  HAPPO_ONLY: ${{ inputs.only || steps.only.outputs.value }}
+                  ONLY_BASE_SHA: ${{ steps.only.outputs.base }}
+                  BASE_REF: ${{ github.base_ref || 'main' }}
+                  HAPPO_API_KEY: ${{ secrets.HAPPO_API_KEY }}
+                  HAPPO_API_SECRET: ${{ secrets.HAPPO_API_SECRET }}
+                  TZ: America/Los_Angeles
+
+            - name: Summarize
+              if: ${{ always() && env.HAS_HAPPO_KEYS == 'true' }}
+              run: |
+                  urls=$(sed 's/\x1b\[[0-9;]*m//g' happo.log 2>/dev/null | grep -oE 'https://happo\.io/[^ )"]+' | sort -u | tr '\n' ' ')
+                  {
+                      echo "## Happo spike"
+                      echo ""
+                      echo "| Metric | Value |"
+                      echo "|---|---|"
+                      echo "| Happo CLI wall-clock (build + upload; rendering is async) | ${{ steps.happo.outputs.seconds }}s |"
+                      echo "| Partial run (--only) | ${HAPPO_ONLY:-no} |"
+                      echo "| Links | ${urls} |"
+                  } >> "$GITHUB_STEP_SUMMARY"
+                  # Also emit the numbers (and, on failure, the log tail) as
+                  # annotations: unlike logs and step summaries, those can be
+                  # read straight from the GitHub API.
+                  echo "::notice title=Happo spike metrics::happo_seconds=${{ steps.happo.outputs.seconds }} only=${HAPPO_ONLY:-none} links=${urls}"
+                  if [ "${{ steps.happo.outcome }}" = "failure" ] && [ -f happo.log ]; then
+                      details=$(sed 's/\x1b\[[0-9;]*m//g' happo.log \
+                          | tail -60 \
+                          | sed -e 's/%/%25/g' -e 's/\r/%0D/g' \
+                          | awk '{printf "%s%%0A", $0}')
+                      echo "::error title=Happo failure details::${details}"
+                  fi
+              env:
+                  HAPPO_ONLY: ${{ inputs.only || steps.only.outputs.value }}

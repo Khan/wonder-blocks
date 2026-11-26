@@ -16,6 +16,13 @@ import {
     THEME_DATA_ATTRIBUTE,
 } from "@khanacademy/wonder-blocks-theming";
 import type {Preview} from "@storybook/react-vite";
+import {isHappoRun, setThemeSwitcher} from "happo/storybook/register";
+import {
+    HAPPO_BASE_GLOBALS,
+    happoArgTypesEnhancer,
+    happoThemeSwitcher,
+    withHappoFullPage,
+} from "./happo";
 
 // Import the Wonder Blocks CSS variables
 import "@khanacademy/wonder-blocks-tokens/styles.css";
@@ -352,6 +359,13 @@ const withWonderBlocksConfig: Decorator = (Story) => (
     </WonderBlocksConfigProvider>
 );
 
+// SPIKE (ADR #998): Happo visual regression testing. Only active in the
+// Storybook package that the `happo` CLI builds. See `./happo.tsx`.
+const happoRun = isHappoRun();
+if (happoRun) {
+    setThemeSwitcher(happoThemeSwitcher);
+}
+
 const preview: Preview = {
     parameters,
     decorators: [
@@ -361,7 +375,10 @@ const preview: Preview = {
         withZoom,
         withAnnouncer,
         withWonderBlocksConfig,
+        // Last, so it's the outermost wrapper.
+        ...(happoRun ? [withHappoFullPage] : []),
     ],
+    argTypesEnhancers: happoRun ? [happoArgTypesEnhancer] : [],
     globalTypes: {
         // Allow the user to select a theme from the toolbar.
         theme: {
@@ -437,10 +454,12 @@ const preview: Preview = {
     },
 
     tags: ["autodocs"],
-    initialGlobals: {
-        // 👇 Set the initial background color
-        backgrounds: {value: "baseDefault"},
-    },
+    initialGlobals: happoRun
+        ? HAPPO_BASE_GLOBALS
+        : {
+              // 👇 Set the initial background color
+              backgrounds: {value: "baseDefault"},
+          },
 };
 
 export default preview;
