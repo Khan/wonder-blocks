@@ -24,8 +24,6 @@ on:
     push:
         branches:
             - main
-            # So the spike can be measured before a PR exists.
-            - claude/happo-vrt-spike
     workflow_dispatch:
         inputs:
             only:

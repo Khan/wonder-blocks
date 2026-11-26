@@ -12,7 +12,7 @@
 
 | File | What it does |
 |---|---|
-| `.github/workflows/happo-spike.yml` | New `Happo (spike)` workflow, one job. Runs on PRs, on pushes to `main` (baselines) and on this branch. Skips with a warning when the secrets aren't set. Chromatic and Argos workflows are unchanged. |
+| `.github/workflows/happo-spike.yml` | New `Happo (spike)` workflow, one job. Runs on PRs and on pushes to `main` (baselines). Skips with a warning when the secrets aren't set. Chromatic and Argos workflows are unchanged. |
 | `happo.config.ts` | Storybook integration and the Chrome targets. Keys come from env vars only. |
 | `.storybook/happo-targets.ts` | One Chrome target per viewport. `chrome` is 1200×900 (Chromatic's default). There are also `small` 320×568, `medium` 768×1024, `large` 1024×768, `chromebook` 1366×768, `wide` 1700×900 and `zoom400`. |
 | `.storybook/happo.tsx` | Maps `parameters.chromatic` to `parameters.happo` centrally, so no story files were edited. |
@@ -125,5 +125,5 @@ Its main advantage is real cross-browser targets, at about one extra build's wor
 
 1. ~~Create a Happo account and add the `HAPPO_API_KEY` and `HAPPO_API_SECRET` secrets~~: done.
 2. ~~Install the Happo GitHub App~~: skipped on purpose. The spike posts nothing to PRs, and results are read from the report link in the job log.
-3. Re-run the workflow on this branch: the `push` trigger produces a full report, which gives the wall-clock time and the server-side snapshot count. Re-run it once more for the stability check.
+3. The PR run of this branch produces a full report, which gives the wall-clock time and the server-side snapshot count. Re-run it once more for the stability check.
 4. `main` has no Happo reports, so a PR against `main` has no baseline. As with the Argos review-flow PR (#3324), open a DO-NOT-MERGE PR **stacked on this branch** with the one-line Button `Sizes` change. That PR measures exactly-1-diff and accepting the diff in the Happo UI (no PR status, since there's no GitHub integration). Then add the `happo-partial` label to it to measure the quota saved.
