@@ -53,12 +53,12 @@ I injected Happo's Storybook runtime into a local build, the same way the CLI do
 | | Chromatic | Argos (spike) | Happo (spike) |
 |---|---|---|---|
 | Wall-clock to PR result | ~7 min | ~5 min | CI job: **~1.5 min** (run 45888249177: setup ~30s, then Storybook build and upload ~45s). Happo renders and compares **after** the job ends, so time-to-result is CI time plus Happo's render time from its job page: **TBD**. |
-| Snapshots per build | 552–554 | 561 | **561** (local count) |
+| Snapshots per build | 561 (#3368's build; 552–554 in older builds) | 561 | **561** (local count) |
 | Identical re-run | — | 2 non-deterministic | **TBD** |
 | One-line change to Button `Sizes` | — | exactly 1 diff | **TBD** |
 | PR status / approval | Chromatic UI build | Argos check + approval | **Not tested.** The spike uses no GitHub integration: no App, no `--githubToken`. Results are only a report link in the job log, and diffs are accepted in the Happo UI. With the App: a failing status on diffs that "Accept" in the Happo report turns green. |
 | Baselines on `main` | auto | auto-approved `main` builds | `push: main` runs. PRs compare against the report for their merge base. |
-| Partial run (`--only`) | TurboSnap (automatic) | — | **TBD** quota used vs 561 |
+| Partial run (`--only`) | TurboSnap on #3369: **7 captured**, 554 inherited | — | `--only` on the Button testing-snapshots file: **7** rendered (`Sizes`, plus `Spinner` and `StateSheet` in 3 themes each). The local count matches TurboSnap here; Happo's quota page still needs checking. |
 
 ## Cost
 
