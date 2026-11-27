@@ -5,7 +5,12 @@ import {DetailCell} from "@khanacademy/wonder-blocks-cell";
 import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {BodyText} from "@khanacademy/wonder-blocks-typography";
 
-import type {PropsFor, StyleType} from "@khanacademy/wonder-blocks-core";
+import {FloatingReferenceAttributeName} from "@khanacademy/wonder-blocks-core";
+import type {
+    FloatingReferenceProps,
+    PropsFor,
+    StyleType,
+} from "@khanacademy/wonder-blocks-core";
 
 import {focusStyles} from "@khanacademy/wonder-blocks-styles";
 import {DROPDOWN_ITEM_HEIGHT} from "../util/constants";
@@ -13,6 +18,8 @@ import theme from "../theme";
 
 import type {CellProps} from "../util/types";
 
+// `FloatingReferenceProps` are applied to the root element (the cell), so that
+// the whole item is the anchor of floating components (e.g. `Tooltip`).
 type ActionProps = {
     /**
      * Display text of the action item.
@@ -116,7 +123,7 @@ type ActionProps = {
      * Optional aria-label for the action item.
      */
     "aria-label"?: string;
-};
+} & FloatingReferenceProps;
 
 type DefaultProps = {
     disabled: ActionProps["disabled"];
@@ -164,6 +171,7 @@ class ActionItemInner extends React.Component<ActionItemInnerProps> {
             testId,
             active,
             "aria-label": ariaLabel,
+            [FloatingReferenceAttributeName]: floatingReferenceId,
             forwardedRef,
         } = this.props;
 
@@ -209,6 +217,7 @@ class ActionItemInner extends React.Component<ActionItemInnerProps> {
                 onClick={onClick}
                 active={active}
                 aria-label={ariaLabel}
+                {...{[FloatingReferenceAttributeName]: floatingReferenceId}}
                 ref={forwardedRef}
             />
         );

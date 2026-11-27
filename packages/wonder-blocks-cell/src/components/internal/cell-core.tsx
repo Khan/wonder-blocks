@@ -1,10 +1,16 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
-import type {StyleType} from "@khanacademy/wonder-blocks-core";
+import type {
+    FloatingReferenceProps,
+    StyleType,
+} from "@khanacademy/wonder-blocks-core";
 
 import Clickable from "@khanacademy/wonder-blocks-clickable";
-import {View} from "@khanacademy/wonder-blocks-core";
+import {
+    FloatingReferenceAttributeName,
+    View,
+} from "@khanacademy/wonder-blocks-core";
 
 import {border, semanticColor} from "@khanacademy/wonder-blocks-tokens";
 import {focusStyles} from "@khanacademy/wonder-blocks-styles";
@@ -129,6 +135,8 @@ function CellInner(props: CellCoreProps): React.ReactElement {
     );
 }
 
+// `FloatingReferenceProps` are applied to the root element, so that the whole
+// cell is the anchor of floating components (e.g. `Tooltip`).
 type CellCoreProps = Partial<Omit<CellProps, "title">> & {
     /**
      * The content of the cell.
@@ -148,7 +156,7 @@ type CellCoreProps = Partial<Omit<CellProps, "title">> & {
      * within the package scope.
      */
     innerStyle?: StyleType;
-};
+} & FloatingReferenceProps;
 
 /**
  * CellCore is the base cell wrapper. It's used as the skeleton/layout that is
@@ -178,6 +186,7 @@ const CellCore = React.forwardRef(function CellCore(
         horizontalRule = "inset",
         styles: stylesProp,
         innerStyle,
+        [FloatingReferenceAttributeName]: floatingReferenceId,
     } = props;
 
     const horizontalRuleStyles = getHorizontalRuleStyles(horizontalRule);
@@ -218,6 +227,7 @@ const CellCore = React.forwardRef(function CellCore(
                 aria-current={active ? "true" : undefined}
                 tabIndex={tabIndex}
                 id={id}
+                {...{[FloatingReferenceAttributeName]: floatingReferenceId}}
                 // The root element is either an `<a>` or a `<button>`.
                 ref={ref as React.Ref<HTMLAnchorElement | HTMLButtonElement>}
             >
@@ -237,6 +247,7 @@ const CellCore = React.forwardRef(function CellCore(
             aria-current={active ? "true" : undefined}
             role={role}
             id={id}
+            {...{[FloatingReferenceAttributeName]: floatingReferenceId}}
             ref={ref}
         >
             <CellInner {...props} />

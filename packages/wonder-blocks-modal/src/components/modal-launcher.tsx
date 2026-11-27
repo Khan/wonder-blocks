@@ -8,7 +8,11 @@ import {
     SchedulePolicy,
     ClearPolicy,
 } from "@khanacademy/wonder-blocks-timing";
-import type {StyleType} from "@khanacademy/wonder-blocks-core";
+import {FloatingReferenceAttributeName} from "@khanacademy/wonder-blocks-core";
+import type {
+    FloatingReferenceProps,
+    StyleType,
+} from "@khanacademy/wonder-blocks-core";
 
 import FocusTrap from "./focus-trap";
 import ModalBackdrop from "./modal-backdrop";
@@ -16,6 +20,9 @@ import ScrollDisabler from "./scroll-disabler";
 import type {ModalElement} from "../util/types";
 import ModalContext from "./modal-context";
 
+// `FloatingReferenceProps` are applied to the element rendered by `children`
+// (the opener), so that the opener is the anchor of floating components (e.g.
+// `Tooltip`).
 type Props = Readonly<{
     /**
      * The modal to render.
@@ -88,7 +95,8 @@ type Props = Readonly<{
      */
     children?: (arg1: {openModal: () => unknown}) => React.ReactNode;
 }> &
-    WithActionSchedulerProps;
+    WithActionSchedulerProps &
+    FloatingReferenceProps;
 
 /**
  * This component enables you to launch a modal, covering the screen.
@@ -118,6 +126,7 @@ const ModalLauncher = (props: Props): React.ReactElement | null => {
         schedule,
         styles: stylesProp,
         testId,
+        [FloatingReferenceAttributeName]: floatingReferenceId,
     } = props;
 
     const lastElementFocusedOutsideModalRef = React.useRef<HTMLElement | null>(
@@ -204,11 +213,19 @@ const ModalLauncher = (props: Props): React.ReactElement | null => {
         }
     }, [modal, handleCloseModal]);
 
-    const renderedChildren = children
+    const opener = children
         ? children({
               openModal,
           })
         : null;
+    // Pass the attribute that identifies a floating element's anchor along to
+    // the opener (when there's a single element to pass it to).
+    const renderedChildren =
+        floatingReferenceId && React.isValidElement(opener)
+            ? React.cloneElement(opener, {
+                  [FloatingReferenceAttributeName]: floatingReferenceId,
+              })
+            : opener;
 
     const {body} = document;
     if (!body) {

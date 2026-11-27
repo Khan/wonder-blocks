@@ -35,6 +35,10 @@ const ForwardRefTrigger = React.forwardRef<
 });
 
 describe("Floating", () => {
+    afterEach(() => {
+        jest.restoreAllMocks();
+    });
+
     describe("rendering", () => {
         it("should render the trigger element", () => {
             // Arrange
@@ -323,6 +327,67 @@ describe("Floating", () => {
             expect(
                 screen.getByRole("button", {name: "Trigger"}),
             ).toHaveAttribute("data-wb-floating-reference");
+        });
+
+        it("should prefer the element the props are spread onto over the element the ref is attached to", async () => {
+            // Arrange
+            const rootTop = 100;
+            const innerInputTop = 400;
+            const height = 20;
+            const SwitchLikeTrigger = React.forwardRef<
+                HTMLInputElement,
+                {children?: React.ReactNode}
+            >((props, ref) => (
+                <div {...props} data-testid="root">
+                    <input ref={ref} aria-label="Inner input" />
+                </div>
+            ));
+            jest.spyOn(
+                Element.prototype,
+                "getBoundingClientRect",
+            ).mockImplementation(function (this: Element) {
+                const top =
+                    this.getAttribute("data-testid") === "root"
+                        ? rootTop
+                        : this.tagName === "INPUT"
+                          ? innerInputTop
+                          : 0;
+                return {
+                    x: 0,
+                    y: top,
+                    top,
+                    left: 0,
+                    right: 100,
+                    bottom: top + height,
+                    width: 100,
+                    height,
+                    toJSON: () => {},
+                };
+            });
+
+            // Act
+            render(
+                <Floating
+                    content="Floating content"
+                    open={true}
+                    placement="bottom"
+                    offset={0}
+                    flip={false}
+                    shift={false}
+                    hide={false}
+                    showArrow={false}
+                    testId="floating"
+                >
+                    <SwitchLikeTrigger />
+                </Floating>,
+            );
+
+            // Assert
+            await waitFor(() => {
+                expect(screen.getByTestId("floating").style.transform).toBe(
+                    `translate(50px, ${rootTop + height}px)`,
+                );
+            });
         });
 
         it("should keep the reference element of each instance independent when multiple are open", async () => {
