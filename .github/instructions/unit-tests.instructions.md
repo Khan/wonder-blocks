@@ -9,10 +9,10 @@ This guide covers testing patterns and best practices for Jest and React Testing
 
 ## Core Testing Principles
 
-### Critical Setup Rules
+### Setup Rules
 
 **Test Workflow Priority:**
-- **Always fix failing tests before fixing linting errors**
+- **Fix failing tests before fixing linting errors**
 - **Focus on underlying errors, not `Unhandled console.error call` messages**
 - When tests fail with `Unhandled console.error call`, look for the **root cause error** (e.g., `ReferenceError: window is not defined`)
 
@@ -28,7 +28,7 @@ This guide covers testing patterns and best practices for Jest and React Testing
 
 ### Arrange-Act-Assert Pattern
 
-**Always use this three-section structure:**
+**Use this three-section structure:**
 
 ```typescript
 describe("Calculator", () => {
@@ -47,11 +47,11 @@ describe("Calculator", () => {
 ```
 
 **Rules:**
-- **Always divide tests** into Arrange, Act, Assert sections with comments
-- **Always use separate comments** for each section
-- **Never combine sections** (don't write `// Act & Assert`)
-- **Never use multiple Act or Assert sections** in a single test
-- **Never remove Arrange, Act, Assert comments**
+- **Divide tests** into Arrange, Act, Assert sections with comments
+- **Use separate comments** for each section
+- **Don't combine sections** (don't write `// Act & Assert`)
+- **Don't use multiple Act or Assert sections** in a single test
+- **Keep the Arrange, Act, Assert comments** when editing existing tests
 
 **Exception - Testing Thrown Errors:**
 
@@ -159,12 +159,12 @@ describe("Calculator", () => {
 
 ## Mocking and Spying
 
-### Critical Rules - Always Follow
+### Rules
 
-1. **Never mock `console.error`** - Hides real implementation issues
-2. **Always use `jest.spyOn()` to create spies** - Never treat original function as spy
+1. **Don't mock `console.error`** - it hides real implementation issues
+2. **Use `jest.spyOn()` to create spies** - don't treat the original function as a spy
 3. **Store spy return values only when asserting on them** - Avoids unused variable errors
-4. **Never mock outside of tests** - Keep mocks inside test cases
+4. **Keep mocks inside test cases**, even if it means duplicating setup
 
 ### Method Spying - Correct Pattern
 
@@ -254,19 +254,11 @@ const spy = jest.spyOn(module, "functionName").mockImplementation((arg) => {
 
 ### Mocking Guidelines
 
-**DO:**
-- Use `jest.spyOn()` for mocking and tracking calls
-- Store spy return values only when asserting on them
-- Chain `.mockReturnValue()` directly when only mocking behavior
-- Keep mocks inside test cases when possible
-- Use mocking to isolate code under test
-- Clean up spies after tests
+In addition to the rules above:
 
-**DON'T:**
-- Never mock `console.error`
-- Never treat original functions as spies
-- Never store spies if not asserting on them
-- Avoid mocking outside of tests
+- Chain `.mockReturnValue()` directly when only mocking behavior
+- Use mocking to isolate code under test
+- Restore spies that could leak into later tests (`jest.restoreAllMocks()` in `afterEach`) - the Jest config does not clear or restore mocks automatically
 
 ### Hook Testing
 
@@ -280,7 +272,7 @@ const {result} = renderHook(() => useMyHook(params));
 
 ### User Interactions
 
-**Always use `userEvent`:**
+**Use `userEvent`:**
 
 ```typescript
 import userEvent from "@testing-library/user-event";
@@ -319,7 +311,7 @@ Use Storybook interaction tests for behavior difficult to mock accurately.
 
 1. **Semantic queries** (best): `getByRole`, `getByLabelText`, `getByText`
 2. **Test IDs** (fallback): `getByTestId` with `data-testid`
-3. **Never use**: CSS classes, IDs, structural selectors
+3. **Don't use**: CSS classes, IDs, structural selectors
 
 ```typescript
 // ✅ DO: Semantic queries

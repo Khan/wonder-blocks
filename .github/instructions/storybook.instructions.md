@@ -145,7 +145,7 @@ Show different variants in a single story:
  */
 export const Kinds: StoryComponentType = {
     render: () => (
-        <View style={{gap: spacing.medium_16}}>
+        <View style={{gap: sizing.size_160}}>
             <Button onClick={() => {}}>Primary</Button>
             <Button kind="secondary" onClick={() => {}}>Secondary</Button>
             <Button kind="tertiary" onClick={() => {}}>Tertiary</Button>

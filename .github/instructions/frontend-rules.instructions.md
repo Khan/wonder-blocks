@@ -57,7 +57,7 @@ This file provides frontend development instructions for the Wonder Blocks desig
 
 - Define styles using `StyleSheet.create` from `aphrodite`. Colocate styles with the component
 - Use `addStyle` from `@khanacademy/wonder-blocks-core` to create styled HTML elements
-- Use semantic color tokens from `@khanacademy/wonder-blocks-tokens` (e.g., `semanticColor.core.background.base`)
+- Use semantic color tokens from `@khanacademy/wonder-blocks-tokens` (e.g., `semanticColor.core.background.base.default`)
 - Use the `focusStyles` utility from `@khanacademy/wonder-blocks-styles` for focus indicators
 - **Avoid using primitive `color` tokens**; use `semanticColor` tokens instead
 
@@ -209,7 +209,7 @@ Use CSS pseudo-classes (`:hover`, `:focus-visible`, `:active`) for state styling
 
 ## Theming
 
-- Use semantic color tokens from `@khanacademy/wonder-blocks-tokens` (e.g., `semanticColor.core.background.base`)
+- Use semantic color tokens from `@khanacademy/wonder-blocks-tokens` (e.g., `semanticColor.core.background.base.default`)
 - Ensure color tokens make semantic sense for their usage (e.g., use `semanticColor.interactive.primary` for primary interactive elements)
 
 ## Package Structure
@@ -274,7 +274,7 @@ Include documentation and accessibility docs as implemented.
 
 ## Cross-Platform Rule Synchronization
 
-**CRITICAL: Keep AI assistant rules in sync across platforms.**
+**Keep AI assistant rules in sync across platforms.**
 
 This project maintains rules for multiple AI assistants. When updating these instruction files, also update the corresponding files for other platforms:
 

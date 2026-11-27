@@ -57,7 +57,7 @@ alwaysApply: true
 
 * ✅ Define styles using `StyleSheet.create` from `aphrodite`. Colocate styles with the component
 * ✅ Use `addStyle` from `@khanacademy/wonder-blocks-core` to create styled HTML elements (e.g., `addStyle("div")`, `addStyle("input")`)
-* ✅ Use semantic color tokens from `@khanacademy/wonder-blocks-tokens` (e.g., `semanticColor.core.background.base`)
+* ✅ Use semantic color tokens from `@khanacademy/wonder-blocks-tokens` (e.g., `semanticColor.core.background.base.default`)
 * ✅ Use the `focusStyles` utility from `@khanacademy/wonder-blocks-styles` for consistent focus indicators
 * ✅ Ensure styling consistency across different components throughout the design system
 
@@ -264,7 +264,7 @@ Wonder Blocks components often support the following states:
 
 ## Theming
 
-* ✅ Use semantic color tokens from `@khanacademy/wonder-blocks-tokens` (e.g., `semanticColor.core.background.base`)
+* ✅ Use semantic color tokens from `@khanacademy/wonder-blocks-tokens` (e.g., `semanticColor.core.background.base.default`)
 * ✅ Ensure that color tokens make semantic sense for their usage (e.g., use `semanticColor.interactive.primary` for primary interactive elements)
 
 ## Documentation
