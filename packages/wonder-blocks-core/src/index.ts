@@ -18,3 +18,5 @@ export type {AriaRole, AriaAttributes} from "./util/aria-types";
 export type {AriaProps, StyleType, PropsFor} from "./util/types";
 export {keys} from "./util/keys";
 export {findFocusableNodes} from "./util/focus";
+export {FloatingReferenceAttributeName} from "./util/constants";
+export type {FloatingReferenceProps} from "./util/constants";

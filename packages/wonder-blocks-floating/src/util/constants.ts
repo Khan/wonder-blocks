@@ -10,8 +10,11 @@ export const ARROW_SIZE_BLOCK = 10;
  * Components that render another component's trigger (e.g. `PopoverAnchor`)
  * should pass this attribute along to the element the floating element is
  * anchored to.
+ *
+ * NOTE: It is defined in `wonder-blocks-core`, so that components that don't
+ * depend on this package (e.g. `Switch`) can pass it to their root element.
  */
-export const FloatingReferenceAttributeName = "data-wb-floating-reference";
+export {FloatingReferenceAttributeName} from "@khanacademy/wonder-blocks-core";
 
 /**
  * The attribute used to identify a modal launcher portal.
