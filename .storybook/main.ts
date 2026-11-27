@@ -32,7 +32,7 @@ const config: StorybookConfig = {
         },
     ],
     features: {
-        experimentalComponentsManifest: true,
+        componentsManifest: true,
     },
     staticDirs: ["../static"],
     core: {
