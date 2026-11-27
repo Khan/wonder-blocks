@@ -59,7 +59,7 @@ Wonder Blocks uses [@storybook/addon-mcp](https://storybook.js.org/addons/@story
 In `.storybook/main.ts`:
 
 - **addon-mcp** is enabled with `toolsets: { dev: true, docs: true }`.
-- **experimentalComponentsManifest** is enabled so the addon can expose component metadata.
+- **componentsManifest** is enabled so the addon can expose component metadata.
 
 Typical MCP tools you can use (names may vary by addon version):
 
